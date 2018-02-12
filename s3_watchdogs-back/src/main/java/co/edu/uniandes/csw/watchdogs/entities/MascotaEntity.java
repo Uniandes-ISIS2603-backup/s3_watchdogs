@@ -17,15 +17,13 @@ import javax.persistence.Id;
 public class MascotaEntity implements Serializable{
 
     //----- Atributos -----
-    
+      
+    @Id
+    private Long id;
+    private String nombre;
     private String color;
     private String raza;
     private String sexo;
-    private String nombre;
-    
-    @Id
-    private Long id;
-
     
     //----- Metodos -----
     
