@@ -40,7 +40,7 @@ public class MascotaResource {
      * 
      * @param mascota {@link MascotaDetailDTO} - La mascota que se desea guardar.
      * @return JSON {@link MascotaDetailDTO} - La mascota guardada con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de logica que se genera cuando ya existe la ciudad.
+     * @throws BusinessLogicException Error de logica que se genera cuando ya existe la ciudad.
      */
     @POST
     public MascotaDetailDTO createMascota( MascotaDetailDTO mascota ) throws BusinessLogicException {
