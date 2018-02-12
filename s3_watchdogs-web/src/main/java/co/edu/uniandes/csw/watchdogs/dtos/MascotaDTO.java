@@ -107,4 +107,12 @@ public class MascotaDTO {
         this.sexo = sexo;
     }
    
+    public MascotaEntity toEntity() {
+        MascotaEntity entity = new MascotaEntity();
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        entity.setRaza(this.raza);
+        entity.setSexo(this.sexo);
+        return entity;
+    }
 }
