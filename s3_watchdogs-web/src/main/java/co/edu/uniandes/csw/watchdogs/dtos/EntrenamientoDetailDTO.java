@@ -14,19 +14,23 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 public class EntrenamientoDetailDTO extends EntrenamientoDTO{
     
     /**
-     * Constructor
+     * Constructor por defecto
      */
     public EntrenamientoDetailDTO() {
         super();
     }
     
+    /**
+     * Constructor que recibe un entity
+     * @param entity
+     */
     public EntrenamientoDetailDTO(EntrenamientoEntity entity){
         super(entity);
     }
 
     /**
-     * 
-     * @return 
+     * Metodo que convierte un DTO a ENtity
+     * @return EntrenamientoEntity
      */
     @Override
     public EntrenamientoEntity toEntity(){

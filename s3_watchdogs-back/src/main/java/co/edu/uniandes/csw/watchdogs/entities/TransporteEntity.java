@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 @Entity
 public class TransporteEntity extends BaseEntity implements Serializable{
     
+    private Long id;
+    
     private String direccion;
     
     private int recogida;
@@ -24,6 +26,16 @@ public class TransporteEntity extends BaseEntity implements Serializable{
     public TransporteEntity(){
         
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+    
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }

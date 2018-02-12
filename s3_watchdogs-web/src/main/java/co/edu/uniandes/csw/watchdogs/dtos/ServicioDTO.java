@@ -14,7 +14,9 @@ import java.util.Date;
  * @author c.martinezc1
  */
 public abstract class ServicioDTO {
-    
+    /**
+     * identificador
+     */
     private Long id;
     
     /**
@@ -58,51 +60,98 @@ public abstract class ServicioDTO {
         this.rango = entity.getRango();
     }
 
+    /**
+     * Getter id
+     * @return id
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Setter id
+     * @param id 
+     */
     public void setId(Long id) {
         this.id = id;
     }
     
-
+    /**
+     * Getter fecha
+     * @return fecha
+     */
     public Date getFecha() {
         return fecha;
     }
 
+    /**
+     * GEtter costo
+     * @return costo
+     */
     public double getCosto() {
         return costo;
     }
 
+    /**
+     * Getter estado
+     * @return estado
+     */
     public boolean isEstado() {
         return estado;
     }
 
+    /**
+     * Getter duracion
+     * @return duracion
+     */
     public double getDuracion() {
         return duracion;
     }
 
+    /**
+     * Getter rango
+     * @return rango
+     */
     public ArrayList<String> getRango() {
         return rango;
     }
 
+    /**
+     * Setter fecha
+     * @param fecha 
+     */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
+    /**
+     * Setter costo
+     * @param costo 
+     */
     public void setCosto(double costo) {
         this.costo = costo;
     }
 
+    /**
+     * Setter estado
+     * @param estado 
+     */
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
 
+    /**
+     * Setter duracion
+     * @param duracion 
+     */
     public void setDuracion(double duracion) {
         this.duracion = duracion;
     }
 
+    /**
+     * Setter rango
+     * @param rango 
+     */
     public void setRango(ArrayList<String> rango) {
         this.rango = rango;
     }

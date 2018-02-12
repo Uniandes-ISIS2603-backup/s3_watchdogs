@@ -36,7 +36,7 @@ public class TransporteResource {
     
     /**
      *
-     * @return
+     * @return lista entities
      * @throws BusinessLogicException
      */
     @GET

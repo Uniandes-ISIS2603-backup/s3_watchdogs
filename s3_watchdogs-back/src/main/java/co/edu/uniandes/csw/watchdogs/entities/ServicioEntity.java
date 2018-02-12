@@ -17,6 +17,10 @@ import javax.persistence.Temporal;
  */
 @Entity
 public abstract class ServicioEntity extends BaseEntity implements Serializable{
+    /**
+     * identificador
+     */
+    private Long id;
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
@@ -31,6 +35,14 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     
     public ServicioEntity(){
         
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public void setFecha(Date fecha) {

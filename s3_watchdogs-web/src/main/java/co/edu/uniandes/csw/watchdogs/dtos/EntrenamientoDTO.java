@@ -13,25 +13,49 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
  */
 public class EntrenamientoDTO extends ServicioDTO {
     
+    
+    /**
+     * Atributo que representa el tipo de entrenamiento
+     */
     private String tipo;
     
+    /**
+     * Constructor por defecto
+     */
     public EntrenamientoDTO(){
         
     }
     
+    /**
+     * Constructor donde recibe un entity
+     * @param entity
+     */
     public EntrenamientoDTO(EntrenamientoEntity entity){
         super(entity);
         this.tipo = entity.getTipo();
     }
 
+
+    /**
+     * Getter del tipo
+     * @return tipo
+     */
     public String getTipo() {
         return tipo;
     }
 
+    /**
+     * Setter de tipo
+     * @param tipo
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
+    /**
+     * Metodo que cambia de DTO a Entity
+     * @return
+     */
     public EntrenamientoEntity toEntity(){
         EntrenamientoEntity entity = new EntrenamientoEntity();
         entity.setCosto(this.getCosto());
