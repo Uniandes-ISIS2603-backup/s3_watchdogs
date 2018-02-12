@@ -48,6 +48,10 @@ public class PayPalEntity extends BaseEntity implements Serializable {
         return contrasenha;
     }
     
+    /**
+     * 
+     * @param contrasenha Contraseña nueva a asignar
+     */
     public void setContrasenha(String contrasenha)
     {
         this.contrasenha = contrasenha;
