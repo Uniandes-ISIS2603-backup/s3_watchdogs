@@ -37,6 +37,8 @@ public class CityDetailDTO extends CityDTO {
      */
     public CityDetailDTO() {
     }
+    
+    
 
     /**
      * Constructor para transformar un Entity a un DTO
