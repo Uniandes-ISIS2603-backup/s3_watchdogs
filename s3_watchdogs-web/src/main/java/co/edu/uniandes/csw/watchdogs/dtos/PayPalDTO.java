@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
  */
 public class PayPalDTO {
     
+    private Long id;
     private String correo;
     private String contrasenha;
     
@@ -31,6 +32,24 @@ public class PayPalDTO {
     {
         this.correo = payPalE.getCorreo();
         this.contrasenha = payPalE.getContrasenha();
+    }
+    
+    /**
+     * Método que retorna el id asociado al DTO 
+     * @return id asociado 
+     */
+    public Long getId()
+    {
+        return id;
+    }
+    
+    /**
+     * Método que asigna un nuevo valor al id 
+     * @param pId Nuevo id a asignar 
+     */
+    public void setId(Long pId)
+    {
+        id = pId;
     }
 
     /**

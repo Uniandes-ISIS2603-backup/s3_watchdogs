@@ -13,6 +13,8 @@ import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
  */
 public class PseDTO {
     
+    private Long id;
+    
     private String correo;
     
     /**
@@ -28,6 +30,24 @@ public class PseDTO {
     public PseDTO(PseEntity pse)
     {
         this.correo = pse.getCorreo();
+    }
+    
+    /**
+     * Método que retorna el id que identifica al DTO
+     * @return id asociado al DTO 
+     */
+    public Long getId()
+    {
+        return id;
+    }
+    
+    /**
+     * Método que asigna un nuevo valor al id
+     * @param pId id nuevo a asignar
+     */
+    public void setId(Long pId)
+    {
+        id = pId;
     }
     
     /**

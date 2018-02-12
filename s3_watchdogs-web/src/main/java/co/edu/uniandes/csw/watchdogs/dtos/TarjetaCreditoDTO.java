@@ -13,6 +13,7 @@ import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
  */
 public class TarjetaCreditoDTO {
     
+    private Long id;
     private String nombre;
     private String numeroTarjeta;
     private String fechaVencimiento;
@@ -33,6 +34,24 @@ public class TarjetaCreditoDTO {
         this.numeroTarjeta = tarjetaE.getNumTarjeta();
         this.fechaVencimiento = tarjetaE.getFechaVencimiento();
         this.CodigoSeguridad = tarjetaE.getCodigoSeguridad();
+    }
+    
+    /**
+     * Método que retorna el id asociado al DTO
+     * @return El id asociado al DTO 
+     */
+    public Long getId()
+    {
+        return id;
+    }
+    
+    /**
+     * Método que asigna un nuevo id
+     * @param pId el id a asignar
+     */
+    public void setId(Long pId)
+    {
+        id = pId;
     }
     
     /**
