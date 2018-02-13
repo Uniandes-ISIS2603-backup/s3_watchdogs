@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -118,6 +119,26 @@ public class TarjetaCreditoResource {
     @Path("{id: \\d+}")
     public TarjetaCreditoDetailDTO updateTarjeta(@PathParam("id") Long id, TarjetaCreditoDetailDTO tarjeta) throws BusinessLogicException {
         return tarjeta;
+    }
+    
+     /**
+     * <h1>DELETE /api/tarjetas/{id} : Borrar tarjeta por id.</h1>
+     * 
+     * <pre>Borra la tarjeta con el id asociado recibido en la URL.
+     * 
+     * Códigos de respuesta:<br>
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Elimina la tarjeta correspondiente al id dado.</code>
+     * <code style="color: #c7254e; background-color: #f9f2f4;">
+     * 404 Not Found. No existe una tarjeta con el id dado.
+     * </code>
+     * </pre>
+     * @param id Identificador de la tarjeta que se desea borrar. Este debe ser una cadena de dígitos.
+     */
+    @DELETE
+    @Path("{id: \\d+}")
+     public void deleteTarjeta(@PathParam("id") Long id) {
+        // Void
     }
     
 }
