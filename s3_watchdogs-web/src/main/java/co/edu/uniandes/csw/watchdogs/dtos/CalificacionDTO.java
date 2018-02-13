@@ -22,6 +22,10 @@ public class CalificacionDTO {
         this.puntaje = entity.getPuntaje();
     }  
     
+    public CalificacionDTO(){
+        
+    }
+    
     public Long getId() {
         return id;
     }
