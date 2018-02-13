@@ -5,21 +5,13 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 
 /**
  *
  * @author c.martinezc1
  */
 public abstract class ServicioDetailDTO extends ServicioDTO{
-    
-    /**
-     * Constructor por defecto
-     * @param entity
-     */
-    public ServicioDetailDTO(ServicioEntity entity){
-    super(entity);
-    }
+   
     
     
 }

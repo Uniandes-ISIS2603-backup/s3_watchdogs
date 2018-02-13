@@ -32,11 +32,11 @@ import javax.ws.rs.Produces;
 public class TarjetaCreditoResource {
     
     /**
-     * <h1>POST /api/tarjetaCredito : Crear una ciudad.</h1>
+     * <h1>POST /api/tarjetaCredito : Crear una tarjeta.</h1>
      * 
      * <pre>Cuerpo de petición: JSON.
      * 
-     * Crea una nueva ciudad con la informacion que se recibe en el cuerpo 
+     * Crea una nueva tarjeta con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
      * por la base de datos.
      * 
@@ -77,7 +77,7 @@ public class TarjetaCreditoResource {
     /**
      * <h1>GET /api/tarjetaCredito/{id} : Obtener tarjeta por id.</h1>
      * 
-     * <pre>Busca el método de pago pse con el id asociado recibido en la URL y la devuelve.
+     * <pre>Busca la tarjeta con el id asociado recibido en la URL y la devuelve.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">

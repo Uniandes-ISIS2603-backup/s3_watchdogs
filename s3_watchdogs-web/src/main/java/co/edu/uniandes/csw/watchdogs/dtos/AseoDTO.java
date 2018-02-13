@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
 
 /**
  *
@@ -23,17 +22,6 @@ public class AseoDTO {
     public AseoDTO(){
     }
     
-     /**
-     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-     * la entidad que viene de argumento.
-     *
-     * @param aseo: Es la entidad que se va a convertir a DTO
-     */
-    public AseoDTO(AseoEntity aseo) {
-        this.dientes =aseo.getDientes();
-        this.banho = aseo.getBanho();
-        this.peluqueria = aseo.getPeluqueria();
-    }
 
     /**
      * @return El servico de dientes
@@ -75,18 +63,5 @@ public class AseoDTO {
      */
     public void setPeluqueria(Boolean peluqueria) {
         this.peluqueria = peluqueria;
-    }
-    
-    /**
-     * Convertir DTO a Entity
-     *
-     * @return Un Entity con los valores del DTO
-     */
-     public AseoEntity toEntity() {
-        AseoEntity entity = new AseoEntity();
-        entity.setDientes(this.dientes);
-        entity.setBanho(this.banho);
-        entity.setPeluqueria(this.peluqueria);
-        return entity;
     }
 }

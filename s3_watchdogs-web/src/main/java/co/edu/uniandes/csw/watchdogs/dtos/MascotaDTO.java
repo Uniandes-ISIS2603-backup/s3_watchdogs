@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 
 /**
  *
@@ -29,13 +28,7 @@ public class MascotaDTO {
     public MascotaDTO() {
     }
     
-    public MascotaDTO( MascotaEntity mascota ) {
-        this.id = mascota.getId();
-        this.nombre = mascota.getNombre();
-        this.raza = mascota.getRaza();
-        this.color = mascota.getColor();
-        this.sexo = mascota.getSexo();
-    }
+   
 
     /**
      * @return the id
@@ -107,12 +100,4 @@ public class MascotaDTO {
         this.sexo = sexo;
     }
    
-    public MascotaEntity toEntity() {
-        MascotaEntity entity = new MascotaEntity();
-        entity.setId(this.id);
-        entity.setNombre(this.nombre);
-        entity.setRaza(this.raza);
-        entity.setSexo(this.sexo);
-        return entity;
-    }
 }

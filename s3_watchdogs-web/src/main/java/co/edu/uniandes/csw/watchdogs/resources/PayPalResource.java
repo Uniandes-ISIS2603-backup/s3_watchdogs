@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
+import co.edu.uniandes.csw.watchdogs.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.PayPalDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.PseDetailDTO;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -24,12 +25,11 @@ import javax.ws.rs.Produces;
  *
  * @author jc.pulido
  */
-
-@Path("pses")
+@Path("paypal")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class PseResource {
+public class PayPalResource {
     
     /**
      * <h1>POST /api/pse : Crear un método de pago Pse.</h1>
@@ -48,17 +48,17 @@ public class PseResource {
      * 412 Precodition Failed: Ya existe el método de pago.
      * </code>
      * </pre>
-     * @param pse {@link PseDetailDTO} -El método de pago Pse que se desea guardar.
+     * @param paypal {@link PseDetailDTO} -El método de pago Pse que se desea guardar.
      * @return JSON {@link PseDetailDTO}  - El método de pago Pse con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe el método de pago pse.
      */
     @POST
-    public PseDetailDTO createPse(PseDetailDTO pse) throws BusinessLogicException
+    public PayPalDetailDTO createPayPal(PayPalDetailDTO paypal) throws BusinessLogicException
     {
-        return pse;
+        return paypal;
     }
     
-     /**
+    /**
      * <h1>GET /api/clientes : Obtener todos los clientes.</h1>
      * 
      * <pre>Busca y devuelve todos los clientes que existen en la aplicacion.
@@ -70,7 +70,7 @@ public class PseResource {
      * @return JSONArray {@link CityDetailDTO} - Los clientes encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<PseDetailDTO> getPses() {
+    public List<PayPalDetailDTO> getPayPals() {
         return new ArrayList<>();
     }
     
@@ -92,7 +92,7 @@ public class PseResource {
      */
     @GET
     @Path("(id: \\d+)")
-    public PseDetailDTO getPse(@PathParam("id") Long id)
+    public PayPalDetailDTO getPayPal(@PathParam("id") Long id)
     {
         return null;
     }
@@ -111,17 +111,17 @@ public class PseResource {
      * </code> 
      * </pre>
      * @param id Identificador del pago pse que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param pse {@link PseDetailDTO} La ciudad que se desea guardar.
+     * @param payPal {@link PseDetailDTO} La ciudad que se desea guardar.
      * @return JSON {@link PseDetailDTO} - La ciudad guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar la ciudad porque ya existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
-    public PseDetailDTO updatePse(@PathParam("id") Long id, PseDetailDTO pse) throws BusinessLogicException {
-        return pse;
+    public PayPalDetailDTO updatePayPal(@PathParam("id") Long id, PayPalDetailDTO payPal) throws BusinessLogicException {
+        return payPal;
     }
     
-     /**
+    /**
      * <h1>DELETE /api/pse/{id} : Borrar pago pse por id.</h1>
      * 
      * <pre>Borra el pago pse con el id asociado recibido en la URL.
@@ -137,7 +137,7 @@ public class PseResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deletePse(@PathParam("id") Long id) {
+     public void deletePayPal(@PathParam("id") Long id) {
         // Void
     }
 }

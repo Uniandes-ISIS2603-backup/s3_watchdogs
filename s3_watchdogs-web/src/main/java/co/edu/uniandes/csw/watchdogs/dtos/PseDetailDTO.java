@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
 
 /**
  *
@@ -18,24 +17,7 @@ public class PseDetailDTO extends PseDTO {
      */
     public PseDetailDTO(){}
     
-    /**
-     * Constructor que tranforma un entity en un DTO
-     * @param pse Entidad de pse a partir de la cual se construye el objeto.
-     */
-    public PseDetailDTO(PseEntity pse)
-    {
-        super(pse);
-    }
+   
     
-    /**
-     * Transformar un DTO a un Entity 
-     * @return La entidad construida a partir del DTO
-     */
-    @Override
-    public PseEntity toEntity()
-    {
-        PseEntity pseE = super.toEntity();
-        return pseE;
-    }
     
 }

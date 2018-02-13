@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -70,19 +69,7 @@ public abstract class ServicioDTO {
      */
     public ServicioDTO(){
     }
-    
-    /**
-     * Constructor basico de un servicio
-     * @param entity 
-     */
-    public ServicioDTO(ServicioEntity entity){
-        this.id = entity.getId();
-        this.costo = entity.getCosto();
-        this.duracion = entity.getDuracion();
-        this.estado = entity.isEstado();
-        this.fecha = entity.getFecha();
-        this.rango = entity.getRango();
-    }
+   
 
     /**
      * Getter id

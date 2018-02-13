@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 
 /**
  *
@@ -21,18 +20,7 @@ public class PayPalDTO {
      * Constructor por defecto 
      */
     public PayPalDTO(){}
-    
-      /**
-     * Conviertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
-     * la entidad que viene de argumento.
-     *
-     * @param payPalE: Es la entidad que se va a convertir a DTO
-     */
-    public PayPalDTO(PayPalEntity payPalE)
-    {
-        this.correo = payPalE.getCorreo();
-        this.contrasenha = payPalE.getContrasenha();
-    }
+   
     
     /**
      * Método que retorna el id asociado al DTO 
@@ -79,13 +67,6 @@ public class PayPalDTO {
     public void setContrasenha(String contrasenha) {
         this.contrasenha = contrasenha;
     }
-    
-    public PayPalEntity toEntity()
-    {
-        PayPalEntity payPalE = new PayPalEntity();
-        payPalE.setCorreo(correo);
-        payPalE.setContrasenha(contrasenha);
-        return payPalE;
-    }
+   
     
 }

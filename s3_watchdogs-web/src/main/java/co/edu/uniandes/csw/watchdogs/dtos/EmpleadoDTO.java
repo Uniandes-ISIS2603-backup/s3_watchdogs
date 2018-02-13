@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 
 /**
  *
@@ -27,14 +26,7 @@ public class EmpleadoDTO {
     public EmpleadoDTO(){
     }
     
-    public EmpleadoDTO( EmpleadoEntity empleado ) {
-        this.id = empleado.getId();
-        this.imagen = empleado.getImagen();
-        // this.servicio = empleado.getServicio();
-        this.edad = empleado.getEdad();
-        this.horarios = empleado.getHorarios();
-    }
-    
+   
     //----- Metodos -----
 
     /**
@@ -105,15 +97,6 @@ public class EmpleadoDTO {
      */
     public void setHorarios(String horarios) {
         this.horarios = horarios;
-    }
-    
-    public EmpleadoEntity toEntity() {
-        EmpleadoEntity entity = new EmpleadoEntity();
-        entity.setId(this.id);
-        entity.setImagen(this.imagen);
-        // entity.setServicio(this.servicio);
-        entity.setHorarios(this.horarios);
-        return entity;
     }
     
 }

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 
 /**
  *
@@ -18,23 +17,6 @@ public class PayPalDetailDTO extends PayPalDTO {
      */
     public PayPalDetailDTO(){}
     
-      /**
-     * Constructor que tranforma un entity en un DTO
-     * @param payPalE Entidad de paypal a partir de la cual se construye el objeto.
-     */
-    public PayPalDetailDTO(PayPalEntity payPalE)
-    {
-        super(payPalE);
-    }
-    
-     /**
-     * Transformar un DTO a un Entity 
-     * @return La entidad construida a partir del DTO
-     */
-    @Override
-    public PayPalEntity toEntity()
-    {
-        return super.toEntity();
-    }
+  
     
 }

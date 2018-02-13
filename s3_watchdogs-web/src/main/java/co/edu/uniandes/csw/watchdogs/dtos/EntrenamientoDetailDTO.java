@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 
 /**
  *
@@ -20,21 +19,6 @@ public class EntrenamientoDetailDTO extends EntrenamientoDTO{
         super();
     }
     
-    /**
-     * Constructor que recibe un entity
-     * @param entity
-     */
-    public EntrenamientoDetailDTO(EntrenamientoEntity entity){
-        super(entity);
-    }
 
-    /**
-     * Metodo que convierte un DTO a ENtity
-     * @return EntrenamientoEntity
-     */
-    @Override
-    public EntrenamientoEntity toEntity(){
-        EntrenamientoEntity entity = super.toEntity();
-        return entity;
-    }
+  
 }

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
 
 /**
  *
@@ -22,15 +21,7 @@ public class PseDTO {
      */
     public PseDTO(){}
     
-    /**
-     * Convertir Entity a DTO, crea un nuevo DTO con los valores que vienen con
-     * la entidad entrada por parámetro.
-     * @param pse Entidad que se convertirá a DTO
-     */
-    public PseDTO(PseEntity pse)
-    {
-        this.correo = pse.getCorreo();
-    }
+
     
     /**
      * Método que retorna el id que identifica al DTO
@@ -68,10 +59,4 @@ public class PseDTO {
         this.correo = correo;
     }
     
-    public PseEntity toEntity()
-    {
-        PseEntity pseEntity = new PseEntity();
-        pseEntity.setCorreo(correo);
-        return pseEntity;
-    }
 }

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 
 /**
  * ClienteDTO Objeto de transferencia de datos de Clientes. Los DTO contienen las
@@ -42,10 +41,6 @@ public class ClienteDTO {
     public ClienteDTO() {
     }
     
-    public ClienteDTO( ClienteEntity cliente ) {
-        this.nombre = cliente.getNombre( );
-        this.cedula = cliente.getCedula( );
-    }
 
     /**
      * @return the nombre
@@ -73,17 +68,5 @@ public class ClienteDTO {
      */
     public void setCedula(String cedula) {
         this.cedula = cedula;
-    }
-    
-    /**
-     * Convertir DTO a Entity
-     * 
-     * @return Un Entity con los valores del DTO
-     */
-    public ClienteEntity toEntity() {
-        ClienteEntity entity = new ClienteEntity();
-        entity.setNombre( this.nombre );
-        entity.setCedula( this.cedula );
-        return entity;
     }
 }

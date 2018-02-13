@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 
 /**
  *
@@ -23,18 +22,7 @@ public class TarjetaCreditoDTO {
      * Constructor por defecto
      */
     public TarjetaCreditoDTO(){}
-    
-    /**
-     * Método que transforma una entidad en un DTO
-     * @param tarjetaE 
-     */
-    public TarjetaCreditoDTO(TarjetaCreditoEntity tarjetaE)
-    {
-        this.nombre = tarjetaE.getNombre();
-        this.numeroTarjeta = tarjetaE.getNumTarjeta();
-        this.fechaVencimiento = tarjetaE.getFechaVencimiento();
-        this.CodigoSeguridad = tarjetaE.getCodigoSeguridad();
-    }
+  
     
     /**
      * Método que retorna el id asociado al DTO
@@ -126,18 +114,5 @@ public class TarjetaCreditoDTO {
         this.CodigoSeguridad = cod;
     }
     
-      /**
-     * Convertir DTO a Entity
-     *
-     * @return Un Entity con los valores del DTO
-     */
-    public TarjetaCreditoEntity toEntity()
-    {
-        TarjetaCreditoEntity tarjetaE = new TarjetaCreditoEntity();
-        tarjetaE.setNombre(nombre);
-        tarjetaE.setNumTarjeta(numeroTarjeta);
-        tarjetaE.setFechaVencimiento(fechaVencimiento);
-        tarjetaE.setCodigoSeguridad(CodigoSeguridad);
-        return tarjetaE;
-    }
+    
 }

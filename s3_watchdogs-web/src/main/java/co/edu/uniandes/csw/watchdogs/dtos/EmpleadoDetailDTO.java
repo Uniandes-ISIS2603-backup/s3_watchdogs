@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 
 /**
  *
@@ -20,26 +19,5 @@ public class EmpleadoDetailDTO extends EmpleadoDTO{
      */
     public EmpleadoDetailDTO() {
     }
-    
-    /**
-     * Constructo para transformar un Entity a un DTO
-     * 
-     * @param entity La entidad de empleado a partir de la cual se construira un objeto
-     */
-    public EmpleadoDetailDTO( EmpleadoEntity entity ) {
-        super(entity);
-    }
-    
-    /**
-     * Transforamr un DTO a un Entity
-     * 
-     * @return La entidad construida a partir del DTO.
-     */
-    @Override
-    public EmpleadoEntity toEntity() {
-        EmpleadoEntity empleadoE = super.toEntity();
-        return empleadoE;
-    }
-    
     
 }

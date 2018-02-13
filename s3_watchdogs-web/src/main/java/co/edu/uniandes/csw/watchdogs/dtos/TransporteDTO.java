@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 
 /**
  *
@@ -35,17 +34,7 @@ public class TransporteDTO {
     public TransporteDTO(){
         
     }
-    
-    /**
-     * Constructor que recibe un entity
-     * @param entity 
-     */
-    public TransporteDTO(TransporteEntity entity){
-        this.id = entity.getId();
-        this.devuelta = entity.getDevuelta();
-        this.direccion = entity.getDireccion();
-        this.recogida = entity.getRecogida();
-    }
+   
 
     /**
      * Setter id
@@ -109,17 +98,5 @@ public class TransporteDTO {
      */
     public int getDevuelta() {
         return devuelta;
-    }
-    
-    /**
-     * Metodo que pasa de un DTO a un Entity
-     * @return 
-     */
-    public TransporteEntity toEntity(){
-        TransporteEntity entity = new TransporteEntity();
-        entity.setDevuelta(devuelta);
-        entity.setDireccion(direccion);
-        entity.setRecogida(recogida);
-        return entity;
     }
 }
