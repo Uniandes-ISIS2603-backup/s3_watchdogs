@@ -8,7 +8,33 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 
 /**
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": long,
+ *      "fecha: date,
+ *      "costo": double
+ *      "estado": boolean
+ *      "duración": double
+ *      "rango": List'String'
+ *      "tipo": string
+ *   }
+ * </pre>
+ * Por ejemplo un entrenamiento se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 815373,
+ *      "fecha: "10-10-2010",
+ *      "costo": 25
+ *      "estado": "1"
+ *      "duración": 20.5
+ *      "rango": ""
+ *      "tipo": "cardio"
+ *   }
  *
+ * </pre>
  * @author c.martinezc1
  */
 public class EntrenamientoDTO extends ServicioDTO {
@@ -54,7 +80,7 @@ public class EntrenamientoDTO extends ServicioDTO {
 
     /**
      * Metodo que cambia de DTO a Entity
-     * @return
+     * @return entity
      */
     public EntrenamientoEntity toEntity(){
         EntrenamientoEntity entity = new EntrenamientoEntity();

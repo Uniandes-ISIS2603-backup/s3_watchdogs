@@ -28,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
 @Path("entrenamientos")
 @Produces("application/json")
 @Consumes("application/json")
-public class EntrenamientoResource extends ServicioResource{
+public class EntrenamientoResource{
     
     /*
     @Inject

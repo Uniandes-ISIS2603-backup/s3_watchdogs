@@ -10,7 +10,31 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
+ ** Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": long,
+ *      "fecha: date,
+ *      "costo": double
+ *      "estado": boolean
+ *      "duración": double
+ *      "rango": List'String'
+ *   }
+ * </pre>
+ * Por ejemplo un entrenamiento se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 815373,
+ *      "fecha: "10-10-2010",
+ *      "costo": 25
+ *      "estado": "1"
+ *      "duración": 20.5
+ *      "rango": ""
+ *   }
  *
+ * </pre>
  * @author c.martinezc1
  */
 public abstract class ServicioDTO {
