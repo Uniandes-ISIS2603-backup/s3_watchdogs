@@ -20,9 +20,7 @@ public class CalificacionDTO {
        
     }  
     
-    public CalificacionDTO(){
-        
-    }
+    
     
     public Long getId() {
         return id;

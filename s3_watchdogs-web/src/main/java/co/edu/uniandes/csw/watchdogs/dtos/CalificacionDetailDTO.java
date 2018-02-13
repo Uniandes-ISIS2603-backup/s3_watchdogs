@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 
 /**
  *
@@ -13,16 +12,9 @@ import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
  */
 public class CalificacionDetailDTO extends CalificacionDTO{
     
-    public CalificacionDetailDTO(CalificacionEntity entity) {
-        super(entity);
+    public CalificacionDetailDTO() {
+        super();
     }
     
-    public CalificacionDetailDTO(){
-    }
-
-    @Override
-    public CalificacionEntity toEntity(){
-        CalificacionEntity entity = super.toEntity();
-        return entity;
-    }
+   
 }
