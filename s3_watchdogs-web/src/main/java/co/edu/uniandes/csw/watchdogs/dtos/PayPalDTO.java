@@ -5,7 +5,29 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-
+/**
+ * PayPalDTO Objeto de transferencia de datos de PayPal. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "correo: string,
+ *      "contrasenha": string
+ *   }
+ * </pre>
+ * Por ejemplo un PayPal se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 91852,
+ *      "correo: "jc.pulido@uniandes.edu.co",
+ *      "contrasenha": "juanca8520"
+ *   }
+ *
 /**
  *
  * @author jc.pulido

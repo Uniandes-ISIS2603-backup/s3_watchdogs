@@ -5,7 +5,31 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-
+/**
+ * TarjetaCreditoDTO Objeto de transferencia de datos de las tarjetas de crédito. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": number,
+ *      "numeroTarjeta: string,
+ *      "fechaVencimiento": string,
+ *      "codigoSeguridad": String
+ *   }
+ * </pre>
+ * Por ejemplo una tarjeta se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 91852,
+ *      "numeroTarjeta: "1212124648794562",
+ *      "fechaVencimiento": "12/2020"
+ *      "codigoSeguridad": "456"
+ *   }
+ *
 /**
  *
  * @author jc.pulido
@@ -13,7 +37,6 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 public class TarjetaCreditoDTO {
     
     private Long id;
-    private String nombre;
     private String numeroTarjeta;
     private String fechaVencimiento;
     private String CodigoSeguridad;
@@ -41,24 +64,7 @@ public class TarjetaCreditoDTO {
     {
         id = pId;
     }
-    
-    /**
-     * 
-     * @return nombre asociado a la tarjeta 
-     */
-    public String getNombre()
-    {
-        return nombre;
-    }
-    
-    /**
-     * 
-     * @param nombre Nombre nuevo a asignar a la tarjeta
-     */
-    public void setNombre(String nombre)
-    {
-        this.nombre = nombre;
-    }
+ 
     
     /**
      * 

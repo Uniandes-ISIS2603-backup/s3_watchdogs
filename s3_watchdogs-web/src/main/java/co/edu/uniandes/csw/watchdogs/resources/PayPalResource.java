@@ -59,15 +59,15 @@ public class PayPalResource {
     }
     
     /**
-     * <h1>GET /api/clientes : Obtener todos los clientes.</h1>
+     * <h1>GET /api/paypal : Obtener todos los clientes.</h1>
      * 
-     * <pre>Busca y devuelve todos los clientes que existen en la aplicacion.
+     * <pre>Busca y devuelve todos los PayPal que existen en la aplicacion.
      * 
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve todos los clientes de la aplicacion.</code> 
      * </pre>
-     * @return JSONArray {@link CityDetailDTO} - Los clientes encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     * @return JSONArray {@link CityDetailDTO} - Los PayPal encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
     public List<PayPalDetailDTO> getPayPals() {
