@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 import java.util.ArrayList;
 
 /**
- *
+ * Clase que extiende de {@link PaseoDTO} para manejar la transformacion entre
+ * los objetos JSON y las Entidades de la base de datos. Para conocer el
+ * contenido del paseo vaya a la documentacion de {@link PaseoDTO}
  * @author m.diazt
  */
 public class PaseoDetailDTO extends PaseoDTO{

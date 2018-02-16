@@ -6,6 +6,29 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 /**
+ * CentroDeEntrenamientoDTO Objeto de transferencia de datos de CentrosDeEntrenamiento. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": Long,
+ *      "direccion": String,
+ *      "fotos": List'String'
+ *   }
+ * </pre>
+ * Por ejemplo un centro de entrenamiento se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 1321321,
+ *      "direccion": Carrera 50#120,
+ *      "fotos": ""
+ *   }
+ *
+ * </pre>
  *
  * @author m.diazt
  */

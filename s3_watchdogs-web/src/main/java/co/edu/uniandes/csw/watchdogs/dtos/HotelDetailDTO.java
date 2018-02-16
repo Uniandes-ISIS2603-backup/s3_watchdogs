@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 /**
- *
+ * Clase que extiende de {@link HotelDTO} para manejar la transformacion entre
+ * los objetos JSON y las Entidades de la base de datos. Para conocer el
+ * contenido del hotel vaya a la documentacion de {@link HotelDTO}
  * @author m.diazt
  */
 public class HotelDetailDTO extends HotelDTO {

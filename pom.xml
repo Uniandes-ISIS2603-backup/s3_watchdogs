@@ -10,7 +10,6 @@
  
     <modules>
         <module>s3_watchdogs-back</module>
-        <module>s3_watchdogs-web</module>
     </modules>
     <repositories>
         <repository>

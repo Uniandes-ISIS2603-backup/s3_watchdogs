@@ -48,7 +48,7 @@ public class HotelResource {
      * </pre>
      * @param hotel {@link HotelDetailDTO} - El hotel que se desea guardar.
      * @return JSON {@link HotelDetailDTO}  - El hotel guardado con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el hotel.
+     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe el hotel.
      */
     @POST
     public HotelDetailDTO createHotel(HotelDetailDTO hotel) throws BusinessLogicException {
@@ -109,7 +109,7 @@ public class HotelResource {
      * @param id Identificador de el hotel que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param hotel {@link HotelDetailDTO} el hotel que se desea guardar.
      * @return JSON {@link HotelDetailDTO} - el hotel guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el hotel porque ya existe uno con ese nombre.
+     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera al no poder actualizar el hotel porque ya existe uno con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")

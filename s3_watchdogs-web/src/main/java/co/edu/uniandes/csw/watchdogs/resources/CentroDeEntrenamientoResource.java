@@ -48,7 +48,7 @@ public class CentroDeEntrenamientoResource {
      * </pre>
      * @param centroDeEntrenamiento {@link CentroDeEntrenamientoDetailDTO} - El CentroDeEntrenamiento que se desea guardar.
      * @return JSON {@link CentroDeEntrenamientoDetailDTO}  - El CentroDeEntrenamiento guardado con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el CentroDeEntrenamiento.
+     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe el CentroDeEntrenamiento.
      */
     @POST
     public CentroDeEntrenamientoDetailDTO createCentroDeEntrenamiento(CentroDeEntrenamientoDetailDTO centroDeEntrenamiento) throws BusinessLogicException {
@@ -109,7 +109,7 @@ public class CentroDeEntrenamientoResource {
      * @param id Identificador de el CentroDeEntrenamiento que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param centroDeEntrenamiento {@link CentroDeEntrenamientoDetailDTO} el CentroDeEntrenamiento que se desea guardar.
      * @return JSON {@link CentroDeEntrenamientoDetailDTO} - el CentroDeEntrenamiento guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el CentroDeEntrenamiento porque ya existe uno con ese nombre.
+     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera al no poder actualizar el CentroDeEntrenamiento porque ya existe uno con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")

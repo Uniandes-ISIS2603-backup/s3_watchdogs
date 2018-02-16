@@ -48,7 +48,7 @@ public class PaseoResource {
      * </pre>
      * @param paseo {@link PaseoDetailDTO} - El Paseo que se desea guardar.
      * @return JSON {@link PaseoDetailDTO}  - El Paseo guardado con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe el Paseo.
+     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe el Paseo.
      */
     @POST
     public PaseoDetailDTO createPaseo(PaseoDetailDTO paseo) throws BusinessLogicException {
@@ -109,7 +109,7 @@ public class PaseoResource {
      * @param id Identificador de el Paseo que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param paseo {@link PaseoDetailDTO} el Paseo que se desea guardar.
      * @return JSON {@link PaseoDetailDTO} - el Paseo guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el Paseo porque ya existe uno con ese nombre.
+     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera al no poder actualizar el Paseo porque ya existe uno con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")

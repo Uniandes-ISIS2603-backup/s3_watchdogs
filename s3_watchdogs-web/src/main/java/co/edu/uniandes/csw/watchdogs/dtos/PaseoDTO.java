@@ -8,32 +8,50 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 import java.util.ArrayList;
 
 /**
+ * PaseoDTO Objeto de transferencia de datos de Paseos. Los DTO contienen las
+ * represnetaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": Long,
+ *      "fecha: Date,
+ *      "costo": Double,
+ *      "estado": Boolean,
+ *      "duración": Double,
+ *      "rango": List'String',
+ *      "capMax": Integer,
+ *      "horas": List'String'
+ *   }
+ * </pre>
+ * Por ejemplo un paseo se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 18859,
+ *      "fecha:" 10-10-2010",
+ *      "costo": 25,
+ *      "estado": "1",
+ *      "duración": 20.5,
+ *      "rango": "",
+ *      "capMax": 10,
+ *      "horas": ""
+ *   }
+ *
+ * </pre>
  *
  * @author m.diazt
  */
 public class PaseoDTO extends ServicioDTO{
     
-    private Long id;
     private Integer capMax;
     private ArrayList<String> horas;
     
     public PaseoDTO()
     {
         
-    }
-
-    /**
-     * @return id 
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id Id del paseo a establecer
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
     /**
