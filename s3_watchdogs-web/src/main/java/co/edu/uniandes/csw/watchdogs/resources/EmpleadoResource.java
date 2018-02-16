@@ -9,17 +9,24 @@ import co.edu.uniandes.csw.watchdogs.dtos.EmpleadoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 
 /**
  *
  * @author ca.beltran10
  */
+@Path("empleados")
+@Produces("application/json")
+@Consumes("application/json")
+@RequestScoped
 public class EmpleadoResource {
     
         /**
@@ -58,7 +65,7 @@ public class EmpleadoResource {
      * @return JSONArray {@link CityDetailDTO} - Los empleados encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<EmpleadoDetailDTO> getempleados() {
+    public List<EmpleadoDetailDTO> getEmpleados() {
         return new ArrayList<>();
     }
     
