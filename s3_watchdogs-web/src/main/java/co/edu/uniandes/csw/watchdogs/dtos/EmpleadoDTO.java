@@ -5,14 +5,38 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-
 /**
- *
+ * EmpleadoDTO Objeto de transferencia de datos de Empleados. Los DTO contienen
+ * las representaciones de los JSON que se transfieren entre los empleados y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *  {
+ *      "id": number,
+ *      "nombre": sttring,
+ *      "imagen": string,
+ *      "edad": integer
+ *      "horarios": string
+ *  }
+ * </pre>
+ * Por ejemplo un empleado se representa asi:<br>
+ * 
+ * <pre>
+ *  {
+ *      "id": 95873,
+ *      "nombre": "Camilo",
+ *      "imagen": "abg.jpg",
+ *      "edad": 24
+ *      "horarios": "No se como es"
+ *  }
+ * </pre>
  * @author ca.beltran10
  */
 public class EmpleadoDTO {
     //----- Atributos -----
     private Long id;
+    private String nombre;
     private String imagen;
     private int edad;
     private String horarios;
@@ -25,6 +49,11 @@ public class EmpleadoDTO {
     public EmpleadoDTO(){
     }
     
+    public EmpleadoDTO(EmpleadoEntity empleado) {
+        this.id = empleado.getId();
+        this.nombre = empleado.getName();
+        this.imagen = empleado.getImagen();
+    }
    
     //----- Metodos -----
 
@@ -82,6 +111,20 @@ public class EmpleadoDTO {
      */
     public void setHorarios(String horarios) {
         this.horarios = horarios;
+    }
+
+    /**
+     * @return the nombre
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre the nombre to set
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
 }
