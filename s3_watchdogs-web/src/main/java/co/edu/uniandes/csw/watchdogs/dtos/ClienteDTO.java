@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
+
 
 /**
  * ClienteDTO Objeto de transferencia de datos de Clientes. Los DTO contienen las
@@ -42,46 +44,71 @@ public class ClienteDTO {
     public ClienteDTO() {
     }
     
-
     /**
-     * @return the nombre
+     * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento
+     * 
+     * @param cliente: Es la entidad que se va a convertir a DTO
      */
-    public String getNombre() {
-        return nombre;
+    public ClienteDTO(ClienteEntity cliente) {
+        this.id = cliente.getId();
+        this.nombre = cliente.getName();
+        this.cedula = cliente.getCedula();
     }
-
-    /**
-     * @param nombre the nombre to set
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    /**
-     * @return the cedula
-     */
-    public String getCedula() {
-        return cedula;
-    }
-
-    /**
-     * @param cedula the cedula to set
-     */
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    /**
-     * @return the id
+    
+        /**
+     * @return El ID del cliente
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * @param id the id to set
+     * @param id El nuevo Id del cliente
      */
     public void setId(Long id) {
         this.id = id;
     }
+
+    /**
+     * @return El nombre del cliente
+     */
+    public String getNombre() {
+        return nombre;
+    }
+
+    /**
+     * @param nombre El nuevo nombre del cliente
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return La cedula del cliente
+     */
+    public String getCedula() {
+        return cedula;
+    }
+
+    /**
+     * @param cedula La nueva cedula del cliente
+     */
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+    
+    /**
+     * Convertir DTO a Entity
+     * 
+     * @return Un Entity con los valores del DTO
+     */
+    public ClienteEntity toEntity() {
+        ClienteEntity entity = new ClienteEntity();
+        entity.setId(this.id);
+        entity.setName(this.nombre);
+        entity.setCedula(this.cedula);
+        return entity;
+    }
+
 }
