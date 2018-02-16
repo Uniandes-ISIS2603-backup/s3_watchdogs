@@ -14,7 +14,6 @@ public class EmpleadoDTO {
     //----- Atributos -----
     private Long id;
     private String imagen;
-    private ServicioDTO servicio;
     private int edad;
     private String horarios;
     
@@ -55,20 +54,6 @@ public class EmpleadoDTO {
      */
     public void setImagen(String imagen) {
         this.imagen = imagen;
-    }
-
-    /**
-     * @return the servicio
-     */
-    public ServicioDTO getServicio() {
-        return servicio;
-    }
-
-    /**
-     * @param servicio the servicio to set
-     */
-    public void setServicio(ServicioDTO servicio) {
-        this.servicio = servicio;
     }
 
     /**

@@ -32,6 +32,7 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  */
 public class ClienteDTO {
     
+    private Long id;
     private String nombre;
     private String cedula;
     
@@ -68,5 +69,19 @@ public class ClienteDTO {
      */
     public void setCedula(String cedula) {
         this.cedula = cedula;
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
     }
 }
