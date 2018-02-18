@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 
 /**
  *
@@ -12,12 +13,27 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  */
 public class TransporteDetailDTO extends TransporteDTO{
     
-   
+    /**
+     * Constructor que le entra un entity
+     * @param entity
+     */
+    public TransporteDetailDTO(TransporteEntity entity){
+        super(entity);
+    }
 
     /**
      * Constructor vacio
      */
     public TransporteDetailDTO() {
     }
-   
+    
+    /**
+     * Metodo que convierte de DTO a entity
+     * @return TransporteEntity
+     */
+    @Override
+    public TransporteEntity toEntity(){
+        TransporteEntity entity = super.toEntity();
+        return entity;
+    }
 }

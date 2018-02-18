@@ -5,9 +5,30 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 
 /**
+ *Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *   {
+ *      "id": long,
+ *      "direccion: string,
+ *      "recogida": int
+ *      "devuelta": int
+ *   }
+ * </pre>
+ * Por ejemplo un entrenamiento se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *   {
+ *      "id": 815373,
+ *      "direccion: "Cra 11 # 11",
+ *      "recogida": 10:00
+ *      "devuelta": 1:00
+ *   }
  *
+ * </pre>
  * @author c.martinezc1
  */
 public class TransporteDTO {
@@ -34,7 +55,17 @@ public class TransporteDTO {
     public TransporteDTO(){
         
     }
-   
+    
+    /**
+     * Constructor que recibe un entity
+     * @param entity 
+     */
+    public TransporteDTO(TransporteEntity entity){
+        this.id = entity.getId();
+        this.devuelta = entity.getDevuelta();
+        this.direccion = entity.getDireccion();
+        this.recogida = entity.getRecogida();
+    }
 
     /**
      * Setter id
@@ -98,5 +129,17 @@ public class TransporteDTO {
      */
     public int getDevuelta() {
         return devuelta;
+    }
+    
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return 
+     */
+    public TransporteEntity toEntity(){
+        TransporteEntity entity = new TransporteEntity();
+        entity.setDevuelta(devuelta);
+        entity.setDireccion(direccion);
+        entity.setRecogida(recogida);
+        return entity;
     }
 }

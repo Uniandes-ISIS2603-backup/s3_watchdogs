@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.EntrenamientoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +54,11 @@ public class EntrenamientoResource{
     @GET
     @Path("{id: \\d+}")
     public EntrenamientoDetailDTO getEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
-        return null;
+        EntrenamientoEntity entity = null;//entrenamientoLogic.getEntrenamiento(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
+        }
+        return new EntrenamientoDetailDTO(entity);
     }
 
     /**
@@ -64,7 +69,7 @@ public class EntrenamientoResource{
      */
     @POST
     public EntrenamientoDetailDTO createEntrenamiento(EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
-         return new EntrenamientoDetailDTO( );//entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity()));
+         return entrenamiento;//entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity()));
     }
 
     /**
@@ -76,19 +81,31 @@ public class EntrenamientoResource{
     @PUT
     @Path("{id: \\d+}")
     public EntrenamientoDetailDTO updateEntenamiento(@PathParam("id") Long id, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {
-       return null;
+        entrenamiento.setId(id);
+        EntrenamientoEntity entity = null;//entrenamientoLogic.getEntrenamiento(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
+        }
+        return new EntrenamientoDetailDTO();//entrenamientoLogic.updateEntrenamiento(id, entrtenamiento.toEntity()));
     }
 
     @DELETE
     @Path("{id: \\d+}")
     public void deleteEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
-        
+        EntrenamientoEntity entity = null;//entrenamientoLogic.getEntrenamiento(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
+        }
         //entrenamientoLogic.deleteEntrenamiento(id);
     }
 
 
-    private List<EntrenamientoDetailDTO> listEntrenamientoEntity2DetailDTO() {
-       return null;
+    private List<EntrenamientoDetailDTO> listEntrenamientoEntity2DetailDTO(List<EntrenamientoEntity> entityList) {
+        List<EntrenamientoDetailDTO> list = new ArrayList<>();
+        for(EntrenamientoEntity entity : entityList) {
+            list.add(new EntrenamientoDetailDTO(entity));
+        }
+        return list;
     }
     
 }

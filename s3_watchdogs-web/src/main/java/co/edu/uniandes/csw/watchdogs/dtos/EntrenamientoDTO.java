@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 
 /**
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
@@ -51,13 +52,19 @@ public class EntrenamientoDTO extends ServicioDTO {
         
     }
     
-   
-    
+    /**
+     * Constructor donde recibe un entity
+     * @param entity :objeto tipo entity
+     */
+    public EntrenamientoDTO(EntrenamientoEntity entity){
+        super(entity);
+        this.tipo = entity.getTipo();
+    }
 
 
     /**
      * Getter del tipo
-     * @return tipo
+     * @return tipo de entrenamiento
      */
     public String getTipo() {
         return tipo;
@@ -65,9 +72,24 @@ public class EntrenamientoDTO extends ServicioDTO {
 
     /**
      * Setter de tipo
-     * @param tipo
+     * @param tipo :tipo de entrenamiento
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    /**
+     * Metodo que cambia de DTO a Entity
+     * @return entity Objeto tipo entity
+     */
+    public EntrenamientoEntity toEntity(){
+        EntrenamientoEntity entity = new EntrenamientoEntity();
+        entity.setCosto(this.getCosto());
+        entity.setDuracion(this.getDuracion());
+        entity.setEstado(this.isEstado());
+        entity.setFecha(this.getFecha());
+        entity.setRango(this.getRango());
+        entity.setTipo(this.tipo);
+        return entity;
     }
 }

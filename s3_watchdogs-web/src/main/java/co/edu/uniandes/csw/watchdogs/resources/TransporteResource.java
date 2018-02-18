@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.TransporteDetailDTO;
+import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +53,11 @@ public class TransporteResource {
     @GET
     @Path("{id: \\d+}")
     public TransporteDetailDTO getEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
-        return null;
+        TransporteEntity entity = null;//transporteLogic.getTransporte(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
+        }
+        return new TransporteDetailDTO(entity);
     }
 
     /**
@@ -75,18 +80,30 @@ public class TransporteResource {
     @PUT
     @Path("{id: \\d+}")
     public TransporteDetailDTO updateEntenamiento(@PathParam("id") Long id, TransporteDetailDTO transporte) throws BusinessLogicException {
-        return null;
+        transporte.setId(id);
+        TransporteEntity entity = null;//transporteLogic.getTransporte(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
+        }
+        return new TransporteDetailDTO();//transporteLogic.updateTransporte(id, transporte.toEntity()));
     }
 
     @DELETE
     @Path("{id: \\d+}")
     public void deleteTransporte(@PathParam("id") Long id) throws BusinessLogicException {
-        
+        TransporteEntity entity = null;//transporteLogic.getTransporte(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
+        }
         //transporteLogic.deleteTransporte(id);
     }
 
 
-    private List<TransporteDetailDTO> listTransporteEntity2DetailDTO() {
-       return null;
+    private List<TransporteDetailDTO> listTransporteEntity2DetailDTO(List<TransporteEntity> entityList) {
+        List<TransporteDetailDTO> list = new ArrayList<>();
+        for(TransporteEntity entity : entityList) {
+            list.add(new TransporteDetailDTO(entity));
+        }
+        return list;
     }
 }

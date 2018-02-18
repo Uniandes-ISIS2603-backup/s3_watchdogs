@@ -5,71 +5,62 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- ** Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
- * <pre>
- *   {
- *      "id": long,
- *      "fecha: date,
- *      "costo": double
- *      "estado": boolean
- *      "duración": double
- *      "rango": List'String'
- *   }
- * </pre>
- * Por ejemplo un entrenamiento se representa asi:<br>
- * 
- * <pre>
- * 
- *   {
- *      "id": 815373,
- *      "fecha: "10-10-2010",
- *      "costo": 25
- *      "estado": "1"
- *      "duración": 20.5
- *      "rango": ""
- *   }
- *
- * </pre>
  * @author c.martinezc1
  */
 public abstract class ServicioDTO {
     /**
      * identificador
      */
-    private Long id;
+    protected Long id;
     
     /**
      * Fecha en que se presto un servicio
      */
-    private Date fecha;
+    protected Date fecha;
     
     /**
      * Costo por hora del servicio
      */
-    private double costo;
+    protected double costo;
     
     /**
      * Estado actual del servicio
      */
-    private boolean estado;
+    protected boolean estado;
     
     /**
      * Duración del servicio
      */
-    private double duracion;
+    protected double duracion;
     
-    private ArrayList<String> rango;
+    /**
+     * Rango de horas libres
+     */
+    protected ArrayList<String> rango;
     
     /**
      * Constructor por defecto
      */
     public ServicioDTO(){
     }
-   
+    
+    /**
+     * Constructor basico de un servicio
+     * @param entity 
+     */
+    public ServicioDTO(ServicioEntity entity){
+        this.id = entity.getId();
+        this.costo = entity.getCosto();
+        this.duracion = entity.getDuracion();
+        this.estado = entity.isEstado();
+        this.fecha = entity.getFecha();
+        this.rango = entity.getRango();
+    }
 
     /**
      * Getter id
