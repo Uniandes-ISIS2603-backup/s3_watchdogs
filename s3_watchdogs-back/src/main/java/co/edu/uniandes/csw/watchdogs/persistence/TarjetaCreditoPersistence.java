@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.persistence;
 
 import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
-import com.sun.istack.internal.logging.Logger;
+
 import java.util.List;
 import javax.ejb.Stateless;
 import java.util.logging.Level;
