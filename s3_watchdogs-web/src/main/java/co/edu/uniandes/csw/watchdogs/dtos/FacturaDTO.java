@@ -36,9 +36,9 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 
 public class FacturaDTO {
     
-    private long id;
-    private double valor;
-    private boolean pagado;
+    private Long id;
+    private Double valor;
+    private Boolean pagado;
     
     /** 
      * Constructor por defecto

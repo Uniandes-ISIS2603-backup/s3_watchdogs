@@ -31,8 +31,8 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  */
 public class RutaDTO {
     
-    private long id;
-    private int duracion;
+    private Long id;
+    private Integer duracion;
     
      /** 
      * Constructor por defecto

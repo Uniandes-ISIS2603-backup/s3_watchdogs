@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.Estado;
+
 
 /**
  * DisponibilidadDTO Objeto de transferencia de datos de Watchdogs. Los DTO contienen las
@@ -33,7 +35,7 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  */
 public class DisponibilidadDTO {
     
-    private long id;
+    private Long id;
     private Estado[][] matrizHorarios;
     
     
