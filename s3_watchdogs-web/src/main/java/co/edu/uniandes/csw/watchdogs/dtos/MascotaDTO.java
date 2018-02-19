@@ -5,9 +5,38 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
+
 
 /**
- *
+ * MascotaDTO Objeto de transferencia de datos de Mascotas. Los DTO contienen las
+ * representaciones de los JSON que se transfieren entre el cliente y el
+ * servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *  {
+ *      "id": numbre,
+ *      "nombre": string,
+ *      "raza": string,
+ *      "color": string,
+ *      "sexo": string
+ *  }
+ * </pre>
+ * Por ejemplo una mascota se representa asi:<br>
+ * 
+ * <pre>
+ * 
+ *  {
+ *      "id": 5263,
+ *      "nombre": "Negra",
+ *      "raza": "Criolla",
+ *      "color": "Negro",
+ *      "sexo": Hembra
+ *  }
+ * 
+ * </pre>
+ * 
  * @author ca.beltran10
  */
 public class MascotaDTO {
@@ -28,6 +57,18 @@ public class MascotaDTO {
     public MascotaDTO() {
     }
     
+    /**
+     * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento.)
+     * 
+     * @param mascotaE: El la entidad que se va a convertir en DTO
+     */
+    public MascotaDTO(MascotaEntity mascotaE) {
+        this.id = mascotaE.getId();
+        this.nombre = mascotaE.getNombre();
+        this.raza = mascotaE.getRaza();
+        this.sexo = mascotaE.getSexo();
+    }
    
 
     /**
@@ -98,6 +139,21 @@ public class MascotaDTO {
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+    
+    /**
+     * Convertir un DTO a Entity
+     * 
+     * @return Un Entity con los valores del DTO
+     */
+    public MascotaEntity toEntity() {
+        MascotaEntity entity = new MascotaEntity();
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        entity.setColor(this.color);
+        entity.setRaza(this.raza);
+        entity.setSexo(this.sexo);
+        return entity;
     }
    
 }

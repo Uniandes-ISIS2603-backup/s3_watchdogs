@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+
 /**
  * EmpleadoDTO Objeto de transferencia de datos de Empleados. Los DTO contienen
  * las representaciones de los JSON que se transfieren entre los empleados y el
@@ -51,7 +53,7 @@ public class EmpleadoDTO {
     
     public EmpleadoDTO(EmpleadoEntity empleado) {
         this.id = empleado.getId();
-        this.nombre = empleado.getName();
+        this.nombre = empleado.getNombre();
         this.imagen = empleado.getImagen();
     }
    
@@ -125,6 +127,21 @@ public class EmpleadoDTO {
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    /**
+     * Convertir un DTO a un Entity
+     * 
+     * @return Un entity con los valores del DTO
+     */
+    public EmpleadoEntity toEntity() {
+        EmpleadoEntity entity = new EmpleadoEntity();
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        entity.setImagen(this.imagen);
+        entity.setEdad(this.edad);
+        entity.setHorarios(this.horarios);
+        return entity;
     }
     
 }
