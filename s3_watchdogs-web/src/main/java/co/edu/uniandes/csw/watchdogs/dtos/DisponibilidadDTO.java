@@ -17,7 +17,7 @@ import co.edu.uniandes.csw.watchdogs.entities.Estado;
  * <pre>
  *   {
  *      "id": number,
- *      "matrizHorarios": hashcode
+ *      "matrizHorarios": string
  *   }
  * </pre>
  * Por ejemplo una ruta se representa asi:<br>
@@ -26,7 +26,7 @@ import co.edu.uniandes.csw.watchdogs.entities.Estado;
  * 
  *   {
  *      "id": 1321321,
- *      "matrizHorarios": 12379817
+ *      "matrizHorarios": "LAD LLL DDD AAL LLD DDL" 
  *   }
  *
  * </pre>

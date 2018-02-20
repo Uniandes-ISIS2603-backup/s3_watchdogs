@@ -22,7 +22,7 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  * 
  *   {
  *      "id": 1321321,
- *      "duracion": 1
+ *      "duracion": 43
  *   }
  *
  * </pre>
