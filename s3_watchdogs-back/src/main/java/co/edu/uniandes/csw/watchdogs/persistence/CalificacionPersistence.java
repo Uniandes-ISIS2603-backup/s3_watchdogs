@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.persistence;
 
-import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +19,7 @@ import javax.persistence.TypedQuery;
  * @author c.martinezc1
  */
 @Stateless
-public class TransportePersistence {
-    
+public class CalificacionPersistence {
     private static final Logger LOGGER = Logger.getLogger(CityPersistence.class.getName());
     
     @PersistenceContext(unitName = "WatchdogsPU")
@@ -31,32 +30,32 @@ public class TransportePersistence {
      * @param entity objeto transporte que se creará en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
-    public TransporteEntity create(TransporteEntity entity) {
-        LOGGER.info("Creando un transporte nueva");
+    public CalificacionEntity create(CalificacionEntity entity) {
+        LOGGER.info("Creando una calificacion nueva");
         em.persist(entity);
-        LOGGER.info("Creando un transporte nueva");
+        LOGGER.info("Creando una calificacion nueva");
         return entity;
     }
     
-    public List<TransporteEntity> findAll() {
+    public List<CalificacionEntity> findAll() {
         LOGGER.info("Consultando todas los transportes");
-        TypedQuery query = em.createQuery("select u from TransporteEntity u", TransporteEntity.class);
+        TypedQuery query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
         return query.getResultList();
     }
     
-    public TransporteEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando transporte con id={0}", id);
-        return em.find(TransporteEntity.class, id);
+    public CalificacionEntity find(Long id) {
+        LOGGER.log(Level.INFO, "Consultando calificacion con id={0}", id);
+        return em.find(CalificacionEntity.class, id);
     }
 
-    public TransporteEntity update(TransporteEntity entity) {
-        LOGGER.log(Level.INFO, "Actualizando transporte con id={0}", entity.getId());
+    public CalificacionEntity update(CalificacionEntity entity) {
+        LOGGER.log(Level.INFO, "Actualizando Calificacion con id={0}", entity.getId());
         return em.merge(entity);
     }
     
     public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando el transporte con id={0}", id);
-        TransporteEntity entity = em.find(TransporteEntity.class, id);
+        LOGGER.log(Level.INFO, "Borrando el Calificacion con id={0}", id);
+        CalificacionEntity entity = em.find(CalificacionEntity.class, id);
         em.remove(entity);
     }
 }

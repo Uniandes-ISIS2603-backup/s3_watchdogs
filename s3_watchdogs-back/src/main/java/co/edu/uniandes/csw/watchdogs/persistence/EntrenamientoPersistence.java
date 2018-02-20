@@ -18,7 +18,7 @@ import javax.persistence.TypedQuery;
  * @author c.martinezc1
  */
 @Stateless
-public class EntrenamientoPersistance {
+public class EntrenamientoPersistence {
     private static final Logger LOGGER = Logger.getLogger(CityPersistence.class.getName());
     
     @PersistenceContext(unitName = "WatchdogsPU")
@@ -38,7 +38,7 @@ public class EntrenamientoPersistance {
     
     public List<EntrenamientoEntity> findAll() {
         LOGGER.info("Consultando todas los transportes");
-        TypedQuery query = em.createQuery("select u from TransporteEntity u", EntrenamientoEntity.class);
+        TypedQuery query = em.createQuery("select u from EntrenamientoEntity u", EntrenamientoEntity.class);
         return query.getResultList();
     }
     
@@ -50,7 +50,8 @@ public class EntrenamientoPersistance {
          return em.merge(entity);
     }
     
-    public void delete(EntrenamientoEntity entity) {
+    public void delete(Long id) {
+        EntrenamientoEntity entity = find(id);
         em.remove(entity);
     }
 }
