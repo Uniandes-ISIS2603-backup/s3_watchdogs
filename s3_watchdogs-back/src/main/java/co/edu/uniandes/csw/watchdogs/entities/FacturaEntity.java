@@ -18,7 +18,7 @@ import javax.persistence.Entity;
 public class FacturaEntity extends BaseEntity implements Serializable{
     
     private Double valor;
-    private Boolean pago;
+    private Boolean pagado;
     
     public FacturaEntity(){
         
@@ -37,8 +37,8 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      */
     
     
-    public void setPago(boolean pago){
-        this.pago = pago;
+    public void setPago(boolean pagado){
+        this.pagado = pagado;
     }
     
     /**
@@ -55,8 +55,8 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      * @return El estatus de pago de la factura 
      */
     
-    public boolean getPago(){
-        return pago;
+    public boolean getPagado(){
+        return pagado;
     }
 }
 
