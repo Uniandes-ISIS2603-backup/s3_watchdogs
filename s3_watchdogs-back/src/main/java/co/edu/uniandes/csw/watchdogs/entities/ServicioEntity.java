@@ -5,11 +5,14 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
+import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -18,7 +21,8 @@ import javax.persistence.Temporal;
 @Entity
 public abstract class ServicioEntity extends BaseEntity implements Serializable{
       
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
     protected Date fecha;
     
     protected double costo;
