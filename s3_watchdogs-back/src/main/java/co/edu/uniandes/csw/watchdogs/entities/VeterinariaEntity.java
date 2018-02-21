@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.watchdogs.dtos;
+package co.edu.uniandes.csw.watchdogs.entities;
 
 /**
  *
  * @author js.vacat
  */
-public class VeterinariaDetailDTO extends VeterinariaDTO{
-    
-    /**
-     * Constructor por defecto
-     */
-    public VeterinariaDetailDTO( ) {
-    } 
+public class VeterinariaEntity {
     
 }

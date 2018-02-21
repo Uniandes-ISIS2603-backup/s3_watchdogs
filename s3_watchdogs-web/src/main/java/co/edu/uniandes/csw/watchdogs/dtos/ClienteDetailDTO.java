@@ -25,7 +25,7 @@ public class ClienteDetailDTO extends ClienteDTO {
     /**
      * Constructor para transformar un Entity a un DTO
      * 
-     * @param entity La entidad de ciudad a partir de la cual se contruye el objeto
+     * @param entity La entidad de cliente a partir de la cual se contruye el objeto
      */
     public ClienteDetailDTO(ClienteEntity entity) {
         super(entity);
