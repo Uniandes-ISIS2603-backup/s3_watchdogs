@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
+
 /**
  * HotelDTO Objeto de transferencia de datos de Hoteles. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -51,6 +53,11 @@ public class HotelDTO extends ServicioDTO{
     {
  
     }
+    
+    public HotelDTO(HotelEntity entity){
+        super(entity);
+        this.setTiempoHospedaje(entity.getTiempoHospedaje());
+    }
      
     /**
      * @return tiempoHospedaje
@@ -66,5 +73,17 @@ public class HotelDTO extends ServicioDTO{
     public void setTiempoHospedaje(Integer pTiempoHospedaje)
     {
         this.tiempoHospedaje = pTiempoHospedaje;
+    }
+    
+    public HotelEntity toEntity(){
+        HotelEntity entity = new HotelEntity();
+        entity.setId(this.getId());
+        entity.setCosto(this.getCosto());
+        entity.setDuracion(this.getDuracion());
+        entity.setEstado(this.isEstado());
+        entity.setFecha(this.getFecha());
+        entity.setRango(this.getRango());
+        entity.setTiempoHospedaje(this.getTiempoHospedaje());
+        return entity;
     }
 }

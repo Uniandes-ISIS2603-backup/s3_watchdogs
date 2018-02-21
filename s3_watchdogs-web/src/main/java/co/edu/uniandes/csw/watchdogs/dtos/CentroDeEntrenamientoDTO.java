@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
+
 /**
  * CentroDeEntrenamientoDTO Objeto de transferencia de datos de CentrosDeEntrenamiento. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -43,6 +45,11 @@ public class CentroDeEntrenamientoDTO extends LugarDTO{
     {
         
     }
+    
+    public CentroDeEntrenamientoDTO(CentroDeEntrenamientoEntity entity){
+        
+        this.setId(entity.getId());
+    }
 
     /**
      * @return id
@@ -56,6 +63,12 @@ public class CentroDeEntrenamientoDTO extends LugarDTO{
      */
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public CentroDeEntrenamientoEntity toEntity(){
+        CentroDeEntrenamientoEntity entity = new CentroDeEntrenamientoEntity();
+        entity.setId(this.getId());
+        return entity;
     }
     
     

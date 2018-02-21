@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
+
 /**
  * Clase que extiende de {@link HotelDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -22,6 +24,10 @@ public class HotelDetailDTO extends HotelDTO {
     public HotelDetailDTO()
     {
         super();
+    }
+    
+    public HotelDetailDTO(HotelEntity entity){
+        super(entity);
     }
 
     /**
@@ -50,5 +56,15 @@ public class HotelDetailDTO extends HotelDTO {
      */
     public void setCentroDeEntrenamiento(CentroDeEntrenamientoDTO centroDeEntrenamiento) {
         this.centroDeEntrenamiento = centroDeEntrenamiento;
+    }
+    
+    /**
+     * Metodo que convierte un DTO a ENtity
+     * @return HotelEntity
+     */
+    @Override
+    public HotelEntity toEntity(){
+        HotelEntity entity = super.toEntity();
+        return entity;
     }
 }

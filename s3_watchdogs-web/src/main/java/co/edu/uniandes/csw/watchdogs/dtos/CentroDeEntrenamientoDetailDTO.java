@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import java.util.ArrayList;
 
 /**
@@ -52,6 +53,16 @@ public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
      */
     public void setHoteles(ArrayList<HotelDTO> hoteles) {
         this.hoteles = hoteles;
+    }
+    
+    /**
+     * Metodo que convierte un DTO a ENtity
+     * @return CentroDeEntrenamientoEntity
+     */
+    @Override
+    public CentroDeEntrenamientoEntity toEntity(){
+        CentroDeEntrenamientoEntity entity = super.toEntity();
+        return entity;
     }
     
     

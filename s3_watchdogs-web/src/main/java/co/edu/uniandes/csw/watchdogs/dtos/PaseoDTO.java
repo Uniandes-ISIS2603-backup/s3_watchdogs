@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import java.util.ArrayList;
 
 /**
@@ -53,6 +54,12 @@ public class PaseoDTO extends ServicioDTO{
     {
         
     }
+    
+    public PaseoDTO(PaseoEntity entity){
+        super(entity);
+        this.setCapMax(entity.getCapMax());
+        this.setHoras(entity.getHoras());
+    }
 
     /**
      * @return capMax
@@ -82,6 +89,17 @@ public class PaseoDTO extends ServicioDTO{
         this.horas = horas;
     }
     
-    
+    public PaseoEntity toEntity(){
+        PaseoEntity entity = new PaseoEntity();
+        entity.setId(this.getId());
+        entity.setCosto(this.getCosto());
+        entity.setDuracion(this.getDuracion());
+        entity.setEstado(this.isEstado());
+        entity.setFecha(this.getFecha());
+        entity.setRango(this.getRango());
+        entity.setCapMax(this.getCapMax());
+        entity.setHoras(this.getHoras());
+        return entity;
+    }
     
 }

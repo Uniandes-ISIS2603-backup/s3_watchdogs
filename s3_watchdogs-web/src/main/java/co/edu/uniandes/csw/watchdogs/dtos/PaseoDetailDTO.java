@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import java.util.ArrayList;
 
 /**
@@ -51,6 +52,13 @@ public class PaseoDetailDTO extends PaseoDTO{
         this.veterinaria = veterinaria;
     }
     
-    
-    
+    /**
+     * Metodo que convierte un DTO a ENtity
+     * @return PaseoEntity
+     */
+    @Override
+    public PaseoEntity toEntity(){
+        PaseoEntity entity = super.toEntity();
+        return entity;
+    }
 }
