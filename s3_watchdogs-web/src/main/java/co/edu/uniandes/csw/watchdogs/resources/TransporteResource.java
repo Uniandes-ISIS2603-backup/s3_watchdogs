@@ -6,10 +6,12 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.TransporteDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.TransporteLogic;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,10 +31,10 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 public class TransporteResource {
     
-    /*
+    
     @Inject
-    EntrenamientoLogic entrenamientoLogic;
-    */
+    TransporteLogic transporteLogic;
+    
     
     /**
      *
@@ -41,7 +43,7 @@ public class TransporteResource {
      */
     @GET
     public List<TransporteDetailDTO> getTransportes() throws BusinessLogicException {
-        return null;        //return listTransporteEntity2DetailDTO(transporteLogic.getTransportes());
+        return listTransporteEntity2DetailDTO(transporteLogic.getTransportes());
     }
 
     /**
@@ -53,7 +55,7 @@ public class TransporteResource {
     @GET
     @Path("{id: \\d+}")
     public TransporteDetailDTO getEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
-        TransporteEntity entity = null;//transporteLogic.getTransporte(id);
+        TransporteEntity entity = transporteLogic.getTransporte(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
         }
@@ -68,7 +70,7 @@ public class TransporteResource {
      */
     @POST
     public TransporteDetailDTO createEntrenamiento(TransporteDetailDTO transporte) throws BusinessLogicException {        
-         return new TransporteDetailDTO( );//transporteLogic.createTransporte(transporte.toEntity()));
+         return new TransporteDetailDTO( transporteLogic.createTransporte(transporte.toEntity()));
     }
 
     /**
@@ -81,21 +83,21 @@ public class TransporteResource {
     @Path("{id: \\d+}")
     public TransporteDetailDTO updateEntenamiento(@PathParam("id") Long id, TransporteDetailDTO transporte) throws BusinessLogicException {
         transporte.setId(id);
-        TransporteEntity entity = null;//transporteLogic.getTransporte(id);
+        TransporteEntity entity = transporteLogic.getTransporte(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
         }
-        return new TransporteDetailDTO();//transporteLogic.updateTransporte(id, transporte.toEntity()));
+        return new TransporteDetailDTO(transporteLogic.updateTransporte(id, transporte.toEntity()));
     }
 
     @DELETE
     @Path("{id: \\d+}")
     public void deleteTransporte(@PathParam("id") Long id) throws BusinessLogicException {
-        TransporteEntity entity = null;//transporteLogic.getTransporte(id);
+        TransporteEntity entity = transporteLogic.getTransporte(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
         }
-        //transporteLogic.deleteTransporte(id);
+        transporteLogic.deleteTransporte(id);
     }
 
 

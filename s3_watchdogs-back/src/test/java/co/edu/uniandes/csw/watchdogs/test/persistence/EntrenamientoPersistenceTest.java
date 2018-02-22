@@ -98,6 +98,7 @@ public class EntrenamientoPersistenceTest {
 
         EntrenamientoEntity entity = em.find(EntrenamientoEntity.class, result.getId());
 
+        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getRango(), entity.getRango());
         Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
     }
@@ -124,6 +125,8 @@ public class EntrenamientoPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getRango(), newEntity.getRango());
         Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+
     }
     
     @Test
@@ -148,5 +151,6 @@ public class EntrenamientoPersistenceTest {
 
         Assert.assertEquals(newEntity.getRango(), resp.getRango());
         Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
+        Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
     }
 }

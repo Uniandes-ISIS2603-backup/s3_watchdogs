@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.EntrenamientoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.EntrenamientoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -30,10 +31,10 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 public class EntrenamientoResource{
     
-    /*
+    
     @Inject
     EntrenamientoLogic entrenamientoLogic;
-    */
+    
     
     /**
      *
@@ -42,7 +43,7 @@ public class EntrenamientoResource{
      */
     @GET
     public List<EntrenamientoDetailDTO> getEntrenamientos() throws BusinessLogicException {
-        return null;        //return listEntrenamientoEntity2DetailDTO(entrenamientoLogic.getEntrenamientos());
+        return listEntrenamientoEntity2DetailDTO(entrenamientoLogic.getEntrenamientos());
     }
 
     /**
@@ -54,7 +55,7 @@ public class EntrenamientoResource{
     @GET
     @Path("{id: \\d+}")
     public EntrenamientoDetailDTO getEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
-        EntrenamientoEntity entity = null;//entrenamientoLogic.getEntrenamiento(id);
+        EntrenamientoEntity entity = entrenamientoLogic.getEntrenamiento(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
         }
@@ -69,7 +70,7 @@ public class EntrenamientoResource{
      */
     @POST
     public EntrenamientoDetailDTO createEntrenamiento(EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
-         return entrenamiento;//entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity()));
+         return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity()));
     }
 
     /**
@@ -82,21 +83,21 @@ public class EntrenamientoResource{
     @Path("{id: \\d+}")
     public EntrenamientoDetailDTO updateEntenamiento(@PathParam("id") Long id, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {
         entrenamiento.setId(id);
-        EntrenamientoEntity entity = null;//entrenamientoLogic.getEntrenamiento(id);
+        EntrenamientoEntity entity = entrenamientoLogic.getEntrenamiento(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
         }
-        return new EntrenamientoDetailDTO();//entrenamientoLogic.updateEntrenamiento(id, entrtenamiento.toEntity()));
+        return new EntrenamientoDetailDTO(entrenamientoLogic.updateEntrenamiento(id, entrenamiento.toEntity()));
     }
 
     @DELETE
     @Path("{id: \\d+}")
     public void deleteEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
-        EntrenamientoEntity entity = null;//entrenamientoLogic.getEntrenamiento(id);
+        EntrenamientoEntity entity = entrenamientoLogic.getEntrenamiento(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
         }
-        //entrenamientoLogic.deleteEntrenamiento(id);
+        entrenamientoLogic.deleteEntrenamiento(id);
     }
 
 
