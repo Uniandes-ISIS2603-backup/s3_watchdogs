@@ -19,7 +19,7 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class EntrenamientoPersistence {
-    private static final Logger LOGGER = Logger.getLogger(CityPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(EntrenamientoPersistence.class.getName());
     
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
