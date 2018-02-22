@@ -9,7 +9,7 @@ import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamStrategyValue;
@@ -18,7 +18,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  *
  * @author c.martinezc1
  */
-@Entity
+@MappedSuperclass
 public abstract class ServicioEntity extends BaseEntity implements Serializable{
       
     @Temporal(TemporalType.DATE)
