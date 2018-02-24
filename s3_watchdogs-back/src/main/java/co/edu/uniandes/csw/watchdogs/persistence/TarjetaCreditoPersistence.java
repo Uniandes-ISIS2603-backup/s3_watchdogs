@@ -77,8 +77,9 @@ public class TarjetaCreditoPersistence {
         return em.merge(entity);
     }
     
-    public void delete(TarjetaCreditoEntity entity)
+    public void delete(Long id)
     {
+        TarjetaCreditoEntity entity = em.find(TarjetaCreditoEntity.class, id);
         em.remove(entity);
     }
      
