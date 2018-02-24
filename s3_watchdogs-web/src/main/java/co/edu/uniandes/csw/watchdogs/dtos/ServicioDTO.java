@@ -157,5 +157,5 @@ public abstract class ServicioDTO {
     public void setRango(ArrayList<String> rango) {
         this.rango = rango;
     }
-    
+     
 }
