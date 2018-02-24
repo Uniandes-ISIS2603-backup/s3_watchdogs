@@ -28,14 +28,5 @@ public abstract class LugarDetailDTO extends LugarDTO{
         super(entity);
     }
     
-     /**
-     * Transformar un DTO a un Entity
-     * 
-     * @return La entidad construida a partir del DTO
-     */
-    @Override
-    public LugarEntity toEntity() {
-        LugarEntity empleadoE = super.toEntity();
-        return empleadoE;
-    }
+    
 }

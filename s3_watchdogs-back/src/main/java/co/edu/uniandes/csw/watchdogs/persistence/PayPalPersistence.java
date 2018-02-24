@@ -71,8 +71,9 @@ public class PayPalPersistence {
         return em.merge(entity);
     }
     
-    public void delete(PayPalEntity entity)
+    public void delete(Long id)
     {
+        PayPalEntity entity = em.find(PayPalEntity.class, id);
         em.remove(entity);
     }
 }

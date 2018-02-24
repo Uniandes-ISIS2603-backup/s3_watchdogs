@@ -92,17 +92,5 @@ public abstract class LugarDTO {
         this.id = id;
     }
     
-     /**
-     * Convertir un DTO a un Entity
-     * 
-     * @return Un entity con los valores del DTO
-     */
-    public LugarEntity toEntity() {
-        LugarEntity entity = new LugarEntity() {};
-        entity.setId(this.id);
-        entity.setFotos(this.fotos);
-        entity.setDireccion(this.direccion);
-        return entity;
-    }
     
 }
