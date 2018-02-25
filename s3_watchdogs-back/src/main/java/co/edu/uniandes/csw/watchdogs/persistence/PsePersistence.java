@@ -27,6 +27,15 @@ public class PsePersistence {
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
     
+    
+    public PseEntity create(PseEntity entity)
+    {
+        LOGGER.info("Creando un nuevo PSE");
+        em.persist(entity);
+        LOGGER.info("Creando un nuevo PSE");
+        return entity;
+    }
+    
     /**
      * Busca si hay algún pse con el nombre que se envía por párámetro 
      * @param name Nombre del pse a buscar
@@ -45,7 +54,7 @@ public class PsePersistence {
         }
     }
     
-    public List<CityEntity> findAll()
+    public List<PseEntity> findAll()
     {
         LOGGER.info("Consultando todos los pse");
         TypedQuery query = em.createQuery("Select u from PseEntity u", PseEntity.class);
@@ -62,8 +71,9 @@ public class PsePersistence {
         return em.merge(entity);
     }
     
-    public void delete(PseEntity entity)
+    public void delete(Long id)
     {
+        PseEntity entity = em.find(PseEntity.class, id);
         em.remove(entity);
     }
     

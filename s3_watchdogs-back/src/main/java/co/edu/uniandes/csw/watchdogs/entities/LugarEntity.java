@@ -25,6 +25,8 @@ public abstract class LugarEntity implements Serializable{
     protected String direccion;
     protected List<String> fotos;
     
+    public LugarEntity(){}
+    
     /**
      * @return La direccion del lugar
      */
