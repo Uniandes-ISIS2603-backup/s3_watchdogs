@@ -18,9 +18,7 @@ import javax.persistence.Id;
 @Entity
 public class AseoEntity extends ServicioEntity implements Serializable{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    
     private Boolean dientes;
     private Boolean banho;
     private Boolean peluqueria;
