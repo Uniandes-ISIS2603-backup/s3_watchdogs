@@ -28,7 +28,7 @@ public class RutaEntity extends BaseEntity implements Serializable{
      */
     
     
-    public void setDuracion(int duracion){
+    public void setDuracion(Integer duracion){
         this.duracion = duracion;
     }
     

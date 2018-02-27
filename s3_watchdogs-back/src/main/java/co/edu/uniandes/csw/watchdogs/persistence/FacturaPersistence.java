@@ -11,7 +11,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.logging.Level;
 import javax.persistence.TypedQuery;
 
 /**
@@ -39,30 +38,6 @@ public class FacturaPersistence {
         return entity;
     }
     
-    /**
-     * Busca si hay alguna factura con el valor que se envia por argumento
-     * 
-     * @param valor: Valor de la factura que se está buscando
-     * @return null si no existe ninguna factura con el valor del argumento. Si
-     * existe alguno devuelve la primera.
-     */
-    public FacturaEntity findByPrice(String valor) {
-        
-        LOGGER.log(Level.INFO, "Consultando factura por precio ", valor);
-        
-        //Se crea un query para buscar facturas con el valoe que recibe el metodo como argumento. ":valor" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From FacturaEntity e where e.valor = :valor", FacturaEntity.class);
-        // Se remplaza el placeholder ":valor" con el valor del argumento 
-        query = query.setParameter("valor", valor);
-        // Se invoca el query se obtiene la lista resultado
-        List<FacturaEntity> sameName = query.getResultList();
-        if (sameName.isEmpty()) {
-            return null;
-            
-        } else {
-            return sameName.get(0);
-        }
-    }
     
      public List<FacturaEntity> findAll() {
         LOGGER.info("Consultando todas las facturas");
@@ -78,7 +53,8 @@ public class FacturaPersistence {
          return em.merge(entity);
     }
     
-    public void delete(FacturaEntity entity) {
+    public void delete(Long id) {
+        FacturaEntity entity = find(id);
         em.remove(entity);
     }
     

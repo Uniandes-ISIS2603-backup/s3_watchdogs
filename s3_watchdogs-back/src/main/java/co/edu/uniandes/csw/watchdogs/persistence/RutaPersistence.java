@@ -11,9 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.logging.Level;
 import javax.persistence.TypedQuery;
-
 
 /**
  *
@@ -40,30 +38,6 @@ public class RutaPersistence {
         return entity;
     }
     
-    /**
-     * Busca si hay alguna ruta con la duracion que se envia por argumento
-     * 
-     * @param duracion: Duracion de la ruta que ese está buscando
-     * @return null si no existe ninguna ruta con la duracion del argumento. Si
-     * existe alguna devuelve la primera.
-     */
-    public RutaEntity findByLenght(String duracion) {
-        
-        LOGGER.log(Level.INFO, "Consultando ruta por duracion ", duracion);
-        
-        //Se crea un query para buscar facturas con el valoe que recibe el metodo como argumento. ":valor" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From RutaEntity e where e.duracion = :duracion", RutaEntity.class);
-        // Se remplaza el placeholder ":valor" con el valor del argumento 
-        query = query.setParameter("valor", duracion);
-        // Se invoca el query se obtiene la lista resultado
-        List<RutaEntity> sameName = query.getResultList();
-        if (sameName.isEmpty()) {
-            return null;
-            
-        } else {
-            return sameName.get(0);
-        }
-    }
     
      public List<RutaEntity> findAll() {
         LOGGER.info("Consultando todas las rutas");
@@ -79,7 +53,8 @@ public class RutaPersistence {
          return em.merge(entity);
     }
     
-    public void delete(RutaEntity entity) {
+    public void delete(Long id) {
+        RutaEntity entity = find(id);
         em.remove(entity);
     }
 }

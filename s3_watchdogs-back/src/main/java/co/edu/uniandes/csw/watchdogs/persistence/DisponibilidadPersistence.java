@@ -54,7 +54,8 @@ public class DisponibilidadPersistence {
          return em.merge(entity);
     }
     
-    public void delete(DisponibilidadEntity entity) {
+    public void delete(Long id) {
+        DisponibilidadEntity entity = find(id);
         em.remove(entity);
     }
 }
