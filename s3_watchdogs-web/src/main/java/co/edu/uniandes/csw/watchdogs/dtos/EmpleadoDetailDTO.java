@@ -9,7 +9,7 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 
 
 /**
- *Clase que extiende de {@link EmpleadoDTO} para manejar la transformacion entre
+ * Clase que extiende de {@link EmpleadoDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido de la ciudad vaya a la documentacion de {@link EmpleadoDTO}
  * 

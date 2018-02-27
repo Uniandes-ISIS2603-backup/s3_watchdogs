@@ -33,7 +33,7 @@ import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
  * @author ca.beltran10
  */
 public class ClienteDTO {
-    
+
     private Long id;
     private String nombre;
     private String cedula;

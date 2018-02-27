@@ -51,6 +51,12 @@ public class EmpleadoDTO {
     public EmpleadoDTO(){
     }
     
+    /**
+     * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento
+     * 
+     * @param empleado: Es la entidad que se va a convertir a DTO
+     */
     public EmpleadoDTO(EmpleadoEntity empleado) {
         this.id = empleado.getId();
         this.nombre = empleado.getNombre();
@@ -60,70 +66,70 @@ public class EmpleadoDTO {
     //----- Metodos -----
 
     /**
-     * @return the id
+     * @return El id del empleado
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * @param id the id to set
+     * @param id El nuevo id del empleado
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * @return the imagen
+     * @return La ruta de la imagen del empleado
      */
     public String getImagen() {
         return imagen;
     }
 
     /**
-     * @param imagen the imagen to set
+     * @param imagen La nueva ruta de la imagen del empleado
      */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
     /**
-     * @return the edad
+     * @return La edad del empleado
      */
     public int getEdad() {
         return edad;
     }
 
     /**
-     * @param edad the edad to set
+     * @param edad La nueva edad del empleado
      */
     public void setEdad(int edad) {
         this.edad = edad;
     }
 
     /**
-     * @return the horarios
+     * @return Los horarios del empleado
      */
     public String getHorarios() {
         return horarios;
     }
 
     /**
-     * @param horarios the horarios to set
+     * @param horarios Los nuevos horarios del empleado
      */
     public void setHorarios(String horarios) {
         this.horarios = horarios;
     }
 
     /**
-     * @return the nombre
+     * @return El nombre del empleado
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param nombre El nuevo nombre del empleado
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;

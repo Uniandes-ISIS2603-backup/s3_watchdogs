@@ -72,70 +72,70 @@ public class MascotaDTO {
    
 
     /**
-     * @return the id
+     * @return El id de la mascota
      */
     public Long getId() {
         return id;
     }
 
     /**
-     * @param id the id to set
+     * @param id El nuevo id de la mascota
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * @return the nombre
+     * @return El nombre de la mascota
      */
     public String getNombre() {
         return nombre;
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param nombre El nuevo nombre de la mascota
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
     /**
-     * @return the raza
+     * @return La raza de la mascota
      */
     public String getRaza() {
         return raza;
     }
 
     /**
-     * @param raza the raza to set
+     * @param raza La nueva raza de la mascota
      */
     public void setRaza(String raza) {
         this.raza = raza;
     }
 
     /**
-     * @return the color
+     * @return El color de la mascota
      */
     public String getColor() {
         return color;
     }
 
     /**
-     * @param color the color to set
+     * @param color El nuevo color de la mascota
      */
     public void setColor(String color) {
         this.color = color;
     }
 
     /**
-     * @return the sexo
+     * @return El sexo de la mascota
      */
     public String getSexo() {
         return sexo;
     }
 
     /**
-     * @param sexo the sexo to set
+     * @param sexo El nuevo sexo de la mascota
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
