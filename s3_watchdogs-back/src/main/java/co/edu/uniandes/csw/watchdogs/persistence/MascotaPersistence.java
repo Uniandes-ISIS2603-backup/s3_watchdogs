@@ -68,14 +68,18 @@ public class MascotaPersistence {
     }
 
     public MascotaEntity find(Long id) {
+        LOGGER.log(Level.INFO, "Consultando mascota con id={0}", id);
         return em.find(MascotaEntity.class, id);
     }
 
     public MascotaEntity update(MascotaEntity entity) {
+        LOGGER.log(Level.INFO, "Actualizando Mascota con id={0}", entity.getId());
          return em.merge(entity);
     }
     
-    public void delete(MascotaEntity entity) {
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando la Mascota con id={0}", id);
+        MascotaEntity entity = em.find(MascotaEntity.class, id);
         em.remove(entity);
     }
 }
