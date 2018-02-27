@@ -68,14 +68,18 @@ public class EmpleadoPersistence {
     }
 
     public EmpleadoEntity find(Long id) {
+        LOGGER.log(Level.INFO, "Consultando empleado con id = {0}", id);
         return em.find(EmpleadoEntity.class, id);
     }
 
     public EmpleadoEntity update(EmpleadoEntity entity) {
+        LOGGER.log(Level.INFO, "Actualizando Empleado con id={0}", entity.getId());
          return em.merge(entity);
     }
     
-    public void delete(EmpleadoEntity entity) {
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando el Empleado con id = {0}", id);
+        EmpleadoEntity entity = em.find(EmpleadoEntity.class, id);
         em.remove(entity);
     }
 }
