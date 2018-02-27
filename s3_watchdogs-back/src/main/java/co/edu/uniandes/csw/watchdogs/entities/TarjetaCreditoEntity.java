@@ -14,7 +14,7 @@ import javax.persistence.Entity;
  * @author jc.pulido
  */
 @Entity
-public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
+public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializable {
     
     private String numeroTarjeta;
     private String fechaVencimiento;

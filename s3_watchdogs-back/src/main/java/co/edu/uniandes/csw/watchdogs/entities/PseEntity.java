@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * @author jc.pulido
  */
 @Entity
-public class PseEntity extends BaseEntity implements Serializable {
+public class PseEntity extends MetodoDePagoEntity implements Serializable {
     
     private String correo;
     

@@ -13,7 +13,7 @@ import javax.persistence.Entity;
  * @author jc.pulido
  */
 @Entity
-public class PayPalEntity extends BaseEntity implements Serializable{
+public class PayPalEntity extends MetodoDePagoEntity implements Serializable{
     
     private String correo;
     private String contrasenha;
