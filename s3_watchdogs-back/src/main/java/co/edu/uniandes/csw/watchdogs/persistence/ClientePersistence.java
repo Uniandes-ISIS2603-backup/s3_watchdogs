@@ -46,7 +46,7 @@ public class ClientePersistence {
      * existe alguno devuelve el primero.
      */
     public ClienteEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando empleado por nombre ", name);
+        LOGGER.log(Level.INFO, "Consultando cliente por nombre ", name);
         
         //Se crea un query para buscar clientes con el nombre que recibe el metodo como argumento. ":name" es un placeholder que debe ser remplazado
         TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.nombre = :name", ClienteEntity.class);

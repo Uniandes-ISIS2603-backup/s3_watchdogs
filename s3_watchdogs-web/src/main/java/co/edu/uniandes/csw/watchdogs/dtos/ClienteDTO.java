@@ -52,7 +52,7 @@ public class ClienteDTO {
      */
     public ClienteDTO(ClienteEntity cliente) {
         this.id = cliente.getId();
-        this.nombre = cliente.getName();
+        this.nombre = cliente.getNombre();
         this.cedula = cliente.getCedula();
     }
     
@@ -106,7 +106,7 @@ public class ClienteDTO {
     public ClienteEntity toEntity() {
         ClienteEntity entity = new ClienteEntity();
         entity.setId(this.id);
-        entity.setName(this.nombre);
+        entity.setNombre(this.nombre);
         entity.setCedula(this.cedula);
         return entity;
     }

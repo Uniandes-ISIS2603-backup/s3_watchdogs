@@ -109,7 +109,7 @@ public class ClientePersistenceTest {
         
         Assert.assertNotNull(result);
         
-        Assert.assertNotNull(clientePersistence.findByName(result.getName()));
+        Assert.assertNotNull(clientePersistence.findByName(result.getNombre()));
     }
     
     @Test
