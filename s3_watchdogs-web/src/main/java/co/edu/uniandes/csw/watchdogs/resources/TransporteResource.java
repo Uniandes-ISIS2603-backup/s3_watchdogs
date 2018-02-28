@@ -56,7 +56,7 @@ public class TransporteResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public TransporteDetailDTO getEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
+    public TransporteDetailDTO getTransporte(@PathParam("id") Long id) throws BusinessLogicException {
         TransporteEntity entity = transporteLogic.getTransporte(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
@@ -71,7 +71,7 @@ public class TransporteResource {
      * @throws BusinessLogicException
      */
     @POST
-    public TransporteDetailDTO createEntrenamiento(TransporteDetailDTO transporte) throws BusinessLogicException {        
+    public TransporteDetailDTO createTransporte(TransporteDetailDTO transporte) throws BusinessLogicException {        
          return new TransporteDetailDTO( transporteLogic.createTransporte(transporte.toEntity()));
     }
 
@@ -83,7 +83,7 @@ public class TransporteResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public TransporteDetailDTO updateEntenamiento(@PathParam("id") Long id, TransporteDetailDTO transporte) throws BusinessLogicException {
+    public TransporteDetailDTO updateTransporte(@PathParam("id") Long id, TransporteDetailDTO transporte) throws BusinessLogicException {
         transporte.setId(id);
         TransporteEntity entity = transporteLogic.getTransporte(id);
         if (entity == null) {

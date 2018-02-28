@@ -29,7 +29,7 @@ public class CalificacionLogic {
      * Devuelve todos los Calificacion que hay en la base de datos.
      * @return Lista de entidades de tipo Calificacion.
      */
-    public List<CalificacionEntity> getCalificacions() {
+    public List<CalificacionEntity> getCalificaciones() {
         LOGGER.info("Inicia proceso de consultar todos los Calificacion");
         List<CalificacionEntity> calificaciones = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los Calificacion");

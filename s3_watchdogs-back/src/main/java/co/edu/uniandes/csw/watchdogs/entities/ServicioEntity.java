@@ -9,7 +9,9 @@ import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamStrategyValue;
@@ -33,8 +35,59 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     
     protected double duracion;
     
-    public ServicioEntity(){
-        
+    @ManyToOne
+    protected MascotaEntity mascota;
+    
+    @ManyToOne
+    protected ClienteEntity cliente;
+    
+    @OneToOne
+    protected FacturaEntity factura;
+    
+    @OneToOne
+    protected CalificacionEntity calificacion;
+    
+    @ManyToOne
+    protected EmpleadoEntity empleado;
+
+    public MascotaEntity getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(MascotaEntity mascota) {
+        this.mascota = mascota;
+    }
+
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
+    public FacturaEntity getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaEntity factura) {
+        this.factura = factura;
+    }
+
+    public CalificacionEntity getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(CalificacionEntity calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public EmpleadoEntity getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(EmpleadoEntity empleado) {
+        this.empleado = empleado;
     }
 
     public void setFecha(Date fecha) {

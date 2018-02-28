@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,8 +18,19 @@ public class EntrenamientoEntity extends ServicioEntity implements Serializable 
   
     private String tipo;
     
+    @ManyToOne
+    private CentroDeEntrenamientoEntity centroDeEntrenamiento;
+    
     public EntrenamientoEntity(){
         
+    }
+
+    public CentroDeEntrenamientoEntity getCentroDeEntrenamiento() {
+        return centroDeEntrenamiento;
+    }
+
+    public void setCentroDeEntrenamiento(CentroDeEntrenamientoEntity centroDeEntrenamiento) {
+        this.centroDeEntrenamiento = centroDeEntrenamiento;
     }
 
     public void setTipo(String tipo) {

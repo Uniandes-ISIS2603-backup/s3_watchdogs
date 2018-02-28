@@ -13,6 +13,8 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
  */
 public class EntrenamientoDetailDTO extends EntrenamientoDTO{
     
+    private CentroDeEntrenamientoDTO centroDeEntrenamiento;
+    
     /**
      * Constructor por defecto
      */
@@ -26,7 +28,18 @@ public class EntrenamientoDetailDTO extends EntrenamientoDTO{
      */
     public EntrenamientoDetailDTO(EntrenamientoEntity entity){
         super(entity);
+        this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
     }
+
+    public CentroDeEntrenamientoDTO getCentroDeEntrenamiento() {
+        return centroDeEntrenamiento;
+    }
+
+    public void setCentroDeEntrenamiento(CentroDeEntrenamientoDTO centroDeEntrenamiento) {
+        this.centroDeEntrenamiento = centroDeEntrenamiento;
+    }
+    
+    
 
     /**
      * Metodo que convierte un DTO a ENtity
@@ -35,6 +48,7 @@ public class EntrenamientoDetailDTO extends EntrenamientoDTO{
     @Override
     public EntrenamientoEntity toEntity(){
         EntrenamientoEntity entity = super.toEntity();
+        entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
         return entity;
     }
 }

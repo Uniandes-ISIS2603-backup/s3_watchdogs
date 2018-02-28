@@ -7,18 +7,73 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 
+
 /**
  *
  * @author c.martinezc1
  */
 public abstract class ServicioDetailDTO extends ServicioDTO{
     
+    protected MascotaDTO mascota;
+    
+    protected ClienteDTO cliente;
+    
+    protected FacturaDTO factura;
+    
+    protected CalificacionDTO calificacion;
+    
+    protected EmpleadoDTO empleado;
     /**
      * Constructor por defecto
      * @param entity
      */
     public ServicioDetailDTO(ServicioEntity entity){
     super(entity);
+    //this.calificacion = new CalificacionDTO(entity.getCalificacion());
+    this.mascota = new MascotaDTO(entity.getMascota());
+    this.cliente = new ClienteDTO(entity.getCliente());
+    //this.factura = new FacturaDTO(entity.getFactura());
+    this.empleado = new EmpleadoDTO(entity.getEmpleado());
+    }
+
+    public MascotaDTO getMascota() {
+        return mascota;
+    }
+
+    public void setMascota(MascotaDTO mascota) {
+        this.mascota = mascota;
+    }
+
+    public ClienteDTO getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
+    }
+
+    public FacturaDTO getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaDTO factura) {
+        this.factura = factura;
+    }
+
+    public CalificacionDTO getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(CalificacionDTO calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public EmpleadoDTO getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(EmpleadoDTO empleado) {
+        this.empleado = empleado;
     }
     
     

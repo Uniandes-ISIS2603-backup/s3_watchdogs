@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
+import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
+
 
 /**
  *
@@ -20,6 +23,9 @@ public class CalificacionDTO {
        
     }  
     
+    public CalificacionDTO(CalificacionEntity entity){
+        this.puntaje = entity.getPuntaje();
+    }
     
     
     public Long getId() {
@@ -36,5 +42,11 @@ public class CalificacionDTO {
 
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
+    }
+    
+    public CalificacionEntity toEntity(){
+        CalificacionEntity entity = new CalificacionEntity();
+        entity.setPuntaje(puntaje);
+        return entity;
     }
 }

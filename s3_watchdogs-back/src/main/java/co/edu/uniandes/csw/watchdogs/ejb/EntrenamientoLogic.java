@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.EntrenamientoPersistence;
@@ -89,5 +90,23 @@ public class EntrenamientoLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Entrenamiento con id={0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Entrenamiento con id={0}", id);
+    }
+    
+    public CentroDeEntrenamientoEntity getCentroDeEntrenamiento(Long id){
+        return getEntrenamiento(id).getCentroDeEntrenamiento();
+    }
+    
+    public CentroDeEntrenamientoEntity addCentroDeEntrenamiento(Long idC, Long idE){
+        EntrenamientoEntity entrenamientoEntity = getEntrenamiento(idE);
+        CentroDeEntrenamientoEntity centroEntity = new CentroDeEntrenamientoEntity();
+        centroEntity.setId(idC);
+        entrenamientoEntity.setCentroDeEntrenamiento(centroEntity);
+        return getCentroDeEntrenamiento(idC);
+    }
+    
+    public CentroDeEntrenamientoEntity replaceCentroDeEntrenamiento(Long id, CentroDeEntrenamientoEntity centro){
+        EntrenamientoEntity entrenamientoEntity = getEntrenamiento(id);
+        entrenamientoEntity.setCentroDeEntrenamiento(centro);
+        return entrenamientoEntity.getCentroDeEntrenamiento();
     }
 }

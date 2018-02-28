@@ -16,7 +16,7 @@ import javax.persistence.Entity;
 public class CalificacionEntity extends BaseEntity implements Serializable{
     
     private int puntaje;
-    
+      
     public CalificacionEntity(){
         
     }
