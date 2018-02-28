@@ -78,7 +78,7 @@ public class PsePersistenceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from PayPalEntity").executeUpdate();
+        em.createQuery("delete from PseEntity").executeUpdate();
     }
     
      /**
