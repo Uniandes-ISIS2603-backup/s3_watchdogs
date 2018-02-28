@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.watchdogs.logic;
+package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.TarjetaCreditoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.TarjetaCreditoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -49,7 +50,6 @@ public class TarjetaCreditoLogicTest {
      @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(TarjetaCreditoEntity.class.getPackage())
                 .addPackage(TarjetaCreditoEntity.class.getPackage())
                 .addPackage(TarjetaCreditoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
@@ -95,9 +95,9 @@ public class TarjetaCreditoLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            TarjetaCreditoEntity editorial = factory.manufacturePojo(TarjetaCreditoEntity.class);
-            em.persist(editorial);
-            tarjetaData.add(editorial);
+            TarjetaCreditoEntity tarjeta = factory.manufacturePojo(TarjetaCreditoEntity.class);
+            em.persist(tarjeta);
+            tarjetaData.add(tarjeta);
         }
     }
     
@@ -107,7 +107,7 @@ public class TarjetaCreditoLogicTest {
      *
      */
     @Test
-    public void createBookTest() throws BusinessLogicException {
+    public void createTarjetaTest() throws BusinessLogicException {
         TarjetaCreditoEntity newEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
         TarjetaCreditoEntity result = tarjetaLogic.createTarjeta(newEntity);
         Assert.assertNotNull(result);
