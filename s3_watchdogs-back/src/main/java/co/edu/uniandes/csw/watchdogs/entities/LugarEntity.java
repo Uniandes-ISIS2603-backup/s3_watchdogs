@@ -19,8 +19,6 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class LugarEntity extends BaseEntity  implements Serializable{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     protected String direccion;
     protected List<String> fotos;

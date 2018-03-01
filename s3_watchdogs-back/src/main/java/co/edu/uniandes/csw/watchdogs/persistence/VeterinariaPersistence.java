@@ -65,7 +65,7 @@ public class VeterinariaPersistence {
     
     public List<VeterinariaEntity> findAll() {
         LOGGER.info("Consultando todas las veterinarias");
-        TypedQuery query = em.createQuery("select u from TransporteEntity u", VeterinariaEntity.class);
+        TypedQuery query = em.createQuery("select u from VeterinariaEntity u", VeterinariaEntity.class);
         return query.getResultList();
     }
     

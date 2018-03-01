@@ -10,6 +10,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -22,15 +23,17 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     private Double valor;
     private Boolean pagado;
     
+    //@PodamExclude
+    //@OneToOne
+    //private MetodoDePagoEntity metodoDePago;
     
-    @OneToOne
-    private MetodoDePagoEntity metodoDePago;
-    
+    @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
     
-    @OneToOne
-    private ServicioEntity servicio;
+    //@PodamExclude
+    //@OneToOne
+    //private ServicioEntity servicio;
     
     
     public FacturaEntity(){
