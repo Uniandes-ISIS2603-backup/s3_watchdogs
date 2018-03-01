@@ -5,8 +5,11 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
+import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 
 /**
@@ -17,7 +20,8 @@ import javax.persistence.Entity;
 public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializable {
     
     private String numeroTarjeta;
-    private String fechaVencimiento;
+    @PodamStrategyValue(DateStrategy.class)
+    private Date fechaVencimiento;
     private String codigoSeguridad;
 
     /**
@@ -40,7 +44,7 @@ public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializ
      * Método que retorna la fecha de vencimiento 
      * @return La fechca de vencimiento 
      */
-    public String getFechaVencimiento() {
+    public Date getFechaVencimiento() {
         return fechaVencimiento;
     }
 
@@ -48,7 +52,7 @@ public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializ
      * Método que asigna un nuevo valor a la fecha de vencimiento 
      * @param fechaVencimiento Nueva fecha a asignar 
      */
-    public void setFechaVencimiento(String fechaVencimiento) {
+    public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

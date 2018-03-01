@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ClienteEntity implements Serializable {
     private Long id;
     private String nombre;
     private String cedula;
+  
 
     /**
      * @return the cedula

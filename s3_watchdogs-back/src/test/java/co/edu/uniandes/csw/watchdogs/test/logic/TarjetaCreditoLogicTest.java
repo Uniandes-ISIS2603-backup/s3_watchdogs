@@ -51,6 +51,7 @@ public class TarjetaCreditoLogicTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(TarjetaCreditoEntity.class.getPackage())
+                .addPackage(TarjetaCreditoLogic.class.getPackage())
                 .addPackage(TarjetaCreditoPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");

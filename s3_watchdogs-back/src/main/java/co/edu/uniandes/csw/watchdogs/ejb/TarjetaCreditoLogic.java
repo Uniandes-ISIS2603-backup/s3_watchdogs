@@ -103,13 +103,11 @@ public class TarjetaCreditoLogic {
         
     }
     
-    private void validateDate(String date) throws BusinessLogicException
+    private void validateDate(Date date) throws BusinessLogicException
     {
-        String[] fecha = date.split("/");
-        Date vencimientoTarjeta = new Date(Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]), 0);
-        if(!vencimientoTarjeta.after(Calendar.getInstance().getTime()))
+        if(date.before(Calendar.getInstance().getTime()))
         {
-           throw new BusinessLogicException("La tarjeta ya se venció");
+            throw new BusinessLogicException("La tarjeta ya se venció");
         }
     }
     
