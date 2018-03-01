@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.FacturaLogic;
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.MetodoDePagoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.FacturaPersistence;
 import java.util.ArrayList;
@@ -50,6 +53,9 @@ public class FacturaLogicTest {
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(FacturaEntity.class.getPackage())
+                //.addPackage(ClienteEntity.class.getPackage())
+                //.addPackage(ServicioEntity.class.getPackage())
+                //.addPackage(MetodoDePagoEntity.class.getPackage())
                 .addPackage(FacturaLogic.class.getPackage())
                 .addPackage(FacturaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")

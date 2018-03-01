@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,6 +21,17 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     
     private Double valor;
     private Boolean pagado;
+    
+    
+    @OneToOne
+    private MetodoDePagoEntity metodoDePago;
+    
+    @ManyToOne
+    private ClienteEntity cliente;
+    
+    @OneToOne
+    private ServicioEntity servicio;
+    
     
     public FacturaEntity(){
         
