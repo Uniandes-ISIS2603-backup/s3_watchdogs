@@ -51,7 +51,8 @@ public class CentroDeEntrenamientoPersistence {
         return em.merge(entity);
     }
     
-    public void delete(CentroDeEntrenamientoEntity entity){
+    public void delete(Long id){
+        CentroDeEntrenamientoEntity entity = find(id);
         em.remove(entity);
     }
 }

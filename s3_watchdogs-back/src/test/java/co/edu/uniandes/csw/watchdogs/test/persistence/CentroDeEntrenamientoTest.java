@@ -130,7 +130,7 @@ public class CentroDeEntrenamientoTest {
     @Test
     public void deleteEntrenamientoTest() {
         CentroDeEntrenamientoEntity entity = data.get(0);
-        centroDeEntrenamientoPersistence.delete(entity);
+        centroDeEntrenamientoPersistence.delete(entity.getId());
         CentroDeEntrenamientoEntity deleted = em.find(CentroDeEntrenamientoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -147,7 +147,7 @@ public class CentroDeEntrenamientoTest {
 
         CentroDeEntrenamientoEntity resp = em.find(CentroDeEntrenamientoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getTiempoEntreno(), entity.getTiempoEntreno());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getTiempoEntreno(), resp.getTiempoEntreno());
     }
 }

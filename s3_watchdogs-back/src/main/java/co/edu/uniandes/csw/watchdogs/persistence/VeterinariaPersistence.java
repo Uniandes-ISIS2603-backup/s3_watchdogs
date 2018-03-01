@@ -80,7 +80,7 @@ public class VeterinariaPersistence {
     }
     
     public void delete(Long id) {
-        LOGGER.log(Level.INFO, "Borrando el transporte con id={0}", id);
+        LOGGER.log(Level.INFO, "Borrando la veterinaria con id={0}", id);
         VeterinariaEntity entity = em.find(VeterinariaEntity.class, id);
         em.remove(entity);
     }
