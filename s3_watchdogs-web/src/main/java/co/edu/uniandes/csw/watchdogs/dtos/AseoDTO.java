@@ -15,7 +15,12 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
- *      "id": number,
+ *      "id": Long,
+ *      "fecha: Date,
+ *      "costo": Double,
+ *      "estado": Boolean,
+ *      "duración": Double,
+ *      "rango": List'String'
  *      "dientes": Boolean,
  *      "banho": Boolean,
  *      "peluqueria": Boolean
@@ -26,6 +31,12 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  * <pre>
  * 
  *  {
+ *      "id": 1889
+ *      "fecha: "10-10-2010",
+ *      "costo": 25,
+ *      "estado": "1",
+ *      "duración": 20.5,
+ *      "rango": "",
  *      "dientes": true,
  *      "banho": true,
  *      "peluqueria": true
@@ -52,13 +63,13 @@ public class AseoDTO extends ServicioDTO{
      * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento
      * 
-     * @param aseo: Es la entidad que se va a convertir a DTO
+     * @param entity: Es la entidad que se va a convertir a DTO
      */
-    public AseoDTO(AseoEntity aseo) {
-   //   this.id = aseo.getId();
-        this.dientes = aseo.getDientes();
-        this.banho = aseo.getBanho();
-        this.peluqueria = aseo.getPeluqueria();
+    public AseoDTO(AseoEntity entity) {
+        super(entity);
+        this.dientes = entity.getDientes();
+        this.banho = entity.getBanho();
+        this.peluqueria = entity.getPeluqueria();
     }
 
     /**
@@ -102,21 +113,6 @@ public class AseoDTO extends ServicioDTO{
     public void setPeluqueria(Boolean peluqueria) {
         this.peluqueria = peluqueria;
     }
-
-    /**
-     * @return El id dado
-     */
-   // public Long getId() {
-     //   return id;
-    //}
-
-    /**
-     * @param id El id dado por parametro
-     */
-    
-  //  public void setId(Long id) {
-    //    this.id = id;
-   // }
     
      /**
      * Convertir un DTO a un Entity
@@ -125,7 +121,12 @@ public class AseoDTO extends ServicioDTO{
      */
     public AseoEntity toEntity() {
         AseoEntity entity = new AseoEntity();
-   //     entity.setId(this.id);
+        entity.setId(this.id);
+        entity.setCosto(this.costo);
+        entity.setDuracion(this.duracion);
+        entity.setEstado(this.estado);
+        entity.setFecha(this.fecha);
+        entity.setRango(this.rango);
         entity.setPeluqueria(this.peluqueria);
         entity.setDientes(this.dientes);
         entity.setBanho(this.banho);

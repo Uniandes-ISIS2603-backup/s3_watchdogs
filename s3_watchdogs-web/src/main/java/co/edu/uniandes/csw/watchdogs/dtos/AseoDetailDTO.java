@@ -14,10 +14,13 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  */
 public class AseoDetailDTO extends AseoDTO{
    
+    private VeterinariaDTO veterinaria;
+    
      /**
      * Constructor por defecto
      */
-    public AseoDetailDTO() {
+    public AseoDetailDTO() 
+    {
     }
     
     /**
@@ -27,6 +30,13 @@ public class AseoDetailDTO extends AseoDTO{
      */
     public AseoDetailDTO(AseoEntity entity) {
         super(entity);
+        
+        if(entity.getVeterinaria() != null){
+            this.veterinaria = new VeterinariaDTO(entity.getVeterinaria());
+        }
+        else{
+            entity.setVeterinaria(null);
+        }
     }
     
     /**
@@ -36,8 +46,25 @@ public class AseoDetailDTO extends AseoDTO{
      */
     @Override
     public AseoEntity toEntity() {
-        AseoEntity aseoE = super.toEntity();
-        return aseoE;
+        AseoEntity entity = super.toEntity();
+        if(this.getVeterinaria() != null){
+            entity.setVeterinaria(this.getVeterinaria().toEntity());
+        }
+        return entity;
+    }
+
+    /**
+     * @return la veterinaria
+     */
+    public VeterinariaDTO getVeterinaria() {
+        return veterinaria;
+    }
+
+    /**
+     * @param veterinaria que entra por parametro
+     */
+    public void setVeterinaria(VeterinariaDTO veterinaria) {
+        this.veterinaria = veterinaria;
     }
     
 }

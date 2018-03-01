@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,25 +20,26 @@ import javax.persistence.Id;
 @Entity
 public class AseoEntity extends ServicioEntity implements Serializable{
     
-    
     private Boolean dientes;
     private Boolean banho;
     private Boolean peluqueria;
+    
+    @PodamExclude
+    @ManyToOne
+    private VeterinariaEntity veterinaria;
+    
+    public AseoEntity(){
+        
+    }
+    
+    public VeterinariaEntity getVeterinaria(){
+        return veterinaria;
+    }
 
-    /**
-     * @return el id que entra por parametro
-     */
-  //  public Long getId() {
-   //     return id;
-  //  }
-
-    /**
-     * @param id que entra por parametro
-     */
- //   public void setId(Long id) {
-  //      this.id = id;
-  //  }
-
+    public void setVeterinaria(VeterinariaEntity veterinaria) {
+        this.veterinaria = veterinaria;
+    }
+    
     /**
      * @return El servicio de dientes
      */
@@ -79,19 +82,4 @@ public class AseoEntity extends ServicioEntity implements Serializable{
         this.peluqueria = peluqueria;
     }
     
-    //@Override
-   // public boolean equals(Object obj) {
-          //      if (this.getId() != null && ((AseoEntity) obj).getId() != null) {
-         //   return this.getId().equals(((AseoEntity) obj).getId());
-    //    }
-     //   return super.equals(obj);
-   // }
-    
-  //  @Override
-  //  public int hashCode() {
-   //     if (this.getId() != null) {
-     //       return this.getId().hashCode();
-     //   }
-     //   return super.hashCode();
-    //}
 }

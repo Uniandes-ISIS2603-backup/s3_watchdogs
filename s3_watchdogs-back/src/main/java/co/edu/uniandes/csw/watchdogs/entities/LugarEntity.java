@@ -17,11 +17,11 @@ import javax.persistence.MappedSuperclass;
  * @author js.vacat
  */
 @MappedSuperclass
-public abstract class LugarEntity implements Serializable{
+public abstract class LugarEntity extends BaseEntity  implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    
     protected String direccion;
     protected List<String> fotos;
     
@@ -55,33 +55,4 @@ public abstract class LugarEntity implements Serializable{
         this.fotos = fotos;
     }
 
-    /**
-     * @return el id del lugar
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id el ide del lugar que entra por parametro
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-                if (this.getId() != null && ((LugarEntity) obj).getId() != null) {
-            return this.getId().equals(((LugarEntity) obj).getId());
-        }
-        return super.equals(obj);
-    }
-    
-    @Override
-    public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
-        return super.hashCode();
-    }
 }

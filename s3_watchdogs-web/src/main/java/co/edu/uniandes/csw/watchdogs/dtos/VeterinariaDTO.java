@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
+
 /**
  *  VeterinariaDTO Objeto de transferencia de datos de Lugar. Los DTO contienen las
  * representaciones de los JSON que se tranfieren entre la veterinaria y el servidor.
@@ -12,7 +14,10 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
- *      "id": Long
+ *      "id": Long,
+ *      "direccion": String,
+ *      "fotos": List'String',
+ *      "capacidad": Integer
  *      
  *  }
  * </pre>
@@ -21,7 +26,10 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  * <pre>
  * 
  *  {
- *      "id": 1234
+ *      "id": 1234,
+ *      "direccion": Carrera 50#120,
+ *      "fotos": "",
+ *      "capacidad": 10
  *  }
  * 
  * </pre>
@@ -30,8 +38,7 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  */
 public class VeterinariaDTO extends LugarDTO{
     
-    private Long id;
-    
+    private Integer capacidad;
     /**
      * Constructor por defecto
      */
@@ -40,17 +47,37 @@ public class VeterinariaDTO extends LugarDTO{
         
     }
 
-    /**
-     * @return id de la veterinaria
+     /**
+     * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
+     * la entidad que viene de argumento
+     * 
+     * @param entity: Es la entidad que se va a convertir a DTO
      */
-    public Long getId() {
-        return id;
+    public VeterinariaDTO(VeterinariaEntity entity) {
+        super(entity);
+        this.capacidad = entity.getCapacidad();  
     }
 
     /**
-     * @param id Id del C.E a establecer
+     * @return la capacidad
      */
-    public void setId(Long id) {
-        this.id = id;
+    public Integer getCapacidad() {
+        return capacidad;
+    }
+
+    /**
+     * @param capacidad la capacidad que entra por parametro
+     */
+    public void setCapacidad(Integer capacidad) {
+        this.capacidad = capacidad;
+    }
+    
+    public VeterinariaEntity toEntity() {
+        VeterinariaEntity entity = new VeterinariaEntity();
+        entity.setId(this.id);
+        entity.setDireccion(this.direccion);
+        entity.setFotos(this.fotos);
+        entity.setCapacidad(this.capacidad);
+        return entity;
     }
 }
