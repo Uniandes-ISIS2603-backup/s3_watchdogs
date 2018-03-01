@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase que extiende de {@link CentroDeEntrenamientoDTO} para manejar la transformacion entre
@@ -25,6 +28,22 @@ public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
     public CentroDeEntrenamientoDetailDTO()
     {
         super();
+    }
+    
+    public CentroDeEntrenamientoDetailDTO(CentroDeEntrenamientoEntity entity){
+        super(entity);
+        if(entity.getEntrenamientos() != null){
+            entrenamientos = new ArrayList();
+            for(EntrenamientoEntity eEnt : entity.getEntrenamientos()){
+                entrenamientos.add(new EntrenamientoDTO(eEnt));
+            }
+        }
+        if(entity.getHoteles() !=null){
+            hoteles = new ArrayList();
+            for(HotelEntity hEnt : entity.getHoteles()){
+                hoteles.add(new HotelDTO(hEnt));
+            }
+        } 
     }
 
     /**
@@ -62,6 +81,20 @@ public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
     @Override
     public CentroDeEntrenamientoEntity toEntity(){
         CentroDeEntrenamientoEntity entity = super.toEntity();
+        if(this.getEntrenamientos() != null){
+            ArrayList<EntrenamientoEntity> entrenEnt = new ArrayList<>();
+            for(EntrenamientoDTO e:entrenamientos){
+                entrenEnt.add(e.toEntity());
+            }
+            entity.setEntrenamientos(entrenEnt);
+        }
+        if(this.getHoteles() != null){
+            ArrayList<HotelEntity> hotelEnt = new ArrayList<>();
+            for(HotelDTO h : hoteles){
+                hotelEnt.add(h.toEntity());
+            }
+            entity.setHoteles(hotelEnt);
+        }
         return entity;
     }
     

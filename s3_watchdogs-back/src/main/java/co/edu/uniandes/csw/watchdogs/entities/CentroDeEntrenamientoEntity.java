@@ -6,15 +6,53 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author m.diazt
  */
 @Entity
-public class CentroDeEntrenamientoEntity extends BaseEntity implements Serializable {
+public class CentroDeEntrenamientoEntity extends LugarEntity implements Serializable {
+    
+     private Integer tiempoEntreno;
+     
+     @PodamExclude
+     @OneToMany(mappedBy = "centroDeEntrenamiento")
+     private ArrayList<EntrenamientoEntity> entrenamientos;
+     
+     @PodamExclude
+     @OneToMany(mappedBy = "centroDeEntrenamiento")
+     private ArrayList<HotelEntity> hoteles;
+
+    public Integer getTiempoEntreno() {
+        return tiempoEntreno;
+    }
+
+    public void setTiempoEntreno(Integer tiempoEntreno) {
+        this.tiempoEntreno = tiempoEntreno;
+    }
+
+    public ArrayList<EntrenamientoEntity> getEntrenamientos() {
+        return entrenamientos;
+    }
+
+    public void setEntrenamientos(ArrayList<EntrenamientoEntity> entrenamientos) {
+        this.entrenamientos = entrenamientos;
+    }
+
+    public ArrayList<HotelEntity> getHoteles() {
+        return hoteles;
+    }
+
+    public void setHoteles(ArrayList<HotelEntity> hoteles) {
+        this.hoteles = hoteles;
+    }
+    
+    
     
      
-    
 }

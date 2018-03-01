@@ -7,6 +7,9 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -16,6 +19,14 @@ import javax.persistence.Entity;
 public class HotelEntity extends ServicioEntity implements Serializable {
     
     private Integer tiempoHospedaje;
+    
+    @PodamExclude
+    @OneToOne
+    private TransporteEntity transporte;
+    
+    @PodamExclude
+    @ManyToOne
+    private CentroDeEntrenamientoEntity centroDeEntrenamiento;
 
     public Integer getTiempoHospedaje() {
         return tiempoHospedaje;
@@ -24,6 +35,24 @@ public class HotelEntity extends ServicioEntity implements Serializable {
     public void setTiempoHospedaje(Integer tiempoHospedaje) {
         this.tiempoHospedaje = tiempoHospedaje;
     }
+
+    public TransporteEntity getTransporte() {
+        return transporte;
+    }
+
+    public void setTransporte(TransporteEntity transporte) {
+        this.transporte = transporte;
+    }
+
+    public CentroDeEntrenamientoEntity getCentroDeEntrenamiento() {
+        return centroDeEntrenamiento;
+    }
+
+    public void setCentroDeEntrenamiento(CentroDeEntrenamientoEntity centroDeEntrenamiento) {
+        this.centroDeEntrenamiento = centroDeEntrenamiento;
+    }
+    
+    
     
     
 }

@@ -28,6 +28,18 @@ public class HotelDetailDTO extends HotelDTO {
     
     public HotelDetailDTO(HotelEntity entity){
         super(entity);
+        if(entity.getTransporte() != null){
+            this.transporte = new TransporteDTO(entity.getTransporte());
+        }
+        else{
+            entity.setTransporte(null);
+        }
+        if(entity.getCentroDeEntrenamiento() != null){
+            this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
+        }
+        else{
+            entity.setCentroDeEntrenamiento(null);
+        }
     }
 
     /**
@@ -65,6 +77,12 @@ public class HotelDetailDTO extends HotelDTO {
     @Override
     public HotelEntity toEntity(){
         HotelEntity entity = super.toEntity();
+        if(this.getCentroDeEntrenamiento() != null){
+            entity.setCentroDeEntrenamiento(this.getCentroDeEntrenamiento().toEntity());
+        }
+        if(this.getTransporte() != null){
+            entity.setTransporte(this.getTransporte().toEntity());
+        }
         return entity;
     }
 }

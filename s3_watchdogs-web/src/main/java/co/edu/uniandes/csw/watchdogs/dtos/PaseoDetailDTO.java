@@ -6,7 +6,9 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase que extiende de {@link PaseoDTO} para manejar la transformacion entre
@@ -16,27 +18,66 @@ import java.util.ArrayList;
  */
 public class PaseoDetailDTO extends PaseoDTO{
     
-    //private ArrayList<RutaDTO> rutas;
+    private ArrayList<RutaDTO> rutas;
     private VeterinariaDTO veterinaria;
     
     public PaseoDetailDTO()
     {
         super();
     }
+    
+    public PaseoDetailDTO(PaseoEntity entity){
+        super(entity);
+        /**if(entity.getVeterinaria() != null){
+            this.veterinaria = new VeterinariaDTO(entity.getVeterinaria());
+        }
+        else{
+            entity.setVeterinaria(null);
+        }**/
+        /**if(entity.getRutas() != null){
+            rutas = new ArrayList();
+            for(RutaEntity rEntity: entity.getRutas()){
+                rutas.add(new RutaDTO(rEntity));
+            }
+        }**/
+        
+        
+    }
+    
+    @Override
+    /**
+     * Metodo que convierte un DTO a ENtity
+     * @return PaseoEntity
+     */
+    public PaseoEntity toEntity(){
+        
+        PaseoEntity entity = super.toEntity();
+        /**if(this.getVeterinaria() != null){
+            entity.setVeterinaria(this.getVeterinaria().toEntity());
+        }
+        if(this.getRutas() != null){
+            ArrayList<RutaEntity> rEnt = new ArrayList();
+            for(RutaDTO ruta : rutas){
+                rEnt.add(ruta.toEntity());
+            }
+            entity.setRutas(rEnt);
+        }**/
+        return entity;
+    }
 
     /**
      * @return Lista de rutas
      */
-    /**public ArrayList<RutaDTO> getRutas() {
+    public ArrayList<RutaDTO> getRutas() {
         return rutas;
     }
 
     /**
      * @param rutas Lista de rutas a establecer
      */
-    /**public void setRutas(ArrayList<RutaDTO> rutas) {
+    public void setRutas(ArrayList<RutaDTO> rutas) {
         this.rutas = rutas;
-    }**/
+    }
 
     /**
      * @return veterinaria
@@ -52,13 +93,4 @@ public class PaseoDetailDTO extends PaseoDTO{
         this.veterinaria = veterinaria;
     }
     
-    /**
-     * Metodo que convierte un DTO a ENtity
-     * @return PaseoEntity
-     */
-    @Override
-    public PaseoEntity toEntity(){
-        PaseoEntity entity = super.toEntity();
-        return entity;
-    }
 }
