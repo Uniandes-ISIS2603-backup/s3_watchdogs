@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
    
+import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
+
 
 /**
  * FacturaDTO Objeto de transferencia de datos de Watchdogs. Los DTO contienen las
@@ -45,6 +47,16 @@ public class FacturaDTO {
      */
     public FacturaDTO(){
         
+    }
+    
+    /**
+     * Constructor que recibe un entity
+     * @param entity 
+     */
+    public FacturaDTO(FacturaEntity entity){
+        this.id = entity.getId();
+        this.valor = entity.getValor();
+        this.pagado = entity.getPagado();
     }
     
     
@@ -97,6 +109,18 @@ public class FacturaDTO {
     
     public void setPago(boolean pagado){
         this.pagado = pagado;
+    }
+    
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
+    public FacturaEntity toEntity(){
+        FacturaEntity entity = new FacturaEntity();
+        entity.setId(id);
+        entity.setPago(pagado);
+        entity.setValor(valor);
+        return entity;
     }
     
 

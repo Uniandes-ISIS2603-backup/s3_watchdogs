@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.DisponibilidadEntity;
 import co.edu.uniandes.csw.watchdogs.entities.Estado;
 
 
@@ -46,6 +47,15 @@ public class DisponibilidadDTO {
         
     }
     
+     /**
+     * Constructor que recibe un entity
+     * @param entity 
+     */
+    public DisponibilidadDTO(DisponibilidadEntity entity){
+        this.id = entity.getId();
+        this.matrizHorarios = entity.getMatrizHorarios();
+    }
+    
     /**
      * 
      * @return El id de la Disponibilidad
@@ -78,6 +88,17 @@ public class DisponibilidadDTO {
     
     public void setMatrizHorarios(Estado[][] matrizHorarios){
         this.matrizHorarios = matrizHorarios;
+    }
+    
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
+    public DisponibilidadEntity toEntity(){
+        DisponibilidadEntity entity = new DisponibilidadEntity();
+        entity.setId(id);
+        entity.setMatrizHorarios(matrizHorarios);
+        return entity;
     }
     
     

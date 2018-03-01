@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
+
+import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
+
 /**
  * RutaDTO Objeto de transferencia de datos de Watchdogs. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -41,6 +44,15 @@ public class RutaDTO {
         
     }
     
+     /**
+     * Constructor que recibe un entity
+     * @param entity 
+     */
+    public RutaDTO(RutaEntity entity){
+        this.id = entity.getId();
+        this.duracion = entity.getDuracion();
+    }
+    
     /**
      * 
      * @return El id de la ruta
@@ -73,6 +85,17 @@ public class RutaDTO {
     
     public void setDuracion(int duracion){
         this.duracion = duracion;
+    }
+    
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
+    public RutaEntity toEntity(){
+        RutaEntity entity = new RutaEntity();
+        entity.setId(id);
+        entity.setDuracion(duracion);
+        return entity;
     }
 
 }
