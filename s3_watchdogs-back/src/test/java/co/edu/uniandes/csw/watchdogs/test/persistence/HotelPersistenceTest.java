@@ -89,7 +89,7 @@ public class HotelPersistenceTest {
     }
     
     @Test
-    public void createEntrenamientoTest(){
+    public void createHotelTest(){
         PodamFactory factory = new PodamFactoryImpl();
         HotelEntity newEntity = factory.manufacturePojo(HotelEntity.class);
         HotelEntity result = hotelPersistence.create(newEntity);
@@ -103,7 +103,7 @@ public class HotelPersistenceTest {
     }
     
     @Test
-    public void getEntrenamientosTest() {
+    public void getHotelesTest() {
         List<HotelEntity> list = hotelPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (HotelEntity ent : list) {
@@ -118,7 +118,7 @@ public class HotelPersistenceTest {
     }
     
     @Test
-    public void getEntrenamientoTest() {
+    public void getHotelTest() {
         HotelEntity entity = data.get(0);
         HotelEntity newEntity = hotelPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -128,7 +128,7 @@ public class HotelPersistenceTest {
     }
     
     @Test
-    public void deleteEntrenamientoTest() {
+    public void deleteHotelTest() {
         HotelEntity entity = data.get(0);
         hotelPersistence.delete(entity.getId());
         HotelEntity deleted = em.find(HotelEntity.class, entity.getId());
@@ -136,7 +136,7 @@ public class HotelPersistenceTest {
     }
     
     @Test
-    public void updateEntrenamientoTest() {
+    public void updateHotelTest() {
         HotelEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         HotelEntity newEntity = factory.manufacturePojo(HotelEntity.class);
