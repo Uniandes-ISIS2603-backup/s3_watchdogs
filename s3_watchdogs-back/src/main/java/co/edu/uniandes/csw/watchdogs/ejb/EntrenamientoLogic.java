@@ -109,4 +109,5 @@ public class EntrenamientoLogic {
         entrenamientoEntity.setCentroDeEntrenamiento(centro);
         return entrenamientoEntity.getCentroDeEntrenamiento();
     }
+    
 }

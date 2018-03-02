@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.watchdogs.entities;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -18,11 +20,24 @@ public class EntrenamientoEntity extends ServicioEntity implements Serializable 
   
     private String tipo;
     
+    @PodamExclude
     @ManyToOne
     private CentroDeEntrenamientoEntity centroDeEntrenamiento;
     
+    @PodamExclude
+    @OneToOne
+    private TransporteEntity transporte;
+    
     public EntrenamientoEntity(){
         
+    }
+    
+    public TransporteEntity getTransporte() {
+        return transporte;
+    }
+
+    public void setTransporte(TransporteEntity transporte) {
+        this.transporte = transporte;
     }
 
     public CentroDeEntrenamientoEntity getCentroDeEntrenamiento() {
@@ -32,7 +47,7 @@ public class EntrenamientoEntity extends ServicioEntity implements Serializable 
     public void setCentroDeEntrenamiento(CentroDeEntrenamientoEntity centroDeEntrenamiento) {
         this.centroDeEntrenamiento = centroDeEntrenamiento;
     }
-
+    
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }

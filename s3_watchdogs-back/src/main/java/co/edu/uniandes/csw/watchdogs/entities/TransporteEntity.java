@@ -18,9 +18,9 @@ public class TransporteEntity extends BaseEntity implements Serializable{
     
     private String direccion;
     
-    private int recogida;
+    private Integer recogida;
     
-    private int devuelta;
+    private Integer devuelta;
 
     public TransporteEntity(){
         

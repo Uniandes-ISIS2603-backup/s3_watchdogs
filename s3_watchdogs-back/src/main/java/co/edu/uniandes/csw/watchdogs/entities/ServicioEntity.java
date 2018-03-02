@@ -14,6 +14,7 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
@@ -27,29 +28,34 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     @PodamStrategyValue(DateStrategy.class)
     protected Date fecha;
     
-    protected double costo;
+    protected Double costo;
     
     protected boolean estado;
     
     protected ArrayList<String> rango;
     
-    protected double duracion;
-    
+    protected Double duracion;
+    /*
+    @PodamExclude
     @ManyToOne
     protected MascotaEntity mascota;
     
+    @PodamExclude
     @ManyToOne
     protected ClienteEntity cliente;
     
+    @PodamExclude
     @OneToOne
     protected FacturaEntity factura;
     
+    @PodamExclude
     @OneToOne
     protected CalificacionEntity calificacion;
     
+    @PodamExclude
     @ManyToOne
     protected EmpleadoEntity empleado;
-
+    
     public MascotaEntity getMascota() {
         return mascota;
     }
@@ -89,7 +95,7 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     public void setEmpleado(EmpleadoEntity empleado) {
         this.empleado = empleado;
     }
-
+    */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }

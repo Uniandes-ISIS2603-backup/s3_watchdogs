@@ -28,9 +28,13 @@ public class EntrenamientoDetailDTO extends EntrenamientoDTO{
      */
     public EntrenamientoDetailDTO(EntrenamientoEntity entity){
         super(entity);
-        this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
+        if(entity.getClass() != null){
+            this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
+        }
+        else centroDeEntrenamiento = null;
+        
     }
-
+    
     public CentroDeEntrenamientoDTO getCentroDeEntrenamiento() {
         return centroDeEntrenamiento;
     }
