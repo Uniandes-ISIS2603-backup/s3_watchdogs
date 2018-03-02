@@ -147,7 +147,7 @@ public class PaseoPersistenceTest {
 
         PaseoEntity resp = em.find(PaseoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getCapMax(), entity.getCapMax());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getCapMax(), resp.getCapMax());
     }
 }

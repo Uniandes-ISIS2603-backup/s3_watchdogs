@@ -53,6 +53,6 @@ public class PaseoPersistence {
     
     public void delete(Long id){
         PaseoEntity entity = find(id);
-        em.remove(id);
+        em.remove(entity);
     }
 }
