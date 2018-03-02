@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.DisponibilidadEntity;
+
 /**
  * Clase que extiende de {@link DisponibilidadDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -20,6 +22,12 @@ public class DisponibilidadDetailDTO extends DisponibilidadDTO{
     
     public DisponibilidadDetailDTO(){
         
+    }
+    
+    
+    public DisponibilidadDetailDTO(DisponibilidadEntity entity){
+        
+        super(entity);
     }
     
   

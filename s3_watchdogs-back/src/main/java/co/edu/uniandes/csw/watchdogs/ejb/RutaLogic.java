@@ -61,7 +61,7 @@ public class RutaLogic {
      */
     public RutaEntity createRuta(RutaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Ruta");
-        
+        check(entity);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Ruta");
         return entity;
@@ -76,7 +76,7 @@ public class RutaLogic {
      */
     public RutaEntity updateRuta(Long id, RutaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Ruta con id={0}", id);
-        
+        check(entity);
         RutaEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Ruta con id={0}", entity.getId());
         return newEntity;
@@ -92,4 +92,18 @@ public class RutaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar Ruta con id={0}", id);
     }
     
+    
+     public void check(RutaEntity entity)throws BusinessLogicException{
+        checkDuracionValida(entity);
+    }
+    
+    
+    /**
+     * verifica que la duracion de la ruta sea superior a 0 y no mayor a 120
+     */
+    public void checkDuracionValida(RutaEntity entity) throws BusinessLogicException{
+        if( entity.getDuracion()< 0  || entity.getDuracion() > 120){
+            throw new BusinessLogicException("La duracion de la ruta no es válida");
+        }
+    }
 }

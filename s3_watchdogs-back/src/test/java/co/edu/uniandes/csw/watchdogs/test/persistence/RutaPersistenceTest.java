@@ -91,7 +91,7 @@ public class RutaPersistenceTest {
     }
     
     @Test
-    public void createEmpleadoTest() {
+    public void createRutaTest() {
         PodamFactory factory = new PodamFactoryImpl();
         RutaEntity newEntity = factory.manufacturePojo(RutaEntity.class);
         RutaEntity result = rutaPersistence.create(newEntity);

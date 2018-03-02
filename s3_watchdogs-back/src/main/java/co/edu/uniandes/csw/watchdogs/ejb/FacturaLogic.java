@@ -61,7 +61,7 @@ public class FacturaLogic {
      */
     public FacturaEntity createFactura(FacturaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Factura");
-        
+        check(entity);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Factura");
         return entity;
@@ -76,7 +76,7 @@ public class FacturaLogic {
      */
     public FacturaEntity updateFactura(Long id, FacturaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Factura con id={0}", id);
-        
+        check(entity);
         FacturaEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Factura con id={0}", entity.getId());
         return newEntity;
@@ -90,6 +90,20 @@ public class FacturaLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Factura con id={0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Factura con id={0}", id);
+    }
+    
+    public void check(FacturaEntity entity)throws BusinessLogicException{
+        checkValorValido(entity);
+    }
+    
+    
+    /**
+     * verifica que el valor de la factura sea superior a 0
+     */
+    public void checkValorValido(FacturaEntity entity) throws BusinessLogicException{
+        if( entity.getValor()< 0){
+            throw new BusinessLogicException("El valor de la factura no es válido");
+        }
     }
     
 }

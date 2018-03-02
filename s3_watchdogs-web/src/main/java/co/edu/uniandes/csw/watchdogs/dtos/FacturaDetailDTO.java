@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
+
 /**
  * Clase que extiende de {@link FacturaDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -21,6 +23,10 @@ public class FacturaDetailDTO extends FacturaDTO{
         
     }
     
+    public FacturaDetailDTO(FacturaEntity entity){
+        
+        super(entity);
+    }
     
     
 }

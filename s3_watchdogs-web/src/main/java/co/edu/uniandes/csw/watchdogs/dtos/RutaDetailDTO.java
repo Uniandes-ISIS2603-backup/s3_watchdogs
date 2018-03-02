@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
+
 /**
  * Clase que extiende de {@link RutaDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
@@ -22,4 +24,7 @@ public class RutaDetailDTO extends RutaDTO{
         
     }
     
+    public RutaDetailDTO(RutaEntity entity) {
+        super(entity);
+    }
 }

@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
  *
@@ -16,6 +17,7 @@ import javax.persistence.Entity;
 @Entity
 public class RutaEntity extends BaseEntity implements Serializable{
     
+    @PodamIntValue(minValue = 1, maxValue = 120)
     private Integer duracion;
     
     public RutaEntity(){

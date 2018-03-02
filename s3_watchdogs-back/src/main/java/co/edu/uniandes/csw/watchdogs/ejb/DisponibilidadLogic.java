@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.DisponibilidadEntity;
+import co.edu.uniandes.csw.watchdogs.entities.Estado;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.DisponibilidadPersistence;
 import java.util.List;
@@ -61,7 +62,7 @@ public class DisponibilidadLogic {
      */
     public DisponibilidadEntity createDisponibilidad(DisponibilidadEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Disponibilidad");
-        
+        check(entity);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Disponibilidad");
         return entity;
@@ -76,7 +77,7 @@ public class DisponibilidadLogic {
      */
     public DisponibilidadEntity updateDisponibilidad(Long id, DisponibilidadEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Disponibilidad con id={0}", id);
-        
+        check(entity);
         DisponibilidadEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Disponibilidad con id={0}", entity.getId());
         return newEntity;
@@ -90,6 +91,24 @@ public class DisponibilidadLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Disponibilidad con id={0}", id);
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Disponibilidad con id={0}", id);
+    }
+    
+    public void check(DisponibilidadEntity entity)throws BusinessLogicException{
+        checkDimensionValida(entity);
+    }
+    
+    
+    /**
+     * verifica que el horario cumpla con los parámetros (7 días y 12 horas)
+     */
+    public void checkDimensionValida(DisponibilidadEntity entity) throws BusinessLogicException{
+        Estado[][] checker = entity.getMatrizHorarios();
+        if(checker.length != 7){
+            throw new BusinessLogicException("Fallo en la cantidad de días");
+        }
+        if(checker[0].length != 12){
+            throw new BusinessLogicException("Fallo en la cantidad de horas");
+        }
     }
     
 }
