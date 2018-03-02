@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
+import co.edu.uniandes.csw.watchdogs.podam.DiaDisponibilidadStrategy;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamCollection;
 
 /**
  *
@@ -17,7 +19,7 @@ import javax.persistence.Entity;
 public class DisponibilidadEntity extends BaseEntity implements Serializable{
     
   
-    
+    @PodamCollection(nbrElements = 7,collectionElementStrategy = DiaDisponibilidadStrategy.class)
     private Estado[][] matrizHorarios ; 
     
     public DisponibilidadEntity(){
