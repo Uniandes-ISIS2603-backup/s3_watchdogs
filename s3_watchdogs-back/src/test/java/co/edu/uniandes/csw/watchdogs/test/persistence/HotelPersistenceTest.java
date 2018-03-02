@@ -147,7 +147,7 @@ public class HotelPersistenceTest {
 
         HotelEntity resp = em.find(HotelEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getTiempoHospedaje(), entity.getTiempoHospedaje());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getTiempoHospedaje(), resp.getTiempoHospedaje());
     }
 }
