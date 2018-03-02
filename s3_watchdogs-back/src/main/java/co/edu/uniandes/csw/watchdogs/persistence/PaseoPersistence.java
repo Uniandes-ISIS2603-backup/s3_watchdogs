@@ -51,7 +51,8 @@ public class PaseoPersistence {
         return em.merge(entity);
     }
     
-    public void delete(PaseoEntity entity){
-        em.remove(entity);
+    public void delete(Long id){
+        PaseoEntity entity = find(id);
+        em.remove(id);
     }
 }

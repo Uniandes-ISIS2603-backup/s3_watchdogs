@@ -51,7 +51,8 @@ public class HotelPersistence {
         return em.merge(entity);
     }
     
-    public void delete(HotelEntity entity){
+    public void delete(Long id){
+        HotelEntity entity = find(id);
         em.remove(entity);
     }
 }

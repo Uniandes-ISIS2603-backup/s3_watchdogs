@@ -130,7 +130,7 @@ public class PaseoPersistenceTest {
     @Test
     public void deleteEntrenamientoTest() {
         PaseoEntity entity = data.get(0);
-        PaseoPersistence.delete(entity);
+        PaseoPersistence.delete(entity.getId());
         PaseoEntity deleted = em.find(PaseoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

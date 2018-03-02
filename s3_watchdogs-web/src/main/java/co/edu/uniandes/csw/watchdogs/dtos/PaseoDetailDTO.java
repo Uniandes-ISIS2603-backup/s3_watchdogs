@@ -28,12 +28,12 @@ public class PaseoDetailDTO extends PaseoDTO{
     
     public PaseoDetailDTO(PaseoEntity entity){
         super(entity);
-        /**if(entity.getVeterinaria() != null){
+        if(entity.getVeterinaria() != null){
             this.veterinaria = new VeterinariaDTO(entity.getVeterinaria());
         }
         else{
             entity.setVeterinaria(null);
-        }**/
+        }
         if(entity.getRutas() != null){
             rutas = new ArrayList();
             for(RutaEntity rEntity: entity.getRutas()){
@@ -52,9 +52,9 @@ public class PaseoDetailDTO extends PaseoDTO{
     public PaseoEntity toEntity(){
         
         PaseoEntity entity = super.toEntity();
-        /**if(this.getVeterinaria() != null){
+        if(this.getVeterinaria() != null){
             entity.setVeterinaria(this.getVeterinaria().toEntity());
-        }**/
+        }
         if(this.getRutas() != null){
             ArrayList<RutaEntity> rEnt = new ArrayList();
             for(RutaDTO ruta : rutas){

@@ -130,7 +130,7 @@ public class HotelPersistenceTest {
     @Test
     public void deleteEntrenamientoTest() {
         HotelEntity entity = data.get(0);
-        hotelPersistence.delete(entity);
+        hotelPersistence.delete(entity.getId());
         HotelEntity deleted = em.find(HotelEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
