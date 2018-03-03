@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
-import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -85,8 +84,8 @@ public class HotelLogic {
     }
     
     /**
-     * Eliminar un Transporte por ID
-     * @param id El ID del Transporte a eliminar
+     * Eliminar un paseo por ID
+     * @param id El ID del paseo a eliminar
      */
     public void deleteHotel(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar Hotel con id={0}", id);
