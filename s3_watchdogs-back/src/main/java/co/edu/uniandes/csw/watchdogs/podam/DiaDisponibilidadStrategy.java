@@ -9,6 +9,7 @@ import co.edu.uniandes.csw.watchdogs.entities.Estado;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 import uk.co.jemos.podam.common.AttributeStrategy;
+import uk.co.jemos.podam.common.PodamIntValue;
 import uk.co.jemos.podam.exceptions.PodamMockeryException;
 
 /**
@@ -24,6 +25,24 @@ public class DiaDisponibilidadStrategy implements AttributeStrategy<Estado[]>{
      * {@inheritDoc}
      */
     
+    private class Machetazo{
+    
+    public Machetazo(){
+        
+    }
+    
+    @PodamIntValue(minValue = 0, maxValue = 2)
+    private Integer dummy;
+    
+    public void setDummy(int dummy){
+        this.dummy = dummy;
+    }
+    public int getDummy (){
+        return dummy;
+    }
+    
+    }
+    
     public Estado[] getValue() throws PodamMockeryException{
         
         PodamFactory factory = new PodamFactoryImpl();
@@ -31,10 +50,10 @@ public class DiaDisponibilidadStrategy implements AttributeStrategy<Estado[]>{
         
         for(int i =0; i < rta.length; i++){
             
-            rta[i] = Estado.values()[(int)Math.random()*3];
+            Machetazo elMachetazo = factory.manufacturePojo(Machetazo.class);
+            rta[i] = Estado.values()[elMachetazo.getDummy()];
+
         } 
-       
-        //TODO Es legítimo usa un Math.Random??
        
         return rta;
     }

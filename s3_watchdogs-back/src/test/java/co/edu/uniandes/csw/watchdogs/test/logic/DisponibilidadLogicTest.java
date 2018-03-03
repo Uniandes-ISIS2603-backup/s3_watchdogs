@@ -186,9 +186,6 @@ public class DisponibilidadLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertArrayEquals(pojoEntity.getMatrizHorarios(), resp.getMatrizHorarios());
-        System.out.println(""+pojoEntity.getMatrizHorarios()[0][0].toString() + " "
-        +entity.getMatrizHorarios()[0][0].toString() + " "
-        +resp.getMatrizHorarios()[0][0].toString() + " ");
 
     }
     
