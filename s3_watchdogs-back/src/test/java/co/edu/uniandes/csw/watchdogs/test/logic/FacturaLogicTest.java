@@ -48,12 +48,13 @@ public class FacturaLogicTest {
     private UserTransaction utx;
 
     private List<FacturaEntity> data = new ArrayList<FacturaEntity>();
+    private List<ClienteEntity> clienteData = new ArrayList<ClienteEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(FacturaEntity.class.getPackage())
-                //.addPackage(ClienteEntity.class.getPackage())
+                .addPackage(ClienteEntity.class.getPackage())
                 //.addPackage(ServicioEntity.class.getPackage())
                 //.addPackage(MetodoDePagoEntity.class.getPackage())
                 .addPackage(FacturaLogic.class.getPackage())
@@ -91,6 +92,7 @@ public class FacturaLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from FacturaEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
     }
 
     /**
@@ -101,7 +103,13 @@ public class FacturaLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
+            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(entity);
+            clienteData.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
             FacturaEntity entity = factory.manufacturePojo(FacturaEntity.class);
+            entity.setCliente(clienteData.get(i));
             em.persist(entity);
             data.add(entity);
         }

@@ -94,16 +94,69 @@ public class FacturaLogic {
     
     public void check(FacturaEntity entity)throws BusinessLogicException{
         checkValorValido(entity);
+        checkFacturaRepetida(entity);
+        checkValorCorrecto(entity);
+        checkConcordanciaCliente(entity);
     }
     
     
     /**
      * verifica que el valor de la factura sea superior a 0
+     * @param entity La factura a revisar
+     * @throws BusinessLogicException si la factura tiene valor menor a 0
      */
     public void checkValorValido(FacturaEntity entity) throws BusinessLogicException{
         if( entity.getValor()< 0){
             throw new BusinessLogicException("El valor de la factura no es válido");
         }
     }
+    
+    /**
+     * verifica que no exista otra factura con el mismo servicio
+     * @param entity La factura a revisar
+     * @throws BusinessLogicException si el servicio ya tiene una factura
+     */
+    
+    public void checkFacturaRepetida(FacturaEntity entity) throws BusinessLogicException{
+        
+        List<FacturaEntity> verificacion = getFacturas();
+        //verificador = entity.getServicio().getId();
+        for(int i = 0; i < verificacion.size(); i++){
+            
+            //if(verificacion.get(i).getServicio().getId() == verificador){
+               // throw new BusinessLogicException("Ya existe una factura para ese servicio");
+            //}
+            
+        }
+
+    }
+    
+    /**
+     * verifica que el valor de la factura sea el mismo del servicio
+     * @param entity La factura a revisar
+     * @throws BusinessLogicException si la factura tiene un valor diferente al costo del servicio
+     */
+    public void checkValorCorrecto(FacturaEntity entity) throws BusinessLogicException{
+        /*if( entity.getValor() != entity.getServicio().getCosto()){
+            throw new BusinessLogicException("El valor de la factura no es válido");
+        }*/
+    }
+    
+    
+    /**
+     * verifica que la concordancia del cliente sea adecuada
+     * @param entity La factura a revisar
+     * @throws BusinessLogicException si el método de Pago o el Servicio tienen clientes diferentes a la factura
+     */
+     public void checkConcordanciaCliente(FacturaEntity entity) throws BusinessLogicException{
+        /*if( entity.getCliente().getId() != entity.getMetodoDePago().getCliente().getId(){
+            throw new BusinessLogicException("El metodo de Pago no pertenece al cliente");
+        }
+        
+        if( entity.getCliente().getId() != entity.getServicio().getCliente().getId(){
+            throw new BusinessLogicException("El servicio no pertenece al cliente");
+        }*/
+    }
+    
     
 }

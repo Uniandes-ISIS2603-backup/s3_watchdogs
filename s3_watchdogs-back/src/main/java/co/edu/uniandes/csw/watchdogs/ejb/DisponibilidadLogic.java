@@ -100,6 +100,8 @@ public class DisponibilidadLogic {
     
     /**
      * verifica que el horario cumpla con los parámetros (7 días y 12 horas)
+     * @param entity La disponibilidad a revisar
+     * @throws BusinessLogicException Si el horario no tiene el formato adecuado.
      */
     public void checkDimensionValida(DisponibilidadEntity entity) throws BusinessLogicException{
         Estado[][] checker = entity.getMatrizHorarios();

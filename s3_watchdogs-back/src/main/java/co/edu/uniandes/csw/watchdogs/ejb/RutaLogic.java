@@ -100,6 +100,8 @@ public class RutaLogic {
     
     /**
      * verifica que la duracion de la ruta sea superior a 0 y no mayor a 120
+     * @param entity La ruta a revisar
+     * @throws BusinessLogicException si la duración es demasiado larga o inferior a 0
      */
     public void checkDuracionValida(RutaEntity entity) throws BusinessLogicException{
         if( entity.getDuracion()< 0  || entity.getDuracion() > 120){

@@ -77,5 +77,24 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     public boolean getPagado(){
         return pagado;
     }
+    
+    /**
+     * 
+     * @return El cliente de la factura 
+     */
+    
+    public ClienteEntity getCliente(){
+        return cliente;
+    }
+    
+     /**
+     * @param cliente El nuevo cliente
+     */
+    
+    
+    public void setCliente(ClienteEntity cliente){
+        this.cliente = cliente;
+    }
+    
 }
 
