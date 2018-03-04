@@ -24,7 +24,7 @@ public class TransporteLogic {
     private static final Logger LOGGER = Logger.getLogger(TransporteLogic.class.getName());
     
     @Inject
-    private TransportePersistence persistence;
+    private TransportePersistence persistence;     
 
     /**
      * Devuelve todos los transportes que hay en la base de datos.
@@ -60,7 +60,6 @@ public class TransporteLogic {
      */
     public TransporteEntity createTransporte(TransporteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Transporte");
-        
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Transporte");
         return entity;

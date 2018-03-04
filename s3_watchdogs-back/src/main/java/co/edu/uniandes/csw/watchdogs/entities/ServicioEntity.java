@@ -7,8 +7,8 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import co.edu.uniandes.csw.watchdogs.podam.DateStrategy;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
@@ -30,9 +30,9 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     
     protected Double costo;
     
-    protected boolean estado;
+    protected Boolean estado;
     
-    protected ArrayList<String> rango;
+    protected List<String> rango;
     
     protected Double duracion;
     
@@ -106,11 +106,11 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
         this.costo = costo;
     }
 
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
-    public void setRango(ArrayList<String> rango) {
+    public void setRango(List<String> rango) {
         this.rango = rango;
     }
 
@@ -126,11 +126,11 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
         return costo;
     }
 
-    public boolean isEstado() {
+    public Boolean isEstado() {
         return estado;
     }
 
-    public ArrayList<String> getRango() {
+    public List<String> getRango() {
         return rango;
     }
 

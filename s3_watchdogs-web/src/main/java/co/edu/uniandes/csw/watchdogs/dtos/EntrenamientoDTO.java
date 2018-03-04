@@ -58,7 +58,10 @@ public class EntrenamientoDTO extends ServicioDTO {
      */
     public EntrenamientoDTO(EntrenamientoEntity entity){
         super(entity);
-        this.tipo = entity.getTipo();
+        if(entity!=null){
+            this.tipo = entity.getTipo();
+        }
+        
     }
 
 

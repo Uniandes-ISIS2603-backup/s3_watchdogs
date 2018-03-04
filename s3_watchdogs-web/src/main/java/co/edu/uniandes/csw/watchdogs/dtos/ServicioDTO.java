@@ -6,8 +6,8 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author c.martinezc1
@@ -31,7 +31,7 @@ public abstract class ServicioDTO {
     /**
      * Estado actual del servicio
      */
-    protected boolean estado;
+    protected Boolean estado;
     
     /**
      * Duración del servicio
@@ -41,7 +41,7 @@ public abstract class ServicioDTO {
     /**
      * Rango de horas libres
      */
-    protected ArrayList<String> rango;
+    protected List<String> rango;
     
     protected Integer hora;
     
@@ -56,13 +56,16 @@ public abstract class ServicioDTO {
      * @param entity 
      */
     public ServicioDTO(ServicioEntity entity){
-        this.id = entity.getId();
-        this.costo = entity.getCosto();
-        this.duracion = entity.getDuracion();
-        this.estado = entity.isEstado();
-        this.fecha = entity.getFecha();
-        this.rango = entity.getRango();
-        this.hora = entity.getHora();
+        if(entity!=null){
+            this.id = entity.getId();
+            this.costo = entity.getCosto();
+            this.duracion = entity.getDuracion();
+            this.estado = entity.isEstado();
+            this.fecha = entity.getFecha();
+            this.rango = entity.getRango();
+            this.hora = entity.getHora();
+        }
+        
     }
 
     /**
@@ -101,7 +104,7 @@ public abstract class ServicioDTO {
      * Getter estado
      * @return estado
      */
-    public boolean isEstado() {
+    public Boolean isEstado() {
         return estado;
     }
 
@@ -117,7 +120,7 @@ public abstract class ServicioDTO {
      * Getter rango
      * @return rango
      */
-    public ArrayList<String> getRango() {
+    public List<String> getRango() {
         return rango;
     }
 
@@ -141,7 +144,7 @@ public abstract class ServicioDTO {
      * Setter estado
      * @param estado 
      */
-    public void setEstado(boolean estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
@@ -157,7 +160,7 @@ public abstract class ServicioDTO {
      * Setter rango
      * @param rango 
      */
-    public void setRango(ArrayList<String> rango) {
+    public void setRango(List<String> rango) {
         this.rango = rango;
     }
 

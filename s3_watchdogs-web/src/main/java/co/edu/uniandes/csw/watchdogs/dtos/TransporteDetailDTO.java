@@ -25,6 +25,7 @@ public class TransporteDetailDTO extends TransporteDTO{
      * Constructor vacio
      */
     public TransporteDetailDTO() {
+        super();
     }
     
     /**

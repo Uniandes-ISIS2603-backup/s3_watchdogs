@@ -28,7 +28,14 @@ public abstract class ServicioDetailDTO extends ServicioDTO{
      * Constructor por defecto
      * @param entity
      */
+    public ServicioDetailDTO(){
+        super();
+    }
     
+    /**
+     * 
+     * @param entity 
+     */
     public ServicioDetailDTO(ServicioEntity entity){
     super(entity);
     }
@@ -100,4 +107,9 @@ public abstract class ServicioDetailDTO extends ServicioDTO{
         this.empleado = empleado;
     }
     */
+    @Override
+    public ServicioEntity toEntity(){
+        ServicioEntity servicio = super.toEntity();
+        return servicio;
+    }
 }

@@ -43,11 +43,11 @@ public class TransporteDTO {
     /**
      * Hora de recogida
      */
-    private int recogida;
+    private Integer recogida;
     /**
      * Hora de devuelta
      */
-    private int devuelta;
+    private Integer devuelta;
     
     /**
      * Constructor por defecto
@@ -61,10 +61,13 @@ public class TransporteDTO {
      * @param entity 
      */
     public TransporteDTO(TransporteEntity entity){
-        this.id = entity.getId();
-        this.devuelta = entity.getDevuelta();
-        this.direccion = entity.getDireccion();
-        this.recogida = entity.getRecogida();
+        if(entity!=null){
+            this.id = entity.getId();
+            this.devuelta = entity.getDevuelta();
+            this.direccion = entity.getDireccion();
+            this.recogida = entity.getRecogida();
+        }
+        
     }
 
     /**
@@ -87,7 +90,7 @@ public class TransporteDTO {
      * Setter recogida
      * @param recogida 
      */
-    public void setRecogida(int recogida) {
+    public void setRecogida(Integer recogida) {
         this.recogida = recogida;
     }
 
@@ -95,7 +98,7 @@ public class TransporteDTO {
      * Setter devuelta
      * @param devuelta 
      */
-    public void setDevuelta(int devuelta) {
+    public void setDevuelta(Integer devuelta) {
         this.devuelta = devuelta;
     }
 
@@ -119,7 +122,7 @@ public class TransporteDTO {
      * Getter recogida
      * @return 
      */
-    public int getRecogida() {
+    public Integer getRecogida() {
         return recogida;
     }
 
@@ -127,7 +130,7 @@ public class TransporteDTO {
      * Getter devuelta
      * @return 
      */
-    public int getDevuelta() {
+    public Integer getDevuelta() {
         return devuelta;
     }
     

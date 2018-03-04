@@ -30,11 +30,11 @@ public class TransporteEntity extends BaseEntity implements Serializable{
         this.direccion = direccion;
     }
 
-    public void setRecogida(int recogida) {
+    public void setRecogida(Integer recogida) {
         this.recogida = recogida;
     }
 
-    public void setDevuelta(int devuelta) {
+    public void setDevuelta(Integer devuelta) {
         this.devuelta = devuelta;
     }
 
@@ -42,11 +42,11 @@ public class TransporteEntity extends BaseEntity implements Serializable{
         return direccion;
     }
 
-    public int getRecogida() {
+    public Integer getRecogida() {
         return recogida;
     }
 
-    public int getDevuelta() {
+    public Integer getDevuelta() {
         return devuelta;
     }
     

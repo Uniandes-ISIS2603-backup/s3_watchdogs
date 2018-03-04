@@ -66,30 +66,36 @@ public class EntrenamientoResource{
 
     /**
      *
+     * @param idCliente
+     * @param idMascota
+     * @param idEmpleado
      * @param entrenamiento
      * @return
      * @throws BusinessLogicException
      */
     @POST
-    public EntrenamientoDetailDTO createEntrenamiento(EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
-         return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity()));
+    public EntrenamientoDetailDTO createEntrenamiento(@PathParam("idCliente") Long idCliente,@PathParam("idMascota")Long idMascota,@PathParam("idEmpleado")Long idEmpleado, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
+         return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity(),idCliente,idMascota,idEmpleado));
     }
 
     /**
      * @param id
+     * @param idCliente
+     * @param idMascota
      * @param entrenamiento
+     * @param idEmpleado
      * @return
      * @throws BusinessLogicException
      */
     @PUT
     @Path("{id: \\d+}")
-    public EntrenamientoDetailDTO updateEntenamiento(@PathParam("id") Long id, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {
+    public EntrenamientoDetailDTO updateEntenamiento(@PathParam("id") Long id,@PathParam("idCliente") Long idCliente,@PathParam("idMascota")Long idMascota,@PathParam("idEmpleado")Long idEmpleado, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {
         entrenamiento.setId(id);
         EntrenamientoEntity entity = entrenamientoLogic.getEntrenamiento(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
         }
-        return new EntrenamientoDetailDTO(entrenamientoLogic.updateEntrenamiento(id, entrenamiento.toEntity()));
+        return new EntrenamientoDetailDTO(entrenamientoLogic.updateEntrenamiento(id,entrenamiento.toEntity(),idCliente,idMascota,idEmpleado ));
     }
 
     @DELETE
