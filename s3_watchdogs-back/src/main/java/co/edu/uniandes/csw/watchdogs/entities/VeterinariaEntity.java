@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -21,11 +22,11 @@ public class VeterinariaEntity extends LugarEntity implements Serializable {
     private Integer capacidad;
     
     @PodamExclude
-    @OneToMany(mappedBy = "veterinaria")
+    @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST)
     private List<AseoEntity> aseos;
     
     @PodamExclude
-    @OneToMany(mappedBy = "veterinaria")
+    @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST)
     private List<PaseoEntity> paseos;
     
 

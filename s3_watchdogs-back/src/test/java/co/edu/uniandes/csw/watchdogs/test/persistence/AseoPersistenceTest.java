@@ -99,10 +99,10 @@ public class AseoPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getCosto(),entity.getCosto());
+        Assert.assertEquals(newEntity.getCosto(),entity.getCosto(),0);
         Assert.assertEquals(newEntity.isEstado(), entity.isEstado());
         Assert.assertEquals(newEntity.getRango(), entity.getRango());
-        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
+        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion(),0);
      // Assert.assertEquals(newEntity.getHora, entity.getHora);
         Assert.assertEquals(newEntity.getBanho(), entity.getBanho());
         Assert.assertEquals(newEntity.getDientes(), entity.getDientes());
@@ -132,10 +132,10 @@ public class AseoPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
-        Assert.assertEquals(entity.getCosto(), newEntity.getCosto());
+        Assert.assertEquals(entity.getCosto(), newEntity.getCosto(),0);
         Assert.assertEquals(entity.isEstado(), newEntity.isEstado());
         Assert.assertEquals(entity.getRango(), newEntity.getRango());
-        Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
+        Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion(),0);
     //  Assert.assertEquals(entity.getHora(), newEntity.getHora());
         Assert.assertEquals(entity.getBanho(), newEntity.getBanho());
         Assert.assertEquals(entity.getDientes(), newEntity.getDientes());
@@ -164,10 +164,10 @@ public class AseoPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(newEntity.getCosto(), resp.getCosto());
+        Assert.assertEquals(newEntity.getCosto(), resp.getCosto(),0);
         Assert.assertEquals(newEntity.isEstado(), resp.isEstado());
         Assert.assertEquals(newEntity.getRango(), resp.getRango());
-        Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion());
+        Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion(),0);
   //    Assert.assertEquals(newEntity.getHora(), resp.getHora());
         Assert.assertEquals(newEntity.getBanho(), resp.getBanho());
         Assert.assertEquals(newEntity.getDientes(), resp.getDientes());
