@@ -83,12 +83,14 @@ public class MascotaResource {
      * guardar.
      * @return JSON {@link MascotaDetailDTO} - La mascota guardada con el
      * atributo id autogenerado.
-     * @throws BusinessLogicException Error de logica que se genera cuando ya
-     * existe la ciudad.
      */
     @POST
-    public MascotaDetailDTO createMascota(MascotaDetailDTO mascota) throws BusinessLogicException {
-        return new MascotaDetailDTO(mascotaLogic.creatMascota(mascota.toEntity()));
+    public MascotaDetailDTO createMascota(MascotaDetailDTO mascota) {
+        try {
+            return new MascotaDetailDTO(mascotaLogic.creatMascota(mascota.toEntity()));
+        } catch (BusinessLogicException e) {
+            throw new WebApplicationException(e.getMessage(), 404);
+        }
     }
 
     /**
@@ -155,13 +157,10 @@ public class MascotaResource {
      * ser una cadena de dígitos.
      * @param mascota {@link MascotaDetailDTO} La mascota que se desea guardar.
      * @return JSON {@link MascotaDetailDTO} - La mascota guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera al no poder actualizar la mascota porque ya
-     * existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
-    public MascotaDetailDTO updateMascota(@PathParam("id") Long id, MascotaDetailDTO mascota) throws BusinessLogicException {
+    public MascotaDetailDTO updateMascota(@PathParam("id") Long id, MascotaDetailDTO mascota) {
         MascotaEntity entity = mascota.toEntity();
         entity.setId(id);
         MascotaEntity oldEntity = mascotaLogic.getMascota(id);
@@ -170,7 +169,7 @@ public class MascotaResource {
         }
         entity.setServicio(oldEntity.getServicio());
         entity.setCliente(oldEntity.getCliente());
-        return new MascotaDetailDTO(mascotaLogic.updateMascota(entity));
+        return new MascotaDetailDTO(mascotaLogic.updateMascota(id, entity));
     }
 
     /**
@@ -192,11 +191,11 @@ public class MascotaResource {
     @DELETE
     @Path("{id: \\d+}")
     public void deleteMascota(@PathParam("id") Long id) {
-        MascotaEntity entity = mascotaLogic.getMascota(id);
-        if (entity == null) {
-            throw new WebApplicationException("La mascota no existe", 404);
+        try {
+            mascotaLogic.deleteMascota(id);
+        } catch (BusinessLogicException e) {
+            throw new WebApplicationException(e.getMessage(), 404);
         }
-        mascotaLogic.deleteMascota(id);
     }
 
 }

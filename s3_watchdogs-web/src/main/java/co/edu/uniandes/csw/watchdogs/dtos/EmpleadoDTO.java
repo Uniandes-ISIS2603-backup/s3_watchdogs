@@ -11,7 +11,7 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
  * EmpleadoDTO Objeto de transferencia de datos de Empleados. Los DTO contienen
  * las representaciones de los JSON que se transfieren entre los empleados y el
  * servidor.
- * 
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
@@ -22,9 +22,8 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
  *      "edad": integer
  *      "horarios": string
  *  }
- * </pre>
- * Por ejemplo un empleado se representa asi:<br>
- * 
+ * </pre> Por ejemplo un empleado se representa asi:<br>
+ *
  * <pre>
  *  {
  *      "id": 95873,
@@ -35,28 +34,29 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
  *      "horarios": "No se como es"
  *  }
  * </pre>
+ *
  * @author ca.beltran10
  */
 public class EmpleadoDTO {
+
     //----- Atributos -----
     private Long id;
     private String nombre;
     private String cedula;
     private String imagen;
     private int edad;
-    
+
     //----- Constructor -----
-    
     /**
      * Constructor por defecto
      */
-    public EmpleadoDTO(){
+    public EmpleadoDTO() {
     }
-    
+
     /**
      * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento
-     * 
+     *
      * @param empleado: Es la entidad que se va a convertir a DTO
      */
     public EmpleadoDTO(EmpleadoEntity empleado) {
@@ -65,9 +65,8 @@ public class EmpleadoDTO {
         this.cedula = empleado.getCedula();
         this.imagen = empleado.getImagen();
     }
-   
-    //----- Metodos -----
 
+    //----- Metodos -----
     /**
      * @return El id del empleado
      */
@@ -123,10 +122,10 @@ public class EmpleadoDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     /**
      * Convertir un DTO a un Entity
-     * 
+     *
      * @return Un entity con los valores del DTO
      */
     public EmpleadoEntity toEntity() {
@@ -152,5 +151,5 @@ public class EmpleadoDTO {
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
-    
+
 }

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
-import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;

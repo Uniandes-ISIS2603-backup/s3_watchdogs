@@ -89,7 +89,7 @@ public class ClienteResource {
         try {
             return new ClienteDetailDTO(clienteLogic.createCliente(cliente.toEntity()));
         } catch (BusinessLogicException e) {
-            throw new WebApplicationException("El cliente con cedula " + cliente.getCedula() + " ya existe.", 404);
+            throw new WebApplicationException(e.getMessage(), 404);
         }
     }
 
@@ -196,8 +196,8 @@ public class ClienteResource {
     public void deleteCliente(@PathParam("id") Long id) {
         try {
             clienteLogic.deleteCliente(id);
-        } catch (Exception e) {
-            throw new WebApplicationException("El cliente no existe", 404);
+        } catch (BusinessLogicException e) {
+            throw new WebApplicationException(e.getMessage(), 404);
         }
     }
 

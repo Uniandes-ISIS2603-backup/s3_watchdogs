@@ -7,9 +7,6 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -128,7 +125,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
 
     /**
      * Obtiene el atributo cedula.
-     * 
+     *
      * @return atributo cedula.
      */
     public String getCedula() {
@@ -137,7 +134,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
 
     /**
      * Establece el valor del atributo cedula.
-     * 
+     *
      * @param cedula nuevo valor del atributo.
      */
     public void setCedula(String cedula) {

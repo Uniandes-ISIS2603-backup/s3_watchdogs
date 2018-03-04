@@ -89,7 +89,7 @@ public class EmpleadoResource {
         try {
             return new EmpleadoDetailDTO(empleadoLogic.createEmpleado(empleado.toEntity()));
         } catch (BusinessLogicException e) {
-            throw new WebApplicationException("El empleado no existe", 404);
+            throw new WebApplicationException(e.getMessage(), 404);
         }
     }
 
@@ -158,9 +158,6 @@ public class EmpleadoResource {
      * @param empleado {@link EmpleadoDetailDTO} El empleado que se desea
      * guardar.
      * @return JSON {@link EmpleadoDetailDTO} - El empleado guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera al no poder actualizar el empleado porque
-     * ya existe una con ese nombre.
      */
     @PUT
 
@@ -200,7 +197,7 @@ public class EmpleadoResource {
         try {
             empleadoLogic.deleteEmpleado(id);
         } catch (BusinessLogicException e) {
-            throw new WebApplicationException("El empleado no existe", 404);
+            throw new WebApplicationException(e.getMessage(), 404);
         }
     }
 
