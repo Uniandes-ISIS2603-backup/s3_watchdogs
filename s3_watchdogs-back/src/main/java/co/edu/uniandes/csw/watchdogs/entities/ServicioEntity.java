@@ -135,4 +135,10 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     public double getDuracion() {
         return duracion;
     }
+    
+    public final boolean tipoClase(final Object obj){
+        if (obj == null) return false;
+        if (this == obj) return true;
+        return getClass() == obj.getClass();
+    }
 }
