@@ -21,7 +21,7 @@ public class RutaDetailDTO extends RutaDTO{
     
     
     public RutaDetailDTO(){
-        
+        super();
     }
     
     public RutaDetailDTO(RutaEntity entity) {

@@ -49,8 +49,10 @@ public class RutaDTO {
      * @param entity 
      */
     public RutaDTO(RutaEntity entity){
+        if(entity != null){
         this.id = entity.getId();
         this.duracion = entity.getDuracion();
+        }
     }
     
     /**
@@ -58,7 +60,7 @@ public class RutaDTO {
      * @return El id de la ruta
      */
     
-    public long getId(){
+    public Long getId(){
         return id;
     }
     
@@ -75,7 +77,7 @@ public class RutaDTO {
      * @return La duración de la ruta
      */
     
-    public int getDuracion(){
+    public Integer getDuracion(){
         return duracion;
     }
     

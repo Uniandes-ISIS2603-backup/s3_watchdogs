@@ -52,8 +52,10 @@ public class DisponibilidadDTO {
      * @param entity 
      */
     public DisponibilidadDTO(DisponibilidadEntity entity){
+        if(entity != null){
         this.id = entity.getId();
         this.matrizHorarios = entity.getMatrizHorarios();
+        }
     }
     
     /**
@@ -61,7 +63,7 @@ public class DisponibilidadDTO {
      * @return El id de la Disponibilidad
      */
     
-    public long getId(){
+    public Long getId(){
         return id;
     }
     

@@ -54,9 +54,11 @@ public class FacturaDTO {
      * @param entity 
      */
     public FacturaDTO(FacturaEntity entity){
+        if(entity != null){
         this.id = entity.getId();
         this.valor = entity.getValor();
         this.pagado = entity.getPagado();
+        }
     }
     
     
@@ -65,7 +67,7 @@ public class FacturaDTO {
      * @return El id de la factura 
      */
    
-    public long getId(){
+    public Long getId(){
         return id;
     }
     
@@ -82,7 +84,7 @@ public class FacturaDTO {
      * @return El valor de la factura 
      */
     
-    public double getValor(){
+    public Double getValor(){
         return valor;
     }
     
@@ -99,7 +101,7 @@ public class FacturaDTO {
      * @return El estatus de pago de la factura 
      */
     
-    public boolean getPago(){
+    public Boolean getPago(){
         return pagado;
     }
     

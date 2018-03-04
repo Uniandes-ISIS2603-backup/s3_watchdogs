@@ -21,12 +21,11 @@ public class DisponibilidadDetailDTO extends DisponibilidadDTO{
      */
     
     public DisponibilidadDetailDTO(){
-        
+        super();
     }
     
     
     public DisponibilidadDetailDTO(DisponibilidadEntity entity){
-        
         super(entity);
     }
     
