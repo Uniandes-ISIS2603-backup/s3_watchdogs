@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
-import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
