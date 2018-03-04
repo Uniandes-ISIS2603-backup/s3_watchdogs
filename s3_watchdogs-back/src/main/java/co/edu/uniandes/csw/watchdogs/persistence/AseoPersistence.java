@@ -64,7 +64,7 @@ public class AseoPersistence {
     
       public List<AseoEntity> findAll() {
         LOGGER.info("Consultando todos los servicios de aseo");
-        TypedQuery query = em.createQuery("select u from TransporteEntity u", AseoEntity.class);
+        TypedQuery query = em.createQuery("select u from AseoEntity u", AseoEntity.class);
         return query.getResultList();
     }
     
