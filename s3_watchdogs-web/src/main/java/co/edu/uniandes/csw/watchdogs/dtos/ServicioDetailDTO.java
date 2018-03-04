@@ -28,10 +28,11 @@ public abstract class ServicioDetailDTO extends ServicioDTO{
      * Constructor por defecto
      * @param entity
      */
-    /*
+    
     public ServicioDetailDTO(ServicioEntity entity){
     super(entity);
-    
+    }
+    /*
     if(entity.getCalificacion() != null){
         this.calificacion = new CalificacionDTO(entity.getCalificacion());    
     }

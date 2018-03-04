@@ -157,5 +157,10 @@ public abstract class ServicioDTO {
     public void setRango(ArrayList<String> rango) {
         this.rango = rango;
     }
+    
+    public ServicioEntity toEntity(){
+        ServicioEntity servicio = null;
+        return servicio;
+    }
      
 }

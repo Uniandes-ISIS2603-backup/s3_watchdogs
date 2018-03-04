@@ -82,6 +82,7 @@ public class EntrenamientoDTO extends ServicioDTO {
      * Metodo que cambia de DTO a Entity
      * @return entity Objeto tipo entity
      */
+    @Override
     public EntrenamientoEntity toEntity(){
         EntrenamientoEntity entity = new EntrenamientoEntity();
         entity.setCosto(this.getCosto());
