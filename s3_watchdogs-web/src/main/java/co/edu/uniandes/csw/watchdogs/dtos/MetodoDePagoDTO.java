@@ -21,13 +21,25 @@ public abstract class MetodoDePagoDTO {
     protected Long id;
     protected Boolean aprobado;
     protected String nombre;
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     
     public MetodoDePagoDTO(){}
     
     public MetodoDePagoDTO(MetodoDePagoEntity entity)
     {
-        this.id = entity.getId();
-        this.aprobado = entity.getAprobado();
+        if(entity != null)
+        {
+            this.id = entity.getId();
+            this.aprobado = entity.getAprobado();
+        }
+    }
+    
+    public MetodoDePagoEntity toEntity()
+    {
+        return null;
     }
 
     public Long getId() {

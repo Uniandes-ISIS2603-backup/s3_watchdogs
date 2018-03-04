@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
+
 
 /**
  *
@@ -15,7 +17,18 @@ public class TarjetaCreditoDetailDTO extends TarjetaCreditoDTO {
     /**
      * Constructor por defecto
      */
-    public TarjetaCreditoDetailDTO(){}
+    public TarjetaCreditoDetailDTO(){super();}
+    
+    public TarjetaCreditoDetailDTO(TarjetaCreditoEntity entity)
+    {
+        super(entity);
+    }
+    
+    @Override
+    public TarjetaCreditoEntity toEntity()
+    {
+        return super.toEntity();
+    }
   
     
    

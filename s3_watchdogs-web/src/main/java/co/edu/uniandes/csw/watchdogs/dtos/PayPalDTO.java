@@ -50,6 +50,15 @@ public class PayPalDTO extends MetodoDePagoDTO{
         nombre = MetodoDePagoDTO.PAYPAL;
     }
     
+    public PayPalEntity toEntity()
+    {
+        PayPalEntity entity = new PayPalEntity();
+        entity.setCorreo(this.correo);
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        return entity;
+    }
+    
     /**
      * Método que retorna el id asociado al DTO 
      * @return id asociado 

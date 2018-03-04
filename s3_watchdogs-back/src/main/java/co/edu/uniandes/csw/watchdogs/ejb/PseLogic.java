@@ -37,7 +37,7 @@ public class PseLogic {
     
     public PseEntity getPse(Long id)
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un autor con id = {0}", id);
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un pse con id = {0}", id);
         PseEntity pse = persistence.find(id);
         if(pse == null)
         {
@@ -52,7 +52,22 @@ public class PseLogic {
     public List<PseEntity> getPses()
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los pse");
-        return persistence.findAll();
+        List<PseEntity> books = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos los pses");
+        return books;
+    }
+    
+    public PseEntity updateEntity(Long id, PseEntity entity) throws BusinessLogicException
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar PSE con id = {0}", entity.getId());
+        return persistence.update(entity);
+    }
+    
+    public void deletePse(Long id)
+    {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar PSE con id = {0}", id);
+        persistence.delete(id);
+        LOGGER.log(Level.INFO, "Termina proceso de borrar PSE con id {0}", id);
     }
     
     

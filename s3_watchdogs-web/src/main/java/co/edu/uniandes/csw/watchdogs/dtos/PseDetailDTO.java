@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
+
 
 /**
  *
@@ -15,9 +17,21 @@ public class PseDetailDTO extends PseDTO {
     /**
      * Constructor por defecto
      */
-    public PseDetailDTO(){}
+    public PseDetailDTO()
+    {
+        super();
+    }
     
-   
+    public PseDetailDTO(PseEntity entity)
+    {
+        super(entity);
+    }
+    
+    @Override
+    public PseEntity toEntity()
+    {
+       return super.toEntity();
+    }
     
     
 }

@@ -58,6 +58,17 @@ public class TarjetaCreditoDTO extends MetodoDePagoDTO {
        codigoSeguridad = entity.getCodigoSeguridad();
    }
     
+   public TarjetaCreditoEntity toEntity()
+   {
+       TarjetaCreditoEntity entity = new TarjetaCreditoEntity();
+       entity.setCodigoSeguridad(this.codigoSeguridad);
+       entity.setFechaVencimiento(this.fechaVencimiento);
+       entity.setNumeroTarjeta(this.numeroTarjeta);
+       entity.setNombre(this.nombre);
+       entity.setId(this.id);
+       return entity;
+   }
+   
     /**
      * Método que retorna el id asociado al DTO
      * @return El id asociado al DTO 

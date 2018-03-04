@@ -13,9 +13,19 @@ import co.edu.uniandes.csw.watchdogs.entities.MetodoDePagoEntity;
  */
 public abstract class MetodoDePagoDetailDTO extends MetodoDePagoDTO {
     
+    public MetodoDePagoDetailDTO()
+    {
+        super();
+    }
+    
     public MetodoDePagoDetailDTO(MetodoDePagoEntity entity)
     {
         super(entity);
+    }
+    
+    public MetodoDePagoEntity toEntity()
+    {
+        return null;
     }
     
 }

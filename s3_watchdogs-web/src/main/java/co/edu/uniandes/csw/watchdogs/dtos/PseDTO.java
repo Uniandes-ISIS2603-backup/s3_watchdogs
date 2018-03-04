@@ -45,8 +45,22 @@ public class PseDTO extends MetodoDePagoDTO{
     public PseDTO(PseEntity entity)
     {
         super(entity);
-        nombre = MetodoDePagoDTO.PSE;
-        correo = entity.getCorreo();
+
+        if(entity != null)
+        {
+            nombre = MetodoDePagoDTO.PSE;
+            correo = entity.getCorreo();
+        }
+    }
+    
+    public PseEntity toEntity()
+    {
+        PseEntity entity = new PseEntity();
+        entity.setCorreo(this.correo);
+        entity.setNombre(this.nombre);
+        entity.setId(this.id);
+        entity.setNombre(this.nombre);
+        return entity;
     }
     
     /**
