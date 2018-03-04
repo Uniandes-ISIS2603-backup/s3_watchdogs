@@ -16,7 +16,9 @@ public abstract class LugarDetailDTO extends LugarDTO{
    /**
      * Constructor por defecto
      */
-    public LugarDetailDTO( ) {
+    public LugarDetailDTO( ) 
+    {
+        super();
     } 
     
     /**
@@ -24,9 +26,14 @@ public abstract class LugarDetailDTO extends LugarDTO{
      * 
      * @param entity La entidad del Lugar de la cual se construye el objeto
      */
-    public LugarDetailDTO(LugarEntity entity){
+    public LugarDetailDTO(LugarEntity entity)
+    {
         super(entity);
     }
     
-    
+    @Override
+    public LugarEntity toEntity()
+    {
+      return super.toEntity();
+    }
 }

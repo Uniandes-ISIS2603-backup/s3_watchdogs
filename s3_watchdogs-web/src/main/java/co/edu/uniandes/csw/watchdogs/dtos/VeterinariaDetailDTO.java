@@ -25,7 +25,9 @@ public class VeterinariaDetailDTO extends VeterinariaDTO{
     /**
      * Constructor por defecto
      */
-    public VeterinariaDetailDTO( ) {
+    public VeterinariaDetailDTO( )
+    {
+        super();
     } 
     
      /**
@@ -35,18 +37,22 @@ public class VeterinariaDetailDTO extends VeterinariaDTO{
      */
      public VeterinariaDetailDTO(VeterinariaEntity entity){
         super(entity);
-        if(entity.getAseos() != null){
-            aseos = new ArrayList();
-            for(AseoEntity eEnt : entity.getAseos()){
-                aseos.add(new AseoDTO(eEnt));
+        
+        if(entity!=null)
+        {
+            if(entity.getAseos() != null){
+                aseos = new ArrayList();
+                for(AseoEntity eEnt : entity.getAseos()){
+                    aseos.add(new AseoDTO(eEnt));
+                }
             }
+            if(entity.getPaseos() !=null){
+                paseos = new ArrayList();
+                for(PaseoEntity hEnt : entity.getPaseos()){
+                    paseos.add(new PaseoDTO(hEnt));
+                }
+            } 
         }
-        if(entity.getPaseos() !=null){
-            paseos = new ArrayList();
-            for(PaseoEntity hEnt : entity.getPaseos()){
-                paseos.add(new PaseoDTO(hEnt));
-            }
-        } 
     }
     /**
      * Transformar un DTO a un entity
@@ -57,14 +63,14 @@ public class VeterinariaDetailDTO extends VeterinariaDTO{
     public VeterinariaEntity toEntity() {
        VeterinariaEntity entity = super.toEntity();
         if(this.getAseos() != null){
-            ArrayList<AseoEntity> aseoEnt = new ArrayList<>();
+            List<AseoEntity> aseoEnt = new ArrayList<>();
             for(AseoDTO e:aseos){
                 aseoEnt.add(e.toEntity());
             }
             entity.setAseos(aseoEnt);
         }
         if(this.getPaseos() != null){
-            ArrayList<PaseoEntity> paseoEnt = new ArrayList<>();
+            List<PaseoEntity> paseoEnt = new ArrayList<>();
             for(PaseoDTO h : paseos){
                 paseoEnt.add(h.toEntity());
             }

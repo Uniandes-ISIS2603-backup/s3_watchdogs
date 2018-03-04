@@ -19,8 +19,6 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class VeterinariaEntity extends LugarEntity implements Serializable {
     
-    private Integer capacidad;
-    
     @PodamExclude
     @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST)
     private List<AseoEntity> aseos;
@@ -46,20 +44,6 @@ public class VeterinariaEntity extends LugarEntity implements Serializable {
      */
     public void setAseos(List<AseoEntity> aseos) {
         this.aseos= aseos;
-    }
-     
-    /**
-     * @return la capacidad
-     */
-    public Integer getCapacidad() {
-        return capacidad;
-    }
-
-    /**
-     * @param capacidad la que entra por parametro
-     */
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
     }
 
     /**

@@ -22,6 +22,8 @@ public abstract class LugarEntity extends BaseEntity  implements Serializable{
     
     protected String direccion;
     protected List<String> fotos;
+    private Integer capacidadMaxima;
+    private Integer capacidadActual;
     
     public LugarEntity(){}
     
@@ -51,6 +53,34 @@ public abstract class LugarEntity extends BaseEntity  implements Serializable{
      */
     public void setFotos(List<String> fotos) {
         this.fotos = fotos;
+    }
+
+    /**
+     * @return la capacidad maxima
+     */
+    public Integer getCapacidadMaxima() {
+        return capacidadMaxima;
+    }
+
+    /**
+     * @param capacidadMaxima la capacidad maxima que entra por parametro
+     */
+    public void setCapacidadMaxima(Integer capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
+    }
+
+    /**
+     * @return la capacidad actual
+     */
+    public Integer getCapacidadActual() {
+        return capacidadActual;
+    }
+
+    /**
+     * @param capacidadActual la capacidad que entra por parametro
+     */
+    public void setCapacidadActual(Integer capacidadActual) {
+        this.capacidadActual = capacidadActual;
     }
 
 }

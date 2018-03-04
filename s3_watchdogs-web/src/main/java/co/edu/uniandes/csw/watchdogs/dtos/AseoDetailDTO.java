@@ -21,6 +21,7 @@ public class AseoDetailDTO extends AseoDTO{
      */
     public AseoDetailDTO() 
     {
+        super();
     }
     
     /**
@@ -30,7 +31,6 @@ public class AseoDetailDTO extends AseoDTO{
      */
     public AseoDetailDTO(AseoEntity entity) {
         super(entity);
-        
         if(entity.getVeterinaria() != null){
             this.veterinaria = new VeterinariaDTO(entity.getVeterinaria());
         }

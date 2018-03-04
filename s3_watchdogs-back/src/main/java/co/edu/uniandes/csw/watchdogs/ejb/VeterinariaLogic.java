@@ -5,10 +5,13 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import javax.ejb.Stateless;
+
 /**
  *
  * @author js.vacat
  */
+@Stateless
 public class VeterinariaLogic {
     
 }

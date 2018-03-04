@@ -16,7 +16,9 @@ import java.util.List;
  * <pre>
  *  {
  *      "direccion": string,
- *      "fotos": List'String'
+ *      "fotos": List'String',
+ *      "capacidadActual":Integer,
+ *      "capacidadMaxima":Integer
  *  }
  * </pre>
  * Por ejemplo un Lugar se representa asi: <br>
@@ -25,7 +27,9 @@ import java.util.List;
  * 
  *  {
  *      "direccion": "cra33#47-06",
- *      "fotos": " "
+ *      "fotos": " ",
+ *      "capacidadActual":20,
+ *      "capacidadMaxima":30
  *  }
  * 
  * </pre>
@@ -37,6 +41,8 @@ public abstract class LugarDTO {
     protected Long id;
     protected String direccion;
     protected List<String> fotos;
+    protected Integer capacidadActual;
+    protected Integer capacidadMaxima;
     
      /**
      * Constructor por defecto
@@ -45,9 +51,14 @@ public abstract class LugarDTO {
     }
 
     public LugarDTO(LugarEntity lugar) {
+        if(lugar!=null)
+        {
         this.id = lugar.getId();
         this.direccion = lugar.getDireccion();
         this.fotos = lugar.getFotos();
+        this.capacidadActual=lugar.getCapacidadMaxima();
+        this.capacidadMaxima=lugar.getCapacidadMaxima();
+        }
     }
     
     /**
@@ -92,5 +103,38 @@ public abstract class LugarDTO {
         this.id = id;
     }
     
+    public LugarEntity toEntity(){
+        
+        LugarEntity lugar=null;
+        return lugar;
+    }
+
+    /**
+     * @return la capacidadActual
+     */
+    public Integer getCapacidadActual() {
+        return capacidadActual;
+    }
+
+    /**
+     * @param capacidadActual la capacidadActual que entra por parametro
+     */
+    public void setCapacidadActual(Integer capacidadActual) {
+        this.capacidadActual = capacidadActual;
+    }
+
+    /**
+     * @return la capacidadMaxima
+     */
+    public Integer getCapacidadMaxima() {
+        return capacidadMaxima;
+    }
+
+    /**
+     * @param capacidadMaxima la capacidadMaxima que entra por parametro
+     */
+    public void setCapacidadMaxima(Integer capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
+    }
     
 }

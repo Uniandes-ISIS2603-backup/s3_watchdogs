@@ -17,7 +17,8 @@ import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
  *      "id": Long,
  *      "direccion": String,
  *      "fotos": List'String',
- *      "capacidad": Integer
+ *      "capacidadActual": Integer,
+ *      "capacidadMaxima":Integer
  *      
  *  }
  * </pre>
@@ -38,7 +39,6 @@ import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
  */
 public class VeterinariaDTO extends LugarDTO{
     
-    private Integer capacidad;
     /**
      * Constructor por defecto
      */
@@ -55,29 +55,17 @@ public class VeterinariaDTO extends LugarDTO{
      */
     public VeterinariaDTO(VeterinariaEntity entity) {
         super(entity);
-        this.capacidad = entity.getCapacidad();  
-    }
-
-    /**
-     * @return la capacidad
-     */
-    public Integer getCapacidad() {
-        return capacidad;
-    }
-
-    /**
-     * @param capacidad la capacidad que entra por parametro
-     */
-    public void setCapacidad(Integer capacidad) {
-        this.capacidad = capacidad;
+       
     }
     
+    @Override
     public VeterinariaEntity toEntity() {
         VeterinariaEntity entity = new VeterinariaEntity();
         entity.setId(this.id);
         entity.setDireccion(this.direccion);
         entity.setFotos(this.fotos);
-        entity.setCapacidad(this.capacidad);
+        entity.setCapacidadActual(this.capacidadActual);
+        entity.setCapacidadMaxima(this.capacidadMaxima);
         return entity;
     }
 }

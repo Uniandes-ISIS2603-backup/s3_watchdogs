@@ -67,9 +67,12 @@ public class AseoDTO extends ServicioDTO{
      */
     public AseoDTO(AseoEntity entity) {
         super(entity);
+        if(entity!=null)
+        {
         this.dientes = entity.getDientes();
         this.banho = entity.getBanho();
         this.peluqueria = entity.getPeluqueria();
+        }
     }
 
     /**
@@ -119,6 +122,7 @@ public class AseoDTO extends ServicioDTO{
      * 
      * @return Un entity con los valores del DTO
      */
+    @Override
     public AseoEntity toEntity() {
         AseoEntity entity = new AseoEntity();
         entity.setId(this.id);
