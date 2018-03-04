@@ -32,7 +32,7 @@ public class HotelLogic {
      * Devuelve todos los Hotel que hay en la base de datos.
      * @return Lista de entidades de tipo Hotel.
      */
-    public List<HotelEntity> getHotels() {
+    public List<HotelEntity> getHoteles() {
         LOGGER.info("Inicia proceso de consultar todos los Hotel");
         List<HotelEntity> hotels = persistence.findAll();
         LOGGER.info("Termina proceso de consultar todos los Hotel");
