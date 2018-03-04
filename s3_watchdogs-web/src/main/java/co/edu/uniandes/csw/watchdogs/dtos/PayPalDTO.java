@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
+
 /**
  * PayPalDTO Objeto de transferencia de datos de PayPal. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -32,17 +34,21 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  *
  * @author jc.pulido
  */
-public class PayPalDTO {
+public class PayPalDTO extends MetodoDePagoDTO{
     
-    private Long id;
     private String correo;
-    private String contrasenha;
     
     /**
      * Constructor por defecto 
      */
     public PayPalDTO(){}
    
+    public PayPalDTO(PayPalEntity entity)
+    {
+        super(entity);
+        correo = entity.getCorreo();
+        nombre = MetodoDePagoDTO.PAYPAL;
+    }
     
     /**
      * Método que retorna el id asociado al DTO 
@@ -74,21 +80,5 @@ public class PayPalDTO {
      */
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    /**
-     * @return la contrasenha
-     */
-    public String getContrasenha() {
-        return contrasenha;
-    }
-
-    /**
-     * @param contrasenha la contraseña a asignar
-     */
-    public void setContrasenha(String contrasenha) {
-        this.contrasenha = contrasenha;
-    }
-   
-    
+    } 
 }

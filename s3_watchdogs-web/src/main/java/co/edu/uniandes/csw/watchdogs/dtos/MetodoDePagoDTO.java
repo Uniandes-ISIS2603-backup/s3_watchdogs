@@ -13,6 +13,11 @@ import co.edu.uniandes.csw.watchdogs.entities.MetodoDePagoEntity;
  */
 public abstract class MetodoDePagoDTO {
     
+    public final static String TARJETA_CREDITO = "Tarjeta de credito";
+    public final static String PSE = "Pse";
+    public final static String PAYPAL = "PayPal";
+
+    
     protected Long id;
     protected Boolean aprobado;
     protected String nombre;
@@ -23,7 +28,6 @@ public abstract class MetodoDePagoDTO {
     {
         this.id = entity.getId();
         this.aprobado = entity.getAprobado();
-        this.nombre = entity.getNombre();
     }
 
     public Long getId() {
@@ -46,9 +50,7 @@ public abstract class MetodoDePagoDTO {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+   
     
     
     

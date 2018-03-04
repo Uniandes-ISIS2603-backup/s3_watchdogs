@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
+
 /**
  * PseDTO Objeto de transferencia de datos de Pse. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -30,9 +32,8 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  *
  * @author jc.pulido
  */
-public class PseDTO {
+public class PseDTO extends MetodoDePagoDTO{
     
-    private Long id;
     
     private String correo;
     
@@ -41,7 +42,12 @@ public class PseDTO {
      */
     public PseDTO(){}
     
-
+    public PseDTO(PseEntity entity)
+    {
+        super(entity);
+        nombre = MetodoDePagoDTO.PSE;
+        correo = entity.getCorreo();
+    }
     
     /**
      * Método que retorna el id que identifica al DTO

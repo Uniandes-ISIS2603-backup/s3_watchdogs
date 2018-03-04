@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
+import java.util.Date;
+
 /**
  * TarjetaCreditoDTO Objeto de transferencia de datos de las tarjetas de crédito. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
@@ -34,18 +37,26 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  *
  * @author jc.pulido
  */
-public class TarjetaCreditoDTO {
+public class TarjetaCreditoDTO extends MetodoDePagoDTO {
     
-    private Long id;
+    
     private String numeroTarjeta;
-    private String fechaVencimiento;
-    private String CodigoSeguridad;
-    
+    private Date fechaVencimiento;
+    private String codigoSeguridad;
+
     /**
      * Constructor por defecto
      */
     public TarjetaCreditoDTO(){}
   
+   public TarjetaCreditoDTO(TarjetaCreditoEntity entity)
+   {
+       super(entity);
+       nombre = MetodoDePagoDTO.TARJETA_CREDITO;
+       numeroTarjeta = entity.getNumeroTarjeta();
+       fechaVencimiento = entity.getFechaVencimiento();
+       codigoSeguridad = entity.getCodigoSeguridad();
+   }
     
     /**
      * Método que retorna el id asociado al DTO
@@ -88,7 +99,7 @@ public class TarjetaCreditoDTO {
      * 
      * @return Fecha de vencimiento de la tarjeta 
      */
-    public String getFechaVencimiento()
+    public Date getFechaVencimiento()
     {
         return fechaVencimiento;
     }
@@ -97,7 +108,7 @@ public class TarjetaCreditoDTO {
      * 
      * @param fecha Nueva fecha a asignar 
      */
-    public void setFechaVencimiento(String fecha)
+    public void setFechaVencimiento(Date fecha)
     {
         this.fechaVencimiento = fecha;
     }
@@ -108,7 +119,7 @@ public class TarjetaCreditoDTO {
      */
     public String getCodSeguridad()
     {
-        return CodigoSeguridad;
+        return codigoSeguridad;
     }
     
     /**
@@ -117,7 +128,7 @@ public class TarjetaCreditoDTO {
      */
     public void setCodSeguridad(String cod)
     {
-        this.CodigoSeguridad = cod;
+        this.codigoSeguridad = cod;
     }
     
     
