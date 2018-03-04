@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
-import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
+import co.edu.uniandes.csw.watchdogs.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;

@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.EntrenamientoPersistence;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,10 +63,13 @@ public class EntrenamientoLogic {
      */
     public EntrenamientoEntity createEntrenamiento(EntrenamientoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Entrenamiento");
-        
-        persistence.create(entity);
+        Date todayDate = Calendar.getInstance().getTime();
+        if(todayDate.before(entity.getFecha()) ){
+            persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Entrenamiento");
         return entity;
+        }
+        else throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
     }
     
     /**
@@ -76,10 +81,13 @@ public class EntrenamientoLogic {
      */
     public EntrenamientoEntity updateEntrenamiento(Long id, EntrenamientoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Entrenamiento con id={0}", id);
-        
+        Date todayDate = Calendar.getInstance().getTime();
+        if(todayDate.before(entity.getFecha()) ){
         EntrenamientoEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Entrenamiento con id={0}", entity.getId());
         return newEntity;
+        }
+        else throw new BusinessLogicException("La fecha debe ser posterior a hoy.");
     }
     
     /**

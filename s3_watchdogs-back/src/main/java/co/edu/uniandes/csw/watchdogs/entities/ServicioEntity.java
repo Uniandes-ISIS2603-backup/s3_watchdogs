@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
-import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
+import co.edu.uniandes.csw.watchdogs.podam.DateStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,6 +35,8 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     protected ArrayList<String> rango;
     
     protected Double duracion;
+    
+    protected Integer hora;
     /*
     @PodamExclude
     @ManyToOne
@@ -100,7 +102,7 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
         this.fecha = fecha;
     }
 
-    public void setCosto(double costo) {
+    public void setCosto(Double costo) {
         this.costo = costo;
     }
 
@@ -112,7 +114,7 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
         this.rango = rango;
     }
 
-    public void setDuracion(double duracion) {
+    public void setDuracion(Double duracion) {
         this.duracion = duracion;
     }
 
@@ -120,7 +122,7 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
         return fecha;
     }
 
-    public double getCosto() {
+    public Double getCosto() {
         return costo;
     }
 
@@ -132,8 +134,16 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
         return rango;
     }
 
-    public double getDuracion() {
+    public Double getDuracion() {
         return duracion;
+    }
+
+    public Integer getHora() {
+        return hora;
+    }
+
+    public void setHora(Integer hora) {
+        this.hora = hora;
     }
     
     public final boolean tipoClase(final Object obj){

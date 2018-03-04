@@ -26,7 +26,7 @@ public abstract class ServicioDTO {
     /**
      * Costo por hora del servicio
      */
-    protected double costo;
+    protected Double costo;
     
     /**
      * Estado actual del servicio
@@ -36,12 +36,14 @@ public abstract class ServicioDTO {
     /**
      * Duración del servicio
      */
-    protected double duracion;
+    protected Double duracion;
     
     /**
      * Rango de horas libres
      */
     protected ArrayList<String> rango;
+    
+    protected Integer hora;
     
     /**
      * Constructor por defecto
@@ -60,6 +62,7 @@ public abstract class ServicioDTO {
         this.estado = entity.isEstado();
         this.fecha = entity.getFecha();
         this.rango = entity.getRango();
+        this.hora = entity.getHora();
     }
 
     /**
@@ -90,7 +93,7 @@ public abstract class ServicioDTO {
      * GEtter costo
      * @return costo
      */
-    public double getCosto() {
+    public Double getCosto() {
         return costo;
     }
 
@@ -106,7 +109,7 @@ public abstract class ServicioDTO {
      * Getter duracion
      * @return duracion
      */
-    public double getDuracion() {
+    public Double getDuracion() {
         return duracion;
     }
 
@@ -130,7 +133,7 @@ public abstract class ServicioDTO {
      * Setter costo
      * @param costo 
      */
-    public void setCosto(double costo) {
+    public void setCosto(Double costo) {
         this.costo = costo;
     }
 
@@ -146,7 +149,7 @@ public abstract class ServicioDTO {
      * Setter duracion
      * @param duracion 
      */
-    public void setDuracion(double duracion) {
+    public void setDuracion(Double duracion) {
         this.duracion = duracion;
     }
 
@@ -157,6 +160,16 @@ public abstract class ServicioDTO {
     public void setRango(ArrayList<String> rango) {
         this.rango = rango;
     }
+
+    public Integer getHora() {
+        return hora;
+    }
+
+    public void setHora(Integer hora) {
+        this.hora = hora;
+    }
+    
+    
     
     public ServicioEntity toEntity(){
         ServicioEntity servicio = null;

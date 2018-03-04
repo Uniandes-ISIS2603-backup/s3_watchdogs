@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
-import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
 import java.io.Serializable;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
