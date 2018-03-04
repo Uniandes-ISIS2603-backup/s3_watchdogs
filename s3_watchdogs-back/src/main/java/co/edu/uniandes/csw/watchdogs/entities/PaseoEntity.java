@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamIntValue;
+import uk.co.jemos.podam.common.PodamStringValue;
 
 /**
  *
@@ -19,7 +21,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PaseoEntity extends ServicioEntity implements Serializable {
     
+    @PodamIntValue(minValue = 1)
     private Integer capMax;
+    @PodamStringValue(length = 11)
     private ArrayList<String> horas;
     
     @PodamExclude

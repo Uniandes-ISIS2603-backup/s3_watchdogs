@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
  *
@@ -18,6 +19,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class HotelEntity extends ServicioEntity implements Serializable {
     
+    @PodamIntValue(minValue = 24)
     private Integer tiempoHospedaje;
     
     @PodamExclude
