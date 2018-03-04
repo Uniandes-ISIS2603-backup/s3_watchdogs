@@ -5,10 +5,12 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
-import co.edu.uniandes.csw.bookstore.podam.DateStrategy;
+import co.edu.uniandes.csw.watchdogs.podam.DateTarjetaStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 
@@ -20,7 +22,8 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializable {
     
     private String numeroTarjeta;
-    @PodamStrategyValue(DateStrategy.class)
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateTarjetaStrategy.class)
     private Date fechaVencimiento;
     private String codigoSeguridad;
 

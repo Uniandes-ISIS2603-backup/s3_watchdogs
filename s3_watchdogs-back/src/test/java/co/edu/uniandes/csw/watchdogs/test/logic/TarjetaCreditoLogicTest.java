@@ -103,7 +103,7 @@ public class TarjetaCreditoLogicTest {
     }
     
     /**
-     * Prueba para crear un Book
+     * Prueba para crear una tarjeta
      *
      *
      */
@@ -121,7 +121,7 @@ public class TarjetaCreditoLogicTest {
     }
     
      /**
-     * Prueba para consultar la lista de Books
+     * Prueba para consultar la lista de tarjetas
      *
      *
      */
@@ -141,7 +141,7 @@ public class TarjetaCreditoLogicTest {
     }
     
      /**
-     * Prueba para consultar un Book
+     * Prueba para consultar una tarjeta
      *
      *
      */
@@ -158,7 +158,7 @@ public class TarjetaCreditoLogicTest {
     }
     
     /**
-     * Prueba para eliminar un Book
+     * Prueba para eliminar una tarjeta
      *
      *
      */
@@ -171,7 +171,7 @@ public class TarjetaCreditoLogicTest {
     }
     
      /**
-     * Prueba para actualizar un Book
+     * Prueba para actualizar una tarjeta
      *
      *
      */
