@@ -6,9 +6,14 @@
 package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
+import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.AseoPersistence;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,18 +32,40 @@ public class AseoLogic {
     @Inject
     private AseoPersistence persistence;
     
+    @Inject
+    private ClienteLogic clienteLogic;
+    
+    @Inject 
+    private MascotaLogic mascotaLogic;
+    
+    @Inject
+    private EmpleadoLogic empleadoLogic;
+    
    /**
      * Guardar un nuevo Entrenamiento
      * @param entity La entidad de tipo Aseo del nuevo libro a persistir.
+     * @param idCliente
+     * @param idMascota
+     * @param idEmpleado
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException 
      */
-    public AseoEntity createAseo(AseoEntity entity) throws BusinessLogicException {
+   public AseoEntity createEntrenamiento(AseoEntity entity,Long idCliente,Long idMascota,Long idEmpleado) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Aseo");
-        persistence.create(entity);
+        Date todayDate = Calendar.getInstance().getTime();
+        if(todayDate.before(entity.getFecha()) ){
+            persistence.create(entity);
+        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+        MascotaEntity mascota = mascotaLogic.getMascota(idMascota);
+        EmpleadoEntity empleado = empleadoLogic.getEmpleado(idEmpleado);
         LOGGER.info("Termina proceso de creación de Aseo");
+        //entity.setCliente(cliente);
+        //entity.setMascota(mascota);
+        //entity.setEmpleado(empleado);
         return entity;
-    } 
+        }
+        else throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
+    }
     
     /**
      * Devuelve todos los Servicios  de Aseo que hay en la base de datos.
@@ -66,19 +93,31 @@ public class AseoLogic {
         return aseo;
     }
     
-    /**
-     * Actualizar un Servicio de Aseo por ID
-     * @param id El ID del Servicio de Aseo a actualizar
-     * @param entity La entidad de Aseo con los cambios deseados
-     * @return La entidad de Aseo luego de actualizarla
+   /**
+     * Actualizar un Aseo por ID
+     * @param id El ID del Entrenamiento a actualizar
+     * @param entity La entidad del Entrenamiento con los cambios deseados
+     * @param idCliente
+     * @param idMascota
+     * @param idEmpleado
+     * @return La entidad del Entrenamiento luego de actualizarla
      * @throws BusinessLogicException 
      */
-    public AseoEntity updateAseo(Long id, AseoEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Servicio de Aseo con id={0}", id);
-        
+    public AseoEntity updateAseo(Long id, AseoEntity entity,Long idCliente,Long idMascota,Long idEmpleado) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Aseo con id={0}", id);
+        Date todayDate = Calendar.getInstance().getTime();
+        if(todayDate.before(entity.getFecha()) ){
         AseoEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar Servicio de Aseo con id={0}", entity.getId());
+        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+        MascotaEntity mascota = mascotaLogic.getMascota(idMascota);
+        EmpleadoEntity empleado = empleadoLogic.getEmpleado(idEmpleado);
+        //entity.setCliente(cliente);
+        //entity.setMascota(mascota);
+        //entity.setEmpleado(empleado);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar Aseo con id={0}", entity.getId());
         return newEntity;
+        }
+        else throw new BusinessLogicException("La fecha debe ser posterior a hoy.");
     }
     
     /**

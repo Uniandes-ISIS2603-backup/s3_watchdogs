@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.persistence.VeterinariaPersistence;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
@@ -14,4 +17,14 @@ import javax.ejb.Stateless;
 @Stateless
 public class VeterinariaLogic {
     
+    private static final Logger LOGGER = Logger.getLogger(VeterinariaLogic.class.getName());
+    
+    @Inject
+    private VeterinariaPersistence persistence;
+    
+    @Inject
+    private EntrenamientoLogic entrenamientoLogic;
+    
+    @Inject
+    private HotelLogic hotelLogic;
 }

@@ -99,7 +99,7 @@ public class VeterinariaPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getCapacidadMaxima(), entity.getCapacidadMaxima());
-        Assert.assertEquals(newEntity.getCapacidadActual(), entity.getCapacidadActual());
+        Assert.assertEquals(newEntity.getUsuariosEnServicio(), entity.getUsuariosEnServicio());
         Assert.assertEquals(newEntity.getFotos(), entity.getFotos());
         Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());   
     }
@@ -125,7 +125,7 @@ public class VeterinariaPersistenceTest {
         VeterinariaEntity newEntity = veterinariaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getCapacidadActual(), newEntity.getCapacidadActual());
+        Assert.assertEquals(entity.getUsuariosEnServicio(), newEntity.getUsuariosEnServicio());
          Assert.assertEquals(entity.getCapacidadMaxima(), newEntity.getCapacidadMaxima());
         Assert.assertEquals(entity.getFotos(), newEntity.getFotos());
         Assert.assertEquals(entity.getDireccion(), newEntity.getDireccion());
@@ -152,7 +152,7 @@ public class VeterinariaPersistenceTest {
         VeterinariaEntity resp = em.find(VeterinariaEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getCapacidadActual(), resp.getCapacidadActual());
+        Assert.assertEquals(newEntity.getUsuariosEnServicio(), resp.getUsuariosEnServicio());
          Assert.assertEquals(newEntity.getCapacidadMaxima(), resp.getCapacidadMaxima());
         Assert.assertEquals(newEntity.getFotos(), resp.getFotos());
         Assert.assertEquals(newEntity.getDireccion(), resp.getDireccion());
