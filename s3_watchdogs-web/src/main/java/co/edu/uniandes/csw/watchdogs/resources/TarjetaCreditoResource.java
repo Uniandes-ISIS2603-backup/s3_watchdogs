@@ -59,9 +59,9 @@ public class TarjetaCreditoResource {
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe la tarjeta.
      */
     @POST
-    public TarjetaCreditoDetailDTO createPse(TarjetaCreditoDetailDTO tarjeta) throws BusinessLogicException
+    public TarjetaCreditoDetailDTO createTarjeta(TarjetaCreditoDetailDTO tarjeta) throws BusinessLogicException
     {
-        return tarjeta;
+        return new TarjetaCreditoDetailDTO(tarjetaLogic.createTarjeta(tarjeta.toEntity()));
     }
     
       /**
@@ -103,9 +103,9 @@ public class TarjetaCreditoResource {
         TarjetaCreditoEntity entity = tarjetaLogic.getTarjeta(id);
         if(entity == null)
         {
-            throw new WebApplicationException();
+            throw new WebApplicationException("La tarjeta no existe", 404);
         }
-        return null;
+        return new TarjetaCreditoDetailDTO(entity);
     }
     
     /**
@@ -129,7 +129,14 @@ public class TarjetaCreditoResource {
     @PUT
     @Path("{id: \\d+}")
     public TarjetaCreditoDetailDTO updateTarjeta(@PathParam("id") Long id, TarjetaCreditoDetailDTO tarjeta) throws BusinessLogicException {
-        return tarjeta;
+        TarjetaCreditoEntity entity = tarjeta.toEntity();
+        entity.setId(id);
+        TarjetaCreditoEntity oldEntity = tarjetaLogic.getTarjeta(id);
+        if(oldEntity == null)
+        {
+            throw new WebApplicationException("La tarjeta no existe", 404);
+        }
+        return new TarjetaCreditoDetailDTO(tarjetaLogic.updateTarjeta(id, entity));
     }
     
      /**
@@ -149,8 +156,13 @@ public class TarjetaCreditoResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deleteTarjeta(@PathParam("id") Long id) {
-        // Void
-    }
+         TarjetaCreditoEntity entity = tarjetaLogic.getTarjeta(id);
+        if(entity == null)
+        {
+            throw new WebApplicationException("La tarjeta no existe");
+        }
+        tarjetaLogic.deleteTarjeta(id);
+     }
      
      private List<TarjetaCreditoDetailDTO> listTarjetaEntity2DetailDTO(List<TarjetaCreditoEntity> entityList) {
         List<TarjetaCreditoDetailDTO> list = new ArrayList<>();

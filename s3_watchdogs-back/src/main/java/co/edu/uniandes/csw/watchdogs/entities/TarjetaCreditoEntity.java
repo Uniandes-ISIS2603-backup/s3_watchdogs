@@ -24,7 +24,7 @@ public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializ
     
     private String numeroTarjeta;
     @Temporal(TemporalType.DATE)
-    @PodamStrategyValue(DateTarjetaStrategy.class)
+    @PodamStrategyValue(DateStrategy.class)
     private Date fechaVencimiento;
     private String codigoSeguridad;
 
