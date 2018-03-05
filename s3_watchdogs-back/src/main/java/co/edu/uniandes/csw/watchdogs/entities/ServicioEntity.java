@@ -39,7 +39,7 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     protected Double duracion;
     
     protected Integer hora;
-    /*
+    
     @PodamExclude
     @ManyToOne
     protected MascotaEntity mascota;
@@ -99,7 +99,7 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     public void setEmpleado(EmpleadoEntity empleado) {
         this.empleado = empleado;
     }
-    */
+    
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
