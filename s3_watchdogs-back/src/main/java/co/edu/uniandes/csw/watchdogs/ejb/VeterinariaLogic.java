@@ -147,9 +147,8 @@ public class VeterinariaLogic {
      * Agregar un Paseo a la Veterinaria
      *
      * @param paseoId El id paseo a guardar
-     * @param veterinariaId El id del CentroDeEntrenamiento en la cual se va a guardar el
-     * hotel.
-     * @return El hotel que fue agregado al CentroDeEntrenamiento.
+     * @param veterinariaId El id de la Veterinaria en la cual se va a guardar el paseo.
+     * @return El paseo que fue agregado a la Veterinaria.
      */
     public  PaseoEntity addPaseo(Long paseoId, Long veterinariaId) throws BusinessLogicException {
         VeterinariaEntity veterinariaEntity = getVeterinaria(veterinariaId);
@@ -161,10 +160,10 @@ public class VeterinariaLogic {
     }
 
     /**
-     * Borrar un Hotel de un CentroDeEntrenamiento
+     * Borrar un Paseo de una Veterinaria
      *
-     * @param paseoId El hotel que se desea borrar del CentroDeEntrenamiento.
-     * @param veterinariaId La CentroDeEntrenamiento del cual se desea eliminar.
+     * @param paseoId El paseo que se desea borrar de la veterinaria.
+     * @param veterinariaId la vetererinaria de la cual se desea eliminar.
      */
     public void removeHotel(Long paseoId, Long veterinariaId) {
         VeterinariaEntity veterinariaEntity = getVeterinaria(veterinariaId);
@@ -174,11 +173,11 @@ public class VeterinariaLogic {
     }
 
     /**
-     * Remplazar Hotels de una CentroDeEntrenamiento
+     * Remplazar Paseos de una Veterinaria
      *
-     * @param paseos Lista de hotels que serán los del CentroDeEntrenamiento.
-     * @param veterinariaId El id del CentroDeEntrenamiento que se quiere actualizar.
-     * @return La lista de hotels actualizada.
+     * @param paseos Lista de paseos que serán los de la veterinaria.
+     * @param veterinariaId El id de la veterinaria que se quiere actualizar.
+     * @return La lista de paseos actualizada.
      */
     public List<PaseoEntity> replacePaseos(Long veterinariaId, List<PaseoEntity> paseos) {
        VeterinariaEntity veterinaria = getVeterinaria(veterinariaId);
@@ -194,21 +193,21 @@ public class VeterinariaLogic {
     }
 
     /**
-     * Retorna todos los Hotels asociados a una CentroDeEntrenamiento
+     * Retorna todos los paseos asociados a una Veterinaria
      *
-     * @param veterinariaId El ID del CentroDeEntrenamiento buscada
-     * @return La lista de hotels del CentroDeEntrenamiento
+     * @param veterinariaId El ID de la Veterinaria buscada
+     * @return La lista de paseos de la Veterinaria
      */
     public List<PaseoEntity> getPaseos(Long veterinariaId) {
         return getVeterinaria(veterinariaId).getPaseos();
     }
 
     /**
-     * Retorna un Hotel asociado a una CentroDeEntrenamiento
+     * Retorna un Paseo asociado a una Veterinaria
      *
-     * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento a buscar.
-     * @param hotelId El id del hotel a buscar
-     * @return El hotel encontrado dentro del CentroDeEntrenamiento.
+     * @param veterinariaId El id de la veterinaria  a buscar.
+     * @param paseoId El id del hotel a buscar
+     * @return El paseo encontrado dentro de la veterinaria.
      * @throws BusinessLogicException Si el hotel no se encuentra en la CentroDeEntrenamiento
      */
     public PaseoEntity getPaseo(Long veterinariaId, Long paseoId) throws BusinessLogicException {
