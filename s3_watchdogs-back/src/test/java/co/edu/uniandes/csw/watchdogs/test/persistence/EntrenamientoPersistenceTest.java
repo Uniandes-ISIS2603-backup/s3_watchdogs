@@ -98,9 +98,17 @@ public class EntrenamientoPersistenceTest {
 
         EntrenamientoEntity entity = em.find(EntrenamientoEntity.class, result.getId());
 
-        Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getRango(), entity.getRango());
-        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Assert.assertEquals(entity.getHora(), newEntity.getHora());
+        Assert.assertEquals(entity.getTransporte(), newEntity.getTransporte());
+        Assert.assertEquals(entity.getRango(), newEntity.getRango());
+        Assert.assertEquals(entity.getEmpleado(), newEntity.getEmpleado());
+        Assert.assertEquals(entity.getCentroDeEntrenamiento(), newEntity.getCentroDeEntrenamiento());
+        Assert.assertEquals(entity.getCliente(), newEntity.getCliente());
+        Assert.assertEquals(entity.getMascota(), newEntity.getMascota());
+        Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
+        Assert.assertEquals(entity.getHora(), newEntity.getHora());
     }
     
     @Test
@@ -123,9 +131,17 @@ public class EntrenamientoPersistenceTest {
         EntrenamientoEntity entity = data.get(0);
         EntrenamientoEntity newEntity = entrenamientoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getRango(), newEntity.getRango());
-        Assert.assertEquals(entity.getTipo(), newEntity.getTipo());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Assert.assertEquals(entity.getHora(), newEntity.getHora());
+        Assert.assertEquals(entity.getTransporte(), newEntity.getTransporte());
+        Assert.assertEquals(entity.getRango(), newEntity.getRango());
+        Assert.assertEquals(entity.getEmpleado(), newEntity.getEmpleado());
+        Assert.assertEquals(entity.getCentroDeEntrenamiento(), newEntity.getCentroDeEntrenamiento());
+        Assert.assertEquals(entity.getCliente(), newEntity.getCliente());
+        Assert.assertEquals(entity.getMascota(), newEntity.getMascota());
+        Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
+        Assert.assertEquals(entity.getHora(), newEntity.getHora());
 
     }
     
@@ -149,8 +165,16 @@ public class EntrenamientoPersistenceTest {
 
         EntrenamientoEntity resp = em.find(EntrenamientoEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getRango(), resp.getRango());
-        Assert.assertEquals(newEntity.getTipo(), resp.getTipo());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
+        Assert.assertEquals(newEntity.getHora(), resp.getHora());
+        Assert.assertEquals(newEntity.getTransporte(), resp.getTransporte());
+        Assert.assertEquals(newEntity.getRango(), resp.getRango());
+        Assert.assertEquals(newEntity.getEmpleado(), resp.getEmpleado());
+        Assert.assertEquals(newEntity.getCentroDeEntrenamiento(), resp.getCentroDeEntrenamiento());
+        Assert.assertEquals(newEntity.getCliente(), resp.getCliente());
+        Assert.assertEquals(newEntity.getMascota(), resp.getMascota());
+        Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion());
+        Assert.assertEquals(newEntity.getHora(), resp.getHora());
     }
 }

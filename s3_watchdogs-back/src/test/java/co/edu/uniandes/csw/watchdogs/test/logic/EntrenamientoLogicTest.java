@@ -152,6 +152,13 @@ public class EntrenamientoLogicTest {
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
         Assert.assertEquals(newEntity.getTransporte(), entity.getTransporte());
         Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+        Assert.assertEquals(newEntity.getRango(), entity.getRango());
+        Assert.assertEquals(newEntity.getEmpleado(), entity.getEmpleado());
+        Assert.assertEquals(newEntity.getCentroDeEntrenamiento(), entity.getCentroDeEntrenamiento());
+        Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+        Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
+        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
+        Assert.assertEquals(newEntity.getHora(), entity.getHora());
     }
 
     /**
@@ -188,7 +195,13 @@ public class EntrenamientoLogicTest {
         Assert.assertEquals(entity.getFecha(), resultEntity.getFecha());
         Assert.assertEquals(entity.getTransporte(), resultEntity.getTransporte());
         Assert.assertEquals(entity.getTipo(), resultEntity.getTipo());
-
+        Assert.assertEquals(entity.getRango(), resultEntity.getRango());
+        Assert.assertEquals(entity.getEmpleado(), resultEntity.getEmpleado());
+        Assert.assertEquals(entity.getCentroDeEntrenamiento(), resultEntity.getCentroDeEntrenamiento());
+        Assert.assertEquals(entity.getCliente(), resultEntity.getCliente());
+        Assert.assertEquals(entity.getMascota(), resultEntity.getMascota());
+        Assert.assertEquals(entity.getDuracion(), resultEntity.getDuracion());
+        Assert.assertEquals(entity.getHora(), resultEntity.getHora());
     }
 
     /**
@@ -225,5 +238,12 @@ public class EntrenamientoLogicTest {
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
         Assert.assertEquals(pojoEntity.getHora(), resp.getHora());
         Assert.assertEquals(pojoEntity.getTransporte(), resp.getTransporte());
+        Assert.assertEquals(pojoEntity.getRango(), resp.getRango());
+        Assert.assertEquals(pojoEntity.getEmpleado(), resp.getEmpleado());
+        Assert.assertEquals(pojoEntity.getCentroDeEntrenamiento(), resp.getCentroDeEntrenamiento());
+        Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
+        Assert.assertEquals(pojoEntity.getMascota(), resp.getMascota());
+        Assert.assertEquals(pojoEntity.getDuracion(), resp.getDuracion());
+        Assert.assertEquals(pojoEntity.getHora(), resp.getHora());
     }
 }

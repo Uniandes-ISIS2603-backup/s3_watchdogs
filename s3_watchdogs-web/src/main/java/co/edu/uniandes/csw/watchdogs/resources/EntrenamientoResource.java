@@ -22,14 +22,15 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
  * @author c.martinezc1
  */
-@Path("entrenamientos")
-@Produces("application/json")
-@Consumes("application/json")
+@Path("servicios")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class EntrenamientoResource{
     
@@ -75,7 +76,7 @@ public class EntrenamientoResource{
      */
     @POST
     public EntrenamientoDetailDTO createEntrenamiento(@PathParam("idCliente") Long idCliente,@PathParam("idMascota")Long idMascota,@PathParam("idEmpleado")Long idEmpleado, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
-         return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity(),idCliente,idMascota,idEmpleado));
+        return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity(),idCliente,idMascota,idEmpleado));
     }
 
     /**
