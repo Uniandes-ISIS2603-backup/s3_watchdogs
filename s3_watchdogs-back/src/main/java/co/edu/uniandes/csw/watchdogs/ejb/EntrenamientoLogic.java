@@ -80,14 +80,14 @@ public class EntrenamientoLogic {
         Date todayDate = Calendar.getInstance().getTime();
         if(todayDate.before(entity.getFecha()) ){
             persistence.create(entity);
-        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
-        MascotaEntity mascota = mascotaLogic.getMascota(idMascota);
-        EmpleadoEntity empleado = empleadoLogic.getEmpleado(idEmpleado);
-        LOGGER.info("Termina proceso de creación de Entrenamiento");
-        //entity.setCliente(cliente);
-        //entity.setMascota(mascota);
-        //entity.setEmpleado(empleado);
-        return entity;
+            ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+            MascotaEntity mascota = mascotaLogic.getMascota(idMascota);
+            EmpleadoEntity empleado = empleadoLogic.getEmpleado(idEmpleado);
+            LOGGER.info("Termina proceso de creación de Entrenamiento");
+            //entity.setCliente(cliente);
+            //entity.setMascota(mascota);
+            //entity.setEmpleado(empleado);
+            return entity;
         }
         else throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
     }
