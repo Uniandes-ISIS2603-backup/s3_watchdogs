@@ -181,26 +181,26 @@ public class VeterinariaLogic {
      * @return La lista de hotels actualizada.
      */
     public List<PaseoEntity> replacePaseos(Long veterinariaId, List<PaseoEntity> paseos) {
-       VeterinariaEntity veterinaria = getCentroDeEntrenamiento(centroDeEntrenamientoId);
-        List<HotelEntity> hotelList = hotelLogic.getHoteles();
-        for (HotelEntity hotel : hotelList) {
-            if (hoteles.contains(hotel)) {
-                hotel.setCentroDeEntrenamiento(centroDeEntrenamiento);
-            } else if (hotel.getCentroDeEntrenamiento() != null && hotel.getCentroDeEntrenamiento().equals(centroDeEntrenamiento)) {
-                hotel.setCentroDeEntrenamiento(null);
+       VeterinariaEntity veterinaria = getVeterinaria(veterinariaId);
+        List<PaseoEntity> paseoList = paseoLogic.getPaseos();
+        for (PaseoEntity paseo : paseoList) {
+            if (paseos.contains(paseo)) {
+                paseo.setVeterinaria(veterinaria);
+            } else if (paseo.getVeterinaria() != null && paseo.getVeterinaria().equals(veterinaria)) {
+                paseo.setVeterinaria(null);
             }
         }
-        return hoteles;
+        return paseos;
     }
 
     /**
      * Retorna todos los Hotels asociados a una CentroDeEntrenamiento
      *
-     * @param centroDeEntrenamientoId El ID del CentroDeEntrenamiento buscada
+     * @param veterinariaId El ID del CentroDeEntrenamiento buscada
      * @return La lista de hotels del CentroDeEntrenamiento
      */
-    public List<HotelEntity> getHoteles(Long centroDeEntrenamientoId) {
-        return getCentroDeEntrenamiento(centroDeEntrenamientoId).getHoteles();
+    public List<PaseoEntity> getPaseos(Long veterinariaId) {
+        return getVeterinaria(veterinariaId).getPaseos();
     }
 
     /**
@@ -211,19 +211,20 @@ public class VeterinariaLogic {
      * @return El hotel encontrado dentro del CentroDeEntrenamiento.
      * @throws BusinessLogicException Si el hotel no se encuentra en la CentroDeEntrenamiento
      */
-    public HotelEntity getHotel(Long centroDeEntrenamientoId, Long hotelId) throws BusinessLogicException {
-        List<HotelEntity> hoteles = getCentroDeEntrenamiento(centroDeEntrenamientoId).getHoteles();
-        HotelEntity hotel = hotelLogic.getHotel(hotelId);
-        int index = hoteles.indexOf(hotel);
+    public PaseoEntity getPaseo(Long veterinariaId, Long paseoId) throws BusinessLogicException {
+        List<PaseoEntity> paseos = getVeterinaria(veterinariaId).getPaseos();
+        PaseoEntity paseo = paseoLogic.getPaseo(paseoId);
+        int index = paseos.indexOf(paseo);
         if (index >= 0) {
-            return hoteles.get(index);
+            return paseos.get(index);
         }
-        throw new BusinessLogicException("El hotel no está asociado al CentroDeEntrenamiento");
+        throw new BusinessLogicException("El paseo no está asociado a la veterinaria");
 
+    }
     
     
-    
-    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException{
+    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException
+    {
         Date todayDate = Calendar.getInstance().getTime();
         if(todayDate.before(fecha)) throw new BusinessLogicException ("La fecha ingresada no es valida");
         else if(id<0) throw new BusinessLogicException ("El id es invalido");
