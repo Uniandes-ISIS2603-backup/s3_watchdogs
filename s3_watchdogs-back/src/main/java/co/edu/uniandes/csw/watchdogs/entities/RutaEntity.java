@@ -38,7 +38,7 @@ public class RutaEntity extends BaseEntity implements Serializable{
      * 
      * @return La duración de la ruta
      */
-    public int getDuracion(){
+    public Integer getDuracion(){
         return duracion;
     }
 }

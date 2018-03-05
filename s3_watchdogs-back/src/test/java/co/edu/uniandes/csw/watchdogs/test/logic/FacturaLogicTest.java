@@ -128,7 +128,7 @@ public class FacturaLogicTest {
         FacturaEntity entity = em.find(FacturaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-      // Assert.assertEquals(newEntity.getPagado(), entity.getPagado());
+        Assert.assertEquals(newEntity.getPagado(), entity.getPagado());
         Assert.assertEquals(newEntity.getValor(), entity.getValor(),0);
     }
 
@@ -200,7 +200,7 @@ public class FacturaLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        //Assert.assertTrue(pojoEntity.getPagado() == resp.getPagado());
+        Assert.assertTrue(pojoEntity.getPagado() == resp.getPagado());
         Assert.assertEquals(pojoEntity.getValor(), resp.getValor(),0);
 
     }

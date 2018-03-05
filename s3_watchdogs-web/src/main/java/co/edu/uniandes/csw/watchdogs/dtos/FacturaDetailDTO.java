@@ -18,20 +18,24 @@ import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
  *      "id": number,
  *      "valor": number,
  *      "pago": boolean
- *      "cliente": {@link cliente DTO} 
+ *      "cliente": {@link clienteDTO}
+ *      "servicio": {@link servicioDTO}
+ *      "metodoDepago": {@link metodoDepagoDTO}
  *   }
  * </pre
  * </pre>
- * Por ejemplo un libro se representa asi:<br>
+ * Por ejemplo una factura con una Tarjeta de Crédito como Método de Pago y un aseo como servicio se representa asi:<br>
  * 
  * <pre>
  * 
  *   {
- *      ""id": 1321321,
- *      "valor": 40000,
- *      "pago": true
+ *      ""id": "1321321",
+ *      "valor": 40000",
+ *      "pago": "true",
  *      "cliente": { "nombre": "Homero Thompson", "cedula": "1234567912" },
- *      "servicio": 
+ *      "servicio": {"id": "1889", "fecha: "10-10-2010","costo": 25 "estado": "1","duración": 20.5, "rango": "","dientes": true, "banho": true, "peluqueria": true}
+ *      "metodoDepago": {"id": 91852,"numeroTarjeta: "1212124648794562","fechaVencimiento": "12/2020","codigoSeguridad": "456" }
+ *   }
  *
  *   }
  *
@@ -61,12 +65,14 @@ public class FacturaDetailDTO extends FacturaDTO{
             if(entity.getCliente() != null){
                 cliente = new ClienteDTO(entity.getCliente());
             }else entity.setCliente(null);
-            /*if(entity.Servicio() != null){
-               servicio = new ServicioDTO(entity.getServicio()); 
+            if(entity.getServicio() != null){
+               //servicio = new ServicioDTO(entity.getServicio()); 
             }else entity.setServicio(null);
             if(entity.getMetodoDePago() != null){
-                metodoDePago = new MetodoDePagoDTO(entity.getMetodoDePago);
-            }else entity.setMetodoDePago(null);*/
+                //metodoDePago = new MetodoDePagoDTO(entity.getMetodoDePago);
+            }else entity.setMetodoDePago(null);
+            
+            //TODO clases abstractas
         }
     }
 
@@ -116,9 +122,8 @@ public class FacturaDetailDTO extends FacturaDTO{
     public FacturaEntity toEntity(){
         FacturaEntity rta = super.toEntity();
         rta.setCliente(cliente.toEntity());
-        //rta.setServicio(servicio.toEntity());
+        rta.setServicio(servicio.toEntity());
         //rta.setMetodoDePago(MetodoDePago.toEntity());
-        //TODO VAlidacion clases abstractas
         return rta;
     }
    

@@ -16,7 +16,7 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
  * <pre>
  *   {
  *      "id": number,
- *      "duracion": number
+ *      "duracion": number,
  *   }
  * </pre>
  * Por ejemplo una ruta se representa asi:<br>
@@ -25,7 +25,7 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
  * 
  *   {
  *      "id": 1321321,
- *      "duracion": 43
+ *      "duracion": 43,
  *   }
  *
  * </pre>
@@ -68,7 +68,7 @@ public class RutaDTO {
      * @param id El nuevo id de la ruta
      */
     
-    public void setId(long id){
+    public void setId(Long id){
         this.id = id;
     }
     
@@ -85,7 +85,7 @@ public class RutaDTO {
      * @param duracion La nueva duración de la ruta
      */
     
-    public void setDuracion(int duracion){
+    public void setDuracion(Integer duracion){
         this.duracion = duracion;
     }
     

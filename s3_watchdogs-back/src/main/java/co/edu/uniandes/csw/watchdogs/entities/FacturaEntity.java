@@ -47,8 +47,8 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      * @param valor El nuevo valor de la factura
      */
     
-    public void setValor(double valor){
-        this.setValor((Double) valor);
+    public void setValor(Double valor){
+        this.valor = valor;
     }
     
     /**
@@ -56,8 +56,8 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      */
     
     
-    public void setPago(boolean pagado){
-        this.setPagado((Boolean) pagado);
+    public void setPago(Boolean pagado){
+        this.pagado = pagado;
     }
     
     /**
@@ -96,55 +96,38 @@ public class FacturaEntity extends BaseEntity implements Serializable{
         this.cliente = cliente;
     }
 
-    /**
-     * @param valor the valor to set
-     */
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
-    /**
-     * @param pagado the pagado to set
-     */
-    public void setPagado(Boolean pagado) {
-        this.pagado = pagado;
-    }
-
-    
     
     /**
      * @return the metodoDePago
      */
-    
-    /*
     public MetodoDePagoEntity getMetodoDePago() {
         return metodoDePago;
-    }*/
+    }
 
     /**
      * @param metodoDePago the metodoDePago to set
      */
-    /*
+    
     public void setMetodoDePago(MetodoDePagoEntity metodoDePago) {
         this.metodoDePago = metodoDePago;
-    }*/
+    }
 
     /**
      * @return the servicio
      */
-    /*
+    
     public ServicioEntity getServicio() {
         return servicio;
     }
-    */
+    
 
     /**
      * @param servicio the servicio to set
      */
-    /*
+    
     public void setServicio(ServicioEntity servicio) {
         this.servicio = servicio;
-    } */
+    } 
     
     
 }

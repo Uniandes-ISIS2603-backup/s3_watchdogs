@@ -71,7 +71,7 @@ public class DisponibilidadDTO {
      * @param id El nuevo id de la Disponibilidad
      */
     
-    public void setId(long id){
+    public void setId(Long id){
         this.id = id;
     }
     

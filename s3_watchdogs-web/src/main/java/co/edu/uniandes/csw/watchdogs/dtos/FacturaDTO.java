@@ -75,7 +75,7 @@ public class FacturaDTO {
      * @param id El nuevo id de la factura
      */
     
-    public void setId(long id){
+    public void setId(Long id){
         this.id = id;
     }
     
@@ -92,7 +92,7 @@ public class FacturaDTO {
      * @param valor El nuevo valor de la factura
      */
     
-    public void setValor(double valor){
+    public void setValor(Double valor){
         this.valor = valor;
     }
     
@@ -109,7 +109,7 @@ public class FacturaDTO {
      * @param pagado El nuevo estado de pago
      */
     
-    public void setPago(boolean pagado){
+    public void setPago(Boolean pagado){
         this.pagado = pagado;
     }
     
