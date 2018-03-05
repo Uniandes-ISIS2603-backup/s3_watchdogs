@@ -173,7 +173,7 @@ public class ClienteResource {
         entity.setCalificacion(oldEntity.getCalificacion());
         entity.setServicios(oldEntity.getServicios());
         entity.setMetodosDePago(oldEntity.getMetodosDePago());
-        return new ClienteDetailDTO(clienteLogic.updateCliente(entity));
+        return new ClienteDetailDTO(clienteLogic.updateCliente(id, entity));
     }
 
     /**
@@ -194,7 +194,7 @@ public class ClienteResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCliente(@PathParam("id") Long id) {
+    public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException {
         ClienteEntity entity = clienteLogic.getCliente(id);
         if (entity == null) {
             throw new WebApplicationException("El cliente no existe", 404);
