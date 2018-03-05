@@ -99,7 +99,6 @@ public class CentroDeEntrenamientoTest {
         CentroDeEntrenamientoEntity entity = em.find(CentroDeEntrenamientoEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getTiempoEntreno(), entity.getTiempoEntreno());
     }
     
     @Test
@@ -123,7 +122,6 @@ public class CentroDeEntrenamientoTest {
         CentroDeEntrenamientoEntity newEntity = centroDeEntrenamientoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getTiempoEntreno(), entity.getTiempoEntreno());
 
     }
     
@@ -148,6 +146,5 @@ public class CentroDeEntrenamientoTest {
         CentroDeEntrenamientoEntity resp = em.find(CentroDeEntrenamientoEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
-        Assert.assertEquals(newEntity.getTiempoEntreno(), resp.getTiempoEntreno());
     }
 }

@@ -9,6 +9,8 @@ import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.HotelPersistence;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -58,30 +60,32 @@ public class HotelLogic {
     
     /**
      * Guardar un nuevo Hotel
-     * @param entity La entidad de tipo Hotel del nuevo transporte a persistir.
+     * @param hotelEntity La entidad de tipo Hotel del nuevo transporte a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException 
      */
-    public HotelEntity createHotel(HotelEntity entity) throws BusinessLogicException {
+    public HotelEntity createHotel(HotelEntity hotelEntity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Hotel");
-        
-        persistence.create(entity);
+        validarServicios(hotelEntity.getId(), hotelEntity.getName(), hotelEntity.getFecha(),hotelEntity.getCosto(),hotelEntity.getDuracion());
+        validarHotel(hotelEntity.getTiempoHospedaje());
+        persistence.create(hotelEntity);
         LOGGER.info("Termina proceso de creación de Hotel");
-        return entity;
+        return hotelEntity;
     }
     
     /**
      * Actualizar un Hotel por ID
      * @param id El ID del Hotel a actualizar
-     * @param entity La entidad del Hotel con los cambios deseados
+     * @param hotelEntity La entidad del Hotel con los cambios deseados
      * @return La entidad del Hotel luego de actualizarla
      * @throws BusinessLogicException 
      */
-    public HotelEntity updateHotel(Long id, HotelEntity entity) throws BusinessLogicException {
+    public HotelEntity updateHotel(Long id, HotelEntity hotelEntity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Hotel con id={0}", id);
-        
-        HotelEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar Hotel con id={0}", entity.getId());
+        validarServicios(hotelEntity.getId(), hotelEntity.getName(), hotelEntity.getFecha(),hotelEntity.getCosto(),hotelEntity.getDuracion());
+        validarHotel(hotelEntity.getTiempoHospedaje());
+        HotelEntity newEntity = persistence.update(hotelEntity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar Hotel con id={0}", hotelEntity.getId());
         return newEntity;
     }
     
@@ -103,13 +107,15 @@ public class HotelLogic {
      * transporte.
      * @return El transporte que fue agregado al Hotel.
      */
-    public TransporteEntity addTransporte(Long transporteId, Long hotelId) {
+    public TransporteEntity addTransporte(Long transporteId, Long hotelId) throws BusinessLogicException {
         HotelEntity hotelEntity = getHotel(hotelId);
         TransporteEntity transporteEntity = transporteLogic.getTransporte(transporteId);
+        validarTransporte(transporteEntity.getId(), transporteEntity.getName(), transporteEntity.getDevuelta(), transporteEntity.getRecogida(), transporteEntity.getDireccion());
         hotelEntity.setTransporte(transporteEntity);
         return transporteEntity;
     }
-
+    
+    
     /**
      * Borrar un Transporte de un Hotel
      *
@@ -123,14 +129,15 @@ public class HotelLogic {
     /**
      * Remplazar Transportes de un Hotel
      *
-     * @param transporte Lista de transportes que serán los del Hotel.
+     * @param transporteEntity Lista de transportes que serán los del Hotel.
      * @param hotelId El id del Hotel que se quiere actualizar.
      * @return La lista de transportes actualizada.
      */
-    public TransporteEntity replaceTransportes(Long hotelId, TransporteEntity transporte) {
+    public TransporteEntity replaceTransportes(Long hotelId, TransporteEntity transporteEntity) throws BusinessLogicException {
+        validarTransporte(transporteEntity.getId(), transporteEntity.getName(), transporteEntity.getDevuelta(), transporteEntity.getRecogida(), transporteEntity.getDireccion());
         HotelEntity hotel = getHotel(hotelId);
-        hotel.setTransporte(transporte);
-        return transporte;
+        hotel.setTransporte(transporteEntity);
+        return transporteEntity;
     }
     
     /**
@@ -141,5 +148,26 @@ public class HotelLogic {
      */
     public TransporteEntity getTransporte(Long hotelId) {
         return getHotel(hotelId).getTransporte();
+    }
+    
+    public void validarTransporte(Long id, String nombre, Integer devuelta, Integer recogida, String direccion)throws BusinessLogicException{
+        if(id<0)throw new BusinessLogicException("El id es invalido");
+        else if(nombre.length()>50)throw new BusinessLogicException("El nombre es muy grande");
+        else if(recogida > devuelta)throw new BusinessLogicException("La hora de recogida no puede ser mas tarde que la de devuelta");
+        else if(direccion.length()>50)throw new BusinessLogicException("La direccion es muy grande");
+    }
+    
+    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException{
+        Date todayDate = Calendar.getInstance().getTime();
+        if(todayDate.before(fecha)) throw new BusinessLogicException ("La fecha ingresada no es valida");
+        else if(id<0) throw new BusinessLogicException ("El id es invalido");
+        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
+        else if(costo<0) throw new BusinessLogicException ("El costo es invalido");
+        else if(duracion <0) throw new BusinessLogicException ("La duracion es invalida");
+        
+    }
+     
+    public void validarHotel(Integer tHospedaje)throws BusinessLogicException{
+        if(tHospedaje <24) throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
     }
 }

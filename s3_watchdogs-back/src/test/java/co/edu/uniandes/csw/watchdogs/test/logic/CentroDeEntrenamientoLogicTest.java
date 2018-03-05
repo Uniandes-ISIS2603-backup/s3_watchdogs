@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.CentroDeEntrenamientoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.CentroDeEntrenamientoPersistence;
 import java.util.ArrayList;
@@ -50,6 +52,10 @@ public class CentroDeEntrenamientoLogicTest {
     private UserTransaction utx;
 
     private List<CentroDeEntrenamientoEntity> data = new ArrayList<>();
+    
+    private List<EntrenamientoEntity> entrenamientosData = new ArrayList<>();
+    
+    private List<HotelEntity> hotelesData = new ArrayList<>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -86,6 +92,9 @@ public class CentroDeEntrenamientoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from CentroDeEntrenamientoEntity").executeUpdate();
+        em.createQuery("delete from EntrenamientoEntity").executeUpdate();
+        em.createQuery("delete from HotelEntity").executeUpdate();
+
     }
 
     /**
@@ -94,9 +103,23 @@ public class CentroDeEntrenamientoLogicTest {
      */
     private void insertData() {  
         for (int i = 0; i < 3; i++) {
+            EntrenamientoEntity entity = factory.manufacturePojo(EntrenamientoEntity.class);
+            em.persist(entity);
+            entrenamientosData.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
+            HotelEntity entity = factory.manufacturePojo(HotelEntity.class);
+            em.persist(entity);
+            hotelesData.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
             CentroDeEntrenamientoEntity entity = factory.manufacturePojo(CentroDeEntrenamientoEntity.class);
             em.persist(entity);
             data.add(entity);
+            if (i == 0) {
+                entrenamientosData.get(i).setCentroDeEntrenamiento(entity);
+                hotelesData.get(i).setCentroDeEntrenamiento(entity);
+            }
         }
     }
     
@@ -111,7 +134,6 @@ public class CentroDeEntrenamientoLogicTest {
         Assert.assertNotNull(result);
         CentroDeEntrenamientoEntity entity = em.find(CentroDeEntrenamientoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getTiempoEntreno(), entity.getTiempoEntreno());
     }
 
     /**
@@ -141,7 +163,6 @@ public class CentroDeEntrenamientoLogicTest {
         CentroDeEntrenamientoEntity resultEntity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getTiempoEntreno(), resultEntity.getTiempoEntreno());
     }
 
     /**
@@ -170,6 +191,69 @@ public class CentroDeEntrenamientoLogicTest {
         CentroDeEntrenamientoEntity resp = em.find(CentroDeEntrenamientoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getTiempoEntreno(), resp.getTiempoEntreno());
+    }
+    
+    /**
+     * Prueba para obtener una instancia de Entrenamientos asociada a una instancia
+     * CentroDeEntrenamiento
+     *
+     * 
+     */
+    @Test
+    public void getEntrenamientosTest() throws BusinessLogicException {
+        CentroDeEntrenamientoEntity entity = data.get(0);
+        EntrenamientoEntity EntrenamientoEntity = entrenamientosData.get(0);
+        EntrenamientoEntity response = centroDeEntrenamientoLogic.getEntrenamiento(entity.getId(), EntrenamientoEntity.getId());
+
+        Assert.assertEquals(EntrenamientoEntity.getId(), response.getId());
+        Assert.assertEquals(EntrenamientoEntity.getName(), response.getName());
+    }
+
+    /**
+     * Prueba para asociar un Entrenamientos existente a un CentroDeEntrenamiento
+     *
+     * 
+     */
+    @Test
+    public void addEntrenamientosTest() throws BusinessLogicException {
+        CentroDeEntrenamientoEntity entity = data.get(0);
+        EntrenamientoEntity EntrenamientoEntity = entrenamientosData.get(1);
+        EntrenamientoEntity response = centroDeEntrenamientoLogic.addEntrenamiento(EntrenamientoEntity.getId(), entity.getId());
+
+        Assert.assertNotNull(response);
+        Assert.assertEquals(EntrenamientoEntity.getId(), response.getId());
+    }
+
+    /**
+     * Prueba para remplazar las instancias de Entrenamientos asociadas a una instancia
+     * de CentroDeEntrenamiento
+     *
+     * 
+     */
+    @Test
+    public void replaceEntrenamientosTest() {
+        CentroDeEntrenamientoEntity entity = data.get(0);
+        List<EntrenamientoEntity> list = entrenamientosData.subList(1, 3);
+        centroDeEntrenamientoLogic.replaceEntrenamientos(entity.getId(), list);
+
+        entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(entity.getId());
+        Assert.assertFalse(entity.getEntrenamientos().contains(entrenamientosData.get(0)));
+        Assert.assertTrue(entity.getEntrenamientos().contains(entrenamientosData.get(1)));
+        Assert.assertTrue(entity.getEntrenamientos().contains(entrenamientosData.get(2)));
+    }
+
+    /**
+     * Prueba para desasociar un Entrenamiento existente de un CentroDeEntrenamiento existente
+     *
+     * 
+     */
+    @Test
+    public void removeEntrenamientosTest() throws BusinessLogicException {
+        try {
+            centroDeEntrenamientoLogic.removeEntrenamiento(data.get(0).getId(), entrenamientosData.get(0).getId());
+            EntrenamientoEntity response = centroDeEntrenamientoLogic.getEntrenamiento(data.get(0).getId(), entrenamientosData.get(0).getId());
+        } catch (BusinessLogicException e) {
+        }
+
     }
 }

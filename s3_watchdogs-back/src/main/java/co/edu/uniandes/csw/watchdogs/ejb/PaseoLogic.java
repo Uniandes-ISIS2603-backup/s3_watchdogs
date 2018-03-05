@@ -7,10 +7,10 @@ package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
-import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.PaseoPersistence;
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,7 +66,8 @@ public class PaseoLogic {
      */
     public PaseoEntity createPaseo(PaseoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Paseo");
-        
+        validarServicios(entity.getId(), entity.getName(), entity.getFecha(),entity.getCosto(),entity.getDuracion());
+        if(entity.getCapMax()<0) throw new BusinessLogicException("La capacidad maxima no puede ser negativa");
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Paseo");
         return entity;
@@ -81,7 +82,8 @@ public class PaseoLogic {
      */
     public PaseoEntity updatePaseo(Long id, PaseoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Paseo con id={0}", id);
-        
+        validarServicios(entity.getId(), entity.getName(), entity.getFecha(),entity.getCosto(),entity.getDuracion());
+        if(entity.getCapMax()<0) throw new BusinessLogicException("La capacidad maxima no puede ser negativa");
         PaseoEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Paseo con id={0}", entity.getId());
         return newEntity;
@@ -104,9 +106,10 @@ public class PaseoLogic {
      * @param paseoId El id del Paseo en la cual se va a guardar la ruta.
      * @return La ruta que fue agregado a la Paseo.
      */
-    public RutaEntity addRuta(Long rutaId, Long paseoId) {
+    public RutaEntity addRuta(Long rutaId, Long paseoId) throws BusinessLogicException {
         PaseoEntity paseoEntity = getPaseo(paseoId);
         RutaEntity rutaEntity = rutaLogic.getRuta(rutaId);
+        if(rutaEntity.getDuracion()<0)throw new BusinessLogicException("La duracion no puede ser negativa");
         paseoEntity.getRutas().add(rutaEntity);
         return rutaEntity;
     }
@@ -163,6 +166,15 @@ public class PaseoLogic {
         }
         throw new BusinessLogicException("El ruta no está asociado a la Paseo");
 
+    }
+    
+    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException{
+        Date todayDate = Calendar.getInstance().getTime();
+        if(todayDate.before(fecha)) throw new BusinessLogicException ("La fecha ingresada no es valida");
+        else if(id<0) throw new BusinessLogicException ("El id es invalido");
+        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
+        else if(costo<0) throw new BusinessLogicException ("El costo es invalido");
+        else if(duracion <0) throw new BusinessLogicException ("La duracion es invalida");  
     }
    
 }
