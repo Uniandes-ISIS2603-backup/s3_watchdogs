@@ -25,33 +25,14 @@ public class DiaDisponibilidadStrategy implements AttributeStrategy<Estado[]>{
      * {@inheritDoc}
      */
     
-    private class Machetazo{
-    
-    public Machetazo(){
-        
-    }
-    
-    @PodamIntValue(minValue = 0, maxValue = 2)
-    private Integer dummy;
-    
-    public void setDummy(int dummy){
-        this.dummy = dummy;
-    }
-    public int getDummy (){
-        return dummy;
-    }
-    
-    }
     
     public Estado[] getValue() throws PodamMockeryException{
         
-        PodamFactory factory = new PodamFactoryImpl();
         Estado[] rta = new Estado[12];
         
         for(int i =0; i < rta.length; i++){
             
-            Machetazo elMachetazo = factory.manufacturePojo(Machetazo.class);
-            rta[i] = Estado.values()[elMachetazo.getDummy()];
+            rta[i] = Estado.values()[(int)(Math.random()*3)];
 
         } 
        
