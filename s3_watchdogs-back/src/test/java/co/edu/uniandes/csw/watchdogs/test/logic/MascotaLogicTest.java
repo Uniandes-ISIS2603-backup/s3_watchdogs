@@ -5,10 +5,10 @@
  */
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
-import co.edu.uniandes.csw.watchdogs.ejb.ClienteLogic;
-import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
+import co.edu.uniandes.csw.watchdogs.ejb.MascotaLogic;
+import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.watchdogs.persistence.ClientePersistence;
+import co.edu.uniandes.csw.watchdogs.persistence.MascotaPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -32,12 +32,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author ca.beltran10
  */
 @RunWith(Arquillian.class)
-public class ClienteLogicTest {
-
+public class MascotaLogicTest {
+    
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
-    private ClienteLogic clienteLogic;
+    private MascotaLogic mascotaLogic;
 
     @PersistenceContext
     private EntityManager em;
@@ -45,20 +45,20 @@ public class ClienteLogicTest {
     @Inject
     private UserTransaction utx;
 
-    private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
+    private List<MascotaEntity> data = new ArrayList<MascotaEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(ClienteEntity.class.getPackage())
-                .addPackage(ClienteLogic.class.getPackage())
-                .addPackage(ClientePersistence.class.getPackage())
+                .addPackage(MascotaEntity.class.getPackage())
+                .addPackage(MascotaLogic.class.getPackage())
+                .addPackage(MascotaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
 
     /**
-     * Configuracion inicial de la prueba.
+     * Configuración inicial de la prueba.
      */
     @Before
     public void configTest() {
@@ -81,11 +81,8 @@ public class ClienteLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from ClienteEntity").executeUpdate();
         em.createQuery("delete from MascotaEntity").executeUpdate();
-        em.createQuery("delete from FacturaEntity").executeUpdate();
-        em.createQuery("delete from CalificacionEntity").executeUpdate();
-
+        em.createQuery("delete from ClienteEntity").executeUpdate();
     }
 
     /**
@@ -93,26 +90,28 @@ public class ClienteLogicTest {
      * pruebas.
      */
     private void insertData() {
+
         for (int i = 0; i < 3; i++) {
-            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
+            MascotaEntity entity = factory.manufacturePojo(MascotaEntity.class);
             em.persist(entity);
             data.add(entity);
+
         }
+
     }
 
     /**
-     * Prueba para crear un Cliente
+     * Prueba para crear un Mascota
      */
     @Test
-    public void createClienteTest() {
+    public void createMascotaTest() {
         try {
-            ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-            ClienteEntity result = clienteLogic.createCliente(newEntity);
+            MascotaEntity newEntity = factory.manufacturePojo(MascotaEntity.class);
+            MascotaEntity result = mascotaLogic.createMascota(newEntity);
             Assert.assertNotNull(result);
-            ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
+            MascotaEntity entity = em.find(MascotaEntity.class, result.getId());
             Assert.assertEquals(newEntity.getId(), entity.getId());
             Assert.assertEquals(newEntity.getName(), entity.getName());
-            Assert.assertEquals(newEntity.getCedula(), entity.getCedula());
         } catch (BusinessLogicException e) {
             fail();
         }
@@ -120,15 +119,15 @@ public class ClienteLogicTest {
     }
 
     /**
-     * Prueba para consultar la lista de Clientes.
+     * Prueba para consultar la lista de Mascota
      */
     @Test
-    public void getClientesTest() {
-        List<ClienteEntity> list = clienteLogic.getClientes();
+    public void getMascotasTest() {
+        List<MascotaEntity> list = mascotaLogic.getMascotas();
         Assert.assertEquals(data.size(), list.size());
-        for (ClienteEntity entity : list) {
+        for (MascotaEntity entity : list) {
             boolean found = false;
-            for (ClienteEntity storedEntity : data) {
+            for (MascotaEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -138,48 +137,48 @@ public class ClienteLogicTest {
     }
 
     /**
-     * Prueba para consultar un Cliente.
+     * Prueba para consultar un Mascota
      */
     @Test
-    public void getClienteTest() {
-        ClienteEntity entity = data.get(0);
-        ClienteEntity resultEntity = clienteLogic.getCliente(entity.getId());
+    public void getMascotaTest() {
+        MascotaEntity entity = data.get(0);
+        MascotaEntity resultEntity = mascotaLogic.getMascota(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-        Assert.assertEquals(entity.getCedula(), resultEntity.getCedula());
     }
 
     /**
-     * Prueba para eliminar un Cliente.
+     * Prueba para eliminar un Empleado
      */
     @Test
-    public void deleteClienteTest() {
+    public void deleteAuthorTest() {
         try {
-            ClienteEntity entity = data.get(0);
-            clienteLogic.deleteCliente(entity.getId());
-            ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
+            MascotaEntity entity = data.get(0);
+            mascotaLogic.deleteMascota(entity.getId());
+            MascotaEntity deleted = em.find(MascotaEntity.class, entity.getId());
             Assert.assertNull(deleted);
         } catch (BusinessLogicException e) {
             fail();
         }
+
     }
 
     /**
-     * Prueba para actualizar un Cliente.
+     * Prueba para actualizar un Empleado
      */
-    public void updateClienteTest() {
-        ClienteEntity entity = data.get(0);
-        ClienteEntity pojoEntity = factory.manufacturePojo(ClienteEntity.class);
+    @Test
+    public void updateAuthorTest() {
+        MascotaEntity entity = data.get(0);
+        MascotaEntity pojoEntity = factory.manufacturePojo(MascotaEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        clienteLogic.updateCliente(entity.getId(), pojoEntity);
+        mascotaLogic.updateMascota(entity.getId(), pojoEntity);
 
-        ClienteEntity resp = em.find(ClienteEntity.class, entity.getId());
+        MascotaEntity resp = em.find(MascotaEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getCedula(), resp.getCedula());
     }
 }

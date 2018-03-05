@@ -52,7 +52,7 @@ public class MascotaPersistence {
         LOGGER.log(Level.INFO, "Consultando mascotas por nombre ", name);
 
         //Se crea un query para buscar mascotas con el nombre que recibe el metodo como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From MascotaEntity e where e.nombre = :name", MascotaEntity.class);
+        TypedQuery query = em.createQuery("Select e From MascotaEntity e where e.name = :name", MascotaEntity.class);
         // Se remplaza el placeholder ":name" con el valor del argumento 
         query = query.setParameter("name", name);
         // Se invoca el query se obtiene la lista resultado

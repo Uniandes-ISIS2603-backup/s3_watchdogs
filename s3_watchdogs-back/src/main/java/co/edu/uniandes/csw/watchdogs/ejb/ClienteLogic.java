@@ -48,7 +48,7 @@ public class ClienteLogic {
         if (persistence.findByCedula(entity.getCedula()) != null) {
             throw new BusinessLogicException("Ya existe un Cliente con la cedula \"" + entity.getCedula() + "\"");
         }
-        LOGGER.info("Termina el proceso de creacion de cliente");
+        LOGGER.info("Termina proceso de creacion de cliente");
         return persistence.create(entity);
     }
 
@@ -90,11 +90,10 @@ public class ClienteLogic {
      */
     public ClienteEntity updateCliente(Long id, ClienteEntity entity) {
         LOGGER.log(Level.INFO, "Inicia el proceso de actualizacion de un cliente con id={0}", id);
-        if (persistence.find(id) == null) {
-            LOGGER.log(Level.SEVERE, "El cliente con el id {0} no existe", id);
-        }
-        LOGGER.log(Level.INFO, "Termina el proceso de actualizacion de un cliente con id={0}", id);
-        return persistence.update(entity);
+
+        ClienteEntity newEntity = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina el proceso de actualizacion de un cliente con id={0}", entity.getId());
+        return newEntity;
     }
 
     /**
