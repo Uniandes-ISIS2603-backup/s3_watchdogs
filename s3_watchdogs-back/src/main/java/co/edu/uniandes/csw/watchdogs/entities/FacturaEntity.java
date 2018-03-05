@@ -26,17 +26,17 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     private Double valor;
     private Boolean pagado;
     
-    //@PodamExclude
-    //@OneToOne
-    //private MetodoDePagoEntity metodoDePago;
+    @PodamExclude
+    @OneToOne
+    private MetodoDePagoEntity metodoDePago;
     
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
     
-    //@PodamExclude
-    //@OneToOne
-    //private ServicioEntity servicio;
+    @PodamExclude
+    @OneToOne
+    private ServicioEntity servicio;
     
     
     public FacturaEntity(){
@@ -48,7 +48,7 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      */
     
     public void setValor(double valor){
-        this.valor = valor;
+        this.setValor((Double) valor);
     }
     
     /**
@@ -57,7 +57,7 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     
     
     public void setPago(boolean pagado){
-        this.pagado = pagado;
+        this.setPagado((Boolean) pagado);
     }
     
     /**
@@ -65,7 +65,7 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      * @return El valor de la factura 
      */
     
-    public double getValor(){
+    public Double getValor(){
         return valor;
     }
     
@@ -74,7 +74,7 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      * @return El estatus de pago de la factura 
      */
     
-    public boolean getPagado(){
+    public Boolean getPagado(){
         return pagado;
     }
     
@@ -95,6 +95,57 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     public void setCliente(ClienteEntity cliente){
         this.cliente = cliente;
     }
+
+    /**
+     * @param valor the valor to set
+     */
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    /**
+     * @param pagado the pagado to set
+     */
+    public void setPagado(Boolean pagado) {
+        this.pagado = pagado;
+    }
+
+    
+    
+    /**
+     * @return the metodoDePago
+     */
+    
+    /*
+    public MetodoDePagoEntity getMetodoDePago() {
+        return metodoDePago;
+    }*/
+
+    /**
+     * @param metodoDePago the metodoDePago to set
+     */
+    /*
+    public void setMetodoDePago(MetodoDePagoEntity metodoDePago) {
+        this.metodoDePago = metodoDePago;
+    }*/
+
+    /**
+     * @return the servicio
+     */
+    /*
+    public ServicioEntity getServicio() {
+        return servicio;
+    }
+    */
+
+    /**
+     * @param servicio the servicio to set
+     */
+    /*
+    public void setServicio(ServicioEntity servicio) {
+        this.servicio = servicio;
+    } */
+    
     
 }
 

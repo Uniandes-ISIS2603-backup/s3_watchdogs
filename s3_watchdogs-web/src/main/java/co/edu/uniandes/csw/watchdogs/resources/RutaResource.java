@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.RutaDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.RutaLogic;
+import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +21,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "rutas".
@@ -40,6 +44,10 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class RutaResource {
+    
+    @Inject 
+    private RutaLogic rutaLogic;
+    
     /**
      * <h1>POST /api/rutas : Crear una ruta.</h1>
      * 
@@ -63,7 +71,7 @@ public class RutaResource {
      */
     @POST
     public RutaDetailDTO createRuta(RutaDetailDTO ruta) throws BusinessLogicException {
-        return ruta;
+       return new RutaDetailDTO(rutaLogic.createRuta(ruta.toEntity()));
     }
 
     /**
@@ -79,7 +87,13 @@ public class RutaResource {
      */
     @GET
     public List<RutaDetailDTO> getRutas() {
-        return new ArrayList<>();
+        
+        List<RutaEntity> list = rutaLogic.getRutas();
+        List<RutaDetailDTO> dtoList = new ArrayList<RutaDetailDTO>();
+        for (RutaEntity entity : list) {
+            dtoList.add(new RutaDetailDTO(entity));
+        }
+        return dtoList;
     }
 
     /**
@@ -101,7 +115,11 @@ public class RutaResource {
     @GET
     @Path("{id: \\d+}")
     public RutaDetailDTO getRuta(@PathParam("id") Long id) {
-        return null;
+         RutaEntity entity = rutaLogic.getRuta(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /rutas/" + id + " no existe.", 404);
+        }
+        return new RutaDetailDTO(entity);
     }
     
     /**
@@ -120,11 +138,17 @@ public class RutaResource {
      * @param id Identificador de la ruta que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param ruta {@link RutaDetailDTO} La ruta que se desea guardar.
      * @return JSON {@link RutaDetailDTO} - La ruta guardada.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando la ruta no cumple las especificaciones.
      */
     @PUT
     @Path("{id: \\d+}")
-    public RutaDetailDTO updateRuta(@PathParam("id") Long id, RutaDetailDTO ruta){
-        return ruta;
+    public RutaDetailDTO updateRuta(@PathParam("id") Long id, RutaDetailDTO ruta) throws BusinessLogicException{
+        ruta.setId(id);
+        RutaEntity entity = rutaLogic.getRuta(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /rutas/" + id + " no existe.", 404);
+        }
+        return new RutaDetailDTO(rutaLogic.updateRuta(id, ruta.toEntity()));
     }
     
     /**
@@ -144,6 +168,10 @@ public class RutaResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deleteRuta(@PathParam("id") Long id) {
-        // Void
+        RutaEntity entity = rutaLogic.getRuta(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /rutas/" + id + " no existe.", 404);
+        }
+        rutaLogic.deleteRuta(id);
     }
 }

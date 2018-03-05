@@ -133,9 +133,10 @@ public class FacturaLogic {
     }
     
     public void checkValoresNulos(FacturaEntity entity) throws BusinessLogicException{
-        
-        if(entity.getCliente() == null /* ||entity.getServicio() || entity.getMetodoDePago() */)
+        /*
+        if(entity.getCliente() == null ||entity.getServicio() || entity.getMetodoDePago() )
             throw new BusinessLogicException("No se pueden crear facturas con entidades nulas");
+        */
     }
     
     /**

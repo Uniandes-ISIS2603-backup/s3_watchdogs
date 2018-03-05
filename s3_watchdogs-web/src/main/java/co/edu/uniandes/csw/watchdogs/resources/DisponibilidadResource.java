@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.DisponibilidadDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.DisponibilidadLogic;
+import co.edu.uniandes.csw.watchdogs.entities.DisponibilidadEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +21,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  * <pre>Clase que implementa el recurso "disponibilidades".
@@ -40,6 +44,11 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class DisponibilidadResource {
+    
+    @Inject 
+    private DisponibilidadLogic disponibilidadLogic;
+    
+    
     /**
      * <h1>POST /api/disponibilidades : Crear una disponibilidad.</h1>
      * 
@@ -63,7 +72,7 @@ public class DisponibilidadResource {
      */
     @POST
     public DisponibilidadDetailDTO createDisponibilidad(DisponibilidadDetailDTO disponibilidad) throws BusinessLogicException {
-        return disponibilidad;
+         return new DisponibilidadDetailDTO(disponibilidadLogic.createDisponibilidad(disponibilidad.toEntity()));
     }
 
     /**
@@ -79,7 +88,12 @@ public class DisponibilidadResource {
      */
     @GET
     public List<DisponibilidadDetailDTO> getDisponibilidades() {
-        return new ArrayList<>();
+         List<DisponibilidadEntity> list = disponibilidadLogic.getDisponibilidades();
+        List<DisponibilidadDetailDTO> dtoList = new ArrayList<DisponibilidadDetailDTO>();
+        for (DisponibilidadEntity entity : list) {
+            dtoList.add(new DisponibilidadDetailDTO(entity));
+        }
+        return dtoList;
     }
 
     /**
@@ -101,7 +115,11 @@ public class DisponibilidadResource {
     @GET
     @Path("{id: \\d+}")
     public DisponibilidadDetailDTO getDisponibilidad(@PathParam("id") Long id) {
-        return null;
+        DisponibilidadEntity entity = disponibilidadLogic.getDisponibilidad(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /disponibilidades/" + id + " no existe.", 404);
+        }
+        return new DisponibilidadDetailDTO(entity);
     }
     
     /**
@@ -120,11 +138,17 @@ public class DisponibilidadResource {
      * @param id Identificador de la dos´pmonoñodad que se desea actualizar.Este debe ser una cadena de dígitos.
      * @param disponibilidad {@link DisponibilidadDetailDTO} La disponibilidad que se desea guardar.
      * @return JSON {@link DisponibilidadDetailDTO} - La disponibilidad guardada.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando la disponibilidad no cumple las especificaciones.
      */
     @PUT
     @Path("{id: \\d+}")
-    public DisponibilidadDetailDTO updateDisponibilidad(@PathParam("id") Long id, DisponibilidadDetailDTO disponibilidad){
-        return disponibilidad;
+    public DisponibilidadDetailDTO updateDisponibilidad(@PathParam("id") Long id, DisponibilidadDetailDTO disponibilidad) throws BusinessLogicException{
+        disponibilidad.setId(id);
+        DisponibilidadEntity entity = disponibilidadLogic.getDisponibilidad(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /disponibilidades/" + id + " no existe.", 404);
+        }
+        return new DisponibilidadDetailDTO(disponibilidadLogic.updateDisponibilidad(id, disponibilidad.toEntity()));
     }
     
     /**
@@ -144,6 +168,10 @@ public class DisponibilidadResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deleteDisponibilidad(@PathParam("id") Long id) {
-        // Void
+        DisponibilidadEntity entity = disponibilidadLogic.getDisponibilidad(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /disponibilidades/" + id + " no existe.", 404);
+        }
+        disponibilidadLogic.deleteDisponibilidad(id);
     }
 }
