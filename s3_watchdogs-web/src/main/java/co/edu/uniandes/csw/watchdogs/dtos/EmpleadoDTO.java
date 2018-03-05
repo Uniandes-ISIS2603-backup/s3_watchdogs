@@ -44,7 +44,7 @@ public class EmpleadoDTO {
     private String nombre;
     private String cedula;
     private String imagen;
-    private int edad;
+    private Integer edad;
 
     //----- Constructor -----
     /**
@@ -105,7 +105,7 @@ public class EmpleadoDTO {
     /**
      * @param edad La nueva edad del empleado
      */
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 

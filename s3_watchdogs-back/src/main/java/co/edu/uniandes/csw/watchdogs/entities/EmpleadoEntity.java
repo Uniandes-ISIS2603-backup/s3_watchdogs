@@ -31,7 +31,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
 
     private String imagen;
     private String cedula;
-    private int edad;
+    private Integer edad;
 
     /**
      * Obtiene el atributo disponibilidad.
@@ -119,7 +119,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      *
      * @param edad nuevo valor del atributo edad.
      */
-    public void setEdad(int edad) {
+    public void setEdad(Integer edad) {
         this.edad = edad;
     }
 
