@@ -19,9 +19,6 @@ import uk.co.jemos.podam.common.PodamIntValue;
  */
 @Entity
 public class CentroDeEntrenamientoEntity extends LugarEntity implements Serializable {
-    
-     @PodamIntValue(minValue = 1)
-     private Integer tiempoEntreno;
      
      @PodamExclude
      @OneToMany(mappedBy = "centroDeEntrenamiento")
@@ -30,14 +27,6 @@ public class CentroDeEntrenamientoEntity extends LugarEntity implements Serializ
      @PodamExclude
      @OneToMany(mappedBy = "centroDeEntrenamiento")
      private List<HotelEntity> hoteles;
-
-    public Integer getTiempoEntreno() {
-        return tiempoEntreno;
-    }
-
-    public void setTiempoEntreno(Integer tiempoEntreno) {
-        this.tiempoEntreno = tiempoEntreno;
-    }
 
     public List<EntrenamientoEntity> getEntrenamientos() {
         return entrenamientos;

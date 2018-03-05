@@ -5,14 +5,13 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
-import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
-import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.CentroDeEntrenamientoPersistence;
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,12 +70,13 @@ public class CentroDeEntrenamientoLogic {
      */
     public CentroDeEntrenamientoEntity createCentroDeEntrenamiento(CentroDeEntrenamientoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de CentroDeEntrenamiento");
-        
+        validar(entity.getId(),entity.getName(), entity.getUsuariosEnServicio(), entity.getCapacidadMaxima(), entity.getDireccion());
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de CentroDeEntrenamiento");
         return entity;
     }
     
+   
     /**
      * Actualizar un CentroDeEntrenamiento por ID
      * @param id El ID del CentroDeEntrenamiento a actualizar
@@ -86,10 +86,17 @@ public class CentroDeEntrenamientoLogic {
      */
     public CentroDeEntrenamientoEntity updateCentroDeEntrenamiento(Long id, CentroDeEntrenamientoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar CentroDeEntrenamiento con id={0}", id);
-        
+        validar(entity.getId(),entity.getName(), entity.getUsuariosEnServicio(), entity.getCapacidadMaxima(), entity.getDireccion());
         CentroDeEntrenamientoEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar CentroDeEntrenamiento con id={0}", entity.getId());
         return newEntity;
+    }
+    
+     public void validar(Long id, String nombre, Integer usuariosEnServicio, Integer capMax, String direccion)throws BusinessLogicException{
+        if(id<0) throw new BusinessLogicException ("El id es negativo");
+        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
+        else if(usuariosEnServicio>capMax) throw new BusinessLogicException ("Los usuarios en servicio no pueden ser mayores que la capacidad máxima");
+        else if(direccion.length()>50) throw new BusinessLogicException ("La direccion es muy grande");  
     }
     
     /**
@@ -116,9 +123,10 @@ public class CentroDeEntrenamientoLogic {
         throw new BusinessLogicException("El entrenamiento no está asociado al centro de entrenamiento");
     }
     
-    public EntrenamientoEntity addEntrenamiento(Long idC,Long idE){
+    public EntrenamientoEntity addEntrenamiento(Long idC,Long idE)throws BusinessLogicException{
         CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(idC);
         EntrenamientoEntity entrenamientoEntity = entrenamientoLogic.getEntrenamiento(idE);
+        validarServicios(entrenamientoEntity.getId(), entrenamientoEntity.getName(), entrenamientoEntity.getFecha(),entrenamientoEntity.getCosto(),entrenamientoEntity.getDuracion());
         entrenamientoEntity.setCentroDeEntrenamiento(centroDeEntrenamientoEntity);
         return entrenamientoEntity;
     }
@@ -136,13 +144,14 @@ public class CentroDeEntrenamientoLogic {
         return entrenamientos;
     }
     
-    public void removeEntenamiento(Long entrenamientoId, Long centroDeEntrenamientoId) {
+    public void removeEntrenamiento(Long entrenamientoId, Long centroDeEntrenamientoId) {
         CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
         EntrenamientoEntity entrenamiento = entrenamientoLogic.getEntrenamiento(entrenamientoId);
         entrenamiento.setCentroDeEntrenamiento(null);
         centroDeEntrenamientoEntity.getEntrenamientos().remove(entrenamiento);
     }
     
+         
     /**
      * Agregar un Hotel al CentroDeEntrenamiento
      *
@@ -151,9 +160,11 @@ public class CentroDeEntrenamientoLogic {
      * hotel.
      * @return El hotel que fue agregado al CentroDeEntrenamiento.
      */
-    public HotelEntity addHotel(Long hotelId, Long centroDeEntrenamientoId) {
+    public HotelEntity addHotel(Long hotelId, Long centroDeEntrenamientoId) throws BusinessLogicException {
         CentroDeEntrenamientoEntity CentroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
         HotelEntity hotelEntity = hotelLogic.getHotel(hotelId);
+        validarServicios(hotelEntity.getId(), hotelEntity.getName(), hotelEntity.getFecha(),hotelEntity.getCosto(),hotelEntity.getDuracion());
+        validarHotel(hotelEntity.getTiempoHospedaje());
         hotelEntity.setCentroDeEntrenamiento(CentroDeEntrenamientoEntity);
         return hotelEntity;
     }
@@ -218,5 +229,19 @@ public class CentroDeEntrenamientoLogic {
         }
         throw new BusinessLogicException("El hotel no está asociado al CentroDeEntrenamiento");
 
+    }
+    
+    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException{
+        Date todayDate = Calendar.getInstance().getTime();
+        if(todayDate.before(fecha)) throw new BusinessLogicException ("La fecha ingresada no es valida");
+        else if(id<0) throw new BusinessLogicException ("El id es invalido");
+        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
+        else if(costo<0) throw new BusinessLogicException ("El costo es invalido");
+        else if(duracion <0) throw new BusinessLogicException ("La duracion es invalida");
+        
+    }
+     
+    public void validarHotel(Integer tHospedaje)throws BusinessLogicException{
+        if(tHospedaje <24) throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
     }
 }

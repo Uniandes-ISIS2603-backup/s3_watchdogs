@@ -6,10 +6,16 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.CentroDeEntrenamientoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.CentroDeEntrenamientoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.watchdogs.persistence.CentroDeEntrenamientoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -28,6 +35,12 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class CentroDeEntrenamientoResource {
+    
+    @Inject
+    private CentroDeEntrenamientoLogic centroDeEntrenamientoLogic;
+    
+    private static final Logger LOGGER = Logger.getLogger(CentroDeEntrenamientoPersistence.class.getName());
+
     
     /**
      * <h1>POST /api/centrosDeEntrenamiento : Crear un CentroDeEntrenamiento.</h1>
@@ -52,7 +65,9 @@ public class CentroDeEntrenamientoResource {
      */
     @POST
     public CentroDeEntrenamientoDetailDTO createCentroDeEntrenamiento(CentroDeEntrenamientoDetailDTO centroDeEntrenamiento) throws BusinessLogicException {
-        return centroDeEntrenamiento;
+        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = centroDeEntrenamiento.toEntity();
+        CentroDeEntrenamientoEntity nuevoCentroDeEntrenamiento = centroDeEntrenamientoLogic.createCentroDeEntrenamiento(centroDeEntrenamientoEntity);
+        return new CentroDeEntrenamientoDetailDTO(nuevoCentroDeEntrenamiento);    
     }
 
     /**
@@ -68,7 +83,7 @@ public class CentroDeEntrenamientoResource {
      */
     @GET
     public List<CentroDeEntrenamientoDetailDTO> getCentrosDeEntrenamiento() {
-        return new ArrayList<>();
+        return listEntity2DetailDTO(centroDeEntrenamientoLogic.getCentrosDeEntrenamientos());
     }
 
     /**
@@ -89,8 +104,12 @@ public class CentroDeEntrenamientoResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CentroDeEntrenamientoDetailDTO getCentroDeEntrenamiento(@PathParam("id") Long id) {
-        return null;
+    public CentroDeEntrenamientoDetailDTO getCentroDeEntrenamiento(@PathParam("id") Long id)throws WebApplicationException {
+        CentroDeEntrenamientoEntity entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no existe.", 404);
+        }
+        return new CentroDeEntrenamientoDetailDTO(centroDeEntrenamientoLogic.getCentroDeEntrenamiento(id));
     }
     
     /**
@@ -113,8 +132,13 @@ public class CentroDeEntrenamientoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public CentroDeEntrenamientoDetailDTO updateCentroDeEntrenamiento(@PathParam("id") Long id, CentroDeEntrenamientoDetailDTO centroDeEntrenamiento) throws BusinessLogicException {
-        return centroDeEntrenamiento;
+    public CentroDeEntrenamientoDetailDTO updateCentroDeEntrenamiento(@PathParam("id") Long id, CentroDeEntrenamientoDetailDTO centroDeEntrenamiento) throws WebApplicationException, BusinessLogicException {
+        centroDeEntrenamiento.setId(id);
+        CentroDeEntrenamientoEntity entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no existe.", 404);
+        }
+        return new CentroDeEntrenamientoDetailDTO(centroDeEntrenamientoLogic.updateCentroDeEntrenamiento(id, centroDeEntrenamiento.toEntity()));
     }
     
     /**
@@ -134,7 +158,69 @@ public class CentroDeEntrenamientoResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deleteCentroDeEntrenamiento(@PathParam("id") Long id) {
-        // Void
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un CentroDeEntrenamiento con id {0}", id);
+        CentroDeEntrenamientoEntity entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no existe.", 404);
+        }
+        centroDeEntrenamientoLogic.deleteCentroDeEntrenamiento(id);
+    }
+     
+     /**
+     * Conexión con el servicio de entrenamientos para un CentroDeEntrenamiento. {@link ReviewResource}
+     * 
+     * Este método conecta la ruta de /centrosDeEntrenamiento con las rutas de /entrenamientos que dependen
+     * del CentroDeEntrenamiento, es una redirección al servicio que maneja el segmento de la 
+     * URL que se encarga de los libros.
+     * 
+     * @param centrosDeEntrenamientoId El ID del CentroDeEntrenamiento con respecto al cual se accede al servicio.
+     * @return El servicio de entrenamientos para esa CentroDeEntrenamiento en paricular.
+     */
+    @Path("{centrosDeEntrenamientoId: \\d+}/entrenamientos")
+    public Class<CentroDeEntrenamientoEntrenamientosResource> getCentroDeEntrenamientoEntrenamientosResource(@PathParam("centrosDeEntrenamientoId") Long centrosDeEntrenamientoId) {
+        CentroDeEntrenamientoEntity entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(centrosDeEntrenamientoId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + centrosDeEntrenamientoId + " no existe.", 404);
+        }
+        return CentroDeEntrenamientoEntrenamientosResource.class;
+    }
+    
+    /**
+     * Conexión con el servicio de hoteles para un CentroDeEntrenamiento. {@link ReviewResource}
+     * 
+     * Este método conecta la ruta de /centrosDeEntrenamiento con las rutas de /hoteles que dependen
+     * del CentroDeEntrenamiento, es una redirección al servicio que maneja el segmento de la 
+     * URL que se encarga de los libros.
+     * 
+     * @param centrosDeEntrenamientoId El ID del CentroDeEntrenamiento con respecto al cual se accede al servicio.
+     * @return El servicio de entrenamientos para esa CentroDeEntrenamiento en paricular.
+     */
+    @Path("{centrosDeEntrenamientoId: \\d+}/hoteles")
+    public Class<CentroDeEntrenamientoHotelesResource> getCentroDeEntrenamientoHotelesResource(@PathParam("centrosDeEntrenamientoId") Long centrosDeEntrenamientoId) {
+        CentroDeEntrenamientoEntity entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(centrosDeEntrenamientoId);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + centrosDeEntrenamientoId + " no existe.", 404);
+        }
+        return CentroDeEntrenamientoHotelesResource.class;
+    }
+     
+     /**
+     *
+     * lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos CentroDeEntrenamientoEntity a una lista de
+     * objetos CentroDeEntrenamientoDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de CentroDeEntrenamientoes de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de CentroDeEntrenamientoes en forma DTO (json)
+     */
+    private List<CentroDeEntrenamientoDetailDTO> listEntity2DetailDTO(List<CentroDeEntrenamientoEntity> entityList) {
+        List<CentroDeEntrenamientoDetailDTO> list = new ArrayList<>();
+        for (CentroDeEntrenamientoEntity entity : entityList) {
+            list.add(new CentroDeEntrenamientoDetailDTO(entity));
+        }
+        return list;
     }
     
 }
