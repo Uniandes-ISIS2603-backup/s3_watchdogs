@@ -21,6 +21,7 @@ import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
  *  {
  *      "id": number,
  *      "nombre": sttring,
+ *      "cedula": string,
  *      "imagen": string,
  *      "edad": integer
  *      "clasificacion": number,
@@ -33,6 +34,7 @@ import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
  *  {
  *      "id": 95873,
  *      "nombre": "Camilo",
+ *      "cedula": "1020123456",
  *      "imagen": "abg.jpg",
  *      "edad": 24
  *      "horarios": "No se como es"

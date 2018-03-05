@@ -17,6 +17,7 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
  *  {
  *      "id": number,
  *      "nombre": sttring,
+ *      "cedula": string,
  *      "imagen": string,
  *      "edad": integer
  *      "horarios": string
@@ -28,6 +29,7 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
  *  {
  *      "id": 95873,
  *      "nombre": "Camilo",
+ *      "cedula": "1010123456",
  *      "imagen": "abg.jpg",
  *      "edad": 24
  *      "horarios": "No se como es"
@@ -39,6 +41,7 @@ public class EmpleadoDTO {
     //----- Atributos -----
     private Long id;
     private String nombre;
+    private String cedula;
     private String imagen;
     private int edad;
     
@@ -59,6 +62,7 @@ public class EmpleadoDTO {
     public EmpleadoDTO(EmpleadoEntity empleado) {
         this.id = empleado.getId();
         this.nombre = empleado.getName();
+        this.cedula = empleado.getCedula();
         this.imagen = empleado.getImagen();
     }
    
@@ -129,9 +133,24 @@ public class EmpleadoDTO {
         EmpleadoEntity entity = new EmpleadoEntity();
         entity.setId(this.id);
         entity.setName(this.nombre);
+        entity.setCedula(this.cedula);
         entity.setImagen(this.imagen);
         entity.setEdad(this.edad);
         return entity;
+    }
+
+    /**
+     * @return the cedula
+     */
+    public String getCedula() {
+        return cedula;
+    }
+
+    /**
+     * @param cedula the cedula to set
+     */
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
     
 }

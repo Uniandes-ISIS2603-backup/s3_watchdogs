@@ -28,15 +28,16 @@ import javax.ws.rs.core.MediaType;
  * <pre>Clase que implementa el recurso "empleados".
  * URL: /api/empleados
  * </pre>
- * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta "/api" y
- * este recurso tiene la ruta "empleados".</i>
+ * <i>Note que la aplicación (definida en {@link RestConfig}) define la ruta
+ * "/api" y este recurso tiene la ruta "empleados".</i>
  *
  * <h2>Anotaciones </h2>
  * <pre>
  * Path: indica la dirección después de "api" para acceder al recurso
  * Produces/Consumes: indica que los servicios definidos en este recurso reciben y devuelven objetos en formato JSON
- * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio). 
+ * RequestScoped: Inicia una transacción desde el llamado de cada método (servicio).
  * </pre>
+ *
  * @author ca.beltran10
  * @version 1.0
  */
@@ -45,128 +46,143 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class EmpleadoResource {
-    
+
     @Inject
     private EmpleadoLogic empleadoLogic;
-    
+
     /**
      * Convierte una lista de EmpleadoEntity a una lista de EmpleadoDetailDTO
-     * 
+     *
      * @param entityList Lista de EmpleadoEntity a convertir.
      * @return Lista de EmpleadoDetailDTO convertida.
      */
     private List<EmpleadoDetailDTO> listEntity2DTO(List<EmpleadoEntity> entityList) {
         List<EmpleadoDetailDTO> list = new ArrayList<>();
-        for(EmpleadoEntity entity : entityList) {
+        for (EmpleadoEntity entity : entityList) {
             list.add(new EmpleadoDetailDTO(entity));
         }
         return list;
     }
-        /**
+
+    /**
      * <h1>POST /api/empleados : Crear un empleado.</h1>
-     * 
+     *
      * <pre>Cuerpo de peticion: JSON{@link EmpleadoDetailDTO}.
-     * 
+     *
      * Crea un nuevo empleado con la informacion que se recibe en el cuerpo
      * de la peticion y se regresa un objeto identico con un id auto-generado
      * por la base de datos.
-     * 
+     *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Creo el nuevo empleado.
      * </code>
      * </pre>
-     * 
-     * @param empleado {@link EmpleadoDetailDTO} - El empleado que se desea guardar.
-     * @return JSON {@link EmpleadoDetailDTO} - El empleado guardado con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de logica que se genera cuando ya existe la ciudad.
+     *
+     * @param empleado {@link EmpleadoDetailDTO} - El empleado que se desea
+     * guardar.
+     * @return JSON {@link EmpleadoDetailDTO} - El empleado guardado con el
+     * atributo id autogenerado.
      */
     @POST
-    public EmpleadoDetailDTO createEmpleado( EmpleadoDetailDTO empleado ) throws BusinessLogicException {
-        return new EmpleadoDetailDTO(empleadoLogic.createEmpleado(empleado.toEntity()));
+    public EmpleadoDetailDTO createEmpleado(EmpleadoDetailDTO empleado) {
+        try {
+            return new EmpleadoDetailDTO(empleadoLogic.createEmpleado(empleado.toEntity()));
+        } catch (BusinessLogicException e) {
+            throw new WebApplicationException("El empleado no existe", 404);
+        }
     }
-    
-        /**
+
+    /**
      * <h1>GET /api/empleados : Obtener todos los empleados.</h1>
-     * 
+     *
      * <pre>Busca y devuelve todos los empleados que existen en la aplicacion.
-     * 
+     *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve todos los empleados de la aplicacion.</code> 
+     * 200 OK Devuelve todos los empleados de la aplicacion.</code>
      * </pre>
-     * @return JSONArray {@link CityDetailDTO} - Los empleados encontrados en la aplicación. Si no hay ninguno retorna una lista vacía.
+     *
+     * @return JSONArray {@link CityDetailDTO} - Los empleados encontrados en la
+     * aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
     public List<EmpleadoDetailDTO> getEmpleados() {
         return listEntity2DTO(empleadoLogic.getEmpleados());
     }
-    
-     /**
+
+    /**
      * <h1>GET /api/empleados/{id} : Obtener empleado por id.</h1>
-     * 
+     *
      * <pre>Busca el empleado con el id asociado recibido en la URL y la devuelve.
-     * 
+     *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve el empleado correspondiente al id.
-     * </code> 
+     * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found No existe un empleado con el id dado.
-     * </code> 
+     * </code>
      * </pre>
-     * @param id Identificador del empleado que se esta buscando. Este debe ser una cadena de dígitos.
+     *
+     * @param id Identificador del empleado que se esta buscando. Este debe ser
+     * una cadena de dígitos.
      * @return JSON {@link EmpleadoDetailDTO} - El empleado buscado
      */
     @GET
     @Path("{id: \\d+}")
     public EmpleadoDetailDTO getEmpleado(@PathParam("id") Long id) {
         EmpleadoEntity entity = empleadoLogic.getEmpleado(id);
-        if(entity == null) {
+        if (entity == null) {
             throw new WebApplicationException("El empleado no existe", 404);
         }
         return new EmpleadoDetailDTO(entity);
     }
-    
-     /**
+
+    /**
      * <h1>PUT /api/empleados/{id} : Actualizar empleado con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link EmpleadoDetailDTO}.
-     * 
+     *
      * Actualiza el empleado con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
-     * 
+     *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza el empleado con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * 200 OK Actualiza el empleado con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found. No existe un empleado con el id dado.
-     * </code> 
+     * </code>
      * </pre>
-     * @param id Identificador del empleado que se desea actualizar. Este debe ser una cadena de dígitos.
-     * @param empleado {@link EmpleadoDetailDTO} El empleado que se desea guardar.
+     *
+     * @param id Identificador del empleado que se desea actualizar. Este debe
+     * ser una cadena de dígitos.
+     * @param empleado {@link EmpleadoDetailDTO} El empleado que se desea
+     * guardar.
      * @return JSON {@link EmpleadoDetailDTO} - El empleado guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera al no poder actualizar el empleado porque ya existe una con ese nombre.
+     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
+     * Error de lógica que se genera al no poder actualizar el empleado porque
+     * ya existe una con ese nombre.
      */
     @PUT
-    
+
     @Path("{id: \\d+}")
-    public EmpleadoDetailDTO updateEmpleado(@PathParam("id") Long id, EmpleadoDetailDTO empleado) throws BusinessLogicException {
+    public EmpleadoDetailDTO updateEmpleado(@PathParam("id") Long id, EmpleadoDetailDTO empleado) {
         EmpleadoEntity entity = empleado.toEntity();
         entity.setId(id);
         EmpleadoEntity oldEntity = empleadoLogic.getEmpleado(id);
-        if(oldEntity == null) {
+        if (oldEntity == null) {
             throw new WebApplicationException("El empleado no existe", 404);
         }
         entity.setDisponibilidad(oldEntity.getDisponibilidad());
         entity.setCalificacion(oldEntity.getCalificacion());
         entity.setServicio(oldEntity.getServicio());
-        return new EmpleadoDetailDTO(empleadoLogic.updateEmpleado(entity));
+        return new EmpleadoDetailDTO(empleadoLogic.updateEmpleado(id, entity));
     }
-    
+
     /**
      * <h1>DELETE /api/cities/{id} : Borrar empleado por id.</h1>
-     * 
+     *
      * <pre>Borra el empleado con el id asociado recibido en la URL.
-     * 
+     *
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Elimina el empleado correspondiente al id dado.</code>
@@ -174,16 +190,18 @@ public class EmpleadoResource {
      * 404 Not Found. No existe un empleado con el id dado.
      * </code>
      * </pre>
-     * @param id Identificador del empleado que se desea borrar. Este debe ser una cadena de dígitos.
+     *
+     * @param id Identificador del empleado que se desea borrar. Este debe ser
+     * una cadena de dígitos.
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteEmpleado(@PathParam("id") Long id) {
-        EmpleadoEntity entity = empleadoLogic.getEmpleado(id);
-        if(entity == null) {
+    public void deleteEmpleado(@PathParam("id") Long id) {
+        try {
+            empleadoLogic.deleteEmpleado(id);
+        } catch (BusinessLogicException e) {
             throw new WebApplicationException("El empleado no existe", 404);
         }
-        empleadoLogic.deleteEmpleado(id);
     }
-     
+
 }

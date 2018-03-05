@@ -83,12 +83,14 @@ public class ClienteResource {
      * guardar.
      * @return JSON {@link ClienteDetailDTO} - El cliente guardado con el
      * atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de logica que se genera cuando ya existe la ciudad.
      */
     @POST
-    public ClienteDetailDTO createCliente(ClienteDetailDTO cliente) throws BusinessLogicException {
-        return new ClienteDetailDTO(clienteLogic.createCliente(cliente.toEntity()));
+    public ClienteDetailDTO createCliente(ClienteDetailDTO cliente) {
+        try {
+            return new ClienteDetailDTO(clienteLogic.createCliente(cliente.toEntity()));
+        } catch (BusinessLogicException e) {
+            throw new WebApplicationException("El cliente con cedula " + cliente.getCedula() + " ya existe.", 404);
+        }
     }
 
     /**
@@ -155,9 +157,6 @@ public class ClienteResource {
      * ser una cadena de dígitos.
      * @param cliente {@link ClienteDetailDTO} El cliente que se desea guardar.
      * @return JSON {@link ClienteDetailDTO} - El cliente guardado.
-     * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} -
-     * Error de lógica que se genera al no poder actualizar el cliente porque ya
-     * existe una con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
@@ -194,12 +193,12 @@ public class ClienteResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException {
-        ClienteEntity entity = clienteLogic.getCliente(id);
-        if (entity == null) {
+    public void deleteCliente(@PathParam("id") Long id) {
+        try {
+            clienteLogic.deleteCliente(id);
+        } catch (Exception e) {
             throw new WebApplicationException("El cliente no existe", 404);
         }
-        clienteLogic.deleteCliente(id);
     }
 
 }

@@ -6,32 +6,113 @@
 package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
+import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.watchdogs.persistence.EmpleadoPersistence;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
+ * Clase que implementa la conexion con la persistencia para la entidad
+ * Empleado.
  *
  * @author ca.beltran10
  */
+@Stateless
 public class EmpleadoLogic {
 
-    public EmpleadoEntity createEmpleado(EmpleadoEntity toEntity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static final Logger LOGGER = Logger.getLogger(EmpleadoLogic.class.getName());
+
+    @Inject
+    private EmpleadoPersistence persistence;
+
+    /**
+     * Crea un empleado en la persistencia.
+     *
+     * @param entity La entidad que representa el empleado a persistir.
+     * @return La entidad del empleado luego de persistirla.
+     * @throws BusinessLogicException Si el empleado a persistir ya existe.
+     */
+    public EmpleadoEntity createEmpleado(EmpleadoEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creacion de empleado");
+        if (persistence.findByCedula(entity.getCedula()) != null) {
+            throw new BusinessLogicException("Ya existe un Empleado con la cedula \"" + entity.getCedula() + "\"");
+        }
+        LOGGER.info("Termina proceso de creacion de empleado");
+        return persistence.create(entity);
     }
 
+    /**
+     * Obtener todos los empleados existentes en la base de datos.
+     *
+     * @return una lista de empleados.
+     */
     public List<EmpleadoEntity> getEmpleados() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LOGGER.info("Inicia proceso de consultar todos los empleados");
+        List<EmpleadoEntity> empleados = persistence.findAll();
+        LOGGER.info("Termina proceso de consultar todos los empleados");
+        return empleados;
     }
 
+    /**
+     * Obtener un empleado por medio de su id.
+     *
+     * @param id: id del empleado para ser buscado.
+     * @return El empleado solicitado por medio de su id.
+     */
     public EmpleadoEntity getEmpleado(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        LOGGER.log(Level.INFO, "Iicia proceso de consultar empleado con id={0}", id);
+        EmpleadoEntity empleado = persistence.find(id);
+        if (empleado == null) {
+            LOGGER.log(Level.SEVERE, "El empleado con el id {0} no existe", id);
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de consultar empleado con id={0}", id);
+        return empleado;
     }
 
-    public EmpleadoEntity updateEmpleado(EmpleadoEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Actualizar un empleado.
+     *
+     * @param id: id del empleado para buscarlo en la base de datos.
+     * @param entity: empleado con los cambios para ser actualizado, por ejemplo
+     * el nombre.
+     * @return el empleado con los cambios actualizados en la base de datos.
+     */
+    public EmpleadoEntity updateEmpleado(Long id, EmpleadoEntity entity) {
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar empleado con id={0}", id);
+        EmpleadoEntity newEntity = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar empleado con id={0}", entity.getId());
+        return newEntity;
     }
 
-    public void deleteEmpleado(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Borrar un empleado.
+     *
+     * @param id: id del empleado a borrar
+     * @throws BusinessLogicException Si el empleado a borrar tiene servicios.
+     */
+    public void deleteEmpleado(Long id) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar empleado con id={0}", id);
+        ServicioEntity servicios = getServicio(id);
+        if (servicios == null) {
+            persistence.delete(id);
+        } else {
+            throw new BusinessLogicException("No se puede borrar el empleado con id " + id + " porque tiene servicios asociados");
+        }
+        LOGGER.log(Level.INFO, "Termina proceso de borrar empleado con id={0}", id);
     }
-    
+
+    /**
+     * Retorna el servicio asociado a un empleado.
+     *
+     * @param empleadoId El id del empleado buscado.
+     * @return El serivicio del empleado.
+     */
+    public ServicioEntity getServicio(Long empleadoId) {
+        return getEmpleado(empleadoId).getServicio();
+    }
+
 }

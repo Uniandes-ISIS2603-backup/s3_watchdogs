@@ -42,25 +42,22 @@ public class EmpleadoPersistence {
     }
     
     /**
-     * Busca si hay algun empleado con el nombre que se envia de argumento
+     * Busca si hay algun empleado con la cedula que se envia de argumento
      * 
-     * @param name: Nombre del empleado que se esta buscando
-     * @return null si no existe ningun empleado con el nombre del argumento. Si
+     * @param cedula: Cedula del empleado que se esta buscando
+     * @return null si no existe ningun empleado con la del argumento. Si
      * existe alguno devuelve el primero.
      */
-    public EmpleadoEntity findByName(String name) {
-        LOGGER.log(Level.INFO, "Consultando empleado por nombre ", name);
+    public EmpleadoEntity findByCedula(String cedula) {
+        LOGGER.log(Level.INFO, "Consultando empleado por cedula ", cedula);
         
-        //Se crea un query para buscar empleados con el nombre que recibe el metodo como argumento. ":name" es un placeholder que debe ser remplazado
-        TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.nombre = :name", EmpleadoEntity.class);
-        // Se remplaza el placeholder ":name" con el valor del argumento 
-        query = query.setParameter("name", name);
-        // Se invoca el query se obtiene la lista resultado
-        List<EmpleadoEntity> sameName = query.getResultList();
-        if (sameName.isEmpty()) {
+        TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.cedula = :cedula", EmpleadoEntity.class);
+        query = query.setParameter("cedula", cedula);
+        List<EmpleadoEntity> sameCedula = query.getResultList();
+        if (sameCedula.isEmpty()) {
             return null;
         } else {
-            return sameName.get(0);
+            return sameCedula.get(0);
         }
     }
     

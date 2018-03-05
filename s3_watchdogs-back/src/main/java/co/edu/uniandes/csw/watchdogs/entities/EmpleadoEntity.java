@@ -33,6 +33,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     private ServicioEntity servicio;
 
     private String imagen;
+    private String cedula;
     private int edad;
 
     /**
@@ -123,6 +124,24 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      */
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    /**
+     * Obtiene el atributo cedula.
+     * 
+     * @return atributo cedula.
+     */
+    public String getCedula() {
+        return cedula;
+    }
+
+    /**
+     * Establece el valor del atributo cedula.
+     * 
+     * @param cedula nuevo valor del atributo.
+     */
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
 }
