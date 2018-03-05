@@ -27,6 +27,7 @@ public class PaseoEntity extends ServicioEntity implements Serializable {
     @PodamStringValue(length = 11)
     private List<String> horas;
     
+    
     @PodamExclude
     //TODO: mappedBy
     @OneToMany

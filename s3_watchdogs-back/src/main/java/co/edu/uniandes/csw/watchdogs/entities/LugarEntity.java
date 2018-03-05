@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
  *
@@ -23,7 +24,9 @@ public abstract class LugarEntity extends BaseEntity  implements Serializable{
     
     protected String direccion;
     protected List<String> fotos;
+    @PodamIntValue(minValue = 120, maxValue = 120)
     private Integer capacidadMaxima;
+    @PodamIntValue(maxValue = 120)
     private Integer usuariosEnServicio;
     
     public LugarEntity(){}

@@ -170,7 +170,7 @@ public class PaseoLogic {
     
     public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException{
         Date todayDate = Calendar.getInstance().getTime();
-        if(todayDate.before(fecha)) throw new BusinessLogicException ("La fecha ingresada no es valida");
+        if(fecha.before(todayDate)) throw new BusinessLogicException ("La fecha ingresada no es valida");
         else if(id<0) throw new BusinessLogicException ("El id es invalido");
         else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
         else if(costo<0) throw new BusinessLogicException ("El costo es invalido");
