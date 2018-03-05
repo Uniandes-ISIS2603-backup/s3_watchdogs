@@ -164,7 +164,7 @@ public class FacturaLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-        //Assert.assertTrue(resultEntity.getPagado() == entity.getPagado());
+        Assert.assertTrue(resultEntity.getPagado() == entity.getPagado());
         Assert.assertEquals(resultEntity.getValor(), entity.getValor(),0);
 
     }
