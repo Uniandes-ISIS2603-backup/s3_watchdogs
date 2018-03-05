@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.watchdogs.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -34,10 +35,11 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private List<MetodoDePagoEntity> metodosDePago = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<FacturaEntity> facturas = new ArrayList<>();
 
-    @OneToOne
+    @PodamExclude
+    @OneToOne(cascade = CascadeType.PERSIST)
     private CalificacionEntity calificacion = new CalificacionEntity();
 
     private String cedula;
