@@ -150,6 +150,8 @@ public class EntrenamientoLogicTest {
         EntrenamientoEntity entity = em.find(EntrenamientoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getTransporte(), entity.getTransporte());
+        Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
     }
 
     /**
@@ -184,6 +186,9 @@ public class EntrenamientoLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getFecha(), resultEntity.getFecha());
+        Assert.assertEquals(entity.getTransporte(), resultEntity.getTransporte());
+        Assert.assertEquals(entity.getTipo(), resultEntity.getTipo());
+
     }
 
     /**
@@ -203,6 +208,7 @@ public class EntrenamientoLogicTest {
      * Prueba para actualizar un Book
      *
      *
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @Test
     public void updateEntrenamientoTest() throws BusinessLogicException {
@@ -217,5 +223,7 @@ public class EntrenamientoLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
+        Assert.assertEquals(pojoEntity.getHora(), resp.getHora());
+        Assert.assertEquals(pojoEntity.getTransporte(), resp.getTransporte());
     }
 }

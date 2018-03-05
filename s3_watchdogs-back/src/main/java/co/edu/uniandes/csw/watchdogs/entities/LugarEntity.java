@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ import javax.persistence.MappedSuperclass;
  *
  * @author js.vacat
  */
-@MappedSuperclass
+@Entity
 public abstract class LugarEntity extends BaseEntity  implements Serializable{
     
     

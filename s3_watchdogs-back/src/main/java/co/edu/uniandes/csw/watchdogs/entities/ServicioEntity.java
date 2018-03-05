@@ -6,9 +6,11 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import co.edu.uniandes.csw.watchdogs.podam.DateStrategy;
+import co.edu.uniandes.csw.watchdogs.podam.DateTarjetaStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
@@ -21,7 +23,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  *
  * @author c.martinezc1
  */
-@MappedSuperclass
+@Entity
 public abstract class ServicioEntity extends BaseEntity implements Serializable{
       
     @Temporal(TemporalType.DATE)
