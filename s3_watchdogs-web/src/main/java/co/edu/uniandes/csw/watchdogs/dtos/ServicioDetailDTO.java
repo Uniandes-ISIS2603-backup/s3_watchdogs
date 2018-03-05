@@ -13,7 +13,7 @@ import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
  * @author c.martinezc1
  */
 public abstract class ServicioDetailDTO extends ServicioDTO{
-   /* 
+    
     protected MascotaDTO mascota;
     
     protected ClienteDTO cliente;
@@ -26,7 +26,6 @@ public abstract class ServicioDetailDTO extends ServicioDTO{
     
     /**
      * Constructor por defecto
-     * @param entity
      */
     public ServicioDetailDTO(){
         super();
@@ -38,8 +37,6 @@ public abstract class ServicioDetailDTO extends ServicioDTO{
      */
     public ServicioDetailDTO(ServicioEntity entity){
     super(entity);
-    }
-    /*
     if(entity.getCalificacion() != null){
         this.calificacion = new CalificacionDTO(entity.getCalificacion());    
     }
@@ -106,7 +103,7 @@ public abstract class ServicioDetailDTO extends ServicioDTO{
     public void setEmpleado(EmpleadoDTO empleado) {
         this.empleado = empleado;
     }
-    */
+    
     @Override
     public ServicioEntity toEntity(){
         ServicioEntity servicio = super.toEntity();
