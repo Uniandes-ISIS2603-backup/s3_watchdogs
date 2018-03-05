@@ -7,10 +7,13 @@ package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.PayPalDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.PseDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.PseLogic;
+import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -30,6 +34,8 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class PseResource {
+    @Inject
+    private PseLogic pseLogic;
     
     /**
      * <h1>POST /api/pse : Crear un método de pago Pse.</h1>
@@ -55,7 +61,7 @@ public class PseResource {
     @POST
     public PseDetailDTO createPse(PseDetailDTO pse) throws BusinessLogicException
     {
-        return pse;
+        return new PseDetailDTO(pseLogic.createPse(pse.toEntity()));
     }
     
      /**
@@ -71,7 +77,7 @@ public class PseResource {
      */
     @GET
     public List<PseDetailDTO> getPses() {
-        return new ArrayList<>();
+        return listEntity2DTO(pseLogic.getPses());
     }
     
     /**
@@ -94,7 +100,12 @@ public class PseResource {
     @Path("(id: \\d+)")
     public PseDetailDTO getPse(@PathParam("id") Long id)
     {
-        return null;
+        PseEntity entity = pseLogic.getPse(id);
+        if(entity == null)
+        {
+            throw new WebApplicationException("El pse no existe");
+        }
+        return new PseDetailDTO(entity);
     }
     
       /**
@@ -118,7 +129,14 @@ public class PseResource {
     @PUT
     @Path("{id: \\d+}")
     public PseDetailDTO updatePse(@PathParam("id") Long id, PseDetailDTO pse) throws BusinessLogicException {
-        return pse;
+    PseEntity entity = pse.toEntity();
+    entity.setId(id);
+    PseEntity oldEntity = pseLogic.getPse(id);
+    if(oldEntity == null)
+    {
+        throw new WebApplicationException("El pse no existe");
+    }
+    return new PseDetailDTO(pseLogic.updateEntity(id, entity));
     }
     
      /**
@@ -138,6 +156,26 @@ public class PseResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deletePse(@PathParam("id") Long id) {
-        // Void
+         PseEntity entity = pseLogic.getPse(id);
+         if(entity == null)
+         {
+             throw new WebApplicationException("El Pse no existe");
+         }
+         pseLogic.deletePse(id);
+    }
+     
+      /**
+     * Convierte una lista de AuthorEntity a una lista de AuthorDetailDTO.
+     *
+     * @param entityList Lista de AuthorEntity a convertir.
+     * @return Lista de AuthorDetailDTO convertida.
+     * 
+     */
+    private List<PseDetailDTO> listEntity2DTO(List<PseEntity> entityList) {
+        List<PseDetailDTO> list = new ArrayList<>();
+        for (PseEntity entity : entityList) {
+            list.add(new PseDetailDTO(entity));
+        }
+        return list;
     }
 }
