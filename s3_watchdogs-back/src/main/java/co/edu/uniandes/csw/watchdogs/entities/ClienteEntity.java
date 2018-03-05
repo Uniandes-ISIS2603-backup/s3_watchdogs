@@ -23,11 +23,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ClienteEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<MascotaEntity> mascotas = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     @PodamExclude
@@ -35,7 +35,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private List<MetodoDePagoEntity> metodosDePago = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<FacturaEntity> facturas = new ArrayList<>();
 
     @PodamExclude

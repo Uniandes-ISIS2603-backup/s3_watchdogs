@@ -110,7 +110,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      *
      * @return atributo edad.
      */
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 

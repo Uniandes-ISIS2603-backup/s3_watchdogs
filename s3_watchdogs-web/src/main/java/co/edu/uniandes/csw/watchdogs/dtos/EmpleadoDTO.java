@@ -98,7 +98,7 @@ public class EmpleadoDTO {
     /**
      * @return La edad del empleado
      */
-    public int getEdad() {
+    public Integer getEdad() {
         return edad;
     }
 
