@@ -48,7 +48,7 @@ public abstract class ServicioEntity extends BaseEntity implements Serializable{
     protected ClienteEntity cliente;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "servicio")
     protected FacturaEntity factura;
     
     @PodamExclude
