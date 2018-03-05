@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
-import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.ClientePersistence;
@@ -29,9 +28,6 @@ public class ClienteLogic {
 
     @Inject
     private ClientePersistence persistence;
-
-    @Inject
-    private MascotaLogic mascotaLogic;
 
     @Inject
     private FacturaLogic facturaLogic;
@@ -149,33 +145,6 @@ public class ClienteLogic {
         FacturaEntity factura = facturaLogic.getFactura(facturaId);
         factura.setCliente(null);
         clienteEntity.getFacturas().remove(factura);
-    }
-
-    /**
-     * Agregar una mascota al cliente.
-     *
-     * @param mascotaId El id de la mascota a guardar.
-     * @param clienteId El id del cliente en el cual se va a guardar la mascota.
-     * @return La mascota que fue agregada al cliente.
-     */
-    public MascotaEntity addMascota(Long mascotaId, Long clienteId) {
-        ClienteEntity clienteEntity = getCliente(clienteId);
-        MascotaEntity mascotaEntity = mascotaLogic.getMascota(mascotaId);
-        mascotaEntity.setCliente(clienteEntity);
-        return mascotaEntity;
-    }
-
-    /**
-     * Borra una mascota de un cliente.
-     *
-     * @param mascotaId El id de la mascota que se dea borrar del cliente.
-     * @param clienteId El id del cliente del cual se desea eliminar.
-     */
-    public void removeMascota(Long mascotaId, Long clienteId) {
-        ClienteEntity clienteEntity = getCliente(clienteId);
-        MascotaEntity mascota = mascotaLogic.getMascota(mascotaId);
-        mascota.setCliente(null);
-        clienteEntity.getMascotas().remove(mascota);
     }
 
     /**
