@@ -21,11 +21,11 @@ public class CalificacionEntity extends BaseEntity implements Serializable{
         
     }
 
-    public int getPuntaje() {
+    public Integer getPuntaje() {
         return puntaje;
     }
 
-    public void setPuntaje(int puntaje) {
+    public void setPuntaje(Integer puntaje) {
         this.puntaje = puntaje;
     }
     
