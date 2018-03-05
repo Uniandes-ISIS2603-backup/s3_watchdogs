@@ -36,7 +36,6 @@ import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
  */
 public class CentroDeEntrenamientoDTO extends LugarDTO{
     
-    private Integer tiempoEntreno;
     /**
      * Constructor por defecto
      */
@@ -48,26 +47,16 @@ public class CentroDeEntrenamientoDTO extends LugarDTO{
     public CentroDeEntrenamientoDTO(CentroDeEntrenamientoEntity entity){
         
         super(entity);
-        this.setTiempoEntreno(entity.getTiempoEntreno());
     }
-
-    public Integer getTiempoEntreno() {
-        return tiempoEntreno;
-    }
-
-    public void setTiempoEntreno(Integer tiempoEntreno) {
-        this.tiempoEntreno = tiempoEntreno;
-    }
-    
-    
 
     
     public CentroDeEntrenamientoEntity toEntity(){
         CentroDeEntrenamientoEntity entity = new CentroDeEntrenamientoEntity();
-        entity.setId(this.getId());
-        entity.setDireccion(this.getDireccion());
-        entity.setFotos(this.getFotos());
-        entity.setTiempoEntreno(this.getTiempoEntreno());
+        entity.setId(this.id);
+        entity.setDireccion(this.direccion);
+        entity.setFotos(this.fotos);
+        entity.setCapacidadActual(this.capacidadActual);
+        entity.setCapacidadMaxima(this.capacidadMaxima);
         return entity;
     }
     

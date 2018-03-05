@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * PaseoDTO Objeto de transferencia de datos de Paseos. Los DTO contienen las
@@ -48,7 +49,7 @@ import java.util.ArrayList;
 public class PaseoDTO extends ServicioDTO{
     
     private Integer capMax;
-    private ArrayList<String> horas;
+    private List<String> horas;
     
     public PaseoDTO()
     {
@@ -78,14 +79,14 @@ public class PaseoDTO extends ServicioDTO{
     /**
      * @return Lista de horas
      */
-    public ArrayList<String> getHoras() {
+    public List<String> getHoras() {
         return horas;
     }
 
     /**
      * @param horas Lista de horas a establecer
      */
-    public void setHoras(ArrayList<String> horas) {
+    public void setHoras(List<String> horas) {
         this.horas = horas;
     }
     

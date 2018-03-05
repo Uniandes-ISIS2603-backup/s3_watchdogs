@@ -30,6 +30,12 @@ public class CentroDeEntrenamientoLogic {
     
     @Inject
     private CentroDeEntrenamientoPersistence persistence;
+    
+    @Inject
+    private EntrenamientoLogic entrenamientoLogic;
+    
+    @Inject
+    private HotelLogic hotelLogic;
 
     /**
      * Devuelve todos los CentroDeEntrenamiento que hay en la base de datos.
@@ -59,7 +65,7 @@ public class CentroDeEntrenamientoLogic {
     
     /**
      * Guardar un nuevo CentroDeEntrenamiento
-     * @param entity La entidad de tipo CentroDeEntrenamiento del nuevo libro a persistir.
+     * @param entity La entidad de tipo CentroDeEntrenamiento del nuevo hotel a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException 
      */
@@ -96,65 +102,121 @@ public class CentroDeEntrenamientoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar CentroDeEntrenamiento con id={0}", id);
     }
     
-    public ArrayList<EntrenamientoEntity> getEntrenamientos(Long id){
+    public List<EntrenamientoEntity> getEntrenamientos(Long id){
         return getCentroDeEntrenamiento(id).getEntrenamientos();
     }
     
-    public EntrenamientoEntity getEntrenamiento(Long idC, Long idE){
-        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(idC);
-        EntrenamientoEntity EntrenamientoEntity = null;
-        for(EntrenamientoEntity eEnt : centroDeEntrenamientoEntity.getEntrenamientos()){
-            if(eEnt.getId().equals(idE))
-                EntrenamientoEntity = eEnt;
+    public EntrenamientoEntity getEntrenamiento(Long idC, Long idE) throws BusinessLogicException{
+        List<EntrenamientoEntity> entrenamientos = getCentroDeEntrenamiento(idC).getEntrenamientos();
+        EntrenamientoEntity entrenamiento = entrenamientoLogic.getEntrenamiento(idE);
+        int index = entrenamientos.indexOf(entrenamiento);
+        if (index >= 0) {
+            return entrenamientos.get(index);
         }
-        return EntrenamientoEntity;
+        throw new BusinessLogicException("El entrenamiento no está asociado al centro de entrenamiento");
     }
     
     public EntrenamientoEntity addEntrenamiento(Long idC,Long idE){
         CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(idC);
-        EntrenamientoEntity eEntity = new EntrenamientoEntity();
-        eEntity.setId(idE);
-        centroDeEntrenamientoEntity.getEntrenamientos().add(eEntity);
-        return getEntrenamiento(idC,idE);
+        EntrenamientoEntity entrenamientoEntity = entrenamientoLogic.getEntrenamiento(idE);
+        entrenamientoEntity.setCentroDeEntrenamiento(centroDeEntrenamientoEntity);
+        return entrenamientoEntity;
     }
     
-    public EntrenamientoEntity replaceEntrenamiento(Long id,Long idE, EntrenamientoEntity entrenamiento){
-        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(id);
-        for(EntrenamientoEntity eEnt : centroDeEntrenamientoEntity.getEntrenamientos()){
-            if(eEnt.getId().equals(idE))
-                eEnt = entrenamiento; break;
+    public List<EntrenamientoEntity> replaceEntrenamientos(Long id, List<EntrenamientoEntity> entrenamientos){
+        CentroDeEntrenamientoEntity centroDeEntrenamiento = getCentroDeEntrenamiento(id);
+        List<EntrenamientoEntity> entrenamientoList = entrenamientoLogic.getEntrenamientos();
+        for (EntrenamientoEntity entrenamiento : entrenamientoList) {
+            if (entrenamientos.contains(entrenamiento)) {
+                entrenamiento.setCentroDeEntrenamiento(centroDeEntrenamiento);
+            } else if (entrenamiento.getCentroDeEntrenamiento() != null && entrenamiento.getCentroDeEntrenamiento().equals(centroDeEntrenamiento)) {
+                entrenamiento.setCentroDeEntrenamiento(null);
+            }
         }
-        return getEntrenamiento(id, entrenamiento.getId());
+        return entrenamientos;
     }
     
-    public ArrayList<HotelEntity> getHoteles(Long id){
-        return getCentroDeEntrenamiento(id).getHoteles();
+    public void removeEntenamiento(Long entrenamientoId, Long centroDeEntrenamientoId) {
+        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
+        EntrenamientoEntity entrenamiento = entrenamientoLogic.getEntrenamiento(entrenamientoId);
+        entrenamiento.setCentroDeEntrenamiento(null);
+        centroDeEntrenamientoEntity.getEntrenamientos().remove(entrenamiento);
     }
     
-    public HotelEntity getHotel(Long idC, Long idH){
-        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(idC);
-        HotelEntity HotelEntity = null;
-        for(HotelEntity hEnt : centroDeEntrenamientoEntity.getHoteles()){
-            if(hEnt.getId().equals(idH))
-                HotelEntity = hEnt;
+    /**
+     * Agregar un Hotel al CentroDeEntrenamiento
+     *
+     * @param hotelId El id hotel a guardar
+     * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento en la cual se va a guardar el
+     * hotel.
+     * @return El hotel que fue agregado al CentroDeEntrenamiento.
+     */
+    public HotelEntity addHotel(Long hotelId, Long centroDeEntrenamientoId) {
+        CentroDeEntrenamientoEntity CentroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
+        HotelEntity hotelEntity = hotelLogic.getHotel(hotelId);
+        hotelEntity.setCentroDeEntrenamiento(CentroDeEntrenamientoEntity);
+        return hotelEntity;
+    }
+
+    /**
+     * Borrar un Hotel de un CentroDeEntrenamiento
+     *
+     * @param hotelId El hotel que se desea borrar del CentroDeEntrenamiento.
+     * @param centroDeEntrenamientoId La CentroDeEntrenamiento del cual se desea eliminar.
+     */
+    public void removeHotel(Long hotelId, Long centroDeEntrenamientoId) {
+        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
+        HotelEntity hotel = hotelLogic.getHotel(hotelId);
+        hotel.setCentroDeEntrenamiento(null);
+        centroDeEntrenamientoEntity.getHoteles().remove(hotel);
+    }
+
+    /**
+     * Remplazar Hotels de una CentroDeEntrenamiento
+     *
+     * @param hoteles Lista de hotels que serán los del CentroDeEntrenamiento.
+     * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento que se quiere actualizar.
+     * @return La lista de hotels actualizada.
+     */
+    public List<HotelEntity> replaceHoteles(Long centroDeEntrenamientoId, List<HotelEntity> hoteles) {
+        CentroDeEntrenamientoEntity centroDeEntrenamiento = getCentroDeEntrenamiento(centroDeEntrenamientoId);
+        List<HotelEntity> hotelList = hotelLogic.getHoteles();
+        for (HotelEntity hotel : hotelList) {
+            if (hoteles.contains(hotel)) {
+                hotel.setCentroDeEntrenamiento(centroDeEntrenamiento);
+            } else if (hotel.getCentroDeEntrenamiento() != null && hotel.getCentroDeEntrenamiento().equals(centroDeEntrenamiento)) {
+                hotel.setCentroDeEntrenamiento(null);
+            }
         }
-        return HotelEntity;
+        return hoteles;
     }
-    
-    public HotelEntity addHotel(Long idC,Long idH){
-        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(idC);
-        HotelEntity hEntity = new HotelEntity();
-        hEntity.setId(idH);
-        centroDeEntrenamientoEntity.getHoteles().add(hEntity);
-        return getHotel(idC,idH);
+
+    /**
+     * Retorna todos los Hotels asociados a una CentroDeEntrenamiento
+     *
+     * @param centroDeEntrenamientoId El ID del CentroDeEntrenamiento buscada
+     * @return La lista de hotels del CentroDeEntrenamiento
+     */
+    public List<HotelEntity> getHoteles(Long centroDeEntrenamientoId) {
+        return getCentroDeEntrenamiento(centroDeEntrenamientoId).getHoteles();
     }
-    
-    public HotelEntity replaceHotel(Long id,Long idH, HotelEntity hotel){
-        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(id);
-        for(HotelEntity hEnt : centroDeEntrenamientoEntity.getHoteles()){
-            if(hEnt.getId().equals(idH))
-                hEnt = hotel; break;
+
+    /**
+     * Retorna un Hotel asociado a una CentroDeEntrenamiento
+     *
+     * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento a buscar.
+     * @param hotelId El id del hotel a buscar
+     * @return El hotel encontrado dentro del CentroDeEntrenamiento.
+     * @throws BusinessLogicException Si el hotel no se encuentra en la CentroDeEntrenamiento
+     */
+    public HotelEntity getHotel(Long centroDeEntrenamientoId, Long hotelId) throws BusinessLogicException {
+        List<HotelEntity> hoteles = getCentroDeEntrenamiento(centroDeEntrenamientoId).getHoteles();
+        HotelEntity hotel = hotelLogic.getHotel(hotelId);
+        int index = hoteles.indexOf(hotel);
+        if (index >= 0) {
+            return hoteles.get(index);
         }
-        return getHotel(id, hotel.getId());
+        throw new BusinessLogicException("El hotel no está asociado al CentroDeEntrenamiento");
+
     }
 }

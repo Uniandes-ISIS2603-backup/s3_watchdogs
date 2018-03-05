@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -24,11 +25,11 @@ public class CentroDeEntrenamientoEntity extends LugarEntity implements Serializ
      
      @PodamExclude
      @OneToMany(mappedBy = "centroDeEntrenamiento")
-     private ArrayList<EntrenamientoEntity> entrenamientos;
+     private List<EntrenamientoEntity> entrenamientos;
      
      @PodamExclude
      @OneToMany(mappedBy = "centroDeEntrenamiento")
-     private ArrayList<HotelEntity> hoteles;
+     private List<HotelEntity> hoteles;
 
     public Integer getTiempoEntreno() {
         return tiempoEntreno;
@@ -38,19 +39,19 @@ public class CentroDeEntrenamientoEntity extends LugarEntity implements Serializ
         this.tiempoEntreno = tiempoEntreno;
     }
 
-    public ArrayList<EntrenamientoEntity> getEntrenamientos() {
+    public List<EntrenamientoEntity> getEntrenamientos() {
         return entrenamientos;
     }
 
-    public void setEntrenamientos(ArrayList<EntrenamientoEntity> entrenamientos) {
+    public void setEntrenamientos(List<EntrenamientoEntity> entrenamientos) {
         this.entrenamientos = entrenamientos;
     }
 
-    public ArrayList<HotelEntity> getHoteles() {
+    public List<HotelEntity> getHoteles() {
         return hoteles;
     }
 
-    public void setHoteles(ArrayList<HotelEntity> hoteles) {
+    public void setHoteles(List<HotelEntity> hoteles) {
         this.hoteles = hoteles;
     }
     

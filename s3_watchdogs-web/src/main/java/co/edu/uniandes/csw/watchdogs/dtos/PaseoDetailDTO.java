@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class PaseoDetailDTO extends PaseoDTO{
     
-    private ArrayList<RutaDTO> rutas;
+    private List<RutaDTO> rutas;
     private VeterinariaDTO veterinaria;
     
     public PaseoDetailDTO()
@@ -56,7 +56,7 @@ public class PaseoDetailDTO extends PaseoDTO{
             entity.setVeterinaria(this.getVeterinaria().toEntity());
         }
         if(this.getRutas() != null){
-            ArrayList<RutaEntity> rEnt = new ArrayList();
+            List<RutaEntity> rEnt = new ArrayList();
             for(RutaDTO ruta : rutas){
                 rEnt.add(ruta.toEntity());
             }
@@ -68,14 +68,14 @@ public class PaseoDetailDTO extends PaseoDTO{
     /**
      * @return Lista de rutas
      */
-    public ArrayList<RutaDTO> getRutas() {
+    public List<RutaDTO> getRutas() {
         return rutas;
     }
 
     /**
      * @param rutas Lista de rutas a establecer
      */
-    public void setRutas(ArrayList<RutaDTO> rutas) {
+    public void setRutas(List<RutaDTO> rutas) {
         this.rutas = rutas;
     }
 

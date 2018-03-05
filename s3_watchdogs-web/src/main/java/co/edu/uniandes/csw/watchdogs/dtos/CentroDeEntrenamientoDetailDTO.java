@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
     
-    private ArrayList<EntrenamientoDTO> entrenamientos;
-    private ArrayList<HotelDTO> hoteles;
+    private List<EntrenamientoDTO> entrenamientos;
+    private List<HotelDTO> hoteles;
     
     /**
      * Constructor por defecto
@@ -49,28 +49,28 @@ public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
     /**
      * @return entrenamientos
      */
-    public ArrayList<EntrenamientoDTO> getEntrenamientos() {
+    public List<EntrenamientoDTO> getEntrenamientos() {
         return entrenamientos;
     }
 
     /**
      * @param entrenamientos Lista de entrenamientos a establecer
      */
-    public void setEntrenamientos(ArrayList<EntrenamientoDTO> entrenamientos) {
+    public void setEntrenamientos(List<EntrenamientoDTO> entrenamientos) {
         this.entrenamientos = entrenamientos;
     }
 
     /**
      * @return hoteles
      */
-    public ArrayList<HotelDTO> getHoteles() {
+    public List<HotelDTO> getHoteles() {
         return hoteles;
     }
 
     /**
      * @param hoteles Lista de hoteles a establecer
      */
-    public void setHoteles(ArrayList<HotelDTO> hoteles) {
+    public void setHoteles(List<HotelDTO> hoteles) {
         this.hoteles = hoteles;
     }
     
@@ -82,14 +82,14 @@ public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
     public CentroDeEntrenamientoEntity toEntity(){
         CentroDeEntrenamientoEntity entity = super.toEntity();
         if(this.getEntrenamientos() != null){
-            ArrayList<EntrenamientoEntity> entrenEnt = new ArrayList<>();
+            List<EntrenamientoEntity> entrenEnt = new ArrayList<>();
             for(EntrenamientoDTO e:entrenamientos){
                 entrenEnt.add(e.toEntity());
             }
             entity.setEntrenamientos(entrenEnt);
         }
         if(this.getHoteles() != null){
-            ArrayList<HotelEntity> hotelEnt = new ArrayList<>();
+            List<HotelEntity> hotelEnt = new ArrayList<>();
             for(HotelDTO h : hoteles){
                 hotelEnt.add(h.toEntity());
             }

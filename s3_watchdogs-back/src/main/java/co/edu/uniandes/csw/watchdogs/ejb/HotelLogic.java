@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
-import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -27,6 +26,9 @@ public class HotelLogic {
     
     @Inject
     private HotelPersistence persistence;
+    
+    @Inject
+    private TransporteLogic transporteLogic;
 
     /**
      * Devuelve todos los Hotel que hay en la base de datos.
@@ -56,7 +58,7 @@ public class HotelLogic {
     
     /**
      * Guardar un nuevo Hotel
-     * @param entity La entidad de tipo Hotel del nuevo libro a persistir.
+     * @param entity La entidad de tipo Hotel del nuevo transporte a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException 
      */
@@ -93,39 +95,51 @@ public class HotelLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar Hotel con id={0}", id);
     }
     
-    public CentroDeEntrenamientoEntity getCentroDeEntrenamiento(Long id){
-        return getHotel(id).getCentroDeEntrenamiento();
-    }
-    
-    public CentroDeEntrenamientoEntity addCentroDeEntrenamiento(Long idC, Long idH){
-        HotelEntity hotelEntity = getHotel(idH);
-        CentroDeEntrenamientoEntity centroEntity = new CentroDeEntrenamientoEntity();
-        centroEntity.setId(idC);
-        hotelEntity.setCentroDeEntrenamiento(centroEntity);
-        return getCentroDeEntrenamiento(idC);
-    }
-    
-    public CentroDeEntrenamientoEntity replaceCentroDeEntrenamiento(Long id, CentroDeEntrenamientoEntity centro){
-        HotelEntity hotelEntity = getHotel(id);
-        hotelEntity.setCentroDeEntrenamiento(centro);
-        return hotelEntity.getCentroDeEntrenamiento();
-    }
-    
-    public TransporteEntity getTransporte(Long id){
-        return getHotel(id).getTransporte();
-    }
-    
-    public TransporteEntity addTransporte(Long idT, Long idH){
-        HotelEntity hotelEntity = getHotel(idH);
-        TransporteEntity transporteEntity = new TransporteEntity();
-        transporteEntity.setId(idT);
+    /**
+     * Agregar un Transporte al Hotel
+     *
+     * @param transporteId El id transporte a guardar
+     * @param hotelId El id del Hotel en la cual se va a guardar el
+     * transporte.
+     * @return El transporte que fue agregado al Hotel.
+     */
+    public TransporteEntity addTransporte(Long transporteId, Long hotelId) {
+        HotelEntity hotelEntity = getHotel(hotelId);
+        TransporteEntity transporteEntity = transporteLogic.getTransporte(transporteId);
         hotelEntity.setTransporte(transporteEntity);
-        return getTransporte(idT);
+        return transporteEntity;
+    }
+
+    /**
+     * Borrar un Transporte de un Hotel
+     *
+     * @param hotelId La Hotel del cual se desea eliminar.
+     */
+    public void removeTransporte( Long hotelId) {
+        HotelEntity hotelEntity = getHotel(hotelId);
+        hotelEntity.setTransporte(null);
+    }
+
+    /**
+     * Remplazar Transportes de un Hotel
+     *
+     * @param transporte Lista de transportes que serán los del Hotel.
+     * @param hotelId El id del Hotel que se quiere actualizar.
+     * @return La lista de transportes actualizada.
+     */
+    public TransporteEntity replaceTransportes(Long hotelId, TransporteEntity transporte) {
+        HotelEntity hotel = getHotel(hotelId);
+        hotel.setTransporte(transporte);
+        return transporte;
     }
     
-    public TransporteEntity replaceTransporte(Long id, TransporteEntity transporte){
-        HotelEntity hotelEntity = getHotel(id);
-        hotelEntity.setTransporte(transporte);
-        return hotelEntity.getTransporte();
+    /**
+     * Retorna un Transporte asociado a un Hotel
+     *
+     * @param hotelId El id del Hotel a buscar.
+     * @return El transporte encontrado dentro del Hotel.
+     */
+    public TransporteEntity getTransporte(Long hotelId) {
+        return getHotel(hotelId).getTransporte();
     }
 }
