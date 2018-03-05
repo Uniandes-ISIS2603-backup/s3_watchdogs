@@ -17,7 +17,7 @@ import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
  *      "id": Long,
  *      "direccion": String,
  *      "fotos": List'String',
- *      "capacidadActual": Integer,
+ *      "usuariosEnServicio": Integer,
  *      "capacidadMaxima":Integer
  *      
  *  }
@@ -31,6 +31,8 @@ import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
  *      "direccion": Carrera 50#120,
  *      "fotos": "",
  *      "capacidad": 10
+ *      "usuariosEnServicio": Integer,
+ *      "capacidadMaxima":Integer
  *  }
  * 
  * </pre>
@@ -64,7 +66,7 @@ public class VeterinariaDTO extends LugarDTO{
         entity.setId(this.id);
         entity.setDireccion(this.direccion);
         entity.setFotos(this.fotos);
-        entity.setCapacidadActual(this.capacidadActual);
+        entity.setUsuariosEnServicio(this.usuariosEnServicio);
         entity.setCapacidadMaxima(this.capacidadMaxima);
         return entity;
     }

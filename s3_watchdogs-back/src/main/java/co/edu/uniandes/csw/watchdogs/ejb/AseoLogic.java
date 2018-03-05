@@ -50,7 +50,7 @@ public class AseoLogic {
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException 
      */
-   public AseoEntity createEntrenamiento(AseoEntity entity,Long idCliente,Long idMascota,Long idEmpleado) throws BusinessLogicException {
+   public AseoEntity createAseo(AseoEntity entity,Long idCliente,Long idMascota,Long idEmpleado) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Aseo");
         Date todayDate = Calendar.getInstance().getTime();
         if(todayDate.before(entity.getFecha()) ){
@@ -59,9 +59,9 @@ public class AseoLogic {
         MascotaEntity mascota = mascotaLogic.getMascota(idMascota);
         EmpleadoEntity empleado = empleadoLogic.getEmpleado(idEmpleado);
         LOGGER.info("Termina proceso de creación de Aseo");
-        //entity.setCliente(cliente);
-        //entity.setMascota(mascota);
-        //entity.setEmpleado(empleado);
+        entity.setCliente(cliente);
+        entity.setMascota(mascota);
+        entity.setEmpleado(empleado);
         return entity;
         }
         else throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
@@ -111,9 +111,9 @@ public class AseoLogic {
         ClienteEntity cliente = clienteLogic.getCliente(idCliente);
         MascotaEntity mascota = mascotaLogic.getMascota(idMascota);
         EmpleadoEntity empleado = empleadoLogic.getEmpleado(idEmpleado);
-        //entity.setCliente(cliente);
-        //entity.setMascota(mascota);
-        //entity.setEmpleado(empleado);
+        entity.setCliente(cliente);
+        entity.setMascota(mascota);
+        entity.setEmpleado(empleado);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Aseo con id={0}", entity.getId());
         return newEntity;
         }

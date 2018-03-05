@@ -29,7 +29,7 @@ import javax.ws.rs.WebApplicationException;
  * @author jc.pulido
  */
 
-@Path("tarjetaCredito")
+@Path("/tarjetaCredito")
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped

@@ -17,7 +17,7 @@ import java.util.List;
  *  {
  *      "direccion": string,
  *      "fotos": List'String',
- *      "capacidadActual":Integer,
+ *      "usuariosEnServicio":Integer,
  *      "capacidadMaxima":Integer
  *  }
  * </pre>
@@ -28,7 +28,7 @@ import java.util.List;
  *  {
  *      "direccion": "cra33#47-06",
  *      "fotos": " ",
- *      "capacidadActual":20,
+ *      "usuariosEnServicio":20,
  *      "capacidadMaxima":30
  *  }
  * 
@@ -41,7 +41,7 @@ public abstract class LugarDTO {
     protected Long id;
     protected String direccion;
     protected List<String> fotos;
-    protected Integer capacidadActual;
+    protected Integer usuariosEnServicio;
     protected Integer capacidadMaxima;
     
      /**
@@ -56,7 +56,7 @@ public abstract class LugarDTO {
         this.id = lugar.getId();
         this.direccion = lugar.getDireccion();
         this.fotos = lugar.getFotos();
-        this.capacidadActual=lugar.getCapacidadMaxima();
+        this.usuariosEnServicio=lugar.getCapacidadMaxima();
         this.capacidadMaxima=lugar.getCapacidadMaxima();
         }
     }
@@ -110,17 +110,17 @@ public abstract class LugarDTO {
     }
 
     /**
-     * @return la capacidadActual
+     * @return la usuarios En Servicio
      */
-    public Integer getCapacidadActual() {
-        return capacidadActual;
+    public Integer getUsuariosEnServicio() {
+        return usuariosEnServicio;
     }
 
     /**
-     * @param capacidadActual la capacidadActual que entra por parametro
+     * @param usuariosEnServicio los ususarios en servicio que entra por parametro
      */
-    public void setCapacidadActual(Integer capacidadActual) {
-        this.capacidadActual = capacidadActual;
+    public void setUsuariosEnServicio(Integer usuariosEnServicio) {
+        this.usuariosEnServicio= usuariosEnServicio;
     }
 
     /**

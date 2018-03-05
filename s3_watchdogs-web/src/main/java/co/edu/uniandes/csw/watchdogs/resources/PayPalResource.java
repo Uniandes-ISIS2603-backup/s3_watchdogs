@@ -8,10 +8,13 @@ package co.edu.uniandes.csw.watchdogs.resources;
 import co.edu.uniandes.csw.watchdogs.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.PayPalDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.PseDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.PayPalLogic;
+import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,6 +23,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -30,6 +34,9 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class PayPalResource {
+    
+    @Inject
+    private PayPalLogic paypalLogic;
     
     /**
      * <h1>POST /api/pse : Crear un método de pago Pse.</h1>
@@ -55,7 +62,7 @@ public class PayPalResource {
     @POST
     public PayPalDetailDTO createPayPal(PayPalDetailDTO paypal) throws BusinessLogicException
     {
-        return paypal;
+        return new PayPalDetailDTO(paypalLogic.createPse(paypal.toEntity()));
     }
     
     /**
@@ -71,7 +78,7 @@ public class PayPalResource {
      */
     @GET
     public List<PayPalDetailDTO> getPayPals() {
-        return new ArrayList<>();
+        return listEntity2DTO(paypalLogic.getPayPals());
     }
     
     /**
@@ -94,7 +101,12 @@ public class PayPalResource {
     @Path("(id: \\d+)")
     public PayPalDetailDTO getPayPal(@PathParam("id") Long id)
     {
-        return null;
+        PayPalEntity entity = paypalLogic.getPayPal(id);
+        if(entity == null)
+        {
+            throw new WebApplicationException("El paypal no existe", 404);
+        }
+        return new PayPalDetailDTO(entity);
     }
     
       /**
@@ -118,7 +130,14 @@ public class PayPalResource {
     @PUT
     @Path("{id: \\d+}")
     public PayPalDetailDTO updatePayPal(@PathParam("id") Long id, PayPalDetailDTO payPal) throws BusinessLogicException {
-        return payPal;
+        PayPalEntity entity = payPal.toEntity();
+        entity.setId(id);
+        PayPalEntity oldEntity = paypalLogic.getPayPal(id);
+        if(oldEntity == null)
+        {
+            throw new WebApplicationException("El PayPal no existe", 404);
+        }
+        return new PayPalDetailDTO(paypalLogic.updateEntity(id, entity));
     }
     
     /**
@@ -138,6 +157,26 @@ public class PayPalResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deletePayPal(@PathParam("id") Long id) {
-        // Void
+         PayPalEntity entity = paypalLogic.getPayPal(id);
+         if(entity == null)
+         {
+             throw new WebApplicationException("El PayPal no existe");
+         }
+         paypalLogic.deletePayPal(id);
+    }
+     
+      /**
+     * Convierte una lista de AuthorEntity a una lista de AuthorDetailDTO.
+     *
+     * @param entityList Lista de PayPalEntity a convertir.
+     * @return Lista de AuthorDetailDTO convertida.
+     * 
+     */
+    private List<PayPalDetailDTO> listEntity2DTO(List<PayPalEntity> entityList) {
+        List<PayPalDetailDTO> list = new ArrayList<>();
+        for (PayPalEntity entity : entityList) {
+            list.add(new PayPalDetailDTO(entity));
+        }
+        return list;
     }
 }
