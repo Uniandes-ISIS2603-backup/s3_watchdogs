@@ -102,14 +102,14 @@ public class EmpleadoPersistenceTest {
     }
     
     @Test
-    public void findByNameTest() {
+    public void findByCedulaTest() {
         PodamFactory factory = new PodamFactoryImpl();
         EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
         EmpleadoEntity result = empleadoPersistence.create(newEntity);
         
         Assert.assertNotNull(result);
         
-        Assert.assertNotNull(empleadoPersistence.findByName(result.getNombre()));
+        Assert.assertNotNull(empleadoPersistence.findByCedula(result.getCedula()));
     }
     
     @Test

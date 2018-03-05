@@ -109,7 +109,7 @@ public class MascotaPersistenceTest {
         
         Assert.assertNotNull(result);
         
-        Assert.assertNotNull(mascotaPersistence.findByName(result.getNombre()));
+        Assert.assertNotNull(mascotaPersistence.findByName(result.getName()));
     }
     
     @Test

@@ -65,35 +65,6 @@ public class MascotaResource {
     }
 
     /**
-     * <h1>POST /api/mascotas : Crear una mascota.</h1>
-     *
-     * <pre>Cuerpo de peticion: JSON{@link MasctoaDetailDTO}.
-     *
-     * Crea una nueva mascota con la informacion que se recibe en el cuerpo
-     * de la peticion y se regresa un objeto identico con un id auto-generado
-     * por la base de datos.
-     *
-     * Codigos de respuesta:
-     * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Creo la nueva mascota.
-     * </code>
-     * </pre>
-     *
-     * @param mascota {@link MascotaDetailDTO} - La mascota que se desea
-     * guardar.
-     * @return JSON {@link MascotaDetailDTO} - La mascota guardada con el
-     * atributo id autogenerado.
-     */
-    @POST
-    public MascotaDetailDTO createMascota(MascotaDetailDTO mascota) {
-        try {
-            return new MascotaDetailDTO(mascotaLogic.creatMascota(mascota.toEntity()));
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
-        }
-    }
-
-    /**
      * <h1>GET /api/mascotas : Obtener todos las mascotas.</h1>
      *
      * <pre>Busca y devuelve todas las mascotas que existen en la aplicacion.
@@ -137,6 +108,35 @@ public class MascotaResource {
             throw new WebApplicationException("La mascota no existe", 404);
         }
         return new MascotaDetailDTO(entity);
+    }
+
+    /**
+     * <h1>POST /api/mascotas : Crear una mascota.</h1>
+     *
+     * <pre>Cuerpo de peticion: JSON{@link MasctoaDetailDTO}.
+     *
+     * Crea una nueva mascota con la informacion que se recibe en el cuerpo
+     * de la peticion y se regresa un objeto identico con un id auto-generado
+     * por la base de datos.
+     *
+     * Codigos de respuesta:
+     * <code style="color: mediumseagreen; background-color: #eaffe0;">
+     * 200 OK Creo la nueva mascota.
+     * </code>
+     * </pre>
+     *
+     * @param mascota {@link MascotaDetailDTO} - La mascota que se desea
+     * guardar.
+     * @return JSON {@link MascotaDetailDTO} - La mascota guardada con el
+     * atributo id autogenerado.
+     */
+    @POST
+    public MascotaDetailDTO createMascota(MascotaDetailDTO mascota) {
+        try {
+            return new MascotaDetailDTO(mascotaLogic.createMascota(mascota.toEntity()));
+        } catch (BusinessLogicException e) {
+            throw new WebApplicationException(e.getMessage(), 404);
+        }
     }
 
     /**

@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class ClientePersistenceTest {
-    
+
     @Deployment
     public static JavaArchive createDeployement() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -39,18 +39,19 @@ public class ClientePersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Inject
     private ClientePersistence clientePersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
-    
-    private List<ClienteEntity> data = new ArrayList<ClienteEntity>();
-    
+
+    /**
+     * Configuracion inicial de prueba.
+     */
     @Before
     public void configTest() {
         try {
@@ -68,63 +69,50 @@ public class ClientePersistenceTest {
             }
         }
     }
-    
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("Delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
     }
-    
+
+    private List<ClienteEntity> data = new ArrayList<>();
+
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);  
+            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
+    /**
+     * Prueba para crear un Cliente.
+     */
     @Test
     public void createEmpleadoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         ClienteEntity result = clientePersistence.create(newEntity);
-        
+
         Assert.assertNotNull(result);
-        
+
         ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
-        
+
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
-    
+
+    /**
+     * Prueba para consultar la lista de Clientes.
+     */
     @Test
-    public void findByNameTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-        ClienteEntity result = clientePersistence.create(newEntity);
-        
-        Assert.assertNotNull(result);
-        
-        Assert.assertNotNull(clientePersistence.findByName(result.getNombre()));
-    }
-    
-        @Test
-    public void findByCedulaTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-        ClienteEntity result = clientePersistence.create(newEntity);
-        
-        Assert.assertNotNull(result);
-        
-        Assert.assertNotNull(clientePersistence.findByCedula(result.getCedula()));
-    }
-    
-    @Test
-    public void findAllTest() {
+    public void findClientesTest() {
         List<ClienteEntity> list = clientePersistence.findAll();
         for (ClienteEntity ent : list) {
             boolean found = false;
@@ -136,15 +124,34 @@ public class ClientePersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
+    /**
+     * Prueba para consultar un Cliente por id.
+     */
     @Test
-    public void findTest() {
+    public void findClienteTest() {
         ClienteEntity entity = data.get(0);
         ClienteEntity newEntity = clientePersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getCedula(), newEntity.getCedula());
         Assert.assertEquals(entity.getId(), newEntity.getId());
     }
+
+    /**
+     * Prueba para eliminar un Cliente.
+     */
+    @Test
+    public void deleteTest() {
+        ClienteEntity entity = data.get(0);
+        clientePersistence.delete(entity.getId());
+        ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
+        Assert.assertNull(deleted);
+    }
     
+    /**
+     * Prueba para actualizar un cliente.
+     */
     @Test
     public void updateTest() {
         ClienteEntity entity = data.get(0);
@@ -159,12 +166,33 @@ public class ClientePersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
-    
+
+    /**
+     * Prueba para buscar por nombre.
+     */
     @Test
-    public void deleteTest() {
-        ClienteEntity entity = data.get(0);
-        clientePersistence.delete(entity.getId());
-        ClienteEntity deleted = em.find(ClienteEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+    public void findByNameTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity result = clientePersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        Assert.assertNotNull(clientePersistence.findByName(result.getName()));
     }
+
+    /**
+     * Prueba para buscar por cedula.
+     */
+    @Test
+    public void findByCedulaTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity result = clientePersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        Assert.assertNotNull(clientePersistence.findByCedula(result.getCedula()));
+    }
+
 }

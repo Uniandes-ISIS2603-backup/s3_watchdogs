@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -22,19 +22,19 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ClienteEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
-    @ManyToOne
+    @OneToMany
     private List<MascotaEntity> mascotas = new ArrayList<>();
 
     @PodamExclude
-    @ManyToOne
+    @OneToMany
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     @PodamExclude
-    @ManyToOne
+    @OneToMany
     private List<MetodoDePagoEntity> metodosDePago = new ArrayList<>();
 
     @PodamExclude
-    @ManyToOne
+    @OneToMany
     private List<FacturaEntity> facturas = new ArrayList<>();
 
     @OneToOne

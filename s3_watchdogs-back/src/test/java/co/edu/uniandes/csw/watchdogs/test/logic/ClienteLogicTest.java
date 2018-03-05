@@ -105,7 +105,7 @@ public class ClienteLogicTest {
             Assert.assertNotNull(result);
             ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
             Assert.assertEquals(newEntity.getId(), entity.getId());
-            Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+            Assert.assertEquals(newEntity.getName(), entity.getName());
             Assert.assertEquals(newEntity.getCedula(), entity.getCedula());
         } catch (BusinessLogicException e) {
             fail();
