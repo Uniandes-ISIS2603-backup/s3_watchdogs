@@ -69,24 +69,21 @@ public class EntrenamientoLogic {
     /**
      * Guardar un nuevo Entrenamiento
      * @param entity La entidad de tipo Entrenamiento del nuevo libro a persistir.
-     * @param idCliente
-     * @param idMascota
-     * @param idEmpleado
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException 
      */
-    public EntrenamientoEntity createEntrenamiento(EntrenamientoEntity entity,Long idCliente,Long idMascota,Long idEmpleado) throws BusinessLogicException {
+    public EntrenamientoEntity createEntrenamiento(EntrenamientoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Entrenamiento");
         Date todayDate = Calendar.getInstance().getTime();
         if(todayDate.before(entity.getFecha()) ){
+            ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            entity.setEmpleado(empleado);
             persistence.create(entity);
-            ClienteEntity cliente = clienteLogic.getCliente(idCliente);
-            MascotaEntity mascota = mascotaLogic.getMascota(idMascota);
-            EmpleadoEntity empleado = empleadoLogic.getEmpleado(idEmpleado);
             LOGGER.info("Termina proceso de creación de Entrenamiento");
-            //entity.setCliente(cliente);
-            //entity.setMascota(mascota);
-            //entity.setEmpleado(empleado);
             return entity;
         }
         else throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
@@ -96,23 +93,20 @@ public class EntrenamientoLogic {
      * Actualizar un Entrenamiento por ID
      * @param id El ID del Entrenamiento a actualizar
      * @param entity La entidad del Entrenamiento con los cambios deseados
-     * @param idCliente
-     * @param idMascota
-     * @param idEmpleado
      * @return La entidad del Entrenamiento luego de actualizarla
      * @throws BusinessLogicException 
      */
-    public EntrenamientoEntity updateEntrenamiento(Long id, EntrenamientoEntity entity,Long idCliente,Long idMascota,Long idEmpleado) throws BusinessLogicException {
+    public EntrenamientoEntity updateEntrenamiento(Long id, EntrenamientoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Entrenamiento con id={0}", id);
         Date todayDate = Calendar.getInstance().getTime();
         if(todayDate.before(entity.getFecha()) ){
+        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+        EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
+        entity.setCliente(cliente);
+        entity.setMascota(mascota);
+        entity.setEmpleado(empleado);
         EntrenamientoEntity newEntity = persistence.update(entity);
-        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
-        MascotaEntity mascota = mascotaLogic.getMascota(idMascota);
-        EmpleadoEntity empleado = empleadoLogic.getEmpleado(idEmpleado);
-        //entity.setCliente(cliente);
-        //entity.setMascota(mascota);
-        //entity.setEmpleado(empleado);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Entrenamiento con id={0}", entity.getId());
         return newEntity;
         }

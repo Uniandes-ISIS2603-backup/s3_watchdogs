@@ -52,7 +52,9 @@ public class EntrenamientoDetailDTO extends EntrenamientoDTO{
     @Override
     public EntrenamientoEntity toEntity(){
         EntrenamientoEntity entity = super.toEntity();
+        if(centroDeEntrenamiento!=null){
         entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
+        }
         return entity;
     }
 }
