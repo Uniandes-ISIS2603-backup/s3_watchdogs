@@ -15,7 +15,8 @@ import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
- *      "nombre": string,
+ *      "id": number,
+ *      "name": string,
  *      "cedula": string
  *  }
  * </pre>
@@ -24,7 +25,8 @@ import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
  * <pre>
  * 
  *  {
- *      "nombre": "Camilo Beltran",
+ *      "id": 1,
+ *      "name": "Camilo Beltran",
  *      "cedula": "1020123456"
  *  }
  * 
@@ -35,7 +37,7 @@ import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 public class ClienteDTO {
 
     private Long id;
-    private String nombre;
+    private String name;
     private String cedula;
     
     /**
@@ -52,7 +54,7 @@ public class ClienteDTO {
      */
     public ClienteDTO(ClienteEntity cliente) {
         this.id = cliente.getId();
-        this.nombre = cliente.getNombre();
+        this.name = cliente.getName();
         this.cedula = cliente.getCedula();
     }
     
@@ -74,14 +76,14 @@ public class ClienteDTO {
      * @return El nombre del cliente
      */
     public String getNombre() {
-        return nombre;
+        return name;
     }
 
     /**
      * @param nombre El nuevo nombre del cliente
      */
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.name = nombre;
     }
 
     /**
@@ -106,7 +108,7 @@ public class ClienteDTO {
     public ClienteEntity toEntity() {
         ClienteEntity entity = new ClienteEntity();
         entity.setId(this.id);
-        entity.setNombre(this.nombre);
+        entity.setName(this.name);
         entity.setCedula(this.cedula);
         return entity;
     }

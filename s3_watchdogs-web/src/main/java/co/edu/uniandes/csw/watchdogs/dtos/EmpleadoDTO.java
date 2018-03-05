@@ -41,7 +41,6 @@ public class EmpleadoDTO {
     private String nombre;
     private String imagen;
     private int edad;
-    private String horarios;
     
     //----- Constructor -----
     
@@ -59,7 +58,7 @@ public class EmpleadoDTO {
      */
     public EmpleadoDTO(EmpleadoEntity empleado) {
         this.id = empleado.getId();
-        this.nombre = empleado.getNombre();
+        this.nombre = empleado.getName();
         this.imagen = empleado.getImagen();
     }
    
@@ -108,20 +107,6 @@ public class EmpleadoDTO {
     }
 
     /**
-     * @return Los horarios del empleado
-     */
-    public String getHorarios() {
-        return horarios;
-    }
-
-    /**
-     * @param horarios Los nuevos horarios del empleado
-     */
-    public void setHorarios(String horarios) {
-        this.horarios = horarios;
-    }
-
-    /**
      * @return El nombre del empleado
      */
     public String getNombre() {
@@ -143,10 +128,9 @@ public class EmpleadoDTO {
     public EmpleadoEntity toEntity() {
         EmpleadoEntity entity = new EmpleadoEntity();
         entity.setId(this.id);
-        entity.setNombre(this.nombre);
+        entity.setName(this.nombre);
         entity.setImagen(this.imagen);
         entity.setEdad(this.edad);
-        entity.setHorarios(this.horarios);
         return entity;
     }
     

@@ -7,108 +7,117 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author ca.beltran10
  */
 @Entity
-public class MascotaEntity implements Serializable{
-   
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nombre;
+public class MascotaEntity extends BaseEntity implements Serializable {
+
+    @PodamExclude
+    @OneToOne
+    private ServicioEntity servicio;
+
+    @PodamExclude
+    @ManyToOne
+    private ClienteEntity cliente;
+
     private String raza;
     private String color;
     private String sexo;
 
     /**
-     * @return the id
+     * Obtiene el atributo servicio.
+     *
+     * @return atributo servicio
      */
-    public Long getId() {
-        return id;
+    public ServicioEntity getServicio() {
+        return servicio;
     }
 
     /**
-     * @param id the id to set
+     * Establece el valor del atributo servicio.
+     *
+     * @param servicio nuevo valor del atributo
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setServicio(ServicioEntity servicio) {
+        this.servicio = servicio;
     }
 
     /**
-     * @return the nombre
+     * Obtiene el atributo cliente.
+     *
+     * @return atributo cliente.
      */
-    public String getNombre() {
-        return nombre;
+    public ClienteEntity getCliente() {
+        return cliente;
     }
 
     /**
-     * @param nombre the nombre to set
+     * Establece el valor del atributo cliente.
+     *
+     * @param cliente nuevo valor del atributo
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
     }
 
     /**
-     * @return the raza
+     * Obtiene el atributo raza.
+     *
+     * @return atributo raza.
      */
     public String getRaza() {
         return raza;
     }
 
     /**
-     * @param raza the raza to set
+     * Establece el valor del atributo raza.
+     *
+     * @param raza nuevo valor del atributo
      */
     public void setRaza(String raza) {
         this.raza = raza;
     }
 
     /**
-     * @return the color
+     * Obtiene el valor del atributo color.
+     *
+     * @return nuevo valor del atributo
      */
     public String getColor() {
         return color;
     }
 
     /**
-     * @param color the color to set
+     * Establece el valor del atributo color.
+     *
+     * @param color nuevo valor del atributo.
      */
     public void setColor(String color) {
         this.color = color;
     }
 
     /**
-     * @return the sexo
+     * Obtiene el atributo sexo.
+     *
+     * @return atributo sexo.
      */
     public String getSexo() {
         return sexo;
     }
 
     /**
-     * @param sexo the sexo to set
+     * Establece el valor del atributo sexo.
+     *
+     * @param sexo nuevo valor del atributo.
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-    
-    @Override
-    public boolean equals(Object obj) {
-        if (this.getId() != null && ((MascotaEntity) obj).getId() != null) {
-            return this.getId().equals(((MascotaEntity) obj).getId());
-        }
-        return super.equals(obj);
-    }
 
-    @Override
-    public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
-        return super.hashCode();
-    }
 }

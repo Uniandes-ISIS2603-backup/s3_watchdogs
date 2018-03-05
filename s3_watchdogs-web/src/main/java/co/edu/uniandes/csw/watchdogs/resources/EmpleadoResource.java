@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.EmpleadoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.EmpleadoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +21,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  * <pre>Clase que implementa el recurso "empleados".
@@ -35,12 +40,28 @@ import javax.ws.rs.Produces;
  * @author ca.beltran10
  * @version 1.0
  */
-@Path("empleados")
-@Produces("application/json")
-@Consumes("application/json")
+@Path("/empleados")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class EmpleadoResource {
     
+    @Inject
+    private EmpleadoLogic empleadoLogic;
+    
+    /**
+     * Convierte una lista de EmpleadoEntity a una lista de EmpleadoDetailDTO
+     * 
+     * @param entityList Lista de EmpleadoEntity a convertir.
+     * @return Lista de EmpleadoDetailDTO convertida.
+     */
+    private List<EmpleadoDetailDTO> listEntity2DTO(List<EmpleadoEntity> entityList) {
+        List<EmpleadoDetailDTO> list = new ArrayList<>();
+        for(EmpleadoEntity entity : entityList) {
+            list.add(new EmpleadoDetailDTO(entity));
+        }
+        return list;
+    }
         /**
      * <h1>POST /api/empleados : Crear un empleado.</h1>
      * 
@@ -62,7 +83,7 @@ public class EmpleadoResource {
      */
     @POST
     public EmpleadoDetailDTO createEmpleado( EmpleadoDetailDTO empleado ) throws BusinessLogicException {
-        return empleado;
+        return new EmpleadoDetailDTO(empleadoLogic.createEmpleado(empleado.toEntity()));
     }
     
         /**
@@ -78,7 +99,7 @@ public class EmpleadoResource {
      */
     @GET
     public List<EmpleadoDetailDTO> getEmpleados() {
-        return new ArrayList<>();
+        return listEntity2DTO(empleadoLogic.getEmpleados());
     }
     
      /**
@@ -100,7 +121,11 @@ public class EmpleadoResource {
     @GET
     @Path("{id: \\d+}")
     public EmpleadoDetailDTO getEmpleado(@PathParam("id") Long id) {
-        return null;
+        EmpleadoEntity entity = empleadoLogic.getEmpleado(id);
+        if(entity == null) {
+            throw new WebApplicationException("El empleado no existe", 404);
+        }
+        return new EmpleadoDetailDTO(entity);
     }
     
      /**
@@ -125,7 +150,16 @@ public class EmpleadoResource {
     
     @Path("{id: \\d+}")
     public EmpleadoDetailDTO updateEmpleado(@PathParam("id") Long id, EmpleadoDetailDTO empleado) throws BusinessLogicException {
-        return empleado;
+        EmpleadoEntity entity = empleado.toEntity();
+        entity.setId(id);
+        EmpleadoEntity oldEntity = empleadoLogic.getEmpleado(id);
+        if(oldEntity == null) {
+            throw new WebApplicationException("El empleado no existe", 404);
+        }
+        entity.setDisponibilidad(oldEntity.getDisponibilidad());
+        entity.setCalificacion(oldEntity.getCalificacion());
+        entity.setServicio(oldEntity.getServicio());
+        return new EmpleadoDetailDTO(empleadoLogic.updateEmpleado(entity));
     }
     
     /**
@@ -145,7 +179,11 @@ public class EmpleadoResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deleteEmpleado(@PathParam("id") Long id) {
-        // Void
+        EmpleadoEntity entity = empleadoLogic.getEmpleado(id);
+        if(entity == null) {
+            throw new WebApplicationException("El empleado no existe", 404);
+        }
+        empleadoLogic.deleteEmpleado(id);
     }
      
 }

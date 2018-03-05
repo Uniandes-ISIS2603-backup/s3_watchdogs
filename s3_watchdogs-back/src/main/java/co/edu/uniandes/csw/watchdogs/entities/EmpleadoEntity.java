@@ -10,105 +10,119 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
  * @author ca.beltran10
  */
 @Entity
-public class EmpleadoEntity implements Serializable{
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String nombre;
+public class EmpleadoEntity extends BaseEntity implements Serializable {
+
+    @PodamExclude
+    @OneToOne
+    private DisponibilidadEntity disponibilidad;
+
+    @PodamExclude
+    @OneToOne
+    private CalificacionEntity calificacion;
+
+    @PodamExclude
+    @OneToOne
+    private ServicioEntity servicio;
+
     private String imagen;
     private int edad;
-    private String horarios;
 
     /**
-     * @return the id
+     * Obtiene el atributo disponibilidad.
+     *
+     * @return el atributo disponibilidad.
      */
-    public Long getId() {
-        return id;
+    public DisponibilidadEntity getDisponibilidad() {
+        return disponibilidad;
     }
 
     /**
-     * @param id the id to set
+     * Establece el valor del atributo disponibilidad.
+     *
+     * @param disponibilidad nuevo valor del atributo
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setDisponibilidad(DisponibilidadEntity disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
 
     /**
-     * @return the nombre
+     * Obtiene el atributo calificacion.
+     *
+     * @return atributo calificacion.
      */
-    public String getNombre() {
-        return nombre;
+    public CalificacionEntity getCalificacion() {
+        return calificacion;
     }
 
     /**
-     * @param nombre the nombre to set
+     * Establece el valor del atributo calificacion.
+     *
+     * @param calificacion nuevo valor del atributo.
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCalificacion(CalificacionEntity calificacion) {
+        this.calificacion = calificacion;
     }
 
     /**
-     * @return the imagen
+     * Obtiene el atributo servicio.
+     *
+     * @return atributo servicio.
+     */
+    public ServicioEntity getServicio() {
+        return servicio;
+    }
+
+    /**
+     * Etablece el valor del atributo servicio.
+     *
+     * @param servicio nuevo valor del atributo.
+     */
+    public void setServicio(ServicioEntity servicio) {
+        this.servicio = servicio;
+    }
+
+    /**
+     * Obtiene el valor imagen.
+     *
+     * @return atributo imagen.
      */
     public String getImagen() {
         return imagen;
     }
 
     /**
-     * @param imagen the imagen to set
+     * Establece el valor del atributo imagen.
+     *
+     * @param imagen nuevo valor del atributo.
      */
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
     /**
-     * @return the edad
+     * Obtiene el atributo edad.
+     *
+     * @return atributo edad.
      */
     public int getEdad() {
         return edad;
     }
 
     /**
-     * @param edad the edad to set
+     * Establede el valor del atributo edad.
+     *
+     * @param edad nuevo valor del atributo edad.
      */
     public void setEdad(int edad) {
         this.edad = edad;
     }
 
-    /**
-     * @return the horarios
-     */
-    public String getHorarios() {
-        return horarios;
-    }
-
-    /**
-     * @param horarios the horarios to set
-     */
-    public void setHorarios(String horarios) {
-        this.horarios = horarios;
-    }
-    
-    @Override
-    public boolean equals(Object obj) {
-                if (this.getId() != null && ((EmpleadoEntity) obj).getId() != null) {
-            return this.getId().equals(((EmpleadoEntity) obj).getId());
-        }
-        return super.equals(obj);
-    }
-    
-    @Override
-    public int hashCode() {
-        if (this.getId() != null) {
-            return this.getId().hashCode();
-        }
-        return super.hashCode();
-    }
 }

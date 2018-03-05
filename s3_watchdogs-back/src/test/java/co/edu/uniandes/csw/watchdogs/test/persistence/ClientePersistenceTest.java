@@ -112,6 +112,17 @@ public class ClientePersistenceTest {
         Assert.assertNotNull(clientePersistence.findByName(result.getNombre()));
     }
     
+        @Test
+    public void findByCedulaTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
+        ClienteEntity result = clientePersistence.create(newEntity);
+        
+        Assert.assertNotNull(result);
+        
+        Assert.assertNotNull(clientePersistence.findByCedula(result.getCedula()));
+    }
+    
     @Test
     public void findAllTest() {
         List<ClienteEntity> list = clientePersistence.findAll();

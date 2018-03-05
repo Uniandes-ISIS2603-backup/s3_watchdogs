@@ -16,7 +16,7 @@ import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
- *      "id": numbre,
+ *      "id": number,
  *      "nombre": string,
  *      "raza": string,
  *      "color": string,
@@ -28,7 +28,7 @@ import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
  * <pre>
  * 
  *  {
- *      "id": 5263,
+ *      "id": 1,
  *      "nombre": "Negra",
  *      "raza": "Criolla",
  *      "color": "Negro",
@@ -65,7 +65,7 @@ public class MascotaDTO {
      */
     public MascotaDTO(MascotaEntity mascotaE) {
         this.id = mascotaE.getId();
-        this.nombre = mascotaE.getNombre();
+        this.nombre = mascotaE.getName();
         this.raza = mascotaE.getRaza();
         this.sexo = mascotaE.getSexo();
     }
@@ -149,7 +149,7 @@ public class MascotaDTO {
     public MascotaEntity toEntity() {
         MascotaEntity entity = new MascotaEntity();
         entity.setId(this.id);
-        entity.setNombre(this.nombre);
+        entity.setName(this.nombre);
         entity.setColor(this.color);
         entity.setRaza(this.raza);
         entity.setSexo(this.sexo);
