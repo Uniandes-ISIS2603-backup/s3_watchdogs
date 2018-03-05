@@ -7,10 +7,13 @@ package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.CityDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.TarjetaCreditoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.TarjetaCreditoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -19,6 +22,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -31,6 +35,8 @@ import javax.ws.rs.Produces;
 @RequestScoped
 public class TarjetaCreditoResource {
     
+    @Inject
+    TarjetaCreditoLogic tarjetaLogic;
     /**
      * <h1>POST /api/tarjetaCredito : Crear una tarjeta.</h1>
      * 
@@ -71,7 +77,7 @@ public class TarjetaCreditoResource {
      */
     @GET
     public List<TarjetaCreditoDetailDTO> getTarjetas() {
-        return new ArrayList<>();
+        return listTarjetaEntity2DetailDTO(tarjetaLogic.getTarjetas());
     }
     
     /**
@@ -94,6 +100,11 @@ public class TarjetaCreditoResource {
     @Path("(id: \\d+)")
     public TarjetaCreditoDetailDTO getTarjeta(@PathParam("id") Long id)
     {
+        TarjetaCreditoEntity entity = tarjetaLogic.getTarjeta(id);
+        if(entity == null)
+        {
+            throw new WebApplicationException();
+        }
         return null;
     }
     
@@ -139,6 +150,14 @@ public class TarjetaCreditoResource {
     @Path("{id: \\d+}")
      public void deleteTarjeta(@PathParam("id") Long id) {
         // Void
+    }
+     
+     private List<TarjetaCreditoDetailDTO> listTarjetaEntity2DetailDTO(List<TarjetaCreditoEntity> entityList) {
+        List<TarjetaCreditoDetailDTO> list = new ArrayList<>();
+        for (TarjetaCreditoEntity entity : entityList) {
+            list.add(new TarjetaCreditoDetailDTO(entity));
+        }
+        return list;
     }
     
 }

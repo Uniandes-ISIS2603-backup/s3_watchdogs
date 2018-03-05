@@ -5,16 +5,17 @@
  */
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
-import co.edu.uniandes.csw.watchdogs.ejb.PseLogic;
-import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
+import co.edu.uniandes.csw.watchdogs.ejb.PayPalLogic;
+import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
-import co.edu.uniandes.csw.watchdogs.persistence.PsePersistence;
+import co.edu.uniandes.csw.watchdogs.persistence.PayPalPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
+import org.apache.derby.iapi.types.UserType;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -31,12 +32,12 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author mac
  */
 @RunWith(Arquillian.class)
-public class PseLogicTest {
+public class PayPalLogicTest {
     
     private PodamFactory factory = new PodamFactoryImpl();
     
     @Inject
-    private PseLogic pseLogic;
+    private PayPalLogic payPalLogic;
     
     @PersistenceContext
     private EntityManager em;
@@ -44,14 +45,14 @@ public class PseLogicTest {
     @Inject
     private UserTransaction utx;
     
-    private List<PseEntity> data = new ArrayList<PseEntity>();
+    private List<PayPalEntity> data = new ArrayList<PayPalEntity>();
     
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addPackage(PseEntity.class.getPackage())
-                .addPackage(PseLogic.class.getPackage())
-                .addPackage(PsePersistence.class.getPackage())
+                .addPackage(PayPalEntity.class.getPackage())
+                .addPackage(PayPalLogic.class.getPackage())
+                .addPackage(PayPalPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -84,9 +85,9 @@ public class PseLogicTest {
      *
      */
     private void clearData() {
-        em.createQuery("delete from PseEntity").executeUpdate();
+        em.createQuery("delete from PayPalEntity").executeUpdate();
     }
-    
+
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
@@ -95,42 +96,42 @@ public class PseLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            PseEntity pse = factory.manufacturePojo(PseEntity.class);
-            em.persist(pse);
-            data.add(pse);
+            PayPalEntity tarjeta = factory.manufacturePojo(PayPalEntity.class);
+            em.persist(tarjeta);
+            data.add(tarjeta);
         }
     }
     
-     /**
-     * Prueba para crear una PSE
+    /**
+     * Prueba para crear una tarjeta
      *
      *
      */
     @Test
-    public void CreatePseTest() throws BusinessLogicException
-    {
-        PseEntity newEntity = factory.manufacturePojo(PseEntity.class);
-        PseEntity result = pseLogic.createPse(newEntity);
+    public void createPayPalTest() throws BusinessLogicException {
+        PayPalEntity newEntity = factory.manufacturePojo(PayPalEntity.class);
+        PayPalEntity result = payPalLogic.createPse(newEntity);
         Assert.assertNotNull(result);
-        PseEntity entity = em.find(PseEntity.class, result.getId());
+        PayPalEntity entity = em.find(PayPalEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
-    }
+        
+        }
+    
     
     /**
-     * Prueba para consultar la lista de PSE
+     * Prueba para consultar la lista de tarjetas
      *
      *
      */
     @Test
-    public void getPsesTest()
-    {
-        List<PseEntity> list = pseLogic.getPses();
+    public void getPayPalsTest() {
+        List<PayPalEntity> list = payPalLogic.getPayPals();
         Assert.assertEquals(data.size(), list.size());
-        for (PseEntity entity : list) {
+        for (PayPalEntity entity : list) {
             boolean found = false;
-            for (PseEntity storedEntity : data) {
+            for (PayPalEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -139,55 +140,54 @@ public class PseLogicTest {
         }
     }
     
+    
      /**
-     * Prueba para consultar un PSE
+     * Prueba para consultar una tarjeta
      *
      *
      */
     @Test
-    public void getPseTest() {
-        PseEntity entity = data.get(0);
-        PseEntity resultEntity = pseLogic.getPse(entity.getId());
+    public void getPayPalTest() {
+        PayPalEntity entity = data.get(0);
+        PayPalEntity resultEntity = payPalLogic.getPayPal(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
         Assert.assertEquals(entity.getCorreo(), resultEntity.getCorreo());
-        }
+        
+    }
     
-    
-     /**
-     * Prueba para eliminar un pse
+    /**
+     * Prueba para eliminar una tarjeta
      *
      *
      */
     @Test
-    public void deletePseTest() {
-        PseEntity entity = data.get(0);
-        pseLogic.deletePse(entity.getId());
-        PseEntity deleted = em.find(PseEntity.class, entity.getId());
+    public void deletePayPalTest() {
+        PayPalEntity entity = data.get(0);
+        payPalLogic.deletePayPal(entity.getId());
+        PayPalEntity deleted = em.find(PayPalEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
     
-     /**
-     * Prueba para actualizar un PSE
+    /**
+     * Prueba para actualizar una tarjeta
      *
      *
      */
     @Test
-    public void updatePseTest() throws BusinessLogicException {
-        PseEntity entity = data.get(0);
-        PseEntity pojoEntity = factory.manufacturePojo(PseEntity.class);
+    public void updatePayPalTest() throws BusinessLogicException {
+        PayPalEntity entity = data.get(0);
+        PayPalEntity pojoEntity = factory.manufacturePojo(PayPalEntity.class);
 
         pojoEntity.setId(entity.getId());
 
-        pseLogic.updateEntity(pojoEntity.getId(), pojoEntity);
+        payPalLogic.updateEntity(pojoEntity.getId(), pojoEntity);
 
-        PseEntity resp = em.find(PseEntity.class, entity.getId());
+        PayPalEntity resp = em.find(PayPalEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
         Assert.assertEquals(pojoEntity.getCorreo(), resp.getCorreo());
-        }
-
+    }
 }
- 

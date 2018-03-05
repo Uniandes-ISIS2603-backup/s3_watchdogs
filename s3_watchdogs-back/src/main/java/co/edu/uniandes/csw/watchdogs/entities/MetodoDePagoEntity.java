@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,7 +16,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  *
  * @author jc.pulido
  */
-@MappedSuperclass
+@Entity
 public abstract class MetodoDePagoEntity extends BaseEntity implements Serializable {
     
    // @PodamStrategyValue(Bool.class)
