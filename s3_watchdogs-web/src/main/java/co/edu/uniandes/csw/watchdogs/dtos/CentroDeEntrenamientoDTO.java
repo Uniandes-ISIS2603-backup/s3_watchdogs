@@ -55,7 +55,7 @@ public class CentroDeEntrenamientoDTO extends LugarDTO{
         entity.setId(this.id);
         entity.setDireccion(this.direccion);
         entity.setFotos(this.fotos);
-        entity.setCapacidadActual(this.capacidadActual);
+        entity.setUsuariosEnServicio(this.usuariosEnServicio);
         entity.setCapacidadMaxima(this.capacidadMaxima);
         return entity;
     }
