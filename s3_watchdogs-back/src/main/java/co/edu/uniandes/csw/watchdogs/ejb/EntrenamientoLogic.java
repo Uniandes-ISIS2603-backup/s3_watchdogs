@@ -73,7 +73,8 @@ public class EntrenamientoLogic {
      * @throws BusinessLogicException 
      */
     public EntrenamientoEntity createEntrenamiento(EntrenamientoEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de Entrenamiento");
+        LOGGER.info("Inicia proceso de creación de Entrenamiento. Logica");
+        LOGGER.info("Id del cliente logica"+entity.getCliente().getId());
         Date todayDate = Calendar.getInstance().getTime();
         if(todayDate.before(entity.getFecha()) ){
             ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());

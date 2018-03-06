@@ -88,12 +88,16 @@ public class EntrenamientoDTO extends ServicioDTO {
     @Override
     public EntrenamientoEntity toEntity(){
         EntrenamientoEntity entity = new EntrenamientoEntity();
+        
+        
+        
         entity.setCosto(this.getCosto());
         entity.setDuracion(this.getDuracion());
         entity.setEstado(this.isEstado());
         entity.setFecha(this.getFecha());
         entity.setRango(this.getRango());
         entity.setTipo(this.tipo);
+        entity.setId(this.id);
         return entity;
     }
 }

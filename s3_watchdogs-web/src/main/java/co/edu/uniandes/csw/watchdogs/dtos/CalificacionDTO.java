@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
+import java.util.logging.Logger;
 
 
 /**
@@ -17,6 +18,7 @@ public class CalificacionDTO {
     private Long id;
     
     private Integer puntaje;
+    private static final Logger LOGGER = Logger.getLogger(CalificacionDTO.class.getName());
 
     public CalificacionDTO() {
        
@@ -24,6 +26,7 @@ public class CalificacionDTO {
     
     public CalificacionDTO(CalificacionEntity entity){
         if(entity!=null){
+            this.id = entity.getId();
             this.puntaje = entity.getPuntaje();
         }
         
@@ -48,6 +51,7 @@ public class CalificacionDTO {
     
     public CalificacionEntity toEntity(){
         CalificacionEntity entity = new CalificacionEntity();
+        entity.setId(id);
         entity.setPuntaje(puntaje);
         return entity;
     }

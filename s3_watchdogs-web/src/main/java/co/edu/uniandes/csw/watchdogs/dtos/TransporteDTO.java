@@ -140,6 +140,7 @@ public class TransporteDTO {
      */
     public TransporteEntity toEntity(){
         TransporteEntity entity = new TransporteEntity();
+        entity.setId(id);
         entity.setDevuelta(devuelta);
         entity.setDireccion(direccion);
         entity.setRecogida(recogida);

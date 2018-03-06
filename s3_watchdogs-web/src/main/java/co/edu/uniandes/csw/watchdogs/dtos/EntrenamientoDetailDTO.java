@@ -11,10 +11,11 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
  *
  * @author c.martinezc1
  */
-public class EntrenamientoDetailDTO extends EntrenamientoDTO{
+public class EntrenamientoDetailDTO extends ServicioDetailDTO{
     
     private CentroDeEntrenamientoDTO centroDeEntrenamiento;
     
+    private String tipo;
     /**
      * Constructor por defecto
      */
@@ -28,11 +29,20 @@ public class EntrenamientoDetailDTO extends EntrenamientoDTO{
      */
     public EntrenamientoDetailDTO(EntrenamientoEntity entity){
         super(entity);
-        if(entity.getClass() != null){
+        this.tipo = entity.getTipo();
+        if(entity.getCentroDeEntrenamiento() != null){
             this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
         }
         else centroDeEntrenamiento = null;
         
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
     public CentroDeEntrenamientoDTO getCentroDeEntrenamiento() {
@@ -51,9 +61,31 @@ public class EntrenamientoDetailDTO extends EntrenamientoDTO{
      */
     @Override
     public EntrenamientoEntity toEntity(){
-        EntrenamientoEntity entity = super.toEntity();
+        EntrenamientoEntity entity = new EntrenamientoEntity();
+        entity.setCosto(this.getCosto());
+        entity.setDuracion(this.getDuracion());
+        entity.setEstado(this.isEstado());
+        entity.setFecha(this.getFecha());
+        entity.setRango(this.getRango());
+        entity.setTipo(this.tipo);
+        entity.setId(this.id);
+        if(this.cliente!=null){
+            entity.setCliente(cliente.toEntity());
+        }
+        if(this.mascota!=null){
+            entity.setMascota(mascota.toEntity());
+        }
+        if(this.empleado!=null){
+            entity.setEmpleado(empleado.toEntity());
+        }
+        if(this.factura!=null){
+            entity.setFactura(factura.toEntity());
+        }
+        if(this.calificacion!=null){
+            entity.setCalificacion(calificacion.toEntity());
+        }
         if(centroDeEntrenamiento!=null){
-        entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
+            entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
         }
         return entity;
     }
