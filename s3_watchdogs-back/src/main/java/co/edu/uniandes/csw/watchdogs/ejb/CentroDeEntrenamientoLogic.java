@@ -242,6 +242,6 @@ public class CentroDeEntrenamientoLogic {
     }
      
     public void validarHotel(Integer tHospedaje)throws BusinessLogicException{
-        if(tHospedaje <24) throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
+        if(tHospedaje <12) throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
     }
 }

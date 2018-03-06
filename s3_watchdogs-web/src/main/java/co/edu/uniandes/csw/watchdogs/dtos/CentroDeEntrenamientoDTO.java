@@ -17,7 +17,9 @@ import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
  *   {
  *      "id": Long,
  *      "direccion": String,
- *      "fotos": List'String'
+ *      "fotos": List'String',
+ *      "usuariosEnServicio": Integer,
+ *      "capacidadMaxima": Integer
  *   }
  * </pre>
  * Por ejemplo un centro de entrenamiento se representa asi:<br>
@@ -27,7 +29,9 @@ import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
  *   {
  *      "id": 1321321,
  *      "direccion": Carrera 50#120,
- *      "fotos": ""
+ *      "fotos": "",
+ *      "usuariosEnServicio": 50,
+ *      "capacidadMaxima":120
  *   }
  *
  * </pre>

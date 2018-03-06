@@ -6,10 +6,16 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.HotelDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.HotelLogic;
+import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.watchdogs.persistence.HotelPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +24,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -28,6 +35,12 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class HotelResource {
+    
+    
+     @Inject
+    private HotelLogic hotelLogic;
+    
+    private static final Logger LOGGER = Logger.getLogger(HotelPersistence.class.getName());
     
     /**
      * <h1>POST /api/hoteles : Crear un hotel.</h1>
@@ -52,7 +65,9 @@ public class HotelResource {
      */
     @POST
     public HotelDetailDTO createHotel(HotelDetailDTO hotel) throws BusinessLogicException {
-        return hotel;
+        HotelEntity hotelEntity = hotel.toEntity();
+        HotelEntity nuevoHotel = hotelLogic.createHotel(hotelEntity);
+        return new HotelDetailDTO(nuevoHotel);
     }
 
     /**
@@ -68,7 +83,7 @@ public class HotelResource {
      */
     @GET
     public List<HotelDetailDTO> getHoteles() {
-        return new ArrayList<>();
+       return listEntity2DetailDTO(hotelLogic.getHoteles());
     }
 
     /**
@@ -89,8 +104,12 @@ public class HotelResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public HotelDetailDTO getHotel(@PathParam("id") Long id) {
-        return null;
+    public HotelDetailDTO getHotel(@PathParam("id") Long id) throws WebApplicationException{
+        HotelEntity entity = hotelLogic.getHotel(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /hoteles/" + id + " no existe.", 404);
+        }
+        return new HotelDetailDTO(hotelLogic.getHotel(id));
     }
     
     /**
@@ -113,8 +132,13 @@ public class HotelResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public HotelDetailDTO updateHotel(@PathParam("id") Long id, HotelDetailDTO hotel) throws BusinessLogicException {
-        return hotel;
+    public HotelDetailDTO updateHotel(@PathParam("id") Long id, HotelDetailDTO hotel) throws WebApplicationException, BusinessLogicException {
+        hotel.setId(id);
+        HotelEntity entity = hotelLogic.getHotel(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /hoteles/" + id + " no existe.", 404);
+        }
+        return new HotelDetailDTO(hotelLogic.updateHotel(id, hotel.toEntity()));
     }
     
     /**
@@ -134,6 +158,30 @@ public class HotelResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deleteHotel(@PathParam("id") Long id) {
-        // Void
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un Hotel con id {0}", id);
+        HotelEntity entity = hotelLogic.getHotel(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /hoteles/" + id + " no existe.", 404);
+        }
+        hotelLogic.deleteHotel(id);
+    }
+     
+      /**
+     *
+     * lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos HotelEntity a una lista de
+     * objetos HotelDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de hoteles de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de hoteles en forma DTO (json)
+     */
+    private List<HotelDetailDTO> listEntity2DetailDTO(List<HotelEntity> entityList) {
+        List<HotelDetailDTO> list = new ArrayList<>();
+        for (HotelEntity entity : entityList) {
+            list.add(new HotelDetailDTO(entity));
+        }
+        return list;
     }
 }

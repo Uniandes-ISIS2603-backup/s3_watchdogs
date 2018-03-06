@@ -6,10 +6,17 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.PaseoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.PaseoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.PaseoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.watchdogs.persistence.PaseoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +25,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -28,6 +36,11 @@ import javax.ws.rs.Produces;
 @Consumes("application/json")
 @RequestScoped
 public class PaseoResource {
+    
+     @Inject
+    private PaseoLogic paseoLogic;
+    
+    private static final Logger LOGGER = Logger.getLogger(PaseoPersistence.class.getName());
     
     /**
      * <h1>POST /api/paseos : Crear un Paseo.</h1>
@@ -52,7 +65,9 @@ public class PaseoResource {
      */
     @POST
     public PaseoDetailDTO createPaseo(PaseoDetailDTO paseo) throws BusinessLogicException {
-        return paseo;
+        PaseoEntity paseoEntity = paseo.toEntity();
+        PaseoEntity nuevoPaseo = paseoLogic.createPaseo(paseoEntity);
+        return new PaseoDetailDTO(nuevoPaseo);
     }
 
     /**
@@ -68,7 +83,7 @@ public class PaseoResource {
      */
     @GET
     public List<PaseoDetailDTO> getPaseos() {
-        return new ArrayList<>();
+        return listEntity2DetailDTO(paseoLogic.getPaseos());
     }
 
     /**
@@ -89,8 +104,12 @@ public class PaseoResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public PaseoDetailDTO getPaseo(@PathParam("id") Long id) {
-        return null;
+    public PaseoDetailDTO getPaseo(@PathParam("id") Long id)throws WebApplicationException {
+        PaseoEntity entity = paseoLogic.getPaseo(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
+        }
+        return new PaseoDetailDTO(paseoLogic.getPaseo(id));
     }
     
     /**
@@ -113,8 +132,13 @@ public class PaseoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public PaseoDetailDTO updatePaseo(@PathParam("id") Long id, PaseoDetailDTO paseo) throws BusinessLogicException {
-        return paseo;
+    public PaseoDetailDTO updatePaseo(@PathParam("id") Long id, PaseoDetailDTO paseo) throws WebApplicationException, BusinessLogicException {
+        paseo.setId(id);
+        PaseoEntity entity = paseoLogic.getPaseo(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
+        }
+        return new PaseoDetailDTO(paseoLogic.updatePaseo(id, paseo.toEntity()));
     }
     
     /**
@@ -134,6 +158,31 @@ public class PaseoResource {
     @DELETE
     @Path("{id: \\d+}")
      public void deletePaseo(@PathParam("id") Long id) {
-        // Void
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar un Paseo con id {0}", id);
+        PaseoEntity entity = paseoLogic.getPaseo(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
+        }
+        paseoLogic.deletePaseo(id);
+    }
+     
+     
+     /**
+     *
+     * lista de entidades a DTO.
+     *
+     * Este método convierte una lista de objetos PaseoEntity a una lista de
+     * objetos PaseoDetailDTO (json)
+     *
+     * @param entityList corresponde a la lista de Paseoes de tipo Entity
+     * que vamos a convertir a DTO.
+     * @return la lista de Paseoes en forma DTO (json)
+     */
+    private List<PaseoDetailDTO> listEntity2DetailDTO(List<PaseoEntity> entityList) {
+        List<PaseoDetailDTO> list = new ArrayList<>();
+        for (PaseoEntity entity : entityList) {
+            list.add(new PaseoDetailDTO(entity));
+        }
+        return list;
     }
 }

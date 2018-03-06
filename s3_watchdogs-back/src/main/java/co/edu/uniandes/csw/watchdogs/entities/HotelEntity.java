@@ -19,7 +19,7 @@ import uk.co.jemos.podam.common.PodamIntValue;
 @Entity
 public class HotelEntity extends ServicioEntity implements Serializable {
     
-    @PodamIntValue(minValue = 24)
+    @PodamIntValue(minValue = 12)
     private Integer tiempoHospedaje;
     
     @PodamExclude
