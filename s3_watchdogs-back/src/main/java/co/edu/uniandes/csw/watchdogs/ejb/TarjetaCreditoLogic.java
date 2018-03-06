@@ -82,7 +82,7 @@ public class TarjetaCreditoLogic {
     {
         if(pNum.length()!= 16)
         {
-            throw new BusinessLogicException("El número de la tarjeta debe tener 16 dígitos");
+            throw new BusinessLogicException("El número de la tarjeta debe tener 16 dígitos fue" + pNum.length());
         }
        
         String pr = pNum.substring(0, 4);
