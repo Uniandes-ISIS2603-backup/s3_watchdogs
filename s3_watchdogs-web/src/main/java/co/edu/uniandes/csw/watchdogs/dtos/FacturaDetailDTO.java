@@ -69,7 +69,7 @@ public class FacturaDetailDTO extends FacturaDTO{
                //servicio = new ServicioDTO(entity.getServicio()); 
             }else entity.setServicio(null);
             if(entity.getMetodoDePago() != null){
-                //metodoDePago = new MetodoDePagoDTO(entity.getMetodoDePago);
+                //metodoDePago = new MetodoDePagoDTO(entity.getMetodoDePago());
             }else entity.setMetodoDePago(null);
             
             //TODO clases abstractas
@@ -123,7 +123,7 @@ public class FacturaDetailDTO extends FacturaDTO{
         FacturaEntity rta = super.toEntity();
         rta.setCliente(cliente.toEntity());
         rta.setServicio(servicio.toEntity());
-        //rta.setMetodoDePago(MetodoDePago.toEntity());
+        rta.setMetodoDePago(metodoDePago.toEntity());
         return rta;
     }
    

@@ -18,7 +18,7 @@ import co.edu.uniandes.csw.watchdogs.entities.Estado;
  * <pre>
  *   {
  *      "id": number,
- *      "matrizHorarios": string
+ *      "matrizHorarios": String
  *   }
  * </pre>
  * Por ejemplo una ruta se representa asi:<br>
@@ -37,7 +37,7 @@ import co.edu.uniandes.csw.watchdogs.entities.Estado;
 public class DisponibilidadDTO {
     
     private Long id;
-    private Estado[][] matrizHorarios;
+    private String matrizHorarios;
     
     
     /** 
@@ -54,7 +54,7 @@ public class DisponibilidadDTO {
     public DisponibilidadDTO(DisponibilidadEntity entity){
         if(entity != null){
         this.id = entity.getId();
-        this.matrizHorarios = entity.getMatrizHorarios();
+        this.matrizHorarios = fromMatrizHorarios(entity.getMatrizHorarios());
         }
     }
     
@@ -80,7 +80,7 @@ public class DisponibilidadDTO {
      * @return La matriz de horarios
      */
     
-    public Estado[][] getMatrizHorarios(){
+    public String getMatrizHorarios(){
         return matrizHorarios;
     }
     
@@ -88,7 +88,7 @@ public class DisponibilidadDTO {
      * @param matrizHorarios La nueva matriz de horarios
      */
     
-    public void setMatrizHorarios(Estado[][] matrizHorarios){
+    public void setMatrizHorarios(String matrizHorarios){
         this.matrizHorarios = matrizHorarios;
     }
     
@@ -99,8 +99,53 @@ public class DisponibilidadDTO {
     public DisponibilidadEntity toEntity(){
         DisponibilidadEntity entity = new DisponibilidadEntity();
         entity.setId(id);
-        entity.setMatrizHorarios(matrizHorarios);
+        entity.setMatrizHorarios(toMatrizHorarios());
         return entity;
+    }
+    
+    public void setMatrizHorarios(Estado[][] matrizHorarios){
+        this.matrizHorarios = fromMatrizHorarios(matrizHorarios);
+    }
+    
+    public Estado[][] toMatrizHorarios(){
+        Estado[][] rta = new Estado[7][12];
+        String[] temp = matrizHorarios.split(" ");
+        for(int i = 0; i < 7; i++){
+            String[] temp2 = temp[0].split("");
+            for(int j = 0; j < 12; j++){
+                String value = temp2[j];
+                if(value.equalsIgnoreCase("A")){
+                    rta[i][j]= Estado.AGENDADO;
+                } else if(value.equalsIgnoreCase("L")){
+                    rta[i][j]= Estado.LIBRE;
+                } else if(value.equalsIgnoreCase("D")){
+                    rta[i][j]= Estado.DESCANSO;
+                }  
+            }
+        }
+        return rta;
+    }
+    
+    public String fromMatrizHorarios(Estado[][] entrante){
+        String rta = "";
+        for(int i = 0; i < 7; i++){
+            for(int j = 0; j < 12; j++){
+                
+                switch(entrante[i][j]){
+                    case AGENDADO:
+                    rta += "A";
+                    break;
+                case DESCANSO:
+                    rta += "D";
+                    break;
+                case LIBRE:
+                    rta += "L";
+                    break;
+                }  
+            }
+            rta += " ";
+        }
+        return rta;
     }
     
     
