@@ -115,10 +115,10 @@ public class VeterinariaLogicTest {
             VeterinariaEntity entity = factory.manufacturePojo(VeterinariaEntity.class);
             em.persist(entity);
             data.add(entity);
-            if (i == 0) {
-                paseosData.get(i).setVeterinaria(entity);
-                aseosData.get(i).setVeterinaria(entity);
-            }
+           // if (i == 0) {
+            //    paseosData.get(i).setVeterinaria(entity);
+             //   aseosData.get(i).setVeterinaria(entity);
+            //}
         }
     }
     
