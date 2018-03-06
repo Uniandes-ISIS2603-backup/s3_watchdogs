@@ -133,14 +133,13 @@ public class ClienteDetailDTO extends ClienteDTO {
             if (entity.getMetodosDePago() != null) {
 
                 for (MetodoDePagoEntity entityMetodosDePago : entity.getMetodosDePago()) {
-                    if (entityMetodosDePago.getClass().equals(PseDTO.class)) {
+                    if (entityMetodosDePago.getClass().equals(PseEntity.class)) {
                         PseDTO nuevo = new PseDTO();
                         nuevo.setAprobado(entityMetodosDePago.getAprobado());
                         nuevo.setCorreo(((PseEntity) entityMetodosDePago).getCorreo());
                         nuevo.setId(entityMetodosDePago.getId());
                         metodosDePago.add(nuevo);
-                    }
-                    if (entityMetodosDePago.getClass().equals(TarjetaCreditoDTO.class)) {
+                    } else if (entityMetodosDePago.getClass().equals(TarjetaCreditoEntity.class)) {
                         TarjetaCreditoDTO nuevo = new TarjetaCreditoDTO();
                         nuevo.setId(entityMetodosDePago.getId());
                         nuevo.setAprobado(entityMetodosDePago.getAprobado());
@@ -148,8 +147,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                         nuevo.setFechaVencimiento(((TarjetaCreditoEntity) entityMetodosDePago).getFechaVencimiento());
                         nuevo.setNumTarjeta(((TarjetaCreditoEntity) entityMetodosDePago).getNumeroTarjeta());
                         metodosDePago.add(nuevo);
-                    }
-                    if (entityMetodosDePago.getClass().equals(PayPalDTO.class)) {
+                    } else if (entityMetodosDePago.getClass().equals(PayPalEntity.class)) {
                         PayPalDTO nuevo = new PayPalDTO();
                         nuevo.setAprobado(entityMetodosDePago.getAprobado());
                         nuevo.setCorreo(((PayPalEntity) entityMetodosDePago).getCorreo());
@@ -170,7 +168,7 @@ public class ClienteDetailDTO extends ClienteDTO {
             servicios = new ArrayList<>();
             if (entity.getServicios() != null) {
                 for (ServicioEntity entityServicio : entity.getServicios()) {
-                    if (entityServicio.getClass().equals(AseoDTO.class)) {
+                    if (entityServicio.getClass().equals(AseoEntity.class)) {
                         AseoDTO servicio = new AseoDTO();
                         servicio.setId(entityServicio.getId());
                         servicio.setFecha(entityServicio.getFecha());
@@ -182,7 +180,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                         ((AseoDTO) servicio).setBanho(((AseoEntity) entityServicio).getBanho());
                         ((AseoDTO) servicio).setPeluqueria(((AseoEntity) entityServicio).getPeluqueria());
                         servicios.add(servicio);
-                    } else if (entityServicio.getClass().equals(PaseoDTO.class)) {
+                    } else if (entityServicio.getClass().equals(PaseoEntity.class)) {
                         PaseoDTO servicio = new PaseoDTO();
                         servicio.setId(entityServicio.getId());
                         servicio.setFecha(entityServicio.getFecha());
@@ -193,7 +191,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                         ((PaseoDTO) servicio).setCapMax(((PaseoEntity) entityServicio).getCapMax());
                         ((PaseoDTO) servicio).setHoras(((PaseoEntity) entityServicio).getHoras());
                         servicios.add(servicio);
-                    } else if (entityServicio.getClass().equals(HotelDTO.class)) {
+                    } else if (entityServicio.getClass().equals(HotelEntity.class)) {
                         HotelDTO servicio = new HotelDTO();
                         servicio.setId(entityServicio.getId());
                         servicio.setFecha(entityServicio.getFecha());
@@ -203,8 +201,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                         servicio.setDuracion(entityServicio.getDuracion());
                         ((HotelDTO) servicio).setTiempoHospedaje(((HotelEntity) entityServicio).getTiempoHospedaje());
                         servicios.add(servicio);
-                    }
-                    if (entityServicio.getClass().equals(EntrenamientoDTO.class)) {
+                    } else if (entityServicio.getClass().equals(EntrenamientoEntity.class)) {
                         EntrenamientoDTO servicio = new EntrenamientoDTO();
                         servicio.setId(entityServicio.getId());
                         servicio.setFecha(entityServicio.getFecha());
@@ -246,7 +243,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                     nuevo.setId(dtoMetodoDePago.getId());
                     metodosDePagoEntity.add(nuevo);
                 }
-                if (dtoMetodoDePago.getClass().equals(TarjetaCreditoDTO.class)) {
+                else if (dtoMetodoDePago.getClass().equals(TarjetaCreditoDTO.class)) {
                     TarjetaCreditoEntity nuevo = new TarjetaCreditoEntity();
                     nuevo.setId(dtoMetodoDePago.getId());
                     nuevo.setAprobado(dtoMetodoDePago.getAprobado());
@@ -254,7 +251,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                     nuevo.setNumeroTarjeta(((TarjetaCreditoDTO) dtoMetodoDePago).getNumTarjeta());
                     metodosDePagoEntity.add(nuevo);
                 }
-                if (dtoMetodoDePago.getClass().equals(PayPalDTO.class)) {
+                else if (dtoMetodoDePago.getClass().equals(PayPalDTO.class)) {
                     PayPalEntity nuevo = new PayPalEntity();
                     nuevo.setAprobado(dtoMetodoDePago.getAprobado());
                     nuevo.setCorreo(((PayPalDTO) dtoMetodoDePago).getCorreo());
@@ -289,7 +286,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                     ((AseoEntity) nuevo).setBanho(((AseoDTO) dtoServicio).getBanho());
                     ((AseoEntity) nuevo).setPeluqueria(((AseoDTO) dtoServicio).getPeluqueria());
                     serviciosEntity.add(nuevo);
-                } else if (dtoServicio.getClass().equals(PaseoEntity.class)) {
+                } else if (dtoServicio.getClass().equals(PaseoDTO.class)) {
                     PaseoEntity nuevo = new PaseoEntity();
                     nuevo.setId(dtoServicio.getId());
                     nuevo.setFecha(dtoServicio.getFecha());
@@ -300,7 +297,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                     ((PaseoEntity) nuevo).setCapMax(((PaseoDTO) dtoServicio).getCapMax());
                     ((PaseoEntity) nuevo).setHoras(((PaseoDTO) dtoServicio).getHoras());
                     serviciosEntity.add(nuevo);
-                } else if (dtoServicio.getClass().equals(ServicioDTO.class)) {
+                } else if (dtoServicio.getClass().equals(HotelDTO.class)) {
                     HotelEntity nuevo = new HotelEntity();
                     nuevo.setId(dtoServicio.getId());
                     nuevo.setFecha(dtoServicio.getFecha());
@@ -310,7 +307,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                     nuevo.setDuracion(dtoServicio.getDuracion());
                     ((HotelEntity) nuevo).setTiempoHospedaje(((HotelDTO) dtoServicio).getTiempoHospedaje());
                     serviciosEntity.add(nuevo);
-                } else if (dtoServicio.getClass().equals(ServicioDTO.class)) {
+                } else if (dtoServicio.getClass().equals(EntrenamientoDTO.class)) {
                     EntrenamientoEntity nuevo = new EntrenamientoEntity();
                     nuevo.setId(dtoServicio.getId());
                     nuevo.setFecha(dtoServicio.getFecha());
