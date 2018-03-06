@@ -39,7 +39,8 @@ public abstract class MetodoDePagoDTO {
     
     public MetodoDePagoEntity toEntity()
     {
-        return null;
+        MetodoDePagoEntity metodoPago = null;
+        return metodoPago;
     }
 
     public Long getId() {

@@ -77,7 +77,8 @@ public class TarjetaCreditoResource {
      */
     @GET
     public List<TarjetaCreditoDetailDTO> getTarjetas() {
-        return listTarjetaEntity2DetailDTO(tarjetaLogic.getTarjetas());
+      //  return listTarjetaEntity2DetailDTO(tarjetaLogic.getTarjetas());
+    return new ArrayList<TarjetaCreditoDetailDTO>();
     }
     
     /**
