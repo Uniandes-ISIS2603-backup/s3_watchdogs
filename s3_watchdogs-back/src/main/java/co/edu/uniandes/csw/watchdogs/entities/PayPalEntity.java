@@ -5,8 +5,10 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
+import co.edu.uniandes.csw.watchdogs.podam.CorreoStrategy;
 import java.io.Serializable;
 import javax.persistence.Entity;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -15,6 +17,7 @@ import javax.persistence.Entity;
 @Entity
 public class PayPalEntity extends MetodoDePagoEntity implements Serializable{
     
+    @PodamStrategyValue(CorreoStrategy.class)
     private String correo;
     private String contrasenha;
 
