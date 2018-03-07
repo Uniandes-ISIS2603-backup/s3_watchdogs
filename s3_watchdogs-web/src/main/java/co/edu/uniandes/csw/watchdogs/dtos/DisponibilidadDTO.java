@@ -110,9 +110,9 @@ public class DisponibilidadDTO {
     public Estado[][] toMatrizHorarios(){
         Estado[][] rta = new Estado[7][12];
         String[] temp = matrizHorarios.split(" ");
-        for(int i = 0; i < 7; i++){
-            String[] temp2 = temp[0].split("");
-            for(int j = 0; j < 12; j++){
+        for(int i = 0; i < temp.length; i++){
+            String[] temp2 = temp[i].split("");
+            for(int j = 0; j < temp2.length; j++){
                 String value = temp2[j];
                 if(value.equalsIgnoreCase("A")){
                     rta[i][j]= Estado.AGENDADO;
@@ -128,19 +128,20 @@ public class DisponibilidadDTO {
     
     public String fromMatrizHorarios(Estado[][] entrante){
         String rta = "";
-        for(int i = 0; i < 7; i++){
-            for(int j = 0; j < 12; j++){
+        for(int i = 0; i < entrante.length; i++){
+            for(int j = 0; j < entrante[0].length; j++){
                 
                 switch(entrante[i][j]){
-                    case AGENDADO:
+                case AGENDADO:
                     rta += "A";
-                    break;
-                case DESCANSO:
-                    rta += "D";
                     break;
                 case LIBRE:
                     rta += "L";
                     break;
+                case DESCANSO:
+                    rta += "D";
+                    break;
+                
                 }  
             }
             rta += " ";

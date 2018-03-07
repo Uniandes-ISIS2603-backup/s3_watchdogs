@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.podam;
 
 import co.edu.uniandes.csw.watchdogs.entities.Estado;
+import java.util.Random;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 import uk.co.jemos.podam.common.AttributeStrategy;
@@ -29,11 +30,10 @@ public class DiaDisponibilidadStrategy implements AttributeStrategy<Estado[]>{
     public Estado[] getValue() throws PodamMockeryException{
         
         Estado[] rta = new Estado[12];
+        Random newMachetazo = new Random();
         
-        for(int i =0; i < rta.length; i++){
-            
-            rta[i] = Estado.values()[(int)(Math.random()*3)];
-
+        for(int i =0; i < rta.length; i++){     
+            rta[i] = Estado.values()[newMachetazo.nextInt(3)];
         } 
        
         return rta;
