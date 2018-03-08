@@ -37,7 +37,7 @@ public class EntrenamientoPersistence {
     }
     
     public List<EntrenamientoEntity> findAll() {
-        LOGGER.info("Consultando todas los transportes");
+        LOGGER.info("Consultando todas los entrenamiento");
         TypedQuery query = em.createQuery("select u from EntrenamientoEntity u", EntrenamientoEntity.class);
         return query.getResultList();
     }

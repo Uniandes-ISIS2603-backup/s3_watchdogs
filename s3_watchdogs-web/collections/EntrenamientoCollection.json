@@ -1,0 +1,232 @@
+{
+	"info": {
+		"name": "EntrenamientoCollection",
+		"_postman_id": "7a682b80-5408-270c-64cd-8e08c774b390",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 25,\r\n    \"estado\": 1,\r\n    \"duración\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"id\":1,\r\n    \"cliente\":{\r\n    \t\"id\":1\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos"
+					]
+				},
+				"description": "Crea un nuevo entrenamiento"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 25,\r\n    \"estado\": 1,\r\n    \"duración\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"id\":1,\r\n    \"cliente\":{\r\n    \t\"id\":1\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos"
+					]
+				},
+				"description": "Pide todos los entrenamientos"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 20,\r\n    \"estado\": 1,\r\n    \"duración\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"id\":1,\r\n    \"cliente\":{\r\n    \t\"id\":1\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos",
+						"4"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fadc4769-1711-4ff3-9993-592cfc1b484d",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos",
+						"{{new_id}}"
+					]
+				},
+				"description": "Elimina un entrenamiento"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "56aa088d-d3a8-48f2-885f-4def08bdd347",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 412\"] = responseCode.code === 412;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fecha\": \"2017-04-23T18:25:43.511Z\",\r\n\t\"costo\": 20,\r\n    \"estado\": 1,\r\n    \"duración\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"id\":1,\r\n    \"cliente\":{\r\n    \t\"id\":1\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos"
+					]
+				},
+				"description": "Intenta crear un entrenamiento con fecha anterior a hoy"
+			},
+			"response": []
+		}
+	]
+}

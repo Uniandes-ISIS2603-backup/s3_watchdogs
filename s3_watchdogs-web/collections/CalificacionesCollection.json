@@ -1,0 +1,188 @@
+{
+	"info": {
+		"name": "CalificacionesCollection",
+		"_postman_id": "6cb0a1f6-2643-ec4c-a59e-0379b71fedfd",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"calificaciones"
+					]
+				},
+				"description": "Crea una nueva calificacion"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"calificaciones"
+					]
+				},
+				"description": "Obtiene la lista de calificaciones"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"calificaciones",
+						"1"
+					]
+				},
+				"description": "Actualiza la calificacion con id 1"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"calificaciones",
+						"1"
+					]
+				},
+				"description": "Elimina la calificacion con id 1"
+			},
+			"response": []
+		}
+	]
+}
