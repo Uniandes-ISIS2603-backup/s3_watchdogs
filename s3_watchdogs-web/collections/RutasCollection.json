@@ -1,0 +1,188 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Rutas",
+		"_postman_id": "144a983f-efa0-9e3e-d742-7277d5ea8de3",
+		"description": "Colecciones de prueba para Ruta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar todas las rutas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/rutas",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Sirve para consultar todas las rutas"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear ruta correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/rutas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"duracion\" : 79}"
+				},
+				"description": "Sirve para crear una ruta nueva"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear ruta incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 412\"] = responseCode.code === 412;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/rutas",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"duracion\" : 1239}"
+				},
+				"description": "Sirve para probar fallos en el creador"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar ruta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/rutas/107",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"duracion\" : 22}"
+				},
+				"description": "Sirve para actualizar una ruta"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar ruta especifica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/rutas/107",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"duracion\" : 79}"
+				},
+				"description": "Sirve consultar una ruta especifica"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar ruta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 204\"] = responseCode.code === 204;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/rutas/104",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Sirve para borrar una ruta"
+			},
+			"response": []
+		}
+	]
+}

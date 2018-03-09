@@ -1,0 +1,219 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Disponibilidades",
+		"_postman_id": "01b568bb-3f70-2739-e8d5-7d095363cdfd",
+		"description": "Colecciones de prueba para Disponibilidad",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar todas las Disponibilidades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/disponibilidades",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Sirve para consultar todas las Disponibilidades"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear disponibilidad correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/disponibilidades",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"matrizHorarios\" : \"LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL\"}"
+				},
+				"description": "Sirve para crear una nueva disponibilidad"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear disponibilidad incorrecto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 412\"] = responseCode.code === 412;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/disponibilidades",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"matrizHorarios\" : \"LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL\"}"
+				},
+				"description": "Sirve para probar fallos en el creador"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear disponibilidad incorrecto 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 412\"] = responseCode.code === 412;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/disponibilidades",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"matrizHorarios\" : \"LADLL LADLL DAADD LAADL LADL ADAA DDLD\"}"
+				},
+				"description": "Sirve para probar fallos en el creador"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Disponibilidad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/disponibilidades/101",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"matrizHorarios\" : \"LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL\"}"
+				},
+				"description": "Sirve para actualizar una disponibilidad"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar disponibilidad especifica",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/rutas/101",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"duracion\" : 79}"
+				},
+				"description": "Sirve para consultar una disponibilidad especifica"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar disponibilidad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 204\"] = responseCode.code === 204;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://localhost:8080/s3_watchdogs-web/api/disponibilidades/102",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Sirve para borrar una disponibilidad"
+			},
+			"response": []
+		}
+	]
+}
