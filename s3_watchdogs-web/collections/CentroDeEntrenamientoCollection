@@ -1,0 +1,204 @@
+{
+	"info": {
+		"name": "CentroDeEntrenamientoCollection",
+		"_postman_id": "fc1ce4ab-d8dd-937f-7aea-d827b7c8e232",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar CdE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30ecfadb-88af-4086-810a-4db7656c99b3",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/centrosDeEntrenamiento/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"centrosDeEntrenamiento",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar todos los CdEs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17a23f8b-b1c4-4e31-8588-3bc0c49c3241",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/centrosDeEntrenamiento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"centrosDeEntrenamiento"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear CdE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "01cc609b-a730-4b44-9cc2-c0682d60024c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"id\": 1,\r\n       \"direccion\": \"Carrera 50#120\",\r\n       \"fotos\": \"\",\r\n       \"usuariosEnServicio\": 50,\r\n       \"capacidadMaxima\":120\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/centrosDeEntrenamiento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"centrosDeEntrenamiento"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar CdE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27700df2-422b-4be8-94de-3b7b12f972e7",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"id\": 1,\r\n       \"direccion\": \"Carrera 50#120\",\r\n       \"fotos\": \"\",\r\n       \"usuariosEnServicio\": 50,\r\n       \"capacidadMaxima\":120\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/centrosDeEntrenamiento/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"centrosDeEntrenamiento",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar CdE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c24546e7-867c-453c-805d-5fbeaa5a229e",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 204\"] = responseCode.code === 204;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/centrosDeEntrenamiento/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"centrosDeEntrenamiento",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

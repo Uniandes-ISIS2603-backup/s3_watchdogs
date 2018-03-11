@@ -1,0 +1,204 @@
+{
+	"info": {
+		"name": "PaseoCollection",
+		"_postman_id": "b7d98734-9a93-81e5-52bb-46d636ba3705",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar todos los paseos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d121ec2d-56bf-417b-b593-ee847884c05a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"paseos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar paseo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1972c785-e15e-4213-b16a-ed7e061323fd",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"paseos",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Crear paseo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7dbb96b-d52f-4254-963d-c9d438919843",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"id\": 1,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 25,\r\n       \"estado\": 1,\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"veterinaria\": { \"id\": {{new_id_e}} }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"paseos"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar paseo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc9ce396-8a20-47f0-bfdb-fbd2a88731a0",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"id\": 1,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 30,\r\n       \"estado\": 1,\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"veterinaria\": { \"id\": {{new_id_e}} }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"paseos",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar paseo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "654ac0a2-db04-4ae7-9519-1f60394c664a",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 204\"] = responseCode.code === 204;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"paseos",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
