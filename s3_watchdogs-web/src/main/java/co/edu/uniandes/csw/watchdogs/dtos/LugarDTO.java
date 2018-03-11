@@ -57,7 +57,7 @@ public abstract class LugarDTO implements Serializable {
         this.id = lugar.getId();
         this.direccion = lugar.getDireccion();
         this.fotos = lugar.getFotos();
-        this.usuariosEnServicio=lugar.getCapacidadMaxima();
+        this.usuariosEnServicio=lugar.getUsuariosEnServicio();
         this.capacidadMaxima=lugar.getCapacidadMaxima();
         }
     }

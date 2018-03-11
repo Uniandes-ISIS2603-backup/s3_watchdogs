@@ -30,7 +30,6 @@ import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
  *      "id": 1234,
  *      "direccion": Carrera 50#120,
  *      "fotos": "",
- *      "capacidad": 10
  *      "usuariosEnServicio": Integer,
  *      "capacidadMaxima":Integer
  *  }

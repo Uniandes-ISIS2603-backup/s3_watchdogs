@@ -16,7 +16,7 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  * <pre>
  *  {
  *      "id": Long,
- *      "fecha: Date,
+ *      "fecha": Date,
  *      "costo": Double,
  *      "estado": Boolean,
  *      "duración": Double,

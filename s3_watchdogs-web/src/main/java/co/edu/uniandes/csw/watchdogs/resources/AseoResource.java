@@ -43,8 +43,8 @@ import javax.ws.rs.core.MediaType;
  * @version 1.0
  */
 @Path("aseos")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Produces("application/json")
+@Consumes("application/json")
 @RequestScoped
 public class AseoResource {
     
