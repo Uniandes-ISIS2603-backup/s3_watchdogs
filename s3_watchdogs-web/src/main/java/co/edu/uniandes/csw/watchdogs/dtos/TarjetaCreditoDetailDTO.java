@@ -17,7 +17,9 @@ public class TarjetaCreditoDetailDTO extends TarjetaCreditoDTO {
     /**
      * Constructor por defecto
      */
-    public TarjetaCreditoDetailDTO(){super();}
+    public TarjetaCreditoDetailDTO(){
+        super();
+    }
     
     public TarjetaCreditoDetailDTO(TarjetaCreditoEntity entity)
     {

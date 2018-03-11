@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import java.util.List;
 import javax.ejb.Stateless;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -21,7 +22,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class TarjetaCreditoPersistence {
     
-    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(CityPersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TarjetaCreditoPersistence.class.getName());
 
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;

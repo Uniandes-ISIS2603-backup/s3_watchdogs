@@ -16,7 +16,6 @@ import java.util.Date;
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
- *      "id": number,
  *      "numeroTarjeta: string,
  *      "fechaVencimiento": string,
  *      "codigoSeguridad": String
@@ -27,7 +26,6 @@ import java.util.Date;
  * <pre>
  * 
  *   {
- *      "id": 91852,
  *      "numeroTarjeta: "1212124648794562",
  *      "fechaVencimiento": "12/2020"
  *      "codigoSeguridad": "456"
@@ -52,10 +50,13 @@ public class TarjetaCreditoDTO extends MetodoDePagoDTO {
    public TarjetaCreditoDTO(TarjetaCreditoEntity entity)
    {
        super(entity);
+       if(entity != null)
+       {
        nombre = MetodoDePagoDTO.TARJETA_CREDITO;
        numeroTarjeta = entity.getNumeroTarjeta();
        fechaVencimiento = entity.getFechaVencimiento();
        codigoSeguridad = entity.getCodigoSeguridad();
+       }
    }
     
    public TarjetaCreditoEntity toEntity()
@@ -65,7 +66,7 @@ public class TarjetaCreditoDTO extends MetodoDePagoDTO {
        entity.setFechaVencimiento(this.fechaVencimiento);
        entity.setNumeroTarjeta(this.numeroTarjeta);
        entity.setNombre(this.nombre);
-       entity.setId(this.id);
+       entity.setId(id);
        return entity;
    }
    
