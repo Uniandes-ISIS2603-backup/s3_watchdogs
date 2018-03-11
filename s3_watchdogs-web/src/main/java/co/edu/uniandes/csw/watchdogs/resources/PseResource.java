@@ -97,8 +97,8 @@ public class PseResource {
      * @return JSON {@link PseDetailDTO} - El pago buscado
      */
     @GET
-    @Path("(id: \\d+)")
-    public PseDetailDTO getPse(@PathParam("id") Long id)
+    @Path("{id: \\d+}")
+    public PseDetailDTO getPse(@PathParam("id") Long id)throws BusinessLogicException
     {
         PseEntity entity = pseLogic.getPse(id);
         if(entity == null)
@@ -159,7 +159,7 @@ public class PseResource {
          PseEntity entity = pseLogic.getPse(id);
          if(entity == null)
          {
-             throw new WebApplicationException("El Pse no existe");
+             throw new WebApplicationException("El Pse no existe", 404);
          }
          pseLogic.deletePse(id);
     }

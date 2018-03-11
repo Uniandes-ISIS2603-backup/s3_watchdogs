@@ -19,7 +19,6 @@ public class PayPalEntity extends MetodoDePagoEntity implements Serializable{
     
     @PodamStrategyValue(CorreoStrategy.class)
     private String correo;
-    private String contrasenha;
 
     /**
      * Método que retorna el correo
@@ -35,24 +34,5 @@ public class PayPalEntity extends MetodoDePagoEntity implements Serializable{
      */
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    /**
-     * Método que retorna la contrasenha 
-     * @return La contrasenha
-     */
-    public String getContrasenha() {
-        return contrasenha;
-    }
-
-    /**
-     * Método que asigna un nuevo valor a la contrasenha 
-     * @param contrasenha Contraseña nueva a asignar
-     */
-    public void setContrasenha(String contrasenha) {
-        this.contrasenha = contrasenha;
-    }
-    
-    
-    
+    }    
 }

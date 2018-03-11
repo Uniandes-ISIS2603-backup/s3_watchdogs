@@ -1,0 +1,165 @@
+{
+	"info": {
+		"name": "PseCollection",
+		"_postman_id": "3f918561-b023-94f5-9d19-1a013ed93e92",
+		"description": "Coleccion que prueba el recurso Pse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create PSE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "957e25ed-9e24-489e-9326-0040ccb73633",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\" : \"jc.pulido@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/pses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"pses"
+					]
+				},
+				"description": "Crea un PSE"
+			},
+			"response": []
+		},
+		{
+			"name": "GET PSE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e3d7d11-6e18-483c-9d33-bf8d913966e1",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/pses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"pses"
+					]
+				},
+				"description": "Obtiene todos los PSE creados."
+			},
+			"response": []
+		},
+		{
+			"name": "GET a PSE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c3930ec2-ee35-4d75-a8c1-b7204e9f4cc8",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/pses/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"pses",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE PSE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ed9065c2-78c9-47d0-a37f-8c6e1aa94034",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/pses/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"pses",
+						"{{new_id}}"
+					]
+				},
+				"description": "Elimina un PSE"
+			},
+			"response": []
+		}
+	]
+}

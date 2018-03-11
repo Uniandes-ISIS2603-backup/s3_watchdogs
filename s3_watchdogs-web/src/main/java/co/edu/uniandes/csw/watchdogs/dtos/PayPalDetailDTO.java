@@ -31,7 +31,8 @@ public class PayPalDetailDTO extends PayPalDTO {
     @Override
     public PayPalEntity toEntity()
     {
-        return super.toEntity();
+        PayPalEntity entity = super.toEntity();
+        return entity;
     }
   
     

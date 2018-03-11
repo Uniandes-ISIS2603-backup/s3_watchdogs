@@ -73,6 +73,7 @@ public class PsePersistence {
     
     public void delete(Long id)
     {
+        LOGGER.log(Level.INFO, "Borrando PSE con id={0}", id);
         PseEntity entity = em.find(PseEntity.class, id);
         em.remove(entity);
     }

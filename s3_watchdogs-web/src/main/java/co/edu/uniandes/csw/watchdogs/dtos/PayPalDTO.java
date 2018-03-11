@@ -46,15 +46,18 @@ public class PayPalDTO extends MetodoDePagoDTO{
     public PayPalDTO(PayPalEntity entity)
     {
         super(entity);
+        if(entity != null)
+        {
         correo = entity.getCorreo();
         nombre = MetodoDePagoDTO.PAYPAL;
+        }
     }
     
     public PayPalEntity toEntity()
     {
         PayPalEntity entity = new PayPalEntity();
         entity.setCorreo(this.correo);
-        entity.setId(this.id);
+        entity.setId(id);
         entity.setNombre(this.nombre);
         return entity;
     }

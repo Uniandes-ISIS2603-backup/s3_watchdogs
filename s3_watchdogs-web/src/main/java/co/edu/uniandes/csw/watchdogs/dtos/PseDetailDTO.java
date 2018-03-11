@@ -30,7 +30,8 @@ public class PseDetailDTO extends PseDTO {
     @Override
     public PseEntity toEntity()
     {
-       return super.toEntity();
+        PseEntity entity = super.toEntity();
+       return entity;
     }
     
     

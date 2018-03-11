@@ -27,7 +27,8 @@ public class TarjetaCreditoDetailDTO extends TarjetaCreditoDTO {
     @Override
     public TarjetaCreditoEntity toEntity()
     {
-        return super.toEntity();
+        TarjetaCreditoEntity entity = super.toEntity();
+        return entity;
     }
   
     

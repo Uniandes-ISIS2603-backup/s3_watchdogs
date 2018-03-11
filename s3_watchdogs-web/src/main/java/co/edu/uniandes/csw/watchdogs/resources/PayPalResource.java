@@ -98,7 +98,7 @@ public class PayPalResource {
      * @return JSON {@link PseDetailDTO} - El pago buscado
      */
     @GET
-    @Path("(id: \\d+)")
+    @Path("{id: \\d+}")
     public PayPalDetailDTO getPayPal(@PathParam("id") Long id)
     {
         PayPalEntity entity = paypalLogic.getPayPal(id);

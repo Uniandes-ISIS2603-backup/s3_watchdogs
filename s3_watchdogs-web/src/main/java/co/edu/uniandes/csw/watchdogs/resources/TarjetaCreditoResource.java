@@ -98,7 +98,7 @@ public class TarjetaCreditoResource {
      * @return JSON {@link PseDetailDTO} - La tarjeta buscada 
      */
     @GET
-    @Path("(id: \\d+)")
+    @Path("{id: \\d+}")
     public TarjetaCreditoDetailDTO getTarjeta(@PathParam("id") Long id)
     {
         TarjetaCreditoEntity entity = tarjetaLogic.getTarjeta(id);

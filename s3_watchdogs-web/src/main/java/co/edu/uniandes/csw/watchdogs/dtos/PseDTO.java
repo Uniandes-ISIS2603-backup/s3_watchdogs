@@ -58,7 +58,7 @@ public class PseDTO extends MetodoDePagoDTO{
         PseEntity entity = new PseEntity();
         entity.setCorreo(this.correo);
         entity.setNombre(this.nombre);
-        entity.setId(this.id);
+        entity.setId(id);
         entity.setNombre(this.nombre);
         return entity;
     }
