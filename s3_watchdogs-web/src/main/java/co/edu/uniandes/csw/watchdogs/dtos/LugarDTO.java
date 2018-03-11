@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.LugarEntity;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -36,7 +37,7 @@ import java.util.List;
  * 
  * @author js.vacat
  */
-public abstract class LugarDTO {
+public abstract class LugarDTO implements Serializable {
     
     protected Long id;
     protected String direccion;

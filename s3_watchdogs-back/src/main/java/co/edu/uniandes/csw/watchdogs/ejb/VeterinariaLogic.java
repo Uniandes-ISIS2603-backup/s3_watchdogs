@@ -71,6 +71,7 @@ public class VeterinariaLogic {
      */
     public VeterinariaEntity createVeterinaria(VeterinariaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Veterinaria");
+        validar(entity.getId(),entity.getName(), entity.getUsuariosEnServicio(), entity.getCapacidadMaxima(), entity.getDireccion());
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Veterinaria");
         return entity;
@@ -85,11 +86,18 @@ public class VeterinariaLogic {
      */
     public VeterinariaEntity updateVeterinaria(Long id, VeterinariaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Veterinaria con id={0}", id); 
+        validar(entity.getId(),entity.getName(), entity.getUsuariosEnServicio(), entity.getCapacidadMaxima(), entity.getDireccion());
         VeterinariaEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Veterinaria con id={0}", entity.getId());
         return newEntity;
     }
     
+    public void validar(Long id, String nombre, Integer usuariosEnServicio ,Integer capMax, String direccion)throws BusinessLogicException {
+        if(id<0) throw new BusinessLogicException ("El id es invalido");
+        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
+        else if(usuariosEnServicio>capMax) throw new BusinessLogicException ("Los usuarios en servicio no pueden ser mayores que la capacidad máxima");
+        else if(direccion.length()>50) throw new BusinessLogicException ("La direccion es muy grande");   
+    }
     /**
      * Eliminar una Veterinaria por ID
      * @param id El ID de la Veterinaria a eliminar
@@ -154,7 +162,6 @@ public class VeterinariaLogic {
         VeterinariaEntity veterinariaEntity = getVeterinaria(veterinariaId);
         PaseoEntity paseoEntity = paseoLogic.getPaseo(paseoId);
         validarServicios(paseoEntity.getId(), paseoEntity.getName(), paseoEntity.getFecha(),paseoEntity.getCosto(),paseoEntity.getDuracion());
-       // validarHotel(hotelEntity.getTiempoHospedaje());
         paseoEntity.setVeterinaria(veterinariaEntity);
         return paseoEntity;
     }
@@ -223,8 +230,7 @@ public class VeterinariaLogic {
     
     
     public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException
-    {
-        Date todayDate = Calendar.getInstance().getTime();
+    {Date todayDate = Calendar.getInstance().getTime();
         if(fecha.before(todayDate)) throw new BusinessLogicException ("La fecha ingresada no es valida");
         else if(id<0) throw new BusinessLogicException ("El id es invalido");
         else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");

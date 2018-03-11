@@ -115,10 +115,6 @@ public class VeterinariaLogicTest {
             VeterinariaEntity entity = factory.manufacturePojo(VeterinariaEntity.class);
             em.persist(entity);
             data.add(entity);
-           // if (i == 0) {
-            //    paseosData.get(i).setVeterinaria(entity);
-             //   aseosData.get(i).setVeterinaria(entity);
-            //}
         }
     }
     
@@ -181,6 +177,7 @@ public class VeterinariaLogicTest {
 
     /**
      * Prueba para actualizar una Veterinaria
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @Test
     public void updateCentroDeEntrenamientoTest() throws BusinessLogicException {

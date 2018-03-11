@@ -8,10 +8,13 @@ package co.edu.uniandes.csw.watchdogs.resources;
  */
 import co.edu.uniandes.csw.watchdogs.dtos.AseoDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.AseoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.AseoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,6 +23,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  * <pre>Clase que implementa el recurso "Aseos".
@@ -38,10 +43,13 @@ import javax.ws.rs.Produces;
  * @version 1.0
  */
 @Path("aseos")
-@Produces("application/json")
-@Consumes("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class AseoResource {
+    
+    @Inject
+    AseoLogic aseoLogic;
 
     /**
      * <h1>POST /api/aseos : Crear una aseo.</h1>
@@ -66,7 +74,7 @@ public class AseoResource {
      */
     @POST
     public AseoDetailDTO createAseo(AseoDetailDTO aseo) throws BusinessLogicException {
-        return aseo;
+        return new AseoDetailDTO(aseoLogic.createAseo(aseo.toEntity()));
     }
 
     /**
@@ -79,10 +87,11 @@ public class AseoResource {
      * 200 OK Devuelve todos los servicios de aseo de la aplicacion.</code> 
      * </pre>
      * @return JSONArray {@link AseoDetailDTO} - Los servicios de aseo encontrados en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @GET
-    public List<AseoDetailDTO> getCities() {
-        return new ArrayList<>();
+    public List<AseoDetailDTO> getAseos() throws BusinessLogicException {
+        return listAseoEntity2DetailDTO(aseoLogic.getAseos());
     }
 
     /**
@@ -100,11 +109,18 @@ public class AseoResource {
      * </pre>
      * @param id Identificador del servicio de aseo que se esta buscando. Este debe ser una cadena de dígitos.
      * @return JSON {@link AseoDetailDTO} -El servicio de aseo buscado
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @GET
     @Path("{id: \\d+}")
-    public AseoDetailDTO getCity(@PathParam("id") Long id) {
-        return null;
+    public AseoDetailDTO getAseo(@PathParam("id") Long id)throws BusinessLogicException {
+        AseoEntity entity = aseoLogic.getAseo(id);
+        if (entity==null)
+        {
+           throw new WebApplicationException("El recurso /aseos/" + id + " no existe.", 404);
+        }
+        return new AseoDetailDTO(entity);  
+        
     }
     
     /**
@@ -128,7 +144,12 @@ public class AseoResource {
     @PUT
     @Path("{id: \\d+}")
     public AseoDetailDTO updateAseo(@PathParam("id") Long id,AseoDetailDTO aseo) throws BusinessLogicException {
-        return aseo;
+        aseo.setId(id);
+        AseoEntity entity = aseoLogic.getAseo(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /aseos/" + id + " no existe.", 404);
+        }
+        return new AseoDetailDTO(aseoLogic.updateAseo(id,aseo.toEntity() ));
     }
     
     /**
@@ -144,10 +165,23 @@ public class AseoResource {
      * </code>
      * </pre>
      * @param id Identificador del servicio de aseo que se desea borrar. Este debe ser una cadena de dígitos.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteAseo(@PathParam("id") Long id) {
-        // Void
+     public void deleteAseo(@PathParam("id") Long id) throws BusinessLogicException {
+        AseoEntity entity = aseoLogic.getAseo(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /aseos/" + id + " no existe.", 404);
+        }
+       aseoLogic.deleteAseo(id);
+    }
+     
+      private List<AseoDetailDTO> listAseoEntity2DetailDTO(List<AseoEntity> entityList) {
+        List<AseoDetailDTO> list = new ArrayList<>();
+        for(AseoEntity entity : entityList) {
+            list.add(new AseoDetailDTO(entity));
+        }
+        return list;
     }
 }

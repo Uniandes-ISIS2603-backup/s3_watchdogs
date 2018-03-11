@@ -108,12 +108,14 @@ public class AseoLogicTest {
         em.createQuery("delete from EmpleadoEntity").executeUpdate();
     }
     
+     /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
+     *
+     *
+     */
     private void insertData() {  
-        for (int i = 0; i < 3; i++) {
-            AseoEntity entity = factory.manufacturePojo(AseoEntity.class);
-            em.persist(entity);
-            data.add(entity);
-        }
+        
         for (int i = 0; i < 3; i++) {
             ClienteEntity clienteEntity = factory.manufacturePojo(ClienteEntity.class);
             em.persist(clienteEntity);
@@ -129,6 +131,14 @@ public class AseoLogicTest {
             em.persist(empleadoEntity);
             dataEmpleado.add(empleadoEntity);
         }
+        for (int i = 0; i < 3; i++) {
+            AseoEntity entity = factory.manufacturePojo(AseoEntity.class);
+            entity.setCliente(dataCliente.get(1));
+            entity.setMascota(dataMascota.get(1));
+            entity.setEmpleado(dataEmpleado.get(1));
+            em.persist(entity);
+            data.add(entity);
+        }
     }
     
     /**
@@ -140,7 +150,10 @@ public class AseoLogicTest {
     @Test
     public void createAseoTest() throws BusinessLogicException {
         AseoEntity newEntity = factory.manufacturePojo(AseoEntity.class);
-        AseoEntity result = aseoLogic.createAseo(newEntity,dataCliente.get(0).getId(),dataMascota.get(0).getId(),dataEmpleado.get(0).getId());
+        newEntity.setCliente(dataCliente.get(0));
+        newEntity.setMascota(dataMascota.get(0));
+        newEntity.setEmpleado(dataEmpleado.get(0));
+        AseoEntity result = aseoLogic.createAseo(newEntity);
         Assert.assertNotNull(result);
         AseoEntity entity = em.find(AseoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -153,10 +166,15 @@ public class AseoLogicTest {
         Assert.assertEquals(newEntity.getBanho(), entity.getBanho());
         Assert.assertEquals(newEntity.getDientes(), entity.getDientes());
         Assert.assertEquals(newEntity.getPeluqueria(), entity.getPeluqueria());
+        Assert.assertEquals(newEntity.getVeterinaria(), entity.getVeterinaria());
+        Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
+        Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+        Assert.assertEquals(newEntity.getEmpleado(), entity.getEmpleado());
+         
     }
 
     /**
-     * Prueba para consultar la lista de Calificaciones
+     * Prueba para consultar la lista de Aseos
      *
      *
      */
@@ -176,7 +194,7 @@ public class AseoLogicTest {
     }
 
     /**
-     * Prueba para consultar un Calificacion
+     * Prueba para consultar un Aseo
      *
      *
      */
@@ -195,11 +213,15 @@ public class AseoLogicTest {
         Assert.assertEquals(entity.getBanho(), resultEntity.getBanho());
         Assert.assertEquals(entity.getDientes(), resultEntity.getDientes());
         Assert.assertEquals(entity.getPeluqueria(), resultEntity.getPeluqueria());
+        Assert.assertEquals(entity.getVeterinaria(), resultEntity.getVeterinaria());
+        Assert.assertEquals(entity.getMascota(), resultEntity.getMascota());
+        Assert.assertEquals(entity.getCliente(), resultEntity.getCliente());
+        Assert.assertEquals(entity.getEmpleado(), resultEntity.getEmpleado());
 
     }
 
     /**
-     * Prueba para eliminar un Book
+     * Prueba para eliminar un Aseo
      *
      *
      */
@@ -212,7 +234,7 @@ public class AseoLogicTest {
     }
 
     /**
-     * Prueba para actualizar un Book
+     * Prueba para actualizar un Aseo
      *
      *
      * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
@@ -223,14 +245,17 @@ public class AseoLogicTest {
         AseoEntity pojoEntity = factory.manufacturePojo(AseoEntity.class);
 
         pojoEntity.setId(entity.getId());
+        pojoEntity.setCliente(dataCliente.get(0));
+        pojoEntity.setMascota(dataMascota.get(0));
+        pojoEntity.setEmpleado(dataEmpleado.get(0));
 
-        aseoLogic.updateAseo(pojoEntity.getId(), pojoEntity,dataCliente.get(0).getId(),dataMascota.get(0).getId(),dataEmpleado.get(0).getId());
+        aseoLogic.updateAseo(pojoEntity.getId(), pojoEntity);
 
         AseoEntity resp = em.find(AseoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
-         Assert.assertEquals(pojoEntity.getCosto(), resp.getCosto(),0);
+        Assert.assertEquals(pojoEntity.getCosto(), resp.getCosto(),0);
         Assert.assertEquals(pojoEntity.isEstado(), resp.isEstado());
         Assert.assertEquals(pojoEntity.getRango(), resp.getRango());
         Assert.assertEquals(pojoEntity.getDuracion(), resp.getDuracion(),0);
@@ -238,5 +263,9 @@ public class AseoLogicTest {
         Assert.assertEquals(pojoEntity.getBanho(), resp.getBanho());
         Assert.assertEquals(pojoEntity.getDientes(), resp.getDientes());
         Assert.assertEquals(pojoEntity.getPeluqueria(), resp.getPeluqueria());
+        Assert.assertEquals(pojoEntity.getVeterinaria(), resp.getVeterinaria());
+        Assert.assertEquals(pojoEntity.getMascota(), resp.getMascota());
+        Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
+        Assert.assertEquals(pojoEntity.getEmpleado(), resp.getEmpleado());
     }
 }

@@ -6,10 +6,13 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.VeterinariaDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.VeterinariaLogic;
+import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,6 +21,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  * <pre>Clase que implementa el recurso "veterinarias".
@@ -36,11 +41,13 @@ import javax.ws.rs.Produces;
  * @version 1.0
  */
 @Path("veterinarias")
-@Produces("application/json")
-@Consumes("application/json")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 @RequestScoped
 public class VeterinariaResource {
     
+    @Inject
+    private VeterinariaLogic veterinariaLogic;
     
         /**
      * <h1>POST /api/veterinarias : Crear una veterinaria.</h1>
@@ -63,7 +70,8 @@ public class VeterinariaResource {
      */
     @POST
     public VeterinariaDetailDTO createVeterinaria(VeterinariaDetailDTO veterinaria ) throws BusinessLogicException {
-        return veterinaria;
+               return new VeterinariaDetailDTO(veterinariaLogic.createVeterinaria(veterinaria.toEntity()));
+
     }
     
         /**
@@ -76,10 +84,11 @@ public class VeterinariaResource {
      * 200 OK Devuelve todos las veterinarias de la aplicacion.</code> 
      * </pre>
      * @return JSONArray {@link VeterinariaDetailDTO} - Las veterinarias encontrados en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @GET
-    public List<VeterinariaDetailDTO> getVeterinarias() {
-        return new ArrayList<>();
+    public List<VeterinariaDetailDTO> getVeterinarias()  throws BusinessLogicException {
+        return listVeterinariaEntity2DetailDTO(veterinariaLogic.getVeterinarias());
     }
     
      /**
@@ -97,11 +106,16 @@ public class VeterinariaResource {
      * </pre>
      * @param id Identificador de la veterinaria que se esta buscando. Este debe ser una cadena de dígitos.
      * @return JSON {@link VeterinariaDetailDTO} - La veterinaria buscada
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @GET
     @Path("{id: \\d+}")
-    public VeterinariaDetailDTO getMascota(@PathParam("id") Long id) {
-        return null;
+    public VeterinariaDetailDTO getVeteriinaria(@PathParam("id") Long id) throws BusinessLogicException {
+        VeterinariaEntity entity = veterinariaLogic.getVeterinaria(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /veterinarias/" + id + " no existe.", 404);
+        }
+        return new VeterinariaDetailDTO(entity); 
     }
     
      /**
@@ -125,7 +139,12 @@ public class VeterinariaResource {
     @PUT
     @Path("{id: \\d+}")
     public VeterinariaDetailDTO updateVeterinaria(@PathParam("id") Long id, VeterinariaDetailDTO veterinaria) throws BusinessLogicException {
-        return veterinaria;
+        veterinaria.setId(id);
+       VeterinariaEntity entity = veterinariaLogic.getVeterinaria(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /veterinarias/" + id + " no existe.", 404);
+        }
+        return new VeterinariaDetailDTO(veterinariaLogic.updateVeterinaria(id,veterinaria.toEntity() ));
     }
     
     /**
@@ -141,11 +160,23 @@ public class VeterinariaResource {
      * </code>
      * </pre>
      * @param id Identificador de la veterinaria que se desea borrar. Este debe ser una cadena de dígitos.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deleteVeterinaria(@PathParam("id") Long id) {
-        // Void
+     public void deleteVeterinaria(@PathParam("id") Long id) throws BusinessLogicException {
+        VeterinariaEntity entity = veterinariaLogic.getVeterinaria(id);
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /veterinarias/" + id + " no existe.", 404);
+        }
+        veterinariaLogic.deleteVeterinaria(id);
     }
-     
+    
+      private List<VeterinariaDetailDTO> listVeterinariaEntity2DetailDTO(List<VeterinariaEntity> entityList) {
+        List<VeterinariaDetailDTO> list = new ArrayList<>();
+        for(VeterinariaEntity entity : entityList) {
+            list.add(new VeterinariaDetailDTO(entity));
+        }
+        return list;
+    }
 }
