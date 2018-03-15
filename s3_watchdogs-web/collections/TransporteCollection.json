@@ -56,6 +56,52 @@
 				{
 					"listen": "test",
 					"script": {
+						"id": "f3a529b5-ea67-4d95-9804-3cafd11263e7",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"recogida\":2,\r\n       \"devuelta\":2,\r\n       \"direccion\":\"cra211 # 1011\"\r\n       \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/transportes/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"transportes",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/transportes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
 						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
 						"type": "text/javascript",
 						"exec": [
@@ -100,9 +146,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"id": "0ffc9e1b-9035-4a8e-b422-3fe62612fb48",
 						"type": "text/javascript",
 						"exec": [
+							"console.log(responseBody);",
 							"var data= JSON.parse(responseBody);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
@@ -122,7 +169,7 @@
 					"raw": "{\r\n       \"recogida\":2,\r\n       \"devuelta\":2,\r\n       \"direccion\":\"cra211 # 1\"\r\n       \r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/transportes/1",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/transportes/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -132,7 +179,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"transportes",
-						"1"
+						"{{new_id}}"
 					]
 				},
 				"description": ""
@@ -145,11 +192,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"id": "51d439b8-0115-4a02-8489-3d5c58dd7f7d",
 						"type": "text/javascript",
 						"exec": [
+							"console.log(responseBody);",
 							"var data= JSON.parse(responseBody);",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]
 					}
 				}
@@ -167,7 +215,7 @@
 					"raw": "{\r\n       \"recogida\":2,\r\n       \"devuelta\":2,\r\n       \"direccion\":\"cra211 # 1\"\r\n       \r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/transportes/1",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/transportes/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -177,7 +225,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"transportes",
-						"1"
+						"{{new_id}}"
 					]
 				},
 				"description": ""

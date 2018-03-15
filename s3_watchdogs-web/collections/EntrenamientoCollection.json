@@ -12,11 +12,13 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"id": "cef0e1c2-cb71-4dd9-b514-f65098f85cc4",
 						"type": "text/javascript",
 						"exec": [
 							"var data= JSON.parse(responseBody);",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"postman.setGlobalVariable(\"new_id\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
 						]
 					}
 				}
@@ -56,11 +58,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"id": "79d0ea10-75bf-45e3-b11a-f16f2e78cb1d",
 						"type": "text/javascript",
 						"exec": [
 							"var data= JSON.parse(responseBody);",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"authors count\"] = data.length >= 0;"
 						]
 					}
 				}
@@ -90,6 +93,52 @@
 						"entrenamientos"
 					]
 				},
+				"description": "Pide un entrenamiento"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "643782ae-7a53-4903-a156-5faee391d5f9",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 25,\r\n    \"estado\": 1,\r\n    \"duración\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"id\":1,\r\n    \"cliente\":{\r\n    \t\"id\":1\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos",
+						"{{new_id}}"
+					]
+				},
 				"description": "Pide todos los entrenamientos"
 			},
 			"response": []
@@ -100,9 +149,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"id": "c7fc2518-3aa6-4364-930c-53c6259cf173",
 						"type": "text/javascript",
 						"exec": [
+							"console.log(responseBody);",
 							"var data= JSON.parse(responseBody);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
@@ -122,7 +172,7 @@
 					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 20,\r\n    \"estado\": 1,\r\n    \"duración\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"id\":1,\r\n    \"cliente\":{\r\n    \t\"id\":1\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/4",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -132,7 +182,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"entrenamientos",
-						"4"
+						"{{new_id}}"
 					]
 				},
 				"description": ""
@@ -145,9 +195,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "fadc4769-1711-4ff3-9993-592cfc1b484d",
+						"id": "6e5d57cb-6e70-4e43-99ec-419d5abff43a",
 						"type": "text/javascript",
 						"exec": [
+							"console.log(responseBody);",
 							"var data= JSON.parse(responseBody);",
 							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]

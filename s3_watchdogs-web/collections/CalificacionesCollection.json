@@ -12,10 +12,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"id": "87a74b29-4113-47e0-b105-a76e2eec3026",
 						"type": "text/javascript",
 						"exec": [
 							"var data= JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
@@ -95,14 +96,61 @@
 			"response": []
 		},
 		{
+			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "abfb3ffe-16a9-4a3a-97cf-ae4216864096",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(responseBody);",
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"calificaciones",
+						"{{new_id}}"
+					]
+				},
+				"description": "Obtiene una calificacion"
+			},
+			"response": []
+		},
+		{
 			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"id": "af6b9ff1-bc69-4615-8d86-95d3131bb7de",
 						"type": "text/javascript",
 						"exec": [
+							"console.log(responseBody);",
 							"var data= JSON.parse(responseBody);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
@@ -122,7 +170,7 @@
 					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -132,7 +180,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"calificaciones",
-						"1"
+						"{{new_id}}"
 					]
 				},
 				"description": "Actualiza la calificacion con id 1"
@@ -145,11 +193,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"id": "a810d62d-e5e4-4e7a-bc71-9a65c1bcdc3d",
 						"type": "text/javascript",
 						"exec": [
+							"console.log(responseBody);",
 							"var data= JSON.parse(responseBody);",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]
 					}
 				}
@@ -167,7 +216,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -177,7 +226,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"calificaciones",
-						"1"
+						"{{new_id}}"
 					]
 				},
 				"description": "Elimina la calificacion con id 1"
