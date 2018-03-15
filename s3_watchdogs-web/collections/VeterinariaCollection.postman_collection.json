@@ -1,0 +1,199 @@
+{
+	"info": {
+		"name": "VeterinariaCollection",
+		"_postman_id": "9c1f50bc-9446-4c77-bb0d-743594f2e68e",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consultar vet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30ecfadb-88af-4086-810a-4db7656c99b3",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"veterinarias",
+						"{{new_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar todos las vets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17a23f8b-b1c4-4e31-8588-3bc0c49c3241",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"veterinarias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear veterinaria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "01cc609b-a730-4b44-9cc2-c0682d60024c",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"id\": 1,\r\n       \"direccion\": \"Carrera 50#120\",\r\n       \"fotos\": \"\",\r\n       \"usuariosEnServicio\": 50,\r\n       \"capacidadMaxima\":120\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"veterinarias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar veterinaria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "27700df2-422b-4be8-94de-3b7b12f972e7",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"id\": 1,\r\n       \"direccion\": \"Carrera 50#120\",\r\n       \"fotos\": \"\",\r\n       \"usuariosEnServicio\": 50,\r\n       \"capacidadMaxima\":120\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"veterinarias",
+						"{{new_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar veteriinaria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c24546e7-867c-453c-805d-5fbeaa5a229e",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status Code is 204\"] = responseCode.code === 204;  "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"veterinarias",
+						"{{new_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

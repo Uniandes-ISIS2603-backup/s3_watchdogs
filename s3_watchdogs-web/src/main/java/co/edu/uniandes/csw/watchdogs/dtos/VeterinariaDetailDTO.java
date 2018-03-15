@@ -15,6 +15,35 @@ import java.util.List;
  *Clase que extiende de {@link VeterinariaDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido de la veterinaria vaya a la documentacion de {@link VeterinariaDTO}
+ * 
+ * *  VeterinariaDTO Objeto de transferencia de datos de Lugar. Los DTO contienen las
+ * representaciones de los JSON que se tranfieren entre la veterinaria y el servidor.
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *  {
+ *      "id": Long,
+ *      "direccion": String,
+ *      "fotos": List'String',
+ *      "usuariosEnServicio": Integer,
+ *      "capacidadMaxima":Integer
+ *      
+ *  }
+ * </pre>
+ * Por ejemplo veterinaria se representa asi: <br>
+ * 
+ * <pre>
+ * 
+ *  {
+ *      "id": 1234,
+ *      "direccion": Carrera 50#120,
+ *      "fotos": "",
+ *      "usuariosEnServicio": Integer,
+ *      "capacidadMaxima":Integer
+ *  }
+ * 
+ * </pre>
+ *
  * @author js.vacat
  */
 public class VeterinariaDetailDTO extends VeterinariaDTO{

@@ -9,6 +9,40 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
 
 
 /**
+ * /**
+ * 
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * <pre>
+ *  {
+ *      "id": Long,
+ *      "fecha": Date,
+ *      "costo": Double,
+ *      "estado": Boolean,
+ *      "duración": Double,
+ *      "rango": List'String'
+ *      "dientes": Boolean,
+ *      "banho": Boolean,
+ *      "peluqueria": Boolean
+ *  }
+ * </pre>
+ * Por ejemplo un servicio de aseo se representa asi: <br>
+ * 
+ * <pre>
+ * 
+ *  {
+ *      "id": 1889
+ *      "fecha: "10-10-2010",
+ *      "costo": 25,
+ *      "estado": "1",
+ *      "duración": 20.5,
+ *      "rango": "",
+ *      "dientes": true,
+ *      "banho": true,
+ *      "peluqueria": true
+ *  }
+ * 
+ * </pre>
+ * 
  *
  * @author js.vacat
  */
