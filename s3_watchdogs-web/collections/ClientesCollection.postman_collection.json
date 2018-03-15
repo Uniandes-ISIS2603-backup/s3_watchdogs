@@ -1,0 +1,216 @@
+{
+	"info": {
+		"name": "ClientesCollection",
+		"_postman_id": "cc642d05-40a4-4bc2-bcf0-72bd42451f41",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CrearCliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bd1a9424-4e07-486f-b74e-215821ba257f",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Camilo Beltran\",\r\n\t\"cedula\": \"1020123456\",\r\n\t\"mascotas\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"negra\",\r\n\t\t\t\"raza\": \"criolla\",\r\n\t\t\t\"color\": \"negro\",\r\n\t\t\t\"sexo\": \"femenino\"\r\n\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"metodosDePago\":\r\n\t\t\t\t{\r\n\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\"correo\": \"abc@hotmail.com\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"facturas\":[{\r\n\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\"valor\": 100000,\r\n\t\t\t\t\t\t\t\"pago\": true\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\t\"calificacion\": {\r\n\t\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\t\"puntaje\": 10\r\n\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\"servicio\": {\r\n\t\t\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\t\t\t\t\t\t\t\"costo\": 10000,\r\n\t\t\t\t\t\t\t\t\t\"estado\": true,\r\n\t\t\t\t\t\t\t\t\t\"duración\": 10,\r\n\t\t\t\t\t\t\t\t\t\"rango\": \"a\",\r\n\t\t\t\t\t\t\t\t\t\"dientes\": true,\r\n\t\t\t\t\t\t\t\t\t\"banho\": true,\r\n\t\t\t\t\t\t\t\t\t\"peluqueria\": true\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"clientes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar todos los clientes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Camilo\",\r\n\t\"cedula\": \"123\",\r\n\t\"mascotas\": {},\r\n\t\"metodosDePago\": {\"id\": {{new_id_e}}},\r\n\t\"facturas\": {\"id\": {{new_id_e}}},\r\n\t\"calificacion\": {\"id\": {{new_id_e}}},\r\n\t\"servicio\": {\"id\": {{new_id_e}}}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"clientes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af21ed0d-151e-4117-8767-ce2c0d58498d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Camilo\",\r\n\t\"cedula\": \"123\",\r\n\t\"mascotas\": {},\r\n\t\"metodosDePago\": {\"id\": {{new_id_e}}},\r\n\t\"facturas\": {\"id\": {{new_id_e}}},\r\n\t\"calificacion\": {\"id\": {{new_id_e}}},\r\n\t\"servicio\": {\"id\": {{new_id_e}}}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"clientes",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af21ed0d-151e-4117-8767-ce2c0d58498d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Camilo Beltran\",\r\n\t\"cedula\": \"1020123456\",\r\n\t\"mascotas\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"negra\",\r\n\t\t\t\"raza\": \"criolla\",\r\n\t\t\t\"color\": \"negro\",\r\n\t\t\t\"sexo\": \"femenino\"\r\n\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"metodosDePago\":\r\n\t\t\t\t{\r\n\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\"correo\": \"abc@hotmail.com\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"facturas\":[{\r\n\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\"valor\": 100000,\r\n\t\t\t\t\t\t\t\"pago\": true\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\t\"calificacion\": {\r\n\t\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\t\"puntaje\": 10\r\n\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\"servicio\": {\r\n\t\t\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\t\t\t\t\t\t\t\"costo\": 10000,\r\n\t\t\t\t\t\t\t\t\t\"estado\": true,\r\n\t\t\t\t\t\t\t\t\t\"duración\": 10,\r\n\t\t\t\t\t\t\t\t\t\"rango\": \"a\",\r\n\t\t\t\t\t\t\t\t\t\"dientes\": true,\r\n\t\t\t\t\t\t\t\t\t\"banho\": true,\r\n\t\t\t\t\t\t\t\t\t\"peluqueria\": true\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"clientes",
+						""
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "af21ed0d-151e-4117-8767-ce2c0d58498d",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Camilo Beltran\",\r\n\t\"cedula\": \"1020123456\",\r\n\t\"mascotas\": [\r\n\t\t{\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"negra\",\r\n\t\t\t\"raza\": \"criolla\",\r\n\t\t\t\"color\": \"negro\",\r\n\t\t\t\"sexo\": \"femenino\"\r\n\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"metodosDePago\":\r\n\t\t\t\t{\r\n\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\"correo\": \"abc@hotmail.com\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"facturas\":[{\r\n\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\"valor\": 100000,\r\n\t\t\t\t\t\t\t\"pago\": true\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t],\r\n\t\t\t\t\t\t\t\"calificacion\": {\r\n\t\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\t\"puntaje\": 10\r\n\t\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t\t\"servicio\": {\r\n\t\t\t\t\t\t\t\t\t\"id\": 1,\r\n\t\t\t\t\t\t\t\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\t\t\t\t\t\t\t\"costo\": 10000,\r\n\t\t\t\t\t\t\t\t\t\"estado\": true,\r\n\t\t\t\t\t\t\t\t\t\"duración\": 10,\r\n\t\t\t\t\t\t\t\t\t\"rango\": \"a\",\r\n\t\t\t\t\t\t\t\t\t\"dientes\": true,\r\n\t\t\t\t\t\t\t\t\t\"banho\": true,\r\n\t\t\t\t\t\t\t\t\t\"peluqueria\": true\r\n\t\t\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t\t\t\t}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"clientes",
+						"{{new_id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

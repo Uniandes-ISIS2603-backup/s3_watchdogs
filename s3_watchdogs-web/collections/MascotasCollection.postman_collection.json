@@ -1,0 +1,231 @@
+{
+	"info": {
+		"name": "MascotasCollection",
+		"_postman_id": "fa79b1a1-975b-4839-a9c3-fa9840b717bf",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Borrar Mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ec0d4d90-a3c4-4bbf-85a0-bbf6f5a7e5e4",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Criolla\",\r\n\t\"color\": \"Negro\",\r\n\t\"sexo\": \"Hembra\",\r\n\t\"servicio\": {\r\n\t\t\"id\": 1,\r\n\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\"costo\": 10000,\r\n\t\t\"estado\": true,\r\n\t\t\"duración\": 10,\r\n\t\t\"rango\": \"a\",\r\n\t\t\"dientes\": true,\r\n\t\t\"banho\": true,\r\n\t\t\"peluqueria\": true\r\n\t\t},\r\n\t\t\"cliente\": {\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"Camilo Beltran\",\r\n\t\t\t\"cedula\": \"1020123456\"\r\n\t\t\t}\r\n\t\t\t}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"mascotas",
+						"{{new_id}}"
+					]
+				},
+				"description": "Elimina la calificacion con id 1"
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Criolla\",\r\n\t\"color\": \"Negro\",\r\n\t\"sexo\": \"Hembra\",\r\n\t\"servicio\": {\r\n\t\t\"id\": 1,\r\n\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\"costo\": 10000,\r\n\t\t\"estado\": true,\r\n\t\t\"duración\": 10,\r\n\t\t\"rango\": \"a\",\r\n\t\t\"dientes\": true,\r\n\t\t\"banho\": true,\r\n\t\t\"peluqueria\": true\r\n\t\t},\r\n\t\t\"cliente\": {\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"Camilo Beltran\",\r\n\t\t\t\"cedula\": \"1020123456\"\r\n\t\t\t}\r\n\t\t\t}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"mascotas",
+						""
+					]
+				},
+				"description": "Actualiza la calificacion con id 1"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar Mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/{{new_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"mascotas",
+						"{{new_id}}"
+					]
+				},
+				"description": "Obtiene la lista de calificaciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar todas las Mascotas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/empleados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"empleados"
+					]
+				},
+				"description": "Obtiene la lista de calificaciones"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Mascota",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d54566d0-5995-45f6-bcf1-5b03f592badd",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Criolla\",\r\n\t\"color\": \"Negro\",\r\n\t\"sexo\": \"Hembra\",\r\n\t\"servicio\": {\r\n\t\t\"id\": 1,\r\n\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\"costo\": 10000,\r\n\t\t\"estado\": true,\r\n\t\t\"duración\": 10,\r\n\t\t\"rango\": \"a\",\r\n\t\t\"dientes\": true,\r\n\t\t\"banho\": true,\r\n\t\t\"peluqueria\": true\r\n\t\t},\r\n\t\t\"cliente\": {\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"Camilo Beltran\",\r\n\t\t\t\"cedula\": \"1020123456\"\r\n\t\t\t}\r\n\t\t\t}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"mascotas"
+					]
+				},
+				"description": "Crea una nueva calificacion"
+			},
+			"response": []
+		}
+	]
+}
