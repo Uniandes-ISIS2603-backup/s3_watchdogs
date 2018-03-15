@@ -160,6 +160,69 @@
 				"description": "Elimina un PSE"
 			},
 			"response": []
+		},
+		{
+			"name": "PUT a PSE",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\" : \"jc.pulido@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/pses/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"pses",
+						"5"
+					]
+				},
+				"description": "Updates a PSE"
+			},
+			"response": []
+		},
+		{
+			"name": "POST PSE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\" : \"jc.pulido\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/pses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"pses"
+					]
+				},
+				"description": "Creates a new PSE"
+			},
+			"response": []
 		}
 	]
 }

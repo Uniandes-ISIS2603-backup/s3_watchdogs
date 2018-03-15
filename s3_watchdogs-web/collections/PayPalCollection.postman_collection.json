@@ -161,6 +161,82 @@
 				"description": "Delete a paypal"
 			},
 			"response": []
+		},
+		{
+			"name": "PUT PayPal",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\" : \"j.pulido@uniandes.edu.co\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paypal/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"paypal",
+						"7"
+					]
+				},
+				"description": "Updates a PayPal"
+			},
+			"response": []
+		},
+		{
+			"name": "POST PayPal",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "43f52a06-d9ae-48c2-80c9-3df8bf9d86be",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 412\"] = responseCode.code === 412;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"correo\" : \"jc.pulido\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paypal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"paypal"
+					]
+				},
+				"description": "Creates a new paypal"
+			},
+			"response": []
 		}
 	]
 }
