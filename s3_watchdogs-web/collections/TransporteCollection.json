@@ -192,11 +192,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "51d439b8-0115-4a02-8489-3d5c58dd7f7d",
+						"id": "de6d4263-d97a-49e2-a66f-2ddbb02aaa2e",
 						"type": "text/javascript",
 						"exec": [
-							"console.log(responseBody);",
-							"var data= JSON.parse(responseBody);",
+							"",
 							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]
 					}
