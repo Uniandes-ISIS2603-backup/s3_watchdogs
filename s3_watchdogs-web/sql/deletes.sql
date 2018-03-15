@@ -20,6 +20,3 @@ delete from ClienteEntity_MetodoDePagoEntity;
 delete from MetodoDePagoEntity;
 delete from ClienteEntity;
 delete from CalificacionEntity;
-delete from TarjetaCreditoEntity;
-delete from PseEntity;
-delete from PayPalEntity;
