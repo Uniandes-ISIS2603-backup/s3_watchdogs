@@ -54,7 +54,7 @@ public class RutaPersistence {
     }
     
     public void delete(Long id) {
-        RutaEntity entity = find(id);
+        RutaEntity entity = em.find(RutaEntity.class, id);
         em.remove(entity);
     }
 }
