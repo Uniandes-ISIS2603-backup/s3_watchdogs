@@ -9,9 +9,9 @@
  */
 delete from ServicioEntity_RutaEntity;
 delete from RutaEntity;
-delete from LugarEntity;
 delete from FacturaEntity;
 delete from ServicioEntity;
+delete from LugarEntity;
 delete from TransporteEntity;
 delete from MascotaEntity;
 delete from EmpleadoEntity;
