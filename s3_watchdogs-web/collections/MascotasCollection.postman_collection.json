@@ -1,8 +1,7 @@
 {
 	"info": {
-		"name": "MascotasCollection",
 		"_postman_id": "fa79b1a1-975b-4839-a9c3-fa9840b717bf",
-		"description": "",
+		"name": "MascotasCollection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -30,7 +29,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Criolla\",\r\n\t\"color\": \"Negro\",\r\n\t\"sexo\": \"Hembra\",\r\n\t\"servicio\": {\r\n\t\t\"id\": 1,\r\n\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\"costo\": 10000,\r\n\t\t\"estado\": true,\r\n\t\t\"duración\": 10,\r\n\t\t\"rango\": \"a\",\r\n\t\t\"dientes\": true,\r\n\t\t\"banho\": true,\r\n\t\t\"peluqueria\": true\r\n\t\t},\r\n\t\t\"cliente\": {\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"Camilo Beltran\",\r\n\t\t\t\"cedula\": \"1020123456\"\r\n\t\t\t}\r\n\t\t\t}"
+					"raw": "{\r\n\t\"id\": 1\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/{{new_id}}",
@@ -75,7 +74,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Criolla\",\r\n\t\"color\": \"Negro\",\r\n\t\"sexo\": \"Hembra\",\r\n\t\"servicio\": {\r\n\t\t\"id\": 1,\r\n\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\"costo\": 10000,\r\n\t\t\"estado\": true,\r\n\t\t\"duración\": 10,\r\n\t\t\"rango\": \"a\",\r\n\t\t\"dientes\": true,\r\n\t\t\"banho\": true,\r\n\t\t\"peluqueria\": true\r\n\t\t},\r\n\t\t\"cliente\": {\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"Camilo Beltran\",\r\n\t\t\t\"cedula\": \"1020123456\"\r\n\t\t\t}\r\n\t\t\t}"
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Chanda\",\r\n\t\"color\": \"Blanca\",\r\n\t\"sexo\": \"Hembra\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/",
@@ -208,7 +207,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Criolla\",\r\n\t\"color\": \"Negro\",\r\n\t\"sexo\": \"Hembra\",\r\n\t\"servicio\": {\r\n\t\t\"id\": 1,\r\n\t\t\"fecha\": \"01/01/2020\",\r\n\t\t\"costo\": 10000,\r\n\t\t\"estado\": true,\r\n\t\t\"duración\": 10,\r\n\t\t\"rango\": \"a\",\r\n\t\t\"dientes\": true,\r\n\t\t\"banho\": true,\r\n\t\t\"peluqueria\": true\r\n\t\t},\r\n\t\t\"cliente\": {\r\n\t\t\t\"id\": 1,\r\n\t\t\t\"nombre\": \"Camilo Beltran\",\r\n\t\t\t\"cedula\": \"1020123456\"\r\n\t\t\t}\r\n\t\t\t}"
+					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Criolla\",\r\n\t\"color\": \"Negro\",\r\n\t\"sexo\": \"Hembra\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas",
