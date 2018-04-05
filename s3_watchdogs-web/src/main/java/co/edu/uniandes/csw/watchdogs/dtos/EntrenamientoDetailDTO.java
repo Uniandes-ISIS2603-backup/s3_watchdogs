@@ -85,7 +85,11 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
             entity.setCalificacion(calificacion.toEntity());
         }
         if(centroDeEntrenamiento!=null){
-            entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
+            if(CentroDeEntrenamientoDTO.class.isInstance(centroDeEntrenamiento)){
+                entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
+            }
+            else entity.setCentroDeEntrenamiento(null);
+            
         }
         return entity;
     }
