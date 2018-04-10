@@ -85,12 +85,10 @@ public class ClienteResource {
      * atributo id autogenerado.
      */
     @POST
-    public ClienteDetailDTO createCliente(ClienteDetailDTO cliente) {
-        try {
-            return new ClienteDetailDTO(clienteLogic.createCliente(cliente.toEntity()));
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
-        }
+    public ClienteDetailDTO createCliente(ClienteDetailDTO cliente) throws BusinessLogicException {
+
+        return new ClienteDetailDTO(clienteLogic.createCliente(cliente.toEntity()));
+
     }
 
     /**
@@ -131,11 +129,8 @@ public class ClienteResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public ClienteDetailDTO getCliente(@PathParam("id") Long id) {
+    public ClienteDetailDTO getCliente(@PathParam("id") Long id) throws BusinessLogicException {
         ClienteEntity entity = clienteLogic.getCliente(id);
-        if (entity == null) {
-            throw new WebApplicationException("El cliente no existe", 404);
-        }
         return new ClienteDetailDTO(entity);
     }
 
@@ -160,7 +155,7 @@ public class ClienteResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public ClienteDetailDTO updateCliente(@PathParam("id") Long id, ClienteDetailDTO cliente) {
+    public ClienteDetailDTO updateCliente(@PathParam("id") Long id, ClienteDetailDTO cliente) throws BusinessLogicException {
         ClienteEntity entity = cliente.toEntity();
         entity.setId(id);
         ClienteEntity oldEntity = clienteLogic.getCliente(id);
@@ -193,12 +188,8 @@ public class ClienteResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteCliente(@PathParam("id") Long id) {
-        try {
-            clienteLogic.deleteCliente(id);
-        } catch (BusinessLogicException e) {
-            throw new WebApplicationException(e.getMessage(), 404);
-        }
+    public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException {
+        clienteLogic.deleteCliente(id);
     }
 
 }

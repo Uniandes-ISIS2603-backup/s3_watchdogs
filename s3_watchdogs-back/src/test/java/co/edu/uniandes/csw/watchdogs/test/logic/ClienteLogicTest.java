@@ -142,12 +142,17 @@ public class ClienteLogicTest {
      */
     @Test
     public void getClienteTest() {
+        try {
         ClienteEntity entity = data.get(0);
         ClienteEntity resultEntity = clienteLogic.getCliente(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getCedula(), resultEntity.getCedula());
+        }
+        catch(Exception e) {
+            fail();
+        }
     }
 
     /**

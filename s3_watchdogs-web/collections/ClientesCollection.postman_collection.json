@@ -11,9 +11,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "bd1a9424-4e07-486f-b74e-215821ba257f",
+						"id": "65661d2a-b612-42cc-a953-054807019da6",
 						"type": "text/javascript",
 						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
@@ -29,7 +31,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Camilo Beltran\",\r\n\t\"cedula\": \"1020123456\"\r\n}"
+					"raw": "{\r\n  \"nombre\": \"Felisha Watkins\",\r\n  \"cedula\": \"3570838398985074\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes",
@@ -156,10 +158,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Camilo Beltran\",\r\n\t\"cedula\": \"1020369852\"\r\n\t\r\n}"
+					"raw": "{\r\n  \"nombre\": \"Aurore Pickthorne\",\r\n  \"cedula\": \"0604060724881492616\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes/",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -169,7 +171,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"clientes",
-						""
+						"{{new_id}}"
 					]
 				}
 			},
@@ -181,10 +183,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "af21ed0d-151e-4117-8767-ce2c0d58498d",
+						"id": "38cd5737-43ac-480a-89ea-8853d58f4644",
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]
 					}
 				}
@@ -199,7 +201,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Camilo Beltran\"\r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes/{{new_id}}",

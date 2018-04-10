@@ -116,7 +116,7 @@ public class MascotaLogic {
      * cliente.
      * @return El cliente que fue agregado a la mascota.
      */
-    public ClienteEntity addCliente(Long clienteId, Long mascotaId) {
+    public ClienteEntity addCliente(Long clienteId, Long mascotaId) throws BusinessLogicException {
         MascotaEntity mascotaEntity = getMascota(mascotaId);
         ClienteEntity clienteEntity = clienteLogic.getCliente(clienteId);
         List<MascotaEntity> lista = clienteEntity.getMascotas();
@@ -131,7 +131,7 @@ public class MascotaLogic {
      * @param clienteId El cliente que se desea borrar de la mascota.
      * @param mascotaId La mascota de la cual se desea eliminar.
      */
-    public void removeCliente(Long clienteId, Long mascotaId) {
+    public void removeCliente(Long clienteId, Long mascotaId) throws BusinessLogicException {
         MascotaEntity mascotaEntity = getMascota(mascotaId);
         ClienteEntity cliente = clienteLogic.getCliente(clienteId);
         List<MascotaEntity> lista = cliente.getMascotas();

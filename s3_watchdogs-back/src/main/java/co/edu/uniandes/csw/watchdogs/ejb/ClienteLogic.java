@@ -66,11 +66,12 @@ public class ClienteLogic {
      * @param id: id del cliente para ser buscado.
      * @return el cliente solicitado por medio de su id.
      */
-    public ClienteEntity getCliente(Long id) {
+    public ClienteEntity getCliente(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de busqueda de cliente con id={0}", id);
         ClienteEntity entity = persistence.find(id);
         if (entity == null) {
             LOGGER.log(Level.SEVERE, "El cliente con el id {0} no existe", id);
+            throw new BusinessLogicException("No existe un cliente con id \"" + id + "\"");
         }
         LOGGER.log(Level.INFO, "Termina proceso de busqueda de cliente con id={0}", id);
         return entity;
@@ -101,6 +102,9 @@ public class ClienteLogic {
      */
     public void deleteCliente(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar cliente con id={0}", id);
+        if (getCliente(id) == null) {
+            throw new BusinessLogicException("No se puede borrar el cliente con el id: " + id + " porque no existe.");
+        }
         List<FacturaEntity> facturas = getFacturas(id);
         if (facturas == null) {
             persistence.delete(id);
@@ -127,7 +131,7 @@ public class ClienteLogic {
      * @param clienteId El id del cliente en el cual se va a guardar la factura.
      * @return La factura que fue guardada al cliente.
      */
-    public FacturaEntity addFactura(Long facturaId, Long clienteId) {
+    public FacturaEntity addFactura(Long facturaId, Long clienteId) throws BusinessLogicException {
         ClienteEntity clienteEntity = getCliente(clienteId);
         FacturaEntity facturaEntity = facturaLogic.getFactura(facturaId);
         facturaEntity.setCliente(clienteEntity);
@@ -140,7 +144,7 @@ public class ClienteLogic {
      * @param facturaId El id de la factura que se desea borrar del cliente.
      * @param clienteId El id del clente del cual se desea eliminar.
      */
-    public void removeFactura(Long facturaId, Long clienteId) {
+    public void removeFactura(Long facturaId, Long clienteId) throws BusinessLogicException {
         ClienteEntity clienteEntity = getCliente(clienteId);
         FacturaEntity factura = facturaLogic.getFactura(facturaId);
         factura.setCliente(null);
@@ -153,7 +157,7 @@ public class ClienteLogic {
      * @param clienteId El id del cliente buscado.
      * @return La lista de facturas del cliente.
      */
-    public List<FacturaEntity> getFacturas(Long clienteId) {
+    public List<FacturaEntity> getFacturas(Long clienteId) throws BusinessLogicException {
         return getCliente(clienteId).getFacturas();
     }
 
@@ -163,7 +167,7 @@ public class ClienteLogic {
      * @param clienteId El id del cliente buscado.
      * @return La lista de servicios del cliente.
      */
-    public List<ServicioEntity> getServicios(Long clienteId) {
+    public List<ServicioEntity> getServicios(Long clienteId) throws BusinessLogicException {
         return getCliente(clienteId).getServicios();
     }
 }

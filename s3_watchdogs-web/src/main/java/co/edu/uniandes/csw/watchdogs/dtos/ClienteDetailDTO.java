@@ -233,7 +233,7 @@ public class ClienteDetailDTO extends ClienteDTO {
             }
             clienteE.setMascotas(mascotasEntity);
         }
-        if (!metodosDePago.isEmpty()) {
+        if (metodosDePago != null) {
             List<MetodoDePagoEntity> metodosDePagoEntity = new ArrayList<>();
             for (MetodoDePagoDTO dtoMetodoDePago : metodosDePago) {
                 if (dtoMetodoDePago.getClass().equals(PseDTO.class)) {
