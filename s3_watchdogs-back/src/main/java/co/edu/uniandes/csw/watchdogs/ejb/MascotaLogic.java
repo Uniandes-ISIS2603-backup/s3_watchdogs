@@ -41,9 +41,6 @@ public class MascotaLogic {
      */
     public MascotaEntity createMascota(MascotaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de creacion de mascota");
-        if (persistence.find(entity.getId()) != null) {
-            throw new BusinessLogicException("Ya existe una Mascota con el id \"" + entity.getId() + "\"");
-        }
         LOGGER.log(Level.INFO, "Termina proceso de creacion de mascota");
         return persistence.create(entity);
     }

@@ -11,9 +11,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d54566d0-5995-45f6-bcf1-5b03f592badd",
+						"id": "3112cac9-7f25-425b-bc56-1c6688eacb96",
 						"type": "text/javascript",
 						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
@@ -29,7 +31,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 95873,\r\n\t\"nombre\": \"Camilo\",\r\n\t\"cedula\": \"1020123456\",\r\n\t\"imagen\": \"abg.jpg\",\r\n\t\"edad\": 24\r\n\t\r\n}"
+					"raw": "{\r\n  \"nombre\": \"Tymothy Hankin\",\r\n  \"cedula\": \"3539169233482923\",\r\n  \"imagen\": \"http://dummyimage.com/180x188.jpg/5fa2dd/ffffff\",\r\n  \"edad\": 35\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/empleados",
@@ -143,10 +145,9 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"id": "69ca082d-7c3d-47e1-b9ec-50d891f1e9a5",
 						"type": "text/javascript",
 						"exec": [
-							"var data= JSON.parse(responseBody);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
@@ -162,10 +163,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 95873,\r\n\t\"nombre\": \"Camilo\",\r\n\t\"cedula\": \"1020123456\",\r\n\t\"imagen\": \"cde.jpg\",\r\n\t\"edad\": 25\r\n\t\r\n}"
+					"raw": "{\r\n  \"nombre\": \"Katya Dring\",\r\n  \"cedula\": \"3573451993552393\",\r\n  \"imagen\": \"http://dummyimage.com/198x171.jpg/dddddd/000000\",\r\n  \"edad\": 94\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/empleados/",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/empleados/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -175,7 +176,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"empleados",
-						""
+						"{{new_id}}"
 					]
 				},
 				"description": "Actualiza la calificacion con id 1"
@@ -188,11 +189,10 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"id": "1c8b1f40-9f03-417a-a319-5f9b8a4a80e3",
 						"type": "text/javascript",
 						"exec": [
-							"var data= JSON.parse(responseBody);",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]
 					}
 				}
@@ -207,7 +207,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 95873\r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/empleados/{{new_id}}",

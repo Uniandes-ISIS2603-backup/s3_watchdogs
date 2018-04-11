@@ -6,21 +6,23 @@
 	},
 	"item": [
 		{
-			"name": "Borrar Mascota",
+			"name": "Crear Mascota",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "ec0d4d90-a3c4-4bbf-85a0-bbf6f5a7e5e4",
+						"id": "10d5f977-7652-4900-8bdb-0b2a16b9af15",
 						"type": "text/javascript",
 						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
 			],
 			"request": {
-				"method": "DELETE",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -29,10 +31,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1\r\n}"
+					"raw": "{\r\n  \"nombre\": \"Anders\",\r\n  \"raza\": \"Fregata magnificans\",\r\n  \"color\": \"Purple\",\r\n  \"sexo\": \"Female\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/{{new_id}}",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -41,16 +43,15 @@
 					"path": [
 						"s3_watchdogs-web",
 						"api",
-						"mascotas",
-						"{{new_id}}"
+						"mascotas"
 					]
 				},
-				"description": "Elimina la calificacion con id 1"
+				"description": "Crea una nueva calificacion"
 			},
 			"response": []
 		},
 		{
-			"name": "Actualizar Mascota",
+			"name": "Consultar todas las Mascotas",
 			"event": [
 				{
 					"listen": "test",
@@ -65,7 +66,7 @@
 				}
 			],
 			"request": {
-				"method": "PUT",
+				"method": "GET",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -74,10 +75,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Chanda\",\r\n\t\"color\": \"Blanca\",\r\n\t\"sexo\": \"Hembra\"\r\n}"
+					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -86,11 +87,10 @@
 					"path": [
 						"s3_watchdogs-web",
 						"api",
-						"mascotas",
-						""
+						"mascotas"
 					]
 				},
-				"description": "Actualiza la calificacion con id 1"
+				"description": "Obtiene la lista de calificaciones"
 			},
 			"response": []
 		},
@@ -140,22 +140,21 @@
 			"response": []
 		},
 		{
-			"name": "Consultar todas las Mascotas",
+			"name": "Actualizar Mascota",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"id": "9019737a-b480-460c-9240-3437f1cc63f6",
 						"type": "text/javascript",
 						"exec": [
-							"var data= JSON.parse(responseBody);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -164,10 +163,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+					"raw": "{\r\n  \"nombre\": \"Flinn\",\r\n  \"raza\": \"Branta canadensis\",\r\n  \"color\": \"Violet\",\r\n  \"sexo\": \"Female\"\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/empleados",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -176,29 +175,30 @@
 					"path": [
 						"s3_watchdogs-web",
 						"api",
-						"empleados"
+						"mascotas",
+						"{{new_id}}"
 					]
 				},
-				"description": "Obtiene la lista de calificaciones"
+				"description": "Actualiza la calificacion con id 1"
 			},
 			"response": []
 		},
 		{
-			"name": "Crear Mascota",
+			"name": "Borrar Mascota",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "d54566d0-5995-45f6-bcf1-5b03f592badd",
+						"id": "c33071da-9732-43b3-b40d-e9f6538a0b1f",
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
 						]
 					}
 				}
 			],
 			"request": {
-				"method": "POST",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -207,10 +207,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"id\": 1,\r\n\t\"nombre\": \"Negra\",\r\n\t\"raza\": \"Criolla\",\r\n\t\"color\": \"Negro\",\r\n\t\"sexo\": \"Hembra\"\r\n}"
+					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/mascotas/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -219,10 +219,11 @@
 					"path": [
 						"s3_watchdogs-web",
 						"api",
-						"mascotas"
+						"mascotas",
+						"{{new_id}}"
 					]
 				},
-				"description": "Crea una nueva calificacion"
+				"description": "Elimina la calificacion con id 1"
 			},
 			"response": []
 		}
