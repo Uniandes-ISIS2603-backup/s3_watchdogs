@@ -3,9 +3,9 @@
         // External dependencies
         'ui.router',
        
-        // Internal modules dependencies       
-        'citiesModule',
-        
+
+        // Internal modules dependencies
+        'clienteModule'
 
     ]);
     // Resuelve problemas de las promesas
