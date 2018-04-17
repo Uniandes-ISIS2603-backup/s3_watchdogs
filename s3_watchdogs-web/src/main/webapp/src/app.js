@@ -6,7 +6,8 @@
 
         // Internal modules dependencies
         'clienteModule',
-        'serviciosModule'
+        'serviciosModule',
+        'opinionesModule'
 
     ]);
     // Resuelve problemas de las promesas
