@@ -1,0 +1,16 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+<div class="container-fluid">
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-4 col-12" ng-repeat="servicio in serviciosRecords">
+                <div class="card"> <img class="card-img-top" ng-src='{{servicio.imagen}}' alt='{{servicio.name}}'>
+                    <div class="card-body">
+                        <h5 class="card-title">{{servicio.name}}</h5>
+                        <p class="card-text">{{servicio.descripcion}}</p>
+                        <a href="#" class="btn btn-primary">Contratar</a> </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
