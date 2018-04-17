@@ -6,7 +6,7 @@
 
         // Internal modules dependencies
         'clienteModule',
-        'entrenamientoModule',
+        //'entrenamientoModule',
         'serviciosModule',
         'opinionesModule'
 
