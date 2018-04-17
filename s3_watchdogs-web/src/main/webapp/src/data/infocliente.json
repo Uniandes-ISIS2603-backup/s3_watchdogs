@@ -1,0 +1,12 @@
+{
+    "name": "Carlos Santana",
+    "imagen":"src/images/carlos-santana.png",
+    "mascotas": [
+       {
+           "name":"Negra",
+            "raza":"Criolla",
+            "color":"Negro",
+            "sexo":"Hembra"
+       }
+    ]
+}
