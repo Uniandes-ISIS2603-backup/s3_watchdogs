@@ -1,0 +1,61 @@
+[{
+  "id": 1,
+  "nombre": "Noble",
+  "raza": "Margay",
+  "color": "Goldenrod",
+  "sexo": "Male"
+}, {
+  "id": 2,
+  "nombre": "Joshia",
+  "raza": "Topi",
+  "color": "Khaki",
+  "sexo": "Male"
+}, {
+  "id": 3,
+  "nombre": "Inglis",
+  "raza": "Zorro, azara's",
+  "color": "Khaki",
+  "sexo": "Male"
+}, {
+  "id": 4,
+  "nombre": "Kurt",
+  "raza": "Goldeneye, barrows",
+  "color": "Puce",
+  "sexo": "Male"
+}, {
+  "id": 5,
+  "nombre": "Vail",
+  "raza": "Jackal, silver-backed",
+  "color": "Violet",
+  "sexo": "Male"
+}, {
+  "id": 6,
+  "nombre": "Eden",
+  "raza": "Magpie, black-backed",
+  "color": "Turquoise",
+  "sexo": "Female"
+}, {
+  "id": 7,
+  "nombre": "Cari",
+  "raza": "Red-shouldered glossy starling",
+  "color": "Red",
+  "sexo": "Female"
+}, {
+  "id": 8,
+  "nombre": "Armstrong",
+  "raza": "Lava gull",
+  "color": "Red",
+  "sexo": "Male"
+}, {
+  "id": 9,
+  "nombre": "Eal",
+  "raza": "Tarantula",
+  "color": "Pink",
+  "sexo": "Male"
+}, {
+  "id": 10,
+  "nombre": "Cicily",
+  "raza": "Iguana, land",
+  "color": "Indigo",
+  "sexo": "Female"
+}]
