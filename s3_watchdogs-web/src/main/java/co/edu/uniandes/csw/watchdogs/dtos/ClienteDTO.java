@@ -38,6 +38,9 @@ public class ClienteDTO {
     private Long id;
     private String name;
     private String cedula;
+    private String correo;
+    private String telefono;
+    private String imagen;
 
     /**
      * Constructor por defecto
@@ -55,6 +58,9 @@ public class ClienteDTO {
         this.id = cliente.getId();
         this.name = cliente.getName();
         this.cedula = cliente.getCedula();
+        this.correo = cliente.getCorreo();
+        this.telefono = cliente.getTelefono();
+        this.imagen = cliente.getImagen();
     }
 
     /**
@@ -75,14 +81,14 @@ public class ClienteDTO {
      * @return El nombre del cliente
      */
     public String getNombre() {
-        return name;
+        return getName();
     }
 
     /**
      * @param nombre El nuevo nombre del cliente
      */
     public void setNombre(String nombre) {
-        this.name = nombre;
+        this.setName(nombre);
     }
 
     /**
@@ -106,10 +112,66 @@ public class ClienteDTO {
      */
     public ClienteEntity toEntity() {
         ClienteEntity entity = new ClienteEntity();
-        entity.setId(this.id);
-        entity.setName(this.name);
-        entity.setCedula(this.cedula);
+        entity.setId(this.getId());
+        entity.setName(this.getName());
+        entity.setCedula(this.getCedula());
         return entity;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the correo
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * @param correo the correo to set
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    /**
+     * @return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the telefono to set
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 }

@@ -1,13 +1,13 @@
 (function (ng) {
 
-    var mod = ng.module("clienteModule");
+    var mod = ng.module("clientesModule");
 
-    mod.constant("clienteContext", "api/cliente");
+    mod.constant("clientesContext", "api/clientes");
 
-    mod.controller('clienteCtrl', ['$scope', '$http', 'clienteContext',
-        function ($scope, $http, clienteContext) {
-            $http.get('data/cliente.json').then(function (response) {
-                $scope.clienteRecords = response.data;
+    mod.controller('clientesCtrl', ['$scope', '$http', 'clientesContext', '$state',
+        function ($scope, $http, clientesContext, $state) {
+            $http.get(clientesContext).then(function (response) {
+                $scope.clientesRecords = response.data;
             });
         }]);
 })(window.angular);
