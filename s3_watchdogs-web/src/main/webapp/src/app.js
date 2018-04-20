@@ -2,14 +2,15 @@
     var app = angular.module('mainApp', [
         // External dependencies
         'ui.router',
-       
 
         // Internal modules dependencies
         'clienteModule',
         //'entrenamientoModule',
         'serviciosModule',
-        'opinionesModule'
-
+        'opinionesModule',
+        //perfil module
+        'payPalModule',
+        'perfilShowModule'
     ]);
     // Resuelve problemas de las promesas
     app.config(['$qProvider', function ($qProvider) {

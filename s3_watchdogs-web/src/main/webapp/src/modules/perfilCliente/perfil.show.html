@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class ='card'>
+            <h1>Cuenta</h1>
+            <div class="text-center">
+                <img src={{perfilClienteRecords.imagen}} class="img-thumbnail" alt="Foto perfil">   
+            </div>
+            <button type="button" class="btn btn-link">Editar avatar</button>
+
+            <!-- Panel informacion -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-inline" action="/action_page.php">
+                                    <label for="apellidos">Nombres: </label>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">  
+                                <p class="form-control" id="nombres"> {{perfilClienteRecords.nombres}} </p>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <form class="form-inline" action="/action_page.php">
+                                    <label for="apellidos">Apellidos: </label>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">     
+                                <p class="form-control" id="apellidos"> {{perfilClienteRecords.apellidos}} </p>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-sm-6">  
+                                <form class="form-inline" action="/action_page.php">   
+                                    <label for="edad">Edad </label> 
+                                </form>
+                            </div>
+                            <div class="col-sm-6">     
+                                <p class="form-control" id="edad"> {{perfilClienteRecords.edad}} </p>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-sm-6">
+                                <form class="form-inline" action="/action_page.php">
+                                    <label for="documento">Documento: </label>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">     
+                                <p class="form-control" id="documento"> {{perfilClienteRecords.documento}} </p>
+                            </div>
+                        </div>
+                        <div class="row"> 
+                            <div class="col-sm-6">
+                                <form class="form-inline" action="/action_page.php">
+                                    <label for="correo">Correo: </label>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">     
+                                <p class="form-control" id="documento"> {{perfilClienteRecords.correo}} </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Panel Metodos de pago -->
+
+                    <div class="container">
+                        <div class="card">
+                            <h6>Metodos de pago</h6>
+                            <div class="row">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-secondary btn-sm">Tarjetas de credito</button>
+                                </div>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-secondary btn-sm">PSE</button>
+                                </div>
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-secondary btn-sm" ui-sref="payPalList">PayPal</button>
+                                </div>
+                            </div>
+                        </div>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        <!--<div class="col-sm-1"></div> 
+                        <div class="col-sm-1"></div> 
+                        <div class="col-sm-1">
+                            <button type="button" class="btn btn">Agregar metodo de pago</button>
+                            <p></p>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn">Modificar metodos de pago</button>
+                                <p></p>
+                                <button type="button" class="btn btn">Eliminar metodos de pago</button>
+                            </div>
+                            <p></p>
+                            <div class="col-sm-1">
+                                <button type="button" class="btn btn">Ver historial de pagos</button>
+                            </div>
+                        </div>
+                        <p></p> -->
+                        <div class="row">
+                            <div style="margin-left: 102px">
+                                <button type="button" class="btn btn">Agregar metodo de pago</button>
+                            </div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row">
+
+                            <div style="margin-left: 93px">
+                                <button type="button" class="btn btn">Modificar metodos de pago</button>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="row">
+
+                            <div style="margin-left: 98px">
+                                <button type="button" class="btn btn">Eliminar metodos de pago</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p></p>
+                </div>
+            </div>    
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div ui-view="childrenView"></div>
+    </div>
+</div>
+
