@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class ='card'>
+            <h1>Cuenta</h1>
+            <div class="text-center">
+                <img src="{{perfilempleadoAdminRecords.imagen}}" class="img-thumbnail" alt="Foto perfil">   
+            </div>
+            <button type="button" class="btn btn-link">Editar avatar</button>
+
+            <!-- Panel informacion -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="container">
+                        <div class="row">
+                            <label for="nombre">Nombre: </label>
+                            <p class="form-control" id="nombre"> {{currentEmpleadoAdmin.nombre}} </p>
+                        </div>
+                        <div class="row">   
+                            <label for="documento">Documento: </label>  
+                            <p class="form-control" id="documento"> {{currentEmpleadoAdmin.cedula}} </p>
+                        </div>
+                        <div class="row"> 
+                            <label for="correo">Correo: </label>
+                            <p class="form-control" id="correo"> {{currentEmpleadoAdmin.correo}} </p>
+                        </div>
+                        <div class="row"> 
+                            <label for="telefono">Telefono: </label>
+                            <p class="form-control" id="telefono"> {{currentEmpleadoAdmin.telefono}} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>
+</div>

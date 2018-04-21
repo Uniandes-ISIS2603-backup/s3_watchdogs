@@ -1,0 +1,12 @@
+[
+    {
+        "name":"Veterinaria",
+        "descripcion":"Es una de las dos sedes que poseemos en la cual se desarrollaran los servicios que tienen que ver con peluqueria,Aseo y Veterinaria",
+        "imagen":"src/images/veterinaria1.jpg"   
+    },
+    {
+        "name":"Centro de Entrenamiento",
+        "descripcion":"En esta sede se desarrollaran los servicios que tienen que ver con el entrenamiento de tu mascota , servicio de hotel y paseo",
+        "imagen":"src/images/centroEntrenamiento.jpg" 
+    }  
+]

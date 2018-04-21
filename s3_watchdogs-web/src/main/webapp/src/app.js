@@ -6,9 +6,14 @@
 
         // Internal modules dependencies
         'clientesModule',
+        'empleadosAdminModule',
+        'serviciosAdminModule',
+        'serviciosModule',
+        'instalacionesAdminModule',
+        //'instalacionesAdminModule',
         'mascotasModule',
         'entrenamientosModule',
-        'serviciosModule',
+        //'servicioModule',
         'loginModule'
 
 

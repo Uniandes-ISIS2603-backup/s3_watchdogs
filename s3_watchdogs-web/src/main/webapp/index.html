@@ -38,6 +38,30 @@
         <script src="src/modules/clientes/new/clientes.new.ctrl.js" type="text/javascript"></script>
         <script src="src/modules/clientes/update/clientes.update.ctrl.js" type="text/javascript"></script>
 
+        <!-- Empleado Admin -->
+        <script src="src/modules/empleados/admin/empleadosAdmin.mod.js" type="text/javascript"></script>
+        <script src="src/modules/empleados/admin/empleadosAdmin.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/empleados/admin/empleadosAdmin.detail.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/empleados/admin/delete/empleadosAdmin.delete.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/empleados/admin/new/empleadosAdmin.new.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/empleados/admin/update/empleadosAdmin.update.ctrl.js" type="text/javascript"></script>
+
+        <!--Servicios--> 
+        <script src="src/modules/servicios/admin/serviciosAdmin.mod.js" type="text/javascript"></script>
+        <script src="src/modules/servicios/admin/serviciosAdmin.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/servicios/admin/serviciosAdmin.detail.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/servicios/admin/delete/serviciosAdmin.delete.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/servicios/admin/new/serviciosAdmin.new.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/servicios/admin/update/serviciosAdmin.update.ctrl.js" type="text/javascript"></script>
+
+        <!--Instalaciones--> 
+        <script src="src/modules/instalaciones/admin/instalacionesAdmin.mod.js" type="text/javascript"></script>
+        <script src="src/modules/instalaciones/admin/instalacionesAdmin.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/instalaciones/admin/instalacionesAdmin.detail.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/instalaciones/admin/delete/instalacionesAdmin.delete.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/instalaciones/admin/new/instalacionesAdmin.new.ctrl.js" type="text/javascript"></script>
+        <script src="src/modules/instalaciones/admin/update/instalacionesAdmin.update.ctrl.js" type="text/javascript"></script>
+
         <!-- Mascota -->
         <script src="src/modules/mascotas/mascotas.mod.js" type="text/javascript"></script>
         <script src="src/modules/mascotas/mascotas.ctrl.js" type="text/javascript"></script>
@@ -89,8 +113,9 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" ui-sref="clientesList">Clientes</a>
                                 <a class="dropdown-item" ui-sref="mascotasList">Mascotas</a>
-                                <a class="dropdown-item" href="#">Empleados</a>
-                                <a class="dropdown-item" href="#">Servicios</a>
+                                <a class="dropdown-item" ui-sref="empleadosAdminList">Empleados</a>
+                                <a class="dropdown-item" ui-sref="serviciosAdminList">Servicios</a>
+                                <a class="dropdown-item" ui-sref="instalacionesAdminList">Instalaciones</a>
                             </div>
                         </li>
                     </ul>
