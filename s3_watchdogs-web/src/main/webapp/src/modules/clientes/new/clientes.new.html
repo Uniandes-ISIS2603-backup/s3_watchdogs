@@ -1,0 +1,33 @@
+<div class="container-fluid">
+    <div class="row">
+        <label ng-if="!edit" id="createCliente">Crear un nuevo cliente</label>
+        <label ng-if="edit" id="editCliente">Editar cliente</label>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+             <div class="container">
+                <div class="row">
+                    <label for="nombre">Nombre: </label>
+                    <input id="clienteName" required ng-model="data.nombre"/>
+                </div>
+                <div class="row">
+                    <label for="nombre">Cedula: </label>
+                    <input id="clienteName" required ng-model="data.cedula"/>
+                </div>
+                <div class="row">
+                    <label for="nombre">Correo: </label>
+                    <input id="clienteName" required ng-model="data.correo"/>
+                </div>
+                <div class="row">
+                    <label for="nombre">Imagen: </label>
+                    <input id="clienteName" required ng-model="data.imagen"/>
+                </div>
+                <div class="row">
+                    <label for="nombre">Telefono: </label>
+                    <input id="clienteName" required ng-model="data.telefono"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

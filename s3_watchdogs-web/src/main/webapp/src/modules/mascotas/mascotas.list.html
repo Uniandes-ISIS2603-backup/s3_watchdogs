@@ -1,0 +1,43 @@
+<!--<div class="container-fluid" ng-if="isAuthenticated() && hasPermissions()">-->
+<div class="container-fluid">
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3>Lista de mascotas</h3></div>
+            <div class="panel-body">
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <a class="btn btn-info" ui-sref="mascotasCreate"><span class="glyphicon glyphicon-plus-sign"></span>Agregar una nueva mascota</a>
+                        <a class="btn btn-info" ui-sref="mascotaDetail"><span class="glyphicon glyphicon-plus-sign"></span>Buscar una mascota</a>
+                        <a class="btn btn-info" ui-sref="mascotasList"><span class="glyphicon glyphicon-plus-sign"></span>Mostrar todas las mascotas</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Raza</th>
+                                <th>Sexo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="mascota in mascotasRecords">
+                                <td id="{{$index}}-nombre">
+                                    <a ui-sref="mascotaDetail({mascotaId: mascota.id})">{{mascota.nombre}}</a>
+                                </td>
+                                <td id="{{$index}}-raza">{{mascota.raza}}</td>
+                                <td id="{{$index}}-sexo">{{mascota.sexo}}</td>
+                                <td id="{{$index}}-acciones">
+                                    <a id="{{$index}}-edit" class="btn btn-default btn-sm" ui-sref="mascotaUpdate({mascotaId: mascota.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a>
+                                    <a id="{{$index}}-delete" class="btn btn-default btn-sm" ui-sref="mascotaDelete({mascotaId: mascota.id})"><span class="glyphicon glyphicon-edit"></span>Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

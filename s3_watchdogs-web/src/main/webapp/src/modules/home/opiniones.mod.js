@@ -4,9 +4,7 @@
     
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             
-            var basePath = 'src/modules/opiniones/';
-            
-            $urlRouterProvider.otherwise("/opinionesList");
+            var basePath = 'src/modules/home/opiniones/';
             
             $stateProvider.state('opinionesList', {
                 
@@ -16,6 +14,9 @@
                         templateUrl: basePath + 'opiniones.list.html',
                         controller: 'opinionesCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    'resumeView': {
+                        
                     }
                 }
             });

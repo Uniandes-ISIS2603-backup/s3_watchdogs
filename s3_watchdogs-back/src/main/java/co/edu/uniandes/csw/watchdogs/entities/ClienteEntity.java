@@ -39,10 +39,13 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private List<FacturaEntity> facturas = new ArrayList<>();
 
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     private CalificacionEntity calificacion = new CalificacionEntity();
 
     private String cedula;
+    private String correo;
+    private String telefono;
+    private String imagen;
 
     /**
      * Obtiene el atributo cedula.
@@ -150,6 +153,48 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      */
     public void setCalificacion(CalificacionEntity calificacion) {
         this.calificacion = calificacion;
+    }
+
+    /**
+     * @return the correo
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * @param correo the correo to set
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    /**
+     * @return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the telefono to set
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 }
