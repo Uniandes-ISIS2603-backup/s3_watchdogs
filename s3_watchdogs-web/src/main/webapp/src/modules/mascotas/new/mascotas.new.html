@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <label ng-if="!edit" id="createMascota">Crear una nueva mascota</label>
+        <label ng-if="edit" id="editMascota">Editar mascota</label>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+             <div class="container">
+                <div class="row">
+                    <label for="nombre">Nombre: </label>
+                    <input id="mascotaName" required ng-model="data.nombre"/>
+                </div>
+                <div class="row">
+                    <label for="color">Color: </label>
+                    <input id="mascotaColor" required ng-model="data.color"/>
+                </div>
+                <div class="row">
+                    <label for="raza">Raza: </label>
+                    <input id="mascotaRaza" required ng-model="data.raza"/>
+                </div>
+                <div class="row">
+                    <label for="sexo">Sexo: </label>
+                    <input id="mascotaSexo" required ng-model="data.sexo"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

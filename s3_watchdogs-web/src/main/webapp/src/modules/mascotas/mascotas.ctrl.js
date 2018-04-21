@@ -1,10 +1,13 @@
 (function (ng) {
-    var mod = ng.module("mascotaModule");
+
+    var mod = ng.module("mascotasModule");
+
     mod.constant("mascotasContext", "api/mascotas");
-    mod.controller('mascotaCtrl', ['$scope', '$http', 'mascotasContext', '$state',
-    function ($scope, $http, mascotasContext, $state) {
-        $http.get('src/data/mascotas.json').then(function (response) {
-            $scope.mascotasRecords = response.data;
-        });
-    }]);
+
+    mod.controller('mascotasCtrl', ['$scope', '$http', 'mascotasContext', '$state',
+        function ($scope, $http, mascotasContext, $state) {
+            $http.get(mascotasContext).then(function (response) {
+                $scope.mascotasRecords = response.data;
+            });
+        }]);
 })(window.angular);

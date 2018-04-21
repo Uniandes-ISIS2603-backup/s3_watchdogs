@@ -1,47 +1,31 @@
 <div class="container-fluid">
-    <div ng-if="isAuthenticated() && hasPermissions()" class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <label ng-if="!edit" id="createCliente">Crear un nuevo cliente</label>
-                <label ng-if="edit" id="editCliente">Editar cliente</label>
-            </div>
-            <div class="panel-body">
-                <form name="cliente">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="clienteName" class="col-sm-2">Nombre:</label>
-                            <input id="clienteName" required ng-model="data.nombre" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="clienteDocument" class="col-sm-2">Documento:</label>
-                            <input id="clienteDocument" required ng-model="data.documeno" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="clienteCorreo" class="col-sm-2">Correo:</label>
-                            <input id="clienteCorreo" required ng-model="data.correo" class="col-sm-6"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="clienteCelular" class="col-sm-2">Celular:</label>
-                            <input id="clienteCelular" required ng-model="data.celular" class="col-sm-6"/>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="row">
+        <label ng-if="!edit" id="createCliente">Crear un nuevo cliente</label>
+        <label ng-if="edit" id="editCliente">Editar cliente</label>
     </div>
-    <div class="center-block well text-center" ng-if="isAuthenticated() && !hasPermissions()">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <h1 class="float-left display-3 mr-4">403 Forbidden</h1>
-                    <h4>No tiene permiso para realizar esta accion.</h4>
-                    <p>Contacte al administrador para obtener permiso.</p>
+
+    <div class="row">
+        <div class="col-sm-12">
+             <div class="container">
+                <div class="row">
+                    <label for="nombre">Nombre: </label>
+                    <input id="clienteName" required ng-model="data.nombre"/>
+                </div>
+                <div class="row">
+                    <label for="nombre">Cedula: </label>
+                    <input id="clienteName" required ng-model="data.cedula"/>
+                </div>
+                <div class="row">
+                    <label for="nombre">Correo: </label>
+                    <input id="clienteName" required ng-model="data.correo"/>
+                </div>
+                <div class="row">
+                    <label for="nombre">Imagen: </label>
+                    <input id="clienteName" required ng-model="data.imagen"/>
+                </div>
+                <div class="row">
+                    <label for="nombre">Telefono: </label>
+                    <input id="clienteName" required ng-model="data.telefono"/>
                 </div>
             </div>
         </div>

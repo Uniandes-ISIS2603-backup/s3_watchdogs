@@ -1,4 +1,4 @@
-(function (ng) {
+ (function (ng) {
     
     var mod = ng.module("clientesModule", ['ui.router']);
     mod.constant("clientesContext", "api/clientes");
@@ -69,7 +69,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/cliente.new.html',
+                        templateUrl: basePath + '/new/clientes.new.html',
                         controller: 'clienteUpdateCtrl'
                     }
                 }
@@ -86,7 +86,7 @@
                 },
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/delete/cliente.delete.html',
+                        templateUrl: basePath + '/delete/clientes.delete.html',
                         controller: 'clienteDeleteCtrl'
                     }
                 }

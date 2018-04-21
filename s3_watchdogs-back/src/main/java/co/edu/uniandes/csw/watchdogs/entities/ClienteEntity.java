@@ -39,7 +39,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private List<FacturaEntity> facturas = new ArrayList<>();
 
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne
     private CalificacionEntity calificacion = new CalificacionEntity();
 
     private String cedula;

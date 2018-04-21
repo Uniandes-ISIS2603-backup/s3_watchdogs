@@ -6,11 +6,11 @@
 
         // Internal modules dependencies
         'clientesModule',
-        //'entrenamientoModule',
+        'mascotasModule',
+        'entrenamientosModule',
         'serviciosModule',
-        'loginModule',
-        'opinionesModule'
-        
+        'loginModule'
+
 
     ]);
     // Resuelve problemas de las promesas
@@ -18,36 +18,30 @@
             $qProvider.errorOnUnhandledRejections(false);
         }]);
 
-    app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
+    app.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
-            $transitions.onSuccess({to: '*'}, function (trans) {
+            var basePath = 'src/modules/home/';
 
-                var $state = trans.router.stateService;
-                var requireLogin = $state.current.data.requireLogin
-                var roles = $state.current.data.roles
+            $urlRouterProvider.otherwise("/home");
 
-                $rootScope.isAuthenticated = function () {
+            $stateProvider.state('home', {
 
-                    if (sessionStorage.getItem("username") != null) {
-                        $rootScope.currentUser = sessionStorage.getItem("name");
-                        return true;
-                    } else {
-                        return false;
+                url: '/home',
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'home.main.html'
+                    },
+                    'userView': {
+                        templateUrl: basePath + 'home.login.html',
+                        controller: 'loginCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'resumeView': {
+                        templateUrl: basePath + 'home.resume.html'
                     }
-                };
-
-                $rootScope.hasPermissions = function () {
-                    if (($rootScope.isAuthenticated) && (roles.indexOf(sessionStorage.getItem("rol")) > -1)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                };
-
-                if (requireLogin && (sessionStorage.getItem("username") === null)) {
-                    event.preventDefault();
-                    $state.go('login', $state.params);
                 }
             });
         }]);
+
+
 })(window.angular);
