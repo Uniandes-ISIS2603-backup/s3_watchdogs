@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <p> imagen</p>
+        </div>
+        <div class="col-sm-9">
+            <p>Texto</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <dl>
+                <dt>Duración del hotel:</dt>
+                <dd>{{currentHotel.duracion}}</dd>
+            </dl>
+        </div>
+        <div class="col-sm-4">
+            <p>Fecha:</p>
+            <p>{{currentHotel.fecha | date:'yyyy-MM-dd'}}</p>
+        </div>
+        <div class="col-sm-4">
+            <p>Precio:</p>
+            <p>{{currentHotel.costo}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <a ui-sref="hotelDelete({hotelId:1})" class="btn btn-primary">Cancelar</a>
+    </div>
+</div>

@@ -14,7 +14,9 @@
         'mascotasModule',
         'entrenamientosModule',
         //'servicioModule',
-        'loginModule'
+        'loginModule',
+        'paseosModule',
+        //'hotelesModule'
 
 
     ]);
