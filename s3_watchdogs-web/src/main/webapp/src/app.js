@@ -16,7 +16,7 @@
         //'servicioModule',
         'loginModule',
         'paseosModule',
-        //'hotelesModule'
+        'hotelesModule'
 
 
     ]);
