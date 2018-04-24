@@ -4,6 +4,8 @@
         'ui.router',
         //'ui.bootstrap',
 
+        'instalacionesModule',
+
         // Internal modules dependencies
         'clientesModule',
         'empleadosAdminModule',
