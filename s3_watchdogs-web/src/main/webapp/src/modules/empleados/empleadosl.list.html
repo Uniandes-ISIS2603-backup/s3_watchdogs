@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+<div class="container-fluid">
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-6" ng-repeat="empleado in empleadosRecords">
+              <div class="card">
+                  <img class="card-img-top" ng-src='{{empleado.imagen}}' alt='{{empleado.name}}'>
+                     <div class="card-body">
+                        <h5 class="card-title">{{empleado.name}}</h5>
+                        <p class="card-text" style="font-size:80%;">{{empleado.descripcion}}</p>
+                     </div>
+              </div>  
+            </div>
+        </div>   
+    </div>
+</div>

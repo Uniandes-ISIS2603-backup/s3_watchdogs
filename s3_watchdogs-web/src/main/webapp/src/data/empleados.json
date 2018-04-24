@@ -1,0 +1,32 @@
+[
+    {
+        "name":"Camilo beltran",
+        "descripcion":"Es uno de nuestros mejores veterinarios",
+        "imagen":"src/images/personal.jpg"   
+    },
+    {
+        "name":"Sebastian vaca",
+        "descripcion":"Es uno de nuestros mejores entrenadores",
+        "imagen":"src/images/personal.jpg" 
+    },
+    {
+        "name":"Camilo Pulido",
+        "descripcion":"Es uno de nuestros mejores entrenadores",
+        "imagen":"src/images/personal.jpg" 
+    } ,
+    {
+        "name":"Mauricio Diaz",
+        "descripcion":"Es uno de nuestros mejores entrenadores",
+        "imagen":"src/images/personal.jpg" 
+    } ,
+    {
+        "name":"Camilo Martinez",
+        "descripcion":"Es uno de nuestros mejores entrenadores",
+        "imagen":"src/images/personal.jpg" 
+    } ,
+    {
+        "name":"Ivan Salazar",
+        "descripcion":"Es uno de nuestros mejores entrenadores",
+        "imagen":"src/images/personall.jpg" 
+    }   
+]

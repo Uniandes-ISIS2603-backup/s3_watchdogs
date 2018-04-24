@@ -5,6 +5,8 @@
         //'ui.bootstrap',
 
         'instalacionesModule',
+        'empleadosModule',
+        
 
         // Internal modules dependencies
         'clientesModule',
