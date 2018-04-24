@@ -1,0 +1,24 @@
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div id="alertPanel" style="text-align: center"></div>
+<div class="container-fluid">
+    <div class="col-md-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Número de factura</th>    
+                    <th>Cliente</th>
+                    <th>Método de Pago</th>
+                    <th>Costo</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="factura in facturaRecords">
+                    <!--<td id="{{$index}}-name">{{factura.name}}</td>
+                    <td id="{{$index}}-birthDate">{{factura.birthDate| date:'yyyy-MM-dd'}}</td>    -->
+                    <!-- TODO -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
