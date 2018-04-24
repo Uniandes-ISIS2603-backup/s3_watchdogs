@@ -1,0 +1,16 @@
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+<div class="container-fluid">
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-4 col-12" ng-repeat="info in infosRecords">
+                <div class="card"> <img class="card-img-top" ng-src='{{info.imagen}}' alt='{{info.name}}'>
+                    <div class="card-body">
+                        <h5 class="card-title">{{info.name}}</h5>
+                        <p class="card-text" style="font-size:80%;">{{info.descripcion}}</p>
+                        
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
