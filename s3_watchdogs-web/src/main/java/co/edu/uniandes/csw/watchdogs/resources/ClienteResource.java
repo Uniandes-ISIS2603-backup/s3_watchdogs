@@ -164,7 +164,7 @@ public class ClienteResource {
         }
         entity.setFacturas(oldEntity.getFacturas());
         entity.setMascotas(oldEntity.getMascotas());
-        entity.setCalificacion(oldEntity.getCalificacion());
+//        entity.setCalificacion(oldEntity.getCalificacion());
         entity.setServicios(oldEntity.getServicios());
         entity.setMetodosDePago(oldEntity.getMetodosDePago());
         return new ClienteDetailDTO(clienteLogic.updateCliente(id, entity));

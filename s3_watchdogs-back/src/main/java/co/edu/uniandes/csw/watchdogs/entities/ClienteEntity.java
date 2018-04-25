@@ -31,16 +31,16 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany
+    @OneToMany(mappedBy = "cliente")
     private List<MetodoDePagoEntity> metodosDePago = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cliente")
     private List<FacturaEntity> facturas = new ArrayList<>();
 
-    @PodamExclude
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.PERSIST)
-    private CalificacionEntity calificacion = new CalificacionEntity();
+//    @PodamExclude
+//    @OneToOne(mappedBy = "cliente")
+//    private CalificacionEntity calificacion = new CalificacionEntity();
 
     private String cedula;
     private String correo;
@@ -136,24 +136,24 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
-
-    /**
-     * Devuelve la calificacion del cliente.
-     *
-     * @return la calificacion del cliente.
-     */
-    public CalificacionEntity getCalificacion() {
-        return calificacion;
-    }
-
-    /**
-     * Establece el valor de la calificacion del cliente.
-     *
-     * @param calificacion nuevo valor de la calificacion.
-     */
-    public void setCalificacion(CalificacionEntity calificacion) {
-        this.calificacion = calificacion;
-    }
+//
+//    /**
+//     * Devuelve la calificacion del cliente.
+//     *
+//     * @return la calificacion del cliente.
+//     */
+//    public CalificacionEntity getCalificacion() {
+//        return calificacion;
+//    }
+//
+//    /**
+//     * Establece el valor de la calificacion del cliente.
+//     *
+//     * @param calificacion nuevo valor de la calificacion.
+//     */
+//    public void setCalificacion(CalificacionEntity calificacion) {
+//        this.calificacion = calificacion;
+//    }
 
     /**
      * Devuelve el correo del cliente.
