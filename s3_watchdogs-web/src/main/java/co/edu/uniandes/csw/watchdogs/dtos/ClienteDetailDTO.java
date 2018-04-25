@@ -160,11 +160,11 @@ public class ClienteDetailDTO extends ClienteDTO {
             for (FacturaEntity entityFacturas : entity.getFacturas()) {
                 facturas.add(new FacturaDTO(entityFacturas));
             }
-//            calificacion = new CalificacionDTO();
-//            if (entity.getCalificacion() != null) {
-//                calificacion.setId(entity.getCalificacion().getId());
-//                calificacion.setPuntaje(entity.getCalificacion().getPuntaje());
-//            }
+            calificacion = new CalificacionDTO();
+            if (entity.getCalificacion() != null) {
+                calificacion.setId(entity.getCalificacion().getId());
+                calificacion.setPuntaje(entity.getCalificacion().getPuntaje());
+            }
             servicios = new ArrayList<>();
             if (entity.getServicios() != null) {
                 for (ServicioEntity entityServicio : entity.getServicios()) {
@@ -268,9 +268,9 @@ public class ClienteDetailDTO extends ClienteDTO {
             }
             clienteE.setFacturas(facturasEntity);
         }
-//        if (calificacion != null) {
-//            clienteE.setCalificacion(calificacion.toEntity());
-//        }
+        if (calificacion != null) {
+            clienteE.setCalificacion(calificacion.toEntity());
+        }
         if (servicios != null) {
             List<ServicioEntity> serviciosEntity = new ArrayList<>();
             for (ServicioDTO dtoServicio : servicios) {

@@ -23,24 +23,24 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ClienteEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<MascotaEntity> mascotas = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<MetodoDePagoEntity> metodosDePago = new ArrayList<>();
 
     @PodamExclude
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<FacturaEntity> facturas = new ArrayList<>();
 
-//    @PodamExclude
-//    @OneToOne(mappedBy = "cliente")
-//    private CalificacionEntity calificacion = new CalificacionEntity();
+    @PodamExclude
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private CalificacionEntity calificacion = new CalificacionEntity();
 
     private String cedula;
     private String correo;
@@ -136,24 +136,24 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     public void setFacturas(List<FacturaEntity> facturas) {
         this.facturas = facturas;
     }
-//
-//    /**
-//     * Devuelve la calificacion del cliente.
-//     *
-//     * @return la calificacion del cliente.
-//     */
-//    public CalificacionEntity getCalificacion() {
-//        return calificacion;
-//    }
-//
-//    /**
-//     * Establece el valor de la calificacion del cliente.
-//     *
-//     * @param calificacion nuevo valor de la calificacion.
-//     */
-//    public void setCalificacion(CalificacionEntity calificacion) {
-//        this.calificacion = calificacion;
-//    }
+
+    /**
+     * Devuelve la calificacion del cliente.
+     *
+     * @return la calificacion del cliente.
+     */
+    public CalificacionEntity getCalificacion() {
+        return calificacion;
+    }
+
+    /**
+     * Establece el valor de la calificacion del cliente.
+     *
+     * @param calificacion nuevo valor de la calificacion.
+     */
+    public void setCalificacion(CalificacionEntity calificacion) {
+        this.calificacion = calificacion;
+    }
 
     /**
      * Devuelve el correo del cliente.
