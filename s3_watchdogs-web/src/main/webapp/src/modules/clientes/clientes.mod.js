@@ -11,9 +11,9 @@
             
             $stateProvider.state('clientes', {
                 url: '/clientes',
-                abstract: true,
+                //abstract: true,
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'clientes.html',
                         controller: 'clientesCtrl',
                         controllerAs: 'ctrl'
@@ -21,10 +21,6 @@
                     'navView': {
                         templateUrl: basePath + 'clientes.nav.html'
                     }
-                },
-                data: {
-                    requireLogin: false,
-                    roles: ['admin', 'assistant']
                 }
             }).state('clientesList', {
                 url: '/list',
@@ -41,25 +37,24 @@
                   clienteId: null  
                 },
                 views: {
-                    'listView': {
+                    'clienteDetailView': {
                         templateUrl: basePath + 'clientes.detail.html',
                         controller: 'clienteDetailCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    'listView': {
+                        templateUrl: basePath + 'clientes.list.html'
                     }
                 }
             }).state('clientesCreate', {
                 url: '/create',
                 parent: 'clientes',
                 views: {
-                    'detailView': {
+                    'listView': {
                         templateUrl: basePath + '/new/clientes.new.html',
-                        controller: 'clienteNewCtrl'
+                        controller: 'clientesNewCtrl',
+                        controllerAs: 'ctrl'
                     }
-                }
-                ,
-                data: {
-                    requireLogin: true,
-                    roles: ['admin']
                 }
             }).state('clienteUpdate', {
                 url: '/update/{clienteId:int}',

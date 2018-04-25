@@ -115,6 +115,9 @@ public class ClienteDTO {
         entity.setId(this.getId());
         entity.setName(this.getName());
         entity.setCedula(this.getCedula());
+        entity.setCorreo(this.getCorreo());
+        entity.setImagen(this.getImagen());
+        entity.setTelefono(this.getTelefono());
         return entity;
     }
 

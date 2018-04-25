@@ -39,7 +39,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     private List<FacturaEntity> facturas = new ArrayList<>();
 
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private CalificacionEntity calificacion = new CalificacionEntity();
 
     private String cedula;
@@ -156,6 +156,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * Devuelve el correo del cliente.
+     * 
      * @return the correo
      */
     public String getCorreo() {
@@ -163,6 +165,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * Establece el valor del correo del cliente.
+     * 
      * @param correo the correo to set
      */
     public void setCorreo(String correo) {

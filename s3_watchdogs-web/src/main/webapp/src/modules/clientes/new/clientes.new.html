@@ -1,33 +1,62 @@
 <div class="container-fluid">
-    <div class="row">
-        <label ng-if="!edit" id="createCliente">Crear un nuevo cliente</label>
-        <label ng-if="edit" id="editCliente">Editar cliente</label>
-    </div>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><label ng-if="!edit" id="createCliente">Crear un nuevo Cliente</label>
+                <label ng-if="edit" id="editCliente">Editar Cliente</label></div>
+            <div class="panel-body">
+                <form name="cliente">
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="clienteName" class="col-sm-2">Name:</label>
+                            <input id="clienteName" required ng-model="data.name" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="clienteCedula" class="col-sm-2">Cedula:</label>
+                            <input id="clienteCedula" required ng-model="data.cedula" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="clienteCorreo" class="col-sm-2">Correo:</label>
+                            <input id="clienteCorreo" required ng-model="data.correo" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="clienteImagen" class="col-sm-2">Imagen:</label>
+                            <input id="clienteImagen" required ng-model="data.imagen" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="clienteTelefono" class="col-sm-2">Telefono:</label>
+                            <input id="clienteTelefono" required ng-model="data.telefono" class="col-sm-6"/>
+                        </div>
+                    </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-             <div class="container">
-                <div class="row">
-                    <label for="nombre">Nombre: </label>
-                    <input id="clienteName" required ng-model="data.nombre"/>
-                </div>
-                <div class="row">
-                    <label for="nombre">Cedula: </label>
-                    <input id="clienteName" required ng-model="data.cedula"/>
-                </div>
-                <div class="row">
-                    <label for="nombre">Correo: </label>
-                    <input id="clienteName" required ng-model="data.correo"/>
-                </div>
-                <div class="row">
-                    <label for="nombre">Imagen: </label>
-                    <input id="clienteName" required ng-model="data.imagen"/>
-                </div>
-                <div class="row">
-                    <label for="nombre">Telefono: </label>
-                    <input id="clienteName" required ng-model="data.telefono"/>
-                </div>
+                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!cliente.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <button ng-show="cliente.$valid" ng-click="createCliente()" class="btn btn-success">Crear</button>
+                            <a class="btn btn-info" ui-sref="clientesList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
 </div>
+
+
