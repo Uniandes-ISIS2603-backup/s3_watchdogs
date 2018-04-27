@@ -24,8 +24,14 @@ import javax.inject.Inject;
 @Stateless
 public class EmpleadoLogic {
 
+    /**
+     * Constante que relaciona el Logger de la logica.
+     */
     private static final Logger LOGGER = Logger.getLogger(EmpleadoLogic.class.getName());
 
+    /**
+     * Conexion con la persistencia del empleado.
+     */
     @Inject
     private EmpleadoPersistence persistence;
 

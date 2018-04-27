@@ -24,11 +24,20 @@ import javax.inject.Inject;
 @Stateless
 public class ClienteLogic {
 
+    /**
+     * Constante que representa el Logger de la logica.
+     */
     private static final Logger LOGGER = Logger.getLogger(ClienteLogic.class.getName());
 
+    /**
+     * Conexion con la persistencia del cliente.
+     */
     @Inject
     private ClientePersistence persistence;
 
+    /**
+     * Conexion con la logica de la factura.
+     */
     @Inject
     private FacturaLogic facturaLogic;
 

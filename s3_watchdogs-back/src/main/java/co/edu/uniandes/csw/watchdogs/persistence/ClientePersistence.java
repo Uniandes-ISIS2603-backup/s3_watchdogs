@@ -23,8 +23,14 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class ClientePersistence {
 
+    /**
+     * Constante que representa el Logger de la persistencia.
+     */
     private static final Logger LOGGER = Logger.getLogger(EmpleadoPersistence.class.getName());
 
+    /**
+     * Relacion con el entity manager.
+     */
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
 

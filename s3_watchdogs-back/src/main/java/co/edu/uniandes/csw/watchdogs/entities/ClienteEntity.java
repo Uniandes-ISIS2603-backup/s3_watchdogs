@@ -22,29 +22,59 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class ClienteEntity extends BaseEntity implements Serializable {
 
+    /**
+     * Relacion con las mascotas del cliente.
+     */
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<MascotaEntity> mascotas = new ArrayList<>();
 
+    /**
+     * Relacion con los servicios del cliente.
+     */
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<ServicioEntity> servicios = new ArrayList<>();
 
+    /**
+     * Relacion con los metodos de pago del cliente.
+     */
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<MetodoDePagoEntity> metodosDePago = new ArrayList<>();
 
+    /**
+     * Relacion con las facturas del cliente.
+     */
     @PodamExclude
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     private List<FacturaEntity> facturas = new ArrayList<>();
 
+    /**
+     * Relacion con la calificacion del cliente.
+     */
     @PodamExclude
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     private CalificacionEntity calificacion = new CalificacionEntity();
 
+    /**
+     * Cedula del cliente.
+     */
     private String cedula;
+
+    /**
+     * Correo del cliente.
+     */
     private String correo;
+
+    /**
+     * Telefono del cliente.
+     */
     private String telefono;
+
+    /**
+     * Ruta de la imagen del cliente.
+     */
     private String imagen;
 
     /**
@@ -157,7 +187,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
 
     /**
      * Devuelve el correo del cliente.
-     * 
+     *
      * @return the correo
      */
     public String getCorreo() {
@@ -166,7 +196,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
 
     /**
      * Establece el valor del correo del cliente.
-     * 
+     *
      * @param correo the correo to set
      */
     public void setCorreo(String correo) {
@@ -174,6 +204,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * Devuelve el telefono del cliente.
+     *
      * @return the telefono
      */
     public String getTelefono() {
@@ -181,6 +213,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * Establece el valor del telefono del cliente.
+     *
      * @param telefono the telefono to set
      */
     public void setTelefono(String telefono) {
@@ -188,6 +222,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * Devuelve la ruta de la imagen del cliente.
+     *
      * @return the imagen
      */
     public String getImagen() {
@@ -195,6 +231,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
+     * Establece el valor de la ruta de la imagen del cliente.
+     *
      * @param imagen the imagen to set
      */
     public void setImagen(String imagen) {

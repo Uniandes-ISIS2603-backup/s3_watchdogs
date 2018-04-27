@@ -13,22 +13,41 @@ import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
+ * Clase que representa una entidad de mascota para ser generada en la base de
+ * datos.
  *
  * @author ca.beltran10
  */
 @Entity
 public class MascotaEntity extends BaseEntity implements Serializable {
 
+    /**
+     * Relacion con los servicios de la mascota.
+     */
     @PodamExclude
     @OneToOne
     private ServicioEntity servicio;
 
+    /**
+     * Relacion con el cliente de la mascota.
+     */
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
     private ClienteEntity cliente;
 
+    /**
+     * Raza de la mascota.
+     */
     private String raza;
+
+    /**
+     * Color de la mascota.
+     */
     private String color;
+
+    /**
+     * Sexo de la mascota.
+     */
     private String sexo;
 
     /**

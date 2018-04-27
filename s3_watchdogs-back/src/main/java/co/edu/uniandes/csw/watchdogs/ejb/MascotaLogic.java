@@ -24,11 +24,20 @@ import javax.inject.Inject;
 @Stateless
 public class MascotaLogic {
 
+    /**
+     * Constante que representa el Logger de la logica.
+     */
     private static final Logger LOGGER = Logger.getLogger(MascotaLogic.class.getName());
 
+    /**
+     * Conexion con la persistencia de mascota.
+     */
     @Inject
     private MascotaPersistence persistence;
 
+    /**
+     * Relacion con la logica del cliente.
+     */
     @Inject
     private ClienteLogic clienteLogic;
 
