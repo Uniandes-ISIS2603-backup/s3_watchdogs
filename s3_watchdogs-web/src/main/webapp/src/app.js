@@ -24,7 +24,8 @@
         'paseosModule',
         'hotelesModule',
         'rutaModule',
-        'metodoDePagoModule'
+        'metodoDePagoModule',
+        'calificacionesModule'
 
 
     ]);

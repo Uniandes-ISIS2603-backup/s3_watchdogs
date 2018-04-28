@@ -23,7 +23,7 @@
             });
 
             $scope.createEntrenamiento = function () {
-                $http.post(entrenamientosContext, $scope.data).then(function (response) {
+                $http.post(clientesContext+'/'+idCliente+'/entrenamientos', $scope.data).then(function (response) {
                     $state.go('serviciosList', {entrenamientoId: response.data.id}, {reload: true});
                 });
             };

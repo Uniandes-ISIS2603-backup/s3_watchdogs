@@ -11,6 +11,7 @@ import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
  *
@@ -25,12 +26,13 @@ public class ClienteEntrenamientoResource {
     
     /**
      * Crea un entrenamieto.
+     * @param clienteId
      * @param entrenamiento
      * @return
      * @throws BusinessLogicException
      */
     @POST
-    public EntrenamientoDetailDTO createEntrenamiento(EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
-        return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity()));
+    public EntrenamientoDetailDTO createEntrenamiento(@PathParam("clienteId")Long clienteId, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
+        return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(clienteId,entrenamiento.toEntity()));
     }
 }
