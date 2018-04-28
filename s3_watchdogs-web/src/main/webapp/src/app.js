@@ -7,6 +7,7 @@
         'instalacionesModule',
         'empleadosModule',
         'infosModule',
+        'faqsModule',
         
 
         // Internal modules dependencies
