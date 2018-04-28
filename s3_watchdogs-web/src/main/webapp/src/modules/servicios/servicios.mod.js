@@ -18,6 +18,17 @@
                         controllerAs: 'ctrl'
                     }
                 }
-            });
+            }).state('aseoDetail',{
+                url:'/servicios/list/aseo/detail',
+                views:{
+                    'mainView':{
+                        templateUrl: basePath + 'aseo.detail.html',
+                        controller:'serviciosCtrl',
+                        controllerAs: 'ctrl' 
+                    }
+                }
+                
+            })
+            ;
     }]);
 })(window.angular);
