@@ -4,20 +4,17 @@
         <div class="panel panel-primary">
             <div class="panel-heading"><h3>Lista de empleados</h3></div>
             <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="empleadosAdminCreate"><span class="glyphicon glyphicon-plus-sign"></span>Agregar un nuevo empleado</a>
-                        <a class="btn btn-info" ui-sref="empleadoAdminDetail"><span class="glyphicon glyphicon-plus-sign"></span>Buscar un empleado</a>
-                        <a class="btn btn-info" ui-sref="empleadosAdminList"><span class="glyphicon glyphicon-plus-sign"></span>Mostrar todos los empleados</a>
-                    </div>
-                </div>
-                <hr>
                 <div class="row">
                     <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Documento</th>
+                                <th>Cedula</th>
+                                <th>Edad</th>
+                                <th>Imagen</th>
+                                <th>Id Calificacion</th>
+                                <th>Id Disponibilidad</th>
+                                <th>Id Servicio</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -26,7 +23,12 @@
                                 <td id="{{$index}}-nombre">
                                     <a ui-sref="empleadoAdminDetail({empleadoId: empleado.id})">{{empleado.nombre}}</a>
                                 </td>
-                                <td id="{{$index}}-documento">{{empleado.cedula}}</td>
+                                <td id="{{$index}}-cedula">{{empleado.cedula}}</td>
+                                <td id="{{$index}}-edad">{{empleado.edad}}</td>
+                                <td id="{{$index}}-imagen">{{empleado.imagen}}</td>
+                                <td id="{{$index}}-idCalificacion">{{empleado.calificaion_id}}</td>
+                                <td id="{{$index}}-idDisponibilidad">{{empleado.disponibilidad_id}}</td>
+                                <td id="{{$index}}-idServicio">{{empleado.servicio_id}}</td>
                                 <td id="{{$index}}-acciones">
                                     <a id="{{$index}}-edit" class="btn btn-default btn-sm" ui-sref="empleadoAdminUpdate({empleadoId: empleado.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a>
                                     <a id="{{$index}}-delete" class="btn btn-default btn-sm" ui-sref="empleadoAdminDelete({empleadoId: empleado.id})"><span class="glyphicon glyphicon-edit"></span>Eliminar</a>

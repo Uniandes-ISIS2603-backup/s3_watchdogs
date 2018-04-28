@@ -3,9 +3,9 @@
         <div class ='card'>
             <h1>Cuenta</h1>
             <div class="text-center">
-                <img src="{{perfilempleadoAdminRecords.imagen}}" class="img-thumbnail" alt="Foto perfil">   
+                <img src="{{currentEmpleado.imagen}}" class="img-thumbnail" alt="Foto perfil">   
             </div>
-            <button type="button" class="btn btn-link">Editar avatar</button>
+            <button type="button" class="btn btn-link">Editar foto</button>
 
             <!-- Panel informacion -->
             <div class="row">
@@ -13,21 +13,33 @@
                     <div class="container">
                         <div class="row">
                             <label for="nombre">Nombre: </label>
-                            <p class="form-control" id="nombre"> {{currentEmpleadoAdmin.nombre}} </p>
+                            <p class="form-control" id="nombre"> {{currentEmpleado.nombre}} </p>
                         </div>
                         <div class="row">   
-                            <label for="documento">Documento: </label>  
-                            <p class="form-control" id="documento"> {{currentEmpleadoAdmin.cedula}} </p>
+                            <label for="cedula">Cedula: </label>  
+                            <p class="form-control" id="cedula"> {{currentEmpleado.cedula}} </p>
                         </div>
                         <div class="row"> 
-                            <label for="correo">Correo: </label>
-                            <p class="form-control" id="correo"> {{currentEmpleadoAdmin.correo}} </p>
+                            <label for="edad">Edad: </label>
+                            <p class="form-control" id="edad"> {{currentEmpleado.edad}} </p>
                         </div>
                         <div class="row"> 
-                            <label for="telefono">Telefono: </label>
-                            <p class="form-control" id="telefono"> {{currentEmpleadoAdmin.telefono}} </p>
+                            <label for="imagen">Imagen: </label>
+                            <p class="form-control" id="imagen"> {{currentEmpleado.imagen}} </p>
                         </div>
-                    </div>
+                        <div class="row"> 
+                            <label for="idCalificacion">Id Calificacion: </label>
+                            <p class="form-control" id="idCalificacion"> {{currentEmpleado.calificacion_id}} </p>
+                        </div>
+                        <div class="row"> 
+                            <label for="idDisponibilidad">Id Cliente: </label>
+                            <p class="form-control" id="idDisponibilidad"> {{currentEmpleado.disponibilidad_id}} </p>
+                        </div>
+                        <div class="row"> 
+                            <label for="idServicio">Id Servicio: </label>
+                            <p class="form-control" id="idServicio"> {{currentEmpleado.servicio_id}} </p>
+                        </div>
+                    </div>                   
                 </div>
             </div>    
         </div>

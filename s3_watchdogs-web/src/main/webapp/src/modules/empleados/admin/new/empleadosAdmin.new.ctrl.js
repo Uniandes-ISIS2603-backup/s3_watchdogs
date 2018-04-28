@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("empleadosAdminModule");
     mod.constant("empleadosAdminContext", "api/empleados");
-    mod.controller('empleadoAdminNewCtrl', ['$scope', '$http', 'empleadosAdminContext', '$state', 'rootScope',
+    mod.controller('empleadosAdminNewCtrl', ['$scope', '$http', 'empleadosAdminContext', '$state', '$rootScope',
         function ($scope, $http, empleadosAdminContext, $state, $rootScope) {
             $rootScope.edit = false;
             $scope.data = {};

@@ -1,37 +1,34 @@
 <div class="row">
     <div class="col-sm-6">
         <div class ='card'>
-            <h1>Cuenta</h1>
-            <div class="text-center">
-                <img src="{{currentMascota.imagen}}" class="img-thumbnail" alt="Foto perfil">   
-            </div>
-            <button type="button" class="btn btn-link">Editar foto</button>
-
+            <h1>Editar mascota</h1>
             <!-- Panel informacion -->
             <div class="row">
                 <div class="col-sm-12">
                     <div class="container">
                         <div class="row">
                             <label for="nombre">Nombre: </label>
-                            <p class="form-control" id="nombre"> {{currentMascota.nombre}} </p>
+                            <input class="form-control" id="nombre"/>
                         </div>
                         <div class="row">   
                             <label for="color">Color: </label>  
-                            <p class="form-control" id="color"> {{currentMascota.color}} </p>
+                            <input class="form-control" id="color"/>
                         </div>
                         <div class="row"> 
                             <label for="raza">Raza: </label>
-                            <p class="form-control" id="raza"> {{currentMascota.raza}} </p>
+                            <input class="form-control" id="raza"/>
                         </div>
                         <div class="row"> 
                             <label for="sexo">Sexo: </label>
-                            <p class="form-control" id="sexo"> {{currentMascota.sexo}} </p>
+                            <input class="form-control" id="sexo"/>
                         </div>
                         <div class="row"> 
-                            <label for="idCliente">Id Cliente: </label>
-                            <p class="form-control" id="idCliente"> {{currentMascota.cliente_id}} </p>
+                            <label for="clienteId">Id Cliente: </label>
+                            <input class="form-control" id="clienteId"/>
                         </div>
-                    </div>                   
+                    </div>
+                    <hr>
+                    <a class="btn btn-info" ui-sref="mascotasUpdate"><span class="glyphicon glyphicon-plus-sign"></span>Enviar</a>
                 </div>
             </div>    
         </div>

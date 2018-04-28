@@ -7,7 +7,7 @@
     function ($scope, $http, empleadosAdminContext, $state) {
         if(($state.params.empleadoId !== undefined) && ($state.params.empleadoId !== null)) {
             $http.get(empleadosAdminContext + '/' + $state.params.empleadoId).then(function (response) {
-                $scope.currentAdminEmpleado = response.data;
+                $scope.currentEmpleado = response.data;
             });
         }
     }]);

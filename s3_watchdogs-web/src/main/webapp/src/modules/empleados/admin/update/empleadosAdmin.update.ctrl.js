@@ -17,9 +17,11 @@
                 var empleado = response.data;
                 $scope.data.name = empleado.name;
                 $scope.data.cedula = empleado.cedula;
-                $scope.data.correo = empleado.correo;
+                $scope.data.edad = empleado.edad;
                 $scope.data.imagen = empleado.imagen;
-                $scope.data.telefono = empleado.telefono;
+                $scope.data.calificacion_id = empleado.calificacion_id;
+                $scope.data.disponibilidad_id = empleado.disponibilidad_id;
+                $scope.data.servicio_id = empleado.servicio_id;
             });
 
             $scope.createEmpleado = function () {

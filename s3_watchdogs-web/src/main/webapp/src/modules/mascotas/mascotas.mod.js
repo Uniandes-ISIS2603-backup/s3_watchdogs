@@ -1,4 +1,4 @@
-(function (ng) {
+ (function (ng) {
     
     var mod = ng.module("mascotasModule", ['ui.router']);
     mod.constant("mascotasContext", "api/mascotas");
@@ -11,9 +11,9 @@
             
             $stateProvider.state('mascotas', {
                 url: '/mascotas',
-                abstract: true,
+                //abstract: true,
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'mascotas.html',
                         controller: 'mascotasCtrl',
                         controllerAs: 'ctrl'
@@ -21,10 +21,6 @@
                     'navView': {
                         templateUrl: basePath + 'mascotas.nav.html'
                     }
-                },
-                data: {
-                    requireLogin: false,
-                    roles: ['admin', 'assistant']
                 }
             }).state('mascotasList', {
                 url: '/list',
@@ -41,36 +37,39 @@
                   mascotaId: null  
                 },
                 views: {
-                    'listView': {
+                    'mascotaDetailView': {
                         templateUrl: basePath + 'mascotas.detail.html',
                         controller: 'mascotaDetailCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    'listView': {
+                        templateUrl: basePath + 'mascotas.list.html'
                     }
                 }
             }).state('mascotasCreate', {
                 url: '/create',
                 parent: 'mascotas',
                 views: {
-                    'detailView': {
+                    'listView': {
                         templateUrl: basePath + '/new/mascotas.new.html',
-                        controller: 'mascotaNewCtrl'
+                        controller: 'mascotasNewCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
-                ,
-                data: {
-                    requireLogin: true,
-                    roles: ['admin']
-                }
             }).state('mascotaUpdate', {
-                url: '/update/{mascotaId:int}',
+                url: '/{mascotaId:int}/update',
                 parent: 'mascotas',
                 param: {
-                    mascotaId: null
+                    clienteId: null
                 },
                 views: {
-                    'detailView': {
-                        templateUrl: basePath + '/new/mascotas.new.html',
-                        controller: 'mascotaUpdateCtrl'
+                    'mascotaUpdateView': {
+                        templateUrl: basePath + '/update/mascotas.update.html',
+                        controller: 'mascotaUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'listView': {
+                        templateUrl: basePath + 'mascotas.list.html'
                     }
                 }
                 ,

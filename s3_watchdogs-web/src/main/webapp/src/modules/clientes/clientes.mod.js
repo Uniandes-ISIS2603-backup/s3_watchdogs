@@ -57,15 +57,19 @@
                     }
                 }
             }).state('clienteUpdate', {
-                url: '/update/{clienteId:int}',
+                url: '/{clienteId:int}/update',
                 parent: 'clientes',
                 param: {
                     clienteId: null
                 },
                 views: {
-                    'detailView': {
-                        templateUrl: basePath + '/new/clientes.new.html',
-                        controller: 'clienteUpdateCtrl'
+                    'clienteUpdateView': {
+                        templateUrl: basePath + '/update/clientes.update.html',
+                        controller: 'clienteUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'listView': {
+                        templateUrl: basePath + 'clientes.list.html'
                     }
                 }
                 ,

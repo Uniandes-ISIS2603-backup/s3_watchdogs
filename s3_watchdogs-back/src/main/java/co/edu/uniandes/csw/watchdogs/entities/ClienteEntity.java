@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,35 +28,35 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      * Relacion con las mascotas del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cliente")
     private List<MascotaEntity> mascotas = new ArrayList<>();
 
     /**
      * Relacion con los servicios del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cliente")
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cliente")
     private List<MetodoDePagoEntity> metodosDePago = new ArrayList<>();
 
     /**
      * Relacion con las facturas del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "cliente")
     private List<FacturaEntity> facturas = new ArrayList<>();
 
     /**
      * Relacion con la calificacion del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
     private CalificacionEntity calificacion = new CalificacionEntity();
 
     /**

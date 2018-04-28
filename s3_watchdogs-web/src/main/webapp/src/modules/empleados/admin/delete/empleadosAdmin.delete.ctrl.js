@@ -1,6 +1,6 @@
 (function (ng) {
     var mod = ng.module("empleadosAdminModule");
-    mod.constant("empleadosAdminContext", "api/empleados");
+    mod.constant("empleadosAdminContext", "api/mascotas");
     mod.controller('empleadoAdminDeleteCtrl', ['$scope', '$http', 'empleadosAdminContext', '$state',
         function ($scope, $http, empleadosAdminContext, $state) {
             var idEmpleado = $state.params.empleadoId;

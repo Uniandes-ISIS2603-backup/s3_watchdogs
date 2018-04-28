@@ -1,29 +1,61 @@
 <div class="container-fluid">
-    <div class="row">
-        <label ng-if="!edit" id="createMascota">Crear una nueva mascota</label>
-        <label ng-if="edit" id="editMascota">Editar mascota</label>
-    </div>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><h3 id="createCliente">Crear una nueva Mascota</h3>
+                <hr>
+            </div>
+            <div class="panel-body">
+                <form name="mascota">
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="mascotaName" class="col-sm-2">Nombre:</label>
+                            <input id="clienteName" required ng-model="data.name" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="mascotaColor" class="col-sm-2">Color:</label>
+                            <input id="mascotaColor" required ng-model="data.color" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="mascotaRaza" class="col-sm-2">Raza:</label>
+                            <input id="mascotaRaza" required ng-model="data.raza" class="col-sm-6"/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="form-group col-md-12">
+                            <label for="mascotaSexo" class="col-sm-2">Sexo</label>
+                            <select class="col-sm-6" id="sel1">
+                                <option>--</option>
+                                <option>Macho</option>
+                                <option>Hembra</option>
+                            </select>
+                        </div>
+                    </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-             <div class="container">
-                <div class="row">
-                    <label for="nombre">Nombre: </label>
-                    <input id="mascotaName" required ng-model="data.nombre"/>
-                </div>
-                <div class="row">
-                    <label for="color">Color: </label>
-                    <input id="mascotaColor" required ng-model="data.color"/>
-                </div>
-                <div class="row">
-                    <label for="raza">Raza: </label>
-                    <input id="mascotaRaza" required ng-model="data.raza"/>
-                </div>
-                <div class="row">
-                    <label for="sexo">Sexo: </label>
-                    <input id="mascotaSexo" required ng-model="data.sexo"/>
-                </div>
+                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+
+                    <div class="form-group row">
+                        <div class="form-group col-sm-4" ng-if="!mascota.$valid">
+
+                            <div class="alert alert-warning" >
+                                <strong>Warning!</strong><p>All inputs are required*</p>
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row">
+                        <div class="form-group col-sm-12">
+                            <button ng-show="mascota.$valid" ng-click="createMascota()" class="btn btn-success">Crear</button>
+                            <a class="btn btn-info" ui-sref="mascotasList">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+
             </div>
         </div>
     </div>
 </div>
+
+

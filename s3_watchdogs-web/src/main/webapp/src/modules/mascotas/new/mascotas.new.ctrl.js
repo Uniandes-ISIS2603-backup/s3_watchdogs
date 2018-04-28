@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("mascotasModule");
     mod.constant("mascotasContext", "api/mascotas");
-    mod.controller('mascotaNewCtrl', ['$scope', '$http', 'mascotasContext', '$state', 'rootScope',
+    mod.controller('mascotasNewCtrl', ['$scope', '$http', 'mascotasContext', '$state', '$rootScope',
         function ($scope, $http, mascotasContext, $state, $rootScope) {
             $rootScope.edit = false;
             $scope.data = {};

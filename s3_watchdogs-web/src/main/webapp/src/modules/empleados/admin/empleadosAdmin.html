@@ -1,3 +1,21 @@
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
-<div ui-view="detailView"></div>
-<div ui-view="listView"></div>
+<div class="row">
+    <div class="col-sm-6">
+        <div ui-view="detailView">
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a class="btn btn-info" ui-sref="empleadosAdminCreate"><span class="glyphicon glyphicon-plus-sign"></span>Agregar un nuevo empleado</a>
+                    <a class="btn btn-info" ui-sref="empleadoAdminDetail"><span class="glyphicon glyphicon-plus-sign"></span>Buscar un empleado</a>
+                    <a class="btn btn-info" ui-sref="empleadosAdminList"><span class="glyphicon glyphicon-plus-sign"></span>Mostrar todos los empleados</a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div ui-view="listView"></div>
+    </div>
+    <div class="col">
+        <hr>
+        <div class="col" ui-view="empleadoAdminDetailView"></div>
+        <div class="col" ui-view="empleadoAdminUpdateView"></div>
+    </div>
+</div>
