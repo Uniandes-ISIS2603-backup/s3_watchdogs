@@ -1,16 +1,122 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<div id="alertPanel" style="text-align: center"></div>
+<div class="container-fluid">
+    <div class="col-md-8">
+        <h1>
+            Horario
+        </h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Domingo/th>    
+                    <th>Lunes</th>
+                    <th>Martes</th>
+                    <th>Miercoles</th>
+                    <th>Jueves</th>
+                    <th>Viernes</th>
+                    <th>Sábado</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="disponibilidad in disponibilidadesRecords">
+
+            <script>
+               convertDisp(disponibilidad); 
+            </script>       
+            <td> <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h8}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h9}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h10}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h11}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h12}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h13}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h14}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h15}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h16}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h17}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h18}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h19}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h20}})</script>" style ="width:200px;height:50px" alt="error"></td>
+            <td> <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h8}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h9}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h10}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h11}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h12}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h13}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h14}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h15}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h16}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h17}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h18}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h19}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h20}})</script>" style ="width:200px;height:50px" alt="error"></td>
+            <td> <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h8}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h9}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h10}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h11}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h12}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h13}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h14}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h15}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h16}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h17}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h18}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h19}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h20}})</script>" style ="width:200px;height:50px" alt="error"></td>
+            <td> <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h8}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h9}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h10}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h11}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h12}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h13}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h14}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h15}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h16}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h17}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h18}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h19}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h20}})</script>" style ="width:200px;height:50px" alt="error"></td>
+            <td> <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h8}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h9}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h10}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h11}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h12}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h13}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h14}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h15}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h16}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h17}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h18}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h19}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h20}})</script>" style ="width:200px;height:50px" alt="error"></td>
+            <td> <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h8}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h9}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h10}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h11}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h12}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h13}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h14}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h15}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h16}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h17}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h18}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h19}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h20}})</script>" style ="width:200px;height:50px" alt="error"></td>
+            <td> <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h8}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h9}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h10}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h11}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h12}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h13}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h14}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h15}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h16}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h17}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h18}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h19}})</script>" style ="width:200px;height:50px" alt="error">
+                <img src= "<script>pathDisponibilidad({{disponibilidad.matrizHorario.lun.h20}})</script>" style ="width:200px;height:50px" alt="error"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

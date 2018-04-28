@@ -1,42 +1,8 @@
 [
-    {
-        "type": "disponibilidadDetailDTO",
-        "id": 1,
-        "matrizHorarios": "ADDDDDDDDLDD LLLLLLLLLLLL LLLLLLLLLLLL LLLLLLLLLLLL LLLLLLLDLLLL LLLLLALLLLLL LLLLDLLLLLLL "
-    },
+
     {
         "type": "disponibilidadDetailDTO",
         "id": 101,
-        "matrizHorarios": "LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL "
-    },
-    {
-        "type": "disponibilidadDetailDTO",
-        "id": 105,
-        "matrizHorarios": "LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL "
-    },
-    {
-        "type": "disponibilidadDetailDTO",
-        "id": 106,
-        "matrizHorarios": "LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL "
-    },
-    {
-        "type": "disponibilidadDetailDTO",
-        "id": 107,
-        "matrizHorarios": "LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL "
-    },
-    {
-        "type": "disponibilidadDetailDTO",
-        "id": 108,
-        "matrizHorarios": "LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL "
-    },
-    {
-        "type": "disponibilidadDetailDTO",
-        "id": 109,
-        "matrizHorarios": "LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL "
-    },
-    {
-        "type": "disponibilidadDetailDTO",
-        "id": 110,
         "matrizHorarios": "LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL LADLLADAADDL "
     }
 ]
