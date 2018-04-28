@@ -23,7 +23,8 @@
         'loginModule',
         'paseosModule',
         'hotelesModule',
-        'rutaModule'
+        'rutaModule',
+        'metodoDePagoModule'
 
 
     ]);
