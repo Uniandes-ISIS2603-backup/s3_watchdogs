@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="center-block well text-center">
+    <form name = "calificacion">
+        <h1>Como calificarias este servicio?</h1>
+        <label for="calificacionPuntaje" class="col-sm-2">Puntaje</label>
+        <input id="calificacionPuntaje" required ng-model="data.puntaje" class="col-sm-4"/>
+
+        <input ng-show="calificacion.$valid" ng-click="createCalificacion()" value="Save" class="btn btn-success"/>
+    </form>
+
+</div>

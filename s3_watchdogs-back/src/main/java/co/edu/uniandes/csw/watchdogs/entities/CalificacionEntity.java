@@ -20,7 +20,7 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToOne
     private ClienteEntity cliente;
-
+    
     private Integer puntaje;
 
     public Integer getPuntaje() {

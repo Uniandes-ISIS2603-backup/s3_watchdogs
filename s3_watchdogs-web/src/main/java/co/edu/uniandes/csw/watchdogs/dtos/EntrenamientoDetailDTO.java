@@ -15,6 +15,8 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
     
     private CentroDeEntrenamientoDTO centroDeEntrenamiento;
     
+    private TransporteDTO transporte;
+    
     private String tipo;
     /**
      * Constructor por defecto
@@ -34,7 +36,9 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
             this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
         }
         else centroDeEntrenamiento = null;
-        
+        if(entity.getTransporte() != null){
+            this.transporte = new TransporteDTO(entity.getTransporte());
+        }
     }
     
     public String getTipo() {
@@ -51,6 +55,14 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
 
     public void setCentroDeEntrenamiento(CentroDeEntrenamientoDTO centroDeEntrenamiento) {
         this.centroDeEntrenamiento = centroDeEntrenamiento;
+    }
+
+    public TransporteDTO getTransporte() {
+        return transporte;
+    }
+
+    public void setTransporte(TransporteDTO transporte) {
+        this.transporte = transporte;
     }
     
     
@@ -84,8 +96,11 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
         if(this.calificacion!=null){
             entity.setCalificacion(calificacion.toEntity());
         }
+        if(this.transporte!=null){
+            entity.setTransporte(transporte.toEntity());
+        }
         if(centroDeEntrenamiento!=null){
-            if(CentroDeEntrenamientoDTO.class.isInstance(centroDeEntrenamiento)){
+            if(centroDeEntrenamiento instanceof CentroDeEntrenamientoDTO){
                 entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
             }
             else entity.setCentroDeEntrenamiento(null);

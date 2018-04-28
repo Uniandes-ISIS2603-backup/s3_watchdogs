@@ -65,8 +65,7 @@ public class EntrenamientoResource{
     }
 
     /**
-     *
-     * 
+     * Crea un entrenamieto.
      * @param entrenamiento
      * @return
      * @throws BusinessLogicException

@@ -96,8 +96,8 @@ public class MascotaLogic {
      */
     public void deleteMascota(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar mascota con id={0}", id);
-        ServicioEntity servicio = getServicio(id);
-        if (servicio == null) {
+        List<ServicioEntity> servicios = getServicios(id);
+        if (servicios.isEmpty()) {
             persistence.delete(id);
         } else {
             throw new BusinessLogicException("No se puede borrar la mascota con id " + id + " porque tiene servicios asociados.");
@@ -147,14 +147,9 @@ public class MascotaLogic {
         return getMascota(mascotaId).getCliente();
     }
 
-    /**
-     * Obtiene una instancia de ServicioEntity asociadas a una Mascota.
-     *
-     * @param id: Identificador de la instancia Mascota.
-     * @return Instancia de ServicioEntity asociada a la instancia de Mascota.
-     */
-    public ServicioEntity getServicio(Long id) {
-        return getMascota(id).getServicio();
+    
+    public List<ServicioEntity> getServicios(Long mascotaId) throws BusinessLogicException {
+        return getMascota(mascotaId).getServicios();
     }
 
 }

@@ -5,11 +5,13 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.EntrenamientoPersistence;
 import java.util.Calendar;
@@ -40,14 +42,17 @@ public class EntrenamientoLogic {
     
     @Inject
     private EmpleadoLogic empleadoLogic;
+    
+    @Inject
+    private CalificacionLogic calificacionLogic;
     /**
      * Devuelve todos los Entrenamiento que hay en la base de datos.
      * @return Lista de entidades de tipo Entrenamiento.
      */
     public List<EntrenamientoEntity> getEntrenamientos() {
-        LOGGER.info("Inicia proceso de consultar todos los Entrenamiento");
+        LOGGER.info("Inicia proceso de consultar todos los Entrenamientos");
         List<EntrenamientoEntity> entrenamientos = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todos los Entrenamiento");
+        LOGGER.info("Termina proceso de consultar todos los Entrenamientos");
         return entrenamientos;
     }
     
@@ -62,7 +67,7 @@ public class EntrenamientoLogic {
         if (entrenamiento == null) {
             LOGGER.log(Level.SEVERE, "El Entrenamiento con el id {0} no existe", id);
         }
-        LOGGER.log(Level.INFO, "Termina proceso de consultar Transporte con id={0}", id);
+        LOGGER.log(Level.INFO, "Termina proceso de consultar Entrenamiento con id={0}", id);
         return entrenamiento;
     }
     
@@ -78,10 +83,8 @@ public class EntrenamientoLogic {
         if(todayDate.before(entity.getFecha()) ){
             ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-            EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
             entity.setCliente(cliente);
             entity.setMascota(mascota);
-            entity.setEmpleado(empleado);
             persistence.create(entity);
             LOGGER.info("Termina proceso de creación de Entrenamiento");
             return entity;
@@ -139,6 +142,48 @@ public class EntrenamientoLogic {
         EntrenamientoEntity entrenamientoEntity = getEntrenamiento(id);
         entrenamientoEntity.setCentroDeEntrenamiento(centro);
         return entrenamientoEntity.getCentroDeEntrenamiento();
+    }
+    
+    /**
+     * Metodo que devuelve la calificacion del entrenamiento con id dado por parametro.
+     * @param id del entrenamiento
+     * @return CalificacionEntity
+     */
+    public CalificacionEntity getCalificacion(Long id){
+        return getEntrenamiento(id).getCalificacion();
+    }
+    
+    /**
+     * 
+     * @param idE Long id del entrenamiento
+     * @param calificacion CalificacionEntity
+     * @return CalificacionEntity 
+     * @throws BusinessLogicException 
+     */
+    public CalificacionEntity addCalificacion(Long idE, CalificacionEntity calificacion) throws BusinessLogicException{
+        EntrenamientoEntity entrenamientoEntity = getEntrenamiento(idE);
+        if(!entrenamientoEntity.isEstado()){
+        entrenamientoEntity.setCalificacion(calificacion);
+        updateEntrenamiento(idE, entrenamientoEntity);
+        LOGGER.log(Level.INFO, "Puntaje puntaje = {0}", entrenamientoEntity.getCalificacion().getPuntaje());
+
+        return getCalificacion(idE);    
+        }
+        else throw new BusinessLogicException("El entrenamiento no ha acabado.");
+    }
+
+    public TransporteEntity getTransporte(Long entrenamientoId) {
+        return getEntrenamiento(entrenamientoId).getTransporte();
+    }
+    
+    public TransporteEntity addTransporte(Long idE, TransporteEntity transporte) throws BusinessLogicException{
+        EntrenamientoEntity entrenamientoEntity = getEntrenamiento(idE);
+        if(entrenamientoEntity.isEstado()){
+        entrenamientoEntity.setTransporte(transporte);
+        updateEntrenamiento(idE, entrenamientoEntity);
+        return getTransporte(idE);    
+        }
+        else throw new BusinessLogicException("El entrenamiento no ha acabado.");
     }
     
 }

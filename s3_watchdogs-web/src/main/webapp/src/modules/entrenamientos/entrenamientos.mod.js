@@ -5,6 +5,7 @@
  */
 (function (ng) {
     var mod = ng.module("entrenamientosModule", ['ui.router']);
+    mod.constant("clientesContext", "api/clientes");
     mod.constant("entrenamientosContext", "api/entrenamientos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/entrenamientos/';
@@ -36,8 +37,11 @@
                     }
                 }
                 }).state('entrenamientosCreate', {
-                url: '/entrenamientos/create',
+                url: '/clientes/{clienteId:int}/entrenamientos/create',
                 //parent: 'entrenamientoDetail',
+                param:{
+                    clienteId: null
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + '/new/entrenamientos.new.html',

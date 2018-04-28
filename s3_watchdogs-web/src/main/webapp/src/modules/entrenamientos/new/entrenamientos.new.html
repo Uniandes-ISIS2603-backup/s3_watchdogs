@@ -13,24 +13,28 @@ and open the template in the editor.
                 <form name="entrenamiento">
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="entrenamientoCosto" class="col-sm-2">Costo</label>
-                            <input id="entrenamientoCosto" required ng-model="data.costo" class="col-sm-6"/>
+                            <label for="entrenamientoDuracion" class="col-sm-2">Duracion</label>
+                            <input id="entrenamientoDuracion" required ng-model="data.duracion" class="col-sm-4"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label for="entrenamientofecha" class="col-sm-2">Fecha:</label>
-                            <input type="fecha" id="entrenamientoFecha" placeholder="DD/MM/YYYY" required ng-model="data.fecha" class="col-sm-6"/>
+                            <label for="entrenamientoFecha" class="col-sm-2">Fecha:</label>
+                            <input type="fecha" id="entrenamientoFecha" placeholder="DD/MM/YYYY" required ng-model="data.fecha" class="col-sm-4"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
                             <label for="entrenamientoTipo" class="col-sm-2">Tipo</label>
-                            <textarea id="entrenamientoTipo" required ng-model="data.tipo" class="col-sm-6"></textarea>
+                            <input id="entrenamientoTipo" required ng-model="data.tipo" class="col-sm-4"/>
                         </div>
                     </div>
-
-                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
+                    <div class="form-group row">
+                        <div class="form-group col-md-6">
+                            <label for="entrenamientoMascota" class="col-sm-2">Mascota</label>
+                            <select id="entrenamientoMascota" required ng-model="data.mascota" ng-options="x.nombre for x in mascotas"></select>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!entrenamiento.$valid">
@@ -41,8 +45,8 @@ and open the template in the editor.
                         </div> 
                     </div> 
                     <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input ng-show="entrenamiento.$valid" ng-click="createentrenamiento()" value="Save" class="btn btn-success"/>
+                        <div class="form-group col-sm-10">
+                            <input ng-show="entrenamiento.$valid" ng-click="createEntrenamiento()" value="Save" class="btn btn-success"/>
                             <a class="btn btn-info" ui-sref="serviciosList">Cancel</a>
                         </div>
                     </div>

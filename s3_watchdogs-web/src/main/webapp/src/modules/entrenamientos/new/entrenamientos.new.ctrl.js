@@ -5,14 +5,24 @@
  */
 (function (ng) {
     var mod = ng.module("entrenamientosModule");
+    mod.constant("clientesContext", "api/clientes");
     mod.constant("entrenamientosContext", "api/entrenamientos");
-    mod.controller('entrenamientoNewCtrl', ['$scope', '$http', 'entrenamientosContext', '$state', '$rootScope',
-        function ($scope, $http, entrenamientosContext, $state, $rootScope) {
+    mod.controller('entrenamientoNewCtrl', ['$scope', '$http', 'clientesContext', 'entrenamientosContext', '$state', '$rootScope',
+        function ($scope, $http, clientesContext, entrenamientosContext, $state, $rootScope) {
             $rootScope.edit = false;
 
             $scope.data = {};
+            $scope.mascotas = {};
 
-            $scope.createentrenamiento = function () {
+            var idCliente = $state.params.clienteId;
+
+            $http.get(clientesContext + '/' + idCliente).then(function (response) {
+                var cliente = response.data;
+                $scope.data.cliente = cliente;
+                $scope.mascotas = cliente.mascotas;
+            });
+
+            $scope.createEntrenamiento = function () {
                 $http.post(entrenamientosContext, $scope.data).then(function (response) {
                     $state.go('serviciosList', {entrenamientoId: response.data.id}, {reload: true});
                 });

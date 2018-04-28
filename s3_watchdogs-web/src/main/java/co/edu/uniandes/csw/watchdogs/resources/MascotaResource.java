@@ -167,7 +167,7 @@ public class MascotaResource {
         if (oldEntity == null) {
             throw new WebApplicationException("La mascota no existe", 404);
         }
-        entity.setServicio(oldEntity.getServicio());
+        entity.setServicios(oldEntity.getServicios());
         entity.setCliente(oldEntity.getCliente());
         return new MascotaDetailDTO(mascotaLogic.updateMascota(id, entity));
     }

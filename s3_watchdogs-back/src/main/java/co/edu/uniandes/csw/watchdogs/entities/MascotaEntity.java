@@ -6,10 +6,12 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -20,8 +22,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class MascotaEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
-    @OneToOne
-    private ServicioEntity servicio;
+    @OneToMany(mappedBy = "mascota")
+    private List<ServicioEntity> servicios = new ArrayList<>();
 
     @PodamExclude
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -36,17 +38,17 @@ public class MascotaEntity extends BaseEntity implements Serializable {
      *
      * @return atributo servicio
      */
-    public ServicioEntity getServicio() {
-        return servicio;
+    public List<ServicioEntity> getServicios() {
+        return servicios;
     }
 
     /**
      * Establece el valor del atributo servicio.
      *
-     * @param servicio nuevo valor del atributo
+     * @param servicios nuevo valor del atributo
      */
-    public void setServicio(ServicioEntity servicio) {
-        this.servicio = servicio;
+    public void setServicios(List<ServicioEntity> servicios) {
+        this.servicios = servicios;
     }
 
     /**

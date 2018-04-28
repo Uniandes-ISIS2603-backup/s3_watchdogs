@@ -20,13 +20,15 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CalificacionLogic {
+
     private static final Logger LOGGER = Logger.getLogger(EntrenamientoLogic.class.getName());
-    
+
     @Inject
     private CalificacionPersistence persistence;
 
     /**
      * Devuelve todos los Calificacion que hay en la base de datos.
+     *
      * @return Lista de entidades de tipo Calificacion.
      */
     public List<CalificacionEntity> getCalificaciones() {
@@ -35,9 +37,10 @@ public class CalificacionLogic {
         LOGGER.info("Termina proceso de consultar todos los Calificacion");
         return calificaciones;
     }
-    
+
     /**
      * Busca un Calificacion por ID
+     *
      * @param id El id del Calificacion a buscar
      * @return El Calificacion encontrado, null si no lo encuentra.
      */
@@ -50,38 +53,42 @@ public class CalificacionLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar Calificacion con id={0}", id);
         return calificacion;
     }
-    
+
     /**
      * Guardar un nuevo Calificacion
-     * @param entity La entidad de tipo Calificacion del nuevo libro a persistir.
+     *
+     * @param entity La entidad de tipo Calificacion del nuevo libro a
+     * persistir.
      * @return La entidad luego de persistirla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public CalificacionEntity createCalificacion(CalificacionEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Calificacion");
-        
+
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Calificacion");
         return entity;
     }
-    
+
     /**
      * Actualizar un Calificacion por ID
+     *
      * @param id El ID del Calificacion a actualizar
      * @param entity La entidad del Calificacion con los cambios deseados
      * @return La entidad del Entrenamiento luego de actualizarla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public CalificacionEntity updateCalificacion(Long id, CalificacionEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Calificacion con id={0}", id);
-        
+
         CalificacionEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Calificacion con id={0}", entity.getId());
         return newEntity;
     }
-    
+
     /**
      * Eliminar un Calificacion por ID
+     *
      * @param id El ID del Calificacion a eliminar
      */
     public void deleteCalificacion(Long id) {

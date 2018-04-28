@@ -33,12 +33,12 @@ public class CalificacionPersistence {
     public CalificacionEntity create(CalificacionEntity entity) {
         LOGGER.info("Creando una calificacion nueva");
         em.persist(entity);
-        LOGGER.info("Creando una calificacion nueva");
+        LOGGER.info("Calificacion persistida");
         return entity;
     }
     
     public List<CalificacionEntity> findAll() {
-        LOGGER.info("Consultando todas los transportes");
+        LOGGER.info("Consultando todas las calificaciones");
         TypedQuery query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
         return query.getResultList();
     }

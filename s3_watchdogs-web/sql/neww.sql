@@ -5,7 +5,7 @@
  */
 /**
  * Author:  c.martinezc1
- * Created: 6/03/2018
+ * Created: 27/04/2018
  */
 delete from ServicioEntity_RutaEntity;
 delete from RutaEntity;
@@ -20,3 +20,7 @@ delete from DisponibilidadEntity;
 delete from MetodoDePagoEntity;
 delete from ClienteEntity;
 delete from CalificacionEntity;
+
+insert into ClienteEntity (id,cedula, name) values (100,'2228', 'Giacopo');
+insert into EmpleadoEntity (id,cedula, edad, imagen, name) values (100,'2727', 24, 'proin.tiff', 'Annetta Vallens');
+insert into MascotaEntity (id,color, name, raza, sexo, Cliente_id) values (100,'Goldenrod', 'Talya', 'Lamprotornis nitens', 'F', 100);
