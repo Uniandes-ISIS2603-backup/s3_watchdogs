@@ -23,15 +23,21 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class MascotaPersistence {
 
+    /**
+     * Constante que representa el Logger para la persistencia.
+     */
     private static final Logger LOGGER = Logger.getLogger(EmpleadoPersistence.class.getName());
 
+    /**
+     * Relacion con el entity manager.
+     */
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
 
     /**
      * Crea una mascota en la base de datos.
      *
-     * @param entity objeto mascota que se creara en la base de datos
+     * @param entity objeto mascota que se creara en la base de datos.
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
     public MascotaEntity create(MascotaEntity entity) {

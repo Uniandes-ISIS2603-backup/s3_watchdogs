@@ -11,26 +11,48 @@ import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
+ * Clase que representa una entidad de un empleado para ser creado en la base de
+ * datos.
  *
  * @author ca.beltran10
  */
 @Entity
 public class EmpleadoEntity extends BaseEntity implements Serializable {
 
+    /**
+     * Relacion con la disponibilidad del empleado.
+     */
     @PodamExclude
     @OneToOne
     private DisponibilidadEntity disponibilidad;
 
+    /**
+     * Relacion con la calificacion del empleado.
+     */
     @PodamExclude
     @OneToOne
     private CalificacionEntity calificacion;
 
+    /**
+     * Relacion con el servicio del empleado.
+     */
     @PodamExclude
     @OneToOne
     private ServicioEntity servicio;
 
+    /**
+     * Ruta de la imagen del empleado.
+     */
     private String imagen;
+
+    /**
+     * Cedula del empleado.
+     */
     private String cedula;
+
+    /**
+     * Edad del empleado.
+     */
     private Integer edad;
 
     /**

@@ -23,15 +23,21 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class EmpleadoPersistence {
 
+    /**
+     * Constante que representa el Logger de la persistencia.
+     */
     private static final Logger LOGGER = Logger.getLogger(EmpleadoPersistence.class.getName());
 
+    /**
+     * Conexion con el entity manager.
+     */
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
 
     /**
-     * Crea un empleado en la base de datos
+     * Crea un empleado en la base de datos.
      *
-     * @param entity objeto empleado que se creara en la base de datos
+     * @param entity objeto empleado que se creara en la base de datos.
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
     public EmpleadoEntity create(EmpleadoEntity entity) {
@@ -42,9 +48,9 @@ public class EmpleadoPersistence {
     }
 
     /**
-     * Busca si hay algun empleado con la cedula que se envia de argumento
+     * Busca si hay algun empleado con la cedula que se envia de argumento.
      *
-     * @param cedula: Cedula del empleado que se esta buscando
+     * @param cedula: Cedula del empleado que se esta buscando.
      * @return null si no existe ningun empleado con la del argumento. Si existe
      * alguno devuelve el primero.
      */
