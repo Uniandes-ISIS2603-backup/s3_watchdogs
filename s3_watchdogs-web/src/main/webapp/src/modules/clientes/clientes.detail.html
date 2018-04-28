@@ -43,7 +43,7 @@
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-secondary btn-sm">PSE</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" ui-sref='PSEList'>PSE</button>
                                 </div>
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-1">
@@ -72,7 +72,7 @@
                         <p></p> -->
                         <div class="row">
                             <div style="margin-left: 102px">
-                                <button type="button" class="btn btn">Agregar metodo de pago</button>
+                                <button type="button" class="btn btn" ui-sref='metodoDePagoCreate'>Agregar metodo de pago</button>
                             </div>
                         </div>
                         <div class="row"></div>
@@ -95,9 +95,11 @@
             </div>    
         </div>
     </div>
-     <div class="col-sm-6">
+    <div class="col-sm-6">
         <div class="row">
             <div ui-view="childrenView"></div>
+
+            <div ui-sref="metodoDePagoCreate"></div>
         </div>
     </div>
 </div>

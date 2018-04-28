@@ -46,7 +46,7 @@
                         templateUrl: basePath + 'MetodoDePago.create.html'
                     }
                 }
-                
+
             }).state('payPalCreate', {
 
                 url: '/payPal',
@@ -56,8 +56,8 @@
                         templateUrl: basePath + 'payPal.create.html'
                     }
                 }
-                
-            }).state('temporal', {
+
+            }).state('temporalCrearPayPal', {
                 params: {
                     correo: null
                 },
@@ -69,13 +69,27 @@
                         controller: 'payPalCreateCtrl'
                     }
                 }
-            }).state('tarjetaUpdate', {
+            }).state('PSECreate', {
 
-                url: '/tarjeta/update',
-                parent: 'clienteDetail',
+                url: '/PSE/create',
+                parent: 'metodoDePagoCreate',
                 views: {
-                    childrenView: {
-                        templateUrl: basePath + 'tarjeta.update.html'
+                    PSECreate: {
+                        templateUrl: basePath + 'PSE.create.html'
+                    }
+                }
+            }).state('temporalCrearPSE', {
+                
+                 params: {
+                    correo: null
+                },
+
+                url: '/PSE/create',
+                parent: 'metodoDePagoCreate',
+                views: {
+                    PSECreate: {
+                        templateUrl: basePath + 'PSE.create.html',
+                        controller: 'PSECreateCtrl'
                     }
                 }
             })
