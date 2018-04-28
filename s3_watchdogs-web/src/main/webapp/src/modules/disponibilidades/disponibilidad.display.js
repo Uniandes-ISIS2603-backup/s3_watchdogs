@@ -1,15 +1,12 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+function pathDisponibilidad(dummy){
 
-
-if(dummy = "D"){
-    
-}else if(dummy = "A"){
-    
-}else{
-    
+    if(dummy == "D"){
+        return "src/images/disponible.jpg";
+    }else if(dummy == "A"){
+        return "src/images/agendado.png";
+    }else if (dummy == "L"){
+        return "src/images/libre.jpg";
+    }else {
+        return "";
+    }    
 }
-

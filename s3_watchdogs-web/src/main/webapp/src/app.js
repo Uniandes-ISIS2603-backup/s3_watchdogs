@@ -22,7 +22,8 @@
         //'servicioModule',
         'loginModule',
         'paseosModule',
-        'hotelesModule'
+        'hotelesModule',
+        'rutaModule'
 
 
     ]);

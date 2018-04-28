@@ -18,6 +18,15 @@
                         controllerAs: 'ctrl'
                     }
                 }
+            }).state('rutasNew', {
+                url: 'rutas/new',
+                //parent: 'rutas',
+                views: {
+                    'detailView': {
+                        templateUrl: basePath + '/new/ruta.new.html',
+                        controller: 'rutaNewCtrl'
+                    }
+                }
             });
         }
     ]);
