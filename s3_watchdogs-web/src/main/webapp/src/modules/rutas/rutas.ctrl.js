@@ -3,7 +3,7 @@
     mod.constant("rutaContext", "api/rutas");
     mod.controller('rutaCtrl', ['$scope', '$http', 'rutaContext',
         function ($scope, $http, rutaContext) {
-            $http.get('data/rutas.json').then(function (response) {
+            $http.get('src/data/rutas.json').then(function (response) {
                 $scope.rutasRecords = response.data;
             });
         }

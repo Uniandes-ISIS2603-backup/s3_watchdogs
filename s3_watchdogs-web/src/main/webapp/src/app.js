@@ -7,6 +7,7 @@
         'instalacionesModule',
         'empleadosModule',
         'infosModule',
+        'faqsModule',
         
 
         // Internal modules dependencies
@@ -21,7 +22,9 @@
         //'servicioModule',
         'loginModule',
         'paseosModule',
-        'hotelesModule'
+        'hotelesModule',
+        'rutaModule',
+        'metodoDePagoModule'
 
 
     ]);
