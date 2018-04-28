@@ -25,7 +25,8 @@
         'hotelesModule',
         'rutaModule',
         'metodoDePagoModule',
-        'calificacionesModule'
+        'calificacionesModule',
+        'facturaModule'
 
 
     ]);

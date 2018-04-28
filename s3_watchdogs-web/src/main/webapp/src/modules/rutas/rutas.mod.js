@@ -23,7 +23,7 @@
                 //parent: 'rutas',
                 views: {
                     'detailView': {
-                        templateUrl: basePath + '/new/ruta.new.html',
+                        templateUrl: basePath + '/new/rutas.new.html',
                         controller: 'rutaNewCtrl'
                     }
                 }

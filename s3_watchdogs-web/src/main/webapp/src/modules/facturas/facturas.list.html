@@ -1,7 +1,11 @@
-    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
+<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
 <div id="alertPanel" style="text-align: center"></div>
 <div class="container-fluid">
-    <div class="col-md-4">
+    <div class="col-md-8">
+        <h1>
+            Historial de Facturas
+        </h1>
+          
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -13,10 +17,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="factura in facturaRecords">
-                    <!--<td id="{{$index}}-name">{{factura.name}}</td>
-                    <td id="{{$index}}-birthDate">{{factura.birthDate| date:'yyyy-MM-dd'}}</td>    -->
-                    <!-- TODO -->
+                <tr ng-repeat="factura in facturasRecords">
+                    <td id="{{$index}}-name">{{factura.id}}</td>
+                    <td id="{{$index}}-cliente">{{factura.cliente.nombres}} {{factura.cliente.apellidos}}</td>
+                    <td id="{{$index}}-pago">{{factura.metodoDePago}} </td>  <!-- Para el objeto real debe llamarse al atributo de método de pago y luego al tipo-->
+                    <td id="{{$index}}-costo">{{factura.costo}} </td>  
                 </tr>
             </tbody>
         </table>

@@ -1,0 +1,50 @@
+[{
+    "id": 12345,
+    "cliente": {
+        "nombres": "Carlos",
+        "apellidos": "Santana",
+        "correo": "c.santana@anything.com",
+        "imagen":"src/images/carlos-santana.png",
+        "edad": 19,
+        "documento": 1020840221     
+    },
+    "metodoDePago": "PayPal",
+    "costo": 50000
+},
+ {"id": 98665,
+    "cliente": {
+        "nombres": "Mary",
+        "apellidos": "Poppins",
+        "correo": "supercalifragilístico@anything.com",
+        "imagen":"src/images/carlos-santana.png",
+        "edad": 33,
+        "documento": 76533121     
+    },
+    "metodoDePago": "PayPal",
+    "costo": 50000
+},
+ {"id": 333445,
+    "cliente": {
+        "nombres": "Jon",
+        "apellidos": "Bon Jovi",
+        "correo": "rocker666@anything.com",
+        "imagen":"src/images/carlos-santana.png",
+        "edad": 65,
+        "documento": 434     
+    },
+    "metodoDePago": "PSE",
+    "costo": 10000
+},
+{"id": 35453453,
+    "cliente": {
+        "nombres": "Pedro",
+        "apellidos": "Picapiedra",
+        "correo": "pi.capiedra@anything.com",
+        "imagen":"src/images/carlos-santana.png",
+        "edad": 22,
+        "documento": 12314521512     
+    },
+    "metodoDePago": "Tarjeta de Crédito",
+    "costo": 20000
+}
+]
