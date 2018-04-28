@@ -18,3 +18,4 @@ insert into EMPLEADOENTITY (ID, CEDULA, EDAD, IMAGEN, NAME) values (17, '1015073
 insert into EMPLEADOENTITY (ID, CEDULA, EDAD, IMAGEN, NAME) values (18, '1017966498', 31, 'http://dummyimage.com/202x148.jpg/dddddd/000000', 'Shayla Waszczyk');
 insert into EMPLEADOENTITY (ID, CEDULA, EDAD, IMAGEN, NAME) values (19, '1020517138', 93, 'http://dummyimage.com/157x135.bmp/5fa2dd/ffffff', 'Dar Broadberrie');
 insert into EMPLEADOENTITY (ID, CEDULA, EDAD, IMAGEN, NAME) values (20, '1013083416', 93, 'http://dummyimage.com/241x240.bmp/5fa2dd/ffffff', 'Heath Ruston');
+

@@ -1,16 +1,81 @@
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
-<div class="container-fluid">
+
+<div class="container">
     <div class="row">
-        <div class="row">
-            <div class="col-sm-4 col-12" ng-repeat="servicio in serviciosRecords">
-                <div class="card"> <img class="card-img-top" ng-src='{{servicio.imagen}}' alt='{{servicio.name}}'>
-                    <div class="card-body">
-                        <h5 class="card-title">{{servicio.name}}</h5>
-                        <p class="card-text" style="font-size:80%;">{{servicio.descripcion}}</p>
-                        <a href="#" class="btn btn-primary">Contratar</a> </div>
+        <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card"> <img class="card-img-top" src='src/images/aseo.png'>
+                <div class="card-body">
+                    <h5 class="card-title">Aseo</h5>
+                    <div class="row-fluid summary">
+                        <h6>Para mayor informacion</h6>
+                        <div class="span1">
+                            <button class="btn btn-success" data-toggle="collapse" data-target="#aseo">+</button>
+                        </div>
+                    </div>
+                    <div class="row-fluid summary">
+                        <div id="aseo" class="collapse"> 
+                            Caracterizado por su alta calidad en limpieza, tratamos cualquier raza, permitimos que animales con todo tipo de pelo tengan un aseo optimo y salgan contentos de nuestras instalaciones.
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">Contratar</a>
                 </div>
             </div>
         </div>
-        <hr>
+        <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card"> <img class="card-img-top" src='src/images/paseo.png'>
+                <div class="card-body">
+                    <h5 class="card-title">Paseo</h5>
+                    <div class="row-fluid summary">
+                        <h6>Para mayor informacion</h6>
+                        <div class="span1">
+                            <button class="btn btn-success" data-toggle="collapse" data-target="#paseo">+</button>
+                        </div>
+                    </div>
+                    <div class="row-fluid summary">
+                        <div id="paseo" class="collapse"> 
+                            No permitas que tu amigo se aburra en casa. El ejercicio es vital para la salud de tu mascota, nuestro personal cuenta con diversas rutas con las cuales tu compañero no se aburrira nunca y lograr ejercitarse al igual que hacer varios amigos.
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">Contratar</a> </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card"> <img class="card-img-top" src='src/images/entrenamiento.png'>
+                <div class="card-body">
+                    <h5 class="card-title">Entrenamiento</h5>
+                    <div class="row-fluid summary">
+                        <h6>Para mayor informacion</h6>
+                        <div class="span1">
+                            <button class="btn btn-success" data-toggle="collapse" data-target="#entrenamiento">+</button>
+                        </div>
+                    </div>
+                    <div class="row-fluid summary">
+                        <div id="entrenamiento" class="collapse"> 
+                            Contamos con personal de alta calidad, experto en el entrenamiento de tu mascota. No permitas que siga haciendo daños en tu casa, nuestro servicio le enseñara a tu perro no solo a comportarse, sino tambien podras sorprender a todos tus amigos.
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">Contratar</a> </div>
+            </div>
+        </div>
+        <div class="col-sm-6 d-flex align-items-stretch">
+            <div class="card"> <img class="card-img-top" src='src/images/hotel.png'>
+                <div class="card-body">
+                    <h5 class="card-title">Hotel</h5>
+                    <div class="row-fluid summary">
+                        <h6>Para mayor informacion</h6>
+                        <div class="span1">
+                            <button class="btn btn-success" data-toggle="collapse" data-target="#hotel">+</button>
+                        </div>
+                    </div>
+                    <div class="row-fluid summary">
+                        <div id="hotel" class="collapse"> 
+                            Puedes dejarnos tu mascota en nuestro hotel mientras estas fuera de la ciudad. No podrias dejarla en mejores manos.
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-primary">Contratar</a> </div>
+            </div>
+        </div>
+        
     </div>
 </div>

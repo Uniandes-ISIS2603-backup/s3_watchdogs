@@ -1,7 +1,7 @@
 (function (ng) {
     var mod = ng.module("serviciosAdminModule");
     mod.constant("serviciosAdminContext", "api/servicios");
-    mod.controller('servicioAdminNewCtrl', ['$scope', '$http', 'serviciosAdminContext', '$state', 'rootScope',
+    mod.controller('servicioAdminNewCtrl', ['$scope', '$http', 'serviciosAdminContext', '$state', '$rootScope',
         function ($scope, $http, serviciosAdminContext, $state, $rootScope) {
             $rootScope.edit = false;
             $scope.data = {};

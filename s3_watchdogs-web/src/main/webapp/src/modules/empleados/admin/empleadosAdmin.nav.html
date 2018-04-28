@@ -2,22 +2,23 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="#">WatchDogs</a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"> <a class="nav-link" ui-sref="serviciosList">Servicios</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Personal</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Instalaciones</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">Acerca de Nosotros</a> </li>
+            <li class="nav-item"> <a class="nav-link" ui-sref="empleadosList">Personal</a> </li>
+            <li class="nav-item"> <a class="nav-link" ui-sref="instalacionesList">Instalaciones</a> </li>
+            <li class="nav-item"> <a class="nav-link" ui-sref="infosList">Acerca de Nosotros</a> </li>
             <li class="nav-item"> <a class="nav-link" href="#">Contactenos</a> </li>
-            <li class="nav-item"> <a class="nav-link" href="#">FAQs</a> </li>
+            <li class="nav-item"> <a class="nav-link" ui-sref="faqsList">FAQs</a> </li>
             <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
                     Administrador
                     <span class="sr-only">(current)</span>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" ui-sref="clientesList">Clientes</a>
-                    <a class="dropdown-item" ui-sref="mascotasList">Mascotas</a>
-                    <a class="dropdown-item" ui-sref="empleadosAdminList">Empleados</a>
+                    <a class="dropdown-item" ui-sref="clientes">Clientes</a>
+                    <a class="dropdown-item" ui-sref="mascotas">Mascotas</a>
+                    <a class="dropdown-item" ui-sref="empleadosAdmin">Empleados</a>
                     <a class="dropdown-item" ui-sref="serviciosAdminList">Servicios</a>
                     <a class="dropdown-item" ui-sref="instalacionesAdminList">Instalaciones</a>
+                    <a class="dropdown-item" ui-sref="rutasList">Rutas</a>
                 </div>
             </li>
         </ul>
