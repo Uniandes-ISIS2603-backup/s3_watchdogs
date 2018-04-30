@@ -1,10 +1,10 @@
 # s3_watchdogs
 
-Integrantes:
+# Integrantes:
 
-Camilo Alberto Beltran Jimenez - 201417591 \n
-Juan Camilo Pulido Gil - 201633249 \n
-Juan Sebastian Vaca Tibocha - 201618059 \n
-Ivan David Salazar - \n
-Camilo Martinez - \n
-Mauricio Diaz - \n
+Camilo Alberto Beltran Jimenez - 201417591
+Juan Camilo Pulido Gil - 201633249 
+Juan Sebastian Vaca Tibocha - 201618059 
+Ivan David Salazar - 
+Camilo Martinez - 
+Mauricio Diaz - 
