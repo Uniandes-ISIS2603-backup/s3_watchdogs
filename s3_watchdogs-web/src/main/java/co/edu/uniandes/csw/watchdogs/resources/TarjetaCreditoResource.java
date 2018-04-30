@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
-import co.edu.uniandes.csw.watchdogs.dtos.CityDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.TarjetaCreditoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.TarjetaCreditoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.persistence;
 
-import co.edu.uniandes.csw.watchdogs.entities.CityEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,7 +43,7 @@ public class PsePersistence {
     public PseEntity findByName(String name)
     {
         LOGGER.log(Level.INFO, "Consultando pse por nombre", name);
-        TypedQuery query = em.createQuery("Select e From CityEntity e where e.name = :name", CityEntity.class);
+        TypedQuery query = em.createQuery("Select e From CityEntity e where e.name = :name", PseEntity.class);
         query = query.setParameter("name", name);
         List<PseEntity> sameName = query.getResultList();
         if (sameName.isEmpty()) {
