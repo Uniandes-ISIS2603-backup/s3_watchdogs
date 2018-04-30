@@ -130,7 +130,7 @@ public class MascotaDetailDTO extends MascotaDTO {
         }
         if (cliente != null && entity.getCliente() != null) {
             cliente.setId(entity.getCliente().getId());
-            cliente.setNombre(entity.getCliente().getName());
+            cliente.setName(entity.getCliente().getName());
             cliente.setCedula(entity.getCliente().getCedula());
         } else {
             cliente = new ClienteDTO();

@@ -114,6 +114,7 @@ public class ClienteDetailDTO extends ClienteDTO {
      * Constructor por defecto
      */
     public ClienteDetailDTO() {
+        
     }
 
     /**

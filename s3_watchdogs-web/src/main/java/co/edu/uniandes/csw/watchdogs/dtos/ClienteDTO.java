@@ -35,6 +35,9 @@ import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
  */
 public class ClienteDTO {
 
+    //==========================================================================================
+    // Atributos
+    //==========================================================================================
     private Long id;
     private String name;
     private String cedula;
@@ -42,12 +45,15 @@ public class ClienteDTO {
     private String telefono;
     private String imagen;
 
+    //==========================================================================================
+    // Metodos
+    //==========================================================================================
     /**
-     * Constructor por defecto
+     * Constructor por defecto.
      */
     public ClienteDTO() {
+        
     }
-
     /**
      * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento
@@ -61,48 +67,6 @@ public class ClienteDTO {
         this.correo = cliente.getCorreo();
         this.telefono = cliente.getTelefono();
         this.imagen = cliente.getImagen();
-    }
-
-    /**
-     * @return El ID del cliente
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * @param id El nuevo Id del cliente
-     */
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    /**
-     * @return El nombre del cliente
-     */
-    public String getNombre() {
-        return getName();
-    }
-
-    /**
-     * @param nombre El nuevo nombre del cliente
-     */
-    public void setNombre(String nombre) {
-        this.setName(nombre);
-    }
-
-    /**
-     * @return La cedula del cliente
-     */
-    public String getCedula() {
-        return cedula;
-    }
-
-    /**
-     * @param cedula La nueva cedula del cliente
-     */
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
     }
 
     /**
@@ -121,7 +85,48 @@ public class ClienteDTO {
         return entity;
     }
 
+    //==========================================================================================
+    // Getters y Setters
+    //==========================================================================================
     /**
+     * Metodo que retorna el id del cliente.
+     *
+     * @return El ID del cliente
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * Metodo que modifica el valor del id del cliente.
+     *
+     * @param id El nuevo Id del cliente
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * Metodo que retorna la cedula del cliente.
+     *
+     * @return La cedula del cliente
+     */
+    public String getCedula() {
+        return cedula;
+    }
+
+    /**
+     * Metodo que modifica el valor de la cedula del cliente.
+     *
+     * @param cedula La nueva cedula del cliente
+     */
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    /**
+     * Metodo que retorna el nombre del cliente.
+     *
      * @return the name
      */
     public String getName() {
@@ -129,6 +134,8 @@ public class ClienteDTO {
     }
 
     /**
+     * Metodo que modifica el valor del nombre del cliente.
+     *
      * @param name the name to set
      */
     public void setName(String name) {
@@ -136,6 +143,8 @@ public class ClienteDTO {
     }
 
     /**
+     * Metodo que retorna el correo del cliente.
+     *
      * @return the correo
      */
     public String getCorreo() {
@@ -143,6 +152,8 @@ public class ClienteDTO {
     }
 
     /**
+     * Metodo que modifica el valor del correo del cliente.
+     *
      * @param correo the correo to set
      */
     public void setCorreo(String correo) {
@@ -150,6 +161,8 @@ public class ClienteDTO {
     }
 
     /**
+     * Metodo que retorna el telefono del cliente.
+     *
      * @return the telefono
      */
     public String getTelefono() {
@@ -157,6 +170,8 @@ public class ClienteDTO {
     }
 
     /**
+     * Metodo que modifica el valor del telefono del cliente.
+     *
      * @param telefono the telefono to set
      */
     public void setTelefono(String telefono) {
@@ -164,6 +179,8 @@ public class ClienteDTO {
     }
 
     /**
+     * Metodo que retorna la imagen del cliente.
+     *
      * @return the imagen
      */
     public String getImagen() {
@@ -171,6 +188,8 @@ public class ClienteDTO {
     }
 
     /**
+     * Metodo que modifica el valor de la imagen del cliente.
+     *
      * @param imagen the imagen to set
      */
     public void setImagen(String imagen) {
