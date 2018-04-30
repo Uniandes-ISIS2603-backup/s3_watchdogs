@@ -31,7 +31,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Felisha Watkins\",\r\n  \"cedula\": \"3570838398985074\"\r\n}"
+					"raw": "{\r\n  \"nombre\": \"Aile Smythin\",\r\n  \"cedula\": \"1014278026\",\r\n  \"correo\": \"asmythin9@cpanel.net\",\r\n  \"telefono\": \"541-399-6911\",\r\n  \"imagen\": \"http://dummyimage.com/244x224.png/dddddd/000000\"\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes",

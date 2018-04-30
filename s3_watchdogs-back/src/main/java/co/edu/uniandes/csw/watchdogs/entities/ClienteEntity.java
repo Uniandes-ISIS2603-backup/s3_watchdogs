@@ -11,7 +11,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -56,7 +55,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      * Relacion con la calificacion del cliente.
      */
     @PodamExclude
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private CalificacionEntity calificacion = new CalificacionEntity();
 
     /**
