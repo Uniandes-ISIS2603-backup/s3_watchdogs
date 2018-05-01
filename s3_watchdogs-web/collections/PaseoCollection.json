@@ -1,8 +1,7 @@
 {
 	"info": {
 		"name": "PaseoCollection",
-		"_postman_id": "b7d98734-9a93-81e5-52bb-46d636ba3705",
-		"description": "",
+		"_postman_id": "b953d0a4-9592-30f8-5531-b8d640a81733",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -23,7 +22,10 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos",
 					"protocol": "http",
@@ -36,8 +38,7 @@
 						"api",
 						"paseos"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -60,7 +61,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/103",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -70,10 +71,9 @@
 						"s3_watchdogs-web",
 						"api",
 						"paseos",
-						"{{new_id}}"
+						"103"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -115,8 +115,7 @@
 						"api",
 						"paseos"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -147,7 +146,7 @@
 					"raw": "{\r\n       \"id\": 1,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 30,\r\n       \"estado\": 1,\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"veterinaria\": { \"id\": {{new_id_e}} }\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/103",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -157,10 +156,9 @@
 						"s3_watchdogs-web",
 						"api",
 						"paseos",
-						"{{new_id}}"
+						"103"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		},
@@ -179,11 +177,11 @@
 				}
 			],
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/103",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -193,10 +191,9 @@
 						"s3_watchdogs-web",
 						"api",
 						"paseos",
-						"{{new_id}}"
+						"103"
 					]
-				},
-				"description": ""
+				}
 			},
 			"response": []
 		}
