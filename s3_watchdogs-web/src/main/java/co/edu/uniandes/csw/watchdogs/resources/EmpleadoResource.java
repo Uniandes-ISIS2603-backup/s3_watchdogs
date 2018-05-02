@@ -171,7 +171,7 @@ public class EmpleadoResource {
         }
         entity.setDisponibilidad(oldEntity.getDisponibilidad());
         entity.setCalificacion(oldEntity.getCalificacion());
-        entity.setServicio(oldEntity.getServicio());
+        entity.setServicios(oldEntity.getServicios());
         return new EmpleadoDetailDTO(empleadoLogic.updateEmpleado(id, entity));
     }
 

@@ -62,7 +62,7 @@ public class ClienteServicioResource {
             return servicioListEntity2DTO(clienteLogic.getServicios(clienteId));
         } catch (BusinessLogicException ex) {
             Logger.getLogger(ClienteServicioResource.class.getName()).log(Level.SEVERE, null, ex);
-            throw new WebApplicationException("El recurso incumple una regla de negocio.", 415);
+            throw new WebApplicationException("El recurso incumple una regla de negocio.", 412);
         }
     }
 

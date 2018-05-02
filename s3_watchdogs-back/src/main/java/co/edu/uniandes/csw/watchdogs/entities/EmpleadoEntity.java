@@ -6,7 +6,12 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -30,15 +35,15 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      * Relacion con la calificacion del empleado.
      */
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private CalificacionEntity calificacion;
 
     /**
      * Relacion con el servicio del empleado.
      */
     @PodamExclude
-    @OneToOne
-    private ServicioEntity servicio;
+    @OneToMany(mappedBy = "empleado")
+    private List<ServicioEntity> servicios = new ArrayList<>();
 
     /**
      * Ruta de la imagen del empleado.
@@ -96,8 +101,8 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      *
      * @return atributo servicio.
      */
-    public ServicioEntity getServicio() {
-        return servicio;
+    public List<ServicioEntity> getServicios() {
+        return servicios;
     }
 
     /**
@@ -105,8 +110,8 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      *
      * @param servicio nuevo valor del atributo.
      */
-    public void setServicio(ServicioEntity servicio) {
-        this.servicio = servicio;
+    public void setServicios(List<ServicioEntity> servicios) {
+        this.servicios = servicios;
     }
 
     /**

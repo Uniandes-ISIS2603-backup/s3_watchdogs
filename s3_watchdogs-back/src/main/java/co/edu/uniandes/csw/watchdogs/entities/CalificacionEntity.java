@@ -22,6 +22,10 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     private ClienteEntity cliente;
     
+    @PodamExclude
+    @OneToOne(fetch = FetchType.LAZY)
+    private EmpleadoEntity empleado;
+    
     private Integer puntaje;
 
     public Integer getPuntaje() {
@@ -44,6 +48,14 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
      */
     public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
+    }
+
+    public EmpleadoEntity getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(EmpleadoEntity empleado) {
+        this.empleado = empleado;
     }
 
 }

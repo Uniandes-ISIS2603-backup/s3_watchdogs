@@ -102,8 +102,8 @@ public class EmpleadoLogic {
      */
     public void deleteEmpleado(Long id) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar empleado con id={0}", id);
-        ServicioEntity servicios = getServicio(id);
-        if (servicios == null) {
+        List<ServicioEntity> servicios = getServicios(id);
+        if (servicios.isEmpty()) {
             persistence.delete(id);
         } else {
             throw new BusinessLogicException("No se puede borrar el empleado con id " + id + " porque tiene servicios asociados");
@@ -117,8 +117,8 @@ public class EmpleadoLogic {
      * @param empleadoId El id del empleado buscado.
      * @return El serivicio del empleado.
      */
-    public ServicioEntity getServicio(Long empleadoId) {
-        return getEmpleado(empleadoId).getServicio();
+    public List<ServicioEntity> getServicios(Long empleadoId) {
+        return getEmpleado(empleadoId).getServicios();
     }
 
 }

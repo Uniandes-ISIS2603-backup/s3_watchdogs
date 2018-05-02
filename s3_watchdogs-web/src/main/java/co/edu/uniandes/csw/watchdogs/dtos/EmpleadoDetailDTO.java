@@ -10,6 +10,9 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Clase que extiende de {@link EmpleadoDTO} para manejar la transformacion
@@ -62,7 +65,7 @@ import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 public class EmpleadoDetailDTO extends EmpleadoDTO {
 
     private CalificacionDTO calificacion;
-    private ServicioDTO servicio;
+    private List<ServicioDTO> servicios;
     private DisponibilidadDTO disponibilidad;
 
     //----- Constructor -----
@@ -79,51 +82,52 @@ public class EmpleadoDetailDTO extends EmpleadoDTO {
      */
     public EmpleadoDetailDTO(EmpleadoEntity entity) {
         super(entity);
-        if (entity != null) {
-            calificacion = new CalificacionDTO();
-            if (entity.getCalificacion() != null) {
-                calificacion.setId(entity.getCalificacion().getId());
-                calificacion.setPuntaje(entity.getCalificacion().getPuntaje());
-            }
-            if (entity.getServicio() != null) {
-                if (entity.getServicio().getClass().equals(AseoDTO.class)) {
-                    servicio = new AseoDTO();
-                    servicio.setFecha(entity.getServicio().getFecha());
-                    servicio.setCosto(entity.getServicio().getCosto());
-                    servicio.setEstado(entity.getServicio().isEstado());
-                    servicio.setRango(entity.getServicio().getRango());
-                    servicio.setDuracion(entity.getServicio().getDuracion());
-                    ((AseoDTO) servicio).setDientes(((AseoEntity) entity.getServicio()).getDientes());
-                    ((AseoDTO) servicio).setBanho(((AseoEntity) entity.getServicio()).getBanho());
-                    ((AseoDTO) servicio).setPeluqueria(((AseoEntity) entity.getServicio()).getPeluqueria());
-                }
-                if (entity.getServicio().getClass().equals(ServicioDTO.class)) {
-                    servicio = new AseoDTO();
-                    servicio.setFecha(entity.getServicio().getFecha());
-                    servicio.setCosto(entity.getServicio().getCosto());
-                    servicio.setEstado(entity.getServicio().isEstado());
-                    servicio.setRango(entity.getServicio().getRango());
-                    servicio.setDuracion(entity.getServicio().getDuracion());
-                    ((PaseoDTO) servicio).setCapMax(((PaseoEntity) entity.getServicio()).getCapMax());
-                    ((PaseoDTO) servicio).setHoras(((PaseoEntity) entity.getServicio()).getHoras());
-                }
-                if (entity.getServicio().getClass().equals(ServicioDTO.class)) {
-                    servicio = new AseoDTO();
-                    servicio.setFecha(entity.getServicio().getFecha());
-                    servicio.setCosto(entity.getServicio().getCosto());
-                    servicio.setEstado(entity.getServicio().isEstado());
-                    servicio.setRango(entity.getServicio().getRango());
-                    servicio.setDuracion(entity.getServicio().getDuracion());
-                    ((HotelDTO) servicio).setTiempoHospedaje(((HotelEntity) entity.getServicio()).getTiempoHospedaje());
-                }
-                if (entity.getServicio().getClass().equals(ServicioDTO.class)) {
-                    servicio = new AseoDTO();
-                    servicio.setFecha(entity.getServicio().getFecha());
-                    servicio.setCosto(entity.getServicio().getCosto());
-                    servicio.setEstado(entity.getServicio().isEstado());
-                    servicio.setRango(entity.getServicio().getRango());
-                    servicio.setDuracion(entity.getServicio().getDuracion());
-                    ((EntrenamientoDTO) servicio).setTipo(((EntrenamientoEntity) entity.getServicio()).getTipo());
+        servicios = new ArrayList<>();
+        if (entity.getServicios() != null) {
+            for (ServicioEntity entityServicio : entity.getServicios()) {
+                if (entityServicio.getClass().equals(AseoEntity.class)) {
+                    AseoDTO servicio = new AseoDTO();
+                    servicio.setId(entityServicio.getId());
+                    servicio.setFecha(entityServicio.getFecha());
+                    servicio.setCosto(entityServicio.getCosto());
+                    servicio.setEstado(entityServicio.isEstado());
+                    servicio.setRango(entityServicio.getRango());
+                    servicio.setDuracion(entityServicio.getDuracion());
+                    ((AseoDTO) servicio).setDientes(((AseoEntity) entityServicio).getDientes());
+                    ((AseoDTO) servicio).setBanho(((AseoEntity) entityServicio).getBanho());
+                    ((AseoDTO) servicio).setPeluqueria(((AseoEntity) entityServicio).getPeluqueria());
+                    servicios.add(servicio);
+                } else if (entityServicio.getClass().equals(PaseoEntity.class)) {
+                    PaseoDTO servicio = new PaseoDTO();
+                    servicio.setId(entityServicio.getId());
+                    servicio.setFecha(entityServicio.getFecha());
+                    servicio.setCosto(entityServicio.getCosto());
+                    servicio.setEstado(entityServicio.isEstado());
+                    servicio.setRango(entityServicio.getRango());
+                    servicio.setDuracion(entityServicio.getDuracion());
+                    ((PaseoDTO) servicio).setCapMax(((PaseoEntity) entityServicio).getCapMax());
+                    ((PaseoDTO) servicio).setHoras(((PaseoEntity) entityServicio).getHoras());
+                    servicios.add(servicio);
+                } else if (entityServicio.getClass().equals(HotelEntity.class)) {
+                    HotelDTO servicio = new HotelDTO();
+                    servicio.setId(entityServicio.getId());
+                    servicio.setFecha(entityServicio.getFecha());
+                    servicio.setCosto(entityServicio.getCosto());
+                    servicio.setEstado(entityServicio.isEstado());
+                    servicio.setRango(entityServicio.getRango());
+                    servicio.setDuracion(entityServicio.getDuracion());
+                    ((HotelDTO) servicio).setTiempoHospedaje(((HotelEntity) entityServicio).getTiempoHospedaje());
+                    servicios.add(servicio);
+                } else if (entityServicio.getClass().equals(EntrenamientoEntity.class)) {
+                    EntrenamientoDTO servicio = new EntrenamientoDTO();
+                    servicio.setId(entityServicio.getId());
+                    servicio.setFecha(entityServicio.getFecha());
+                    servicio.setCosto(entityServicio.getCosto());
+                    servicio.setEstado(entityServicio.isEstado());
+                    servicio.setRango(entityServicio.getRango());
+                    servicio.setDuracion(entityServicio.getDuracion());
+                    ((EntrenamientoDTO) servicio).setTipo(((EntrenamientoEntity) entityServicio).getTipo());
+                    servicios.add(servicio);
                 }
             }
             disponibilidad = new DisponibilidadDTO();
@@ -145,46 +149,53 @@ public class EmpleadoDetailDTO extends EmpleadoDTO {
         if (calificacion != null) {
             empleadoE.setCalificacion(calificacion.toEntity());
         }
-        if (servicio != null) {
-            if (servicio.getClass().equals(AseoDTO.class)) {
-                AseoEntity nuevo = new AseoEntity();
-                nuevo.setFecha(servicio.getFecha());
-                nuevo.setCosto(servicio.getCosto());
-                nuevo.setEstado(servicio.isEstado());
-                nuevo.setRango(servicio.getRango());
-                nuevo.setDuracion(servicio.getDuracion());
-                ((AseoEntity) nuevo).setDientes(((AseoDTO) servicio).getDientes());
-                ((AseoEntity) nuevo).setBanho(((AseoDTO) servicio).getBanho());
-                ((AseoEntity) nuevo).setPeluqueria(((AseoDTO) servicio).getPeluqueria());
-                empleadoE.setServicio(nuevo);
-            } else if (servicio.getClass().equals(PaseoDTO.class)) {
-                PaseoEntity nuevo = new PaseoEntity();
-                nuevo.setFecha(servicio.getFecha());
-                nuevo.setCosto(servicio.getCosto());
-                nuevo.setEstado(servicio.isEstado());
-                nuevo.setRango(servicio.getRango());
-                nuevo.setDuracion(servicio.getDuracion());
-                ((PaseoEntity) nuevo).setCapMax(((PaseoDTO) servicio).getCapMax());
-                ((PaseoEntity) nuevo).setHoras(((PaseoDTO) servicio).getHoras());
-                empleadoE.setServicio(nuevo);
-            } else if (servicio.getClass().equals(HotelDTO.class)) {
-                HotelEntity nuevo = new HotelEntity();
-                nuevo.setFecha(servicio.getFecha());
-                nuevo.setCosto(servicio.getCosto());
-                nuevo.setEstado(servicio.isEstado());
-                nuevo.setRango(servicio.getRango());
-                nuevo.setDuracion(servicio.getDuracion());
-                ((HotelEntity) nuevo).setTiempoHospedaje(((HotelDTO) servicio).getTiempoHospedaje());
-                empleadoE.setServicio(nuevo);
-            } else if (servicio.getClass().equals(EntrenamientoDTO.class)) {
-                EntrenamientoEntity nuevo = new EntrenamientoEntity();
-                nuevo.setFecha(servicio.getFecha());
-                nuevo.setCosto(servicio.getCosto());
-                nuevo.setEstado(servicio.isEstado());
-                nuevo.setRango(servicio.getRango());
-                nuevo.setDuracion(servicio.getDuracion());
-                ((EntrenamientoEntity) nuevo).setTipo(((EntrenamientoDTO) servicio).getTipo());
-                empleadoE.setServicio(nuevo);
+        if (servicios != null) {
+            List<ServicioEntity> serviciosEntity = new ArrayList<>();
+            for (ServicioDTO dtoServicio : servicios) {
+                if (dtoServicio.getClass().equals(AseoDTO.class)) {
+                    AseoEntity nuevo = new AseoEntity();
+                    nuevo.setId(dtoServicio.getId());
+                    nuevo.setFecha(dtoServicio.getFecha());
+                    nuevo.setCosto(dtoServicio.getCosto());
+                    nuevo.setEstado(dtoServicio.isEstado());
+                    nuevo.setRango(dtoServicio.getRango());
+                    nuevo.setDuracion(dtoServicio.getDuracion());
+                    ((AseoEntity) nuevo).setDientes(((AseoDTO) dtoServicio).getDientes());
+                    ((AseoEntity) nuevo).setBanho(((AseoDTO) dtoServicio).getBanho());
+                    ((AseoEntity) nuevo).setPeluqueria(((AseoDTO) dtoServicio).getPeluqueria());
+                    serviciosEntity.add(nuevo);
+                } else if (dtoServicio.getClass().equals(PaseoDTO.class)) {
+                    PaseoEntity nuevo = new PaseoEntity();
+                    nuevo.setId(dtoServicio.getId());
+                    nuevo.setFecha(dtoServicio.getFecha());
+                    nuevo.setCosto(dtoServicio.getCosto());
+                    nuevo.setEstado(dtoServicio.isEstado());
+                    nuevo.setRango(dtoServicio.getRango());
+                    nuevo.setDuracion(dtoServicio.getDuracion());
+                    ((PaseoEntity) nuevo).setCapMax(((PaseoDTO) dtoServicio).getCapMax());
+                    ((PaseoEntity) nuevo).setHoras(((PaseoDTO) dtoServicio).getHoras());
+                    serviciosEntity.add(nuevo);
+                } else if (dtoServicio.getClass().equals(HotelDTO.class)) {
+                    HotelEntity nuevo = new HotelEntity();
+                    nuevo.setId(dtoServicio.getId());
+                    nuevo.setFecha(dtoServicio.getFecha());
+                    nuevo.setCosto(dtoServicio.getCosto());
+                    nuevo.setEstado(dtoServicio.isEstado());
+                    nuevo.setRango(dtoServicio.getRango());
+                    nuevo.setDuracion(dtoServicio.getDuracion());
+                    ((HotelEntity) nuevo).setTiempoHospedaje(((HotelDTO) dtoServicio).getTiempoHospedaje());
+                    serviciosEntity.add(nuevo);
+                } else if (dtoServicio.getClass().equals(EntrenamientoDTO.class)) {
+                    EntrenamientoEntity nuevo = new EntrenamientoEntity();
+                    nuevo.setId(dtoServicio.getId());
+                    nuevo.setFecha(dtoServicio.getFecha());
+                    nuevo.setCosto(dtoServicio.getCosto());
+                    nuevo.setEstado(dtoServicio.isEstado());
+                    nuevo.setRango(dtoServicio.getRango());
+                    nuevo.setDuracion(dtoServicio.getDuracion());
+                    ((EntrenamientoEntity) nuevo).setTipo(((EntrenamientoDTO) dtoServicio).getTipo());
+                    serviciosEntity.add(nuevo);
+                }
             }
         }
         if (disponibilidad != null) {
@@ -203,15 +214,15 @@ public class EmpleadoDetailDTO extends EmpleadoDTO {
     /**
      * @return the servicio
      */
-    public ServicioDTO getServicio() {
-        return servicio;
+    public List<ServicioDTO> getServicio() {
+        return servicios;
     }
 
     /**
      * @param servicio the servicio to set
      */
-    public void setServicio(ServicioDTO servicio) {
-        this.servicio = servicio;
+    public void setServicio(List<ServicioDTO> servicio) {
+        this.servicios = servicio;
     }
 
     /**
