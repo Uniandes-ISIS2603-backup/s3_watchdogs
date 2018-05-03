@@ -16,6 +16,9 @@
                         templateUrl: basePath + 'servicios.list.html',
                         controller: 'serviciosCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    'navView': {
+                        templateUrl: basePath + 'servicios.nav.html'
                     }
                 }
             }).state('aseoDetail',{
@@ -25,6 +28,9 @@
                         templateUrl: basePath + 'aseo.detail.html',
                         controller:'serviciosCtrl',
                         controllerAs: 'ctrl' 
+                    },
+                    'navView': {
+                        templateUrl: basePath + 'servicios.nav.html'
                     }
                 }
                 
