@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.test.persistence;
 
 import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.watchdogs.persistence.TarjetaCreditoPersistence;
@@ -32,8 +33,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class TarjetaCreditoPersistenceTest {
-    
-     @Deployment
+
+    @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(CalificacionEntity.class.getPackage())
@@ -41,19 +42,17 @@ public class TarjetaCreditoPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Inject
     private TarjetaCreditoPersistence tarjetaCreditoPersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
-    private List<TarjetaCreditoEntity> data = new ArrayList<TarjetaCreditoEntity>();
 
-     @Before
+    @Before
     public void configTest() {
         try {
             utx.begin();
@@ -70,28 +69,38 @@ public class TarjetaCreditoPersistenceTest {
             }
         }
     }
-    
-     /**
+
+    /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from TarjetaCreditoEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
     }
-    
+
+    private List<TarjetaCreditoEntity> data = new ArrayList<TarjetaCreditoEntity>();
+    private List<ClienteEntity> clienteData = new ArrayList<ClienteEntity>();
+
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            TarjetaCreditoEntity entity = factory.manufacturePojo(TarjetaCreditoEntity.class);  
+            TarjetaCreditoEntity entity = factory.manufacturePojo(TarjetaCreditoEntity.class);
             em.persist(entity);
             data.add(entity);
         }
+        for (int i = 0; i < 3; i++) {
+            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(entity);
+            clienteData.add(entity);
+        }
     }
-    
+
     @Test
-    public void createTarjetaCreditoTest(){
+    public void createTarjetaCreditoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         TarjetaCreditoEntity newEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
         TarjetaCreditoEntity result = tarjetaCreditoPersistence.create(newEntity);
@@ -102,9 +111,8 @@ public class TarjetaCreditoPersistenceTest {
 
         Assert.assertEquals(newEntity.getNumeroTarjeta(), entity.getNumeroTarjeta());
     }
-    
-    
-     @Test
+
+    @Test
     public void getTarjetasTest() {
         List<TarjetaCreditoEntity> list = tarjetaCreditoPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
@@ -118,15 +126,15 @@ public class TarjetaCreditoPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
-     @Test
+
+    @Test
     public void getTarjetaTest() {
         TarjetaCreditoEntity entity = data.get(0);
-        TarjetaCreditoEntity newEntity = tarjetaCreditoPersistence.find(entity.getId());
+        TarjetaCreditoEntity newEntity = tarjetaCreditoPersistence.find(clienteData.get(0).getId(),entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNumeroTarjeta(), newEntity.getNumeroTarjeta());
     }
-     
+
     @Test
     public void deleteTarjetaTest() {
         TarjetaCreditoEntity entity = data.get(0);
@@ -134,8 +142,7 @@ public class TarjetaCreditoPersistenceTest {
         TarjetaCreditoEntity deleted = em.find(TarjetaCreditoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
-     
+
     @Test
     public void updateTarjetaTest() {
         TarjetaCreditoEntity entity = data.get(0);
@@ -151,4 +158,3 @@ public class TarjetaCreditoPersistenceTest {
         Assert.assertEquals(newEntity.getNumeroTarjeta(), resp.getNumeroTarjeta());
     }
 }
-

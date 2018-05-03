@@ -7,7 +7,11 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import co.edu.uniandes.csw.watchdogs.podam.CorreoStrategy;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
@@ -15,10 +19,25 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author jc.pulido
  */
 @Entity
-public class PseEntity extends MetodoDePagoEntity implements Serializable {
+public class PseEntity extends BaseEntity implements Serializable {
     
     @PodamStrategyValue(CorreoStrategy.class)
     private String correo;
+    
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity cliente;
+    
+    @OneToOne
+    private FacturaEntity factura;
+
+    public FacturaEntity getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaEntity factura) {
+        this.factura = factura;
+    }
     
     /**
      * Método que retorna el correo asociado
@@ -36,6 +55,23 @@ public class PseEntity extends MetodoDePagoEntity implements Serializable {
     public void setCorreo(String correo)
     {
         this.correo = correo;
+    }
+    
+      /**
+     * M'etodo que retorna el cliente asignaod a la cuenta de paypal
+     * @return El cliente asociado a la cuenta de paypal
+     */
+    public ClienteEntity getCliente(){
+        return cliente;
+    }
+    
+    /**
+     * Metodo que asigan un nuevo cliente a la cuenta de paypal
+     * @param cliente cliente a asignar
+     */
+    public void setCliente(ClienteEntity cliente)
+    {
+        this.cliente = cliente;
     }
     
 }

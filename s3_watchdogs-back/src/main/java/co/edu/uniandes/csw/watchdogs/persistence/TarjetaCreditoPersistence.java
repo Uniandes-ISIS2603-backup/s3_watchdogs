@@ -68,9 +68,26 @@ public class TarjetaCreditoPersistence {
     }
     
     
-    public TarjetaCreditoEntity find(Long id)
+    public TarjetaCreditoEntity find(Long idCliente,Long id)
     {
-        return em.find(TarjetaCreditoEntity.class, id);
+        TypedQuery<TarjetaCreditoEntity> q = em.createQuery("select p from TarjetaCreditoEntity p where (p.cliente.id = :clienteid) and (p.id = :tarjetacreditoid)", TarjetaCreditoEntity.class);
+        q.setParameter("clienteid", idCliente);
+        q.setParameter("tarjetacreditoid", id);
+        List<TarjetaCreditoEntity> results = q.getResultList();
+        TarjetaCreditoEntity tarjeta = null;
+        if(results == null){
+            tarjeta = null;
+        }
+        else if(results.isEmpty())
+        {
+            tarjeta = null;
+        }
+        else if(results.size()>= 1)
+        {
+            tarjeta = results.get(0);
+        }
+        
+        return tarjeta;
     }
     
     public TarjetaCreditoEntity update(TarjetaCreditoEntity entity)

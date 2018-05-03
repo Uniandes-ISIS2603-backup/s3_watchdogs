@@ -60,10 +60,28 @@ public class PsePersistence {
         return query.getResultList();
     }
     
-    public PseEntity find(Long id)
+    public PseEntity find(Long idCliente ,Long id)
     {
-        return em.find(PseEntity.class, id);
+        TypedQuery<PseEntity> q = em.createQuery("select p from PseEntity p where (p.cliente.id = :clienteid) and (p.id = :pseid)", PseEntity.class);
+        q.setParameter("clienteid", idCliente);
+        q.setParameter("pseid", id);
+        List<PseEntity> results = q.getResultList();
+        PseEntity pse = null;
+        if(results == null){
+            pse = null;
+        }
+        else if(results.isEmpty())
+        {
+            pse = null;
+        }
+        else if(results.size()>= 1)
+        {
+            pse = results.get(0);
+        }
+        
+        return pse;
     }
+    
     
     public PseEntity update(PseEntity entity)
     {
@@ -72,7 +90,6 @@ public class PsePersistence {
     
     public void delete(Long id)
     {
-        LOGGER.log(Level.INFO, "Borrando PSE con id={0}", id);
         PseEntity entity = em.find(PseEntity.class, id);
         em.remove(entity);
     }

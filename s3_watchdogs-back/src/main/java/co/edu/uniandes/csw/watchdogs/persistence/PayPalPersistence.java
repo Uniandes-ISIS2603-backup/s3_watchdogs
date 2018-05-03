@@ -61,9 +61,26 @@ public class PayPalPersistence {
         return query.getResultList();
     }
     
-    public PayPalEntity find(Long id)
+    public PayPalEntity find(Long idCliente,Long id)
     {
-        return em.find(PayPalEntity.class, id);
+        TypedQuery<PayPalEntity> q = em.createQuery("select p from PayPalEntity p where (p.cliente.id = :clienteid) and (p.id = :paypalid)", PayPalEntity.class);
+        q.setParameter("clienteid", idCliente);
+        q.setParameter("paypalid", id);
+        List<PayPalEntity> results = q.getResultList();
+        PayPalEntity payPal = null;
+        if(results == null){
+            payPal = null;
+        }
+        else if(results.isEmpty())
+        {
+            payPal = null;
+        }
+        else if(results.size()>= 1)
+        {
+            payPal = results.get(0);
+        }
+        
+        return payPal;
     }
     
     public PayPalEntity update(PayPalEntity entity)

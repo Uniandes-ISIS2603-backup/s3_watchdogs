@@ -42,7 +42,21 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      */
     @PodamExclude
     @OneToMany(mappedBy = "cliente")
-    private List<MetodoDePagoEntity> metodosDePago = new ArrayList<>();
+    private List<PayPalEntity> payPals = new ArrayList<>();
+
+    /**
+     * Relacion con los metodos de pago del cliente.
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente")
+    private List<PseEntity> pses = new ArrayList<>();
+
+    /**
+     * Relacion con los metodos de pago del cliente.
+     */
+    @PodamExclude
+    @OneToMany(mappedBy = "cliente")
+    private List<TarjetaCreditoEntity> tarjetas = new ArrayList<>();
 
     /**
      * Relacion con las facturas del cliente.
@@ -137,8 +151,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      *
      * @return coleecion de metodos de pago.
      */
-    public List<MetodoDePagoEntity> getMetodosDePago() {
-        return metodosDePago;
+    public List<PayPalEntity> getPayPals() {
+        return payPals;
     }
 
     /**
@@ -146,8 +160,8 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      *
      * @param metodosDePago nuevo valor de la coleccion.
      */
-    public void setMetodosDePago(List<MetodoDePagoEntity> metodosDePago) {
-        this.metodosDePago = metodosDePago;
+    public void setPayPals(List<PayPalEntity> payPals) {
+        this.payPals = payPals;
     }
 
     /**
@@ -238,6 +252,22 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      */
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public List<PseEntity> getPses() {
+        return pses;
+    }
+
+    public void setPses(List<PseEntity> pses) {
+        this.pses = pses;
+    }
+
+    public List<TarjetaCreditoEntity> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(List<TarjetaCreditoEntity> tarjetas) {
+        this.tarjetas = tarjetas;
     }
 
 }

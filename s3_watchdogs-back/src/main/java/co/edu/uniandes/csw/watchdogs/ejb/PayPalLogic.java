@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.PayPalPersistence;
@@ -26,25 +27,26 @@ public class PayPalLogic {
     @Inject
     private PayPalPersistence persistence;
     
+    @Inject
+    private ClienteLogic clienteLogic;
     
-    public List<PayPalEntity> getPayPals()
+    
+    public List<PayPalEntity> getPayPals(Long idCliente) throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de consultar todos los PayPals");
-        List<PayPalEntity> paypals = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todos lso libros");
-        return paypals;
+        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+        if(cliente.getPayPals()==null){
+            throw new BusinessLogicException("El cliente que consulta aun no tiene cuentas de paypal");
+        }
+        if(cliente.getPayPals().isEmpty()){
+            throw new BusinessLogicException("El cliente que consulta aun no tiene cuentas de paypal asociadas");
+        }
+        return cliente.getPayPals();
     }
     
-    public PayPalEntity getPayPal(Long id)
+    public PayPalEntity getPayPal(Long clienteId ,Long id)
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un PayPal con id = {0}", id);
-        PayPalEntity payPal = persistence.find(id);
-        if(payPal == null)
-        {
-            LOGGER.log(Level.SEVERE, "El paypal con el id {0} no existe", id);
-        }
-        LOGGER.log(Level.INFO,"Termina proceso de consultar paypal con id = {0}", id);
-        return payPal;
+        return persistence.find(clienteId, id);
     }
     
     public PayPalEntity updateEntity(Long id, PayPalEntity entity) throws BusinessLogicException
@@ -53,20 +55,21 @@ public class PayPalLogic {
         return persistence.update(entity);
     }
     
-    public void deletePayPal(Long id)
+    public void deletePayPal(Long clienteId,Long id)
     {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar PayPal con id = {0}", id);
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar PayPal con id {0}", id);
+        PayPalEntity old = getPayPal(clienteId, id);
+        persistence.delete(old.getId());
     }
     
-    public PayPalEntity createPse(PayPalEntity entity)throws BusinessLogicException
+    public PayPalEntity createPayPal(Long idCliente, PayPalEntity entity)throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de creacion de un PayPal");
         validateEmail(entity.getCorreo());
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creacion de PSE");
-        return entity;
+        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+        entity.setCliente(cliente);
+        return persistence.create(entity);
+
     }
     
      private void validateEmail(String correo) throws BusinessLogicException {

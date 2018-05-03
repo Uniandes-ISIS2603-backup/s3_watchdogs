@@ -11,7 +11,7 @@ import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
  * PayPalDTO Objeto de transferencia de datos de PayPal. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
- * 
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -19,64 +19,64 @@ import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
  *      "correo: string,
  *      "contrasenha": string
  *   }
- * </pre>
- * Por ejemplo un PayPal se representa asi:<br>
- * 
+ * </pre> Por ejemplo un PayPal se representa asi:<br>
+ *
  * <pre>
- * 
+ *
  *   {
  *      "id": 91852,
  *      "correo: "jc.pulido@uniandes.edu.co",
  *      "contrasenha": "juanca8520"
  *   }
  *
-/**
+ * /**
  *
  * @author jc.pulido
  */
-public class PayPalDTO extends MetodoDePagoDTO{
-    
+public class PayPalDTO {
+
+    private Long id;
     private String correo;
-    
+    private String nombre;
+
     /**
-     * Constructor por defecto 
+     * Constructor por defecto
      */
-    public PayPalDTO(){}
-   
-    public PayPalDTO(PayPalEntity entity)
-    {
-        super(entity);
-        if(entity != null)
+    public PayPalDTO() {
+    }
+
+    public PayPalDTO(PayPalEntity entity) {
+        if (entity != null) 
         {
-        correo = entity.getCorreo();
-        nombre = MetodoDePagoDTO.PAYPAL;
+            id = entity.getId();
+            correo = entity.getCorreo();
+            nombre = "PayPal";
         }
     }
-    
-    public PayPalEntity toEntity()
-    {
+
+    public PayPalEntity toEntity() {
         PayPalEntity entity = new PayPalEntity();
         entity.setCorreo(this.correo);
         entity.setId(id);
-        entity.setNombre(this.nombre);
+        entity.setName(this.nombre);
         return entity;
     }
-    
+
     /**
-     * Método que retorna el id asociado al DTO 
-     * @return id asociado 
+     * Método que retorna el id asociado al DTO
+     *
+     * @return id asociado
      */
-    public Long getId()
-    {
+    public Long getId() {
         return id;
     }
-    
+
     /**
-     * Método que asigna un nuevo valor al id 
-     * @param pId Nuevo id a asignar 
+     * Método que asigna un nuevo valor al id
+     *
+     * @param pId Nuevo id a asignar
      */
-    public void setId(Long pId)
-    {
+    public void setId(Long pId) {
         id = pId;
     }
 
@@ -92,5 +92,14 @@ public class PayPalDTO extends MetodoDePagoDTO{
      */
     public void setCorreo(String correo) {
         this.correo = correo;
-    } 
+    }
+    
+    /**
+     * 
+     * @return El nombre del m'etodo de pago
+     */
+    public String getNombre()
+    {
+        return nombre;
+    }
 }

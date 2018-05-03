@@ -32,10 +32,11 @@ import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
  *
  * @author jc.pulido
  */
-public class PseDTO extends MetodoDePagoDTO{
+public class PseDTO {
     
-    
+    private Long id;
     private String correo;
+    private String nombre;
     
     /**
      * Constructor por defecto 
@@ -44,11 +45,10 @@ public class PseDTO extends MetodoDePagoDTO{
     
     public PseDTO(PseEntity entity)
     {
-        super(entity);
-
         if(entity != null)
         {
-            nombre = MetodoDePagoDTO.PSE;
+            id = entity.getId();
+            nombre = "PSE";
             correo = entity.getCorreo();
         }
     }
@@ -57,11 +57,20 @@ public class PseDTO extends MetodoDePagoDTO{
     {
         PseEntity entity = new PseEntity();
         entity.setCorreo(this.correo);
-        entity.setNombre(this.nombre);
+        entity.setName(this.nombre);
         entity.setId(id);
-        entity.setNombre(this.nombre);
         return entity;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    
     
     /**
      * Método que retorna el id que identifica al DTO

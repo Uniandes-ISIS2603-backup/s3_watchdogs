@@ -7,9 +7,11 @@ package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.ClientePersistence;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -179,4 +181,59 @@ public class ClienteLogic {
     public List<ServicioEntity> getServicios(Long clienteId) throws BusinessLogicException {
         return getCliente(clienteId).getServicios();
     }
+
+    public List<PayPalEntity> listPayPal(Long clienteId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los payPal del cliente con id = {0}", clienteId);
+        List<PayPalEntity> payPals = new ArrayList<>();
+        try {
+            payPals = getCliente(clienteId).getPayPals();
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ClienteLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return payPals;
+    }
+
+    public PayPalEntity getPayPal(Long clienteId, Long payPalId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar un payPal del cliente con id = {0}", clienteId);
+        List<PayPalEntity> list = new ArrayList<>();
+        try {
+            list = getCliente(clienteId).getPayPals();
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ClienteLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PayPalEntity payPalEntity = new PayPalEntity();
+        payPalEntity.setId(payPalId);
+        int index = list.indexOf(payPalEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    public PayPalEntity addPayPal(Long clienteId, Long payPalId) {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar una cuenta de PayPal al cliente con id = {0}", clienteId);
+        ClienteEntity clienteEntity = null;
+        try {
+            clienteEntity = getCliente(clienteId);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ClienteLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        PayPalEntity payPalEntity = new PayPalEntity();
+        payPalEntity.setId(payPalId);
+        clienteEntity.getPayPals().add(payPalEntity);
+        return getPayPal(clienteId, payPalId);
+    }
+
+    public void removePayPal(Long clienteId, Long payPalId) {
+        try {
+            LOGGER.log(Level.INFO, "Inicia proceso de borrar un payPal del cliente con id = {0}", clienteId);
+            ClienteEntity entity = getCliente(clienteId);
+            PayPalEntity payPalEntity = new PayPalEntity();
+            payPalEntity.setId(payPalId);
+            entity.getPayPals().remove(payPalEntity);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ClienteLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

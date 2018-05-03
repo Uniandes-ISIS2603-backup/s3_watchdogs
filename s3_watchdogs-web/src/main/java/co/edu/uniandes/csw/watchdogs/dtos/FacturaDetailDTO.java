@@ -13,12 +13,13 @@ import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
+import java.util.List;
 
 /**
  * Clase que extiende de {@link FacturaDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido de la ciudad vaya a la documentacion de {@link FacturaDTO}
- * 
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -30,11 +31,11 @@ import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
  *      "metodoDepago": {@link metodoDepagoDTO}
  *   }
  * </pre
- * </pre>
- * Por ejemplo una factura con una Tarjeta de Crédito como Método de Pago y un aseo como servicio se representa asi:<br>
- * 
+ * </pre> Por ejemplo una factura con una Tarjeta de Crédito como Método de Pago
+ * y un aseo como servicio se representa asi:<br>
+ *
  * <pre>
- * 
+ *
  *   {
  *      "id": 1321321,
  *      "valor": 40000,
@@ -47,54 +48,80 @@ import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
  *   }
  *
  * </pre>
+ *
  * @author id.salazar
  */
-public class FacturaDetailDTO extends FacturaDTO{
-    
+public class FacturaDetailDTO extends FacturaDTO {
+
     private ClienteDTO cliente;
-    
+
     private ServicioDTO servicio;
-    
-    private MetodoDePagoDTO metodoDePago;
-     
-    
-     /**
+
+    private List<PayPalDTO> payPals;
+    private List<PseDTO> pses;
+
+    public List<PayPalDTO> getPayPals() {
+        return payPals;
+    }
+
+    public void setPayPals(List<PayPalDTO> payPals) {
+        this.payPals = payPals;
+    }
+
+    public List<PseDTO> getPses() {
+        return pses;
+    }
+
+    public void setPses(List<PseDTO> pses) {
+        this.pses = pses;
+    }
+
+    public List<TarjetaCreditoDTO> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+    private List<TarjetaCreditoDTO> tarjetas;
+
+    /**
      * Constructor por defecto
      */
-    
-    public FacturaDetailDTO(){
+    public FacturaDetailDTO() {
         super();
     }
-    
-    public FacturaDetailDTO(FacturaEntity entity){
+
+    public FacturaDetailDTO(FacturaEntity entity) {
         super(entity);
-        if(entity != null){
-            if(entity.getCliente() != null){
+        if (entity != null) {
+            if (entity.getCliente() != null) {
                 cliente = new ClienteDTO(entity.getCliente());
-            }else entity.setCliente(null);
-            if(entity.getServicio() != null){
-                if(entity.getServicio().tipoClase(AseoEntity.class)){
-                   servicio = new AseoDTO((AseoEntity)entity.getServicio());  
+            } else {
+                entity.setCliente(null);
+            }
+            if (entity.getServicio() != null) {
+                if (entity.getServicio().tipoClase(AseoEntity.class)) {
+                    servicio = new AseoDTO((AseoEntity) entity.getServicio());
+                } else if (entity.getServicio().tipoClase(EntrenamientoEntity.class)) {
+                    servicio = new EntrenamientoDTO((EntrenamientoEntity) entity.getServicio());
+                } else if (entity.getServicio().tipoClase(PaseoEntity.class)) {
+                    servicio = new PaseoDTO((PaseoEntity) entity.getServicio());
+                } else if (entity.getServicio().tipoClase(HotelEntity.class)) {
+                    servicio = new HotelDTO((HotelEntity) entity.getServicio());
                 }
-                else if(entity.getServicio().tipoClase(EntrenamientoEntity.class)){
-                   servicio = new EntrenamientoDTO((EntrenamientoEntity)entity.getServicio());  
-                }
-                else if(entity.getServicio().tipoClase(PaseoEntity.class)){
-                   servicio = new PaseoDTO((PaseoEntity)entity.getServicio());  
-                }
-                else if(entity.getServicio().tipoClase(HotelEntity.class)){
-                   servicio = new HotelDTO((HotelEntity)entity.getServicio());  
-                }
-            }else entity.setServicio(null);
-            if(entity.getMetodoDePago() != null){
-                if(entity.getMetodoDePago().getClass() == PseEntity.class){
-                        metodoDePago = new PseDTO((PseEntity)entity.getMetodoDePago());
-                }else if(entity.getMetodoDePago().getClass() == PayPalEntity.class){
-                        metodoDePago = new PayPalDTO((PayPalEntity)entity.getMetodoDePago());
-                }else if(entity.getMetodoDePago().getClass() == TarjetaCreditoEntity.class){
-                        metodoDePago = new TarjetaCreditoDTO((TarjetaCreditoEntity)entity.getMetodoDePago());
-                }
-            }else entity.setMetodoDePago(null);
+            } else {
+                entity.setServicio(null);
+            }
+//            if(entity.getMetodoDePago() != null){
+////                if(entity.getMetodoDePago().getClass() == PseEntity.class){
+////                        metodoDePago = new PseDTO((PseEntity)entity.getMetodoDePago());
+////                }else if(entity.getMetodoDePago().getClass() == PayPalEntity.class){
+////                        metodoDePago = new PayPalDTO((PayPalEntity)entity.getMetodoDePago());
+////                }else if(entity.getMetodoDePago().getClass() == TarjetaCreditoEntity.class){
+////                        metodoDePago = new TarjetaCreditoDTO((TarjetaCreditoEntity)entity.getMetodoDePago());
+////                }
+//            }else entity.setMetodoDePago(null);
         }
     }
 
@@ -126,44 +153,27 @@ public class FacturaDetailDTO extends FacturaDTO{
         this.servicio = servicio;
     }
 
-    /**
-     * @return the metodoDePago
-     */
-    public MetodoDePagoDTO getMetodoDePago() {
-        return metodoDePago;
-    }
-
-    /**
-     * @param metodoDePago the metodoDePago to set
-     */
-    public void setMetodoDePago(MetodoDePagoDTO metodoDePago) {
-        this.metodoDePago = metodoDePago;
-    }
-    
     @Override
-    public FacturaEntity toEntity(){
+    public FacturaEntity toEntity() {
         FacturaEntity rta = super.toEntity();
         rta.setCliente(cliente.toEntity());
-        if(servicio.getClass() == AseoDTO.class){
-            rta.setServicio((AseoEntity)servicio.toEntity());
-        } else if(servicio.getClass() == HotelDTO.class){
-            rta.setServicio((HotelEntity)servicio.toEntity());
-        } else if(servicio.getClass() == EntrenamientoDTO.class){
-            rta.setServicio((EntrenamientoEntity)servicio.toEntity());
-        } else if(servicio.getClass() == PaseoDTO.class){
-            rta.setServicio((PaseoEntity)servicio.toEntity());
+        if (servicio.getClass() == AseoDTO.class) {
+            rta.setServicio((AseoEntity) servicio.toEntity());
+        } else if (servicio.getClass() == HotelDTO.class) {
+            rta.setServicio((HotelEntity) servicio.toEntity());
+        } else if (servicio.getClass() == EntrenamientoDTO.class) {
+            rta.setServicio((EntrenamientoEntity) servicio.toEntity());
+        } else if (servicio.getClass() == PaseoDTO.class) {
+            rta.setServicio((PaseoEntity) servicio.toEntity());
         }
-        if(metodoDePago.getClass() == PayPalDTO.class){
-            rta.setMetodoDePago((PayPalEntity) metodoDePago.toEntity());
-        }else if(metodoDePago.getClass() == PseDTO.class){
-            rta.setMetodoDePago((PseEntity) metodoDePago.toEntity());
-        }else if(metodoDePago.getClass() == TarjetaCreditoDTO.class){
-            rta.setMetodoDePago((TarjetaCreditoEntity) metodoDePago.toEntity());
-        }
+//        if(metodoDePago.getClass() == PayPalDTO.class){
+//            rta.setMetodoDePago((PayPalEntity) metodoDePago.toEntity());
+//        }else if(metodoDePago.getClass() == PseDTO.class){
+//            rta.setMetodoDePago((PseEntity) metodoDePago.toEntity());
+//        }else if(metodoDePago.getClass() == TarjetaCreditoDTO.class){
+//            rta.setMetodoDePago((TarjetaCreditoEntity) metodoDePago.toEntity());
+//        }
         return rta;
     }
-   
-    
-    
-    
+
 }

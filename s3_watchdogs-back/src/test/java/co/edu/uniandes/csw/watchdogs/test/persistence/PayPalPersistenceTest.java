@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.test.persistence;
 
 import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.persistence.CalificacionPersistence;
@@ -33,8 +34,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PayPalPersistenceTest {
-    
-      @Deployment
+
+    @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(CalificacionEntity.class.getPackage())
@@ -42,19 +43,17 @@ public class PayPalPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Inject
     private PayPalPersistence payPalPersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
-    private List<PayPalEntity> data = new ArrayList<PayPalEntity>();
 
-     @Before
+    @Before
     public void configTest() {
         try {
             utx.begin();
@@ -71,28 +70,41 @@ public class PayPalPersistenceTest {
             }
         }
     }
-        
-         /**
+
+    /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from PayPalEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
     }
-    
-     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+
+    private List<PayPalEntity> data = new ArrayList<PayPalEntity>();
+    private List<ClienteEntity> clienteData = new ArrayList<ClienteEntity>();
+
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            PayPalEntity entity = factory.manufacturePojo(PayPalEntity.class);  
+            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(entity);
+            clienteData.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
+            PayPalEntity entity = factory.manufacturePojo(PayPalEntity.class);
+            if (i == 0) {
+                entity.setCliente(clienteData.get(0));
+            }
             em.persist(entity);
             data.add(entity);
         }
     }
-    
-     @Test
-    public void createPayPalTest(){
+
+    @Test
+    public void createPayPalTest() {
         PodamFactory factory = new PodamFactoryImpl();
         PayPalEntity newEntity = factory.manufacturePojo(PayPalEntity.class);
         PayPalEntity result = payPalPersistence.create(newEntity);
@@ -102,9 +114,12 @@ public class PayPalPersistenceTest {
         PayPalEntity entity = em.find(PayPalEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+
     }
-    
-     @Test
+
+    @Test
     public void getPayPalsTest() {
         List<PayPalEntity> list = payPalPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
@@ -118,23 +133,26 @@ public class PayPalPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getPayPalTest() {
         PayPalEntity entity = data.get(0);
-        PayPalEntity newEntity = payPalPersistence.find(entity.getId());
+        PayPalEntity newEntity = payPalPersistence.find(clienteData.get(0).getId(),entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getCorreo(), newEntity.getCorreo());
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        
     }
-    
-     @Test
+
+    @Test
     public void deletePayPalTest() {
         PayPalEntity entity = data.get(0);
         payPalPersistence.delete(entity.getId());
         PayPalEntity deleted = em.find(PayPalEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+
     @Test
     public void updatePayPalTest() {
         PayPalEntity entity = data.get(0);

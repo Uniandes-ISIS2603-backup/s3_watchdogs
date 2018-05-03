@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.TarjetaCreditoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.TarjetaCreditoPersistence;
@@ -33,21 +34,23 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class TarjetaCreditoLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
-    
+
     @Inject
     private TarjetaCreditoLogic tarjetaLogic;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     private UserTransaction utx;
-    
-    private List<TarjetaCreditoEntity> tarjetaData = new ArrayList<TarjetaCreditoEntity>();
-    
-     @Deployment
+
+    private List<TarjetaCreditoEntity> data = new ArrayList<TarjetaCreditoEntity>();
+
+    private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
+
+    @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(TarjetaCreditoEntity.class.getPackage())
@@ -56,7 +59,7 @@ public class TarjetaCreditoLogicTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     /**
      * Configuración inicial de la prueba.
      *
@@ -86,6 +89,7 @@ public class TarjetaCreditoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from TarjetaCreditoEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
     }
 
     /**
@@ -98,10 +102,15 @@ public class TarjetaCreditoLogicTest {
         for (int i = 0; i < 3; i++) {
             TarjetaCreditoEntity tarjeta = factory.manufacturePojo(TarjetaCreditoEntity.class);
             em.persist(tarjeta);
-            tarjetaData.add(tarjeta);
+            data.add(tarjeta);
+        }
+        for (int i = 0; i < 3; i++) {
+            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(entity);
+            dataCliente.add(entity);
         }
     }
-    
+
     /**
      * Prueba para crear una tarjeta
      *
@@ -110,7 +119,7 @@ public class TarjetaCreditoLogicTest {
     @Test
     public void createTarjetaTest() throws BusinessLogicException {
         TarjetaCreditoEntity newEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
-        TarjetaCreditoEntity result = tarjetaLogic.createTarjeta(newEntity);
+        TarjetaCreditoEntity result = tarjetaLogic.createTarjeta(data.get(0).getCliente().getId(), newEntity);
         Assert.assertNotNull(result);
         TarjetaCreditoEntity entity = em.find(TarjetaCreditoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -119,19 +128,19 @@ public class TarjetaCreditoLogicTest {
         Assert.assertEquals(newEntity.getFechaVencimiento(), entity.getFechaVencimiento());
         Assert.assertEquals(newEntity.getNumeroTarjeta(), entity.getNumeroTarjeta());
     }
-    
-     /**
+
+    /**
      * Prueba para consultar la lista de tarjetas
      *
      *
      */
     @Test
-    public void getTarjetasTest() {
-        List<TarjetaCreditoEntity> list = tarjetaLogic.getTarjetas();
-        Assert.assertEquals(tarjetaData.size(), list.size());
+    public void getTarjetasTest() throws BusinessLogicException {
+        List<TarjetaCreditoEntity> list = tarjetaLogic.getTarjetas(dataCliente.get(1).getId());
+        Assert.assertEquals(data.size(), list.size());
         for (TarjetaCreditoEntity entity : list) {
             boolean found = false;
-            for (TarjetaCreditoEntity storedEntity : tarjetaData) {
+            for (TarjetaCreditoEntity storedEntity : data) {
                 if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
@@ -139,16 +148,16 @@ public class TarjetaCreditoLogicTest {
             Assert.assertTrue(found);
         }
     }
-    
-     /**
+
+    /**
      * Prueba para consultar una tarjeta
      *
      *
      */
     @Test
     public void getTarjetaTest() {
-        TarjetaCreditoEntity entity = tarjetaData.get(0);
-        TarjetaCreditoEntity resultEntity = tarjetaLogic.getTarjeta(entity.getId());
+        TarjetaCreditoEntity entity = data.get(0);
+        TarjetaCreditoEntity resultEntity = tarjetaLogic.getTarjeta(dataCliente.get(1).getId(), entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
@@ -156,7 +165,7 @@ public class TarjetaCreditoLogicTest {
         Assert.assertEquals(entity.getFechaVencimiento(), resultEntity.getFechaVencimiento());
         Assert.assertEquals(entity.getNumeroTarjeta(), resultEntity.getNumeroTarjeta());
     }
-    
+
     /**
      * Prueba para eliminar una tarjeta
      *
@@ -164,20 +173,20 @@ public class TarjetaCreditoLogicTest {
      */
     @Test
     public void deleteTarjetaTest() {
-        TarjetaCreditoEntity entity = tarjetaData.get(0);
-        tarjetaLogic.deleteTarjeta(entity.getId());
+        TarjetaCreditoEntity entity = data.get(0);
+        tarjetaLogic.deleteTarjeta(dataCliente.get(1).getId(), entity.getId());
         TarjetaCreditoEntity deleted = em.find(TarjetaCreditoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
-     /**
+
+    /**
      * Prueba para actualizar una tarjeta
      *
      *
      */
     @Test
     public void updateTarjetaTest() throws BusinessLogicException {
-        TarjetaCreditoEntity entity = tarjetaData.get(0);
+        TarjetaCreditoEntity entity = data.get(0);
         TarjetaCreditoEntity pojoEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
 
         pojoEntity.setId(entity.getId());

@@ -7,8 +7,11 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamDoubleValue;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,9 +29,6 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     private Double valor;
     private Boolean pagado;
     
-    @PodamExclude
-    @OneToOne
-    private MetodoDePagoEntity metodoDePago;
     
     @PodamExclude
     @ManyToOne
@@ -37,6 +37,28 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     @PodamExclude
     @OneToOne
     private ServicioEntity servicio;
+    
+     /**
+     * Relacion con los metodos de pago del cliente.
+     */
+    @PodamExclude
+    @OneToOne(mappedBy = "cliente")
+    private List<PayPalEntity> payPals = new ArrayList<>();
+
+    /**
+     * Relacion con los metodos de pago del cliente.
+     */
+    @PodamExclude
+    @OneToOne(mappedBy = "cliente")
+    private List<PseEntity> pses = new ArrayList<>();
+
+    /**
+     * Relacion con los metodos de pago del cliente.
+     */
+    @PodamExclude
+    @OneToOne(mappedBy = "cliente")
+    private List<TarjetaCreditoEntity> tarjetas = new ArrayList<>();
+
     
     
     public FacturaEntity(){
@@ -97,21 +119,9 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     }
 
     
-    /**
-     * @return the metodoDePago
-     */
-    public MetodoDePagoEntity getMetodoDePago() {
-        return metodoDePago;
-    }
+  
 
-    /**
-     * @param metodoDePago the metodoDePago to set
-     */
-    
-    public void setMetodoDePago(MetodoDePagoEntity metodoDePago) {
-        this.metodoDePago = metodoDePago;
-    }
-
+   
     /**
      * @return the servicio
      */

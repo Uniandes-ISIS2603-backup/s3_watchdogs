@@ -6,23 +6,25 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import co.edu.uniandes.csw.watchdogs.podam.DateStrategy;
-import co.edu.uniandes.csw.watchdogs.podam.DateTarjetaStrategy;
 import co.edu.uniandes.csw.watchdogs.podam.NumTarjetaStrategy;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
-
 
 /**
  *
  * @author jc.pulido
  */
 @Entity
-public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializable {
-    
+public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
+
     @PodamStrategyValue(NumTarjetaStrategy.class)
     private String numeroTarjeta;
     @Temporal(TemporalType.DATE)
@@ -30,8 +32,24 @@ public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializ
     private Date fechaVencimiento;
     private String codigoSeguridad;
 
+    @PodamExclude
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private ClienteEntity cliente;
+    
+    @OneToOne
+    private FacturaEntity factura;
+
+    public FacturaEntity getFactura() {
+        return factura;
+    }
+
+    public void setFactura(FacturaEntity factura) {
+        this.factura = factura;
+    }
+
     /**
      * Método que retorna el número de la tarjeta
+     *
      * @return El npumero de la tarjeta
      */
     public String getNumeroTarjeta() {
@@ -40,6 +58,7 @@ public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializ
 
     /**
      * Método que asigna un nuevo valor al número de la tarjeta
+     *
      * @param numeroTarjeta El nuevo número de tarjeta a asignar
      */
     public void setNumeroTarjeta(String numeroTarjeta) {
@@ -47,37 +66,57 @@ public class TarjetaCreditoEntity extends MetodoDePagoEntity implements Serializ
     }
 
     /**
-     * Método que retorna la fecha de vencimiento 
-     * @return La fechca de vencimiento 
+     * Método que retorna la fecha de vencimiento
+     *
+     * @return La fechca de vencimiento
      */
     public Date getFechaVencimiento() {
         return fechaVencimiento;
     }
 
     /**
-     * Método que asigna un nuevo valor a la fecha de vencimiento 
-     * @param fechaVencimiento Nueva fecha a asignar 
+     * Método que asigna un nuevo valor a la fecha de vencimiento
+     *
+     * @param fechaVencimiento Nueva fecha a asignar
      */
     public void setFechaVencimiento(Date fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 
     /**
-     * Método que retorna el código de seguridad 
-     * @return El código de seguridad 
+     * Método que retorna el código de seguridad
+     *
+     * @return El código de seguridad
      */
     public String getCodigoSeguridad() {
         return codigoSeguridad;
     }
 
     /**
-     * Método que asigna un nuevo valor al código de seguridad 
+     * Método que asigna un nuevo valor al código de seguridad
+     *
      * @param codigoSeguridad El código nuevo a asignar
      */
     public void setCodigoSeguridad(String codigoSeguridad) {
         this.codigoSeguridad = codigoSeguridad;
     }
-    
-    
-    
+
+    /**
+     * M'etodo que retorna el cliente asignaod a la cuenta de paypal
+     *
+     * @return El cliente asociado a la cuenta de paypal
+     */
+    public ClienteEntity getCliente() {
+        return cliente;
+    }
+
+    /**
+     * Metodo que asigan un nuevo cliente a la cuenta de paypal
+     *
+     * @param cliente cliente a asignar
+     */
+    public void setCliente(ClienteEntity cliente) {
+        this.cliente = cliente;
+    }
+
 }

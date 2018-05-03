@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.watchdogs.test.logic;
 import co.edu.uniandes.csw.watchdogs.ejb.FacturaLogic;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
-import co.edu.uniandes.csw.watchdogs.entities.MetodoDePagoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.FacturaPersistence;

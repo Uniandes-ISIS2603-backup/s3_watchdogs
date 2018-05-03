@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.TarjetaCreditoPersistence;
@@ -19,31 +20,31 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-
 /**
  *
  * @author jc.pulido
  */
 @Stateless
 public class TarjetaCreditoLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(TarjetaCreditoLogic.class.getName());
-    
-    @Inject 
+
+    @Inject
     private TarjetaCreditoPersistence persistence;
-    
-    public TarjetaCreditoEntity createTarjeta(TarjetaCreditoEntity entity) throws BusinessLogicException
-    {
-        LOGGER.info("Inicia proceso de creación de una tarjeta");
+
+    @Inject
+    private ClienteLogic clienteLogic;
+
+    public TarjetaCreditoEntity createTarjeta(Long idCliente ,TarjetaCreditoEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de una tarjeta " + entity.getNumeroTarjeta());
         validateDate(entity.getFechaVencimiento());
         validateNum(entity.getNumeroTarjeta());
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de tarjeta");
-        return entity;
+        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+        entity.setCliente(cliente);
+        return persistence.create(entity);
     }
-    
-    public TarjetaCreditoEntity updateTarjeta(Long id, TarjetaCreditoEntity entity)throws BusinessLogicException
-    {
+
+    public TarjetaCreditoEntity updateTarjeta(Long id, TarjetaCreditoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualización de tarjeta con id{0}", id);
         validateDate(entity.getFechaVencimiento());
         validateNum(entity.getNumeroTarjeta());
@@ -51,65 +52,60 @@ public class TarjetaCreditoLogic {
         LOGGER.log(Level.INFO, "termina proceso de actualización de tarjeta con id{0}", entity.getId());
         return newEntity;
     }
-    
-    public void deleteTarjeta(Long id)
-    {
+
+    public void deleteTarjeta(Long clienteId,Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar tarjeta con id={0}", id);
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar tarjeta con id={0}", id);
+        TarjetaCreditoEntity old = getTarjeta(clienteId, id);
+        persistence.delete(old.getId());
     }
-    
-    public TarjetaCreditoEntity getTarjeta(Long id)
-    {
+
+    public TarjetaCreditoEntity getTarjeta(Long idCliente,Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso para obtener una tarjeta", id);
-        TarjetaCreditoEntity tarjeta = persistence.find(id);
-        if(tarjeta == null)
-        {
+        TarjetaCreditoEntity tarjeta = persistence.find(idCliente,id);
+        if (tarjeta == null) {
             LOGGER.log(Level.SEVERE, "La tarjeta con el id {0} no existe", id);
         }
         LOGGER.log(Level.INFO, "Termina e proceso de consultar una tarjeta con el id {0}", id);
         return tarjeta;
     }
-    
-    public List<TarjetaCreditoEntity> getTarjetas(){
-        LOGGER.info("Inicia proceso de consultar todas las tarjetas");
-        List<TarjetaCreditoEntity> tarjetas = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todas las tarjetas");
-        return tarjetas;
+
+    public List<TarjetaCreditoEntity> getTarjetas(Long idCliente) throws BusinessLogicException {
+        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+        if(cliente.getTarjetas()==null){
+            throw new BusinessLogicException("El cliente que consulta aun no tiene tarjetas de credito asociadas");
+        }
+        if(cliente.getTarjetas().isEmpty()){
+            throw new BusinessLogicException("El cliente que consulta aun no tiene tarjetas de credito asociadas");
+        }
+        return cliente.getTarjetas();
     }
-    
-    private void validateNum(String pNum) throws BusinessLogicException
-    {
-        if(pNum.length()!= 16)
-        {
+
+    private void validateNum(String pNum) throws BusinessLogicException {
+        //LOGGER.info(pNum + "mirar aquiiiiiiii-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        if (pNum.length() != 16) {
             throw new BusinessLogicException("El número de la tarjeta debe tener 16 dígitos fue" + pNum.length());
         }
-       
+
         String pr = pNum.substring(0, 4);
         String se = pNum.substring(4, 8);
         String te = pNum.substring(8, 12);
-        String cu = pNum.substring(12,15);
-        
-        try{
+        String cu = pNum.substring(12, 15);
+
+        try {
             Integer.parseInt(pr);
             Integer.parseInt(se);
             Integer.parseInt(te);
             Integer.parseInt(cu);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             throw new BusinessLogicException("El número de la tarjeta debe contener solo dígitos");
         }
-        
+
     }
-    
-    private void validateDate(Date date) throws BusinessLogicException
-    {
-        if(date.before(Calendar.getInstance().getTime()))
-        {
+
+    private void validateDate(Date date) throws BusinessLogicException {
+        if (date.before(Calendar.getInstance().getTime())) {
             throw new BusinessLogicException("La tarjeta ya se venció");
         }
     }
-    
-    
+
 }

@@ -11,7 +11,6 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
-import co.edu.uniandes.csw.watchdogs.entities.MetodoDePagoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
@@ -105,16 +104,42 @@ import java.util.List;
 public class ClienteDetailDTO extends ClienteDTO {
 
     private List<MascotaDTO> mascotas;
-    private List<MetodoDePagoDTO> metodosDePago;
     private List<FacturaDTO> facturas;
     private CalificacionDTO calificacion;
     private List<ServicioDTO> servicios;
+    private List<PayPalDTO> payPals;
+    private List<PseDTO> pses;
+    private List<TarjetaCreditoDTO> tarjetas;
+
+    public List<PayPalDTO> getPayPals() {
+        return payPals;
+    }
+
+    public void setPayPals(List<PayPalDTO> payPals) {
+        this.payPals = payPals;
+    }
+
+    public List<PseDTO> getPses() {
+        return pses;
+    }
+
+    public void setPses(List<PseDTO> pses) {
+        this.pses = pses;
+    }
+
+    public List<TarjetaCreditoDTO> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
 
     /**
      * Constructor por defecto
      */
     public ClienteDetailDTO() {
-        
+
     }
 
     /**
@@ -130,33 +155,35 @@ public class ClienteDetailDTO extends ClienteDTO {
             for (MascotaEntity entityMascotas : entity.getMascotas()) {
                 mascotas.add(new MascotaDTO(entityMascotas));
             }
-            metodosDePago = new ArrayList<>();
-            if (entity.getMetodosDePago() != null) {
 
-                for (MetodoDePagoEntity entityMetodosDePago : entity.getMetodosDePago()) {
-                    if (entityMetodosDePago.getClass().equals(PseEntity.class)) {
-                        PseDTO nuevo = new PseDTO();
-                        nuevo.setAprobado(entityMetodosDePago.getAprobado());
-                        nuevo.setCorreo(((PseEntity) entityMetodosDePago).getCorreo());
-                        nuevo.setId(entityMetodosDePago.getId());
-                        metodosDePago.add(nuevo);
-                    } else if (entityMetodosDePago.getClass().equals(TarjetaCreditoEntity.class)) {
-                        TarjetaCreditoDTO nuevo = new TarjetaCreditoDTO();
-                        nuevo.setId(entityMetodosDePago.getId());
-                        nuevo.setAprobado(entityMetodosDePago.getAprobado());
-                        nuevo.setCodSeguridad(((TarjetaCreditoEntity) entityMetodosDePago).getCodigoSeguridad());
-                        nuevo.setFechaVencimiento(((TarjetaCreditoEntity) entityMetodosDePago).getFechaVencimiento());
-                        nuevo.setNumTarjeta(((TarjetaCreditoEntity) entityMetodosDePago).getNumeroTarjeta());
-                        metodosDePago.add(nuevo);
-                    } else if (entityMetodosDePago.getClass().equals(PayPalEntity.class)) {
-                        PayPalDTO nuevo = new PayPalDTO();
-                        nuevo.setAprobado(entityMetodosDePago.getAprobado());
-                        nuevo.setCorreo(((PayPalEntity) entityMetodosDePago).getCorreo());
-                        nuevo.setId(entityMetodosDePago.getId());
-                        metodosDePago.add(nuevo);
-                    }
+            if (entity.getPayPals() != null) {
+                for (int i = 0; i < entity.getPayPals().size(); i++) {
+                    PayPalDTO old = new PayPalDTO(entity.getPayPals().get(i));
+                    PayPalDTO nuevo = new PayPalDTO();
+                    nuevo.setCorreo(old.getCorreo());
+                    nuevo.setId(old.getId());
+                    payPals.add(nuevo);
+                }
+            } else if (entity.getPses() != null) {
+                for (int i = 0; i < entity.getPses().size(); i++) {
+                    PseDTO old = new PseDTO(entity.getPses().get(i));
+                    PseDTO nuevo = new PseDTO();
+                    nuevo.setCorreo(old.getCorreo());
+                    nuevo.setId(old.getId());
+                    pses.add(nuevo);
+                }
+            } else if (entity.getTarjetas() != null) {
+                for (int i = 0; i < entity.getTarjetas().size(); i++) {
+                    TarjetaCreditoDTO old = new TarjetaCreditoDTO(entity.getTarjetas().get(i));
+                    TarjetaCreditoDTO nuevo = new TarjetaCreditoDTO();
+                    nuevo.setId(old.getId());
+                    nuevo.setNumeroTarjeta(old.getNumeroTarjeta());
+                    nuevo.setFechaVencimiento(old.getFechaVencimiento());
+                    nuevo.setCodSeguridad(old.getCodSeguridad());
+                    tarjetas.add(nuevo);
                 }
             }
+
             facturas = new ArrayList<>();
             for (FacturaEntity entityFacturas : entity.getFacturas()) {
                 facturas.add(new FacturaDTO(entityFacturas));
@@ -234,34 +261,50 @@ public class ClienteDetailDTO extends ClienteDTO {
             }
             clienteE.setMascotas(mascotasEntity);
         }
-        if (metodosDePago != null) {
-            List<MetodoDePagoEntity> metodosDePagoEntity = new ArrayList<>();
-            for (MetodoDePagoDTO dtoMetodoDePago : metodosDePago) {
-                if (dtoMetodoDePago.getClass().equals(PseDTO.class)) {
-                    PseEntity nuevo = new PseEntity();
-                    nuevo.setAprobado(dtoMetodoDePago.getAprobado());
-                    nuevo.setCorreo(((PseDTO) dtoMetodoDePago).getCorreo());
-                    nuevo.setId(dtoMetodoDePago.getId());
-                    metodosDePagoEntity.add(nuevo);
-                }
-                else if (dtoMetodoDePago.getClass().equals(TarjetaCreditoDTO.class)) {
-                    TarjetaCreditoEntity nuevo = new TarjetaCreditoEntity();
-                    nuevo.setId(dtoMetodoDePago.getId());
-                    nuevo.setAprobado(dtoMetodoDePago.getAprobado());
-                    nuevo.setFechaVencimiento(((TarjetaCreditoDTO) dtoMetodoDePago).getFechaVencimiento());
-                    nuevo.setNumeroTarjeta(((TarjetaCreditoDTO) dtoMetodoDePago).getNumTarjeta());
-                    metodosDePagoEntity.add(nuevo);
-                }
-                else if (dtoMetodoDePago.getClass().equals(PayPalDTO.class)) {
-                    PayPalEntity nuevo = new PayPalEntity();
-                    nuevo.setAprobado(dtoMetodoDePago.getAprobado());
-                    nuevo.setCorreo(((PayPalDTO) dtoMetodoDePago).getCorreo());
-                    nuevo.setId(dtoMetodoDePago.getId());
-                    metodosDePagoEntity.add(nuevo);
-                }
+        List<PseEntity> agregarPse = new ArrayList<>();
+        List<PayPalEntity> agregarPayPal = new ArrayList<>();
+        List<TarjetaCreditoEntity> agregarTarjetas = new ArrayList<>();
+
+        if (pses != null) {
+            for (int i = 0; i < pses.size(); i++) {
+                PseEntity nuevo = new PseEntity();
+                PseDTO old = pses.get(i);
+                nuevo.setCorreo(old.getCorreo());
+                nuevo.setId(old.getId());
+                nuevo.setName(old.getNombre());
+                nuevo.setCliente(clienteE);
+                agregarPse.add(nuevo);
             }
-            clienteE.setMetodosDePago(metodosDePagoEntity);
         }
+        if (payPals != null) {
+            for (int i = 0; i < payPals.size(); i++) {
+                PayPalEntity nuevo = new PayPalEntity();
+                PayPalDTO old = payPals.get(i);
+                nuevo.setCorreo(old.getCorreo());
+                nuevo.setId(old.getId());
+                nuevo.setName(old.getNombre());
+                nuevo.setCliente(clienteE);
+                agregarPayPal.add(nuevo);
+            }
+        }
+        if (tarjetas != null) {
+            for (int i = 0; i < tarjetas.size(); i++) {
+                TarjetaCreditoEntity nuevo = new TarjetaCreditoEntity();
+                TarjetaCreditoDTO old = tarjetas.get(i);
+                nuevo.setId(old.getId());
+                nuevo.setNumeroTarjeta(old.getNumeroTarjeta());
+                nuevo.setFechaVencimiento(old.getFechaVencimiento());
+                nuevo.setCodigoSeguridad(old.getCodSeguridad());
+                nuevo.setName(old.getNombre());
+                nuevo.setCliente(clienteE);
+                agregarTarjetas.add(nuevo);
+            }
+        }
+
+        clienteE.setPses(agregarPse);
+        clienteE.setPayPals(agregarPayPal);
+        clienteE.setTarjetas(agregarTarjetas);
+
         if (facturas != null) {
             List<FacturaEntity> facturasEntity = new ArrayList<>();
             for (FacturaDTO dtoFactura : facturas) {
@@ -337,20 +380,6 @@ public class ClienteDetailDTO extends ClienteDTO {
      */
     public void setMascotas(List<MascotaDTO> mascotas) {
         this.mascotas = mascotas;
-    }
-
-    /**
-     * @return the metodosDePago
-     */
-    public List<MetodoDePagoDTO> getMetodosDePago() {
-        return metodosDePago;
-    }
-
-    /**
-     * @param metodosDePago the metodosDePago to set
-     */
-    public void setMetodosDePago(List<MetodoDePagoDTO> metodosDePago) {
-        this.metodosDePago = metodosDePago;
     }
 
     /**

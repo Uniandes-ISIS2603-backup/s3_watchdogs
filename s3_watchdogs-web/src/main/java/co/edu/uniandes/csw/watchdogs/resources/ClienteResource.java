@@ -11,6 +11,8 @@ import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -166,7 +168,7 @@ public class ClienteResource {
         entity.setMascotas(oldEntity.getMascotas());
         entity.setCalificacion(oldEntity.getCalificacion());
         entity.setServicios(oldEntity.getServicios());
-        entity.setMetodosDePago(oldEntity.getMetodosDePago());
+        entity.setPayPals(oldEntity.getPayPals());
         return new ClienteDetailDTO(clienteLogic.updateCliente(id, entity));
     }
 
@@ -190,6 +192,60 @@ public class ClienteResource {
     @Path("{id: \\d+}")
     public void deleteCliente(@PathParam("id") Long id) throws BusinessLogicException {
         clienteLogic.deleteCliente(id);
+    }
+
+    /**
+     * Conexión con el servicio de metodos de pago para un cliente.
+     * {@link ClienteMetodosDePAgoResource}
+     *
+     * Este método conecta la ruta de /clientes con las rutas de /metodosDePago
+     * que dependen del cliente, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los metodos de pago.
+     *
+     * @param booksId El ID del libro con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de Autores para ese libro en paricular.
+     */
+    @Path("{clienteId: \\d+}/payPals")
+    public Class<PayPalResource> getClientePayPalResource(@PathParam("clienteId") Long clienteId) {
+
+        ClienteEntity entity = null;
+        try {
+            entity = clienteLogic.getCliente(clienteId);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ClienteResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + "/payPal no existe.", 404);
+        }
+        return PayPalResource.class;
+    }
+    
+     /**
+     * Conexión con el servicio de metodos de pago para un cliente.
+     * {@link ClienteMetodosDePAgoResource}
+     *
+     * Este método conecta la ruta de /clientes con las rutas de /metodosDePago
+     * que dependen del cliente, es una redirección al servicio que maneja el
+     * segmento de la URL que se encarga de los metodos de pago.
+     *
+     * @param booksId El ID del libro con respecto al cual se accede al
+     * servicio.
+     * @return El servicio de Autores para ese libro en paricular.
+     */
+    @Path("{clienteId: \\d+}/PSES")
+    public Class<PseResource> getClientePseResource(@PathParam("clienteId") Long clienteId) {
+
+        ClienteEntity entity = null;
+        try {
+            entity = clienteLogic.getCliente(clienteId);
+        } catch (BusinessLogicException ex) {
+            Logger.getLogger(ClienteResource.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (entity == null) {
+            throw new WebApplicationException("El recurso /clientes/" + clienteId + "/PSE no existe.", 404);
+        }
+        return PseResource.class;
     }
 
 }

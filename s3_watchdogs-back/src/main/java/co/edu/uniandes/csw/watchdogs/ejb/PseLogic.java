@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.PsePersistence;
@@ -26,48 +27,47 @@ public class PseLogic {
     @Inject
     private PsePersistence persistence;
     
-    public PseEntity createPse(PseEntity entity)throws BusinessLogicException
+    @Inject
+    private ClienteLogic clienteLogic;
+    
+    public PseEntity createPse(Long idCliente,PseEntity entity)throws BusinessLogicException
     {
         LOGGER.info("Inicia proceso de creacion de un PSE");
         validateEmail(entity.getCorreo());
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creacion de PSE");
-        return entity;
+        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+        entity.setCliente(cliente);
+        return persistence.create(entity);
     }
     
-    public PseEntity getPse(Long id)
+    public PseEntity getPse(Long clienteId, Long id)
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de consultar un pse con id = {0}", id);
-        PseEntity pse = persistence.find(id);
-        if(pse == null)
-        {
-            
-            LOGGER.log(Level.SEVERE, "El pse con el id {0} no existe", id);
-
-        }
-            LOGGER.log(Level.INFO, "Termina proceso de consultar pse con id={0}", id);
-            return pse;
+        return persistence.find(clienteId, id);
     }
     
-    public List<PseEntity> getPses()
+    public List<PseEntity> getPses(Long idCliente) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar todos los pse");
-        List<PseEntity> books = persistence.findAll();
-        LOGGER.info("Termina proceso de consultar todos los pses");
-        return books;
+        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+        if(cliente.getPses()==null){
+            throw new BusinessLogicException("El cliente que consulta aun no tiene cuentas de pse");
+        }
+        if(cliente.getPses().isEmpty()){
+            throw new BusinessLogicException("El cliente que consulta aun no tiene cuentas de pse asociadas");
+        }
+        return cliente.getPses();
     }
     
     public PseEntity updateEntity(Long id, PseEntity entity) throws BusinessLogicException
     {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar PSE con id = {0}", entity.getId());
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar PSE con id = {0}", id);
         return persistence.update(entity);
     }
     
-    public void deletePse(Long id)
+    public void deletePse(Long clienteId,Long id)
     {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar PSE con id = {0}", id);
-        persistence.delete(id);
-        LOGGER.log(Level.INFO, "Termina proceso de borrar PSE con id {0}", id);
+        PseEntity old = getPse(clienteId, id);
+        persistence.delete(old.getId());
     }
     
     

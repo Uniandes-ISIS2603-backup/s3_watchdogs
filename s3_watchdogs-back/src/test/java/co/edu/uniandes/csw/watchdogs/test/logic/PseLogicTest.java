@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.PseLogic;
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.PsePersistence;
@@ -32,20 +33,22 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PseLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
-    
+
     @Inject
     private PseLogic pseLogic;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     private UserTransaction utx;
-    
+
     private List<PseEntity> data = new ArrayList<PseEntity>();
-    
+
+    private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -55,7 +58,7 @@ public class PseLogicTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     /**
      * Configuración inicial de la prueba.
      *
@@ -85,8 +88,10 @@ public class PseLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PseEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
+
     }
-    
+
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
@@ -99,34 +104,37 @@ public class PseLogicTest {
             em.persist(pse);
             data.add(pse);
         }
+        for (int i = 0; i < 3; i++) {
+            ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(entity);
+            dataCliente.add(entity);
+        }
     }
-    
-     /**
+
+    /**
      * Prueba para crear una PSE
      *
      *
      */
     @Test
-    public void CreatePseTest() throws BusinessLogicException
-    {
+    public void CreatePseTest() throws BusinessLogicException {
         PseEntity newEntity = factory.manufacturePojo(PseEntity.class);
-        PseEntity result = pseLogic.createPse(newEntity);
+        PseEntity result = pseLogic.createPse(data.get(0).getCliente().getId(), newEntity);
         Assert.assertNotNull(result);
         PseEntity entity = em.find(PseEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
-        Assert.assertEquals(newEntity.getNombre(), entity.getNombre());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
     }
-    
+
     /**
      * Prueba para consultar la lista de PSE
      *
      *
      */
     @Test
-    public void getPsesTest()
-    {
-        List<PseEntity> list = pseLogic.getPses();
+    public void getPsesTest() throws BusinessLogicException {
+        List<PseEntity> list = pseLogic.getPses(dataCliente.get(1).getId());
         Assert.assertEquals(data.size(), list.size());
         for (PseEntity entity : list) {
             boolean found = false;
@@ -138,8 +146,8 @@ public class PseLogicTest {
             Assert.assertTrue(found);
         }
     }
-    
-     /**
+
+    /**
      * Prueba para consultar un PSE
      *
      *
@@ -147,15 +155,14 @@ public class PseLogicTest {
     @Test
     public void getPseTest() {
         PseEntity entity = data.get(0);
-        PseEntity resultEntity = pseLogic.getPse(entity.getId());
+        PseEntity resultEntity = pseLogic.getPse(dataCliente.get(1).getId(), entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
-        Assert.assertEquals(entity.getNombre(), resultEntity.getNombre());
+        Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getCorreo(), resultEntity.getCorreo());
-        }
-    
-    
-     /**
+    }
+
+    /**
      * Prueba para eliminar un pse
      *
      *
@@ -163,12 +170,12 @@ public class PseLogicTest {
     @Test
     public void deletePseTest() {
         PseEntity entity = data.get(0);
-        pseLogic.deletePse(entity.getId());
+        pseLogic.deletePse(dataCliente.get(1).getId(), entity.getId());
         PseEntity deleted = em.find(PseEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
-     /**
+
+    /**
      * Prueba para actualizar un PSE
      *
      *
@@ -185,9 +192,8 @@ public class PseLogicTest {
         PseEntity resp = em.find(PseEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getCorreo(), resp.getCorreo());
-        }
+    }
 
 }
- 
