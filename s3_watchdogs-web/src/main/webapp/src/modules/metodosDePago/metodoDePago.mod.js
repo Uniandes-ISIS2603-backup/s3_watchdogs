@@ -10,8 +10,11 @@
 
             $stateProvider.state('payPalList', {
 
-                url: '/payPal/list',
+                url: '{clienteId:int}/payPal/list',
                 parent: 'clienteDetail',
+                param: {
+                    clienteId: null
+                },
                 views: {
                     childrenView: {
                         templateUrl: basePath + 'paypal.list.html',

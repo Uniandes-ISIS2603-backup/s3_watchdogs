@@ -13,7 +13,7 @@
                     <div class="container">
                         <div class="row">
                             <label for="nombre">Nombre: </label>
-                            <p class="form-control" id="nombre"> {{currentCliente.nombre}} </p>
+                            <p class="form-control" id="nombre"> {{currentCliente.name}} </p>
                         </div>
                         <div class="row">   
                             <label for="documento">Documento: </label>  
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="col-sm-1"></div>
                                 <div class="col-sm-1">
-                                    <button type="button" class="btn btn-secondary btn-sm" ui-sref="payPalList">PayPal</button>
+                                    <button type="button" class="btn btn-secondary btn-sm" ui-sref="payPalList({clienteId: cliente.id})">PayPal</button>
                                 </div>
                             </div>
                         </div>
