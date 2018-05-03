@@ -12,7 +12,7 @@
                 
                 url: '/servicios/list',
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'servicios.list.html',
                         controller: 'serviciosCtrl',
                         controllerAs: 'ctrl'
@@ -21,7 +21,7 @@
             }).state('aseoDetail',{
                 url:'/servicios/list/aseo/detail',
                 views:{
-                    'mainView':{
+                    'completeView':{
                         templateUrl: basePath + 'aseo.detail.html',
                         controller:'serviciosCtrl',
                         controllerAs: 'ctrl' 
