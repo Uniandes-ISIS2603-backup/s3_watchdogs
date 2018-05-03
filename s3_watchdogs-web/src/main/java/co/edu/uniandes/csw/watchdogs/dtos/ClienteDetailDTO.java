@@ -156,6 +156,7 @@ public class ClienteDetailDTO extends ClienteDTO {
                 mascotas.add(new MascotaDTO(entityMascotas));
             }
 
+            payPals = new ArrayList<>();
             if (entity.getPayPals() != null) {
                 for (int i = 0; i < entity.getPayPals().size(); i++) {
                     PayPalDTO old = new PayPalDTO(entity.getPayPals().get(i));
@@ -164,7 +165,10 @@ public class ClienteDetailDTO extends ClienteDTO {
                     nuevo.setId(old.getId());
                     payPals.add(nuevo);
                 }
-            } else if (entity.getPses() != null) {
+            }
+            
+            pses = new ArrayList<>();
+            if (entity.getPses() != null) {
                 for (int i = 0; i < entity.getPses().size(); i++) {
                     PseDTO old = new PseDTO(entity.getPses().get(i));
                     PseDTO nuevo = new PseDTO();
@@ -172,7 +176,10 @@ public class ClienteDetailDTO extends ClienteDTO {
                     nuevo.setId(old.getId());
                     pses.add(nuevo);
                 }
-            } else if (entity.getTarjetas() != null) {
+            }
+            
+            tarjetas = new ArrayList<>();
+            if (entity.getTarjetas() != null) {
                 for (int i = 0; i < entity.getTarjetas().size(); i++) {
                     TarjetaCreditoDTO old = new TarjetaCreditoDTO(entity.getTarjetas().get(i));
                     TarjetaCreditoDTO nuevo = new TarjetaCreditoDTO();
