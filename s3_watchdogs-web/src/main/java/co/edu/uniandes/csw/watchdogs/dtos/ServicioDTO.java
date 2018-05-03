@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author c.martinezc1
  */
-public abstract class ServicioDTO {
+public  class ServicioDTO {
     /**
      * identificador
      */
@@ -175,7 +175,13 @@ public abstract class ServicioDTO {
     
     
     public ServicioEntity toEntity(){
-        ServicioEntity servicio = null;
+        ServicioEntity servicio = new ServicioEntity();
+        servicio.setCosto(costo);
+        servicio.setDuracion(duracion);
+        servicio.setEstado(estado);
+        servicio.setFecha(fecha);
+        servicio.setId(id);
+        servicio.setRango(rango);
         return servicio;
     }
      

@@ -43,8 +43,6 @@ public class EntrenamientoLogic {
     @Inject
     private EmpleadoLogic empleadoLogic;
 
-    @Inject
-    private CalificacionLogic calificacionLogic;
 
     /**
      * Devuelve todos los Entrenamiento que hay en la base de datos.
@@ -88,6 +86,8 @@ public class EntrenamientoLogic {
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
             entity.setCliente(cliente);
             entity.setMascota(mascota);
             persistence.create(entity);
@@ -97,6 +97,8 @@ public class EntrenamientoLogic {
             throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
         }
     }
+    
+    
 
     /**
      * Guardar un nuevo Entrenamiento
@@ -116,6 +118,8 @@ public class EntrenamientoLogic {
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(idC);
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(false);
             entity.setCliente(cliente);
             entity.setMascota(mascota);
             persistence.create(entity);
@@ -225,4 +229,7 @@ public class EntrenamientoLogic {
         }
     }
 
+    private Double costo(double duracion){
+        return duracion * 1.5;
+    }
 }

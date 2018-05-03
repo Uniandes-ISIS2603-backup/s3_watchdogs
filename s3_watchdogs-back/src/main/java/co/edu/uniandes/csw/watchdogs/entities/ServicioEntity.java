@@ -6,12 +6,13 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import co.edu.uniandes.csw.watchdogs.podam.DateStrategy;
-import co.edu.uniandes.csw.watchdogs.podam.DateTarjetaStrategy;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -24,7 +25,8 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  * @author c.martinezc1
  */
 @Entity
-public abstract class ServicioEntity extends BaseEntity implements Serializable{
+@Inheritance(strategy = InheritanceType.JOINED)
+public  class ServicioEntity extends BaseEntity implements Serializable{
       
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)

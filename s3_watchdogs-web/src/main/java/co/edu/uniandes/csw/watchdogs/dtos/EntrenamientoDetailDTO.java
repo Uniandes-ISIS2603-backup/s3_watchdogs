@@ -39,6 +39,7 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
         if(entity.getTransporte() != null){
             this.transporte = new TransporteDTO(entity.getTransporte());
         }
+        else transporte = null;
     }
     
     public String getTipo() {

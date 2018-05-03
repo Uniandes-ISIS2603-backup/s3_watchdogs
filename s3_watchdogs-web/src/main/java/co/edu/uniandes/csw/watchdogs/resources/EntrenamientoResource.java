@@ -47,7 +47,7 @@ public class EntrenamientoResource{
     public List<EntrenamientoDetailDTO> getEntrenamientos() throws BusinessLogicException {
         return listEntrenamientoEntity2DetailDTO(entrenamientoLogic.getEntrenamientos());
     }
-
+    
     /**
      *
      * @param id

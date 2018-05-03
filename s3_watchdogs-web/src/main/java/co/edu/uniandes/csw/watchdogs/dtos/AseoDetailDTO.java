@@ -46,9 +46,37 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  *
  * @author js.vacat
  */
-public class AseoDetailDTO extends AseoDTO{
+public class AseoDetailDTO extends ServicioDetailDTO{
    
     private VeterinariaDTO veterinaria;
+    
+    private Boolean dientes;
+    private Boolean banho;
+    private Boolean peluqueria;
+
+    public Boolean getDientes() {
+        return dientes;
+    }
+
+    public void setDientes(Boolean dientes) {
+        this.dientes = dientes;
+    }
+
+    public Boolean getBanho() {
+        return banho;
+    }
+
+    public void setBanho(Boolean banho) {
+        this.banho = banho;
+    }
+
+    public Boolean getPeluqueria() {
+        return peluqueria;
+    }
+
+    public void setPeluqueria(Boolean peluqueria) {
+        this.peluqueria = peluqueria;
+    }
     
      /**
      * Constructor por defecto
@@ -65,6 +93,10 @@ public class AseoDetailDTO extends AseoDTO{
      */
     public AseoDetailDTO(AseoEntity entity) {
         super(entity);
+        this.banho = entity.getBanho();
+        this.dientes = entity.getDientes();
+        this.peluqueria = entity.getPeluqueria();
+        
         if(entity.getVeterinaria() != null){
             this.veterinaria = new VeterinariaDTO(entity.getVeterinaria());
         }
@@ -80,7 +112,31 @@ public class AseoDetailDTO extends AseoDTO{
      */
     @Override
     public AseoEntity toEntity() {
-        AseoEntity entity = super.toEntity();
+        AseoEntity entity = new AseoEntity();
+        entity.setBanho(this.banho);
+        entity.setDientes(this.dientes);
+        entity.setPeluqueria(this.peluqueria);
+        entity.setCosto(this.getCosto());
+        entity.setDuracion(this.getDuracion());
+        entity.setEstado(this.isEstado());
+        entity.setFecha(this.getFecha());
+        entity.setRango(this.getRango());
+        entity.setId(this.id);
+        if(this.cliente!=null){
+            entity.setCliente(cliente.toEntity());
+        }
+        if(this.mascota!=null){
+            entity.setMascota(mascota.toEntity());
+        }
+        if(this.empleado!=null){
+            entity.setEmpleado(empleado.toEntity());
+        }
+        if(this.factura!=null){
+            entity.setFactura(factura.toEntity());
+        }
+        if(this.calificacion!=null){
+            entity.setCalificacion(calificacion.toEntity());
+        }
         if(this.getVeterinaria() != null){
             entity.setVeterinaria(this.getVeterinaria().toEntity());
         }
