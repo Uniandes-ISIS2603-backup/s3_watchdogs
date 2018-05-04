@@ -6,9 +6,9 @@
     mod.controller('payPalCtrl', ['$scope', '$http', 'payPalContext', '$state',
         function ($scope, $http, payPalContext, $state) {
             if(($state.params.clienteId !== undefined) && ($state.params.clienteId !== null)){
-                
-            $http.get(payPalContext + '/' + $state.params.clienteId).then(function (response) {
-                $scope.metodosDePagoRecords = response.data;
+                console.log(payPalContext);
+            $http.get(payPalContext + '/' + $state.params.clienteId + '/payPal').then(function (response) {
+                $scope.payPalRecords = response.data;
             
             });
         }
