@@ -45,6 +45,9 @@ public class EmpleadoDTO {
     private String cedula;
     private String imagen;
     private Integer edad;
+    private String correo;
+    private String telefono;
+    private String cargo;
 
     //----- Constructor -----
     /**
@@ -64,6 +67,10 @@ public class EmpleadoDTO {
         this.nombre = empleado.getName();
         this.cedula = empleado.getCedula();
         this.imagen = empleado.getImagen();
+        this.edad = empleado.getEdad();
+        this.correo = empleado.getCorreo();
+        this.cargo = empleado.getCargo();
+        this.telefono = empleado.getTelefono();
     }
 
     //----- Metodos -----
@@ -135,6 +142,9 @@ public class EmpleadoDTO {
         entity.setCedula(this.cedula);
         entity.setImagen(this.imagen);
         entity.setEdad(this.edad);
+        entity.setCorreo(this.correo);
+        entity.setCargo(this.cargo);
+        entity.setTelefono(this.telefono);
         return entity;
     }
 
@@ -151,5 +161,53 @@ public class EmpleadoDTO {
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
+    
+    
+    /**
+     * @return the telefono
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * @param telefono the cedula to set
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    
+    
+    /**
+     * @return the cargo
+     */
+    public String getCargo() {
+        return cargo;
+    }
+
+    /**
+     * @param cargo the cargo to set
+     */
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    
+    
+    /**
+     * @return the correo
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * @param correo the correo to set
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
 
 }

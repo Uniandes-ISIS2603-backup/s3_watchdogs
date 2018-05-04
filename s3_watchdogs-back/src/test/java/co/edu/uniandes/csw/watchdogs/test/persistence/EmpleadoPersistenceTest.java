@@ -136,6 +136,9 @@ public class EmpleadoPersistenceTest {
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getCedula(), newEntity.getCedula());
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getCorreo(), (newEntity.getCorreo()));
+        Assert.assertEquals(entity.getCargo(), (newEntity.getCargo()));
+        Assert.assertEquals(entity.getTelefono(), (newEntity.getTelefono()));
     }
 
     /**

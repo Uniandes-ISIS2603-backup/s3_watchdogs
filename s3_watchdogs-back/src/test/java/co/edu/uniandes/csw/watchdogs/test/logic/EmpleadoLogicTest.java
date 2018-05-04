@@ -114,6 +114,10 @@ public class EmpleadoLogicTest {
             Assert.assertEquals(newEntity.getId(), entity.getId());
             Assert.assertEquals(newEntity.getName(), entity.getName());
             Assert.assertEquals(newEntity.getCedula(), entity.getCedula());
+            Assert.assertEquals(newEntity.getCorreo(),(entity.getCorreo()));
+            Assert.assertEquals(newEntity.getCargo(),(entity.getCargo()));
+            Assert.assertEquals(newEntity.getTelefono(),(entity.getTelefono()));   
+
         } catch (BusinessLogicException e) {
             fail();
         }
@@ -149,6 +153,9 @@ public class EmpleadoLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getCedula(), resultEntity.getCedula());
+        Assert.assertEquals(entity.getCorreo(),(resultEntity.getCorreo()));
+        Assert.assertEquals(entity.getCargo(),(resultEntity.getCargo()));
+        Assert.assertEquals(entity.getTelefono(),(resultEntity.getTelefono()));
     }
 
     /**
@@ -184,6 +191,9 @@ public class EmpleadoLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getCedula(), resp.getCedula());
+         Assert.assertEquals(pojoEntity.getCorreo(),(resp.getCorreo()));
+        Assert.assertEquals(pojoEntity.getCargo(),(resp.getCargo()));
+        Assert.assertEquals(pojoEntity.getTelefono(),(resp.getTelefono()));
     }
 
 }

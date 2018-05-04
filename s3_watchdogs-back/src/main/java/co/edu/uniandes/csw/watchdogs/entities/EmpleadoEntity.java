@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
+import co.edu.uniandes.csw.watchdogs.podam.CorreoStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  * Clase que representa una entidad de un empleado para ser creado en la base de
@@ -24,6 +26,14 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class EmpleadoEntity extends BaseEntity implements Serializable {
 
+    /**
+     * Constantes posibles para el Cargo del empleado 
+     **/
+    public static final String PASEADOR = "Paseador";
+    public static final String ASEADOR = "Aseador";
+    public static final String ENTRENADOR = "Entrenador";
+    
+    
     /**
      * Relacion con la disponibilidad del empleado.
      */
@@ -60,6 +70,24 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      */
     private Integer edad;
 
+    /**
+     * Cargo del empleado.
+     */
+    private String cargo;
+    
+    /**
+     * Correo del empleado.
+     */
+    
+    @PodamStrategyValue(CorreoStrategy.class)
+    private String correo;
+    
+    /**
+     * Telefono del empleado.
+     */
+    private String telefono;
+    
+    
     /**
      * Obtiene el atributo disponibilidad.
      *
@@ -166,6 +194,60 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      */
     public void setCedula(String cedula) {
         this.cedula = cedula;
+    }
+    
+    /**
+     * Obtiene el atributo cargo.
+     *
+     * @return atributo cargo.
+     */
+    public String getCargo() {
+        return cargo;
+    }
+
+    /**
+     * Establece el valor del atributo cargo.
+     *
+     * @param cargo nuevo valor del atributo.
+     */
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+    
+    /**
+     * Obtiene el atributo correo.
+     *
+     * @return atributo correo.
+     */
+    public String getCorreo() {
+        return correo;
+    }
+
+    /**
+     * Establece el valor del atributo correo.
+     *
+     * @param correo nuevo valor del atributo.
+     */
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    
+    /**
+     * Obtiene el atributo telefono.
+     *
+     * @return atributo telefono.
+     */
+    public String getTelefono() {
+        return telefono;
+    }
+
+    /**
+     * Establece el valor del atributo telefono.
+     *
+     * @param telefono nuevo valor del atributo.
+     */
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
 }

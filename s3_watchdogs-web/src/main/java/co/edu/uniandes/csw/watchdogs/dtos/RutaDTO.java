@@ -16,7 +16,8 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
  * <pre>
  *   {
  *      "id": number,
- *      "duracion": number,
+ *      "nombre": String,
+ *      "duracion": number
  *   }
  * </pre>
  * Por ejemplo una ruta se representa asi:<br>
@@ -25,7 +26,8 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
  * 
  *   {
  *      "id": 1321321,
- *      "duracion": 43,
+ *      "nombre": "Molinos",
+ *      "duracion": 43
  *   }
  *
  * </pre>
@@ -35,6 +37,7 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
 public class RutaDTO {
     
     private Long id;
+    private String nombre;
     private Integer duracion;
     
      /** 
@@ -51,6 +54,7 @@ public class RutaDTO {
     public RutaDTO(RutaEntity entity){
         if(entity != null){
         this.id = entity.getId();
+        this.nombre = entity.getName();
         this.duracion = entity.getDuracion();
         }
     }
@@ -70,6 +74,23 @@ public class RutaDTO {
     
     public void setId(Long id){
         this.id = id;
+    }
+    
+    /**
+     * 
+     * @return El nombre de la ruta
+     */
+    
+    public String getNombre(){
+        return nombre;
+    }
+    
+    /**
+     * @param nombre El nuevo nombre de la ruta
+     */
+    
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
     
     /**
@@ -96,6 +117,7 @@ public class RutaDTO {
     public RutaEntity toEntity(){
         RutaEntity entity = new RutaEntity();
         entity.setId(id);
+        entity.setName(nombre);
         entity.setDuracion(duracion);
         return entity;
     }

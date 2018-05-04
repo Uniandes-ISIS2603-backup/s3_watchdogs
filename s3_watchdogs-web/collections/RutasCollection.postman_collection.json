@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"duracion\" : 1239}"
+					"raw": "{ \"duracion\" : 1239, \"nombre\":\"Ruta por el Río\"}"
 				},
 				"description": "Sirve para consultar todas las rutas"
 			},
@@ -65,7 +65,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"duracion\" : 79}"
+					"raw": "{ \"duracion\" : 79, \"nombre\":\"Ruta por el Río\"}"
 				},
 				"description": "Sirve para consultar todas las rutas"
 			},
