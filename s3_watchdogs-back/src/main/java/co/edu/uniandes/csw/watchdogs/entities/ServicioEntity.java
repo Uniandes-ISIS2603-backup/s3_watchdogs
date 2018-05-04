@@ -26,7 +26,7 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public  class ServicioEntity extends BaseEntity implements Serializable{
+public class ServicioEntity extends BaseEntity implements Serializable{
       
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)

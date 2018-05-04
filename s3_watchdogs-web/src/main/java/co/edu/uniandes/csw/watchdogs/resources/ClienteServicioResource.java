@@ -40,9 +40,9 @@ public class ClienteServicioResource {
 
     private List<ServicioDetailDTO> servicioListEntity2DTO(List<ServicioEntity> entityList) {
         List<ServicioDetailDTO> list = new ArrayList<>();
-        entityList.forEach((entity) -> {
-            list.add(new ServicioDetailDTO(entity));
-        });
+        for(ServicioEntity entity : entityList){
+            list.add(new ServicioDetailDTO(entity){});
+        }
         return list;
     }
 

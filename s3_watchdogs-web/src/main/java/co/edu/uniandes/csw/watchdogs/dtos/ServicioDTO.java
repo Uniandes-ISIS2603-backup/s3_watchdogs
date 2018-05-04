@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author c.martinezc1
  */
-public  class ServicioDTO {
+public abstract class ServicioDTO {
     /**
      * identificador
      */

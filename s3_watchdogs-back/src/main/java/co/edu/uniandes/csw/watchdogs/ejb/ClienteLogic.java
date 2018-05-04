@@ -179,7 +179,9 @@ public class ClienteLogic {
      * @return La lista de servicios del cliente.
      */
     public List<ServicioEntity> getServicios(Long clienteId) throws BusinessLogicException {
-        return getCliente(clienteId).getServicios();
+        ClienteEntity cliente = getCliente(clienteId);
+        LOGGER.log(Level.INFO, "Size = {0}", cliente.getServicios().size());
+        return cliente.getServicios();
     }
 
     public List<PayPalEntity> listPayPal(Long clienteId) {
