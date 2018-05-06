@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
+import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
+import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.HotelPersistence;
@@ -23,17 +26,27 @@ import javax.inject.Inject;
  */
 @Stateless
 public class HotelLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(HotelLogic.class.getName());
-    
+
     @Inject
     private HotelPersistence persistence;
-    
+
     @Inject
     private TransporteLogic transporteLogic;
+    
+     @Inject
+    private ClienteLogic clienteLogic;
+
+    @Inject
+    private MascotaLogic mascotaLogic;
+
+    @Inject
+    private EmpleadoLogic empleadoLogic;
 
     /**
      * Devuelve todos los Hotel que hay en la base de datos.
+     *
      * @return Lista de entidades de tipo Hotel.
      */
     public List<HotelEntity> getHoteles() {
@@ -42,9 +55,10 @@ public class HotelLogic {
         LOGGER.info("Termina proceso de consultar todos los Hotel");
         return hotels;
     }
-    
+
     /**
      * Busca un Hotel por ID
+     *
      * @param id El id del Hotel a buscar
      * @return El Hotel encontrado, null si no lo encuentra.
      */
@@ -57,40 +71,52 @@ public class HotelLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar Transporte con id={0}", id);
         return hotel;
     }
-    
+
     /**
      * Guardar un nuevo Hotel
-     * @param hotelEntity La entidad de tipo Hotel del nuevo transporte a persistir.
+     *
+     * @param entity La entidad de tipo Hotel del nuevo transporte a
+     * persistir.
      * @return La entidad luego de persistirla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
-    public HotelEntity createHotel(HotelEntity hotelEntity) throws BusinessLogicException {
+    public HotelEntity createHotel(HotelEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Hotel");
-        validarServicios(hotelEntity.getId(), hotelEntity.getName(), hotelEntity.getFecha(),hotelEntity.getCosto(),hotelEntity.getDuracion());
-        validarHotel(hotelEntity.getTiempoHospedaje());
-        persistence.create(hotelEntity);
+        validarServicios(entity);
+        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+        entity.setCliente(cliente);
+        entity.setMascota(mascota);
+        persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Hotel");
-        return hotelEntity;
+        return entity;
     }
-    
+
     /**
      * Actualizar un Hotel por ID
+     *
      * @param id El ID del Hotel a actualizar
-     * @param hotelEntity La entidad del Hotel con los cambios deseados
+     * @param entity La entidad del Hotel con los cambios deseados
      * @return La entidad del Hotel luego de actualizarla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
-    public HotelEntity updateHotel(Long id, HotelEntity hotelEntity) throws BusinessLogicException {
+    public HotelEntity updateHotel(Long id, HotelEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Hotel con id={0}", id);
-        validarServicios(hotelEntity.getId(), hotelEntity.getName(), hotelEntity.getFecha(),hotelEntity.getCosto(),hotelEntity.getDuracion());
-        validarHotel(hotelEntity.getTiempoHospedaje());
-        HotelEntity newEntity = persistence.update(hotelEntity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar Hotel con id={0}", hotelEntity.getId());
+        validarServicios(entity);
+        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+        EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
+        entity.setCliente(cliente);
+        entity.setMascota(mascota);
+        entity.setEmpleado(empleado);
+        HotelEntity newEntity = persistence.update(entity);
+        LOGGER.log(Level.INFO, "Termina proceso de actualizar Hotel con id={0}", entity.getId());
         return newEntity;
     }
-    
+
     /**
      * Eliminar un paseo por ID
+     *
      * @param id El ID del paseo a eliminar
      */
     public void deleteHotel(Long id) {
@@ -98,13 +124,12 @@ public class HotelLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Hotel con id={0}", id);
     }
-    
+
     /**
      * Agregar un Transporte al Hotel
      *
      * @param transporteId El id transporte a guardar
-     * @param hotelId El id del Hotel en la cual se va a guardar el
-     * transporte.
+     * @param hotelId El id del Hotel en la cual se va a guardar el transporte.
      * @return El transporte que fue agregado al Hotel.
      */
     public TransporteEntity addTransporte(Long transporteId, Long hotelId) throws BusinessLogicException {
@@ -114,14 +139,13 @@ public class HotelLogic {
         hotelEntity.setTransporte(transporteEntity);
         return transporteEntity;
     }
-    
-    
+
     /**
      * Borrar un Transporte de un Hotel
      *
      * @param hotelId La Hotel del cual se desea eliminar.
      */
-    public void removeTransporte( Long hotelId) {
+    public void removeTransporte(Long hotelId) {
         HotelEntity hotelEntity = getHotel(hotelId);
         hotelEntity.setTransporte(null);
     }
@@ -139,7 +163,7 @@ public class HotelLogic {
         hotel.setTransporte(transporteEntity);
         return transporteEntity;
     }
-    
+
     /**
      * Retorna un Transporte asociado a un Hotel
      *
@@ -149,25 +173,39 @@ public class HotelLogic {
     public TransporteEntity getTransporte(Long hotelId) {
         return getHotel(hotelId).getTransporte();
     }
-    
-    public void validarTransporte(Long id, String nombre, Integer devuelta, Integer recogida, String direccion)throws BusinessLogicException{
-        if(id<0)throw new BusinessLogicException("El id es invalido");
-        else if(nombre.length()>50)throw new BusinessLogicException("El nombre es muy grande");
-        else if(recogida > devuelta)throw new BusinessLogicException("La hora de recogida no puede ser mas tarde que la de devuelta");
-        else if(direccion.length()>50)throw new BusinessLogicException("La direccion es muy grande");
+
+    public void validarTransporte(Long id, String nombre, Integer devuelta, Integer recogida, String direccion) throws BusinessLogicException {
+        if (id < 0) {
+            throw new BusinessLogicException("El id es invalido");
+        } else if (nombre.length() > 50) {
+            throw new BusinessLogicException("El nombre es muy grande");
+        } else if (recogida > devuelta) {
+            throw new BusinessLogicException("La hora de recogida no puede ser mas tarde que la de devuelta");
+        } else if (direccion.length() > 50) {
+            throw new BusinessLogicException("La direccion es muy grande");
+        }
     }
-    
-    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException{
+
+    /**
+     * 
+     * @param entity
+     * @throws BusinessLogicException 
+     */
+    public void validarServicios(HotelEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
-        if(fecha.before(todayDate)) throw new BusinessLogicException ("La fecha ingresada no es valida");
-        else if(id<0) throw new BusinessLogicException ("El id es invalido");
-        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
-        else if(costo<0) throw new BusinessLogicException ("El costo es invalido");
-        else if(duracion <0) throw new BusinessLogicException ("La duracion es invalida");
-        
+        if (entity.getFecha().before(todayDate)) {
+            throw new BusinessLogicException("La fecha ingresada no es valida");
+        }
+        if (entity.getCosto() < 0) {
+            throw new BusinessLogicException("El costo es invalido");
+        }
+        if (entity.getDuracion() < 0) {
+            throw new BusinessLogicException("La duracion es invalida");
+        }
+        if (entity.getTiempoHospedaje() < 12) {
+            throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
+        }
+
     }
-     
-    public void validarHotel(Integer tHospedaje)throws BusinessLogicException{
-        if(tHospedaje <12) throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
-    }
+
 }

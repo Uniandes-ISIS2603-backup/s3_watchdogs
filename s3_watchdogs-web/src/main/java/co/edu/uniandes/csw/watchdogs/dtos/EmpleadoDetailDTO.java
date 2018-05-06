@@ -197,6 +197,7 @@ public class EmpleadoDetailDTO extends EmpleadoDTO {
                     serviciosEntity.add(nuevo);
                 }
             }
+            empleadoE.setServicios(serviciosEntity);
         }
         if (disponibilidad != null) {
             empleadoE.setDisponibilidad(disponibilidad.toEntity());

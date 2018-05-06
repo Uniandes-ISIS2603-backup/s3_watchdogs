@@ -207,8 +207,6 @@ public class EntrenamientoLogic {
         EntrenamientoEntity entrenamientoEntity = getEntrenamiento(idE);
         if (!entrenamientoEntity.isEstado()) {
             entrenamientoEntity.setCalificacion(calificacion);
-            LOGGER.log(Level.INFO, "Puntaje puntaje = {0}", entrenamientoEntity.getCalificacion().getPuntaje());
-
             return getCalificacion(idE);
         } else {
             throw new BusinessLogicException("El entrenamiento no ha acabado.");
