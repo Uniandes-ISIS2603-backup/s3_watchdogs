@@ -57,10 +57,11 @@
                     }
                 }
 
-            }).state('payPalCreate', {
+            })
+                    .state('payPalCreate', {
 
                 url: '/payPal',
-                parent: 'metodoDePagoCreate',
+                parent: 'clienteDetail',
                 views: {
                     payPalCreate: {
                         templateUrl: basePath + 'payPal.create.html'
@@ -72,7 +73,7 @@
                     correo: null
                 },
                 url: '/payPal',
-                parent: 'metodoDePagoCreate',
+                parent: 'clienteDetail',
                 views: {
                     payPalCreate: {
                         templateUrl: basePath + 'payPal.create.html',
@@ -82,7 +83,7 @@
             }).state('PSECreate', {
 
                 url: '/PSE/create',
-                parent: 'metodoDePagoCreate',
+                parent: 'clienteDetail',
                 views: {
                     PSECreate: {
                         templateUrl: basePath + 'PSE.create.html'
@@ -95,7 +96,7 @@
                 },
 
                 url: '/PSE/create',
-                parent: 'metodoDePagoCreate',
+                parent: 'clienteDetail',
                 views: {
                     PSECreate: {
                         templateUrl: basePath + 'PSE.create.html',
@@ -108,10 +109,8 @@
 //                  clienteId: null  
 //                },
                 views: {
-                    'clienteDetailView': {
-                        templateUrl: 'src/modules/clientes/clientes.list.html',
-                        controller: 'clienteDetailCtrl',
-                        controllerAs: 'ctrl'
+                    clienteDetailMetodoDePago: {
+                        templateUrl: basePath + 'cliente.detail.metodoDePago.html'
                     }
                 }
             })
