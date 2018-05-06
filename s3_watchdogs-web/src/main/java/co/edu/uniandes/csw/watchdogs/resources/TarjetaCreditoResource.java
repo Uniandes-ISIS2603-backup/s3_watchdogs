@@ -63,8 +63,7 @@ public class TarjetaCreditoResource {
      */
     @POST
     public TarjetaCreditoDTO createTarjeta(@PathParam("idCliente") Long idCliente, TarjetaCreditoDTO tarjeta) throws BusinessLogicException {
-        System.out.println(tarjeta.getNumeroTarjeta()+ "-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-
+      
         return new TarjetaCreditoDTO(tarjetaLogic.createTarjeta(idCliente, tarjeta.toEntity()));
     }
 

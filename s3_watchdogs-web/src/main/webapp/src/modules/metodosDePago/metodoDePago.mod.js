@@ -113,6 +113,31 @@
                         templateUrl: basePath + 'cliente.detail.metodoDePago.html'
                     }
                 }
+            }).state('tarjetaCreate', {
+
+                url: '/tarjeta/create',
+                parent: 'clienteDetail',
+                views: {
+                    PSECreate: {
+                        templateUrl: basePath + 'tarjetas.create.html'
+                    }
+                }
+            }).state('temporalCrearTarjeta', {
+
+                params: {
+                    numeroTarjeta: null,
+                    fechaVencimiento: null,
+                    codigoSeguridad: null
+                },
+
+                url: '/tarjeta/create',
+                parent: 'clienteDetail',
+                views: {
+                    tarjetaCreate: {
+                        templateUrl: basePath + 'tarjetas.create.html',
+                        controller: 'tarjetaCreateCtrl'
+                    }
+                }
             })
 
                     ;
