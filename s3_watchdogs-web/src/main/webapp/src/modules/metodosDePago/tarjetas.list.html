@@ -10,8 +10,10 @@
                     <button style="font-size:15px">Agregar tarjetas <i class="fa fa-plus-circle"></i></button>
                     <div class="container-fluid" ng-repeat="tarjeta in tarjetasRecords">
                         <div class="card" style="width: 17rem;">
+                            <div class="card-header">
+                                <h5>ID de la tarjeta {{tarjeta.id}}</h5>
+                            </div>
                             <div class="card-body">
-                                <h5 class="card-title">ID de tarjeta: {{tarjeta.id}}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">Informacion: </h6>
                                 <p class="card-text">Tipo de tarjeta: {{tarjeta.tipo}}</p>
                                 <p class="card-text">Numero de tarjeta: {{tarjeta.numeroTarjeta}}</p>
