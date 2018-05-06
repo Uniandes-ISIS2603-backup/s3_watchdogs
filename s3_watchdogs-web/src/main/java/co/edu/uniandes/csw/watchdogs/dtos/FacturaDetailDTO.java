@@ -57,35 +57,24 @@ public class FacturaDetailDTO extends FacturaDTO {
 
     private ServicioDTO servicio;
 
-    private PayPalDTO payPal;
-    private PseDTO pse;
-    private TarjetaCreditoDTO tarjeta;
+    private List<PayPalDTO> payPals;
+    private List<PseDTO> pses;
 
-    public PayPalDTO getPayPal() {
-        return payPal;
+    public List<PayPalDTO> getPayPals() {
+        return payPals;
     }
 
-    public void setPayPal(PayPalDTO payPal) {
-        this.payPal = payPal;
+    public void setPayPals(List<PayPalDTO> payPals) {
+        this.payPals = payPals;
     }
 
-    public PseDTO getPse() {
-        return pse;
+    public List<PseDTO> getPses() {
+        return pses;
     }
 
-    public void setPse(PseDTO pse) {
-        this.pse = pse;
+    public void setPses(List<PseDTO> pses) {
+        this.pses = pses;
     }
-
-    public TarjetaCreditoDTO getTarjeta() {
-        return tarjeta;
-    }
-
-    public void setTarjeta(TarjetaCreditoDTO tarjeta) {
-        this.tarjeta = tarjeta;
-    }
-
-    
 
     public List<TarjetaCreditoDTO> getTarjetas() {
         return tarjetas;

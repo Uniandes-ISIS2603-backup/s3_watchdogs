@@ -43,45 +43,21 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      */
     @PodamExclude
     @OneToOne(mappedBy = "cliente")
-    private PayPalEntity payPal;
+    private List<PayPalEntity> payPals = new ArrayList<>();
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
     @OneToOne(mappedBy = "cliente")
-    private PseEntity pse;
+    private List<PseEntity> pses = new ArrayList<>();
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
     @OneToOne(mappedBy = "cliente")
-    private TarjetaCreditoEntity tarjeta;
-
-    public PayPalEntity getPayPal() {
-        return payPal;
-    }
-
-    public void setPayPal(PayPalEntity payPal) {
-        this.payPal = payPal;
-    }
-
-    public PseEntity getPse() {
-        return pse;
-    }
-
-    public void setPse(PseEntity pse) {
-        this.pse = pse;
-    }
-
-    public TarjetaCreditoEntity getTarjeta() {
-        return tarjeta;
-    }
-
-    public void setTarjeta(TarjetaCreditoEntity tarjeta) {
-        this.tarjeta = tarjeta;
-    }
+    private List<TarjetaCreditoEntity> tarjetas = new ArrayList<>();
 
     
     

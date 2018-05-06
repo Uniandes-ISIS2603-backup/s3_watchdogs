@@ -118,7 +118,7 @@
                 url: '/tarjeta/create',
                 parent: 'clienteDetail',
                 views: {
-                    PSECreate: {
+                    tarjetaCreate: {
                         templateUrl: basePath + 'tarjetas.create.html'
                     }
                 }
