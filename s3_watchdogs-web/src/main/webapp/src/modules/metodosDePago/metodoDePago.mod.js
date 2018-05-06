@@ -102,6 +102,18 @@
                         controller: 'PSECreateCtrl'
                     }
                 }
+            }).state('temporal', {
+                url: '/detail',
+//                param: {
+//                  clienteId: null  
+//                },
+                views: {
+                    'clienteDetailView': {
+                        templateUrl: 'src/modules/clientes/clientes.list.html',
+                        controller: 'clienteDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
             })
 
                     ;
