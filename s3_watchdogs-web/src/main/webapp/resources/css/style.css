@@ -1,24 +1,55 @@
 .carousel-inner > .carousel-item > img {
-margin: 0; 
-max-width: 100%;
+    margin: 0; 
+    max-width: 100%;
 }
 
 #card-aseo, #card-entrenamiento, #card-hotel, #card-paseo {
-  position: relative;
-  padding-bottom: 40px;
+    position: relative;
+    padding-bottom: 40px;
+}
+
+.card-empleado {
+    position: relative;
+    padding-bottom: 40px;
 }
 
 #btn-contratar-paseo, #btn-contratar-hotel, #btn-contratar-entrenamiento, #btn-contratar-aseo {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  -ms-transform: translateX(-50%);
-  -webkit-transform: translateX(-50%);
-  transform: translateX(-50%);
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 
-.stroke {
-text-align: center;
-letter-spacing: 0;
-text-shadow: -1px -1px 1px #333, 1px -1px 1px #333, -1px 1px 1px #333, 1px 1px 1px #333;
+.mistitulos {
+    font-family: Pacifico;
+    font-size: 60px;
+    text-align: center;
+    letter-spacing: 0;
+    text-shadow: 2px 0 0 black;
+}
+
+.missubtitulos {
+    font-family: Gloria Hallelujah;
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 0;
+    text-shadow: 2px 0 0 black;
+}
+
+.tituloscards {
+    font-family: Pacifico;
+    font-size: 30px;
+    text-align: center;
+}
+
+.parrafoscards {
+    font-family: Gloria Hallelujah;
+    text-align: justify;
+    font-size:14px;
+}
+
+.misparrafos {
+    
 }
