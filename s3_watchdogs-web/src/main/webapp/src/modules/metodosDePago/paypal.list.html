@@ -1,15 +1,24 @@
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
 <div class="card">
-
     <div class="container-fluid">
-        <div class="row">
-            <h6> Los correos asociados a la cuenta de PayPal son: </h6>
-            <div ng-repeat="payPal in payPalRecords">
-                <ul>
-                    <li>{{payPal.correo}}</li>
-                </ul>           
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="row">
+                    <h4> Las cuentas de PayPal asociadas a la cuenta son: </h4>
+                    <div class="container-fluid" ng-repeat="payPal in payPalRecords">
+                        <div class="card" style="width: 17rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">ID de la cuenta: {{payPal.id}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Informacion:</h6>
+                                <p class="card-text">Correo asociado a la cuenta: {{payPal.correo}}</p>
+                                <a href="#" class="card-link">Actualizar</a>
+                                <a href="#" class="card-link">Borrar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
             </div>
-            <hr>
         </div>
     </div>
 </div>

@@ -28,6 +28,16 @@
                         controller: 'PSECtrl'
                     }
                 }
+            }).state('tarjetasList', {
+
+                url: '/tarjetas/list',
+                parent: 'clienteDetail',
+                views: {
+                    childrenView: {
+                        templateUrl: basePath + 'tarjetas.list.html',
+                        controller: 'tarjetasCtrl'
+                    }
+                }
             }).state('tarjetaList', {
 
                 url: '/tarjeta/list',
@@ -79,8 +89,8 @@
                     }
                 }
             }).state('temporalCrearPSE', {
-                
-                 params: {
+
+                params: {
                     correo: null
                 },
 
