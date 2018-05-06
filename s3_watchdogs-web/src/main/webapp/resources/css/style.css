@@ -3,12 +3,12 @@ margin: 0;
 max-width: 100%;
 }
 
-.card {
+#card-aseo, #card-entrenamiento, #card-hotel, #card-paseo {
   position: relative;
   padding-bottom: 40px;
 }
 
-.btn {
+#btn-contratar-paseo, #btn-contratar-hotel, #btn-contratar-entrenamiento, #btn-contratar-aseo {
   position: absolute;
   bottom: 10px;
   left: 50%;
