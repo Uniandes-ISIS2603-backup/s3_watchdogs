@@ -7,20 +7,22 @@
  * Author:  c.martinezc1
  * Created: 6/03/2018
  */
-delete from PaseoEntity_RutaEntity;
-delete from RutaEntity;
+
+delete from PseEntity;
+delete from PayPalEntity;
+delete from TarjetaCreditoEntity;
 delete from FacturaEntity;
 delete from EntrenamientoEntity;
-delete from AseoENtity;
+delete from AseoEntity;
 delete from HotelEntity;
 delete from PaseoEntity;
 delete from ServicioEntity;
+delete from RutaEntity;
 delete from LugarEntity;
 delete from TransporteEntity;
 delete from MascotaEntity;
 delete from EmpleadoEntity;
 delete from DisponibilidadEntity;
-delete from MetodoDePagoEntity;
 delete from ClienteEntity;
 delete from CalificacionEntity;
 
@@ -45,43 +47,6 @@ insert into ClienteEntity (id,cedula, name) values (700,'1257', 'Kasey');
 insert into ClienteEntity (id,cedula, name) values (800,'6614', 'Loren');
 insert into ClienteEntity (id,cedula, name) values (900,'6939', 'Wolfgang');
 insert into ClienteEntity (id,cedula, name) values (1000,'1008', 'Bartlet');
-
---PSE
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (100,'PseEntity',1, 'Peralta', 100, 'pbaxter0@buzzfeed.com');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (200,'PseEntity',1, 'Kim',200, 'kchellingworth1@salon.com');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (300,'PseEntity',1, 'Frasquito',300, 'fchagg2@gnu.org');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (400,'PseEntity',1, 'Tammie',400, 'tarthur3@pen.io');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (500,'PseEntity',0, 'Ross',500, 'rplenderleith4@unicef.org');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (600,'PseEntity',1, 'Frazer',600, 'ffootitt5@virginia.edu');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (700,'PseEntity',0, 'Agneta',700, 'ashiril6@sogou.com');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (800,'PseEntity',1, 'Pennie',800, 'pporcher7@hexun.com');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (900,'PseEntity',0, 'Gaile',900, 'gspringett8@archive.org');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (1000,'PseEntity',1, 'Roshelle',1000, 'rshutte9@scientificamerican.com');
-
---PayPal
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (101,'PaypalEntity',1, 'Cristian', 100, 'pbaxter0@buzzfeed.com');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (201,'PaypalEntity',1, 'Kym',200, 'kchellingworth1@salon.com');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (301,'PaypalEntity',1, 'Rockie',300, 'fchagg2@gnu.org');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (401,'PaypalEntity',1, 'Whitney', 400, 'tarthur3@pen.io');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (501,'PaypalEntity',0, 'Damien', 500, 'rplenderleith4@unicef.org');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (601,'PaypalEntity',1, 'Katharyn', 600, 'ffootitt5@virginia.edu');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (701,'PaypalEntity',0, 'Clarette', 700, 'ashiril6@sogou.com');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (801,'PaypalEntity',1, 'Blondell', 800, 'pporcher7@hexun.com');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (901,'PaypalEntity',0, 'Elbertina', 900, 'gspringett8@archive.org');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, correo) values (1001,'PaypalEntity',1, 'Zebedee', 1000, 'rshutte9@scientificamerican.com');
-
---Tarjeta
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (102,'TarjetadeCreditoEntity',1, 'Cristian', 100, '192', '07/23/2018', '5602217084788197557');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (202,'TarjetadeCreditoEntity',1, 'Kym',200, '854', '10/30/2018', '6391166470850846');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (302,'TarjetadeCreditoEntity',1, 'Rockie',300, '107', '08/08/2018', '3530875050292265');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (402,'TarjetadeCreditoEntity',1, 'Whitney',400, '239', '06/08/2018', '560221362124941527');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (502,'TarjetadeCreditoEntity',0, 'Damien',500, '467', '08/21/2018', '3584934520873983');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (602,'TarjetadeCreditoEntity',1, 'Katharyn',600, '399', '10/19/2018', '3576989041642820');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (702,'TarjetadeCreditoEntity',0, 'Clarette',700, '203', '08/08/2018', '5610812884638015');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (802,'TarjetadeCreditoEntity',1, 'Blondell',800, '369', '05/08/2018', '3583478174316064');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (902,'TarjetadeCreditoEntity',0, 'Elbertina',900, '164', '11/10/2018', '3529187202785532');
-insert into MetodoDePagoEntity (id,DTYPE,aprobado, nombre, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (1002,'TarjetadeCreditoEntity',1, 'Zebedee',1000, '688', '1/10/2018', '3549106064837799');
-
 
 insert into DisponibilidadEntity (id, name) values (100, 'F');
 insert into DisponibilidadEntity (id, name) values (200, 'F');
@@ -137,6 +102,17 @@ insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservici
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (800, 40, '449 Hagan Point', 'Tambee', 6);
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (900, 90, '4251 Continental Drive', 'Topicblab', 7);
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (1000, 80, '67 Thierer Terrace', 'Zooveo', 6);
+
+insert into RutaEntity (id,duracion, name) values (100,39,'Calle 116');
+insert into RutaEntity (id,duracion, name) values (200,36,'Usaquen');
+insert into RutaEntity (id,duracion, name) values (300,23,'Retiro');
+insert into RutaEntity (id,duracion, name) values (400,43,'Calle 127');
+insert into RutaEntity (id,duracion, name) values (500,28,'Chapinero');
+insert into RutaEntity (id,duracion, name) values (600,44,'Candelaria');
+insert into RutaEntity (id,duracion, name) values (700,50,'Monserrate');
+insert into RutaEntity (id,duracion, name) values (800,37,'Rosales');
+insert into RutaEntity (id,duracion, name) values (900,39,'Calle 200');
+insert into RutaEntity (id,duracion, name) values (1000,58,'Bosque Medina');
 
 --aseo
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (100,'AseoEntity',78, 58.9, 1, '12/17/2017', 6, 100, 100, 100, 100);
@@ -206,55 +182,69 @@ insert into HotelEntity (id, Transporte_id, tiempohospedaje, CentrodeEntrenamien
 
 --paseo
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (103,'PaseoEntity',78, 58.9, 1, '12/17/2017', 6, 100, 100, 100, 100);
-insert into PaseoEntity (id, capmax) values (103,8);
+insert into PaseoEntity (id, capmax, Ruta_id) values (103,8, 100);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (203,'PaseoEntity',81, 19.5, 1, '9/14/2017', 11, 200, 200, 200, 200);
-insert into PaseoEntity (id, capmax) values (203, 4);
+insert into PaseoEntity (id, capmax, Ruta_id) values (203, 4, 200);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (303,'PaseoEntity',11, 19.9, 1, '6/2/2017', 10, 300, 300, 300, 300);
-insert into PaseoEntity (id, capmax) values (303, 11);
+insert into PaseoEntity (id, capmax, Ruta_id) values (303, 11, 300);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (403,'PaseoEntity',19, 58.1, 1, '12/16/2017', 6, 400, 400, 400, 400);
-insert into PaseoEntity (id, capmax) values (403, 19);
+insert into PaseoEntity (id, capmax, Ruta_id) values (403, 19, 400);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (503,'PaseoEntity',86, 50.0, 0, '7/14/2017', 1, 500, 500, 500, 500);
-insert into PaseoEntity (id, capmax) values (503, 8);
+insert into PaseoEntity (id, capmax, Ruta_id) values (503, 8, 500);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (603,'PaseoEntity',25, 23.5, 1, '4/21/2017', 12, 600, 600, 600, 600);
-insert into PaseoEntity (id, capmax) values (603, 20);
+insert into PaseoEntity (id, capmax, Ruta_id) values (603, 20, 600);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (703,'PaseoEntity',23, 34.2, 0, '12/14/2017', 5, 700, 700, 700, 700);
-insert into PaseoEntity (id, capmax) values (703, 3);
+insert into PaseoEntity (id, capmax, Ruta_id) values (703, 3, 700);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (803,'PaseoEntity',37, 16.9, 0, '7/28/2017', 8, 800, 800, 800, 800);
-insert into PaseoEntity (id, capmax) values (803, 11);
+insert into PaseoEntity (id, capmax, Ruta_id) values (803, 11, 800);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (903,'PaseoEntity',73, 31.1, 0, '4/27/2017', 2, 900, 900, 900, 900);
-insert into PaseoEntity (id, capmax) values (903, 2);
+insert into PaseoEntity (id, capmax, Ruta_id) values (903, 2, 900);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (1003,'PaseoEntity',61, 7.6, 1, '4/29/2017', 2, 1000, 1000, 1000, 1000);
-insert into PaseoEntity (id, capmax) values (1003, 10);
+insert into PaseoEntity (id, capmax, Ruta_id) values (1003, 10, 1000);
 
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (1, 90.2, 100, 100, 100);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (0, 28.4, 200, 200, 200);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (0, 90.25, 300, 300, 300);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (0, 91.55, 400, 400, 400);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (1, 76.76, 500, 500, 500);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (1, 91.14, 600, 600, 600);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (1, 35.14, 700, 700, 700);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (0, 20.05, 800, 800, 800);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (0, 33.37, 900, 900, 900);
-insert into FacturaEntity (pagado, valor, Cliente_id, MetodoDePago_id, Servicio_id) values (1, 70.89, 1000, 1000, 1000);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (100, 1, 90.2, 100, 100);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (200, 0, 28.4, 200, 200);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (300, 0, 90.25, 300, 300);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (400, 0, 91.55, 400, 400);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (500, 1, 76.76, 500, 500);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (600, 1, 91.14, 600, 600);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (700, 1, 35.14, 700, 700);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (800, 0, 20.05, 800, 800);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (900, 0, 33.37, 900, 900);
+insert into FacturaEntity (id, pagado, valor, Cliente_id, Servicio_id) values (1000, 1, 70.89, 1000, 1000);
 
-insert into RutaEntity (id,duracion, name) values (100,39,'Calle 116');
-insert into RutaEntity (id,duracion, name) values (200,36,'Usaquen');
-insert into RutaEntity (id,duracion, name) values (300,23,'Retiro');
-insert into RutaEntity (id,duracion, name) values (400,43,'Calle 127');
-insert into RutaEntity (id,duracion, name) values (500,28,'Chapinero');
-insert into RutaEntity (id,duracion, name) values (600,44,'Candelaria');
-insert into RutaEntity (id,duracion, name) values (700,50,'Monserrate');
-insert into RutaEntity (id,duracion, name) values (800,37,'Rosales');
-insert into RutaEntity (id,duracion, name) values (900,39,'Calle 200');
-insert into RutaEntity (id,duracion, name) values (1000,58,'Bosque Medina');
+--PSE
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (100, 'Peralta', 100, 100, 'pbaxter0@buzzfeed.com');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (200, 'Kim',200, 200, 'kchellingworth1@salon.com');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (300, 'Frasquito',300, 300, 'fchagg2@gnu.org');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (400, 'Tammie',400, 400, 'tarthur3@pen.io');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (500, 'Ross',500, 500, 'rplenderleith4@unicef.org');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (600, 'Frazer',600, 600, 'ffootitt5@virginia.edu');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (700, 'Agneta',700,700, 'ashiril6@sogou.com');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (800, 'Pennie',800,800, 'pporcher7@hexun.com');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (900, 'Gaile',900,900, 'gspringett8@archive.org');
+insert into PseEntity (id, name, cliente_id, factura_id, correo) values (1000, 'Roshelle',1000,1000, 'rshutte9@scientificamerican.com');
 
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (100, 100);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (200, 200);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (300, 300);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (400, 400);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (500, 500);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (600, 600);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (700, 700);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (800, 800);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (900, 900);
-insert into PaseoEntity_RutaEntity (PaseoEntity_id, Rutas_id) values (1000, 1000);
+--PayPal
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (101, 'Cristian', 100,100, 'pbaxter0@buzzfeed.com');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (201, 'Kym',200,200, 'kchellingworth1@salon.com');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (301, 'Rockie',300,300, 'fchagg2@gnu.org');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (401, 'Whitney', 400,400, 'tarthur3@pen.io');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (501, 'Damien', 500,500, 'rplenderleith4@unicef.org');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (601, 'Katharyn', 600,600, 'ffootitt5@virginia.edu');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (701, 'Clarette', 700,700, 'ashiril6@sogou.com');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (801, 'Blondell', 800,800, 'pporcher7@hexun.com');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (901, 'Elbertina', 900,900, 'gspringett8@archive.org');
+insert into PayPalEntity (id, name, cliente_id, factura_id, correo) values (1001, 'Zebedee', 1000,1000, 'rshutte9@scientificamerican.com');
+
+--Tarjeta
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (102, 'Cristian', 100,100, '192', '07/23/2018', '5602217084788197557');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (202, 'Kym',200,200, '854', '10/30/2018', '6391166470850846');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (302, 'Rockie',300,300, '107', '08/08/2018', '3530875050292265');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (402, 'Whitney',400,400, '239', '06/08/2018', '560221362124941527');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (502, 'Damien',500,500, '467', '08/21/2018', '3584934520873983');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (602, 'Katharyn',600,600, '399', '10/19/2018', '3576989041642820');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (702, 'Clarette',700,700, '203', '08/08/2018', '5610812884638015');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (802, 'Blondell',800,800, '369', '05/08/2018', '3583478174316064');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (902, 'Elbertina',900,900, '164', '11/10/2018', '3529187202785532');
+insert into TarjetaCreditoEntity (id, name, cliente_id,factura_id, codigoseguridad, fechavencimiento, numerotarjeta) values (1002, 'Zebedee',1000,1000, '688', '1/10/2018', '3549106064837799');

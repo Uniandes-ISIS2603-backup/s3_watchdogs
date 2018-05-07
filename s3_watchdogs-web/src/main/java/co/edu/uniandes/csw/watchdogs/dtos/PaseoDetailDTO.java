@@ -6,8 +6,6 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
-import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +17,7 @@ import java.util.List;
  */
 public class PaseoDetailDTO extends ServicioDetailDTO {
 
-    private List<RutaDTO> rutas;
+    private RutaDTO ruta;
     private VeterinariaDTO veterinaria;
 
     private Integer capMax;
@@ -38,11 +36,8 @@ public class PaseoDetailDTO extends ServicioDetailDTO {
         } else {
             entity.setVeterinaria(null);
         }
-        if (entity.getRutas() != null) {
-            rutas = new ArrayList();
-            for (RutaEntity rEntity : entity.getRutas()) {
-                rutas.add(new RutaDTO(rEntity));
-            }
+        if (entity.getRuta() != null) {
+            ruta = new RutaDTO(entity.getRuta());
         }
 
     }
@@ -96,14 +91,10 @@ public class PaseoDetailDTO extends ServicioDetailDTO {
             entity.setCalificacion(calificacion.toEntity());
         }
         if (this.getVeterinaria() != null) {
-            entity.setVeterinaria(this.getVeterinaria().toEntity());
+            entity.setVeterinaria(this.veterinaria.toEntity());
         }
         if (this.getRutas() != null) {
-            List<RutaEntity> rEnt = new ArrayList();
-            for (RutaDTO ruta : rutas) {
-                rEnt.add(ruta.toEntity());
-            }
-            entity.setRutas(rEnt);
+            entity.setRuta(this.ruta.toEntity());
         }
         return entity;
     }
@@ -111,15 +102,15 @@ public class PaseoDetailDTO extends ServicioDetailDTO {
     /**
      * @return Lista de rutas
      */
-    public List<RutaDTO> getRutas() {
-        return rutas;
+    public RutaDTO getRutas() {
+        return ruta;
     }
 
     /**
      * @param rutas Lista de rutas a establecer
      */
-    public void setRutas(List<RutaDTO> rutas) {
-        this.rutas = rutas;
+    public void setRutas(RutaDTO rutas) {
+        this.ruta = rutas;
     }
 
     /**

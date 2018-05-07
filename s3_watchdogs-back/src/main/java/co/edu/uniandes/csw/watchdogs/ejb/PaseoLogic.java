@@ -130,6 +130,7 @@ public class PaseoLogic {
      * @param rutaId El id ruta a guardar
      * @param paseoId El id del Paseo en la cual se va a guardar la ruta.
      * @return La ruta que fue agregado a la Paseo.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     public RutaEntity addRuta(Long rutaId, Long paseoId) throws BusinessLogicException {
         PaseoEntity paseoEntity = getPaseo(paseoId);
@@ -137,33 +138,22 @@ public class PaseoLogic {
         if (rutaEntity.getDuracion() < 0) {
             throw new BusinessLogicException("La duracion no puede ser negativa");
         }
-        paseoEntity.getRutas().add(rutaEntity);
+        paseoEntity.setRuta(rutaEntity);
         return rutaEntity;
     }
 
-    /**
-     * Borrar una Ruta de un Paseo
-     *
-     * @param rutaId La ruta que se desea borrar del Paseo.
-     * @param paseoId El Paseo del cual se desea eliminar.
-     */
-    public void removeRuta(Long rutaId, Long paseoId) {
-        PaseoEntity paseoEntity = getPaseo(paseoId);
-        RutaEntity ruta = rutaLogic.getRuta(rutaId);
-        paseoEntity.getRutas().remove(ruta);
-    }
-
+  
     /**
      * Remplazar Rutas de un Paseo
      *
-     * @param rutas Lista de rutas que serán los de la Paseo.
+     * @param ruta Lista de rutas que serán los de la Paseo.
      * @param paseoId El id de la Paseo que se quiere actualizar.
      * @return La lista de rutas actualizada.
      */
-    public List<RutaEntity> replaceRutas(Long paseoId, List<RutaEntity> rutas) {
+    public RutaEntity replaceRuta(Long paseoId, RutaEntity ruta) {
         PaseoEntity paseo = getPaseo(paseoId);
-        paseo.setRutas(rutas);
-        return rutas;
+        paseo.setRuta(ruta);
+        return ruta;
     }
 
     /**
@@ -172,28 +162,10 @@ public class PaseoLogic {
      * @param paseoId El ID del Paseo buscado
      * @return La lista de rutas del Paseo
      */
-    public List<RutaEntity> getRutas(Long paseoId) {
-        return getPaseo(paseoId).getRutas();
+    public RutaEntity getRuta(Long paseoId) {
+        return getPaseo(paseoId).getRuta();
     }
 
-    /**
-     * Retorna una Ruta asociada a un Paseo
-     *
-     * @param paseoId El id del Paseo a buscar.
-     * @param rutaId El id de la ruta a buscar
-     * @return La ruta encontrada dentro del Paseo.
-     * @throws BusinessLogicException Si la ruta no se encuentra en el Paseo
-     */
-    public RutaEntity getRuta(Long paseoId, Long rutaId) throws BusinessLogicException {
-        List<RutaEntity> rutas = getPaseo(paseoId).getRutas();
-        RutaEntity ruta = rutaLogic.getRuta(rutaId);
-        int index = rutas.indexOf(ruta);
-        if (index >= 0) {
-            return rutas.get(index);
-        }
-        throw new BusinessLogicException("El ruta no está asociado a la Paseo");
-
-    }
 
     public void validarServicios(PaseoEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
