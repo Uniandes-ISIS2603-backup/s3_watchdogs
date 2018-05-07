@@ -24,21 +24,21 @@ import javax.inject.Inject;
  */
 @Stateless
 public class VeterinariaLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(VeterinariaLogic.class.getName());
-    
+
     @Inject
     private VeterinariaPersistence persistence;
-    
+
     @Inject
     private PaseoLogic paseoLogic;
-    
+
     @Inject
     private AseoLogic aseoLogic;
-    
-    
+
     /**
      * Devuelve todas las veterinarias que hay en la base de datos.
+     *
      * @return Lista de entidades de tipo Veterinaria.
      */
     public List<VeterinariaEntity> getVeterinarias() {
@@ -47,9 +47,10 @@ public class VeterinariaLogic {
         LOGGER.info("Termina proceso de consultar todas las veterinarias");
         return veterinaria;
     }
-    
+
     /**
      * Busca una Veterinaria por ID
+     *
      * @param id El id de la veterinaria a buscar
      * @return La veterinaria encontrada, null si no la encuentra.
      */
@@ -62,44 +63,50 @@ public class VeterinariaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar Veterinaria con id={0}", id);
         return veterinaria;
     }
-    
+
     /**
      * Guardar una nueva Veterinaria
-     * @param entity La entidad de tipo veterinaria  a persistir.
+     *
+     * @param entity La entidad de tipo veterinaria a persistir.
      * @return La entidad luego de persistirla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public VeterinariaEntity createVeterinaria(VeterinariaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Veterinaria");
-        validar(entity.getId(),entity.getName(), entity.getUsuariosEnServicio(), entity.getCapacidadMaxima(), entity.getDireccion());
+        validar(entity);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Veterinaria");
         return entity;
     }
-    
+
     /**
      * Actualizar una Veterinaria por ID
+     *
      * @param id El ID de la Veterinaria a actualizar
      * @param entity La entidad de la Veterinaria con los cambios deseados
      * @return La entidad de la Veterinaria luego de actualizarla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public VeterinariaEntity updateVeterinaria(Long id, VeterinariaEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Veterinaria con id={0}", id); 
-        validar(entity.getId(),entity.getName(), entity.getUsuariosEnServicio(), entity.getCapacidadMaxima(), entity.getDireccion());
+        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Veterinaria con id={0}", id);
+        validar(entity);
         VeterinariaEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Veterinaria con id={0}", entity.getId());
         return newEntity;
     }
-    
-    public void validar(Long id, String nombre, Integer usuariosEnServicio ,Integer capMax, String direccion)throws BusinessLogicException {
-        if(id<0) throw new BusinessLogicException ("El id es invalido");
-        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
-        else if(usuariosEnServicio>capMax) throw new BusinessLogicException ("Los usuarios en servicio no pueden ser mayores que la capacidad máxima");
-        else if(direccion.length()>50) throw new BusinessLogicException ("La direccion es muy grande");   
+
+    public void validar(VeterinariaEntity entity) throws BusinessLogicException {
+        if (entity.getUsuariosEnServicio() > entity.getCapacidadMaxima()) {
+            throw new BusinessLogicException("Los usuarios en servicio no pueden ser mayores que la capacidad máxima");
+        }
+        if (entity.getDireccion().length() > 50) {
+            throw new BusinessLogicException("La direccion es muy grande");
+        }
     }
+
     /**
      * Eliminar una Veterinaria por ID
+     *
      * @param id El ID de la Veterinaria a eliminar
      */
     public void deleteVeterinaria(Long id) {
@@ -107,12 +114,12 @@ public class VeterinariaLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Veterinaria con id={0}", id);
     }
-    
-    public List<AseoEntity> getAseos(Long id){
+
+    public List<AseoEntity> getAseos(Long id) {
         return getVeterinaria(id).getAseos();
     }
-    
-    public AseoEntity getAseo(Long idC, Long idE) throws BusinessLogicException{
+
+    public AseoEntity getAseo(Long idC, Long idE) throws BusinessLogicException {
         List<AseoEntity> aseos = getVeterinaria(idC).getAseos();
         AseoEntity aseo = aseoLogic.getAseo(idE);
         int index = aseos.indexOf(aseo);
@@ -121,16 +128,16 @@ public class VeterinariaLogic {
         }
         throw new BusinessLogicException("El Aseo no está asociado a la Veterinaria");
     }
-    
-    public AseoEntity addAseo(Long idC,Long idE)throws BusinessLogicException{
+
+    public AseoEntity addAseo(Long idC, Long idE) throws BusinessLogicException {
         VeterinariaEntity veterinariaEntity = getVeterinaria(idC);
         AseoEntity aseoEntity = aseoLogic.getAseo(idE);
-        validarServicios(aseoEntity.getId(), aseoEntity.getName(), aseoEntity.getFecha(),aseoEntity.getCosto(),aseoEntity.getDuracion());
+        validarServicios(aseoEntity.getId(), aseoEntity.getName(), aseoEntity.getFecha(), aseoEntity.getCosto(), aseoEntity.getDuracion());
         aseoEntity.setVeterinaria(veterinariaEntity);
         return aseoEntity;
     }
-    
-    public List<AseoEntity> replaceAseos(Long id, List<AseoEntity> aseos){
+
+    public List<AseoEntity> replaceAseos(Long id, List<AseoEntity> aseos) {
         VeterinariaEntity veterinaria = getVeterinaria(id);
         List<AseoEntity> aseoList = aseoLogic.getAseos();
         for (AseoEntity aseo : aseoList) {
@@ -142,26 +149,26 @@ public class VeterinariaLogic {
         }
         return aseos;
     }
-    
+
     public void removeAseo(Long aseoId, Long veterinariaId) {
         VeterinariaEntity veterinariaEntity = getVeterinaria(veterinariaId);
         AseoEntity aseo = aseoLogic.getAseo(aseoId);
         aseo.setVeterinaria(null);
         veterinariaEntity.getAseos().remove(aseo);
     }
-    
-    
-     /**
+
+    /**
      * Agregar un Paseo a la Veterinaria
      *
      * @param paseoId El id paseo a guardar
-     * @param veterinariaId El id de la Veterinaria en la cual se va a guardar el paseo.
+     * @param veterinariaId El id de la Veterinaria en la cual se va a guardar
+     * el paseo.
      * @return El paseo que fue agregado a la Veterinaria.
      */
-    public  PaseoEntity addPaseo(Long paseoId, Long veterinariaId) throws BusinessLogicException {
+    public PaseoEntity addPaseo(Long paseoId, Long veterinariaId) throws BusinessLogicException {
         VeterinariaEntity veterinariaEntity = getVeterinaria(veterinariaId);
         PaseoEntity paseoEntity = paseoLogic.getPaseo(paseoId);
-        validarServicios(paseoEntity.getId(), paseoEntity.getName(), paseoEntity.getFecha(),paseoEntity.getCosto(),paseoEntity.getDuracion());
+        validarServicios(paseoEntity.getId(), paseoEntity.getName(), paseoEntity.getFecha(), paseoEntity.getCosto(), paseoEntity.getDuracion());
         paseoEntity.setVeterinaria(veterinariaEntity);
         return paseoEntity;
     }
@@ -187,7 +194,7 @@ public class VeterinariaLogic {
      * @return La lista de paseos actualizada.
      */
     public List<PaseoEntity> replacePaseos(Long veterinariaId, List<PaseoEntity> paseos) {
-       VeterinariaEntity veterinaria = getVeterinaria(veterinariaId);
+        VeterinariaEntity veterinaria = getVeterinaria(veterinariaId);
         List<PaseoEntity> paseoList = paseoLogic.getPaseos();
         for (PaseoEntity paseo : paseoList) {
             if (paseos.contains(paseo)) {
@@ -212,10 +219,11 @@ public class VeterinariaLogic {
     /**
      * Retorna un Paseo asociado a una Veterinaria
      *
-     * @param veterinariaId El id de la veterinaria  a buscar.
+     * @param veterinariaId El id de la veterinaria a buscar.
      * @param paseoId El id del hotel a buscar
      * @return El paseo encontrado dentro de la veterinaria.
-     * @throws BusinessLogicException Si el hotel no se encuentra en la CentroDeEntrenamiento
+     * @throws BusinessLogicException Si el hotel no se encuentra en la
+     * CentroDeEntrenamiento
      */
     public PaseoEntity getPaseo(Long veterinariaId, Long paseoId) throws BusinessLogicException {
         List<PaseoEntity> paseos = getVeterinaria(veterinariaId).getPaseos();
@@ -227,16 +235,20 @@ public class VeterinariaLogic {
         throw new BusinessLogicException("El paseo no está asociado a la veterinaria");
 
     }
-    
-    
-    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException
-    {Date todayDate = Calendar.getInstance().getTime();
-        if(fecha.before(todayDate)) throw new BusinessLogicException ("La fecha ingresada no es valida");
-        else if(id<0) throw new BusinessLogicException ("El id es invalido");
-        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
-        else if(costo<0) throw new BusinessLogicException ("El costo es invalido");
-        else if(duracion <0) throw new BusinessLogicException ("La duracion es invalida");   
+
+    public void validarServicios(Long id, String nombre, Date fecha, Double costo, Double duracion) throws BusinessLogicException {
+        Date todayDate = Calendar.getInstance().getTime();
+        if (fecha.before(todayDate)) {
+            throw new BusinessLogicException("La fecha ingresada no es valida");
+        } else if (id < 0) {
+            throw new BusinessLogicException("El id es invalido");
+        } else if (nombre.length() > 50) {
+            throw new BusinessLogicException("El nombre es muy grande");
+        } else if (costo < 0) {
+            throw new BusinessLogicException("El costo es invalido");
+        } else if (duracion < 0) {
+            throw new BusinessLogicException("La duracion es invalida");
+        }
     }
-    
-    
+
 }

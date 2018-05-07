@@ -27,42 +27,42 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class ServicioEntity extends BaseEntity implements Serializable{
-      
+public class ServicioEntity extends BaseEntity implements Serializable {
+
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     protected Date fecha;
-    
+
     protected Double costo;
-    
+
     protected Boolean estado;
-    
+
     protected List<String> rango;
-    
+
     protected Double duracion;
-    
+
     protected Integer hora;
-    
+
     @PodamExclude
     @ManyToOne
     protected MascotaEntity mascota;
-    
+
     @PodamExclude
     @ManyToOne
     protected ClienteEntity cliente;
-    
+
     @PodamExclude
     @OneToOne(mappedBy = "servicio", fetch = FetchType.LAZY)
     protected FacturaEntity factura;
-    
+
     @PodamExclude
     @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
     protected CalificacionEntity calificacion;
-    
+
     @PodamExclude
     @ManyToOne
     protected EmpleadoEntity empleado;
-    
+
     public MascotaEntity getMascota() {
         return mascota;
     }
@@ -102,7 +102,7 @@ public class ServicioEntity extends BaseEntity implements Serializable{
     public void setEmpleado(EmpleadoEntity empleado) {
         this.empleado = empleado;
     }
-    
+
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
@@ -150,10 +150,14 @@ public class ServicioEntity extends BaseEntity implements Serializable{
     public void setHora(Integer hora) {
         this.hora = hora;
     }
-    
-    public final boolean tipoClase(final Object obj){
-        if (obj == null) return false;
-        if (this == obj) return true;
+
+    public final boolean tipoClase(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
         return getClass() == obj.getClass();
     }
 }

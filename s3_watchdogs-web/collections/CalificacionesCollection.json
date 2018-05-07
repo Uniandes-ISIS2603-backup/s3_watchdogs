@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
+			"name": "Crea calificacion",
 			"event": [
 				{
 					"listen": "test",
@@ -32,7 +32,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+					"raw": "{\n\t\"puntaje\":\"1800\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
@@ -52,7 +52,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
+			"name": "Consulta calificaciones",
 			"event": [
 				{
 					"listen": "test",
@@ -96,7 +96,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones",
+			"name": "Consulta calificacion",
 			"event": [
 				{
 					"listen": "test",
@@ -142,7 +142,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
+			"name": "Actualiza calificacion",
 			"event": [
 				{
 					"listen": "test",
@@ -188,7 +188,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/calificaciones/1",
+			"name": "Elimina calificacion",
 			"event": [
 				{
 					"listen": "test",

@@ -1,21 +1,68 @@
 {
 	"info": {
 		"name": "VeterinariaCollection",
-		"_postman_id": "9c1f50bc-9446-4c77-bb0d-743594f2e68e",
+		"_postman_id": "ff17a981-c709-8af7-28f6-7b84739ba2f0",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear veterinaria",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "70170204-3375-486e-b062-718f0dd58991",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"id\": 1,\r\n       \"direccion\": \"Carrera 50#120\",\r\n       \"fotos\": \"\",\r\n       \"usuariosEnServicio\": 50,\r\n       \"capacidadMaxima\":120\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"veterinarias"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Consultar vet",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "30ecfadb-88af-4086-810a-4db7656c99b3",
+						"id": "78755bd8-3fc0-4952-916e-54029c3f6c13",
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -58,48 +105,9 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s3_watchdogs-web",
-						"api",
-						"veterinarias"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Crear veterinaria",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "01cc609b-a730-4b44-9cc2-c0682d60024c",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"id\": 1,\r\n       \"direccion\": \"Carrera 50#120\",\r\n       \"fotos\": \"\",\r\n       \"usuariosEnServicio\": 50,\r\n       \"capacidadMaxima\":120\r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias",
@@ -123,9 +131,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "27700df2-422b-4be8-94de-3b7b12f972e7",
+						"id": "4d048712-3e79-4904-a925-5a29401fb224",
 						"type": "text/javascript",
 						"exec": [
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
@@ -177,7 +187,10 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/veterinarias/{{new_id}}",
 					"protocol": "http",

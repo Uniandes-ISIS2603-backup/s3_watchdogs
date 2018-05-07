@@ -1,0 +1,126 @@
+{
+	"info": {
+		"name": "EntrenamintoCalificacionCollection",
+		"_postman_id": "89c4db79-adc5-1209-8fcf-f0b1bcafb4cc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crea calificacion de entrenamiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c91c68b9-afe6-4480-8873-5dc0f52d04ea",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"4\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/1/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos",
+						"1",
+						"calificaciones"
+					]
+				},
+				"description": "Crea una nueva calificacion relacionada con un entrenamiento."
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta calificacion de entrenamiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d2a70019-8311-4673-841b-f594357bc834",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"puntaje\":\"11\",\n\t\"id\":1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/101/calificaciones",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos",
+						"101",
+						"calificaciones"
+					]
+				},
+				"description": "Obtiene la calificacion relacionada a un entrenamiento"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "310222ec-eb4c-4185-b00e-4b9cd97b4947",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0c3ab37c-2a70-4076-a9b9-552b26c71c54",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

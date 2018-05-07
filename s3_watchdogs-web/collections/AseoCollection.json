@@ -1,21 +1,68 @@
 {
 	"info": {
 		"name": "AseoCollection",
-		"_postman_id": "eb5b0c9d-9492-efb8-9bc9-ab53048b9703",
+		"_postman_id": "f15fa7bf-4a25-0b90-60c0-63eb40bbe521",
 		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear aseo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd303e06-a106-4de2-9ee5-bdff1ec2c8a2",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n    \"duracion\": 20.5,\r\n    \"dientes\": 1,\r\n    \"banho\": 1,\r\n    \"peluqueria\": 1,\r\n    \"cliente\":{\r\n     \t\"id\":1\r\n       \t},\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/aseos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"aseos"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Consultar todos los aseos",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "11b48f39-7d57-4622-9827-32c233f29313",
+						"id": "23ea7067-4e5a-48ea-ab32-3602a9347224",
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"authors count\"] = data.length >= 0;"
 						]
 					}
 				}
@@ -46,10 +93,12 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "087b313f-642a-43a1-a15a-e86bf5ed3204",
+						"id": "7884ef59-9cd5-4d1a-8255-ff418ca7ba58",
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Status Code is 200\"] = responseCode.code === 200;  "
+							"console.log(responseBody);",
+							"var data = JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
 				}
@@ -81,9 +130,11 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "4c3b5a0e-bbdc-411e-8c44-894cf2677f17",
+						"id": "334bb865-c90d-475e-a460-b561fa03dab2",
 						"type": "text/javascript",
 						"exec": [
+							"console.log(responseBody);",
+							"var data= JSON.parse(responseBody);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
@@ -99,7 +150,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"id\": 1889,\r\n       \"fecha\": \"10-10-2010\",\r\n       \"costo\": 25,\r\n       \"estado\": \"1\",\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"dientes\": true,\r\n       \"banho\": true,\r\n       \"peluqueria\": true\r\n}"
+					"raw": "{\r\n    \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n    \"duracion\": 10.1,\r\n    \"dientes\": 1,\r\n    \"banho\": 1,\r\n    \"peluqueria\": 1,\r\n    \"cliente\":{\r\n     \t\"id\":1\r\n       \t},\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/aseos/{{new_id}}",
@@ -119,54 +170,12 @@
 			"response": []
 		},
 		{
-			"name": "Crear aseo",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "0834e210-255a-4465-97e7-ee7b74658159",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n       \"id\": 1889,\r\n       \"fecha\": \"10-10-2010\",\r\n       \"costo\": 25,\r\n       \"estado\": \"1\",\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"dientes\": true,\r\n       \"banho\": true,\r\n       \"peluqueria\": true\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/aseos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s3_watchdogs-web",
-						"api",
-						"aseos"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Borrar aseo",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "694a2bb9-d19b-4d44-8e8b-60e09d1670fa",
+						"id": "afb77562-b167-4c5d-9eed-3f2cb4331b61",
 						"type": "text/javascript",
 						"exec": [
 							"tests[\"Status Code is 204\"] = responseCode.code === 204;  "
@@ -176,8 +185,16 @@
 			],
 			"request": {
 				"method": "DELETE",
-				"header": [],
-				"body": {},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/aseos/{{new_id}}",
 					"protocol": "http",

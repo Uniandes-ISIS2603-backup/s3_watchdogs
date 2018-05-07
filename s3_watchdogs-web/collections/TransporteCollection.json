@@ -7,15 +7,16 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/transportes",
+			"name": "Crea transporte",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
+						"id": "569c2256-0d6a-47a0-b6e1-904eca9c4060",
 						"type": "text/javascript",
 						"exec": [
 							"var data= JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
@@ -51,16 +52,61 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/transportes",
+			"name": "Consulta transportes",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "f3a529b5-ea67-4d95-9804-3cafd11263e7",
+						"id": "06a73587-9b1b-4c17-8046-377469290c2f",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"authors count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"recogida\":2,\r\n       \"devuelta\":2,\r\n       \"direccion\":\"cra211 # 1011\"\r\n       \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/transportes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"transportes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta transporte",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "91a37b4b-261c-4f99-8461-9eb91ec68ac7",
 						"type": "text/javascript",
 						"exec": [
 							"console.log(responseBody);",
-							"var data= JSON.parse(responseBody);",
+							"var data = JSON.parse(responseBody);",
 							"tests[\"Status code is 200\"] = responseCode.code === 200;"
 						]
 					}
@@ -97,51 +143,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/transportes",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "b4c587a9-19f5-47b8-a489-d6f62da918c7",
-						"type": "text/javascript",
-						"exec": [
-							"var data= JSON.parse(responseBody);",
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n       \"recogida\":2,\r\n       \"devuelta\":2,\r\n       \"direccion\":\"cra211 # 1011\"\r\n       \r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/transportes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s3_watchdogs-web",
-						"api",
-						"transportes"
-					]
-				},
-				"description": ""
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/transportes/1",
+			"name": "Actualiza transporte",
 			"event": [
 				{
 					"listen": "test",
@@ -187,7 +189,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/transportes/1",
+			"name": "Elimina transporte",
 			"event": [
 				{
 					"listen": "test",
@@ -211,7 +213,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"recogida\":2,\r\n       \"devuelta\":2,\r\n       \"direccion\":\"cra211 # 1\"\r\n       \r\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/transportes/{{new_id}}",
