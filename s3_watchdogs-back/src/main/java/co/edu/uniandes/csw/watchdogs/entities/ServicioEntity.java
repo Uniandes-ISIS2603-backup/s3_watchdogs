@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
@@ -51,7 +52,7 @@ public class ServicioEntity extends BaseEntity implements Serializable{
     protected ClienteEntity cliente;
     
     @PodamExclude
-    @OneToOne(mappedBy = "servicio")
+    @OneToOne(mappedBy = "servicio", fetch = FetchType.LAZY)
     protected FacturaEntity factura;
     
     @PodamExclude

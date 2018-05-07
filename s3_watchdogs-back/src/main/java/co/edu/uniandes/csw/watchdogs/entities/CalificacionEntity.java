@@ -19,11 +19,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class CalificacionEntity extends BaseEntity implements Serializable {
 
     @PodamExclude
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private ClienteEntity cliente;
     
     @PodamExclude
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     private EmpleadoEntity empleado;
     
     private Integer puntaje;

@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -42,21 +43,21 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "factura")
+    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
     private PayPalEntity payPal;
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "factura")
+    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
     private PseEntity pse;
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "factura")
+    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
     private TarjetaCreditoEntity tarjeta;
 
     

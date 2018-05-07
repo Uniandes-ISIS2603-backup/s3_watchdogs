@@ -45,14 +45,14 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      * Relacion con la calificacion del empleado.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "empleado", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
     private CalificacionEntity calificacion;
 
     /**
      * Relacion con el servicio del empleado.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "empleado")
+    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     /**
