@@ -138,6 +138,32 @@
                         controller: 'tarjetaCreateCtrl'
                     }
                 }
+            }).state('deleteTarjeta', {
+                params: {
+                    tarjetaId: null 
+                },
+
+                url: '/delete/{tarjetaId:int}',
+                parent: 'clienteDetail',
+                views: {
+                    tarjetaDelete: {
+                        templateUrl: basePath + 'tarjeta.delete.html',
+                        controller: 'tarjetaDeleteCtrl'
+                    }
+                }
+            }).state('deletePayPal', {
+                params: {
+                    payPalId: null 
+                },
+
+                url: '/delete/{payPalId:int}',
+                parent: 'clienteDetail',
+                views: {
+                    payPalDelete: {
+                        templateUrl: basePath + 'payPal.delete.html',
+                        controller: 'payPalDeleteCtrl'
+                    }
+                }
             })
 
                     ;

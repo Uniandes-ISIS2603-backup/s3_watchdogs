@@ -10,8 +10,6 @@
                             <tr>
                                 <th>Nombre</th>
                                 <th>Documento</th>
-                                <th>Correo</th>
-                                <th>Telefono</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -21,8 +19,6 @@
                                     <a ui-sref="clienteDetail({clienteId: cliente.id})">{{cliente.name}}</a>
                                 </td>
                                 <td id="{{$index}}-documento">{{cliente.cedula}}</td>
-                                <td id="{{$index}}-correo">{{cliente.correo}}</td>
-                                <td id="{{$index}}-telefono">{{cliente.telefono}}</td>
                                 <td id="{{$index}}-acciones">
                                     <a id="{{$index}}-edit" class="btn btn-default btn-sm" ui-sref="clienteUpdate({clienteId: cliente.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a>
                                     <a id="{{$index}}-delete" class="btn btn-default btn-sm" ui-sref="clienteDelete({clienteId: cliente.id})"><span class="glyphicon glyphicon-edit"></span>Eliminar</a>

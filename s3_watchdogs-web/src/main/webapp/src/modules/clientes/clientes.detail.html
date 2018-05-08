@@ -4,35 +4,35 @@
         <div class="container-fluid">
             <div class ='card'>
                 <h1>Cuenta</h1>
-                <div class="text-center">
-                    <img src="{{currentCliente.imagen}}" class="img-thumbnail" alt="Foto perfil">   
-                </div>
-                <button type="button" class="btn btn-link">Editar avatar</button>
+                <div class="container-fluid">
+                    <div class="text-center">
+                        <img src="{{currentCliente.imagen}}" class="img-thumbnail" alt="Foto perfil">   
+                    </div>
+                    <button type="button" class="btn btn-link">Editar avatar</button>
 
-                <!-- Panel informacion -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <label for="nombre">Nombre: </label>
-                                <p class="form-control" id="nombre"> {{currentCliente.name}} </p>
+                    <!-- Panel informacion -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <label for="nombre">Nombre: </label>
+                                    <p class="form-control" id="nombre"> {{currentCliente.name}} </p>
+                                </div>
+                                <div class="row">   
+                                    <label for="documento">Documento: </label>  
+                                    <p class="form-control" id="documento"> {{currentCliente.cedula}} </p>
+                                </div>
+                                <div class="row"> 
+                                    <label for="correo">Correo: </label>
+                                    <p class="form-control" id="correo"> {{currentCliente.correo}} </p>
+                                </div>
+                                <div class="row"> 
+                                    <label for="telefono">Telefono: </label>
+                                    <p class="form-control" id="telefono"> {{currentCliente.telefono}} </p>
+                                </div>
                             </div>
-                            <div class="row">   
-                                <label for="documento">Documento: </label>  
-                                <p class="form-control" id="documento"> {{currentCliente.cedula}} </p>
-                            </div>
-                            <div class="row"> 
-                                <label for="correo">Correo: </label>
-                                <p class="form-control" id="correo"> {{currentCliente.correo}} </p>
-                            </div>
-                            <div class="row"> 
-                                <label for="telefono">Telefono: </label>
-                                <p class="form-control" id="telefono"> {{currentCliente.telefono}} </p>
-                            </div>
-                        </div>
-                        <!-- Panel Metodos de pago -->
+                            <!-- Panel Metodos de pago -->
 
-                        <div class="container-fluid">
                             <div class="card text-center" style="width: 13rem;">
                                 <div class="card-body">
                                     <h5 class="card-title">Metodos de pago</h5>
@@ -47,7 +47,7 @@
                             <p></p>
                         </div>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>
@@ -57,6 +57,8 @@
 
             <div ui-view="payPalCreate"></div>
             <div ui-view="PSECreate"></div>
+            <div ui-view="tarjetaCreate"></div>
+            <div ui-view="tarjetaDelete"></div>
 
         </div>
     </div>
