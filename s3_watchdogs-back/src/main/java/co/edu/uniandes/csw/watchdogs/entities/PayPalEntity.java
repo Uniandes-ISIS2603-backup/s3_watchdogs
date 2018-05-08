@@ -25,9 +25,10 @@ public class PayPalEntity extends BaseEntity implements Serializable{
     private String correo;
     
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private ClienteEntity cliente;
     
+    @PodamExclude
     @OneToOne
     private FacturaEntity factura;
 

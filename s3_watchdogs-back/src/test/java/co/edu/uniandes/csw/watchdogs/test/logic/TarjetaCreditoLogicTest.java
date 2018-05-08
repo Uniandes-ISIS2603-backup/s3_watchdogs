@@ -100,14 +100,15 @@ public class TarjetaCreditoLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            TarjetaCreditoEntity tarjeta = factory.manufacturePojo(TarjetaCreditoEntity.class);
-            em.persist(tarjeta);
-            data.add(tarjeta);
-        }
-        for (int i = 0; i < 3; i++) {
             ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
             em.persist(entity);
             dataCliente.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
+            TarjetaCreditoEntity tarjeta = factory.manufacturePojo(TarjetaCreditoEntity.class);
+            tarjeta.setCliente(dataCliente.get(0));
+            em.persist(tarjeta);
+            data.add(tarjeta);
         }
     }
 
@@ -136,7 +137,7 @@ public class TarjetaCreditoLogicTest {
      */
     @Test
     public void getTarjetasTest() throws BusinessLogicException {
-        List<TarjetaCreditoEntity> list = tarjetaLogic.getTarjetas(dataCliente.get(1).getId());
+        List<TarjetaCreditoEntity> list = tarjetaLogic.getTarjetas(dataCliente.get(0).getId());
         Assert.assertEquals(data.size(), list.size());
         for (TarjetaCreditoEntity entity : list) {
             boolean found = false;
@@ -157,7 +158,7 @@ public class TarjetaCreditoLogicTest {
     @Test
     public void getTarjetaTest() {
         TarjetaCreditoEntity entity = data.get(0);
-        TarjetaCreditoEntity resultEntity = tarjetaLogic.getTarjeta(dataCliente.get(1).getId(), entity.getId());
+        TarjetaCreditoEntity resultEntity = tarjetaLogic.getTarjeta(dataCliente.get(0).getId(), entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
@@ -174,7 +175,7 @@ public class TarjetaCreditoLogicTest {
     @Test
     public void deleteTarjetaTest() {
         TarjetaCreditoEntity entity = data.get(0);
-        tarjetaLogic.deleteTarjeta(dataCliente.get(1).getId(), entity.getId());
+        tarjetaLogic.deleteTarjeta(dataCliente.get(0).getId(), entity.getId());
         TarjetaCreditoEntity deleted = em.find(TarjetaCreditoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

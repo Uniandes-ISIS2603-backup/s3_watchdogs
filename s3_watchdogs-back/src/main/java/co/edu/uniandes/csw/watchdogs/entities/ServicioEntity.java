@@ -37,7 +37,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
 
     protected Boolean estado;
 
-    protected List<String> rango;
+    private List<String> rango;
 
     protected Double duracion;
 

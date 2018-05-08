@@ -100,14 +100,15 @@ public class PayPalLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            PayPalEntity payPal = factory.manufacturePojo(PayPalEntity.class);
-            em.persist(payPal);
-            data.add(payPal);
-        }
-        for (int i = 0; i < 3; i++) {
             ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
             em.persist(entity);
             dataCliente.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
+            PayPalEntity payPal = factory.manufacturePojo(PayPalEntity.class);
+            payPal.setCliente(dataCliente.get(0));
+            em.persist(payPal);
+            data.add(payPal);
         }
     }
 
@@ -135,7 +136,7 @@ public class PayPalLogicTest {
      */
     @Test
     public void getPayPalsTest() throws BusinessLogicException {
-        List<PayPalEntity> list = payPalLogic.getPayPals(dataCliente.get(1).getId());
+        List<PayPalEntity> list = payPalLogic.getPayPals(dataCliente.get(0).getId());
         Assert.assertEquals(data.size(), list.size());
         for (PayPalEntity entity : list) {
             boolean found = false;
@@ -156,7 +157,7 @@ public class PayPalLogicTest {
     @Test
     public void getPayPalTest() {
         PayPalEntity entity = data.get(0);
-        PayPalEntity resultEntity = payPalLogic.getPayPal(dataCliente.get(1).getId(), entity.getId());
+        PayPalEntity resultEntity = payPalLogic.getPayPal(dataCliente.get(0).getId(), entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
@@ -172,7 +173,7 @@ public class PayPalLogicTest {
     @Test
     public void deletePayPalTest() {
         PayPalEntity entity = data.get(0);
-        payPalLogic.deletePayPal(dataCliente.get(1).getId(), entity.getId());
+        payPalLogic.deletePayPal(dataCliente.get(0).getId(), entity.getId());
         PayPalEntity deleted = em.find(PayPalEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

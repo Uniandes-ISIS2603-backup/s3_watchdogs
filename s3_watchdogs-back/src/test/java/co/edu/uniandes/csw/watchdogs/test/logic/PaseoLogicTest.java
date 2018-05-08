@@ -6,6 +6,9 @@
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.PaseoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
+import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.PaseoPersistence;
@@ -50,6 +53,12 @@ public class PaseoLogicTest {
     private UserTransaction utx;
 
     private List<PaseoEntity> data = new ArrayList<>();
+    
+    private List<MascotaEntity> dataMascota = new ArrayList<MascotaEntity>();
+
+    private List<EmpleadoEntity> dataEmpleado = new ArrayList<EmpleadoEntity>();
+
+    private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -94,6 +103,21 @@ public class PaseoLogicTest {
      */
     private void insertData() {  
         for (int i = 0; i < 3; i++) {
+            ClienteEntity clienteEntity = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(clienteEntity);
+            dataCliente.add(clienteEntity);
+        }
+        for (int i = 0; i < 3; i++) {
+            MascotaEntity mascotaEntity = factory.manufacturePojo(MascotaEntity.class);
+            em.persist(mascotaEntity);
+            dataMascota.add(mascotaEntity);
+        }
+        for (int i = 0; i < 3; i++) {
+            EmpleadoEntity empleadoEntity = factory.manufacturePojo(EmpleadoEntity.class);
+            em.persist(empleadoEntity);
+            dataEmpleado.add(empleadoEntity);
+        }
+        for (int i = 0; i < 3; i++) {
             PaseoEntity entity = factory.manufacturePojo(PaseoEntity.class);
             em.persist(entity);
             data.add(entity);
@@ -107,11 +131,16 @@ public class PaseoLogicTest {
     @Test
     public void createPaseoTest() throws BusinessLogicException {
         PaseoEntity newEntity = factory.manufacturePojo(PaseoEntity.class);
+        newEntity.setCliente(dataCliente.get(0));
+        newEntity.setMascota(dataMascota.get(0));
+        newEntity.setEmpleado(dataEmpleado.get(0));
         PaseoEntity result = paseoLogic.createPaseo(newEntity);
         Assert.assertNotNull(result);
         PaseoEntity entity = em.find(PaseoEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getCapMax(), entity.getCapMax());
+        Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+        Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
     }
 
     /**
@@ -164,12 +193,17 @@ public class PaseoLogicTest {
         PaseoEntity pojoEntity = factory.manufacturePojo(PaseoEntity.class);
 
         pojoEntity.setId(entity.getId());
-
+        pojoEntity.setCliente(dataCliente.get(0));
+        pojoEntity.setMascota(dataMascota.get(0));
+        pojoEntity.setEmpleado(dataEmpleado.get(0));
         paseoLogic.updatePaseo(pojoEntity.getId(), pojoEntity);
 
         PaseoEntity resp = em.find(PaseoEntity.class, entity.getId());
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getCapMax(), resp.getCapMax());
+        Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
+        Assert.assertEquals(pojoEntity.getMascota(), resp.getMascota());
+        Assert.assertEquals(pojoEntity.getEmpleado(), resp.getEmpleado());
     }
 }
