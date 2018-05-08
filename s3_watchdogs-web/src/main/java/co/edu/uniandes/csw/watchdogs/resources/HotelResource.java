@@ -138,7 +138,7 @@ public class HotelResource {
         if (entity == null) {
             throw new WebApplicationException("El recurso /hoteles/" + id + " no existe.", 404);
         }
-        return new HotelDetailDTO(hotelLogic.updateHotel(id, hotel.toEntity()));
+        return new HotelDetailDTO(hotelLogic.updateHotel(id,hotel.toEntity()));
     }
     
     /**

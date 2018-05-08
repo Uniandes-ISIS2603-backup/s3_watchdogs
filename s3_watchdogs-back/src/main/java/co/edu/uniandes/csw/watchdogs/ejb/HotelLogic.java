@@ -34,8 +34,8 @@ public class HotelLogic {
 
     @Inject
     private TransporteLogic transporteLogic;
-    
-     @Inject
+
+    @Inject
     private ClienteLogic clienteLogic;
 
     @Inject
@@ -75,21 +75,26 @@ public class HotelLogic {
     /**
      * Guardar un nuevo Hotel
      *
-     * @param entity La entidad de tipo Hotel del nuevo transporte a
-     * persistir.
+     * @param entity La entidad de tipo Hotel del nuevo transporte a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
     public HotelEntity createHotel(HotelEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de Hotel");
-        validarServicios(entity);
-        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
-        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-        entity.setCliente(cliente);
-        entity.setMascota(mascota);
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Hotel");
-        return entity;
+        LOGGER.info("Inicia proceso de creación de Hotel. Logica");
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de Hotel");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a la de hoy");
+        }
     }
 
     /**
@@ -101,17 +106,21 @@ public class HotelLogic {
      * @throws BusinessLogicException
      */
     public HotelEntity updateHotel(Long id, HotelEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Hotel con id={0}", id);
-        validarServicios(entity);
-        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
-        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-        EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
-        entity.setCliente(cliente);
-        entity.setMascota(mascota);
-        entity.setEmpleado(empleado);
-        HotelEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar Hotel con id={0}", entity.getId());
-        return newEntity;
+        LOGGER.info("Inicia proceso de actualizar Hotel ");
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            entity.setEmpleado(empleado);
+            HotelEntity newEntity = persistence.update(entity);
+            LOGGER.info("Termina proceso de actualizar Hotel");
+            return newEntity;
+        } else {
+            throw new BusinessLogicException("La fecha debe ser posterior a hoy.");
+        }
     }
 
     /**
@@ -187,9 +196,9 @@ public class HotelLogic {
     }
 
     /**
-     * 
+     *
      * @param entity
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public void validarServicios(HotelEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
@@ -202,10 +211,14 @@ public class HotelLogic {
         if (entity.getDuracion() < 0) {
             throw new BusinessLogicException("La duracion es invalida");
         }
-        if (entity.getTiempoHospedaje() < 12) {
+        if (entity.getTiempoHospedaje() < 24) {
             throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
         }
 
+    }
+
+    private Double costo(double duracion) {
+        return duracion * 50000;
     }
 
 }

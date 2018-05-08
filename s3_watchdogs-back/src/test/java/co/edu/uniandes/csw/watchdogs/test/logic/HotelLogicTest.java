@@ -6,7 +6,10 @@
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.HotelLogic;
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
+import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
+import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.HotelPersistence;
 import java.util.ArrayList;
@@ -50,6 +53,12 @@ public class HotelLogicTest {
     private UserTransaction utx;
 
     private List<HotelEntity> data = new ArrayList<>();
+    
+    private List<MascotaEntity> dataMascota = new ArrayList<MascotaEntity>();
+    
+    private List<EmpleadoEntity> dataEmpleado = new ArrayList<EmpleadoEntity>();
+    
+    private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -86,15 +95,36 @@ public class HotelLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from HotelEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from MascotaEntity").executeUpdate();
+        em.createQuery("delete from EmpleadoEntity").executeUpdate();
     }
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() {  
+    private void insertData() { 
+        for (int i = 0; i < 3; i++) {
+            ClienteEntity clienteEntity = factory.manufacturePojo(ClienteEntity.class);
+            em.persist(clienteEntity);
+            dataCliente.add(clienteEntity);
+        }
+        for (int i = 0; i < 3; i++) {
+            MascotaEntity mascotaEntity = factory.manufacturePojo(MascotaEntity.class);
+            em.persist(mascotaEntity);
+            dataMascota.add(mascotaEntity);
+        }
+        for (int i = 0; i < 3; i++) {
+            EmpleadoEntity empleadoEntity = factory.manufacturePojo(EmpleadoEntity.class);
+            em.persist(empleadoEntity);
+            dataEmpleado.add(empleadoEntity);
+        }
         for (int i = 0; i < 3; i++) {
             HotelEntity entity = factory.manufacturePojo(HotelEntity.class);
+            entity.setCliente(dataCliente.get(1));
+            entity.setMascota(dataMascota.get(1));
+            entity.setEmpleado(dataEmpleado.get(1));
             em.persist(entity);
             data.add(entity);
         }
@@ -107,6 +137,9 @@ public class HotelLogicTest {
     @Test
     public void createHotelTest() throws BusinessLogicException {
         HotelEntity newEntity = factory.manufacturePojo(HotelEntity.class);
+        newEntity.setCliente(dataCliente.get(0));
+        newEntity.setMascota(dataMascota.get(0));
+        newEntity.setEmpleado(dataEmpleado.get(0));
         HotelEntity result = hotelLogic.createHotel(newEntity);
         Assert.assertNotNull(result);
         HotelEntity entity = em.find(HotelEntity.class, result.getId());
@@ -162,8 +195,11 @@ public class HotelLogicTest {
     public void updateHotelTest() throws BusinessLogicException {
         HotelEntity entity = data.get(0);
         HotelEntity pojoEntity = factory.manufacturePojo(HotelEntity.class);
-
+        
         pojoEntity.setId(entity.getId());
+        pojoEntity.setCliente(dataCliente.get(0));
+        pojoEntity.setMascota(dataMascota.get(0));
+        pojoEntity.setEmpleado(dataEmpleado.get(0));
 
         hotelLogic.updateHotel(pojoEntity.getId(), pojoEntity);
 

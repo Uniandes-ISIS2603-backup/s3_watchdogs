@@ -80,15 +80,21 @@ public class PaseoLogic {
      * @throws BusinessLogicException
      */
     public PaseoEntity createPaseo(PaseoEntity entity) throws BusinessLogicException {
-        LOGGER.info("Inicia proceso de creación de Paseo");
-        validarServicios(entity);
-        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
-        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-        entity.setCliente(cliente);
-        entity.setMascota(mascota);
-        persistence.create(entity);
-        LOGGER.info("Termina proceso de creación de Paseo");
-        return entity;
+        LOGGER.info("Inicia proceso de creación de Paseo. Logica");
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(entity.getDuracion()*20000);
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de Paseo");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a la de hoy");
+        }
     }
 
     /**
@@ -100,17 +106,21 @@ public class PaseoLogic {
      * @throws BusinessLogicException
      */
     public PaseoEntity updatePaseo(Long id, PaseoEntity entity) throws BusinessLogicException {
-        LOGGER.log(Level.INFO, "Inicia proceso de actualizar Paseo con id={0}", id);
-        validarServicios(entity);
-        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
-        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-        EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
-        entity.setCliente(cliente);
-        entity.setMascota(mascota);
-        entity.setEmpleado(empleado);
-        PaseoEntity newEntity = persistence.update(entity);
-        LOGGER.log(Level.INFO, "Termina proceso de actualizar Paseo con id={0}", entity.getId());
-        return newEntity;
+        LOGGER.info("Inicia proceso de actualizar Paseo");
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            entity.setEmpleado(empleado);
+            PaseoEntity newEntity = persistence.update(entity);
+            LOGGER.info("Termina proceso de actualizar Paseo");
+            return newEntity;
+        } else {
+            throw new BusinessLogicException("La fecha debe ser posterior a hoy.");
+        }
     }
 
     /**
@@ -142,7 +152,6 @@ public class PaseoLogic {
         return rutaEntity;
     }
 
-  
     /**
      * Remplazar Rutas de un Paseo
      *
@@ -166,7 +175,6 @@ public class PaseoLogic {
         return getPaseo(paseoId).getRuta();
     }
 
-
     public void validarServicios(PaseoEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
         if (entity.getFecha().before(todayDate)) {
@@ -181,6 +189,19 @@ public class PaseoLogic {
         if (entity.getCapMax() < 0) {
             throw new BusinessLogicException("La capacidad maxima no puede ser negativa");
         }
+    }
+
+    public Double costo(List<String> lista) {
+        double costo = 0;
+        for (String p : lista) {
+            costo += numHoras(p) * 20000;
+        }
+        return costo;
+    }
+
+    public Integer numHoras(String p) {
+        String[] partes = p.split("-");
+        return Integer.parseInt(partes[1]) - Integer.parseInt(partes[0]);
     }
 
 }

@@ -54,7 +54,7 @@ public class HotelDTO extends ServicioDTO {
 
     public HotelDTO(HotelEntity entity) {
         super(entity);
-        this.setTiempoHospedaje(entity.getTiempoHospedaje());
+        if(entity != null)this.tiempoHospedaje = entity.getTiempoHospedaje();
     }
 
     /**

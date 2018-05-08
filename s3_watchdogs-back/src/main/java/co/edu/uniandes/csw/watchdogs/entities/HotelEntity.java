@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -18,17 +19,20 @@ import uk.co.jemos.podam.common.PodamIntValue;
  */
 @Entity
 public class HotelEntity extends ServicioEntity implements Serializable {
-    
-    @PodamIntValue(minValue = 12)
+    @PodamIntValue(minValue = 24)
     private Integer tiempoHospedaje;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
     private TransporteEntity transporte;
     
     @PodamExclude
     @ManyToOne
     private CentroDeEntrenamientoEntity centroDeEntrenamiento;
+    
+    public HotelEntity(){
+    
+    }
 
     public Integer getTiempoHospedaje() {
         return tiempoHospedaje;

@@ -34,12 +34,12 @@ public class HotelDetailDTO extends ServicioDetailDTO {
         if (entity.getTransporte() != null) {
             this.transporte = new TransporteDTO(entity.getTransporte());
         } else {
-            entity.setTransporte(null);
+            transporte=null;
         }
         if (entity.getCentroDeEntrenamiento() != null) {
             this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
         } else {
-            entity.setCentroDeEntrenamiento(null);
+            centroDeEntrenamiento = null;
         }
     }
 

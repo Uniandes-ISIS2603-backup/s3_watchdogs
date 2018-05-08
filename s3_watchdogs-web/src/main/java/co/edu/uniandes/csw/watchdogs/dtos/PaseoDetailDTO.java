@@ -29,15 +29,18 @@ public class PaseoDetailDTO extends ServicioDetailDTO {
 
     public PaseoDetailDTO(PaseoEntity entity) {
         super(entity);
-        this.capMax = entity.getCapMax();
-        this.horas = entity.getHoras();
+        capMax = entity.getCapMax();
+        horas = entity.getHoras();
         if (entity.getVeterinaria() != null) {
             this.veterinaria = new VeterinariaDTO(entity.getVeterinaria());
         } else {
-            entity.setVeterinaria(null);
+            veterinaria = null;
         }
         if (entity.getRuta() != null) {
-            ruta = new RutaDTO(entity.getRuta());
+            this.ruta = new RutaDTO(entity.getRuta());
+        }
+        else{
+            ruta = null;
         }
 
     }
@@ -90,10 +93,10 @@ public class PaseoDetailDTO extends ServicioDetailDTO {
         if (this.calificacion != null) {
             entity.setCalificacion(calificacion.toEntity());
         }
-        if (this.getVeterinaria() != null) {
+        if (this.veterinaria != null) {
             entity.setVeterinaria(this.veterinaria.toEntity());
         }
-        if (this.getRutas() != null) {
+        if (this.ruta != null) {
             entity.setRuta(this.ruta.toEntity());
         }
         return entity;

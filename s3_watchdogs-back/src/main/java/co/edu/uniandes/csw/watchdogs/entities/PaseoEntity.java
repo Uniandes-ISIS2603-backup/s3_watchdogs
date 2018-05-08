@@ -22,18 +22,21 @@ public class PaseoEntity extends ServicioEntity implements Serializable {
     
     @PodamIntValue(minValue = 1)
     private Integer capMax;
-    @PodamStringValue(length = 11)
+    
     private List<String> horas;
     
     
     @PodamExclude
-    //TODO: mappedBy
     @ManyToOne
     private RutaEntity ruta;
     
     @PodamExclude
     @ManyToOne
     private VeterinariaEntity veterinaria;
+    
+    public PaseoEntity(){
+        
+    }
 
     public Integer getCapMax() {
         return capMax;
