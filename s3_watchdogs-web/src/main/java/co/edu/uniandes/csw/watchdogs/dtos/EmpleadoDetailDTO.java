@@ -27,9 +27,9 @@ import java.util.List;
  *      "cedula": string,
  *      "imagen": string,
  *      "edad": integer
- *      "correo": ca.beltran10@watchdogs.com,
- *      "telefono": 3106969451,
- *      "cargo": Paseador,
+ *      "correo": string,
+ *      "telefono": string,
+ *      "cargo": string,
  *      "clasificacion": number,
  *      "servicios" : {@link ServicioDTO},
  *      "disponibilidad" : {@link DisponibilidadDTO}
