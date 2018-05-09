@@ -24,20 +24,21 @@ import javax.inject.Inject;
  */
 @Stateless
 public class CentroDeEntrenamientoLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(CentroDeEntrenamientoLogic.class.getName());
-    
+
     @Inject
     private CentroDeEntrenamientoPersistence persistence;
-    
+
     @Inject
     private EntrenamientoLogic entrenamientoLogic;
-    
+
     @Inject
     private HotelLogic hotelLogic;
 
     /**
      * Devuelve todos los CentroDeEntrenamiento que hay en la base de datos.
+     *
      * @return Lista de entidades de tipo CentroDeEntrenamiento.
      */
     public List<CentroDeEntrenamientoEntity> getCentrosDeEntrenamientos() {
@@ -46,9 +47,10 @@ public class CentroDeEntrenamientoLogic {
         LOGGER.info("Termina proceso de consultar todos los CentroDeEntrenamientos");
         return centroDeEntrenamientos;
     }
-    
+
     /**
      * Busca un CentroDeEntrenamiento por ID
+     *
      * @param id El id del CentroDeEntrenamiento a buscar
      * @return El CentroDeEntrenamiento encontrado, null si no lo encuentra.
      */
@@ -61,46 +63,52 @@ public class CentroDeEntrenamientoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar Transporte con id={0}", id);
         return centroDeEntrenamiento;
     }
-    
+
     /**
      * Guardar un nuevo CentroDeEntrenamiento
-     * @param entity La entidad de tipo CentroDeEntrenamiento del nuevo hotel a persistir.
+     *
+     * @param entity La entidad de tipo CentroDeEntrenamiento del nuevo hotel a
+     * persistir.
      * @return La entidad luego de persistirla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public CentroDeEntrenamientoEntity createCentroDeEntrenamiento(CentroDeEntrenamientoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de CentroDeEntrenamiento");
-        validar(entity.getId(),entity.getName(), entity.getUsuariosEnServicio(), entity.getCapacidadMaxima(), entity.getDireccion());
+        validar(entity);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de CentroDeEntrenamiento");
         return entity;
     }
-    
-   
+
     /**
      * Actualizar un CentroDeEntrenamiento por ID
+     *
      * @param id El ID del CentroDeEntrenamiento a actualizar
-     * @param entity La entidad del CentroDeEntrenamiento con los cambios deseados
+     * @param entity La entidad del CentroDeEntrenamiento con los cambios
+     * deseados
      * @return La entidad del CentroDeEntrenamiento luego de actualizarla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public CentroDeEntrenamientoEntity updateCentroDeEntrenamiento(Long id, CentroDeEntrenamientoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar CentroDeEntrenamiento con id={0}", id);
-        validar(entity.getId(),entity.getName(), entity.getUsuariosEnServicio(), entity.getCapacidadMaxima(), entity.getDireccion());
+        validar(entity);
         CentroDeEntrenamientoEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar CentroDeEntrenamiento con id={0}", entity.getId());
         return newEntity;
     }
-    
-     public void validar(Long id, String nombre, Integer usuariosEnServicio, Integer capMax, String direccion)throws BusinessLogicException{
-        if(id<0) throw new BusinessLogicException ("El id es negativo");
-        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
-        else if(usuariosEnServicio>capMax) throw new BusinessLogicException ("Los usuarios en servicio no pueden ser mayores que la capacidad máxima");
-        else if(direccion.length()>50) throw new BusinessLogicException ("La direccion es muy grande");  
+
+    public void validar(CentroDeEntrenamientoEntity entity) throws BusinessLogicException {
+        if (entity.getUsuariosEnServicio() > entity.getCapacidadMaxima()) {
+            throw new BusinessLogicException("Los usuarios en servicio no pueden ser mayores que la capacidad máxima");
+        }
+        if (entity.getDireccion().length() > 50) {
+            throw new BusinessLogicException("La direccion es muy grande");
+        }
     }
-    
+
     /**
      * Eliminar un CentroDeEntrenamiento por ID
+     *
      * @param id El ID del CentroDeEntrenamiento a eliminar
      */
     public void deleteCentroDeEntrenamiento(Long id) {
@@ -108,12 +116,12 @@ public class CentroDeEntrenamientoLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar CentroDeEntrenamiento con id={0}", id);
     }
-    
-    public List<EntrenamientoEntity> getEntrenamientos(Long id){
+
+    public List<EntrenamientoEntity> getEntrenamientos(Long id) {
         return getCentroDeEntrenamiento(id).getEntrenamientos();
     }
-    
-    public EntrenamientoEntity getEntrenamiento(Long idC, Long idE) throws BusinessLogicException{
+
+    public EntrenamientoEntity getEntrenamiento(Long idC, Long idE) throws BusinessLogicException {
         List<EntrenamientoEntity> entrenamientos = getCentroDeEntrenamiento(idC).getEntrenamientos();
         EntrenamientoEntity entrenamiento = entrenamientoLogic.getEntrenamiento(idE);
         int index = entrenamientos.indexOf(entrenamiento);
@@ -122,16 +130,16 @@ public class CentroDeEntrenamientoLogic {
         }
         throw new BusinessLogicException("El entrenamiento no está asociado al centro de entrenamiento");
     }
-    
-    public EntrenamientoEntity addEntrenamiento(Long idC,Long idE)throws BusinessLogicException{
+
+    public EntrenamientoEntity addEntrenamiento(Long idC, Long idE) throws BusinessLogicException {
         CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(idC);
         EntrenamientoEntity entrenamientoEntity = entrenamientoLogic.getEntrenamiento(idE);
-        validarServicios(entrenamientoEntity.getId(), entrenamientoEntity.getName(), entrenamientoEntity.getFecha(),entrenamientoEntity.getCosto(),entrenamientoEntity.getDuracion());
+        validarServicios(entrenamientoEntity.getFecha(), entrenamientoEntity.getCosto(), entrenamientoEntity.getDuracion());
         entrenamientoEntity.setCentroDeEntrenamiento(centroDeEntrenamientoEntity);
         return entrenamientoEntity;
     }
-    
-    public List<EntrenamientoEntity> replaceEntrenamientos(Long id, List<EntrenamientoEntity> entrenamientos){
+
+    public List<EntrenamientoEntity> replaceEntrenamientos(Long id, List<EntrenamientoEntity> entrenamientos) {
         CentroDeEntrenamientoEntity centroDeEntrenamiento = getCentroDeEntrenamiento(id);
         List<EntrenamientoEntity> entrenamientoList = entrenamientoLogic.getEntrenamientos();
         for (EntrenamientoEntity entrenamiento : entrenamientoList) {
@@ -143,27 +151,26 @@ public class CentroDeEntrenamientoLogic {
         }
         return entrenamientos;
     }
-    
+
     public void removeEntrenamiento(Long entrenamientoId, Long centroDeEntrenamientoId) {
         CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
         EntrenamientoEntity entrenamiento = entrenamientoLogic.getEntrenamiento(entrenamientoId);
         entrenamiento.setCentroDeEntrenamiento(null);
         centroDeEntrenamientoEntity.getEntrenamientos().remove(entrenamiento);
     }
-    
-         
+
     /**
      * Agregar un Hotel al CentroDeEntrenamiento
      *
      * @param hotelId El id hotel a guardar
-     * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento en la cual se va a guardar el
-     * hotel.
+     * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento en la cual
+     * se va a guardar el hotel.
      * @return El hotel que fue agregado al CentroDeEntrenamiento.
      */
     public HotelEntity addHotel(Long hotelId, Long centroDeEntrenamientoId) throws BusinessLogicException {
         CentroDeEntrenamientoEntity CentroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
         HotelEntity hotelEntity = hotelLogic.getHotel(hotelId);
-        validarServicios(hotelEntity.getId(), hotelEntity.getName(), hotelEntity.getFecha(),hotelEntity.getCosto(),hotelEntity.getDuracion());
+        validarServicios(hotelEntity.getFecha(), hotelEntity.getCosto(), hotelEntity.getDuracion());
         validarHotel(hotelEntity.getTiempoHospedaje());
         hotelEntity.setCentroDeEntrenamiento(CentroDeEntrenamientoEntity);
         return hotelEntity;
@@ -173,7 +180,8 @@ public class CentroDeEntrenamientoLogic {
      * Borrar un Hotel de un CentroDeEntrenamiento
      *
      * @param hotelId El hotel que se desea borrar del CentroDeEntrenamiento.
-     * @param centroDeEntrenamientoId La CentroDeEntrenamiento del cual se desea eliminar.
+     * @param centroDeEntrenamientoId La CentroDeEntrenamiento del cual se desea
+     * eliminar.
      */
     public void removeHotel(Long hotelId, Long centroDeEntrenamientoId) {
         CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
@@ -186,7 +194,8 @@ public class CentroDeEntrenamientoLogic {
      * Remplazar Hotels de una CentroDeEntrenamiento
      *
      * @param hoteles Lista de hotels que serán los del CentroDeEntrenamiento.
-     * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento que se quiere actualizar.
+     * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento que se
+     * quiere actualizar.
      * @return La lista de hotels actualizada.
      */
     public List<HotelEntity> replaceHoteles(Long centroDeEntrenamientoId, List<HotelEntity> hoteles) {
@@ -218,7 +227,8 @@ public class CentroDeEntrenamientoLogic {
      * @param centroDeEntrenamientoId El id del CentroDeEntrenamiento a buscar.
      * @param hotelId El id del hotel a buscar
      * @return El hotel encontrado dentro del CentroDeEntrenamiento.
-     * @throws BusinessLogicException Si el hotel no se encuentra en la CentroDeEntrenamiento
+     * @throws BusinessLogicException Si el hotel no se encuentra en la
+     * CentroDeEntrenamiento
      */
     public HotelEntity getHotel(Long centroDeEntrenamientoId, Long hotelId) throws BusinessLogicException {
         List<HotelEntity> hoteles = getCentroDeEntrenamiento(centroDeEntrenamientoId).getHoteles();
@@ -230,18 +240,24 @@ public class CentroDeEntrenamientoLogic {
         throw new BusinessLogicException("El hotel no está asociado al CentroDeEntrenamiento");
 
     }
-    
-    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException{
+
+    public void validarServicios(Date fecha, Double costo, Double duracion) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
-        if(fecha.before(todayDate)) throw new BusinessLogicException ("La fecha ingresada no es valida");
-        else if(id<0) throw new BusinessLogicException ("El id es invalido");
-        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
-        else if(costo<0) throw new BusinessLogicException ("El costo es invalido");
-        else if(duracion <0) throw new BusinessLogicException ("La duracion es invalida");
-        
+        if (fecha.before(todayDate)) {
+            throw new BusinessLogicException("La fecha ingresada no es valida");
+        }
+        if (costo < 0) {
+            throw new BusinessLogicException("El costo es invalido");
+        }
+        if (duracion < 0) {
+            throw new BusinessLogicException("La duracion es invalida");
+        }
+
     }
-     
-    public void validarHotel(Integer tHospedaje)throws BusinessLogicException{
-        if(tHospedaje <12) throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
+
+    public void validarHotel(Integer tHospedaje) throws BusinessLogicException {
+        if (tHospedaje < 12) {
+            throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
+        }
     }
 }

@@ -104,7 +104,7 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO {
             entity.setTransporte(transporte.toEntity());
         }
         if (centroDeEntrenamiento != null) {
-            if (centroDeEntrenamiento instanceof CentroDeEntrenamientoDTO) {
+            if (centroDeEntrenamiento.getClass().equals(CentroDeEntrenamientoDTO.class)) {
                 entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
             } else {
                 entity.setCentroDeEntrenamiento(null);

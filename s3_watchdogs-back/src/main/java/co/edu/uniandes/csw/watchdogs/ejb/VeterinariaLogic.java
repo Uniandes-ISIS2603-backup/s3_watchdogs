@@ -132,7 +132,7 @@ public class VeterinariaLogic {
     public AseoEntity addAseo(Long idC, Long idE) throws BusinessLogicException {
         VeterinariaEntity veterinariaEntity = getVeterinaria(idC);
         AseoEntity aseoEntity = aseoLogic.getAseo(idE);
-        validarServicios(aseoEntity.getId(), aseoEntity.getName(), aseoEntity.getFecha(), aseoEntity.getCosto(), aseoEntity.getDuracion());
+        validarServicios(aseoEntity.getFecha(), aseoEntity.getCosto(), aseoEntity.getDuracion());
         aseoEntity.setVeterinaria(veterinariaEntity);
         return aseoEntity;
     }
@@ -168,7 +168,7 @@ public class VeterinariaLogic {
     public PaseoEntity addPaseo(Long paseoId, Long veterinariaId) throws BusinessLogicException {
         VeterinariaEntity veterinariaEntity = getVeterinaria(veterinariaId);
         PaseoEntity paseoEntity = paseoLogic.getPaseo(paseoId);
-        validarServicios(paseoEntity.getId(), paseoEntity.getName(), paseoEntity.getFecha(), paseoEntity.getCosto(), paseoEntity.getDuracion());
+        validarServicios( paseoEntity.getFecha(), paseoEntity.getCosto(), paseoEntity.getDuracion());
         paseoEntity.setVeterinaria(veterinariaEntity);
         return paseoEntity;
     }
@@ -236,17 +236,15 @@ public class VeterinariaLogic {
 
     }
 
-    public void validarServicios(Long id, String nombre, Date fecha, Double costo, Double duracion) throws BusinessLogicException {
+    public void validarServicios(Date fecha, Double costo, Double duracion) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
         if (fecha.before(todayDate)) {
             throw new BusinessLogicException("La fecha ingresada no es valida");
-        } else if (id < 0) {
-            throw new BusinessLogicException("El id es invalido");
-        } else if (nombre.length() > 50) {
-            throw new BusinessLogicException("El nombre es muy grande");
-        } else if (costo < 0) {
+        }
+        if (costo < 0) {
             throw new BusinessLogicException("El costo es invalido");
-        } else if (duracion < 0) {
+        }
+        if (duracion < 0) {
             throw new BusinessLogicException("La duracion es invalida");
         }
     }

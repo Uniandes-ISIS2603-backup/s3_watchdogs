@@ -48,8 +48,8 @@ import java.util.List;
  */
 public class VeterinariaDetailDTO extends VeterinariaDTO{
     
-    private List<PaseoDTO> paseos;
-    private List<AseoDTO> aseos;
+    private transient List<PaseoDTO> paseos;
+    private transient List<AseoDTO> aseos;
     
     /**
      * Constructor por defecto

@@ -19,8 +19,8 @@ import java.util.List;
  */
 public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
     
-    private List<EntrenamientoDTO> entrenamientos;
-    private List<HotelDTO> hoteles;
+    private transient List<EntrenamientoDTO> entrenamientos;
+    private transient List<HotelDTO> hoteles;
     
     /**
      * Constructor por defecto
