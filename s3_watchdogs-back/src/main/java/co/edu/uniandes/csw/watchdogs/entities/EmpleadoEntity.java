@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
+import co.edu.uniandes.csw.watchdogs.podam.CargoStrategy;
 import co.edu.uniandes.csw.watchdogs.podam.CorreoStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,9 +30,26 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     /**
      * Constantes posibles para el Cargo del empleado 
      **/
+    
+    /**
+     * Constante para el paseador
+     **/
     public static final String PASEADOR = "Paseador";
+    
+    /**
+     * Constante para el aseador     
+     **/
     public static final String ASEADOR = "Aseador";
+    
+    /**
+     * Constante para el entrenador 
+     **/
     public static final String ENTRENADOR = "Entrenador";
+    
+    /**
+     * Constante para el cuidador 
+     **/
+    public static final String CUIDADOR = "Cuidador";
     
     
     /**
@@ -73,6 +91,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     /**
      * Cargo del empleado.
      */
+     @PodamStrategyValue(CargoStrategy.class)
     private String cargo;
     
     /**
