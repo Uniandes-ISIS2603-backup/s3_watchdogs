@@ -34,7 +34,7 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
  *      "cedula": "1010123456",
  *      "imagen": "abg.jpg",
  *      "edad": 24
- *      "correo": "ca.beltran10@watchdogs.com",
+ *      "correo": "ca.beltran10watchdogs.com",
  *      "telefono": "3106969451",
  *      "cargo": "Paseador",
  *      "horarios": "No se como es"
