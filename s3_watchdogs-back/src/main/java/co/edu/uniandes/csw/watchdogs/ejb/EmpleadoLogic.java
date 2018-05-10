@@ -87,6 +87,7 @@ public class EmpleadoLogic {
      * @param entity: empleado con los cambios para ser actualizado, por ejemplo
      * el nombre.
      * @return el empleado con los cambios actualizados en la base de datos.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     public EmpleadoEntity updateEmpleado(Long id, EmpleadoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar empleado con id={0}", id);
