@@ -43,21 +43,21 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
+    @OneToOne
     private PayPalEntity payPal;
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
+    @OneToOne
     private PseEntity pse;
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
+    @OneToOne
     private TarjetaCreditoEntity tarjeta;
 
     

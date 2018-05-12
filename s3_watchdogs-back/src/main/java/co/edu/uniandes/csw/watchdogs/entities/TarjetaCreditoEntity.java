@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -37,7 +38,7 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
     private ClienteEntity cliente;
     
     @PodamExclude
-    @OneToOne
+    @OneToOne(mappedBy = "tarjeta", fetch = FetchType.LAZY)
     private FacturaEntity factura;
 
     public FacturaEntity getFactura() {
