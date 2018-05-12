@@ -11,6 +11,8 @@ import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.EmpleadoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -179,21 +181,25 @@ public class EmpleadoLogicTest {
      */
     @Test
     public void updateEmpleadoTest() {
-        EmpleadoEntity entity = data.get(0);
-        EmpleadoEntity pojoEntity = factory.manufacturePojo(EmpleadoEntity.class);
-
-        pojoEntity.setId(entity.getId());
-
-        empleadoLogic.updateEmpleado(entity.getId(), pojoEntity);
-
-        EmpleadoEntity resp = em.find(EmpleadoEntity.class, entity.getId());
-
-        Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getCedula(), resp.getCedula());
-         Assert.assertEquals(pojoEntity.getCorreo(),(resp.getCorreo()));
-        Assert.assertEquals(pojoEntity.getCargo(),(resp.getCargo()));
-        Assert.assertEquals(pojoEntity.getTelefono(),(resp.getTelefono()));
+        try {
+            EmpleadoEntity entity = data.get(0);
+            EmpleadoEntity pojoEntity = factory.manufacturePojo(EmpleadoEntity.class);
+            
+            pojoEntity.setId(entity.getId());
+            
+            empleadoLogic.updateEmpleado(entity.getId(), pojoEntity);
+            
+            EmpleadoEntity resp = em.find(EmpleadoEntity.class, entity.getId());
+            
+            Assert.assertEquals(pojoEntity.getId(), resp.getId());
+            Assert.assertEquals(pojoEntity.getName(), resp.getName());
+            Assert.assertEquals(pojoEntity.getCedula(), resp.getCedula());
+            Assert.assertEquals(pojoEntity.getCorreo(),(resp.getCorreo()));
+            Assert.assertEquals(pojoEntity.getCargo(),(resp.getCargo()));
+            Assert.assertEquals(pojoEntity.getTelefono(),(resp.getTelefono()));
+        } catch (BusinessLogicException ex) {
+            fail();
+        }
     }
 
 }

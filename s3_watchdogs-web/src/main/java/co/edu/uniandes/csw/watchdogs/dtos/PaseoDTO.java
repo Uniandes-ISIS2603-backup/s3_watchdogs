@@ -13,7 +13,7 @@ import java.util.List;
  * PaseoDTO Objeto de transferencia de datos de Paseos. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
- * 
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -26,11 +26,10 @@ import java.util.List;
  *      "capMax": Integer,
  *      "horas": List'String'
  *   }
- * </pre>
- * Por ejemplo un paseo se representa asi:<br>
- * 
+ * </pre> Por ejemplo un paseo se representa asi:<br>
+ *
  * <pre>
- * 
+ *
  *   {
  *      "id": 18859,
  *      "fecha:" 10-10-2010",
@@ -46,20 +45,22 @@ import java.util.List;
  *
  * @author m.diazt
  */
-public class PaseoDTO extends ServicioDTO{
-    
+public class PaseoDTO extends ServicioDTO {
+
     private Integer capMax;
     private List<String> horas;
-    
-    public PaseoDTO()
-    {
-        
+
+    public PaseoDTO() {
+
     }
-    
-    public PaseoDTO(PaseoEntity entity){
+
+    public PaseoDTO(PaseoEntity entity) {
         super(entity);
-        this.setCapMax(entity.getCapMax());
-        this.setHoras(entity.getHoras());
+        if (entity != null) {
+            this.capMax = entity.getCapMax();
+            this.horas = entity.getHoras();
+        }
+
     }
 
     /**
@@ -89,18 +90,19 @@ public class PaseoDTO extends ServicioDTO{
     public void setHoras(List<String> horas) {
         this.horas = horas;
     }
-    
-    public PaseoEntity toEntity(){
+
+    @Override
+    public PaseoEntity toEntity() {
         PaseoEntity entity = new PaseoEntity();
-        entity.setId(this.getId());
-        entity.setCosto(this.getCosto());
-        entity.setDuracion(this.getDuracion());
-        entity.setEstado(this.isEstado());
-        entity.setFecha(this.getFecha());
-        entity.setRango(this.getRango());
-        entity.setCapMax(this.getCapMax());
-        entity.setHoras(this.getHoras());
+        entity.setId(this.id);
+        entity.setCosto(this.costo);
+        entity.setDuracion(this.duracion);
+        entity.setEstado(this.estado);
+        entity.setFecha(this.fecha);
+        entity.setRango(this.rango);
+        entity.setCapMax(this.capMax);
+        entity.setHoras(this.horas);
         return entity;
     }
-    
+
 }

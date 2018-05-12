@@ -5,6 +5,9 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
+import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -23,17 +26,27 @@ import javax.inject.Inject;
  */
 @Stateless
 public class PaseoLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(PaseoLogic.class.getName());
-    
+
     @Inject
     private PaseoPersistence persistence;
-    
-    @Inject 
+
+    @Inject
     private RutaLogic rutaLogic;
+
+    @Inject
+    private ClienteLogic clienteLogic;
+
+    @Inject
+    private MascotaLogic mascotaLogic;
+
+    @Inject
+    private EmpleadoLogic empleadoLogic;
 
     /**
      * Devuelve todos los Paseo que hay en la base de datos.
+     *
      * @return Lista de entidades de tipo Paseo.
      */
     public List<PaseoEntity> getPaseos() {
@@ -42,9 +55,10 @@ public class PaseoLogic {
         LOGGER.info("Termina proceso de consultar todos los paseos");
         return paseos;
     }
-    
+
     /**
      * Busca un Paseo por ID
+     *
      * @param id El id del Paseo a buscar
      * @return El Paseo encontrado, null si no lo encuentra.
      */
@@ -57,40 +71,51 @@ public class PaseoLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar Transporte con id={0}", id);
         return Paseo;
     }
-    
+
     /**
      * Guardar un nuevo Paseo
+     *
      * @param entity La entidad de tipo Paseo del nuevo ruta a persistir.
      * @return La entidad luego de persistirla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public PaseoEntity createPaseo(PaseoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Paseo");
-        validarServicios(entity.getId(), entity.getName(), entity.getFecha(),entity.getCosto(),entity.getDuracion());
-        if(entity.getCapMax()<0) throw new BusinessLogicException("La capacidad maxima no puede ser negativa");
+        validarServicios(entity);
+        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+        entity.setCliente(cliente);
+        entity.setMascota(mascota);
         persistence.create(entity);
         LOGGER.info("Termina proceso de creación de Paseo");
         return entity;
     }
-    
+
     /**
      * Actualizar un Paseo por ID
+     *
      * @param id El ID del Paseo a actualizar
      * @param entity La entidad del Paseo con los cambios deseados
      * @return La entidad del Paseo luego de actualizarla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public PaseoEntity updatePaseo(Long id, PaseoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Paseo con id={0}", id);
-        validarServicios(entity.getId(), entity.getName(), entity.getFecha(),entity.getCosto(),entity.getDuracion());
-        if(entity.getCapMax()<0) throw new BusinessLogicException("La capacidad maxima no puede ser negativa");
+        validarServicios(entity);
+        ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
+        MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+        EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
+        entity.setCliente(cliente);
+        entity.setMascota(mascota);
+        entity.setEmpleado(empleado);
         PaseoEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Paseo con id={0}", entity.getId());
         return newEntity;
     }
-    
+
     /**
      * Eliminar un paseo por ID
+     *
      * @param id El ID del paseo a eliminar
      */
     public void deletePaseo(Long id) {
@@ -98,45 +123,37 @@ public class PaseoLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Paseo con id={0}", id);
     }
-    
+
     /**
      * Agregar una Ruta al Paseo
      *
      * @param rutaId El id ruta a guardar
      * @param paseoId El id del Paseo en la cual se va a guardar la ruta.
      * @return La ruta que fue agregado a la Paseo.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     public RutaEntity addRuta(Long rutaId, Long paseoId) throws BusinessLogicException {
         PaseoEntity paseoEntity = getPaseo(paseoId);
         RutaEntity rutaEntity = rutaLogic.getRuta(rutaId);
-        if(rutaEntity.getDuracion()<0)throw new BusinessLogicException("La duracion no puede ser negativa");
-        paseoEntity.getRutas().add(rutaEntity);
+        if (rutaEntity.getDuracion() < 0) {
+            throw new BusinessLogicException("La duracion no puede ser negativa");
+        }
+        paseoEntity.setRuta(rutaEntity);
         return rutaEntity;
     }
 
-    /**
-     * Borrar una Ruta de un Paseo
-     *
-     * @param rutaId La ruta que se desea borrar del Paseo.
-     * @param paseoId El Paseo del cual se desea eliminar.
-     */
-    public void removeRuta(Long rutaId, Long paseoId) {
-        PaseoEntity paseoEntity = getPaseo(paseoId);
-        RutaEntity ruta = rutaLogic.getRuta(rutaId);
-        paseoEntity.getRutas().remove(ruta);
-    }
-
+  
     /**
      * Remplazar Rutas de un Paseo
      *
-     * @param rutas Lista de rutas que serán los de la Paseo.
+     * @param ruta Lista de rutas que serán los de la Paseo.
      * @param paseoId El id de la Paseo que se quiere actualizar.
      * @return La lista de rutas actualizada.
      */
-    public List<RutaEntity> replaceRutas(Long paseoId, List<RutaEntity> rutas) {
+    public RutaEntity replaceRuta(Long paseoId, RutaEntity ruta) {
         PaseoEntity paseo = getPaseo(paseoId);
-        paseo.setRutas(rutas);
-        return rutas;
+        paseo.setRuta(ruta);
+        return ruta;
     }
 
     /**
@@ -145,36 +162,25 @@ public class PaseoLogic {
      * @param paseoId El ID del Paseo buscado
      * @return La lista de rutas del Paseo
      */
-    public List<RutaEntity> getRutas(Long paseoId) {
-        return getPaseo(paseoId).getRutas();
+    public RutaEntity getRuta(Long paseoId) {
+        return getPaseo(paseoId).getRuta();
     }
 
-    /**
-     * Retorna una Ruta asociada a un Paseo
-     *
-     * @param paseoId El id del Paseo a buscar.
-     * @param rutaId El id de la ruta a buscar
-     * @return La ruta encontrada dentro del Paseo.
-     * @throws BusinessLogicException Si la ruta no se encuentra en el Paseo
-     */
-    public RutaEntity getRuta(Long paseoId, Long rutaId) throws BusinessLogicException {
-        List<RutaEntity> rutas = getPaseo(paseoId).getRutas();
-        RutaEntity ruta = rutaLogic.getRuta(rutaId);
-        int index = rutas.indexOf(ruta);
-        if (index >= 0) {
-            return rutas.get(index);
-        }
-        throw new BusinessLogicException("El ruta no está asociado a la Paseo");
 
-    }
-    
-    public void validarServicios(Long id, String nombre, Date fecha , Double costo, Double duracion)throws BusinessLogicException{
+    public void validarServicios(PaseoEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
-        if(fecha.before(todayDate)) throw new BusinessLogicException ("La fecha ingresada no es valida");
-        else if(id<0) throw new BusinessLogicException ("El id es invalido");
-        else if(nombre.length()>50) throw new BusinessLogicException ("El nombre es muy grande");
-        else if(costo<0) throw new BusinessLogicException ("El costo es invalido");
-        else if(duracion <0) throw new BusinessLogicException ("La duracion es invalida");  
+        if (entity.getFecha().before(todayDate)) {
+            throw new BusinessLogicException("La fecha ingresada no es valida");
+        }
+        if (entity.getCosto() < 0) {
+            throw new BusinessLogicException("El costo es invalido");
+        }
+        if (entity.getDuracion() < 0) {
+            throw new BusinessLogicException("La duracion es invalida");
+        }
+        if (entity.getCapMax() < 0) {
+            throw new BusinessLogicException("La capacidad maxima no puede ser negativa");
+        }
     }
-   
+
 }

@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -20,11 +21,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class VeterinariaEntity extends LugarEntity implements Serializable {
     
     @PodamExclude
-    @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<AseoEntity> aseos;
     
     @PodamExclude
-    @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<PaseoEntity> paseos;
     
 

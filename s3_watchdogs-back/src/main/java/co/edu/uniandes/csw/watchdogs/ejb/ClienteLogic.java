@@ -214,16 +214,17 @@ public class ClienteLogic {
 
     public PayPalEntity addPayPal(Long clienteId, Long payPalId) {
         LOGGER.log(Level.INFO, "Inicia proceso de asociar una cuenta de PayPal al cliente con id = {0}", clienteId);
-        ClienteEntity clienteEntity = null;
         try {
-            clienteEntity = getCliente(clienteId);
+            ClienteEntity clienteEntity = getCliente(clienteId);
+            PayPalEntity payPalEntity = new PayPalEntity();
+            payPalEntity.setId(payPalId);
+            clienteEntity.getPayPals().add(payPalEntity);
+            return getPayPal(clienteId, payPalId);
         } catch (BusinessLogicException ex) {
             Logger.getLogger(ClienteLogic.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
-        PayPalEntity payPalEntity = new PayPalEntity();
-        payPalEntity.setId(payPalId);
-        clienteEntity.getPayPals().add(payPalEntity);
-        return getPayPal(clienteId, payPalId);
+
     }
 
     public void removePayPal(Long clienteId, Long payPalId) {

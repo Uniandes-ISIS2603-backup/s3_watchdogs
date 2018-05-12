@@ -1,105 +1,65 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="row">
     <div class="col-sm-6">
-        <div class ='card'>
-            <h1>Cuenta</h1>
-            <div class="text-center">
-                <img src="{{currentCliente.imagen}}" class="img-thumbnail" alt="Foto perfil">   
-            </div>
-            <button type="button" class="btn btn-link">Editar avatar</button>
-
-            <!-- Panel informacion -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="container">
-                        <div class="row">
-                            <label for="nombre">Nombre: </label>
-                            <p class="form-control" id="nombre"> {{currentCliente.name}} </p>
-                        </div>
-                        <div class="row">   
-                            <label for="documento">Documento: </label>  
-                            <p class="form-control" id="documento"> {{currentCliente.cedula}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="correo">Correo: </label>
-                            <p class="form-control" id="correo"> {{currentCliente.correo}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="telefono">Telefono: </label>
-                            <p class="form-control" id="telefono"> {{currentCliente.telefono}} </p>
-                        </div>
+        <div class="container-fluid">
+            <div class ='card'>
+                <h1>Cuenta</h1>
+                <div class="container-fluid">
+                    <div class="text-center">
+                        <img src="{{currentCliente.imagen}}" class="img-thumbnail" alt="Foto perfil">   
                     </div>
-                    <!-- Panel Metodos de pago -->
+                    <button type="button" class="btn btn-link">Editar avatar</button>
 
-                    <div class="container">
-                        <div class="card">
-                            <h6>Metodos de pago</h6>
-                            <div class="row">
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-secondary btn-sm" ui-sref='tarjetasList'>Tarjetas de credito</button>
-                                </div>
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-secondary btn-sm" ui-sref='PSEList'>PSE</button>
-                                </div>
-                                <div class="col-sm-1"></div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="btn btn-secondary btn-sm" ui-sref="payPalList">PayPal</button>
-                                </div>
-                            </div>
-                        </div>
-                        <p></p>
-                    </div>
+                    <!-- Panel informacion -->
                     <div class="row">
-                        <!--<div class="col-sm-1"></div> 
-                        <div class="col-sm-1"></div> 
-                        <div class="col-sm-1">
-                            <button type="button" class="btn btn">Agregar metodo de pago</button>
-                            <p></p>
-                            <div class="col-sm-1">
-                                <button type="button" class="btn btn">Modificar metodos de pago</button>
-                                <p></p>
-                                <button type="button" class="btn btn">Eliminar metodos de pago</button>
+                        <div class="col-sm-12">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <label for="nombre">Nombre: </label>
+                                    <p class="form-control" id="nombre"> {{currentCliente.name}} </p>
+                                </div>
+                                <div class="row">   
+                                    <label for="documento">Documento: </label>  
+                                    <p class="form-control" id="documento"> {{currentCliente.cedula}} </p>
+                                </div>
+                                <div class="row"> 
+                                    <label for="correo">Correo: </label>
+                                    <p class="form-control" id="correo"> {{currentCliente.correo}} </p>
+                                </div>
+                                <div class="row"> 
+                                    <label for="telefono">Telefono: </label>
+                                    <p class="form-control" id="telefono"> {{currentCliente.telefono}} </p>
+                                </div>
                             </div>
-                            <p></p>
-                            <div class="col-sm-1">
-                                <button type="button" class="btn btn">Ver historial de pagos</button>
-                            </div>
-                        </div>
-                        <p></p> -->
-                        <div class="row">
-                            <div style="margin-left: 102px">
-                                <button type="button" class="btn btn" ui-sref='metodoDePagoCreate'>Agregar metodo de pago</button>
-                            </div>
-                        </div>
-                        <div class="row"></div>
-                        <div class="row">
+                            <!-- Panel Metodos de pago -->
 
-                            <div style="margin-left: 93px">
-                                <button type="button" class="btn btn">Modificar metodos de pago</button>
-                            </div>
-                        </div>
-                        <p></p>
-                        <div class="row">
+                            <div class="card text-center" style="width: 13rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Metodos de pago</h5>
+                                    <p class="card-text">Para obtener informacion acerca de los metodos de pago, haga click en alguno de los botones.</p>
+                                    <button style="font-size:24px"><i class="fa fa-credit-card" ui-sref='tarjetasList'></i></button>
+                                    <button style="font-size:24px"><i class="fa fa-cc-paypal" ui-sref="payPalList"></i></button>                                
+                                    <button style="font-size:24px"><i class="fa fa-credit-card" ui-sref='PSEList'></i></button>
+                                    <!--                                    <button type="button" class="btn btn" ui-sref='metodoDePagoCreate'>Add</button>-->
 
-                            <div style="margin-left: 98px">
-                                <button type="button" class="btn btn" ui-sref='temporal'>Eliminar metodos de pago</button>
+                                </div>
                             </div>
+                            <p></p>
                         </div>
                     </div>
-                    <p></p>
                 </div>
-            </div>    
+            </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="row">
             <div ui-view="childrenView"></div>
 
-            <div ui-sref="metodoDePagoCreate"></div>
+            <div ui-view="payPalCreate"></div>
+            <div ui-view="PSECreate"></div>
+            <div ui-view="tarjetaCreate"></div>
+            <div ui-view="tarjetaDelete"></div>
+
         </div>
     </div>
 </div>

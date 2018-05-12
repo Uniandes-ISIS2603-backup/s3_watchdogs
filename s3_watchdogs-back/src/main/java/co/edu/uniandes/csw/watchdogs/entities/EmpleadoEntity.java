@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.entities;
 
+import co.edu.uniandes.csw.watchdogs.podam.CargoStrategy;
 import co.edu.uniandes.csw.watchdogs.podam.CorreoStrategy;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,9 +30,26 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     /**
      * Constantes posibles para el Cargo del empleado 
      **/
+    
+    /**
+     * Constante para el paseador
+     **/
     public static final String PASEADOR = "Paseador";
+    
+    /**
+     * Constante para el aseador     
+     **/
     public static final String ASEADOR = "Aseador";
+    
+    /**
+     * Constante para el entrenador 
+     **/
     public static final String ENTRENADOR = "Entrenador";
+    
+    /**
+     * Constante para el cuidador 
+     **/
+    public static final String CUIDADOR = "Cuidador";
     
     
     /**
@@ -45,14 +63,14 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
      * Relacion con la calificacion del empleado.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "empleado", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
     private CalificacionEntity calificacion;
 
     /**
      * Relacion con el servicio del empleado.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "empleado")
+    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY)
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     /**
@@ -73,6 +91,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     /**
      * Cargo del empleado.
      */
+     @PodamStrategyValue(CargoStrategy.class)
     private String cargo;
     
     /**

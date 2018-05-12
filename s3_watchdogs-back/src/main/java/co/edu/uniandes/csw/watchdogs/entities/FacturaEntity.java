@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -42,22 +43,22 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "cliente")
-    private List<PayPalEntity> payPals = new ArrayList<>();
+    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
+    private PayPalEntity payPal;
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "cliente")
-    private List<PseEntity> pses = new ArrayList<>();
+    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
+    private PseEntity pse;
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "cliente")
-    private List<TarjetaCreditoEntity> tarjetas = new ArrayList<>();
+    @OneToOne(mappedBy = "factura", fetch = FetchType.LAZY)
+    private TarjetaCreditoEntity tarjeta;
 
     
     
@@ -138,6 +139,30 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     public void setServicio(ServicioEntity servicio) {
         this.servicio = servicio;
     } 
+
+    public PayPalEntity getPayPal() {
+        return payPal;
+    }
+
+    public void setPayPal(PayPalEntity payPal) {
+        this.payPal = payPal;
+    }
+
+    public PseEntity getPse() {
+        return pse;
+    }
+
+    public void setPse(PseEntity pse) {
+        this.pse = pse;
+    }
+
+    public TarjetaCreditoEntity getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(TarjetaCreditoEntity tarjeta) {
+        this.tarjeta = tarjeta;
+    }
     
     
 }

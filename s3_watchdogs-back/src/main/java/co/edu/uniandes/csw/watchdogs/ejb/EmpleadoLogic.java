@@ -47,6 +47,7 @@ public class EmpleadoLogic {
         if (persistence.findByCedula(entity.getCedula()) != null) {
             throw new BusinessLogicException("Ya existe un Empleado con la cedula \"" + entity.getCedula() + "\"");
         }
+        check(entity);
         LOGGER.info("Termina proceso de creacion de empleado");
         return persistence.create(entity);
     }
@@ -86,9 +87,11 @@ public class EmpleadoLogic {
      * @param entity: empleado con los cambios para ser actualizado, por ejemplo
      * el nombre.
      * @return el empleado con los cambios actualizados en la base de datos.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
-    public EmpleadoEntity updateEmpleado(Long id, EmpleadoEntity entity) {
+    public EmpleadoEntity updateEmpleado(Long id, EmpleadoEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar empleado con id={0}", id);
+        check(entity);
         EmpleadoEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar empleado con id={0}", entity.getId());
         return newEntity;
@@ -119,6 +122,19 @@ public class EmpleadoLogic {
      */
     public List<ServicioEntity> getServicios(Long empleadoId) {
         return getEmpleado(empleadoId).getServicios();
+    }
+    
+    public void check(EmpleadoEntity empleado) throws BusinessLogicException{
+        checkCargoValido(empleado);
+    }
+    
+    public void checkCargoValido(EmpleadoEntity empleado) throws BusinessLogicException{
+        if (!(empleado.getCargo().equals(EmpleadoEntity.ASEADOR)
+                ||empleado.getCargo().equals(EmpleadoEntity.CUIDADOR)
+                ||empleado.getCargo().equals(EmpleadoEntity.PASEADOR)
+                ||empleado.getCargo().equals(EmpleadoEntity.ENTRENADOR))){
+            throw new BusinessLogicException("Este cargo no es válido");
+        }
     }
 
 }

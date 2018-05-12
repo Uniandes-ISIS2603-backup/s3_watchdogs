@@ -6,11 +6,9 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamIntValue;
 import uk.co.jemos.podam.common.PodamStringValue;
@@ -30,8 +28,8 @@ public class PaseoEntity extends ServicioEntity implements Serializable {
     
     @PodamExclude
     //TODO: mappedBy
-    @OneToMany
-    private List<RutaEntity> rutas;
+    @ManyToOne
+    private RutaEntity ruta;
     
     @PodamExclude
     @ManyToOne
@@ -53,12 +51,12 @@ public class PaseoEntity extends ServicioEntity implements Serializable {
         this.horas = horas;
     }
 
-    public List<RutaEntity> getRutas() {
-        return rutas;
+    public RutaEntity getRuta() {
+        return ruta;
     }
 
-    public void setRutas(List<RutaEntity> rutas) {
-        this.rutas = rutas;
+    public void setRuta(RutaEntity ruta) {
+        this.ruta = ruta;
     }
 
     public VeterinariaEntity getVeterinaria() {

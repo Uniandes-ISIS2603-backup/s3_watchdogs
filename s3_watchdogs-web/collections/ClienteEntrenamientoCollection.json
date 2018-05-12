@@ -1,0 +1,106 @@
+{
+	"info": {
+		"name": "ClienteEntrenamientoCollection",
+		"_postman_id": "666e642a-9b02-6f3c-0a17-60bd90f7300c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear entrenamiento cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cef0e1c2-cb71-4dd9-b514-f65098f85cc4",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n    \"duracion\": 20.5,\r\n    \"tipo\": \"cardiol\",\r\n    \"mascota\":{\r\n    \t\"id\":100\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes/100/entrenamientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"clientes",
+						"100",
+						"entrenamientos"
+					]
+				},
+				"description": "Crea un nuevo entrenamiento asociado a un cliente"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta servicios cliente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cef0e1c2-cb71-4dd9-b514-f65098f85cc4",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"console.log(data.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 25,\r\n    \"estado\": 0,\r\n    \"duracion\": 20.5,\r\n    \"tipo\": \"cardiol\",\r\n    \"mascota\":{\r\n    \t\"id\":100\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/clientes/100/servicios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"clientes",
+						"100",
+						"servicios"
+					]
+				},
+				"description": "Consulta los servicios asociados a un cliente."
+			},
+			"response": []
+		}
+	]
+}

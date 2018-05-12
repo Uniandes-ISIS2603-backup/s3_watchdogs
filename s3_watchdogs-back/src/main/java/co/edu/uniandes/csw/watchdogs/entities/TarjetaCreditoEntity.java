@@ -33,9 +33,10 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
     private String codigoSeguridad;
 
     @PodamExclude
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private ClienteEntity cliente;
     
+    @PodamExclude
     @OneToOne
     private FacturaEntity factura;
 

@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+			"name": "Crea un entrenamiento",
 			"event": [
 				{
 					"listen": "test",
@@ -33,7 +33,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 25,\r\n    \"estado\": 1,\r\n    \"duración\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"id\":1,\r\n    \"cliente\":{\r\n    \t\"id\":1\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
+					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n    \"duracion\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"cliente\":{\r\n    \t\"id\":100\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":100\r\n    }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
@@ -53,7 +53,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+			"name": "Consulta todos los entrenamientos",
 			"event": [
 				{
 					"listen": "test",
@@ -98,7 +98,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+			"name": "Consulta un entrenamiento",
 			"event": [
 				{
 					"listen": "test",
@@ -144,7 +144,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/4",
+			"name": "Actualiza un entrenamiento",
 			"event": [
 				{
 					"listen": "test",
@@ -169,10 +169,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 20,\r\n    \"estado\": 1,\r\n    \"duración\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"id\":1,\r\n    \"cliente\":{\r\n    \t\"id\":1\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":1\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":1\r\n    }\r\n}"
+					"raw": "{\r\n\t\"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n\t\"costo\": 20,\r\n    \"estado\": 0,\r\n    \"duracion\": 20.5,\r\n    \"tipo\": \"cardio\",\r\n    \"cliente\":{\r\n    \t\"id\":100\r\n    },\r\n    \"mascota\":{\r\n    \t\"id\":100\r\n    },\r\n    \"empleado\":{\r\n    \t\"id\":100\r\n    }\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/{{new_id}}",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -182,7 +182,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"entrenamientos",
-						"{{new_id}}"
+						"1"
 					]
 				},
 				"description": ""
@@ -190,12 +190,12 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/4",
+			"name": "Elimina un entrenamiento",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "f73a0b8d-daa7-491f-8207-508087aebdea",
+						"id": "581a728f-4fc8-444f-a139-65ef251cab96",
 						"type": "text/javascript",
 						"exec": [
 							"",
@@ -235,7 +235,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos",
+			"name": "Intenta crear un entrenamiento",
 			"event": [
 				{
 					"listen": "test",

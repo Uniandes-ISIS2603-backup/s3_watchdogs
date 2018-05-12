@@ -1,10 +1,53 @@
 {
 	"info": {
 		"name": "HotelCollection",
-		"_postman_id": "1477269d-9576-7850-9ca5-2983e20de5f7",
+		"_postman_id": "0c9bb262-6ad3-23e4-7248-28f5455101f1",
+		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear hotel",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0834e210-255a-4465-97e7-ee7b74658159",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"duracion\": 20.5,\r\n       \"costo\":10,\r\n       \"tiempoHospedaje\": 25,\r\n       \"cliente\":{\r\n       \t\"id\":1\r\n       },\r\n       \"mascota\":{\r\n       \t\"id\":1\r\n       }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/hoteles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"hoteles"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Consultar todos los hoteles",
 			"event": [
@@ -59,9 +102,12 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/hoteles/102",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/hoteles/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -71,49 +117,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"hoteles",
-						"102"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Crear hotel",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "0834e210-255a-4465-97e7-ee7b74658159",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n       \"id\": 1,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 25,\r\n       \"estado\": 1,\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"tiempoHospedaje\": 48,\r\n       \"transporte\": { \"id\": {{new_id_e}} },\r\n       \"centroDeEntrenamiento\": { \"id\": {{new_id_e}} }\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/hoteles",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s3_watchdogs-web",
-						"api",
-						"hoteles"
+						"{{new_id}}"
 					]
 				}
 			},
@@ -146,7 +150,7 @@
 					"raw": "{\r\n       \"id\": 1,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 30,\r\n       \"estado\": 1,\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"tiempoHospedaje\": 48,\r\n       \"transporte\": { \"id\": {{new_id_e}} },\r\n       \"centroDeEntrenamiento\": { \"id\": {{new_id_e}} }\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/hoteles/102",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/hoteles/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -156,7 +160,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"hoteles",
-						"102"
+						"{{new_id}}"
 					]
 				}
 			},
@@ -179,9 +183,12 @@
 			"request": {
 				"method": "DELETE",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/hoteles/102",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/hoteles/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -191,7 +198,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"hoteles",
-						"102"
+						"{{new_id}}"
 					]
 				}
 			},

@@ -139,7 +139,7 @@ public class ClienteDetailDTO extends ClienteDTO {
      * Constructor por defecto
      */
     public ClienteDetailDTO() {
-
+        super();
     }
 
     /**
@@ -159,35 +159,21 @@ public class ClienteDetailDTO extends ClienteDTO {
             payPals = new ArrayList<>();
             if (entity.getPayPals() != null) {
                 for (int i = 0; i < entity.getPayPals().size(); i++) {
-                    PayPalDTO old = new PayPalDTO(entity.getPayPals().get(i));
-                    PayPalDTO nuevo = new PayPalDTO();
-                    nuevo.setCorreo(old.getCorreo());
-                    nuevo.setId(old.getId());
-                    payPals.add(nuevo);
+                    payPals.add(new PayPalDTO(entity.getPayPals().get(i)));
                 }
             }
-            
+
             pses = new ArrayList<>();
             if (entity.getPses() != null) {
                 for (int i = 0; i < entity.getPses().size(); i++) {
-                    PseDTO old = new PseDTO(entity.getPses().get(i));
-                    PseDTO nuevo = new PseDTO();
-                    nuevo.setCorreo(old.getCorreo());
-                    nuevo.setId(old.getId());
-                    pses.add(nuevo);
+                    pses.add(new PseDTO(entity.getPses().get(i)));
                 }
             }
-            
+
             tarjetas = new ArrayList<>();
             if (entity.getTarjetas() != null) {
                 for (int i = 0; i < entity.getTarjetas().size(); i++) {
-                    TarjetaCreditoDTO old = new TarjetaCreditoDTO(entity.getTarjetas().get(i));
-                    TarjetaCreditoDTO nuevo = new TarjetaCreditoDTO();
-                    nuevo.setId(old.getId());
-                    nuevo.setNumeroTarjeta(old.getNumeroTarjeta());
-                    nuevo.setFechaVencimiento(old.getFechaVencimiento());
-                    nuevo.setCodSeguridad(old.getCodSeguridad());
-                    tarjetas.add(nuevo);
+                    tarjetas.add(new TarjetaCreditoDTO(entity.getTarjetas().get(i)));
                 }
             }
 
@@ -195,59 +181,10 @@ public class ClienteDetailDTO extends ClienteDTO {
             for (FacturaEntity entityFacturas : entity.getFacturas()) {
                 facturas.add(new FacturaDTO(entityFacturas));
             }
-            calificacion = new CalificacionDTO();
-            if (entity.getCalificacion() != null) {
-                calificacion.setId(entity.getCalificacion().getId());
-                calificacion.setPuntaje(entity.getCalificacion().getPuntaje());
-            }
+            calificacion = new CalificacionDTO(entity.getCalificacion());
             servicios = new ArrayList<>();
             if (entity.getServicios() != null) {
-                for (ServicioEntity entityServicio : entity.getServicios()) {
-                    if (entityServicio.getClass().equals(AseoEntity.class)) {
-                        AseoDTO servicio = new AseoDTO();
-                        servicio.setId(entityServicio.getId());
-                        servicio.setFecha(entityServicio.getFecha());
-                        servicio.setCosto(entityServicio.getCosto());
-                        servicio.setEstado(entityServicio.isEstado());
-                        servicio.setRango(entityServicio.getRango());
-                        servicio.setDuracion(entityServicio.getDuracion());
-                        ((AseoDTO) servicio).setDientes(((AseoEntity) entityServicio).getDientes());
-                        ((AseoDTO) servicio).setBanho(((AseoEntity) entityServicio).getBanho());
-                        ((AseoDTO) servicio).setPeluqueria(((AseoEntity) entityServicio).getPeluqueria());
-                        servicios.add(servicio);
-                    } else if (entityServicio.getClass().equals(PaseoEntity.class)) {
-                        PaseoDTO servicio = new PaseoDTO();
-                        servicio.setId(entityServicio.getId());
-                        servicio.setFecha(entityServicio.getFecha());
-                        servicio.setCosto(entityServicio.getCosto());
-                        servicio.setEstado(entityServicio.isEstado());
-                        servicio.setRango(entityServicio.getRango());
-                        servicio.setDuracion(entityServicio.getDuracion());
-                        ((PaseoDTO) servicio).setCapMax(((PaseoEntity) entityServicio).getCapMax());
-                        ((PaseoDTO) servicio).setHoras(((PaseoEntity) entityServicio).getHoras());
-                        servicios.add(servicio);
-                    } else if (entityServicio.getClass().equals(HotelEntity.class)) {
-                        HotelDTO servicio = new HotelDTO();
-                        servicio.setId(entityServicio.getId());
-                        servicio.setFecha(entityServicio.getFecha());
-                        servicio.setCosto(entityServicio.getCosto());
-                        servicio.setEstado(entityServicio.isEstado());
-                        servicio.setRango(entityServicio.getRango());
-                        servicio.setDuracion(entityServicio.getDuracion());
-                        ((HotelDTO) servicio).setTiempoHospedaje(((HotelEntity) entityServicio).getTiempoHospedaje());
-                        servicios.add(servicio);
-                    } else if (entityServicio.getClass().equals(EntrenamientoEntity.class)) {
-                        EntrenamientoDTO servicio = new EntrenamientoDTO();
-                        servicio.setId(entityServicio.getId());
-                        servicio.setFecha(entityServicio.getFecha());
-                        servicio.setCosto(entityServicio.getCosto());
-                        servicio.setEstado(entityServicio.isEstado());
-                        servicio.setRango(entityServicio.getRango());
-                        servicio.setDuracion(entityServicio.getDuracion());
-                        ((EntrenamientoDTO) servicio).setTipo(((EntrenamientoEntity) entityServicio).getTipo());
-                        servicios.add(servicio);
-                    }
-                }
+                llenarServicios(entity.getServicios());
             }
 
         }
@@ -268,50 +205,28 @@ public class ClienteDetailDTO extends ClienteDTO {
             }
             clienteE.setMascotas(mascotasEntity);
         }
-        List<PseEntity> agregarPse = new ArrayList<>();
-        List<PayPalEntity> agregarPayPal = new ArrayList<>();
-        List<TarjetaCreditoEntity> agregarTarjetas = new ArrayList<>();
 
         if (pses != null) {
-            for (int i = 0; i < pses.size(); i++) {
-                PseEntity nuevo = new PseEntity();
-                PseDTO old = pses.get(i);
-                nuevo.setCorreo(old.getCorreo());
-                nuevo.setId(old.getId());
-                nuevo.setName(old.getNombre());
-                nuevo.setCliente(clienteE);
-                agregarPse.add(nuevo);
+            List<PseEntity> pseEntity = new ArrayList<>();
+            for (PseDTO dtoPse : pses) {
+                pseEntity.add(dtoPse.toEntity());
             }
+            clienteE.setPses(pseEntity);
         }
         if (payPals != null) {
-            for (int i = 0; i < payPals.size(); i++) {
-                PayPalEntity nuevo = new PayPalEntity();
-                PayPalDTO old = payPals.get(i);
-                nuevo.setCorreo(old.getCorreo());
-                nuevo.setId(old.getId());
-                nuevo.setName(old.getNombre());
-                nuevo.setCliente(clienteE);
-                agregarPayPal.add(nuevo);
+            List<PayPalEntity> payPalEntity = new ArrayList<>();
+            for (PayPalDTO dtoPaypal : payPals) {
+                payPalEntity.add(dtoPaypal.toEntity());
             }
+            clienteE.setPayPals(payPalEntity);
         }
         if (tarjetas != null) {
-            for (int i = 0; i < tarjetas.size(); i++) {
-                TarjetaCreditoEntity nuevo = new TarjetaCreditoEntity();
-                TarjetaCreditoDTO old = tarjetas.get(i);
-                nuevo.setId(old.getId());
-                nuevo.setNumeroTarjeta(old.getNumeroTarjeta());
-                nuevo.setFechaVencimiento(old.getFechaVencimiento());
-                nuevo.setCodigoSeguridad(old.getCodSeguridad());
-                nuevo.setName(old.getNombre());
-                nuevo.setCliente(clienteE);
-                agregarTarjetas.add(nuevo);
+            List<TarjetaCreditoEntity> tarjetasEntity = new ArrayList<>();
+            for (TarjetaCreditoDTO dtoTarjeta : tarjetas) {
+                tarjetasEntity.add(dtoTarjeta.toEntity());
             }
+            clienteE.setTarjetas(tarjetasEntity);
         }
-
-        clienteE.setPses(agregarPse);
-        clienteE.setPayPals(agregarPayPal);
-        clienteE.setTarjetas(agregarTarjetas);
-
         if (facturas != null) {
             List<FacturaEntity> facturasEntity = new ArrayList<>();
             for (FacturaDTO dtoFactura : facturas) {
@@ -431,4 +346,21 @@ public class ClienteDetailDTO extends ClienteDTO {
         this.servicios = servicios;
     }
 
+    private void llenarServicios(List<ServicioEntity> servicios) {
+        for (ServicioEntity entityServicio : servicios) {
+            if (entityServicio.getClass().equals(AseoEntity.class)) {
+                AseoDTO servicio = new AseoDTO((AseoEntity) entityServicio);
+                this.servicios.add(servicio);
+            } else if (entityServicio.getClass().equals(PaseoEntity.class)) {
+                PaseoDTO servicio = new PaseoDTO((PaseoEntity) entityServicio);
+                this.servicios.add(servicio);
+            } else if (entityServicio.getClass().equals(HotelEntity.class)) {
+                HotelDTO servicio = new HotelDTO((HotelEntity) entityServicio);
+                this.servicios.add(servicio);
+            } else if (entityServicio.getClass().equals(EntrenamientoEntity.class)) {
+                EntrenamientoDTO servicio = new EntrenamientoDTO((EntrenamientoEntity) entityServicio);
+                this.servicios.add(servicio);
+            }
+        }
+    }
 }

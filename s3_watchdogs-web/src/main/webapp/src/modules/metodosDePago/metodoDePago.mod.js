@@ -57,10 +57,11 @@
                     }
                 }
 
-            }).state('payPalCreate', {
+            })
+                    .state('payPalCreate', {
 
                 url: '/payPal',
-                parent: 'metodoDePagoCreate',
+                parent: 'clienteDetail',
                 views: {
                     payPalCreate: {
                         templateUrl: basePath + 'payPal.create.html'
@@ -72,7 +73,7 @@
                     correo: null
                 },
                 url: '/payPal',
-                parent: 'metodoDePagoCreate',
+                parent: 'clienteDetail',
                 views: {
                     payPalCreate: {
                         templateUrl: basePath + 'payPal.create.html',
@@ -82,7 +83,7 @@
             }).state('PSECreate', {
 
                 url: '/PSE/create',
-                parent: 'metodoDePagoCreate',
+                parent: 'clienteDetail',
                 views: {
                     PSECreate: {
                         templateUrl: basePath + 'PSE.create.html'
@@ -95,7 +96,7 @@
                 },
 
                 url: '/PSE/create',
-                parent: 'metodoDePagoCreate',
+                parent: 'clienteDetail',
                 views: {
                     PSECreate: {
                         templateUrl: basePath + 'PSE.create.html',
@@ -108,10 +109,59 @@
 //                  clienteId: null  
 //                },
                 views: {
-                    'clienteDetailView': {
-                        templateUrl: 'src/modules/clientes/clientes.list.html',
-                        controller: 'clienteDetailCtrl',
-                        controllerAs: 'ctrl'
+                    clienteDetailMetodoDePago: {
+                        templateUrl: basePath + 'cliente.detail.metodoDePago.html'
+                    }
+                }
+            }).state('tarjetaCreate', {
+
+                url: '/tarjeta/create',
+                parent: 'clienteDetail',
+                views: {
+                    tarjetaCreate: {
+                        templateUrl: basePath + 'tarjetas.create.html'
+                    }
+                }
+            }).state('temporalCrearTarjeta', {
+
+                params: {
+                    numeroTarjeta: null,
+                    fechaVencimiento: null,
+                    codigoSeguridad: null
+                },
+
+                url: '/tarjeta/create',
+                parent: 'clienteDetail',
+                views: {
+                    tarjetaCreate: {
+                        templateUrl: basePath + 'tarjetas.create.html',
+                        controller: 'tarjetaCreateCtrl'
+                    }
+                }
+            }).state('deleteTarjeta', {
+                params: {
+                    tarjetaId: null 
+                },
+
+                url: '/delete/{tarjetaId:int}',
+                parent: 'clienteDetail',
+                views: {
+                    tarjetaDelete: {
+                        templateUrl: basePath + 'tarjeta.delete.html',
+                        controller: 'tarjetaDeleteCtrl'
+                    }
+                }
+            }).state('deletePayPal', {
+                params: {
+                    payPalId: null 
+                },
+
+                url: '/delete/{payPalId:int}',
+                parent: 'clienteDetail',
+                views: {
+                    payPalDelete: {
+                        templateUrl: basePath + 'payPal.delete.html',
+                        controller: 'payPalDeleteCtrl'
                     }
                 }
             })

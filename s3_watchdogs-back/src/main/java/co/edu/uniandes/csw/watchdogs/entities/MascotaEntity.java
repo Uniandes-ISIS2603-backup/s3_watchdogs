@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -27,7 +28,7 @@ public class MascotaEntity extends BaseEntity implements Serializable {
      * Relacion con los servicios de la mascota.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "mascota")
+    @OneToMany(mappedBy = "mascota", fetch = FetchType.LAZY)
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     /**

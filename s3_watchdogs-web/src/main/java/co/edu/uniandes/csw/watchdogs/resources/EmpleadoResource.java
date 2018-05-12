@@ -162,7 +162,7 @@ public class EmpleadoResource {
     @PUT
 
     @Path("{id: \\d+}")
-    public EmpleadoDetailDTO updateEmpleado(@PathParam("id") Long id, EmpleadoDetailDTO empleado) {
+    public EmpleadoDetailDTO updateEmpleado(@PathParam("id") Long id, EmpleadoDetailDTO empleado) throws BusinessLogicException {
         EmpleadoEntity entity = empleado.toEntity();
         entity.setId(id);
         EmpleadoEntity oldEntity = empleadoLogic.getEmpleado(id);

@@ -68,6 +68,9 @@ public class MascotaDetailDTO extends MascotaDTO {
     private ClienteDTO cliente;
 
     //----- Constructor -----
+    public MascotaDetailDTO() {
+
+    }
 
     /**
      * Constructor para transformar un Entity a un DTO
@@ -127,14 +130,11 @@ public class MascotaDetailDTO extends MascotaDTO {
                     }
                 }
             }
+            if (entity.getCliente() != null) {
+                this.cliente = new ClienteDTO(entity.getCliente());
+            } 
         }
-        if (cliente != null && entity.getCliente() != null) {
-            cliente.setId(entity.getCliente().getId());
-            cliente.setName(entity.getCliente().getName());
-            cliente.setCedula(entity.getCliente().getCedula());
-        } else {
-            cliente = new ClienteDTO();
-        }
+
     }
 
     @Override
@@ -142,7 +142,6 @@ public class MascotaDetailDTO extends MascotaDTO {
         MascotaEntity mascotaE = super.toEntity();
         if (servicios != null) {
             List<ServicioEntity> serviciosEntity = new ArrayList<>();
-
             for (ServicioDTO dtoServicio : servicios) {
                 if (dtoServicio.getClass().equals(AseoDTO.class
                 )) {
@@ -196,6 +195,7 @@ public class MascotaDetailDTO extends MascotaDTO {
                     serviciosEntity.add(nuevo);
                 }
             }
+            mascotaE.setServicios(serviciosEntity);
         }
         if (cliente != null) {
             mascotaE.setCliente(cliente.toEntity());

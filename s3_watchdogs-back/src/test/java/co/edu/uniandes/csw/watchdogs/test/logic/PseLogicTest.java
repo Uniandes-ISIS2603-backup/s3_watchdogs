@@ -100,14 +100,15 @@ public class PseLogicTest {
      */
     private void insertData() {
         for (int i = 0; i < 3; i++) {
-            PseEntity pse = factory.manufacturePojo(PseEntity.class);
-            em.persist(pse);
-            data.add(pse);
-        }
-        for (int i = 0; i < 3; i++) {
             ClienteEntity entity = factory.manufacturePojo(ClienteEntity.class);
             em.persist(entity);
             dataCliente.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
+            PseEntity pse = factory.manufacturePojo(PseEntity.class);
+            pse.setCliente(dataCliente.get(0));
+            em.persist(pse);
+            data.add(pse);
         }
     }
 
@@ -134,7 +135,7 @@ public class PseLogicTest {
      */
     @Test
     public void getPsesTest() throws BusinessLogicException {
-        List<PseEntity> list = pseLogic.getPses(dataCliente.get(1).getId());
+        List<PseEntity> list = pseLogic.getPses(dataCliente.get(0).getId());
         Assert.assertEquals(data.size(), list.size());
         for (PseEntity entity : list) {
             boolean found = false;
@@ -155,7 +156,7 @@ public class PseLogicTest {
     @Test
     public void getPseTest() {
         PseEntity entity = data.get(0);
-        PseEntity resultEntity = pseLogic.getPse(dataCliente.get(1).getId(), entity.getId());
+        PseEntity resultEntity = pseLogic.getPse(dataCliente.get(0).getId(), entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
@@ -170,7 +171,7 @@ public class PseLogicTest {
     @Test
     public void deletePseTest() {
         PseEntity entity = data.get(0);
-        pseLogic.deletePse(dataCliente.get(1).getId(), entity.getId());
+        pseLogic.deletePse(dataCliente.get(0).getId(), entity.getId());
         PseEntity deleted = em.find(PseEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }

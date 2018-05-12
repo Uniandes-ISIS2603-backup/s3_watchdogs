@@ -20,6 +20,9 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
  *      "cedula": string,
  *      "imagen": string,
  *      "edad": integer
+ *      "correo": string,
+ *      "telefono": string,
+ *      "cargo": string,
  *      "horarios": string
  *  }
  * </pre> Por ejemplo un empleado se representa asi:<br>
@@ -31,6 +34,9 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
  *      "cedula": "1010123456",
  *      "imagen": "abg.jpg",
  *      "edad": 24
+ *      "correo": "ca.beltran10watchdogs.com",
+ *      "telefono": "3106969451",
+ *      "cargo": "Paseador",
  *      "horarios": "No se como es"
  *  }
  * </pre>

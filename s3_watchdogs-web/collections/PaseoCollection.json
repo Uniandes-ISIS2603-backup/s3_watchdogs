@@ -1,10 +1,53 @@
 {
 	"info": {
 		"name": "PaseoCollection",
-		"_postman_id": "b953d0a4-9592-30f8-5531-b8d640a81733",
+		"_postman_id": "9af64502-4a2b-e553-72bf-2cec47ca2f27",
+		"description": "",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Crear paseo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7dbb96b-d52f-4254-963d-c9d438919843",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"duracion\": 20.5,\r\n       \"costo\":10,\r\n       \"capMax\": 10,\r\n       \"cliente\":{\r\n       \t\"id\":1\r\n       },\r\n       \"mascota\":{\r\n       \t\"id\":1\r\n       }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"paseos"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Consultar todos los paseos",
 			"event": [
@@ -59,9 +102,12 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/103",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -71,49 +117,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"paseos",
-						"103"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Crear paseo",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "e7dbb96b-d52f-4254-963d-c9d438919843",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status code is 200\"] = responseCode.code === 200;"
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n       \"id\": 1,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 25,\r\n       \"estado\": 1,\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"veterinaria\": { \"id\": {{new_id_e}} }\r\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"s3_watchdogs-web",
-						"api",
-						"paseos"
+						"{{new_id}}"
 					]
 				}
 			},
@@ -146,7 +150,7 @@
 					"raw": "{\r\n       \"id\": 1,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 30,\r\n       \"estado\": 1,\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"veterinaria\": { \"id\": {{new_id_e}} }\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/103",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -156,7 +160,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"paseos",
-						"103"
+						"{{new_id}}"
 					]
 				}
 			},
@@ -177,11 +181,14 @@
 				}
 			],
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/103",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/{{new_id}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -191,7 +198,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"paseos",
-						"103"
+						"{{new_id}}"
 					]
 				}
 			},

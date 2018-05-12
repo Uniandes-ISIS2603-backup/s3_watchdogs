@@ -11,37 +11,41 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
  *
  * @author c.martinezc1
  */
-public class EntrenamientoDetailDTO extends ServicioDetailDTO{
-    
+public class EntrenamientoDetailDTO extends ServicioDetailDTO {
+
     private CentroDeEntrenamientoDTO centroDeEntrenamiento;
-    
+
     private TransporteDTO transporte;
-    
+
     private String tipo;
+
     /**
      * Constructor por defecto
      */
     public EntrenamientoDetailDTO() {
         super();
     }
-    
+
     /**
      * Constructor que recibe un entity
+     *
      * @param entity
      */
-    public EntrenamientoDetailDTO(EntrenamientoEntity entity){
+    public EntrenamientoDetailDTO(EntrenamientoEntity entity) {
         super(entity);
         this.tipo = entity.getTipo();
-        if(entity.getCentroDeEntrenamiento() != null){
+        if (entity.getCentroDeEntrenamiento() != null) {
             this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
+        } else {
+            centroDeEntrenamiento = null;
         }
-        else centroDeEntrenamiento = null;
-        if(entity.getTransporte() != null){
+        if (entity.getTransporte() != null) {
             this.transporte = new TransporteDTO(entity.getTransporte());
+        } else {
+            transporte = null;
         }
-        else transporte = null;
     }
-    
+
     public String getTipo() {
         return tipo;
     }
@@ -49,7 +53,7 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+
     public CentroDeEntrenamientoDTO getCentroDeEntrenamiento() {
         return centroDeEntrenamiento;
     }
@@ -65,15 +69,14 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
     public void setTransporte(TransporteDTO transporte) {
         this.transporte = transporte;
     }
-    
-    
 
     /**
      * Metodo que convierte un DTO a ENtity
+     *
      * @return EntrenamientoEntity
      */
     @Override
-    public EntrenamientoEntity toEntity(){
+    public EntrenamientoEntity toEntity() {
         EntrenamientoEntity entity = new EntrenamientoEntity();
         entity.setCosto(this.getCosto());
         entity.setDuracion(this.getDuracion());
@@ -82,30 +85,31 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO{
         entity.setRango(this.getRango());
         entity.setTipo(this.tipo);
         entity.setId(this.id);
-        if(this.cliente!=null){
+        if (this.cliente != null) {
             entity.setCliente(cliente.toEntity());
         }
-        if(this.mascota!=null){
+        if (this.mascota != null) {
             entity.setMascota(mascota.toEntity());
         }
-        if(this.empleado!=null){
+        if (this.empleado != null) {
             entity.setEmpleado(empleado.toEntity());
         }
-        if(this.factura!=null){
+        if (this.factura != null) {
             entity.setFactura(factura.toEntity());
         }
-        if(this.calificacion!=null){
+        if (this.calificacion != null) {
             entity.setCalificacion(calificacion.toEntity());
         }
-        if(this.transporte!=null){
+        if (this.transporte != null) {
             entity.setTransporte(transporte.toEntity());
         }
-        if(centroDeEntrenamiento!=null){
-            if(centroDeEntrenamiento instanceof CentroDeEntrenamientoDTO){
+        if (centroDeEntrenamiento != null) {
+            if (centroDeEntrenamiento.getClass().equals(CentroDeEntrenamientoDTO.class)) {
                 entity.setCentroDeEntrenamiento(centroDeEntrenamiento.toEntity());
+            } else {
+                entity.setCentroDeEntrenamiento(null);
             }
-            else entity.setCentroDeEntrenamiento(null);
-            
+
         }
         return entity;
     }

@@ -11,35 +11,44 @@ import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
  * Clase que extiende de {@link HotelDTO} para manejar la transformacion entre
  * los objetos JSON y las Entidades de la base de datos. Para conocer el
  * contenido del hotel vaya a la documentacion de {@link HotelDTO}
+ *
  * @author m.diazt
  */
-public class HotelDetailDTO extends HotelDTO {
-    
+public class HotelDetailDTO extends ServicioDetailDTO {
+
     private TransporteDTO transporte;
     private CentroDeEntrenamientoDTO centroDeEntrenamiento;
-    
+
+    private Integer tiempoHospedaje;
+
     /**
      * Constructor por defecto
      */
-    public HotelDetailDTO()
-    {
+    public HotelDetailDTO() {
         super();
     }
-    
-    public HotelDetailDTO(HotelEntity entity){
+
+    public HotelDetailDTO(HotelEntity entity) {
         super(entity);
-        if(entity.getTransporte() != null){
+        tiempoHospedaje = entity.getTiempoHospedaje();
+        if (entity.getTransporte() != null) {
             this.transporte = new TransporteDTO(entity.getTransporte());
-        }
-        else{
+        } else {
             entity.setTransporte(null);
         }
-        if(entity.getCentroDeEntrenamiento() != null){
+        if (entity.getCentroDeEntrenamiento() != null) {
             this.centroDeEntrenamiento = new CentroDeEntrenamientoDTO(entity.getCentroDeEntrenamiento());
-        }
-        else{
+        } else {
             entity.setCentroDeEntrenamiento(null);
         }
+    }
+
+    public Integer getTiempoHospedaje() {
+        return tiempoHospedaje;
+    }
+
+    public void setTiempoHospedaje(Integer tiempoHospedaje) {
+        this.tiempoHospedaje = tiempoHospedaje;
     }
 
     /**
@@ -69,19 +78,41 @@ public class HotelDetailDTO extends HotelDTO {
     public void setCentroDeEntrenamiento(CentroDeEntrenamientoDTO centroDeEntrenamiento) {
         this.centroDeEntrenamiento = centroDeEntrenamiento;
     }
-    
+
     /**
      * Metodo que convierte un DTO a ENtity
+     *
      * @return HotelEntity
      */
     @Override
-    public HotelEntity toEntity(){
-        HotelEntity entity = super.toEntity();
-        if(this.getCentroDeEntrenamiento() != null){
-            entity.setCentroDeEntrenamiento(this.getCentroDeEntrenamiento().toEntity());
+    public HotelEntity toEntity() {
+        HotelEntity entity = new HotelEntity();
+        entity.setTiempoHospedaje(tiempoHospedaje);
+        entity.setCosto(this.costo);
+        entity.setDuracion(this.duracion);
+        entity.setEstado(this.estado);
+        entity.setFecha(this.fecha);
+        entity.setRango(this.rango);
+        if (this.cliente != null) {
+            entity.setCliente(cliente.toEntity());
         }
-        if(this.getTransporte() != null){
-            entity.setTransporte(this.getTransporte().toEntity());
+        if (this.mascota != null) {
+            entity.setMascota(mascota.toEntity());
+        }
+        if (this.empleado != null) {
+            entity.setEmpleado(empleado.toEntity());
+        }
+        if (this.factura != null) {
+            entity.setFactura(factura.toEntity());
+        }
+        if (this.calificacion != null) {
+            entity.setCalificacion(calificacion.toEntity());
+        }
+        if (this.centroDeEntrenamiento != null) {
+            entity.setCentroDeEntrenamiento(this.centroDeEntrenamiento.toEntity());
+        }
+        if (this.transporte != null) {
+            entity.setTransporte(this.transporte.toEntity());
         }
         return entity;
     }

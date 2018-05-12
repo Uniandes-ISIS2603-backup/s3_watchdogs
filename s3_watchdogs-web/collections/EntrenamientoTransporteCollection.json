@@ -1,0 +1,126 @@
+{
+	"info": {
+		"name": "EntrenamientoTransporteCollection",
+		"_postman_id": "aff53809-b15e-c81a-6e0a-66b368b8647f",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crea transporte de entrenamiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "569c2256-0d6a-47a0-b6e1-904eca9c4060",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"postman.setGlobalVariable(\"new_id\",data.id);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"recogida\":2,\r\n       \"devuelta\":3,\r\n       \"direccion\":\"cra211 # 1011\"\r\n       \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/3/transportes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos",
+						"3",
+						"transportes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta transporte de entrenamiento",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "06a73587-9b1b-4c17-8046-377469290c2f",
+						"type": "text/javascript",
+						"exec": [
+							"var data= JSON.parse(responseBody);",
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"tests[\"authors count\"] = data.length >= 0;"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n       \"recogida\":2,\r\n       \"devuelta\":2,\r\n       \"direccion\":\"cra211 # 1011\"\r\n       \r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/entrenamientos/101/transportes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"s3_watchdogs-web",
+						"api",
+						"entrenamientos",
+						"101",
+						"transportes"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c3e8e228-524b-4dc9-b2af-ee60c297ba18",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cbd6c68b-9955-4cd9-91de-02bded377fff",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
