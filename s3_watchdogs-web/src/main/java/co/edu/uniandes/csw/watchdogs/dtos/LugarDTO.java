@@ -41,7 +41,7 @@ public abstract class LugarDTO implements Serializable {
     
     protected Long id;
     protected String direccion;
-    protected List<String> fotos;
+    protected transient List<String> fotos;
     protected Integer usuariosEnServicio;
     protected Integer capacidadMaxima;
     

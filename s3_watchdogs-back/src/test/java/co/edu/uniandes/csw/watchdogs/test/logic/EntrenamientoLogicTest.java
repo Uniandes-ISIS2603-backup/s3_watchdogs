@@ -11,12 +11,11 @@ import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.EntrenamientoPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -66,6 +65,8 @@ public class EntrenamientoLogicTest {
 
     private List<CalificacionEntity> dataCalificacion = new ArrayList<CalificacionEntity>();
 
+    private List<TransporteEntity> dataTransporte = new ArrayList<TransporteEntity>();
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -106,6 +107,7 @@ public class EntrenamientoLogicTest {
     private void clearData() {
         em.createQuery("delete from EntrenamientoEntity").executeUpdate();
         em.createQuery("delete from ServicioEntity").executeUpdate();
+        em.createQuery("delete from TransporteEntity").executeUpdate();
         em.createQuery("delete from ClienteEntity").executeUpdate();
         em.createQuery("delete from MascotaEntity").executeUpdate();
         em.createQuery("delete from EmpleadoEntity").executeUpdate();
@@ -141,12 +143,19 @@ public class EntrenamientoLogicTest {
             em.persist(calificacion);
             dataCalificacion.add(calificacion);
         }
+        for (int i = 0; i < 3; i++) {
+            TransporteEntity transporte = factory.manufacturePojo(TransporteEntity.class);
+            em.persist(transporte);
+            dataTransporte.add(transporte);
+        }
 
         for (int i = 0; i < 3; i++) {
             EntrenamientoEntity entity = factory.manufacturePojo(EntrenamientoEntity.class);
             if (i == 0) {
                 entity.setEstado(Boolean.FALSE);
+                entity.setTransporte(dataTransporte.get(1));
             } else {
+                entity.setEstado(Boolean.TRUE);
                 entity.setCalificacion(dataCalificacion.get(1));
             }
             entity.setCliente(dataCliente.get(1));
@@ -310,7 +319,7 @@ public class EntrenamientoLogicTest {
     }
 
     @Test
-    public void addCalificacion() {
+    public void addCalificacionTest() {
         try {
             EntrenamientoEntity entrenamiento = data.get(0);
             CalificacionEntity pojoEntity = factory.manufacturePojo(CalificacionEntity.class);
@@ -328,12 +337,44 @@ public class EntrenamientoLogicTest {
     }
 
     @Test
-    public void getCalificacion() {
+    public void getCalificacionTest() {
         EntrenamientoEntity entrenamiento = data.get(1);
         CalificacionEntity calificacion = dataCalificacion.get(1);
         entrenamiento.setCalificacion(calificacion);
         CalificacionEntity resultado = entrenamientoLogic.getCalificacion(entrenamiento.getId());
 
         Assert.assertEquals(resultado.getPuntaje(), calificacion.getPuntaje());
+    }
+
+    @Test
+    public void addTransporteTest() {
+        try {
+            EntrenamientoEntity entrenamiento = data.get(1);
+            TransporteEntity pojoEntity = factory.manufacturePojo(TransporteEntity.class);
+
+            entrenamientoLogic.addTransporte(entrenamiento.getId(), pojoEntity);
+
+            EntrenamientoEntity resultado = em.find(EntrenamientoEntity.class, entrenamiento.getId());
+
+            Assert.assertEquals(resultado.getTransporte().getDevuelta(), pojoEntity.getDevuelta());
+            Assert.assertEquals(resultado.getTransporte().getDireccion(), pojoEntity.getDireccion());
+            Assert.assertEquals(resultado.getTransporte().getRecogida(), pojoEntity.getRecogida());
+
+        } catch (BusinessLogicException ex) {
+            fail();
+        }
+    }
+    
+    @Test
+    public void getTransporteTest() {
+        EntrenamientoEntity entrenamiento = data.get(0);
+        TransporteEntity transporte = dataTransporte.get(1);
+        entrenamiento.setTransporte(transporte);
+        TransporteEntity resultado = entrenamientoLogic.getTransporte(entrenamiento.getId());
+
+        Assert.assertEquals(resultado.getDevuelta(), transporte.getDevuelta());
+        Assert.assertEquals(resultado.getDireccion(), transporte.getDireccion());
+        Assert.assertEquals(resultado.getRecogida(), transporte.getRecogida());
+
     }
 }

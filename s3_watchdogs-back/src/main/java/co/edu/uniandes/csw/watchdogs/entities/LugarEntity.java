@@ -8,10 +8,6 @@ package co.edu.uniandes.csw.watchdogs.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
@@ -23,7 +19,7 @@ public abstract class LugarEntity extends BaseEntity  implements Serializable{
     
     
     protected String direccion;
-    protected List<String> fotos;
+    protected transient List<String> fotos;
     @PodamIntValue(minValue = 120, maxValue = 120)
     private Integer capacidadMaxima;
     @PodamIntValue(maxValue = 120)

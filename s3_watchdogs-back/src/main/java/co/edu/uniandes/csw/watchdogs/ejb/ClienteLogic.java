@@ -167,6 +167,7 @@ public class ClienteLogic {
      *
      * @param clienteId El id del cliente buscado.
      * @return La lista de facturas del cliente.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     public List<FacturaEntity> getFacturas(Long clienteId) throws BusinessLogicException {
         return getCliente(clienteId).getFacturas();
@@ -177,6 +178,7 @@ public class ClienteLogic {
      *
      * @param clienteId El id del cliente buscado.
      * @return La lista de servicios del cliente.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     public List<ServicioEntity> getServicios(Long clienteId) throws BusinessLogicException {
         ClienteEntity cliente = getCliente(clienteId);
