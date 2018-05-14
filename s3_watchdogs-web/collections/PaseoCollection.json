@@ -59,12 +59,9 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
+				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/103",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/33",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -74,7 +71,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"paseos",
-						"103"
+						"33"
 					]
 				}
 			},
@@ -104,7 +101,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"id\": 1,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 25,\r\n       \"estado\": 1,\r\n       \"duración\": 20.5,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"veterinaria\": { \"id\": {{new_id_e}} }\r\n}"
+					"raw": "{\r\n       \"id\": 33,\r\n       \"fecha\": \"2019-04-23T18:25:43.511Z\",\r\n       \"costo\": 25,\r\n       \"estado\": 1,\r\n       \"duracion\": 4,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"cliente\":{\r\n    \t\"id\":100\r\n        },\r\n        \"mascota\":{\r\n    \t\"id\":100\r\n        },\r\n        \"empleado\":{\r\n    \t\"id\":100\r\n        },\r\n       \"rutas\": { \"id\": 100 }\r\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos",
@@ -146,10 +143,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n       \"id\": 31,\r\n       \"fecha\": \"2019-05-23T18:25:43.511Z\",\r\n       \"costo\": 30,\r\n       \"estado\": 1,\r\n       \"duracion\": 5,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"cliente\": {\r\n        \"id\": 100\r\n        },\r\n        \"empleado\": {\r\n        \"id\": 100\r\n        },\r\n        \"mascota\": {\r\n        \"id\": 200\r\n        },\r\n        \"ruta\": {\r\n        \t\"id\":100\r\n        }\r\n}"
+					"raw": "{\r\n       \"id\": 33,\r\n       \"fecha\": \"2019-06-23T18:25:43.511Z\",\r\n       \"estado\": 1,\r\n       \"duracion\": 6,\r\n       \"rango\": \"\",\r\n       \"capMax\": 10,\r\n       \"horas\": \"\",\r\n       \"cliente\": {\r\n        \"id\": 100\r\n        },\r\n        \"empleado\": {\r\n        \"id\": 100\r\n        },\r\n        \"mascota\": {\r\n        \"id\": 200\r\n        },\r\n        \"rutas\": {\r\n        \t\"id\":100\r\n        }\r\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/31",
+					"raw": "http://localhost:8080/s3_watchdogs-web/api/paseos/33",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -159,7 +156,7 @@
 						"s3_watchdogs-web",
 						"api",
 						"paseos",
-						"31"
+						"33"
 					]
 				}
 			},
