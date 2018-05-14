@@ -26,23 +26,30 @@
 --PaseoEntity
 --ServicioEntity
 
+delete from AseoEntity;
+delete from LugarEntity;
+delete from RutaEntity;
 delete from PseEntity;
 delete from PayPalEntity;
 delete from TarjetaCreditoEntity;
-delete from FacturaEntity;
+delete from TransporteEntity;
 delete from EntrenamientoEntity;
-delete from AseoEntity;
 delete from HotelEntity;
 delete from PaseoEntity;
+delete from CalificacionEntity;
 delete from ServicioEntity;
-delete from RutaEntity;
-delete from LugarEntity;
-delete from TransporteEntity;
+delete from FacturaEntity;
 delete from MascotaEntity;
+<<<<<<< HEAD
 delete from CalificacionEntity;
 delete from EmpleadoEntity;
 delete from DisponibilidadEntity;
 delete from ClienteEntity;
+=======
+delete from ClienteEntity;
+delete from DisponibilidadEntity;
+delete from EmpleadoEntity;
+>>>>>>> e39282c4f62acb66dfe8c833b8f79e10205dc25a
 
 insert into ClienteEntity (id, cedula, correo, imagen, name, telefono) values (5001, '1580009000', 'rkroch0@t.co', 'http://dummyimage.com/242x212.bmp/ff4444/ffffff', 'Rana Kroch', '199-912-0740');
 insert into ClienteEntity (id, cedula, correo, imagen, name, telefono) values (5002, '1090009009', 'jglyn1@php.net', 'http://dummyimage.com/112x242.png/cc0000/ffffff', 'Jerome Glyn', '884-452-6796');
@@ -70,31 +77,31 @@ insert into ClienteEntity (id, cedula, correo, imagen, name, telefono) values (5
 insert into ClienteEntity (id, cedula, correo, imagen, name, telefono) values (5024, '1999990900', 'nbellardn@yolasite.com', 'http://dummyimage.com/142x155.bmp/dddddd/000000', 'Nixie Bellard', '651-746-0678');
 insert into ClienteEntity (id, cedula, correo, imagen, name, telefono) values (5025, '1900099680', 'ncurnuckeo@nationalgeographic.com', 'http://dummyimage.com/137x129.png/ff4444/ffffff', 'Nadeen Curnucke', '123-311-7862');
 
-insert into DisponibilidadEntity (id, name) values (5001, 'Bytecard');
-insert into DisponibilidadEntity (id, name) values (5002, 'Greenlam');
-insert into DisponibilidadEntity (id, name) values (5003, 'Bytecard');
-insert into DisponibilidadEntity (id, name) values (5004, 'Transcof');
-insert into DisponibilidadEntity (id, name) values (5005, 'Y-Solowarm');
-insert into DisponibilidadEntity (id, name) values (5006, 'Namfix');
-insert into DisponibilidadEntity (id, name) values (5007, 'Vagram');
-insert into DisponibilidadEntity (id, name) values (5008, 'Kanlam');
-insert into DisponibilidadEntity (id, name) values (5009, 'Aerified');
-insert into DisponibilidadEntity (id, name) values (5010, 'Aerified');
-insert into DisponibilidadEntity (id, name) values (5011, 'Voyatouch');
-insert into DisponibilidadEntity (id, name) values (5012, 'Home Ing');
-insert into DisponibilidadEntity (id, name) values (5013, 'Wrapsafe');
-insert into DisponibilidadEntity (id, name) values (5014, 'Tin');
-insert into DisponibilidadEntity (id, name) values (5015, 'Quo Lux');
-insert into DisponibilidadEntity (id, name) values (5016, 'Pannier');
-insert into DisponibilidadEntity (id, name) values (5017, 'Konklux');
-insert into DisponibilidadEntity (id, name) values (5018, 'Viva');
-insert into DisponibilidadEntity (id, name) values (5019, 'Otcom');
-insert into DisponibilidadEntity (id, name) values (5020, 'Tres-Zap');
-insert into DisponibilidadEntity (id, name) values (5021, 'Alphazap');
-insert into DisponibilidadEntity (id, name) values (5022, 'Home Ing');
-insert into DisponibilidadEntity (id, name) values (5023, 'Stringtough');
-insert into DisponibilidadEntity (id, name) values (5024, 'Namfix');
-insert into DisponibilidadEntity (id, name) values (5025, 'Cardify');
+insert into DisponibilidadEntity (id, name) values (5001, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5002, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5003, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5004, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5005, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5006, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5007, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5008, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5009, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5010, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5011, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5012, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5013, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5014, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5015, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5016, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5017, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5018, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5019, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5020, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5021, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5022, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5023, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5024, 'Disponibilidad');
+insert into DisponibilidadEntity (id, name) values (5025, 'Disponibilidad');
 
 insert into MascotaEntity (id, color, name, raza, sexo, cliente_id) values (5001, 'Pink', 'Zelig', 'Australian spiny anteater', 'Male', 5012);
 insert into MascotaEntity (id, color, name, raza, sexo, cliente_id) values (5002, 'Teal', 'Franciska', 'Phalarope, northern', 'Female', 5001);
@@ -175,6 +182,7 @@ insert into TransporteEntity (id, devuelta, direccion, name, recogida) values (5
 insert into TransporteEntity (id, devuelta, direccion, name, recogida) values (5025, 13, '561 Hoepker Terrace', 'Larry', 9);
 
 --Calificacion Cliente
+<<<<<<< HEAD
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5001, 'Zamit', 2, 5001);
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5002, 'Zamit', 5, 5002);
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5003, 'Trippledex', 1, 5003);
@@ -200,6 +208,34 @@ insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5022, 'Za
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5023, 'Tresom', 2, 5023);
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5024, 'Voyatouch', 4, 5024);
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5025, 'Temp', 1, 5025);
+=======
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5001, 'CalificacionCliente', 5, 5001);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5002, 'CalificacionCliente', 1, 5002);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5003, 'CalificacionCliente', 3, 5003);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5004, 'CalificacionCliente', 3, 5004);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5005, 'CalificacionCliente', 3, 5005);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5006, 'CalificacionCliente', 2, 5006);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5007, 'CalificacionCliente', 3, 5007);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5008, 'CalificacionCliente', 1, 5008);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5009, 'CalificacionCliente', 1, 5009);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5010, 'CalificacionCliente', 4, 5010);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5011, 'CalificacionCliente', 3, 5011);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5012, 'CalificacionCliente', 1, 5012);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5013, 'CalificacionCliente', 3, 5013);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5014, 'CalificacionCliente', 4, 5014);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5015, 'CalificacionCliente', 2, 5015);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5016, 'CalificacionCliente', 3, 5016);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5017, 'CalificacionCliente', 5, 5017);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5018, 'CalificacionCliente', 5, 5018);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5019, 'CalificacionCliente', 1, 5019);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5020, 'CalificacionCliente', 5, 5020);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5021, 'CalificacionCliente', 3, 5021);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5022, 'CalificacionCliente', 3, 5022);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5023, 'CalificacionCliente', 5, 5023);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5024, 'CalificacionCliente', 3, 5024);
+insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5025, 'CalificacionCliente', 1, 5025);
+
+>>>>>>> e39282c4f62acb66dfe8c833b8f79e10205dc25a
 
 insert into EmpleadoEntity (id, cargo, cedula, correo, edad, imagen, name, disponibilidad_id) values (5001, 'Aseador', '1090009879', 'hperfect0@wp.com', 29, 'http://dummyimage.com/119x131.jpg/5fa2dd/ffffff', 'Hadley Perfect', 5001);
 insert into EmpleadoEntity (id, cargo, cedula, correo, edad, imagen, name, disponibilidad_id) values (5002, 'Cuidador', '1909909609', 'cedney1@nydailynews.com', 57, 'http://dummyimage.com/238x140.jpg/dddddd/000000', 'Casi Edney', 5002);
@@ -228,31 +264,31 @@ insert into EmpleadoEntity (id, cargo, cedula, correo, edad, imagen, name, dispo
 insert into EmpleadoEntity (id, cargo, cedula, correo, edad, imagen, name, disponibilidad_id) values (5025, 'Cuidador', '1709090099', 'dgrobo@sourceforge.net', 30, 'http://dummyimage.com/216x121.bmp/cc0000/ffffff', 'Daryl Grob', 5025);
 
 --Calificacion Empleado
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6001, 'Subin', 2, 5001);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6002, 'Lotstring', 2, 5002);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6003, 'Opela', 4, 5003);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6004, 'Quo Lux', 5, 5004);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6005, 'Bamity', 5, 5005);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6006, 'Cardify', 1, 5006);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6007, 'Transcof', 1, 5007);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6008, 'Duobam', 1, 5008);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6009, 'Zoolab', 3, 5009);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6010, 'Hatity', 2, 5010);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6011, 'Lotstring', 1, 5011);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6012, 'Bitchip', 5, 5012);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6013, 'Y-find', 4, 5013);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6014, 'Mat Lam Tam', 1, 5014);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6015, 'Domainer', 1, 5015);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6016, 'Cookley', 1, 5016);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6017, 'Ronstring', 5, 5017);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6018, 'Greenlam', 4, 5018);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6019, 'Greenlam', 3, 5019);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6020, 'Toughjoyfax', 2, 5020);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6021, 'Cookley', 5, 5021);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6022, 'Andalax', 4, 5022);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6023, 'Kanlam', 3, 5023);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6024, 'Sub-Ex', 3, 5024);
-insert into CalificacionEntity (id, name, puntaje, empleado_id) values (6025, 'Stim', 2, 5025);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5101, 'CalificacionEmpleado', 4, 5001);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5102, 'CalificacionEmpleado', 3, 5002);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5103, 'CalificacionEmpleado', 5, 5003);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5104, 'CalificacionEmpleado', 5, 5004);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5105, 'CalificacionEmpleado', 1, 5005);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5106, 'CalificacionEmpleado', 5, 5006);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5107, 'CalificacionEmpleado', 2, 5007);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5108, 'CalificacionEmpleado', 3, 5008);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5109, 'CalificacionEmpleado', 1, 5009);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5110, 'CalificacionEmpleado', 1, 5010);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5111, 'CalificacionEmpleado', 1, 5011);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5112, 'CalificacionEmpleado', 5, 5012);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5113, 'CalificacionEmpleado', 4, 5013);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5114, 'CalificacionEmpleado', 2, 5014);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5115, 'CalificacionEmpleado', 3, 5015);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5116, 'CalificacionEmpleado', 1, 5016);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5117, 'CalificacionEmpleado', 5, 5017);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5118, 'CalificacionEmpleado', 4, 5018);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5119, 'CalificacionEmpleado', 2, 5019);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5120, 'CalificacionEmpleado', 1, 5020);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5121, 'CalificacionEmpleado', 1, 5021);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5122, 'CalificacionEmpleado', 2, 5022);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5123, 'CalificacionEmpleado', 4, 5023);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5124, 'CalificacionEmpleado', 1, 5024);
+insert into CalificacionEntity (id, name, puntaje, empleado_id) values (5125, 'CalificacionEmpleado', 3, 5025);
 
 insert into PayPalEntity (id, correo, name, cliente_id) values (5001, 'leingerfield0@aboutads.info', 'PayPalService', 5001);
 insert into PayPalEntity (id, correo, name, cliente_id) values (5002, 'fbellin1@cmu.edu', 'PayPalService', 5009);
@@ -276,6 +312,7 @@ insert into PseEntity (id, correo, name, cliente_id) values (5008, 'mmurthwaite7
 insert into PseEntity (id, correo, name, cliente_id) values (5009, 'cmichal8@vkontakte.ru', 'PSE Service', 5005);
 insert into PseEntity (id, correo, name, cliente_id) values (5010, 'lboeter9@salon.com', 'PSE Service', 5002);
 
+<<<<<<< HEAD
 insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5001, '097', '10/1/2020', 'diners-club-enroute', '201791214728140', 5003);
 insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5002, '900', '8/3/2023', 'switch', '6331106903655199769', 5004);
 insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5003, '009', '1/14/2021', 'jcb', '3538746604854383', 5006);
@@ -512,3 +549,165 @@ insert into TarjetaCreditoEntity (id, name, cliente_id, codigoseguridad, fechave
 insert into TarjetaCreditoEntity (id, name, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (802, 'Blondell',800, '369', '05/08/2018', '3583478174316064');
 insert into TarjetaCreditoEntity (id, name, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (902, 'Elbertina',900, '164', '11/10/2018', '3529187202785532');
 insert into TarjetaCreditoEntity (id, name, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (1002, 'Zebedee',1000, '688', '1/10/2018', '3549106064837799');
+=======
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5001, '080', '4/1/2021', 'AmericanExpress', '3585497271082237', 5003);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5002, '000', '10/12/2019', 'AmericanExpress', '58939295550546246', 5004);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5003, '008', '10/29/2022', 'MasterCard', '3537589413201839', 5006);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5004, '080', '10/21/2023', 'Visa', '3560508118729456', 5014);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5005, '099', '7/8/2021', 'AmericanExpress', '3553614343168624', 5015);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5006, '900', '4/19/2023', 'AmericanExpress', '4041373363351911', 5019);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5007, '099', '7/23/2022', 'AmericanExpress', '3540136385240489', 5020);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5008, '900', '5/10/2023', 'MasterCard', '6762653942487142', 5008);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5009, '007', '8/1/2022', 'AmericanExpress', '3586083934853179', 5024);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5010, '090', '11/25/2023', 'AmericanExpress', '3553950193413433', 5009);
+
+--Servicio Aseo
+
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5001, 'AseoEntity', 606261.43, 25, 0, '2/17/2018', 18, 'ServicioAseo', 5003, 5012, 5024);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5002, 'AseoEntity', 277398.39, 22, 1, '1/16/2018', 17, 'ServicioAseo', 5014, 5001, 5021);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5003, 'AseoEntity', 681171.65, 9, 1, '10/26/2017', 23, 'ServicioAseo', 5001, 5011, 5008);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5004, 'AseoEntity', 154460.95, 21, 0, '2/27/2018', 11, 'ServicioAseo', 5025, 5007, 5023);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5005, 'AseoEntity', 533576.97, 15, 1, '5/25/2017', 9, 'ServicioAseo', 5021, 5012, 5017);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5006, 'AseoEntity', 750062.58, 11, 1, '8/8/2017', 1, 'ServicioAseo', 5009, 5013, 5002);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5007, 'AseoEntity', 577664.27, 24, 0, '9/5/2017', 10, 'ServicioAseo', 5018, 5023, 5023);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5008, 'AseoEntity', 749961.00, 25, 0, '9/18/2017', 22, 'ServicioAseo', 5014, 5011, 5005);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5009, 'AseoEntity', 696524.20, 2, 0, '5/15/2018', 14, 'ServicioAseo', 5009, 5013, 5018);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5010, 'AseoEntity', 686103.53, 10, 1, '12/7/2017', 21, 'ServicioAseo', 5025, 5016, 5019);
+
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5001, 1, 0, 1);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5002, 1, 0, 0);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5003, 1, 1, 1);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5004, 1, 1, 1);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5005, 1, 1, 0);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5006, 1, 1, 1);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5007, 1, 1, 0);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5008, 0, 0, 0);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5009, 0, 0, 1);
+insert into AseoEntity (id, banho, dientes, peluqueria) values (5010, 1, 0, 1);
+
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5001, 'FacturaAseo', 1, 606261.43, 5003, 5001, 5001);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5002, 'FacturaAseo', 0, 277398.39, 5014, 5002, 5004);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5003, 'FacturaAseo', 0, 681171.65, 5001, 5003, 5001);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5004, 'FacturaAseo', 0, 154460.95, 5025, 5004, 5001);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5005, 'FacturaAseo', 0, 533576.97, 5021, 5005, 5008);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5006, 'FacturaAseo', 1, 750062.58, 5009, 5006, 5002);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5007, 'FacturaAseo', 1, 577664.27, 5018, 5007, 5009);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5008, 'FacturaAseo', 1, 749961.00, 5014, 5008, 5004);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5009, 'FacturaAseo', 1, 696524.20, 5009, 5009, 5010);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5010, 'FacturaAseo', 1, 686103.53, 5025, 5010, 5003);
+
+--Servicio Entrenamiento
+
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5101, 'EntrenamientoEntity', 639507.81, 9, 0, '11/23/2017', 21, 'ServicioEntrenamiento', 5017, 5006, 5003);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5102, 'EntrenamientoEntity', 696055.85, 1, 1, '10/11/2017', 10, 'ServicioEntrenamiento', 5009, 5025, 5010);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5103, 'EntrenamientoEntity', 770101.67, 2, 0, '7/26/2018', 22, 'ServicioEntrenamiento', 5008, 5015, 5011);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5104, 'EntrenamientoEntity', 754548.83, 12, 0, '1/23/2018', 11, 'ServicioEntrenamiento', 5020, 5005, 5019);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5105, 'EntrenamientoEntity', 603313.32, 7, 0, '12/16/2017', 22, 'ServicioEntrenamiento', 5003, 5020, 5003);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5106, 'EntrenamientoEntity', 349218.61, 16, 0, '1/24/2018', 12, 'ServicioEntrenamiento', 5016, 5017, 5006);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5107, 'EntrenamientoEntity', 240538.22, 2, 1, '4/5/2017', 9, 'ServicioEntrenamiento', 5016, 5019, 5022);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5108, 'EntrenamientoEntity', 908249.41, 15, 1, '1/2/2018', 17, 'ServicioEntrenamiento', 5021, 5015, 5002);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5109, 'EntrenamientoEntity', 447616.20, 16, 0, '3/16/2018', 22, 'ServicioEntrenamiento', 5023, 5006, 5014);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5110, 'EntrenamientoEntity', 590947.48, 19, 1, '4/21/2018', 2, 'ServicioEntrenamiento', 5020, 5012, 5006);
+
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5001, 'Diario', 5012);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5002, 'Diario', 5002);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5003, 'Nunca', 5010);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5004, 'Anual', 5001);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5005, 'Nunca', 5023);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5006, 'Semanal', 5014);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5007, 'Nunca', 5005);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5008, 'Semanal', 5020);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5009, 'Anual', 5017);
+insert into EntrenamientoEntity (id, tipo, transporte_id) values (5010, 'Anual', 5010);
+
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5101, 'FacturaEntrenamiento', 1, 639507.81, 5017, 5101, 5005);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5102, 'FacturaEntrenamiento', 0, 696055.85, 5009, 5102, 5009);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5103, 'FacturaEntrenamiento', 1, 770101.67, 5008, 5103, 5008);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5104, 'FacturaEntrenamiento', 1, 754548.83, 5020, 5104, 5007);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5105, 'FacturaEntrenamiento', 1, 603313.32, 5003, 5105, 5001);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5106, 'FacturaEntrenamiento', 0, 349218.61, 5016, 5106, 5004);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5107, 'FacturaEntrenamiento', 0, 240538.22, 5016, 5107, 5004);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5108, 'FacturaEntrenamiento', 1, 908249.41, 5021, 5108, 5008);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5109, 'FacturaEntrenamiento', 0, 447616.20, 5023, 5109, 5005);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5110, 'FacturaEntrenamiento', 1, 590947.48, 5020, 5110, 5007);
+
+--Servicio Hotel
+
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5201, 'HotelEntity', 780631.42, 16, 1, '2/16/2018', 23, 'ServicioHotel', 5019, 5010, 5008);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5202, 'HotelEntity', 550797.19, 3, 0, '5/2/2018', 14, 'ServicioHotel', 5016, 5013, 5009);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5203, 'HotelEntity', 294694.40, 26, 0, '5/3/2017', 21, 'ServicioHotel', 5001, 5021, 5016);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5204, 'HotelEntity', 195893.61, 13, 0, '3/5/2018', 18, 'ServicioHotel', 5018, 5008, 5024);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5205, 'HotelEntity', 117733.77, 19, 1, '12/13/2017', 19, 'ServicioHotel', 5022, 5014, 5005);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5206, 'HotelEntity', 163122.36, 2, 1, '10/18/2017', 13, 'ServicioHotel', 5017, 5011, 5016);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5207, 'HotelEntity', 497681.79, 10, 1, '2/10/2018', 15, 'ServicioHotel', 5007, 5023, 5014);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5208, 'HotelEntity', 881885.41, 23, 0, '1/9/2018', 15, 'ServicioHotel', 5020, 5001, 5022);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5209, 'HotelEntity', 329790.19, 4, 0, '7/1/2018', 21, 'ServicioHotel', 5017, 5015, 5010);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5210, 'HotelEntity', 715109.30, 25, 0, '10/1/2017', 12, 'ServicioHotel', 5008, 5019, 5016);
+
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5001, 8, 5002);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5002, 25, 5004);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5003, 29, 5011);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5004, 30, 5008);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5005, 3, 5020);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5006, 25, 5004);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5007, 2, 5008);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5008, 28, 5008);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5009, 19, 5021);
+insert into HotelEntity (id, tiempohospedaje, transporte_id) values (5010, 29, 5003);
+
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5201, 'FacturaHotel', 0, 780631.42, 5019, 5201, 5006);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5202, 'FacturaHotel', 0, 550797.19, 5016, 5202, 5004);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5203, 'FacturaHotel', 1, 294694.40, 5001, 5203, 5001);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5204, 'FacturaHotel', 1, 195893.61, 5018, 5204, 5009);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5205, 'FacturaHotel', 1, 117733.77, 5022, 5205, 5006);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5206, 'FacturaHotel', 0, 163122.36, 5017, 5206, 5005);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5207, 'FacturaHotel', 0, 497681.79, 5007, 5207, 5006);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5208, 'FacturaHotel', 1, 881885.41, 5020, 5208, 5007);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5209, 'FacturaHotel', 1, 329790.19, 5017, 5209, 5005);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5210, 'FacturaHotel', 0, 715109.30, 5008, 5210, 5008);
+
+--Servicio Paseo
+
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5301, 'PaseoEntity', 968841.01, 18, 0, '12/27/2017', 16, 'ServicioPaseo', 5017, 5018, 5002);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5302, 'PaseoEntity', 809814.16, 28, 0, '8/16/2017', 17, 'ServicioPaseo', 5016, 5004, 5005);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5303, 'PaseoEntity', 176519.19, 25, 1, '12/16/2017', 22, 'ServicioPaseo', 5022, 5007, 5021);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5304, 'PaseoEntity', 151371.55, 17, 0, '6/15/2017', 3, 'ServicioPaseo', 5001, 5009, 5004);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5305, 'PaseoEntity', 381432.03, 16, 0, '6/7/2017', 19, 'ServicioPaseo', 5004, 5001, 5017);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5306, 'PaseoEntity', 709412.23, 22, 0, '8/2/2017', 13, 'ServicioPaseo', 5019, 5007, 5014);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5307, 'PaseoEntity', 868219.07, 6, 1, '4/22/2017', 20, 'ServicioPaseo', 5023, 5005, 5021);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5308, 'PaseoEntity', 176196.75, 20, 1, '10/7/2017', 5, 'ServicioPaseo', 5012, 5014, 5007);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5309, 'PaseoEntity', 110569.23, 12, 0, '4/15/2017', 21, 'ServicioPaseo', 5014, 5013, 5011);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5310, 'PaseoEntity', 909426.65, 17, 0, '2/22/2018', 9, 'ServicioPaseo', 5010, 5012, 5017);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5311, 'PaseoEntity', 52257.31, 24, 0, '8/3/2017', 22, 'ServicioPaseo', 5004, 5018, 5004);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5312, 'PaseoEntity', 983855.14, 10, 0, '2/14/2018', 8, 'ServicioPaseo', 5025, 5025, 5001);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5313, 'PaseoEntity', 82414.58, 24, 1, '4/5/2018', 5, 'ServicioPaseo', 5001, 5013, 5007);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5314, 'PaseoEntity', 214407.69, 13, 0, '7/10/2017', 22, 'ServicioPaseo', 5015, 5023, 5022);
+insert into ServicioEntity (id, dtype, costo, duracion, estado, fecha, hora, name, cliente_id, empleado_id, mascota_id) values (5315, 'PaseoEntity', 48797.50, 4, 1, '4/27/2018', 24, 'ServicioPaseo', 5009, 5015, 5024);
+
+insert into PaseoEntity (id, capmax, ruta_id) values (5001, 9, 5007);
+insert into PaseoEntity (id, capmax, ruta_id) values (5002, 7, 5007);
+insert into PaseoEntity (id, capmax, ruta_id) values (5003, 5, 5020);
+insert into PaseoEntity (id, capmax, ruta_id) values (5004, 9, 5001);
+insert into PaseoEntity (id, capmax, ruta_id) values (5005, 9, 5020);
+insert into PaseoEntity (id, capmax, ruta_id) values (5006, 6, 5020);
+insert into PaseoEntity (id, capmax, ruta_id) values (5007, 8, 5009);
+insert into PaseoEntity (id, capmax, ruta_id) values (5008, 10, 5024);
+insert into PaseoEntity (id, capmax, ruta_id) values (5009, 8, 5014);
+insert into PaseoEntity (id, capmax, ruta_id) values (5010, 9, 5002);
+
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5301, 'FacturaPaseo', 0, 968841.01, 5017, 5301, 5005);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5302, 'FacturaPaseo', 1, 809814.16, 5016, 5302, 5004);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5303, 'FacturaPaseo', 0, 176519.19, 5022, 5303, 5006);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5304, 'FacturaPaseo', 1, 151371.55, 5001, 5304, 5001);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5305, 'FacturaPaseo', 1, 381432.03, 5004, 5305, 5002);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5306, 'FacturaPaseo', 0, 709412.23, 5019, 5306, 5006);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5307, 'FacturaPaseo', 0, 868219.07, 5023, 5307, 5005);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5308, 'FacturaPaseo', 0, 176196.75, 5012, 5308, 5007);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5309, 'FacturaPaseo', 0, 110569.23, 5014, 5309, 5004);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5310, 'FacturaPaseo', 0, 909426.65, 5010, 5310, 5003);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5311, 'FacturaPaseo', 0, 52257.31, 5004, 5311, 5002);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse_id) values (5312, 'FacturaPaseo', 1, 983855.14, 5025, 5312, 5001);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5313, 'FacturaPaseo', 0, 82414.58, 5001, 5313, 5001);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5314, 'FacturaPaseo', 1, 214407.69, 5015, 5314, 5005);
+insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5315, 'FacturaPaseo', 0, 48797.50, 5009, 5315, 5010);
+>>>>>>> e39282c4f62acb66dfe8c833b8f79e10205dc25a
