@@ -107,20 +107,15 @@ public class PaseoLogic {
      */
     public PaseoEntity updatePaseo(Long id, PaseoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de actualizar Paseo");
-        Date todayDate = Calendar.getInstance().getTime();
-        if (todayDate.before(entity.getFecha())) {
-            ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
-            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-            EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
-            entity.setCliente(cliente);
-            entity.setMascota(mascota);
-            entity.setEmpleado(empleado);
-            PaseoEntity newEntity = persistence.update(entity);
-            LOGGER.info("Termina proceso de actualizar Paseo");
-            return newEntity;
-        } else {
-            throw new BusinessLogicException("La fecha debe ser posterior a hoy.");
-        }
+        PaseoEntity paseoEntity = getPaseo(id);
+        if(paseoEntity == null) throw new BusinessLogicException("El paseo no existe");
+        
+        entity.setCosto(entity.getDuracion()*20000);
+        PaseoEntity newEntity = persistence.update(entity);
+        LOGGER.info("Termina proceso de actualizar Paseo");
+        return newEntity;
+        
+        
     }
 
     /**

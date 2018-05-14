@@ -107,11 +107,23 @@ public class HotelLogic {
      */
     public HotelEntity updateHotel(Long id, HotelEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de actualizar Hotel ");
-        Date todayDate = Calendar.getInstance().getTime();
+        HotelEntity hotelEntity = getHotel(id);
+        if(hotelEntity == null){
+            throw new BusinessLogicException("El hotel no existe");
+        }
+        entity.setDuracion(entity.getTiempoHospedaje().doubleValue());
+        entity.setCosto(costo(entity.getTiempoHospedaje().doubleValue()));
+        HotelEntity newEntity = persistence.update(entity);
+        LOGGER.info("Termina proceso de actualizar Hotel");
+        return newEntity;
+        
+        /**Date todayDate = Calendar.getInstance().getTime();
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
             EmpleadoEntity empleado = empleadoLogic.getEmpleado(entity.getEmpleado().getId());
+            entity.setDuracion(entity.getTiempoHospedaje().doubleValue());
+            entity.setCosto(costo(entity.getTiempoHospedaje().doubleValue()));
             entity.setCliente(cliente);
             entity.setMascota(mascota);
             entity.setEmpleado(empleado);
@@ -120,7 +132,7 @@ public class HotelLogic {
             return newEntity;
         } else {
             throw new BusinessLogicException("La fecha debe ser posterior a hoy.");
-        }
+        }**/
     }
 
     /**

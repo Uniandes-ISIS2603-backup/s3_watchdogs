@@ -133,12 +133,22 @@ public class HotelResource {
     @PUT
     @Path("{id: \\d+}")
     public HotelDetailDTO updateHotel(@PathParam("id") Long id, HotelDetailDTO hotel) throws WebApplicationException, BusinessLogicException {
-        hotel.setId(id);
+        HotelEntity entity = hotel.toEntity();
+        entity.setId(id);
+        HotelEntity oldEntity = hotelLogic.getHotel(id);
+        if (oldEntity == null) {
+            throw new WebApplicationException("El hotel no existe", 404);
+        }
+        entity.setDuracion(hotel.getDuracion());
+        entity.setCosto((hotel.getDuracion()*2083));
+        entity.setCliente(oldEntity.getCliente());
+        return new HotelDetailDTO(hotelLogic.updateHotel(id, entity));
+        /**hotel.setId(id);
         HotelEntity entity = hotelLogic.getHotel(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /hoteles/" + id + " no existe.", 404);
         }
-        return new HotelDetailDTO(hotelLogic.updateHotel(id,hotel.toEntity()));
+        return new HotelDetailDTO(hotelLogic.updateHotel(id,hotel.toEntity()));**/
     }
     
     /**

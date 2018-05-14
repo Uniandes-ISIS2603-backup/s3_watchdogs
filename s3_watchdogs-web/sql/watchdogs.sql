@@ -97,7 +97,7 @@ insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservici
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (300, 10, '2 Rusk Trail', 'Linklinks', 4);
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (400, 10, '93056 Arkansas Junction', 'Rooxo', 4);
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (500, 60, '59 Roxbury Street', 'Blogpad', 10);
-insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (600, 30, '2 Bluestem Point', 'Skajo', 4);
+insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (600, 30, '2 Bluestem Point', 'Veterinaria Watchdogs', 4);
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (700, 50, '76 Anthes Hill', 'Nlounge', 6);
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (800, 40, '449 Hagan Point', 'Tambee', 6);
 insert into LugarEntity (id, capacidadmaxima, direccion, name, usuariosenservicio) values (900, 90, '4251 Continental Drive', 'Topicblab', 7);

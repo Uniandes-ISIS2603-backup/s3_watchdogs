@@ -8,7 +8,9 @@ package co.edu.uniandes.csw.watchdogs.resources;
 import co.edu.uniandes.csw.watchdogs.dtos.PaseoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.PaseoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.PaseoLogic;
+import co.edu.uniandes.csw.watchdogs.ejb.RutaLogic;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.PaseoPersistence;
 import java.util.ArrayList;
@@ -39,6 +41,10 @@ public class PaseoResource {
     
      @Inject
     private PaseoLogic paseoLogic;
+     
+     @Inject
+     private RutaLogic rutaLogic;
+     
     
     private static final Logger LOGGER = Logger.getLogger(PaseoPersistence.class.getName());
     
@@ -133,11 +139,18 @@ public class PaseoResource {
     @PUT
     @Path("{id: \\d+}")
     public PaseoDetailDTO updatePaseo(@PathParam("id") Long id, PaseoDetailDTO paseo) throws WebApplicationException, BusinessLogicException {
+        PaseoEntity entity = paseo.toEntity();
         paseo.setId(id);
-        PaseoEntity entity = paseoLogic.getPaseo(id);
+        PaseoEntity oldEntity = paseoLogic.getPaseo(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
         }
+        paseo.setCosto(paseo.getDuracion()*20000.0);
+        entity.setDuracion(paseo.getDuracion());
+        entity.setCosto(paseo.getDuracion()*20000.0);
+        RutaEntity ruta = rutaLogic.getRuta(paseo.getRutas().getId());
+        entity.setRuta(ruta);
+        entity.setCliente(oldEntity.getCliente());
         return new PaseoDetailDTO(paseoLogic.updatePaseo(id, paseo.toEntity()));
     }
     
