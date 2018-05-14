@@ -52,11 +52,11 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     protected ClienteEntity cliente;
 
     @PodamExclude
-    @OneToOne(mappedBy = "servicio", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "servicio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     protected FacturaEntity factura;
 
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     protected CalificacionEntity calificacion;
 
     @PodamExclude

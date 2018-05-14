@@ -27,49 +27,49 @@ public class ClienteEntity extends BaseEntity implements Serializable {
      * Relacion con las mascotas del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MascotaEntity> mascotas = new ArrayList<>();
 
     /**
      * Relacion con los servicios del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ServicioEntity> servicios = new ArrayList<>();
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PayPalEntity> payPals = new ArrayList<>();
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PseEntity> pses = new ArrayList<>();
 
     /**
      * Relacion con los metodos de pago del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<TarjetaCreditoEntity> tarjetas = new ArrayList<>();
 
     /**
      * Relacion con las facturas del cliente.
      */
     @PodamExclude
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<FacturaEntity> facturas = new ArrayList<>();
 
     /**
      * Relacion con la calificacion del cliente.
      */
     @PodamExclude
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private CalificacionEntity calificacion = new CalificacionEntity();
 
     /**

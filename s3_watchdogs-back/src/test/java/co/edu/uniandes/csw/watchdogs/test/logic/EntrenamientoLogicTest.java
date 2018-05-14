@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.EntrenamientoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
@@ -43,7 +44,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class EntrenamientoLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -56,15 +57,14 @@ public class EntrenamientoLogicTest {
     private UserTransaction utx;
 
     private List<EntrenamientoEntity> data = new ArrayList<>();
-    
+
     private List<MascotaEntity> dataMascota = new ArrayList<MascotaEntity>();
-    
+
     private List<EmpleadoEntity> dataEmpleado = new ArrayList<EmpleadoEntity>();
-    
+
     private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
 
-
-
+    private List<CalificacionEntity> dataCalificacion = new ArrayList<CalificacionEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -105,9 +105,12 @@ public class EntrenamientoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from EntrenamientoEntity").executeUpdate();
+        em.createQuery("delete from ServicioEntity").executeUpdate();
         em.createQuery("delete from ClienteEntity").executeUpdate();
         em.createQuery("delete from MascotaEntity").executeUpdate();
         em.createQuery("delete from EmpleadoEntity").executeUpdate();
+        em.createQuery("delete from CalificacionEntity").executeUpdate();
+
     }
 
     /**
@@ -116,8 +119,8 @@ public class EntrenamientoLogicTest {
      *
      *
      */
-    private void insertData() {  
-        
+    private void insertData() {
+
         for (int i = 0; i < 3; i++) {
             ClienteEntity clienteEntity = factory.manufacturePojo(ClienteEntity.class);
             em.persist(clienteEntity);
@@ -134,7 +137,18 @@ public class EntrenamientoLogicTest {
             dataEmpleado.add(empleadoEntity);
         }
         for (int i = 0; i < 3; i++) {
+            CalificacionEntity calificacion = factory.manufacturePojo(CalificacionEntity.class);
+            em.persist(calificacion);
+            dataCalificacion.add(calificacion);
+        }
+
+        for (int i = 0; i < 3; i++) {
             EntrenamientoEntity entity = factory.manufacturePojo(EntrenamientoEntity.class);
+            if (i == 0) {
+                entity.setEstado(Boolean.FALSE);
+            } else {
+                entity.setCalificacion(dataCalificacion.get(1));
+            }
             entity.setCliente(dataCliente.get(1));
             entity.setMascota(dataMascota.get(1));
             entity.setEmpleado(dataEmpleado.get(1));
@@ -143,12 +157,10 @@ public class EntrenamientoLogicTest {
             data.add(entity);
         }
     }
-    
+
     /**
      * Prueba para crear un Entrenamiento
      *
-     *
-     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @Test
     public void createEntrenamientoTest() {
@@ -158,6 +170,35 @@ public class EntrenamientoLogicTest {
             newEntity.setMascota(dataMascota.get(0));
             newEntity.setEmpleado(dataEmpleado.get(0));
             EntrenamientoEntity result = entrenamientoLogic.createEntrenamiento(newEntity);
+            Assert.assertNotNull(result);
+            EntrenamientoEntity entity = em.find(EntrenamientoEntity.class, result.getId());
+            Assert.assertEquals(newEntity.getId(), entity.getId());
+            Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+            Assert.assertEquals(newEntity.getTransporte(), entity.getTransporte());
+            Assert.assertEquals(newEntity.getTipo(), entity.getTipo());
+            Assert.assertEquals(newEntity.getRango(), entity.getRango());
+            Assert.assertEquals(newEntity.getEmpleado(), entity.getEmpleado());
+            Assert.assertEquals(newEntity.getCentroDeEntrenamiento(), entity.getCentroDeEntrenamiento());
+            Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+            Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
+            Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion());
+            Assert.assertEquals(newEntity.getHora(), entity.getHora());
+        } catch (BusinessLogicException ex) {
+            fail();
+        }
+    }
+
+    /**
+     * Prueba para crear un Entrenamiento
+     *
+     */
+    @Test
+    public void createEntrenamientoClienteTest() {
+        try {
+            EntrenamientoEntity newEntity = factory.manufacturePojo(EntrenamientoEntity.class);
+            newEntity.setMascota(dataMascota.get(0));
+            newEntity.setEmpleado(dataEmpleado.get(0));
+            EntrenamientoEntity result = entrenamientoLogic.createEntrenamiento(dataCliente.get(0).getId(), newEntity);
             Assert.assertNotNull(result);
             EntrenamientoEntity entity = em.find(EntrenamientoEntity.class, result.getId());
             Assert.assertEquals(newEntity.getId(), entity.getId());
@@ -236,32 +277,63 @@ public class EntrenamientoLogicTest {
      * Prueba para actualizar un Book
      *
      *
-     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @Test
-    public void updateEntrenamientoTest() throws BusinessLogicException {
-        EntrenamientoEntity entity = data.get(0);
-        EntrenamientoEntity pojoEntity = factory.manufacturePojo(EntrenamientoEntity.class);
+    public void updateEntrenamientoTest() {
+        try {
+            EntrenamientoEntity entity = data.get(0);
+            EntrenamientoEntity pojoEntity = factory.manufacturePojo(EntrenamientoEntity.class);
 
-        pojoEntity.setId(entity.getId());
-        pojoEntity.setCliente(dataCliente.get(0));
-        pojoEntity.setMascota(dataMascota.get(0));
-        pojoEntity.setEmpleado(dataEmpleado.get(0));
+            pojoEntity.setId(entity.getId());
+            pojoEntity.setCliente(dataCliente.get(0));
+            pojoEntity.setMascota(dataMascota.get(0));
+            pojoEntity.setEmpleado(dataEmpleado.get(0));
 
-        entrenamientoLogic.updateEntrenamiento(pojoEntity.getId(), pojoEntity);
+            entrenamientoLogic.updateEntrenamiento(pojoEntity.getId(), pojoEntity);
 
-        EntrenamientoEntity resp = em.find(EntrenamientoEntity.class, entity.getId());
+            EntrenamientoEntity resp = em.find(EntrenamientoEntity.class, entity.getId());
 
-        Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(pojoEntity.getHora(), resp.getHora());
-        Assert.assertEquals(pojoEntity.getTransporte(), resp.getTransporte());
-        Assert.assertEquals(pojoEntity.getRango(), resp.getRango());
-        Assert.assertEquals(pojoEntity.getEmpleado(), resp.getEmpleado());
-        Assert.assertEquals(pojoEntity.getCentroDeEntrenamiento(), resp.getCentroDeEntrenamiento());
-        Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
-        Assert.assertEquals(pojoEntity.getMascota(), resp.getMascota());
-        Assert.assertEquals(pojoEntity.getDuracion(), resp.getDuracion());
-        Assert.assertEquals(pojoEntity.getHora(), resp.getHora());
+            Assert.assertEquals(pojoEntity.getId(), resp.getId());
+            Assert.assertEquals(pojoEntity.getFecha(), resp.getFecha());
+            Assert.assertEquals(pojoEntity.getHora(), resp.getHora());
+            Assert.assertEquals(pojoEntity.getTransporte(), resp.getTransporte());
+            Assert.assertEquals(pojoEntity.getRango(), resp.getRango());
+            Assert.assertEquals(pojoEntity.getEmpleado(), resp.getEmpleado());
+            Assert.assertEquals(pojoEntity.getCentroDeEntrenamiento(), resp.getCentroDeEntrenamiento());
+            Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
+            Assert.assertEquals(pojoEntity.getMascota(), resp.getMascota());
+            Assert.assertEquals(pojoEntity.getDuracion(), resp.getDuracion());
+            Assert.assertEquals(pojoEntity.getHora(), resp.getHora());
+        } catch (BusinessLogicException ex) {
+            fail();
+        }
+    }
+
+    @Test
+    public void addCalificacion() {
+        try {
+            EntrenamientoEntity entrenamiento = data.get(0);
+            CalificacionEntity pojoEntity = factory.manufacturePojo(CalificacionEntity.class);
+
+            entrenamientoLogic.addCalificacion(entrenamiento.getId(), pojoEntity);
+
+            EntrenamientoEntity resultado = em.find(EntrenamientoEntity.class, entrenamiento.getId());
+
+            Assert.assertEquals(resultado.getCalificacion().getPuntaje(), pojoEntity.getPuntaje());
+
+        } catch (BusinessLogicException ex) {
+            fail();
+        }
+
+    }
+
+    @Test
+    public void getCalificacion() {
+        EntrenamientoEntity entrenamiento = data.get(1);
+        CalificacionEntity calificacion = dataCalificacion.get(1);
+        entrenamiento.setCalificacion(calificacion);
+        CalificacionEntity resultado = entrenamientoLogic.getCalificacion(entrenamiento.getId());
+
+        Assert.assertEquals(resultado.getPuntaje(), calificacion.getPuntaje());
     }
 }

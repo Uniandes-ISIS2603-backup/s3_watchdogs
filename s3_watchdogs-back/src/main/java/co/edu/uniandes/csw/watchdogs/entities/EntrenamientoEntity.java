@@ -8,6 +8,7 @@ package co.edu.uniandes.csw.watchdogs.entities;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import uk.co.jemos.podam.common.PodamExclude;
@@ -26,7 +27,7 @@ public class EntrenamientoEntity extends ServicioEntity implements Serializable 
     private CentroDeEntrenamientoEntity centroDeEntrenamiento;
     
     @PodamExclude
-    @OneToOne(cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private TransporteEntity transporte;
     
     public EntrenamientoEntity(){
