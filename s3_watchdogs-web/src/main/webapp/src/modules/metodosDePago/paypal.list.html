@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="card">
     <div class="container-fluid">
         <div class="container-fluid">
@@ -15,8 +14,8 @@
                             <div class="card-body">
                                 <h6 class="card-subtitle mb-2 text-muted">Informacion:</h6>
                                 <p class="card-text">Correo asociado a la cuenta: {{payPal.correo}}</p>
-                                <button style="font-size:24px"><i class="fa fa-pencil-square-o"></i></button>                                
-                                <button style="font-size:24px;color:red" ui-sref="deletePayPal"><i class="fa fa-trash"></i></button>
+                                <button style="font-size:24px" ui-sref="payPalUpdate({payPalId: payPal.id})"><i class="fa fa-pencil-square-o"></i></button>                                
+                                <button style="font-size:24px;color:red" ui-sref="deletePayPal({payPalId: payPal.id})"><i class="fa fa-trash"></i></button>
                             </div>
                         </div>
                     </div>

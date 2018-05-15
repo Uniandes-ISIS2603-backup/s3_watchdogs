@@ -48,9 +48,10 @@ public class TarjetaCreditoLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de actualización de tarjeta con id{0}", id);
         validateDate(entity.getFechaVencimiento());
         validateNum(entity.getNumeroTarjeta());
-        TarjetaCreditoEntity newEntity = persistence.update(entity);
+        ClienteEntity cliente = clienteLogic.getCliente(id);
+        entity.setCliente(cliente);
         LOGGER.log(Level.INFO, "termina proceso de actualización de tarjeta con id{0}", entity.getId());
-        return newEntity;
+        return persistence.update(entity);
     }
 
     public void deleteTarjeta(Long clienteId,Long id) {

@@ -1,4 +1,4 @@
-<div class="card">
+<!--<div class="card">
     <div class="col-sm-12">
         <div class="container-fluid">
             <h6>
@@ -13,5 +13,19 @@
             </form> 
 
         </div>
+    </div>
+</div>-->
+<div class="card">
+    <h4>Ingrese los datos requeridos para agregar la cuenta de PayPal.</h4>
+    <div class="container-fluid">
+        <form>
+            <div class="form-group">
+                <label for="inputCorreo">Correo asociado a la cuenta</label>
+                <input type="text" title="El correo debe ser de la forma correo@ejemplo.com" class="form-control" id="inputCorreo"  placeholder="Correo" required="true" ng-model="correo">
+                <small id="correoHelp" class="form-text text-muted">El correo debe ser de la forma correo@ejemplo.com</small>
+            </div>
+
+            <button class="btn btn-primary" type="submit" ui-sref="temporalCrearPayPal({correo: correo})">Confirmar</button>
+        </form>
     </div>
 </div>

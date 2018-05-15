@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <div class="card">
     <div class="container-fluid">
@@ -7,8 +6,9 @@
 
                 <div class="row">
                     <h4> Las tarjetas de crédito asociadas a la cuenta son: </h4>
-                    <button style="font-size:15px" ui-sref="tarjetaCreate">Agregar tarjetas <i class="fa fa-plus-circle"></i></button>
                     <div class="container-fluid" ng-repeat="tarjeta in tarjetasRecords">
+                        <button style="font-size:15px" ui-sref="tarjetaCreate">Agregar tarjetas <i class="fa fa-plus-circle"></i></button>
+
                         <div class="card" style="width: 17rem;">
                             <div class="card-header">
                                 <h5>ID de la tarjeta: {{tarjeta.id}}</h5>
@@ -18,7 +18,7 @@
                                 <p class="card-text">Tipo de tarjeta: {{tarjeta.tipo}}</p>
                                 <p class="card-text">Numero de tarjeta: {{tarjeta.numeroTarjeta}}</p>
                                 <p class="card-text">Fecha de vencimiento: {{tarjeta.fechaVencimiento}}</p>
-                                <button style="font-size:24px"><i class="fa fa-pencil-square-o"></i></button>                                
+                                <button style="font-size:24px" ui-sref="tarjetaUpdate({tarjetaId: tarjeta.id})"><i class="fa fa-pencil-square-o"></i></button>                                
                                 <button style="font-size:24px;color:red" ui-sref="deleteTarjeta({tarjetaId: tarjeta.id})"><i class="fa fa-trash"></i></button>
                             </div>
                         </div>

@@ -47,18 +47,7 @@
                         templateUrl: basePath + 'tarjeta.list.html'
                     }
                 }
-            }).state('metodoDePagoCreate', {
-
-                url: '/metodoDePago/crear',
-                parent: 'clienteDetail',
-                views: {
-                    childrenView: {
-                        templateUrl: basePath + 'MetodoDePago.create.html'
-                    }
-                }
-
-            })
-                    .state('payPalCreate', {
+            }).state('payPalCreate', {
 
                 url: '/payPal',
                 parent: 'clienteDetail',
@@ -140,10 +129,10 @@
                 }
             }).state('deleteTarjeta', {
                 params: {
-                    tarjetaId: null 
+                    tarjetaId: null
                 },
 
-                url: '/delete/{tarjetaId:int}',
+                url: 'tarjeta/delete/{tarjetaId:int}',
                 parent: 'clienteDetail',
                 views: {
                     tarjetaDelete: {
@@ -153,7 +142,7 @@
                 }
             }).state('deletePayPal', {
                 params: {
-                    payPalId: null 
+                    payPalId: null
                 },
 
                 url: '/delete/{payPalId:int}',
@@ -162,6 +151,93 @@
                     payPalDelete: {
                         templateUrl: basePath + 'payPal.delete.html',
                         controller: 'payPalDeleteCtrl'
+                    }
+                }
+            }).state('tarjetaUpdate', {
+                params: {
+                    tarjetaId: null
+                },
+
+                url: '/tarjeta/{tarjetaId:int}/update',
+                parent: 'clienteDetail',
+                views: {
+                    tarjetaUpdate: {
+                        templateUrl: basePath + 'tarjetas.update.html'
+                    }
+                }
+            }).state('temporalUpdateTarjeta', {
+                params: {
+
+                    numeroTarjeta: null,
+                    fechaVencimiento: null,
+                    codigoSeguridad: null
+                },
+                url: 'prueba',
+                parent: 'tarjetaUpdate',
+                views: {
+                    update: {
+                        controller: 'tarjetaUpdateCtrl'
+                    }
+                }
+            }).state('deletePSE', {
+                params: {
+                    PSEId: null
+                },
+
+                url: '/delete/{PSEId:int}',
+                parent: 'clienteDetail',
+                views: {
+                    PSEDelete: {
+                        templateUrl: basePath + 'PSE.delete.html',
+                        controller: 'PSEDeleteCtrl'
+                    }
+                }
+            }).state('payPalUpdate', {
+                params: {
+                    payPalId: null
+                },
+
+                url: '/payPal/{payPalId:int}/update',
+                parent: 'clienteDetail',
+                views: {
+                    payPalUpdate: {
+                        templateUrl: basePath + 'payPal.update.html'
+                    }
+                }
+            }).state('temporalUpdatePayPal', {
+                params: {
+
+                    correo: null
+                },
+                url: 'prueba',
+                parent: 'payPalUpdate',
+                views: {
+                    updatePayPal: {
+                        controller: 'payPalUpdateCtrl'
+                    }
+                }
+            }).state('PSEUpdate', {
+                params: {
+                    PSEId: null
+                },
+
+                url: '/PSE/{PSEId:int}/update',
+                parent: 'clienteDetail',
+                views: {
+                    payPalUpdate: {
+                        templateUrl: basePath + 'PSE.update.html'
+                    }
+                }
+            }).state('temporalUpdatePSE', {
+                params: {
+
+                    correo: null
+                },
+                url: 'prueba',
+                parent: 'PSEUpdate',
+                views: {
+                    updatePSE: {
+                        controller: 'PSEUpdateCtrl'
                     }
                 }
             })
