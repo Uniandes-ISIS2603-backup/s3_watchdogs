@@ -94,6 +94,17 @@
                     requireLogin: true,
                     roles: ['admin']
                 }
-            });
+            }).state('serviciosClienteList', {
+                url: '/servicios',
+                parent: 'empleadoAdminDetail',
+                views: {
+                    empleadoAdminServicioListView: {
+                        templateUrl: basePath + 'empleadosAdmin.servicios.list.html'
+//                        controller: 'empleadoAdminServiciosListCtrl',
+//                        controllerAs: 'ctrl'
+                    }
+                }
+            })
+            ;
     }]);
 })(window.angular);
