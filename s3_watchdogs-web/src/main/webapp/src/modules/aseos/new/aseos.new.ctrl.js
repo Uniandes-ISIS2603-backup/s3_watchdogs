@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 (function (ng) {
-    var mod = ng.module("entrenamientosModule");
+    var mod = ng.module("aseosModule");
     mod.constant("clientesContext", "api/clientes");
-    mod.constant("entrenamientosContext", "api/entrenamientos");
-    mod.controller('entrenamientoNewCtrl', ['$scope', '$http', 'clientesContext', 'entrenamientosContext', '$state', '$rootScope',
-        function ($scope, $http, clientesContext, entrenamientosContext, $state, $rootScope) {
+    mod.constant("aseosContext", "api/aseos");
+    mod.controller('aseoNewCtrl', ['$scope', '$http', 'clientesContext', 'aseosContext', '$state', '$rootScope',
+        function ($scope, $http, clientesContext, aseosContext, $state, $rootScope) {
             $rootScope.edit = false;
 
             $scope.data = {};
@@ -22,9 +22,9 @@
                 $scope.mascotas = cliente.mascotas;
             });
 
-            $scope.createEntrenamiento = function () {
-                $http.post(clientesContext+'/'+idCliente+'/entrenamientos', $scope.data).then(function (response) {
-                    $state.go('serviciosList', {entrenamientoId: response.data.id}, {reload: true});
+            $scope.createAseo = function () {
+                $http.post(clientesContext+'/'+idCliente+'/aseos', $scope.data).then(function (response) {
+                    $state.go('serviciosList', {aseoId: response.data.id}, {reload: true});
                 });
             };
         }

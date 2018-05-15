@@ -50,10 +50,10 @@ and open the template in the editor.
                                <div class="col-10">
                                <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoTipo" required ng-model="data.tipo">
                                      <option selected>Elige</option>
-                                     <option value="1">Trucos </option>
-                                     <option value="2">Cardio Basico</option>
-                                     <option value="3">Cardio Medio</option>
-                                     <option value="4">Cardio Intensivo</option>
+                                     <option value="Truco">Trucos </option>
+                                     <option value="Cardio Basico">Cardio Basico</option>
+                                     <option value="Cardio Medio">Cardio Medio</option>
+                                     <option value="Cardio Intensivo">Cardio Intensivo</option>
                                </select>
                                </div>
                          </form>
@@ -87,7 +87,7 @@ and open the template in the editor.
                     </div> 
                     <div class="row">
                         <div class="col-sm-10">
-                            <a ng-show="entrenamiento.$valid" ng-click="createEntrenamiento()" value="Save" class="btn btn-success"/>
+                            <a class="btn btn-success" ui-sref="serviciosList"  ng-click="createEntrenamiento()" value="Save" >Aceptar</a>
                             <a class="btn btn-info" ui-sref="serviciosList">Cancel</a>
                         </div>
                     </div>
