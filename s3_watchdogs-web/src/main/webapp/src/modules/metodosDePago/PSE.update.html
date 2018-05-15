@@ -1,0 +1,15 @@
+<div class="card">
+    <h4>Ingrese los datos requeridos para actualizar la cuenta de PSE.</h4>
+    <div class="container-fluid">
+        <form>
+            <div class="form-group">
+                <label for="inputCorreo">Correo asociado a la cuenta</label>
+                <input type="email" title="El correo debe ser de la forma correo@ejemplo.com" class="form-control" id="inputCorreo"  placeholder="Correo" ng-model="correo" required>
+                <small id="correoHelp" class="form-text text-muted">El correo debe ser de la forma correo@ejemplo.com</small>
+            </div>
+
+            <button class="btn btn-primary" type="submit" ui-sref="temporalUpdatePSE({correo: correo})">Confirmar</button>
+        </form>
+    </div>
+    <div ui-view="updatePSE"></div>
+</div>

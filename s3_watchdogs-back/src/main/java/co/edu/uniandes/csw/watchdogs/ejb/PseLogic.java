@@ -60,6 +60,9 @@ public class PseLogic {
     public PseEntity updateEntity(Long id, PseEntity entity) throws BusinessLogicException
     {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar PSE con id = {0}", id);
+        validateEmail(entity.getCorreo());
+        ClienteEntity cliente = clienteLogic.getCliente(id);
+        entity.setCliente(cliente);
         return persistence.update(entity);
     }
     
