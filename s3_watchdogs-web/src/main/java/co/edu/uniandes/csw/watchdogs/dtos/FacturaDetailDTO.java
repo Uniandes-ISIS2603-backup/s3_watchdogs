@@ -168,15 +168,18 @@ public class FacturaDetailDTO extends FacturaDTO {
     public FacturaEntity toEntity() {
         FacturaEntity rta = super.toEntity();
         rta.setCliente(cliente.toEntity());
-        if (servicio.getClass() == AseoDTO.class) {
+        if(servicio != null){
+            if (servicio.getClass().equals(AseoDTO.class)) {
             rta.setServicio((AseoEntity) servicio.toEntity());
-        } else if (servicio.getClass() == HotelDTO.class) {
+        } else if (servicio.getClass().equals(HotelDTO.class)) {
             rta.setServicio((HotelEntity) servicio.toEntity());
-        } else if (servicio.getClass() == EntrenamientoDTO.class) {
+        } else if (servicio.getClass().equals(EntrenamientoDTO.class)) {
             rta.setServicio((EntrenamientoEntity) servicio.toEntity());
-        } else if (servicio.getClass() == PaseoDTO.class) {
+        } else if (servicio.getClass().equals(PaseoDTO.class)) {
             rta.setServicio((PaseoEntity) servicio.toEntity());
         }
+        }
+        
 //        if(metodoDePago.getClass() == PayPalDTO.class){
 //            rta.setMetodoDePago((PayPalEntity) metodoDePago.toEntity());
 //        }else if(metodoDePago.getClass() == PseDTO.class){
