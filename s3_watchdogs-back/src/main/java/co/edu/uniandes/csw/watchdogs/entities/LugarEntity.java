@@ -19,7 +19,7 @@ public abstract class LugarEntity extends BaseEntity  implements Serializable{
     
     
     protected String direccion;
-    protected transient List<String> fotos;
+    protected List<String> fotos;
     @PodamIntValue(minValue = 120, maxValue = 120)
     private Integer capacidadMaxima;
     @PodamIntValue(maxValue = 120)

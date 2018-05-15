@@ -25,31 +25,23 @@
 --HotelEntity
 --PaseoEntity
 --ServicioEntity
-
-delete from AseoEntity;
-delete from LugarEntity;
-delete from RutaEntity;
+delete from FacturaEntity;
 delete from PseEntity;
 delete from PayPalEntity;
 delete from TarjetaCreditoEntity;
-delete from TransporteEntity;
 delete from EntrenamientoEntity;
+delete from AseoEntity;
 delete from HotelEntity;
 delete from PaseoEntity;
-delete from CalificacionEntity;
 delete from ServicioEntity;
-delete from FacturaEntity;
+delete from RutaEntity;
+delete from LugarEntity;
+delete from TransporteEntity;
 delete from MascotaEntity;
-<<<<<<< HEAD
 delete from CalificacionEntity;
 delete from EmpleadoEntity;
 delete from DisponibilidadEntity;
 delete from ClienteEntity;
-=======
-delete from ClienteEntity;
-delete from DisponibilidadEntity;
-delete from EmpleadoEntity;
->>>>>>> e39282c4f62acb66dfe8c833b8f79e10205dc25a
 
 insert into ClienteEntity (id, cedula, correo, imagen, name, telefono) values (5001, '1580009000', 'rkroch0@t.co', 'http://dummyimage.com/242x212.bmp/ff4444/ffffff', 'Rana Kroch', '199-912-0740');
 insert into ClienteEntity (id, cedula, correo, imagen, name, telefono) values (5002, '1090009009', 'jglyn1@php.net', 'http://dummyimage.com/112x242.png/cc0000/ffffff', 'Jerome Glyn', '884-452-6796');
@@ -182,33 +174,7 @@ insert into TransporteEntity (id, devuelta, direccion, name, recogida) values (5
 insert into TransporteEntity (id, devuelta, direccion, name, recogida) values (5025, 13, '561 Hoepker Terrace', 'Larry', 9);
 
 --Calificacion Cliente
-<<<<<<< HEAD
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5001, 'Zamit', 2, 5001);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5002, 'Zamit', 5, 5002);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5003, 'Trippledex', 1, 5003);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5004, 'Subin', 5, 5004);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5005, 'Zontrax', 1, 5005);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5006, 'Redhold', 3, 5006);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5007, 'Zaam-Dox', 5, 5007);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5008, 'Stim', 3, 5008);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5009, 'Alphazap', 5, 5009);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5010, 'Tres-Zap', 1, 5010);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5011, 'Trippledex', 3, 5011);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5012, 'Regrant', 5, 5012);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5013, 'Aerified', 4, 5013);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5014, 'Otcom', 3, 5014);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5015, 'Stim', 4, 5015);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5016, 'Trippledex', 1, 5016);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5017, 'Voltsillam', 5, 5017);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5018, 'Lotlux', 2, 5018);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5019, 'Fintone', 4, 5019);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5020, 'Namfix', 4, 5020);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5021, 'Domainer', 1, 5021);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5022, 'Zaam-Dox', 4, 5022);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5023, 'Tresom', 2, 5023);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5024, 'Voyatouch', 4, 5024);
-insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5025, 'Temp', 1, 5025);
-=======
+
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5001, 'CalificacionCliente', 5, 5001);
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5002, 'CalificacionCliente', 1, 5002);
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5003, 'CalificacionCliente', 3, 5003);
@@ -235,7 +201,6 @@ insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5023, 'Ca
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5024, 'CalificacionCliente', 3, 5024);
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5025, 'CalificacionCliente', 1, 5025);
 
->>>>>>> e39282c4f62acb66dfe8c833b8f79e10205dc25a
 
 insert into EmpleadoEntity (id, cargo, cedula, correo, edad, imagen, name, disponibilidad_id) values (5001, 'Aseador', '1090009879', 'hperfect0@wp.com', 29, 'http://dummyimage.com/119x131.jpg/5fa2dd/ffffff', 'Hadley Perfect', 5001);
 insert into EmpleadoEntity (id, cargo, cedula, correo, edad, imagen, name, disponibilidad_id) values (5002, 'Cuidador', '1909909609', 'cedney1@nydailynews.com', 57, 'http://dummyimage.com/238x140.jpg/dddddd/000000', 'Casi Edney', 5002);
@@ -312,7 +277,6 @@ insert into PseEntity (id, correo, name, cliente_id) values (5008, 'mmurthwaite7
 insert into PseEntity (id, correo, name, cliente_id) values (5009, 'cmichal8@vkontakte.ru', 'PSE Service', 5005);
 insert into PseEntity (id, correo, name, cliente_id) values (5010, 'lboeter9@salon.com', 'PSE Service', 5002);
 
-<<<<<<< HEAD
 insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5001, '097', '10/1/2020', 'diners-club-enroute', '201791214728140', 5003);
 insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5002, '900', '8/3/2023', 'switch', '6331106903655199769', 5004);
 insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5003, '009', '1/14/2021', 'jcb', '3538746604854383', 5006);
@@ -549,17 +513,16 @@ insert into TarjetaCreditoEntity (id, name, cliente_id, codigoseguridad, fechave
 insert into TarjetaCreditoEntity (id, name, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (802, 'Blondell',800, '369', '05/08/2018', '3583478174316064');
 insert into TarjetaCreditoEntity (id, name, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (902, 'Elbertina',900, '164', '11/10/2018', '3529187202785532');
 insert into TarjetaCreditoEntity (id, name, cliente_id, codigoseguridad, fechavencimiento, numerotarjeta) values (1002, 'Zebedee',1000, '688', '1/10/2018', '3549106064837799');
-=======
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5001, '080', '4/1/2021', 'AmericanExpress', '3585497271082237', 5003);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5002, '000', '10/12/2019', 'AmericanExpress', '58939295550546246', 5004);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5003, '008', '10/29/2022', 'MasterCard', '3537589413201839', 5006);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5004, '080', '10/21/2023', 'Visa', '3560508118729456', 5014);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5005, '099', '7/8/2021', 'AmericanExpress', '3553614343168624', 5015);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5006, '900', '4/19/2023', 'AmericanExpress', '4041373363351911', 5019);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5007, '099', '7/23/2022', 'AmericanExpress', '3540136385240489', 5020);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5008, '900', '5/10/2023', 'MasterCard', '6762653942487142', 5008);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5009, '007', '8/1/2022', 'AmericanExpress', '3586083934853179', 5024);
-insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (5010, '090', '11/25/2023', 'AmericanExpress', '3553950193413433', 5009);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6001, '080', '4/1/2021', 'AmericanExpress', '3585497271082237', 5003);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6002, '000', '10/12/2019', 'AmericanExpress', '58939295550546246', 5004);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6003, '008', '10/29/2022', 'MasterCard', '3537589413201839', 5006);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6004, '080', '10/21/2023', 'Visa', '3560508118729456', 5014);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6005, '099', '7/8/2021', 'AmericanExpress', '3553614343168624', 5015);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6006, '900', '4/19/2023', 'AmericanExpress', '4041373363351911', 5019);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6007, '099', '7/23/2022', 'AmericanExpress', '3540136385240489', 5020);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6008, '900', '5/10/2023', 'MasterCard', '6762653942487142', 5008);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6009, '007', '8/1/2022', 'AmericanExpress', '3586083934853179', 5024);
+insert into TarjetaCreditoEntity (id, codigoseguridad, fechavencimiento, name, numerotarjeta, cliente_id) values (6010, '090', '11/25/2023', 'AmericanExpress', '3553950193413433', 5009);
 
 --Servicio Aseo
 
@@ -710,4 +673,3 @@ insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, pse
 insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, paypal_id) values (5313, 'FacturaPaseo', 0, 82414.58, 5001, 5313, 5001);
 insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5314, 'FacturaPaseo', 1, 214407.69, 5015, 5314, 5005);
 insert into FacturaEntity (id, name, pagado, valor, cliente_id, servicio_id, tarjeta_id) values (5315, 'FacturaPaseo', 0, 48797.50, 5009, 5315, 5010);
->>>>>>> e39282c4f62acb66dfe8c833b8f79e10205dc25a

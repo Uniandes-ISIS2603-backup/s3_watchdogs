@@ -21,11 +21,11 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class VeterinariaEntity extends LugarEntity implements Serializable {
     
     @PodamExclude
-    @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veterinaria")
     private List<AseoEntity> aseos;
     
     @PodamExclude
-    @OneToMany(mappedBy = "veterinaria", cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "veterinaria")
     private List<PaseoEntity> paseos;
     
 
