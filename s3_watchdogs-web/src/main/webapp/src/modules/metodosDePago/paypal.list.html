@@ -5,9 +5,9 @@
 
                 <div class="row">
                     <h4> Las cuentas de PayPal asociadas a la cuenta son: </h4>
-                    <button style="font-size:15px" ui-sref="payPalCreate">Agregar cuenta de PayPal <i class="fa fa-plus-circle"></i></button>
                     <div class="container-fluid" ng-repeat="payPal in payPalRecords">
-                        <div class="card" style="width: 17rem;">
+                        <button style="font-size:15px" ui-sref="payPalCreate">Agregar cuenta de PayPal <i class="fa fa-plus-circle"></i></button>
+                        <div class="card" style="width: 100%;">
                             <div class="card-header">
                                 <h5>ID de la cuenta: {{payPal.id}}</h5>
                             </div>
