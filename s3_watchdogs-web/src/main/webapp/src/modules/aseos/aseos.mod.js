@@ -11,65 +11,65 @@
             var basePath = 'src/modules/aseos/';
             $urlRouterProvider.otherwise("/aseoDetail");
             
-            $stateProvider.state('entrDetail', {
-                url: '/entrenamientos/{entrenamientoId:int}/detail',
+            $stateProvider.state('aseoDetail', {
+                url: '/aseos/{aseoId:int}/detail',
                 param: {
-                    entrenamientoId: null
+                    aseoId: null
                 },
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'entrenamientos.view.html',
-                        controller: 'entrenamientoDetailCtrl',
+                        templateUrl: basePath + 'aseos.view.html',
+                        controller: 'aseoDetailCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-                }).state('entrenamientoTerminado', {
-                url: '/entrenamientos/{entrenamientoId:int}/terminado',
+                }).state('aseoTerminado', {
+                url: '/aseos/{aseoId:int}/terminado',
                 //parent: 'entrenamientoDetail',
                 param: {
-                    entrenamientoId: null
+                    aseoId: null
                 },
                 views: {
                     'mainView': {
-                        templateUrl: basePath + 'entrenamientos.terminado.html',
-                        controller: 'entrenamientoDetailCtrl',
+                        templateUrl: basePath + 'aseos.terminado.html',
+                        controller: 'aseoDetailCtrl',
                         controllerAs: 'ctrl'
                     }
                 }
-                }).state('entrenamientosCreate', {
-                url: '/clientes/{clienteId:int}/entrenamientos/create',
+                }).state('aseosCreate', {
+                url: '/clientes/{clienteId:int}/aseos/create',
                 //parent: 'entrenamientoDetail',
                 param:{
                     clienteId: null
                 },
                 views: {
                     'mainView': {
-                        templateUrl: basePath + '/new/entrenamientos.new.html',
-                        controller: 'entrenamientoNewCtrl'
+                        templateUrl: basePath + '/new/aseos.new.html',
+                        controller: 'aseoNewCtrl'
                     }
                 }
-                }).state('entrenamientoDelete', {
-                url: '/entrenamientos/{entrenamientoId:int}/delete',
+                }).state('aseoDelete', {
+                url: '/aseos/{aseoId:int}/delete',
                 //parent: 'entrenamientoDetail',
                 param: {
-                    entrenamientoId: null
+                    aseoId: null
                 },
                 views: {
                     'mainView': {
-                        templateUrl: basePath + '/delete/entrenamientos.delete.html',
-                        controller: 'entrenamientoDeleteCtrl'
+                        templateUrl: basePath + '/delete/aseos.delete.html',
+                        controller: 'aseoDeleteCtrl'
                     }
                 }
-                }).state('entrenamientoUpdate', {
-                url: '/entrenamientos/{entrenamientoId:int}/update',
+                }).state('aseoUpdate', {
+                url: '/aseos/{aseoId:int}/update',
                 //parent: 'entrenamientoDetail',
                 param: {
-                    entrenamientoId: null
+                    aseoId: null
                 },
                 views: {
                     'mainView': {
-                        templateUrl: basePath + '/new/entrenamientos.new.html',
-                        controller: 'entrenamientoUpdateCtrl'
+                        templateUrl: basePath + '/new/aseos.new.html',
+                        controller: 'aseoUpdateCtrl'
                     }
                 }
             });
