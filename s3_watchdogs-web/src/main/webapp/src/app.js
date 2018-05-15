@@ -8,7 +8,7 @@
         'empleadosModule',
         'infosModule',
         'faqsModule',
-        
+        'contactanosModule',
 
         // Internal modules dependencies
         'clientesModule',

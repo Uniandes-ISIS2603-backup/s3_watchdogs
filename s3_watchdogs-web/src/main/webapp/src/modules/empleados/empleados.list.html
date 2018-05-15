@@ -9,10 +9,12 @@ and open the template in the editor.
     <div class="row">
         <div class="row">
             <div class="col-sm-4" ng-repeat="empleado in empleadosRecords">
-              <div class="card">
-                  <!--<img class="card-img-top" ng-src='{{empleado.imagen}}' alt='{{empleado.name}}'>-->
+              <div class="card" id="card-empleado">
+                  <img class="card-img-top rounded-circle" ng-src='{{empleado.imagen}}' alt='{{empleado.name}}'>
+                  <hr>
                      <div class="card-body">
-                        <h5 class="card-title">{{empleado.nombre}}</h5>
+                        <h5 class="card-t">{{empleado.nombre}}</h5>
+                        <p class="card-text" style="text-align: center">{{empleado.cargo}}</p>
                        
                      </div>
               </div>  
