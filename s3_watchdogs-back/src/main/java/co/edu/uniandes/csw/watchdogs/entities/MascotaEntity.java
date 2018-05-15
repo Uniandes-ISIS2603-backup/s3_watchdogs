@@ -52,7 +52,12 @@ public class MascotaEntity extends BaseEntity implements Serializable {
      * Sexo de la mascota.
      */
     private String sexo;
-
+    
+    /**
+     * Imagen de la mascota.
+     */
+    private String imagen;
+    
     /**
      * Obtiene el atributo servicio.
      *
@@ -141,6 +146,20 @@ public class MascotaEntity extends BaseEntity implements Serializable {
      */
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 }

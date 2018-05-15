@@ -1,39 +1,26 @@
 <div class="row">
-    <div class="col-sm-6">
-        <div class ='card'>
-            <h1>Cuenta</h1>
-            <div class="text-center">
-                <img src="{{currentMascota.imagen}}" class="img-thumbnail" alt="Foto perfil">   
+    <h2 class="tituloscards" style="font-size: 27px;">Cuenta Mascota</h2>
+    <div class="col-sm-12 d-flex">
+        <div class="card" id="card-mascota">
+            <img class="card-img-top" src='{{currentMascota.imagen}}' alt='FotoPerfil'>
+            <div class="card-body">
+                <label class="tituloscards" style="font-size: 18px;">Id mascota:</label>
+                <p class="parrafoscards" id="idMascota">{{currentMascota.id}}</p>
+                
+                <label class="tituloscards" style="font-size: 18px;">Nombre mascota:</label>
+                <p class="parrafoscards" id="nombreMascota">{{currentMascota.nombre}}</p>
+                
+                <label class="tituloscards" style="font-size: 18px;">Color mascota:</label>
+                <p class="parrafoscards" id="colorMascota">{{currentMascota.color}}</p>
+                
+                <label class="tituloscards" style="font-size: 18px;">Raza mascota:</label>
+                <p class="parrafoscards" id="razaMascota">{{currentMascota.raza}}</p>
+                
+                <label class="tituloscards" style="font-size: 18px;">Sexo mascota:</label>
+                <p class="parrafoscards" id="sexoMascota">{{currentMascota.sexo}}</p>
+                
+                <a ui-sref="#" class="btn btn-primary" id="btn-editar-mascota">Editar</a>
             </div>
-            <button type="button" class="btn btn-link">Editar foto</button>
-
-            <!-- Panel informacion -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="container">
-                        <div class="row">
-                            <label for="nombre">Nombre: </label>
-                            <p class="form-control" id="nombre"> {{currentMascota.nombre}} </p>
-                        </div>
-                        <div class="row">   
-                            <label for="color">Color: </label>  
-                            <p class="form-control" id="color"> {{currentMascota.color}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="raza">Raza: </label>
-                            <p class="form-control" id="raza"> {{currentMascota.raza}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="sexo">Sexo: </label>
-                            <p class="form-control" id="sexo"> {{currentMascota.sexo}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="idCliente">Id Cliente: </label>
-                            <p class="form-control" id="idCliente"> {{currentMascota.cliente_id}} </p>
-                        </div>
-                    </div>                   
-                </div>
-            </div>    
         </div>
     </div>
 </div>

@@ -1,12 +1,22 @@
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="row">
     <div class="col-sm-6">
+        <hr>
         <div ui-view="detailView">
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a class="btn btn-info" ui-sref="clientesCreate"><span class="glyphicon glyphicon-plus-sign"></span>Agregar un nuevo cliente</a>
-                    <a class="btn btn-info" ui-sref="clienteDetail"><span class="glyphicon glyphicon-plus-sign"></span>Buscar un cliente</a>
-                    <a class="btn btn-info" ui-sref="clientesList"><span class="glyphicon glyphicon-plus-sign"></span>Mostrar todos los clientes</a>
+                    <a class="btn btn-info parrafoscards" ui-sref="clientesCreate" id="createCliente">
+                        <i class="fa fa-plus-circle" style="text-align: center"></i>
+                        <p>Crear cliente</p>
+                    </a>
+                    <a class="btn btn-info parrafoscards" ui-sref="clienteDetail" id="searchCliente">
+                        <i class="fa fa-search" style="text-align: center"></i>
+                        <p>Buscar cliente</p>
+                    </a>
+                    <a class="btn btn-info parrafoscards" ui-sref="clientesList" id="allClientes">
+                        <i class="fa fa-search" style="text-align: center"></i>
+                        <p>Buscar todos los clientes</p>
+                    </a>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@
     max-width: 100%;
 }
 
-#card-aseo, #card-entrenamiento, #card-hotel, #card-paseo {
+#card-aseo, #card-entrenamiento, #card-hotel, #card-paseo, #card-mascota {
     position: relative;
     padding-bottom: 40px;
 }
