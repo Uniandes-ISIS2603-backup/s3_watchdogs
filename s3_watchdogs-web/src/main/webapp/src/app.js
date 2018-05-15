@@ -19,7 +19,7 @@
         //'instalacionesAdminModule',
         'mascotasModule',
         'entrenamientosModule',
-        'aseosModule',
+        //'aseosModule',
         //'servicioModule',
         'loginModule',
         'paseosModule',
