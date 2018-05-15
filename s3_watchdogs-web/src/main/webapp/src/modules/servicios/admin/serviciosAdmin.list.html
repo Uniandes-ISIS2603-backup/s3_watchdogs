@@ -1,35 +1,32 @@
-<!--<div class="container-fluid" ng-if="isAuthenticated() && hasPermissions()">-->
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><h3>Lista de servicios</h3></div>
+            <div class="tituloscards"><h3>Lista de servicios</h3></div>
             <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="serviciosAdminCreate"><span class="glyphicon glyphicon-plus-sign"></span>Agregar un nuevo servicio</a>
-                        <a class="btn btn-info" ui-sref="servicioAdminDetail"><span class="glyphicon glyphicon-plus-sign"></span>Buscar un servicio</a>
-                        <a class="btn btn-info" ui-sref="serviciosAdminList"><span class="glyphicon glyphicon-plus-sign"></span>Mostrar todos los servicios</a>
-                    </div>
-                </div>
-                <hr>
                 <div class="row">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Acciones</th>
+                                <th class="parrafoscards" style="font-size: 18px">Nombre</th>
+                                <th class="parrafoscards" style="font-size: 18px">Descripcion</th>
+                                <th class="parrafoscards" style="font-size: 18px">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="servicio in serviciosAdminRecords">
-                                <td id="{{$index}}-nombre">
-                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.name}}</a>
+                                <td id="{{$index}}-nombre" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.nombre}}</a>
                                 </td>
-                                <td id="{{$index}}-documento">{{servicio.descripcion}}</td>
+                                <td id="{{$index}}-idCliente" class="parrafoscards" style="font-size: 16px">
+                                    {{servicio.descripcion}}
+                                </td>
                                 <td id="{{$index}}-acciones">
-                                    <a id="{{$index}}-edit" class="btn btn-default btn-sm" ui-sref="servicioAdminUpdate({servicioId: servicio.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a>
-                                    <a id="{{$index}}-delete" class="btn btn-default btn-sm" ui-sref="servicioAdminDelete({servicioId: servicio.id})"><span class="glyphicon glyphicon-edit"></span>Eliminar</a>
+                                    <a id="editarMascota" ui-sref="servicioAdminUpdate({servicioId: servicio.id})">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a id="deleteMascota" ui-sref="servicioAdminDelete({servicioId: servicio.id})">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

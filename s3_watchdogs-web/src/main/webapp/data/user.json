@@ -1,0 +1,29 @@
+[
+    {
+        "id": 5001,
+        "name": "Rana Kroch",
+        "user": "rana123",
+        "password": "rana123",
+        "birthday": "4/2/1968",
+        "rol": "cliente",
+        "token": 123
+    },
+    {
+        "id": 5005,
+        "name": "Hasty Appleford",
+        "user": "hasty123",
+        "password": "hasty123",
+        "birthday": "2/20/1923",
+        "rol": "assistant",
+        "token": 456
+    },
+    {
+        "id": 5024,
+        "name": "Cesar Millan",
+        "user": "cesar123",
+        "password": "cesar123",
+        "birthday": "3/1/1919",
+        "rol": "admin",
+        "token": 789
+    }
+]

@@ -2,10 +2,9 @@
 
     var mod = ng.module("serviciosModule");
 
-    mod.constant("serviciosContext", "api/servicios");
-    mod.controller('serviciosCtrl', ['$scope', '$http', 'serviciosContext',
-        function ($scope, $http, serviciosContext) {
-            $http.get('src/data/servicios.json').then(function (response) {
+    mod.controller('serviciosCtrl', ['$scope', '$http',
+        function ($scope, $http) {
+            $http.get('data/servicios.json').then(function (response) {
                 $scope.serviciosRecords = response.data;
             });
         }
