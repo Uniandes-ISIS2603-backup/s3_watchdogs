@@ -25,10 +25,10 @@
                     }
                 }
             }).state('veterinariaDetail',{
-                url:'/instalaciones/list/veterinariia/detail',
+                url:'/instalaciones/list/veterinaria/detail',
                 views:{
                     'mainView':{
-                        templateUrl: basePath + 'veterinaria.detail.html',
+                        templateUrl: basePath + 'veterinaria/veterinaria.detail.html',
                         controller:'instalacionesCtrl',
                         controllerAs: 'ctrl' 
                     }
@@ -38,7 +38,7 @@
                 url:'/instalaciones/list/centroEntrenamiento/detail',
                 views:{
                     'mainView':{
-                        templateUrl: basePath + 'centroEntrenamiento.detail.html',
+                        templateUrl: basePath + 'centroEntrenamiento/centroEntrenamiento.detail.html',
                         controller:'instalacionesCtrl',
                         controllerAs: 'ctrl' 
                     }

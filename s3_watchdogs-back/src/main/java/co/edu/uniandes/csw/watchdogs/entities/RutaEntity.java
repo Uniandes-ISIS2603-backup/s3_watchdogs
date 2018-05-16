@@ -6,7 +6,12 @@
 package co.edu.uniandes.csw.watchdogs.entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
@@ -19,6 +24,10 @@ public class RutaEntity extends BaseEntity implements Serializable{
     
     @PodamIntValue(minValue = 1, maxValue = 120)
     private Integer duracion;
+    
+    @PodamExclude
+    @OneToMany(mappedBy="ruta",cascade = CascadeType.ALL,fetch =FetchType.LAZY)
+    private List<PaseoEntity> paseos;
     
     public RutaEntity(){
         
@@ -41,4 +50,14 @@ public class RutaEntity extends BaseEntity implements Serializable{
     public Integer getDuracion(){
         return duracion;
     }
+
+    public List<PaseoEntity> getPaseos() {
+        return paseos;
+    }
+
+    public void setPaseos(List<PaseoEntity> paseos) {
+        this.paseos = paseos;
+    }
+    
+    
 }

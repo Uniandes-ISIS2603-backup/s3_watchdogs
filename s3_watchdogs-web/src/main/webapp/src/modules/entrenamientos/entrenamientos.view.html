@@ -29,12 +29,15 @@ and open the template in the editor.
         <div class="col-sm-6">
             <p><strong>Fecha:</strong></p>
             <p>{{currentEntrenamiento.fecha | date:'yyyy-MM-dd'}}</p>
-            <p><strong>Precio:<strong></p>
+            <p><strong>Precio:</strong></p>
             <p>{{currentEntrenamiento.costo}}.000</p>
         </div>   
     </div>
-    <div class="row">
+    <div ng-if="currentEntrenamiento.estado" class="row">
         <a ui-sref="entrenamientoUpdate({entrenamientoId:currentEntrenamiento.id})" class="btn btn-primary">Actualizar</a>
         <a ui-sref="entrenamientoDelete({entrenamientoId:currentEntrenamiento.id})" class="btn btn-primary">Cancelar</a>
+    </div>
+    <div ng-if="!currentEntrenamiento.estado" class="row">
+        <a ui-sref="calificacionCreate({entrenamientoId: currentEntrenamiento.id})" class="btn btn-primary">Calificar</a>
     </div>
 </div>
