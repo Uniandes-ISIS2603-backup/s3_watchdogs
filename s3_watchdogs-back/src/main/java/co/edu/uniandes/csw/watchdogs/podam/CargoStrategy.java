@@ -22,19 +22,18 @@ public class CargoStrategy implements AttributeStrategy<String>{
     
     private String cargoValido() {
         
-        String rta = "";
         Random rnd = new Random();
         int choice = rnd.nextInt(4);
         if(choice == 0){
-            rta = EmpleadoEntity.PASEADOR;
+            return EmpleadoEntity.PASEADOR;
         }else if(choice == 1){
-            rta = EmpleadoEntity.ASEADOR;
+            return EmpleadoEntity.ASEADOR;
         }else if(choice ==2){
-            rta = EmpleadoEntity.ENTRENADOR;
+            return EmpleadoEntity.ENTRENADOR;
         }else{
-            rta = EmpleadoEntity.CUIDADOR;
+            return EmpleadoEntity.CUIDADOR;
         }
-        return rta;
+        
     }
     
 }

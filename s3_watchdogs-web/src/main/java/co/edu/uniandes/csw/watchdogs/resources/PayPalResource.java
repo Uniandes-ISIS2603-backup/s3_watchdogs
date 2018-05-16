@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
-import co.edu.uniandes.csw.watchdogs.dtos.ClienteDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.PayPalDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.PayPalLogic;
 import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;

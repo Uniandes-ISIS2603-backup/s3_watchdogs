@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
-import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 
 /**

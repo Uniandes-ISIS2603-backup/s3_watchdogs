@@ -58,7 +58,7 @@ public class CalificacionResource {
     public CalificacionDetailDTO getCalificacion(@PathParam("id") Long id) throws BusinessLogicException {
         CalificacionEntity entity = calificacionLogic.getCalificacion(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /calificacion/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /calificacion/" + id + " no  existe.", 404);
         }
         return new CalificacionDetailDTO(entity);
     }

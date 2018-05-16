@@ -113,7 +113,7 @@ public class VeterinariaResource {
     public VeterinariaDetailDTO getVeteriinaria(@PathParam("id") Long id) throws BusinessLogicException {
         VeterinariaEntity entity = veterinariaLogic.getVeterinaria(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /veterinarias/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso   /veterinarias/" + id + " no existe.", 404);
         }
         return new VeterinariaDetailDTO(entity); 
     }
@@ -167,7 +167,7 @@ public class VeterinariaResource {
      public void deleteVeterinaria(@PathParam("id") Long id) throws BusinessLogicException {
         VeterinariaEntity entity = veterinariaLogic.getVeterinaria(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /veterinarias/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /veterinarias/" + id + " no  existe.", 404);
         }
         veterinariaLogic.deleteVeterinaria(id);
     }

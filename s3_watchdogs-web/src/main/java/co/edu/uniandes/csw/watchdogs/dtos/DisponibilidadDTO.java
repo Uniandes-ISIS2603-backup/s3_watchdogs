@@ -52,9 +52,7 @@ public class DisponibilidadDTO {
     public DisponibilidadDTO(DisponibilidadEntity entity) {
         if (entity != null) {
             this.id = entity.getId();
-            //if (matrizHorarios != null) {
                 this.matrizHorarios = entity.getMatrizHorarios();
-           // }
         }
     }
 
@@ -96,60 +94,7 @@ public class DisponibilidadDTO {
     public DisponibilidadEntity toEntity() {
         DisponibilidadEntity entity = new DisponibilidadEntity();
         entity.setId(id);
-        //if (matrizHorarios != null) {
             entity.setMatrizHorarios(matrizHorarios);
-
-        //}
-        //entity.setMatrizHorarios(matrizHorarios);
         return entity;
     }
-
-    /*public void setMatrizHorarios(String matrizHorarios) {
-        this.matrizHorarios = matrizHorarios;
-    }
-
-   /* public Estado[][] toMatrizHorarios() {
-        String[] temp = matrizHorarios.split(" ");
-        String[] dummy = temp[0].split("");
-        Estado[][] rta = new Estado[temp.length][dummy.length];
-        for (int i = 0; i < temp.length; i++) {
-            String[] temp2 = temp[i].split("");
-            for (int j = 0; j < temp2.length; j++) {
-                String value = temp2[j];
-                if (value.equalsIgnoreCase("A")) {
-                    rta[i][j] = Estado.AGENDADO;
-                } else if (value.equalsIgnoreCase("L")) {
-                    rta[i][j] = Estado.LIBRE;
-                } else if (value.equalsIgnoreCase("D")) {
-                    rta[i][j] = Estado.DESCANSO;
-                }
-            }
-        }
-        return rta;
-    }
-
-    public String fromMatrizHorarios(Estado[][] entrante) {
-        String rta = "";
-        for (int i = 0; i < entrante.length; i++) {
-            for (int j = 0; j < entrante[0].length; j++) {
-
-                if (entrante[i][j] != null) {
-                    switch (entrante[i][j]) {
-                        case AGENDADO:
-                            rta += "A";
-                            break;
-                        case LIBRE:
-                            rta += "L";
-                            break;
-                        case DESCANSO:
-                            rta += "D";
-                            break;
-
-                    }
-                }
-            }
-            rta += " ";
-        }
-        return rta;
-    }*/
 }

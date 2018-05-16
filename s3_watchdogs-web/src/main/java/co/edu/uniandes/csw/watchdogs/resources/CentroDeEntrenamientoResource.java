@@ -104,10 +104,10 @@ public class CentroDeEntrenamientoResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public CentroDeEntrenamientoDetailDTO getCentroDeEntrenamiento(@PathParam("id") Long id)throws WebApplicationException {
+    public CentroDeEntrenamientoDetailDTO getCentroDeEntrenamiento(@PathParam("id") Long id)throws BusinessLogicException {
         CentroDeEntrenamientoEntity entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no  existe.", 404);
         }
         return new CentroDeEntrenamientoDetailDTO(centroDeEntrenamientoLogic.getCentroDeEntrenamiento(id));
     }
@@ -136,7 +136,7 @@ public class CentroDeEntrenamientoResource {
         centroDeEntrenamiento.setId(id);
         CentroDeEntrenamientoEntity entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no  existe.", 404);
         }
         return new CentroDeEntrenamientoDetailDTO(centroDeEntrenamientoLogic.updateCentroDeEntrenamiento(id, centroDeEntrenamiento.toEntity()));
     }
@@ -161,7 +161,7 @@ public class CentroDeEntrenamientoResource {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un CentroDeEntrenamiento con id {0}", id);
         CentroDeEntrenamientoEntity entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /centrosDeEntrenamiento/" + id + " no existe .", 404);
         }
         centroDeEntrenamientoLogic.deleteCentroDeEntrenamiento(id);
     }
