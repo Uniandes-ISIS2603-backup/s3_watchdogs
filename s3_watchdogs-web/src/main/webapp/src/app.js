@@ -35,6 +35,7 @@
         'metodoDePagoModule',
         'calificacionesModule',
         'facturaModule',
+        'disponibilidadModule',
         'loginModule'
 
     ]);

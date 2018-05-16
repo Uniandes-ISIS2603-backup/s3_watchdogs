@@ -48,35 +48,25 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  */
 public class AseoDetailDTO extends ServicioDetailDTO{
    
+    /**
+     * Representa la veterinaria a la cual se encuentra relacionada
+     */
     private VeterinariaDTO veterinaria;
     
+    /**
+     * Representa si el Aseo incluye servicio de dientes
+     */
     private Boolean dientes;
+    
+    /**
+     * Representa si el Aseo incluye servicio de baño
+     */
     private Boolean banho;
+    
+    /**
+     * Representa si el Aseo incluye servicio de peluquería
+     */
     private Boolean peluqueria;
-
-    public Boolean getDientes() {
-        return dientes;
-    }
-
-    public void setDientes(Boolean dientes) {
-        this.dientes = dientes;
-    }
-
-    public Boolean getBanho() {
-        return banho;
-    }
-
-    public void setBanho(Boolean banho) {
-        this.banho = banho;
-    }
-
-    public Boolean getPeluqueria() {
-        return peluqueria;
-    }
-
-    public void setPeluqueria(Boolean peluqueria) {
-        this.peluqueria = peluqueria;
-    }
     
      /**
      * Constructor por defecto
@@ -157,4 +147,45 @@ public class AseoDetailDTO extends ServicioDetailDTO{
         this.veterinaria = veterinaria;
     }
     
+    /**
+     * @return El servico de dientes
+     */
+    public Boolean getDientes() {
+        return dientes;
+    }
+
+    /**
+     * @param dientes El nuevo Servico de dientes
+     */
+    public void setDientes(Boolean dientes) {
+        this.dientes = dientes;
+    }
+
+    /**
+     * @return El servicio de banho
+     */
+    public Boolean getBanho() {
+        return banho;
+    }
+
+    /**
+     * @param banho El nuevo Servico de banho
+     */
+    public void setBanho(Boolean banho) {
+        this.banho = banho;
+    }
+
+    /**
+     * @return El Servicio de peluqueria
+     */
+    public Boolean getPeluqueria() {
+        return peluqueria;
+    }
+
+    /**
+     * @param peluqueria El nuevo Servico de peluqueria
+     */
+    public void setPeluqueria(Boolean peluqueria) {
+        this.peluqueria = peluqueria;
+    }
 }

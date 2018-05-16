@@ -155,7 +155,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     /**
      * Etablece el valor del atributo servicio.
      *
-     * @param servicio nuevo valor del atributo.
+     * @param servicios nuevo valor del atributo.
      */
     public void setServicios(List<ServicioEntity> servicios) {
         this.servicios = servicios;

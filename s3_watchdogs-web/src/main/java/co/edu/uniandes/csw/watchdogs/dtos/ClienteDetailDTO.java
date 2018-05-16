@@ -103,37 +103,40 @@ import java.util.List;
  */
 public class ClienteDetailDTO extends ClienteDTO {
 
+    /**
+     * Lista de mascotas del cliente
+     */
     private List<MascotaDTO> mascotas;
+    
+    /**
+     * Lista de facturas del cliente
+     */
     private List<FacturaDTO> facturas;
+    
+    /**
+     * Lista de calificaciones del cliente
+     */
     private CalificacionDTO calificacion;
+    
+    /**
+     * Lista de servicios del cliente
+     */
     private List<ServicioDTO> servicios;
+    
+    /**
+     * Lista de Paypals del cliente
+     */
     private List<PayPalDTO> payPals;
+    
+    /**
+     * Lista de PSEs del cliente
+     */
     private List<PseDTO> pses;
+    
+    /**
+     * Lista de Tarjetas de crédito del cliente
+     */
     private List<TarjetaCreditoDTO> tarjetas;
-
-    public List<PayPalDTO> getPayPals() {
-        return payPals;
-    }
-
-    public void setPayPals(List<PayPalDTO> payPals) {
-        this.payPals = payPals;
-    }
-
-    public List<PseDTO> getPses() {
-        return pses;
-    }
-
-    public void setPses(List<PseDTO> pses) {
-        this.pses = pses;
-    }
-
-    public List<TarjetaCreditoDTO> getTarjetas() {
-        return tarjetas;
-    }
-
-    public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
-        this.tarjetas = tarjetas;
-    }
 
     /**
      * Constructor por defecto
@@ -345,6 +348,50 @@ public class ClienteDetailDTO extends ClienteDTO {
     public void setServicios(List<ServicioDTO> servicios) {
         this.servicios = servicios;
     }
+    
+        
+    /**
+     * @return Lista de Paypals del cliente
+     */
+    public List<PayPalDTO> getPayPals() {
+        return payPals;
+    }
+    
+    /**
+     * @param payPals Nueva lista de Paypals del cliente
+     */
+    public void setPayPals(List<PayPalDTO> payPals) {
+        this.payPals = payPals;
+    }
+
+    /**
+     * @return Lista de PSEs del cliente
+     */
+    public List<PseDTO> getPses() {
+        return pses;
+    }
+    
+    /**
+     * @param pses Nueva lista de PSEs del cliente
+     */
+    public void setPses(List<PseDTO> pses) {
+        this.pses = pses;
+    }
+
+    /**
+     * @return Lista de Tarjetas del cliente
+     */
+    public List<TarjetaCreditoDTO> getTarjetas() {
+        return tarjetas;
+    }
+
+    /**
+     * @param tarjetas Nueva lista de Tarjetas del cliente
+     */
+    
+    public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
 
     private void llenarServicios(List<ServicioEntity> servicios) {
         for (ServicioEntity entityServicio : servicios) {
@@ -363,4 +410,5 @@ public class ClienteDetailDTO extends ClienteDTO {
             }
         }
     }
+    
 }

@@ -38,11 +38,35 @@ public class ClienteDTO {
     //==========================================================================================
     // Atributos
     //==========================================================================================
+    
+    /**
+     * id del cliente
+     */
     private Long id;
+    
+    /**
+     * nombre del cliente
+     */
     private String name;
+    
+    /**
+     * cedula del cliente
+     */
     private String cedula;
+    
+    /**
+     * correo del cliente
+     */
     private String correo;
+    
+    /**
+     * telefono del cliente
+     */
     private String telefono;
+    
+    /**
+     * ruta de la imagen del cliente
+     */
     private String imagen;
 
     //==========================================================================================

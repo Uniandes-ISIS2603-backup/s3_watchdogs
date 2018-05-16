@@ -46,7 +46,7 @@ import java.util.List;
  *      "correo": "ca.beltran10watchdogs.com",
  *      "telefono": "3106969451",
  *      "cargo": "Paseador",
- *      "horarios": "No se como es"
+ *      "disponibilidad": "No se como es"
  *      "clasificacion": 10,
  *      "servicios" : {
  *          "id": 1,
@@ -70,8 +70,19 @@ import java.util.List;
  */
 public class EmpleadoDetailDTO extends EmpleadoDTO {
 
+    /**
+     * Calificacion del empleado
+     */
     private CalificacionDTO calificacion;
+    
+    /**
+     * Lista de servicios
+     */
     private List<ServicioDTO> servicios;
+    
+    /**
+     * Horario del empleado
+     */
     private DisponibilidadDTO disponibilidad;
 
     //----- Constructor -----
