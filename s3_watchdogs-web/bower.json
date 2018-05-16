@@ -8,8 +8,7 @@
     "angular-ui-router": "~1.0.10",
     "angular-bootstrap": "^0.13.4",
     "popper.js": "^1.14.3",
-    "jquery": "^3.2.1",
-    "tooltip.js": "https://unpkg.com/tooltip.js"
+    "jquery": "^3.2.1"
   },
   "devDependencies": {}
 }

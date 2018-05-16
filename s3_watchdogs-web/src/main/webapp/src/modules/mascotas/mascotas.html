@@ -1,12 +1,21 @@
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
 <div class="row">
     <div class="col-sm-6">
+        <hr>
         <div ui-view="detailView">
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a class="btn btn-info" ui-sref="mascotasCreate"><span class="glyphicon glyphicon-plus-sign"></span>Agregar una nueva mascota</a>
-                    <a class="btn btn-info" ui-sref="mascotaDetail"><span class="glyphicon glyphicon-plus-sign"></span>Buscar una mascota</a>
-                    <a class="btn btn-info" ui-sref="mascotasList"><span class="glyphicon glyphicon-plus-sign"></span>Mostrar todas las mascotas</a>
+                    <a class="btn btn-info parrafoscards" ui-sref="mascotasCreate" id="createMascota">
+                        <i class="fa fa-plus-circle" style="text-align: center"></i>
+                        <p>Crear mascota</p>
+                    </a>
+                    <a class="btn btn-info parrafoscards" ui-sref="mascotaDetail" id="searchMascota">
+                        <i class="fa fa-search" style="text-align: center"></i>
+                        <p>Buscar mascota</p>
+                    </a>
+                    <a class="btn btn-info parrafoscards" ui-sref="mascotasList" id="allMascotas">
+                        <i class="fa fa-search" style="text-align: center"></i>
+                        <p>Buscar todas las mascotas</p>
+                    </a>
                 </div>
             </div>
         </div>

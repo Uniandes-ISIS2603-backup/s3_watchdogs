@@ -1,4 +1,3 @@
-
 <div class="container">
     
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -24,39 +23,15 @@
     <hr>
     <h2 class="tituloscards" style="font-size: 40px;">Nuestros Servicios</h2>
     <div class="row">
-        <div class="col-sm-3 d-flex align-items-stretch">
-            <div class="card" id="card-aseo"> <img class="card-img-top" src='src/images/servicios/aseo.png'>
+        <div class="col-sm-3 d-flex align-items-stretch" ng-repeat="servicio in serviciosRecords">
+            <div class="card" id="card-aseo"> <img class="card-img-top" src='{{servicio.imagen}}' alt="{{servicio.nombre}}">
                 <div class="card-body">
-                    <h4 class="tituloscards">Aseo</h4>
+                    <h4 class="tituloscards">{{servicio.nombre}}</h4>
                     <div class="row-fluid summary">
-                        <p class="parrafoscards">Nos destacamos por nuestra calidad en el servicio. No permitas que tu mascota ensucie todo a su alrededor, ni que malos olores afecten la tranquilidad de tu hogar. Traela y notaras un gran cambio y permite que salga contento de nuestras instalaciones.</p>
+                        <p class="parrafoscards">{{servicio.descripcion}}</p>
                     </div>
-                    <a ui-sref="aseoDetail" class="btn btn-primary" id="btn-contratar-aseo">Contratar</a>
+                    <a ui-sref="{{servicio.identificador}}" class="btn btn-primary" id="btn-contratar-aseo">Contratar</a>
                 </div>
-            </div>
-        </div>
-        <div class="col-sm-3 d-flex align-items-stretch">
-            <div class="card" id="card-paseo"> <img class="card-img-top" src='src/images/servicios/paseo.png'>
-                <div class="card-body">
-                    <h4 class="tituloscards">Paseo</h4>
-                    <p class="parrafoscards">No hay nada peor que estar aburrido en casa. No permitas que tu mascota se aburra por no hacer nada en todo el dia, permitenos darle esa felicidad y te aseguramos que no solo retornara contenta, sino tambien hara ejercicio y amistades.</p>
-                    <a ui-sref="paseoDetail({paseoId: 103})" class="btn btn-primary" id="btn-contratar-paseo">Contratar</a> </div>
-            </div>
-        </div>
-        <div class="col-sm-3 d-flex align-items-stretch">
-            <div class="card" id="card-entrenamiento"> <img class="card-img-top" src='src/images/servicios/entrenamiento.png'>
-                <div class="card-body">
-                    <h4 class="tituloscards">Entrenamiento</h4>
-                    <p class="parrafoscards">Nuestro personal se encuentra altamente capacitado para entrenar a tu mascota, le ensañara comandos basicos y ademas de esto permitira que deje de hacer los daños que puede llegar a causar. Nuestra politica de enseñar con amor, permite unos mejores resultados y con un alto indice de agrado en los animales. ¿Qué esperas para sorprender a tus amigos?</p>
-                    <a ui-sref="entrenamientosCreate({clienteId: 100})" class="btn btn-primary" id="btn-contratar-entrenamiento">Contratar</a> </div>
-            </div>
-        </div>
-        <div class="col-sm-3 d-flex align-items-stretch">
-            <div class="card" id="card-hotel"> <img class="card-img-top" src='src/images/servicios/hotel.png'>
-                <div class="card-body">
-                    <h4 class="tituloscards">Hotel</h4>
-                    <p class="parrafoscards">No permitas que tu mascota pase un mal rato cuando tu no estas, nuestras instalaciones estan dotadas de comodidades para los animales, al igual que grandes areas de juego para que no esten todo el dia acostado. ¿Por qué no permitir que cuando no estes tu mascota tenga una cortas vacaciones en uno de los mejores hoteles de animales de la ciudad? Traela, no te arrepentiras.</p>
-                    <a ui-sref="hotelDetail({hotelId: 102})" class="btn btn-primary" id="btn-contratar-hotel">Contratar</a> </div>
             </div>
         </div>
     </div>

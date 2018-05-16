@@ -6,7 +6,7 @@
 
     mod.controller('serviciosAdminCtrl', ['$scope', '$http', 'serviciosAdminContext', '$state',
         function ($scope, $http, serviciosAdminContext, $state) {
-            $http.get("src/data/servicios.json").then(function (response) {
+            $http.get("data/servicios.json").then(function (response) {
                 $scope.serviciosAdminRecords = response.data;
             });
         }]);

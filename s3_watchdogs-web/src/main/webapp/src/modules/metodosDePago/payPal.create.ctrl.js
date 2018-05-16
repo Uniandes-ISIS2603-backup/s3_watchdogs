@@ -8,10 +8,8 @@
 
                 var input = $state.params;
                 var params = JSON.stringify(input);
-                console.log(params);
                 $http.post(payPalContext + '/' + $state.params.clienteId + '/payPal', params).then(function (response) {
                     $scope.payPalRecords = response.data;
-                    console.log($scope.data);
                 });
             }
         }]);

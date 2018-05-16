@@ -8,7 +8,7 @@
         'empleadosModule',
         'infosModule',
         'faqsModule',
-        
+        'contactanosModule',
 
         // Internal modules dependencies
         'clientesModule',
@@ -19,6 +19,7 @@
         //'instalacionesAdminModule',
         'mascotasModule',
         'entrenamientosModule',
+        //'aseosModule',
         //'servicioModule',
         'loginModule',
         'paseosModule',

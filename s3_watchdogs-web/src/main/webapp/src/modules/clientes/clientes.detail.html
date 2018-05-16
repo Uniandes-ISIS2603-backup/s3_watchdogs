@@ -1,65 +1,52 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="row">
-    <div class="col-sm-6">
-        <div class="container-fluid">
-            <div class ='card'>
-                <h1>Cuenta</h1>
-                <div class="container-fluid">
-                    <div class="text-center">
-                        <img src="{{currentCliente.imagen}}" class="img-thumbnail" alt="Foto perfil">   
-                    </div>
-                    <button type="button" class="btn btn-link">Editar avatar</button>
 
-                    <!-- Panel informacion -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <label for="nombre">Nombre: </label>
-                                    <p class="form-control" id="nombre"> {{currentCliente.name}} </p>
-                                </div>
-                                <div class="row">   
-                                    <label for="documento">Documento: </label>  
-                                    <p class="form-control" id="documento"> {{currentCliente.cedula}} </p>
-                                </div>
-                                <div class="row"> 
-                                    <label for="correo">Correo: </label>
-                                    <p class="form-control" id="correo"> {{currentCliente.correo}} </p>
-                                </div>
-                                <div class="row"> 
-                                    <label for="telefono">Telefono: </label>
-                                    <p class="form-control" id="telefono"> {{currentCliente.telefono}} </p>
-                                </div>
-                            </div>
-                            <!-- Panel Metodos de pago -->
+    <div class="col-sm-12 d-flex">
+            
+        <div class="card" id="card-cliente">
+            <h2 class="tituloscards" style="font-size: 27px;">Cuenta Cliente</h2>
+            <img src="{{currentCliente.imagen}}" class="card-img-top" alt="Foto perfil"> 
+            <div class="card-body text-center">
+                <label class="tituloscards" style="font-size: 18px;">Nombre: </label>
+                <p class="parrafoscards" id="nombre"> {{currentCliente.name}} </p>
+                <label class="tituloscards" style="font-size: 18px;">Documento: </label>  
+                <p class="parrafoscards" id="documento"> {{currentCliente.cedula}} </p>
+                <label class="tituloscards" style="font-size: 18px;">Correo: </label>
+                <p class="parrafoscards" id="correo"> {{currentCliente.correo}} </p>
+                <label class="tituloscards" style="font-size: 18px;">Telefono: </label>
+                <p class="parrafoscards" id="telefono"> {{currentCliente.telefono}} </p>
 
-                            <div class="card text-center" style="width: 13rem;">
-                                <div class="card-body">
-                                    <h5 class="card-title">Metodos de pago</h5>
-                                    <p class="card-text">Para obtener informacion acerca de los metodos de pago, haga click en alguno de los botones.</p>
-                                    <button style="font-size:24px"><i class="fa fa-credit-card" ui-sref='tarjetasList'></i></button>
-                                    <button style="font-size:24px"><i class="fa fa-cc-paypal" ui-sref="payPalList"></i></button>                                
-                                    <button style="font-size:24px"><i class="fa fa-credit-card" ui-sref='PSEList'></i></button>
-                                    <!--                                    <button type="button" class="btn btn" ui-sref='metodoDePagoCreate'>Add</button>-->
-
-                                </div>
-                            </div>
-                            <p></p>
-                        </div>
-                    </div>
+                <a ui-sref="#" class="btn btn-primary" id="btn-editar-clientes">Editar</a>
+            </div>
+            <div class="card text-center">
+                <div class="tituloscards" style="font-size: 27px;">
+                    <h5 class="tituloscards" style="font-size: 18px;">Metodos de pago</h5>
+                    <p class="parrafoscards">Para obtener informacion acerca de los metodos de pago, haga click en alguno de los botones.</p>
+                    <a ui-sref='tarjetasList'>
+                            <i class="fa fa-credit-card"></i>
+                    </a>
+                    <a ui-sref="payPalList">
+                        <i class="fa fa-cc-paypal"></i>
+                    </a>
+                    <a ui-sref='PSEList'>
+                        <i class="fa fa-credit-card"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="row">
-            <div ui-view="childrenView"></div>
+        <div class="col-sm-6">
+            <div class="row">
+                <div ui-view="childrenView"></div>
 
-            <div ui-view="payPalCreate"></div>
-            <div ui-view="PSECreate"></div>
-            <div ui-view="tarjetaCreate"></div>
-            <div ui-view="tarjetaDelete"></div>
+                <div ui-view="payPalCreate"></div>
+                <div ui-view="PSECreate"></div>
+                <div ui-view="PSEDelete"></div>
 
+                <div ui-view="tarjetaCreate"></div>
+                <div ui-view="tarjetaDelete"></div>
+                <div ui-view="payPalDelete"></div>
+                <div ui-view="tarjetaUpdate"></div> 
+                <div ui-view="payPalUpdate"></div>
+            </div>
         </div>
     </div>
 </div>

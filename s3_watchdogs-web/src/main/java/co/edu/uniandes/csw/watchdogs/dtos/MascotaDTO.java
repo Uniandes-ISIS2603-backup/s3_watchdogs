@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.dtos;
 
+import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 
 /**
@@ -45,6 +46,7 @@ public class MascotaDTO {
     private String raza;
     private String color;
     private String sexo;
+    private String imagen;
 
     //----- Constructores -----
     /**
@@ -63,7 +65,9 @@ public class MascotaDTO {
         this.id = mascotaE.getId();
         this.nombre = mascotaE.getName();
         this.raza = mascotaE.getRaza();
+        this.color = mascotaE.getColor();
         this.sexo = mascotaE.getSexo();
+        this.imagen = mascotaE.getImagen();
     }
 
     /**
@@ -143,12 +147,27 @@ public class MascotaDTO {
      */
     public MascotaEntity toEntity() {
         MascotaEntity entity = new MascotaEntity();
-        entity.setId(this.id);
-        entity.setName(this.nombre);
-        entity.setColor(this.color);
-        entity.setRaza(this.raza);
-        entity.setSexo(this.sexo);
+        entity.setId(this.getId());
+        entity.setName(this.getNombre());
+        entity.setColor(this.getColor());
+        entity.setRaza(this.getRaza());
+        entity.setSexo(this.getSexo());
+        entity.setImagen(this.getImagen());
         return entity;
+    }
+
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 }

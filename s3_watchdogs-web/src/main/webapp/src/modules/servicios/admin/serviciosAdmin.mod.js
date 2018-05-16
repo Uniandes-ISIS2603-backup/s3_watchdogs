@@ -13,7 +13,7 @@
                 url: '/servicios/admin',
                 abstract: true,
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'serviciosAdmin.html',
                         controller: 'serviciosAdminCtrl',
                         controllerAs: 'ctrl'
@@ -21,10 +21,6 @@
                     'navView': {
                         templateUrl: basePath + 'serviciosAdmin.nav.html'
                     }
-                },
-                data: {
-                    requireLogin: false,
-                    roles: ['admin', 'assistant']
                 }
             }).state('serviciosAdminList', {
                 url: '/list',
@@ -41,25 +37,23 @@
                   servicioId: null  
                 },
                 views: {
-                    'listView': {
+                    'servicioDetailView': {
                         templateUrl: basePath + 'serviciosAdmin.detail.html',
                         controller: 'servicioAdminDetailCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    'listView': {
+                        templateUrl: basePath + 'serviciosAdmin.list.html'
                     }
                 }
             }).state('serviciosAdminCreate', {
                 url: '/create',
                 parent: 'serviciosAdmin',
                 views: {
-                    'detailView': {
+                    'listView': {
                         templateUrl: basePath + '/new/serviciosAdmin.new.html',
                         controller: 'servicioAdminNewCtrl'
                     }
-                }
-                ,
-                data: {
-                    requireLogin: true,
-                    roles: ['admin']
                 }
             }).state('servicioAdminUpdate', {
                 url: '/update/{servicioId:int}',
@@ -68,15 +62,14 @@
                     servicioId: null
                 },
                 views: {
-                    'detailView': {
+                    'servicioUpdateView': {
                         templateUrl: basePath + '/new/serviciosAdmin.new.html',
-                        controller: 'servicioAdminUpdateCtrl'
+                        controller: 'servicioAdminUpdateCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'listView': {
+                        templateUrl: basePath + 'serviciosAdmin.list.html'
                     }
-                }
-                ,
-                data: {
-                    requireLogin: true,
-                    roles: ['admin', 'assistant']
                 }
             }).state('servicioAdminDelete', {
                 url: '/delete/{servicioId:int}',

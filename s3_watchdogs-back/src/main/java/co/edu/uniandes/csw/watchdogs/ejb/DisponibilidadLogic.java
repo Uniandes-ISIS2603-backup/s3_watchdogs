@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.DisponibilidadEntity;
-import co.edu.uniandes.csw.watchdogs.entities.Estado;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.DisponibilidadPersistence;
 import java.util.List;
@@ -94,7 +93,7 @@ public class DisponibilidadLogic {
     }
     
     public void check(DisponibilidadEntity entity)throws BusinessLogicException{
-        checkDimensionValida(entity);
+        checkMatrizValida(entity);
     }
     
     
@@ -103,13 +102,24 @@ public class DisponibilidadLogic {
      * @param entity La disponibilidad a revisar
      * @throws BusinessLogicException Si el horario no tiene el formato adecuado.
      */
-    public void checkDimensionValida(DisponibilidadEntity entity) throws BusinessLogicException{
-        Estado[][] checker = entity.getMatrizHorarios();
-        if(checker.length != 7){
-            throw new BusinessLogicException("Fallo en la cantidad de días");
+    public void checkMatrizValida(DisponibilidadEntity entity) throws BusinessLogicException{
+        String checker = entity.getMatrizHorarios();
+        if(!(checker.length() == 90 || checker.length() == 91)){
+            throw new BusinessLogicException("Formato inválido, el String no tiene la duración adecuada");
         }
-        if(checker[0].length != 12){
-            throw new BusinessLogicException("Fallo en la cantidad de horas");
+        String[] checker1 = checker.split(" ");
+        for(int i = 0; i < 7; i++){
+            if(checker1[i].length() != 12){
+                throw new BusinessLogicException("Hora del día inválidas");
+            }
+            String temp = checker1[i];
+            temp = temp.replaceAll("L","");
+            temp = temp.replaceAll("D","");
+            temp = temp.replaceAll("A","");
+            if(!temp.equals("")){
+                throw new BusinessLogicException("Caracteres no válidos");
+            }
+            
         }
     }
     

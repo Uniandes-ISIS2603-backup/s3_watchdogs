@@ -1,0 +1,35 @@
+<div class="card">
+    <h4>Ingrese los datos para realizar la actualizacion de los datos de la tarjeta</h4>
+    <div class="container-fluid">
+        <form>
+            <div class="form-group">
+                <label for="inputNumeroTarjeta">Numero de tarjeta</label>
+                <input type="text" pattern=".{16,16}" title="El numero de la tarjeta debe contener 16 numeros" class="form-control" id="inputNumeroTarjeta"  placeholder="Numero de tarjeta" required="true" ng-model="numeroTarjeta">
+                <small id="numeroTarjetaHelp" class="form-text text-muted">El numero de tarjeta debe contener 16 numeros.</small>
+            </div>
+            <div class="form-group">
+                <label for="inputCodigoSeguridad">Codigo de seguridad</label>
+                <input type="text" pattern=".{3,3}" title="El codigo de seguridad debe contener 3 digitos" class="form-control" id="inputCodigoSeguridad"  placeholder="codigoSeguridad" required="true" ng-model="codigoSeguridad">
+                <small id="codigoSeguridadHelp" class="form-text text-muted">El codigo de seguridad debe contener 3 digitos.</small>
+            </div>
+            <div class="form-group">
+                <label for="example-date-input">Fecha de vencimiento</label>
+                <input class="form-control" type="date" value="03-08-2018" id="example-date-input" ng-model="fechaVencimiento">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleSelect1">Tipo de tarjeta</label>
+                <select class="form-control" id="tipoTarjeta">
+                    <option>Visa</option>
+                    <option>MasterCard</option>
+                    <option>Falabella</option>
+                    <option>American Express</option>
+                    <option>Cualquier otra</option>
+                </select>
+            </div>
+
+            <button ui-sref="temporalUpdateTarjeta({numeroTarjeta: numeroTarjeta, fechaVencimiento: fechaVencimiento, codigoSeguridad: codigoSeguridad})">Enviar</button>
+        </form>
+    </div>
+    <div ui-view="update"></div>
+</div>
