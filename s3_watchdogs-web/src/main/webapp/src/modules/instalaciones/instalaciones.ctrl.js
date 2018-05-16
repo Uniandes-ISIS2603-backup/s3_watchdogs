@@ -8,10 +8,9 @@
 
     var mod = ng.module("instalacionesModule");
 
-    mod.constant("instalacionesContext", "api/instalaciones");
-    mod.controller('instalacionesCtrl', ['$scope', '$http', 'instalacionesContext',
-        function ($scope, $http, instalacionesContext) {
-            $http.get('src/data/instalaciones.json').then(function (response) {
+    mod.controller('instalacionesCtrl', ['$scope', '$http',
+        function ($scope, $http) {
+            $http.get('data/instalaciones.json').then(function (response) {
                 $scope.instalacionesRecords = response.data;
             });
         }
