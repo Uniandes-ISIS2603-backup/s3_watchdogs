@@ -1,26 +1,45 @@
 <div class="row">
-    <h2 class="tituloscards" style="font-size: 27px;">Cuenta Mascota</h2>
-    <div class="col-sm-12 d-flex">
+    <div class="col-sm-6 d-flex">
+
         <div class="card" id="card-mascota">
+            <h2 class="tituloscards" style="font-size: 27px;">Cuenta Mascota</h2>
+
             <img class="card-img-top" src='{{currentMascota.imagen}}' alt='FotoPerfil'>
             <div class="card-body">
                 <label class="tituloscards" style="font-size: 18px;">Id mascota:</label>
                 <p class="parrafoscards" id="idMascota">{{currentMascota.id}}</p>
-                
+
                 <label class="tituloscards" style="font-size: 18px;">Nombre mascota:</label>
                 <p class="parrafoscards" id="nombreMascota">{{currentMascota.nombre}}</p>
-                
+
                 <label class="tituloscards" style="font-size: 18px;">Color mascota:</label>
                 <p class="parrafoscards" id="colorMascota">{{currentMascota.color}}</p>
-                
+
                 <label class="tituloscards" style="font-size: 18px;">Raza mascota:</label>
                 <p class="parrafoscards" id="razaMascota">{{currentMascota.raza}}</p>
-                
+
                 <label class="tituloscards" style="font-size: 18px;">Sexo mascota:</label>
                 <p class="parrafoscards" id="sexoMascota">{{currentMascota.sexo}}</p>
-                
+
                 <a ui-sref="#" class="btn btn-primary" id="btn-editar-mascota">Editar</a>
+
+                <div class="card text-center">
+                    <div class="tituloscards" style="font-size: 27px;">
+                        <h5 class="tituloscards" style="font-size: 18px;">Servicios</h5>
+                        <p class="parrafoscards">Para obtener informacion acerca de los servicios asociados a la mascota, haga click en el siguiente boton.</p>
+                        <a ui-sref='mascotasServiciosList'>
+                            <i class="fa fa-sign-language"></i>
+                        </a>
+
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
+    <div class="col-sm-6 d-flex">
+        <div ui-view="serviciosList"></div>
+    </div>
+
+
 </div>
