@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.ClienteDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.ServicioDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.ClienteLogic;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -229,7 +231,7 @@ public class ClienteResource {
      * que dependen del cliente, es una redirección al servicio que maneja el
      * segmento de la URL que se encarga de los metodos de pago.
      *
-     * @param booksId El ID del libro con respecto al cual se accede al
+     * @param clienteId
      * servicio.
      * @return El servicio de Autores para ese libro en paricular.
      */
@@ -246,6 +248,33 @@ public class ClienteResource {
             throw new WebApplicationException("El recurso /clientes/" + clienteId + "/PSE no existe.", 404);
         }
         return PseResource.class;
+    }
+    
+    /**
+     * Obtiene una colección de instancias de servicioDetailDTO asociadas a una
+     * instancia de cliente
+     *
+     * @param clienteId
+     * @return Colección de instancias de servicioDetailDTO asociadas a la
+     * instancia de cliente
+     *
+     */
+    @GET
+    @Path("{clienteId:\\d+}/servicios")
+    public List<ServicioDetailDTO> listServicios(@PathParam("clienteId") Long clienteId) {
+        try {
+            return servicioListEntity2DTO(clienteLogic.getServicios(clienteId));
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("El recurso incumple una regla de negocio.", 412);
+        }
+    }
+    
+    private List<ServicioDetailDTO> servicioListEntity2DTO(List<ServicioEntity> entityList) {
+        List<ServicioDetailDTO> list = new ArrayList<>();
+        for(ServicioEntity entity : entityList){
+            list.add(new ServicioDetailDTO(entity){});
+        }
+        return list;
     }
 
 }

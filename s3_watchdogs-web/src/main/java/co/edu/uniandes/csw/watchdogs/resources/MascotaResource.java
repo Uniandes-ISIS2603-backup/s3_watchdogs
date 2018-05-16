@@ -6,11 +6,15 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.MascotaDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.ServicioDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.MascotaLogic;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -196,6 +200,30 @@ public class MascotaResource {
         } catch (BusinessLogicException e) {
             throw new WebApplicationException(e.getMessage(), 404);
         }
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @GET
+    @Path("{mascotaId:\\d+}/servicios")
+    public List<ServicioDetailDTO> getServicios(@PathParam("mascotaId") Long id) {
+        try {
+            return servicioListEntity2DTO(mascotaLogic.getServicios(id));
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("El recurso incumple una regla de negocio.", 412);
+        }
+    }
+
+    private List<ServicioDetailDTO> servicioListEntity2DTO(List<ServicioEntity> entityList) {
+        List<ServicioDetailDTO> list = new ArrayList<>();
+        for (ServicioEntity entity : entityList) {
+            list.add(new ServicioDetailDTO(entity) {
+            });
+        }
+        return list;
     }
 
 }
