@@ -14,6 +14,9 @@
 
                 url: '/home',
                 views: {
+                    'navView': {
+                        templateUrl: basePath + 'home.nav.html'
+                    },
                     'mainView': {
                         templateUrl: basePath + 'home.main.html'
                     },

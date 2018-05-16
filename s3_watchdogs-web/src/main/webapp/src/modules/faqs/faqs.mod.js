@@ -12,6 +12,9 @@
                 
                 url: '/faqs/list',
                 views: {
+                    'navView': {
+                        templateUrl: basePath + 'faqs.nav.html'
+                    },
                     'completeView': {
                         templateUrl: basePath + 'faqs.list.html'
                         
