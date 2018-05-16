@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.watchdogs.entities;
 import co.edu.uniandes.csw.watchdogs.podam.DiaDisponibilidadStrategy;
 import java.io.Serializable;
 import javax.persistence.Entity;
-import uk.co.jemos.podam.common.PodamCollection;
+import uk.co.jemos.podam.common.PodamStrategyValue;
 
 /**
  *
@@ -19,8 +19,8 @@ import uk.co.jemos.podam.common.PodamCollection;
 public class DisponibilidadEntity extends BaseEntity implements Serializable{
     
   
-    @PodamCollection(nbrElements = 7,collectionElementStrategy = DiaDisponibilidadStrategy.class)
-    private Estado[][] matrizHorarios ; 
+    @PodamStrategyValue(DiaDisponibilidadStrategy.class)
+    private String matrizHorarios ; 
     
     public DisponibilidadEntity(){
     
@@ -30,7 +30,7 @@ public class DisponibilidadEntity extends BaseEntity implements Serializable{
      * @param matrizHorarios la nueva matriz de Horario
      */
 
-    public void setMatrizHorarios(Estado[][] matrizHorarios){
+    public void setMatrizHorarios(String matrizHorarios){
         this.matrizHorarios = matrizHorarios;
     }
     
@@ -38,7 +38,7 @@ public class DisponibilidadEntity extends BaseEntity implements Serializable{
      * @return la matriz de horario
      */
     
-    public Estado[][] getMatrizHorarios(){
+    public String getMatrizHorarios(){
     return matrizHorarios;
     }
 }
