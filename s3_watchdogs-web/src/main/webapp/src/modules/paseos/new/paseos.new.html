@@ -26,11 +26,22 @@ and open the template in the editor.
                                <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoMascota" required ng-model="data.mascota" ng-options="x.nombre for x in mascotas"></select>
                                </div>
                         </form>
+                        <form class="form-group col-md-6" >
+                               <label class="mr-sm-2" for="paseoRutas">Rutas:</label>
+                               <div class="col-10">
+                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoTipo" required ng-model="data.rutas">
+                                     <option selected>Elige</option>
+                                     <option value="Parque">Parque</option>
+                                     <option value="Rural">Rural</option>
+                                     <option value="Colina">Colina</option>
+                               </select>
+                               </div>
+                         </form>
                     </div>
     
                     <div class="row">
                         
-                         <form class="form-inline col-md-6" >
+                         <form class="form-group col-md-6" >
                                <label class="mr-sm-2" for="entrenamientoHoras">Horas:</label>
                                <div class="col-10">
                                <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoTipo" required ng-model="data.horas">
