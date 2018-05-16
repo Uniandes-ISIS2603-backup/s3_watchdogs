@@ -94,6 +94,21 @@
                     requireLogin: true,
                     roles: ['admin']
                 }
-            });
+            }).state('mascotasServiciosList', {
+                url: '/servicios',
+                parent: 'mascotaDetail',
+                views: {
+                    serviciosList: {
+                        templateUrl: basePath + 'mascotasServicios.list.html',
+                        controller: 'mascotasServiciosCtrl'
+                    }
+                }
+                ,
+                data: {
+                    requireLogin: true,
+                    roles: ['admin']
+                }
+            })
+            ;
     }]);
 })(window.angular);

@@ -1,7 +1,7 @@
 <div class="row">
 
     <div class="col-sm-12 d-flex">
-            
+
         <div class="card" id="card-cliente">
             <h2 class="tituloscards" style="font-size: 27px;">Cuenta Cliente</h2>
             <img src="{{currentCliente.imagen}}" class="card-img-top" alt="Foto perfil"> 
@@ -22,7 +22,7 @@
                     <h5 class="tituloscards" style="font-size: 18px;">Metodos de pago</h5>
                     <p class="parrafoscards">Para obtener informacion acerca de los metodos de pago, haga click en alguno de los botones.</p>
                     <a ui-sref='tarjetasList'>
-                            <i class="fa fa-credit-card"></i>
+                        <i class="fa fa-credit-card"></i>
                     </a>
                     <a ui-sref="payPalList">
                         <i class="fa fa-cc-paypal"></i>
@@ -32,6 +32,17 @@
                     </a>
                 </div>
             </div>
+            <div class="card text-center">
+                <div class="tituloscards" style="font-size: 27px;">
+                    <h5 class="tituloscards" style="font-size: 18px;">Mascotas</h5>
+                    <p class="parrafoscards">Para obtener informacion acerca de las mascotas asociados al cliente, haga click en el siguiente boton.</p>
+                    <a ui-sref='clienteMascotasList'>
+                        <i class="fa fa-paw"></i>
+                    </a>
+
+                </div>
+            </div>
+
         </div>
         <div class="col-sm-6">
             <div class="row">
@@ -46,6 +57,11 @@
                 <div ui-view="payPalDelete"></div>
                 <div ui-view="tarjetaUpdate"></div> 
                 <div ui-view="payPalUpdate"></div>
+                <div ui-view="serviciosClienteList"></div>
+                <div ui-view="mascotasClienteList"></div>
+                <div ui-view="create"></div>
+
+
             </div>
         </div>
     </div>

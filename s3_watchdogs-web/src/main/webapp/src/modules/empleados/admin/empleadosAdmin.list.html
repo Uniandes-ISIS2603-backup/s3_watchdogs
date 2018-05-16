@@ -12,8 +12,10 @@
                                 <th class="parrafoscards" style="font-size: 18px">Cedula</th>
                                 <th class="parrafoscards" style="font-size: 18px">Calificacion</th>
                                 <th class="parrafoscards" style="font-size: 18px">Disponibilidad</th>
-                                <th class="parrafoscards" style="font-size: 18px">Servicios</th>
+<!--                                <th class="parrafoscards" style="font-size: 18px">Servicios</th>-->
                                 <th class="parrafoscards" style="font-size: 18px">Acciones</th>
+
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -24,7 +26,7 @@
                                 <td id="{{$index}}-cedula" class="parrafoscards" style="font-size: 16px">{{empleado.cedula}}</td>
                                 <td id="{{$index}}-idCalificacion" class="parrafoscards" style="font-size: 16px">{{empleado.calificacion_id}}</td>
                                 <td id="{{$index}}-idDisponibilidad" class="parrafoscards" style="font-size: 16px">{{empleado.disponibilidad.id}}</td>
-                                <td id="{{$index}}-idServicio" class="parrafoscards" style="font-size: 16px">{{empleado.servicio.id}}</td>
+<!--                                <td id="{{$index}}-idServicio" class="parrafoscards" style="font-size: 16px">{{empleado.servicio.id}}</td>-->
                                 <td id="{{$index}}-acciones">
                                     <a id="editarEmpleado" ui-sref="empleadoAdminUpdate({empleadoId: empleado.id})">
                                         <i class="fa fa-edit"></i>

@@ -53,6 +53,14 @@ public class MascotaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de creacion de mascota");
         return persistence.create(entity);
     }
+    
+    //    public MascotaEntity createMascota(Long idCliente, MascotaEntity entity) throws BusinessLogicException {
+//        LOGGER.log(Level.INFO, "Inicia proceso de creacion de mascota");
+//        LOGGER.log(Level.INFO, "Termina proceso de creacion de mascota");
+//        ClienteEntity cliente = clienteLogic.getCliente(idCliente);
+//        entity.setCliente(cliente);
+//        return persistence.create(entity);
+//    }
 
     /**
      * Obtener todas las mascotas existentes en la base de datos.

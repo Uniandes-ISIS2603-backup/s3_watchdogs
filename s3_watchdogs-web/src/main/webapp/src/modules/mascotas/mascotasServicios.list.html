@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="row">
+                    <h4> Los servicios asociados con la mascota son: </h4>
+                    <div class="container-fluid" ng-repeat="servicio in mascotasServiciosRecords">
+
+                        <div class="card" style="width: 100%;">
+                            <div class="card-header">
+                                <h5>ID del servicio {{servicio.id}}</h5>
+                            </div>
+                            <div class="card-body">
+                                <h6 class="card-subtitle mb-2 text-muted">Informacion: </h6>
+                                <p class="card-text">Costo: {{servicio.costo}}</p>
+                                <p class="card-text">Duracion: {{servicio.duracion}}</p>
+                                <p class="card-text">Estado: {{servicio.estado}}</p>
+                                <p class="card-text">Fecha: {{servicio.fecha}}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

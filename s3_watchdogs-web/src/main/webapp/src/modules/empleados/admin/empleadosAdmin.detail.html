@@ -1,47 +1,59 @@
 <div class="row">
     <div class="col-sm-6">
         <div class ='card'>
-            <h1>Cuenta</h1>
-            <div class="text-center">
-                <img src="{{currentEmpleado.imagen}}" class="img-thumbnail" alt="Foto perfil">   
-            </div>
-            <button type="button" class="btn btn-link">Editar foto</button>
-
-            <!-- Panel informacion -->
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="container">
-                        <div class="row">
-                            <label for="nombre">Nombre: </label>
-                            <p class="form-control" id="nombre"> {{currentEmpleado.nombre}} </p>
-                        </div>
-                        <div class="row">   
-                            <label for="cedula">Cedula: </label>  
-                            <p class="form-control" id="cedula"> {{currentEmpleado.cedula}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="edad">Edad: </label>
-                            <p class="form-control" id="edad"> {{currentEmpleado.edad}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="imagen">Imagen: </label>
-                            <p class="form-control" id="imagen"> {{currentEmpleado.imagen}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="idCalificacion">Id Calificacion: </label>
-                            <p class="form-control" id="idCalificacion"> {{currentEmpleado.calificacion_id}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="idDisponibilidad">Id Cliente: </label>
-                            <p class="form-control" id="idDisponibilidad"> {{currentEmpleado.disponibilidad_id}} </p>
-                        </div>
-                        <div class="row"> 
-                            <label for="idServicio">Id Servicio: </label>
-                            <p class="form-control" id="idServicio"> {{currentEmpleado.servicio_id}} </p>
-                        </div>
-                    </div>                   
+            <div class="container-fluid">
+                <h1>Cuenta</h1>
+                <div class="text-center">
+                    <img src="{{currentEmpleado.imagen}}" class="img-thumbnail" alt="Foto perfil">   
                 </div>
-            </div>    
+                <button type="button" class="btn btn-link">Editar foto</button>
+
+                <!-- Panel informacion -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="container">
+                            <div class="row">
+                                <label for="nombre">Nombre: </label>
+                                <p class="form-control" id="nombre"> {{currentEmpleado.nombre}} </p>
+                            </div>
+                            <div class="row">   
+                                <label for="cedula">Cedula: </label>  
+                                <p class="form-control" id="cedula"> {{currentEmpleado.cedula}} </p>
+                            </div>
+                            <div class="row"> 
+                                <label for="edad">Edad: </label>
+                                <p class="form-control" id="edad"> {{currentEmpleado.edad}} </p>
+                            </div>
+                            <div class="row"> 
+                                <label for="imagen">Imagen: </label>
+                                <p class="form-control" id="imagen"> {{currentEmpleado.imagen}} </p>
+                            </div>
+                            <div class="row"> 
+                                <label for="idCalificacion">Id Calificacion: </label>
+                                <p class="form-control" id="idCalificacion"> {{currentEmpleado.calificacion_id}} </p>
+                            </div>
+                            <div class="row"> 
+                                <label for="idDisponibilidad">Id Cliente: </label>
+                                <p class="form-control" id="idDisponibilidad"> {{currentEmpleado.disponibilidad_id}} </p>
+                            </div>
+                            <div class="row"> 
+                                <label for="idServicio">Id Servicio: </label>
+                                <p class="form-control" id="idServicio"> {{currentEmpleado.servicio_id}} </p>
+                            </div>
+                            <div class="card text-center col-sm-12">
+                                <div class="card-body">
+                                    <h5 class="card-title">Servicios</h5>
+                                    <p class="card-text">Para obtener informacion acerca de los servicios prestados por el empleado, haga click aqui.</p>
+                                    <button style="font-size:24px" ui-sref="serviciosClienteList"> <i class="fa fa-users"></i></button>                                                                        
+                                </div>
+                            </div>
+                        </div>                   
+                    </div>
+                </div>    
+            </div>
         </div>
+    </div>
+    <div class="col-sm-6">
+        <div ui-view="empleadoAdminServicioListView"></div>
     </div>
 </div>

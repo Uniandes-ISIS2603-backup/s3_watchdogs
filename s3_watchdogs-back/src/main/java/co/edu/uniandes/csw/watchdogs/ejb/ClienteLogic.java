@@ -7,6 +7,7 @@ package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -252,6 +253,40 @@ public class ClienteLogic {
         } catch (BusinessLogicException ex) {
             Logger.getLogger(ClienteLogic.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public List<MascotaEntity> listMascotas(Long clienteId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las mascotas del cliente con id = {0}", clienteId);
+        return getCliente(clienteId).getMascotas();
+    }
+
+    public MascotaEntity getMascota(Long clientesId, Long mascotasId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar una mascota del cliente con id = {0}", clientesId);
+        List<MascotaEntity> list = getCliente(clientesId).getMascotas();
+        MascotaEntity mascotaEntity = new MascotaEntity();
+        mascotaEntity.setId(mascotasId);
+        int index = list.indexOf(mascotaEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
+    public MascotaEntity addMascota(Long clientesId, Long mascotasId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de asociar una mascota al cliente con id = {0}", clientesId);
+        ClienteEntity clienteEntity = getCliente(clientesId);
+        MascotaEntity mascotaEntity = new MascotaEntity();
+        mascotaEntity.setId(mascotasId);
+        clienteEntity.getMascotas().add(mascotaEntity);
+        return getMascota(clientesId, mascotasId);
+    }
+
+    public void removeMascota(Long clientesId, Long mascotasId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de borrar una mascota del cliente con id = {0}", clientesId);
+        ClienteEntity entity = getCliente(clientesId);
+        MascotaEntity mascotaEntity = new MascotaEntity();
+        mascotaEntity.setId(mascotasId);
+        entity.getMascotas().remove(mascotaEntity);
     }
 
 }
