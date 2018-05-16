@@ -99,9 +99,9 @@
                 parent: 'empleadoAdminDetail',
                 views: {
                     empleadoAdminServicioListView: {
-                        templateUrl: basePath + 'empleadosAdmin.servicios.list.html'
-//                        controller: 'empleadoAdminServiciosListCtrl',
-//                        controllerAs: 'ctrl'
+                        templateUrl: basePath + 'empleadosAdmin.servicios.list.html',
+                        controller: 'empleadoAdminServiciosListCtrl',
+                        controllerAs: 'ctrl'
                     }
                 }
             })
