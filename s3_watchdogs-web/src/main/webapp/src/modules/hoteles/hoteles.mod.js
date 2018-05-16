@@ -5,6 +5,7 @@
  */
 (function (ng) {
     var mod = ng.module("hotelesModule", ['ui.router']);
+    mod.constant("clientesContext", "api/clientes");
     mod.constant("hotelesContext", "api/hoteles");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/hoteles/';
@@ -22,9 +23,25 @@
                         controllerAs: 'ctrl'
                     }
                 }
+                }).state('hotelTerminado', {
+                url: '/hoteles/{hotelId:int}/terminado',
+                //parent: 'entrenamientoDetail',
+                param: {
+                    hotelId: null
+                },
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + 'hoteles.terminado.html',
+                        controller: 'hotelDetailCtrl',
+                        controllerAs: 'ctrl'
+                    }
+                }
                 }).state('hotelesCreate', {
-                url: '/hoteles/create',
+                url: '/clientes/{clienteId:int}/hoteles/create',
                 //parent: 'hotelDetail',
+                param:{
+                    clienteId:null
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + '/new/hoteles.new.html',
@@ -43,6 +60,18 @@
                         controller: 'hotelDeleteCtrl'
                     }
                 }
-                });
+                }).state('hotelUpdate', {
+                url: '/hoteles/{hotelId:int}/update',
+                //parent: 'entrenamientoDetail',
+                param: {
+                    hotelId: null
+                },
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + '/hoteles.new.html',
+                        controller: 'hotelUpdateCtrl'
+                    }
+                }
+            });
         }]);
 })(window.angular);

@@ -6,7 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.DisponibilidadEntity;
-import co.edu.uniandes.csw.watchdogs.entities.Estado;
+//import co.edu.uniandes.csw.watchdogs.entities.Estado;
 
 /**
  * DisponibilidadDTO Objeto de transferencia de datos de Watchdogs. Los DTO
@@ -52,9 +52,9 @@ public class DisponibilidadDTO {
     public DisponibilidadDTO(DisponibilidadEntity entity) {
         if (entity != null) {
             this.id = entity.getId();
-            if (matrizHorarios != null) {
-                this.matrizHorarios = fromMatrizHorarios(entity.getMatrizHorarios());
-            }
+            //if (matrizHorarios != null) {
+                this.matrizHorarios = entity.getMatrizHorarios();
+           // }
         }
     }
 
@@ -96,19 +96,19 @@ public class DisponibilidadDTO {
     public DisponibilidadEntity toEntity() {
         DisponibilidadEntity entity = new DisponibilidadEntity();
         entity.setId(id);
-        if (matrizHorarios != null) {
-            entity.setMatrizHorarios(toMatrizHorarios());
+        //if (matrizHorarios != null) {
+            entity.setMatrizHorarios(matrizHorarios);
 
-        }
-        entity.setMatrizHorarios(toMatrizHorarios());
+        //}
+        //entity.setMatrizHorarios(matrizHorarios);
         return entity;
     }
 
-    public void setMatrizHorarios(Estado[][] matrizHorarios) {
-        this.matrizHorarios = fromMatrizHorarios(matrizHorarios);
+    /*public void setMatrizHorarios(String matrizHorarios) {
+        this.matrizHorarios = matrizHorarios;
     }
 
-    public Estado[][] toMatrizHorarios() {
+   /* public Estado[][] toMatrizHorarios() {
         String[] temp = matrizHorarios.split(" ");
         String[] dummy = temp[0].split("");
         Estado[][] rta = new Estado[temp.length][dummy.length];
@@ -151,6 +151,5 @@ public class DisponibilidadDTO {
             rta += " ";
         }
         return rta;
-    }
-
+    }*/
 }

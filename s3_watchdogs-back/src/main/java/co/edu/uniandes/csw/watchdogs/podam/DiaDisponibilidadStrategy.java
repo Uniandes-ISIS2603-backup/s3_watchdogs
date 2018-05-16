@@ -17,7 +17,7 @@ import uk.co.jemos.podam.exceptions.PodamMockeryException;
  *
  * @author id.salazar
  */
-public class DiaDisponibilidadStrategy implements AttributeStrategy<Estado[]>{
+public class DiaDisponibilidadStrategy implements AttributeStrategy<String>{
 
     /**
      * 
@@ -27,13 +27,20 @@ public class DiaDisponibilidadStrategy implements AttributeStrategy<Estado[]>{
      */
     
     
-    public Estado[] getValue() throws PodamMockeryException{
+    public String getValue() throws PodamMockeryException{
         
-        Estado[] rta = new Estado[12];
+        String rta = "";
+        String[] options = new String[3];
+        options[1] = "L";
+        options[2] = "D";
+        options[0] = "A";
         Random newMachetazo = new Random();
         
-        for(int i =0; i < rta.length; i++){     
-            rta[i] = Estado.values()[newMachetazo.nextInt(3)];
+        for(int i =0; i < 7; i++){ 
+            for(int j=0; j < 12; j++){
+            rta += options[newMachetazo.nextInt(3)];
+            }
+            rta += " ";
         } 
        
         return rta;

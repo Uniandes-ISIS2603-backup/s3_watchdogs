@@ -93,6 +93,35 @@ public class HotelLogic {
     }
 
     /**
+     * Guardar un nuevo hotel
+     *
+     * @param idC
+     * @param entity La entidad de tipo hotel del nuevo libro a
+     * persistir.
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException
+     */
+    public HotelEntity createHotel(Long idC, HotelEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de hotel. Logica");
+        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
+        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
+
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de hotel");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
+        }
+    }
+    /**
      * Actualizar un Hotel por ID
      *
      * @param id El ID del Hotel a actualizar
@@ -208,4 +237,7 @@ public class HotelLogic {
 
     }
 
+    private Double costo(double duracion){
+        return duracion * 1.5;
+    }
 }

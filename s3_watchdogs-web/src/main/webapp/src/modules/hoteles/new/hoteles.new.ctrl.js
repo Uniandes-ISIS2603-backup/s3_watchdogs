@@ -6,19 +6,16 @@
 (function (ng) {
     var mod = ng.module("hotelesModule");
     mod.constant("hotelesContext", "api/hoteles");
-    mod.controller('hotelNewCtrl', ['$scope', '$http', 'hotelesContext', '$state', '$rootScope',
-        function ($scope, $http, hotelesContext, $state, $rootScope) {
-            $rootScope.edit = false;
-
-            $scope.data = {};
-
-            $scope.createhotel = function () {
-                $http.post(hotelesContext, $scope.data).then(function (response) {
-                    $state.go('serviciosList', {hotelId: response.data.id}, {reload: true});
+    mod.controller('hotelDetailCtrl', ['$scope', '$http', 'hotelesContext', '$state',
+        function ($scope, $http, hotelesContext, $state) {
+            if (($state.params.hotelId !== undefined) && ($state.params.hotelId !== null)) {
+                $http.get(hotelesContext + '/' + $state.params.hotelId).then(function (response) {
+                    $scope.currentHotel = response.data;
                 });
-            };
+            }
         }
     ]);
 }
 )(window.angular);
+
 

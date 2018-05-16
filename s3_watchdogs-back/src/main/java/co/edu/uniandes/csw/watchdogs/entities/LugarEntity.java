@@ -8,6 +8,8 @@ package co.edu.uniandes.csw.watchdogs.entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import uk.co.jemos.podam.common.PodamIntValue;
 
 /**
@@ -15,7 +17,8 @@ import uk.co.jemos.podam.common.PodamIntValue;
  * @author js.vacat
  */
 @Entity
-public abstract class LugarEntity extends BaseEntity  implements Serializable{
+@Inheritance(strategy = InheritanceType.JOINED)
+public class LugarEntity extends BaseEntity  implements Serializable{
     
     
     protected String direccion;

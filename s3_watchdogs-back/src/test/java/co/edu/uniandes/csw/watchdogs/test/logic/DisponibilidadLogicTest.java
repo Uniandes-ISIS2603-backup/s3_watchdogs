@@ -115,7 +115,7 @@ public class DisponibilidadLogicTest {
         DisponibilidadEntity entity = em.find(DisponibilidadEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertArrayEquals(newEntity.getMatrizHorarios(), entity.getMatrizHorarios());
+        Assert.assertEquals(newEntity.getMatrizHorarios(), entity.getMatrizHorarios());
     }
 
     /**
@@ -150,7 +150,7 @@ public class DisponibilidadLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-        Assert.assertArrayEquals(entity.getMatrizHorarios(), resultEntity.getMatrizHorarios());
+        Assert.assertEquals(entity.getMatrizHorarios(), resultEntity.getMatrizHorarios());
 
     }
 
@@ -185,7 +185,7 @@ public class DisponibilidadLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertArrayEquals(pojoEntity.getMatrizHorarios(), resp.getMatrizHorarios());
+        Assert.assertEquals(pojoEntity.getMatrizHorarios(), resp.getMatrizHorarios());
 
     }
     
