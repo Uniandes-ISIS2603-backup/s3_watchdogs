@@ -33,12 +33,15 @@ and open the template in the editor.
         <div class="col-sm-4">
             <p><strong>Fecha:</strong></p>
             <p>{{currentAseo.fecha | date:'yyyy-MM-dd'}}</p>
-            <p><strong>Precio:<strong></p>
+            <p><strong>Precio:</strong></p>
             <p>{{currentAseo.costo}}</p>
         </div>
     </div>
-    <div class="row">
+    <div ng-if="currentAseo.estado" class="row">
         <a ui-sref="aseoUpdate({aseoId:currentAseo.id})" class="btn btn-primary">Actualizar</a>
         <a ui-sref="aseoDelete({aseoId:currentAseo.id})" class="btn btn-primary">Cancelar</a>
+    </div>
+    <div ng-if="!currentAseo.estado" class="row">
+        <a ui-sref="calificacionCreate({aseoId: currentAseo.id})" class="btn btn-primary">Calificar</a>
     </div>
 </div>
