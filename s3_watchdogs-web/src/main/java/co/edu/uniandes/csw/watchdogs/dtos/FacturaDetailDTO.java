@@ -60,8 +60,8 @@ public class FacturaDetailDTO extends FacturaDTO {
     private PayPalDTO payPal;
     private PseDTO pse;
     private TarjetaCreditoDTO tarjeta;
-    
-        /**
+
+    /**
      * Constructor por defecto
      */
     public FacturaDetailDTO() {
@@ -86,18 +86,15 @@ public class FacturaDetailDTO extends FacturaDTO {
                 } else if (entity.getServicio().tipoClase(HotelEntity.class)) {
                     servicio = new HotelDTO((HotelEntity) entity.getServicio());
                 }
-            } else {
-                entity.setServicio(null);
+
+                if (entity.getPayPal() != null) {
+                    payPal = new PayPalDTO(entity.getPayPal());
+                } else if (entity.getPse() != null) {
+                    pse = new PseDTO(entity.getPse());
+                } else if (entity.getTarjeta() != null) {
+                    tarjeta = new TarjetaCreditoDTO(entity.getTarjeta());
+                }
             }
-//            if(entity.getMetodoDePago() != null){
-////                if(entity.getMetodoDePago().getClass() == PseEntity.class){
-////                        metodoDePago = new PseDTO((PseEntity)entity.getMetodoDePago());
-////                }else if(entity.getMetodoDePago().getClass() == PayPalEntity.class){
-////                        metodoDePago = new PayPalDTO((PayPalEntity)entity.getMetodoDePago());
-////                }else if(entity.getMetodoDePago().getClass() == TarjetaCreditoEntity.class){
-////                        metodoDePago = new TarjetaCreditoDTO((TarjetaCreditoEntity)entity.getMetodoDePago());
-////                }
-//            }else entity.setMetodoDePago(null);
         }
     }
 
@@ -125,8 +122,6 @@ public class FacturaDetailDTO extends FacturaDTO {
         this.tarjeta = tarjeta;
     }
 
-   
-
     public List<TarjetaCreditoDTO> getTarjetas() {
         return tarjetas;
     }
@@ -135,8 +130,6 @@ public class FacturaDetailDTO extends FacturaDTO {
         this.tarjetas = tarjetas;
     }
     private List<TarjetaCreditoDTO> tarjetas;
-
-
 
     /**
      * @return the cliente
@@ -170,25 +163,25 @@ public class FacturaDetailDTO extends FacturaDTO {
     public FacturaEntity toEntity() {
         FacturaEntity rta = super.toEntity();
         rta.setCliente(cliente.toEntity());
-        if(servicio != null){
+        if (servicio != null) {
             if (servicio.getClass().equals(AseoDTO.class)) {
-            rta.setServicio((AseoEntity) servicio.toEntity());
-        } else if (servicio.getClass().equals(HotelDTO.class)) {
-            rta.setServicio((HotelEntity) servicio.toEntity());
-        } else if (servicio.getClass().equals(EntrenamientoDTO.class)) {
-            rta.setServicio((EntrenamientoEntity) servicio.toEntity());
-        } else if (servicio.getClass().equals(PaseoDTO.class)) {
-            rta.setServicio((PaseoEntity) servicio.toEntity());
+                rta.setServicio((AseoEntity) servicio.toEntity());
+            } else if (servicio.getClass().equals(HotelDTO.class)) {
+                rta.setServicio((HotelEntity) servicio.toEntity());
+            } else if (servicio.getClass().equals(EntrenamientoDTO.class)) {
+                rta.setServicio((EntrenamientoEntity) servicio.toEntity());
+            } else if (servicio.getClass().equals(PaseoDTO.class)) {
+                rta.setServicio((PaseoEntity) servicio.toEntity());
+            }
         }
+
+        if (payPal != null) {
+            rta.setPayPal(payPal.toEntity());
+        } else if (pse != null) {
+            rta.setPse(pse.toEntity());
+        } else if (tarjeta != null) {
+            rta.setTarjeta(tarjeta.toEntity());
         }
-        
-//        if(metodoDePago.getClass() == PayPalDTO.class){
-//            rta.setMetodoDePago((PayPalEntity) metodoDePago.toEntity());
-//        }else if(metodoDePago.getClass() == PseDTO.class){
-//            rta.setMetodoDePago((PseEntity) metodoDePago.toEntity());
-//        }else if(metodoDePago.getClass() == TarjetaCreditoDTO.class){
-//            rta.setMetodoDePago((TarjetaCreditoEntity) metodoDePago.toEntity());
-//        }
         return rta;
     }
 

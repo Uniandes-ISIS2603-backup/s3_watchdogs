@@ -79,7 +79,7 @@ public class FacturaEntity extends BaseEntity implements Serializable{
      */
     
     
-    public void setPago(Boolean pagado){
+    public void setPagado(Boolean pagado){
         this.pagado = pagado;
     }
     
