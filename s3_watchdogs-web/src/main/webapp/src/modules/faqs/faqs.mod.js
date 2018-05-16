@@ -12,7 +12,7 @@
                 
                 url: '/faqs/list',
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'faqs.list.html'
                         
                     }

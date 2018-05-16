@@ -6,23 +6,29 @@
 (
         function (ng) {
             var mod = ng.module("entrenamientosModule");
-            mod.constant("entrenamientosContext", "api/entrenamientos");
-            mod.controller('entrenamientoUpdateCtrl', ['$scope', '$http', 'entrenamientosContext', '$state', '$rootScope',
-                function ($scope, $http, entrenamientosContext, $state, $rootScope) {
+            mod.constant("clientesContext", "api/clientes");
+            mod.constant("entrenamientosContext","api/entrenamientos");
+            mod.controller('entrenamientoUpdateCtrl', ['$scope', '$http', 'clientesContext','entrenamientosContext', '$state', '$rootScope',
+                function ($scope, $http, clientesContext,entrenamientosContext, $state, $rootScope) {
                     $rootScope.edit = true;
 
                     $scope.data = {};
+                    $scope.mascotas = {};
 
-                    var identrenamiento = $state.params.entrenamientoId;
+                    var idEntrenamiento = $state.params.entrenamientoId;
+                    var idCliente = $state.params.clienteId;
 
-                    $http.get(entrenamientosContext + '/' + identrenamiento).then(function (response) {
+
+                    $http.get(clientesContext + '/' + idCliente + '/entrenamientos/'+ idEntrenamiento  ).then(function (response) {
                         var entrenamiento = response.data;
                         $scope.data.name = entrenamiento.name;
+                        $scope.data.fecha = entrenamiento.fecha;
                     });
 
 
+
                     $scope.createentrenamiento = function () {
-                        $http.put(entrenamientosContext + "/" + identrenamiento, $scope.data).then(function (response) {
+                        $http.put(entrenamientosContext + "/" + idEntrenamiento, $scope.data).then(function (response) {
                             $state.go('serviciosList', {entrenamientoId: response.data.id}, {reload: true});
                         });
                     }

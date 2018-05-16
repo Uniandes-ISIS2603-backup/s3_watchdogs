@@ -12,7 +12,7 @@
                 
                 url: '/infos/list',
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'infos.list.html',
                         controller: 'infosCtrl',
                         controllerAs: 'ctrl'
