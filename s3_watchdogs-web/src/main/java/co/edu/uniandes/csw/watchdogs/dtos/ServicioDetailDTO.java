@@ -12,7 +12,7 @@ import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
  *
  * @author c.martinezc1
  */
-public abstract class ServicioDetailDTO extends ServicioDTO{
+public  class ServicioDetailDTO extends ServicioDTO{
     
     protected MascotaDTO mascota;
     
