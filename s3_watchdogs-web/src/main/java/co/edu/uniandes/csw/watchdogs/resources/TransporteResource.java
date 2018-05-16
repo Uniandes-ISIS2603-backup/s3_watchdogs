@@ -59,7 +59,7 @@ public class TransporteResource {
     public TransporteDetailDTO getTransporte(@PathParam("id") Long id) throws BusinessLogicException {
         TransporteEntity entity = transporteLogic.getTransporte(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso  /transportes/" + id + " no existe.", 404);
         }
         return new TransporteDetailDTO(entity);
     }
@@ -97,7 +97,7 @@ public class TransporteResource {
     public void deleteTransporte(@PathParam("id") Long id) throws BusinessLogicException {
         TransporteEntity entity = transporteLogic.getTransporte(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /transportes/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /transportes/" + id + " no  existe.", 404);
         }
         transporteLogic.deleteTransporte(id);
     }

@@ -6,7 +6,7 @@ package co.edu.uniandes.csw.watchdogs.resources;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import co.edu.uniandes.csw.watchdogs.dtos.AseoDTO;
+
 import co.edu.uniandes.csw.watchdogs.dtos.AseoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.AseoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
@@ -24,7 +24,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
+
 
 /**
  * <pre>Clase que implementa el recurso "Aseos".
@@ -117,7 +117,7 @@ public class AseoResource {
         AseoEntity entity = aseoLogic.getAseo(id);
         if (entity==null)
         {
-           throw new WebApplicationException("El recurso /aseos/" + id + " no existe.", 404);
+           throw new WebApplicationException("El recurso  /aseos/" + id + " no existe.", 404);
         }
         return new AseoDetailDTO(entity);  
         
@@ -147,7 +147,7 @@ public class AseoResource {
         aseo.setId(id);
         AseoEntity entity = aseoLogic.getAseo(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /aseos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /aseos/" + id + " no  existe.", 404);
         }
         return new AseoDetailDTO(aseoLogic.updateAseo(id,aseo.toEntity() ));
     }

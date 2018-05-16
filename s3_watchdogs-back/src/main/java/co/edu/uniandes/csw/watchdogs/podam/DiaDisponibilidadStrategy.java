@@ -4,13 +4,8 @@
  * and open the template in the editor.
  */
 package co.edu.uniandes.csw.watchdogs.podam;
-
-import co.edu.uniandes.csw.watchdogs.entities.Estado;
 import java.util.Random;
-import uk.co.jemos.podam.api.PodamFactory;
-import uk.co.jemos.podam.api.PodamFactoryImpl;
 import uk.co.jemos.podam.common.AttributeStrategy;
-import uk.co.jemos.podam.common.PodamIntValue;
 import uk.co.jemos.podam.exceptions.PodamMockeryException;
 
 /**

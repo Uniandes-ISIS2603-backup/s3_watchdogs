@@ -104,10 +104,10 @@ public class HotelResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public HotelDetailDTO getHotel(@PathParam("id") Long id) throws WebApplicationException{
+    public HotelDetailDTO getHotel(@PathParam("id") Long id) throws BusinessLogicException{
         HotelEntity entity = hotelLogic.getHotel(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /hoteles/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso  /hoteles/" + id + " no  existe.", 404);
         }
         return new HotelDetailDTO(hotelLogic.getHotel(id));
     }

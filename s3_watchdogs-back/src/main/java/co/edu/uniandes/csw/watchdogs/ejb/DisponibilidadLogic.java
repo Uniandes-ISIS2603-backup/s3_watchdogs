@@ -116,7 +116,7 @@ public class DisponibilidadLogic {
             temp = temp.replaceAll("L","");
             temp = temp.replaceAll("D","");
             temp = temp.replaceAll("A","");
-            if(!temp.equals("")){
+            if(!"".equals(temp)){
                 throw new BusinessLogicException("Caracteres no válidos");
             }
             

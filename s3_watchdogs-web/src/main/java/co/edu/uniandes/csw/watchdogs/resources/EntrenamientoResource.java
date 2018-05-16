@@ -59,7 +59,7 @@ public class EntrenamientoResource{
     public EntrenamientoDetailDTO getEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
         EntrenamientoEntity entity = entrenamientoLogic.getEntrenamiento(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso  /entrenamientos/" + id + " no  existe.", 404);
         }
         return new EntrenamientoDetailDTO(entity);
     }
