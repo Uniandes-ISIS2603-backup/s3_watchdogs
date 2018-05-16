@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
@@ -92,6 +93,35 @@ public class PaseoLogic {
     }
 
     /**
+     * Guardar un nuevo Aseo
+     *
+     * @param idC
+     * @param entity La entidad de tipo Aseo del nuevo libro a
+     * persistir.
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException
+     */
+    public PaseoEntity createPaseo(Long idC, PaseoEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de Aseo. Logica");
+        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
+        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
+
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de Aseo");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
+        }
+    }
+    /**
      * Actualizar un Paseo por ID
      *
      * @param id El ID del Paseo a actualizar
@@ -166,6 +196,33 @@ public class PaseoLogic {
         return getPaseo(paseoId).getRuta();
     }
 
+    /**
+     * Metodo que devuelve la calificacion del paseo con id dado por
+     * parametro.
+     *
+     * @param id del paseo
+     * @return CalificacionEntity
+     */
+    public CalificacionEntity getCalificacion(Long id) {
+        return getPaseo(id).getCalificacion();
+    }
+
+    /**
+     *
+     * @param idE Long id del paseo
+     * @param calificacion CalificacionEntity
+     * @return CalificacionEntity
+     * @throws BusinessLogicException
+     */
+    public CalificacionEntity addCalificacion(Long idE, CalificacionEntity calificacion) throws BusinessLogicException {
+        PaseoEntity paseoEntity = getPaseo(idE);
+        if (!paseoEntity.isEstado()) {
+            paseoEntity.setCalificacion(calificacion);
+            return getCalificacion(idE);
+        } else {
+            throw new BusinessLogicException("El paseo no ha acabado.");
+        }
+    }
 
     public void validarServicios(PaseoEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
@@ -183,4 +240,7 @@ public class PaseoLogic {
         }
     }
 
+    private Double costo(double duracion) {
+        return duracion * 1.5;
+    }
 }

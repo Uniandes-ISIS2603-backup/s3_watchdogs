@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
-import co.edu.uniandes.csw.watchdogs.dtos.HotelDetailDTO;
-import co.edu.uniandes.csw.watchdogs.ejb.HotelLogic;
+import co.edu.uniandes.csw.watchdogs.dtos.PaseoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.PaseoLogic;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
@@ -17,11 +17,11 @@ import javax.ws.rs.PathParam;
  *
  * @author c.martinezc1
  */
-@Path("clientes/{clienteId:\\d+}/hoteles")
-public class ClienteHotelResource {
+@Path("clientes/{clienteId:\\d+}/paseos")
+public class ClientePaseoResource {
     
     @Inject
-    HotelLogic hotelLogic;
+    PaseoLogic hotelLogic;
     
     /**
      * Crea un entrenamieto.
@@ -31,7 +31,7 @@ public class ClienteHotelResource {
      * @throws BusinessLogicException
      */
     @POST
-    public HotelDetailDTO createHotel(@PathParam("clienteId")Long clienteId, HotelDetailDTO hotel) throws BusinessLogicException {        
-        return new HotelDetailDTO(hotelLogic.createHotel(clienteId,hotel.toEntity()));
+    public PaseoDetailDTO createPaseo(@PathParam("clienteId")Long clienteId, PaseoDetailDTO hotel) throws BusinessLogicException {        
+        return new PaseoDetailDTO(hotelLogic.createPaseo(clienteId,hotel.toEntity()));
     }
 }

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
@@ -216,11 +217,38 @@ public class HotelLogic {
     }
 
     /**
+     * Metodo que devuelve la calificacion del hotel con id dado por
+     * parametro.
+     *
+     * @param id del hotel
+     * @return CalificacionEntity
+     */
+    public CalificacionEntity getCalificacion(Long id) {
+        return getHotel(id).getCalificacion();
+    }
+
+    /**
+     *
+     * @param idE Long id del hotel
+     * @param calificacion CalificacionEntity
+     * @return CalificacionEntity
+     * @throws BusinessLogicException
+     */
+    public CalificacionEntity addCalificacion(Long idE, CalificacionEntity calificacion) throws BusinessLogicException {
+        HotelEntity hotelEntity = getHotel(idE);
+        if (!hotelEntity.isEstado()) {
+            hotelEntity.setCalificacion(calificacion);
+            return getCalificacion(idE);
+        } else {
+            throw new BusinessLogicException("El hotel no ha acabado.");
+        }
+    }
+    /**
      * 
      * @param entity
      * @throws BusinessLogicException 
      */
-    public void validarServicios(HotelEntity entity) throws BusinessLogicException {
+    private void validarServicios(HotelEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
         if (entity.getFecha().before(todayDate)) {
             throw new BusinessLogicException("La fecha ingresada no es valida");
