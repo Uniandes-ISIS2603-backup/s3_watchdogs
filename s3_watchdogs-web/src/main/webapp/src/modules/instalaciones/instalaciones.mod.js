@@ -18,7 +18,7 @@
                 
                 url: '/instalaciones/list',
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'instalaciones.list.html',
                         controller: 'instalacionesCtrl',
                         controllerAs: 'ctrl'

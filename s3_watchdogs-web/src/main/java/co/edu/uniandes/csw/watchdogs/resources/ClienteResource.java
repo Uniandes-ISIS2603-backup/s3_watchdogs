@@ -276,5 +276,15 @@ public class ClienteResource {
         }
         return list;
     }
+    
+    @GET
+    @Path("{clienteId:\\d+}/servicios/{servicioId:\\d+}")
+    public ServicioDetailDTO getServicio(@PathParam("clienteId") Long clienteId, @PathParam("servicioId") Long servicioId){
+        try {
+            return new ServicioDetailDTO(clienteLogic.getServicio(clienteId, servicioId));
+        } catch (BusinessLogicException ex) {
+            throw new WebApplicationException("El servicio no existe.", 404);
+        }
+    }
 
 }
