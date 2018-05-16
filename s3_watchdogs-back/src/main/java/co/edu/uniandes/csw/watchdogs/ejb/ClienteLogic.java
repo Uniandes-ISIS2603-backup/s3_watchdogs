@@ -289,4 +289,21 @@ public class ClienteLogic {
         entity.getMascotas().remove(mascotaEntity);
     }
 
+    public List<FacturaEntity> listFacturas(Long clienteId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar todos las facturas del cliente con id = {0}", clienteId);
+        return getCliente(clienteId).getFacturas();
+    }
+
+    public FacturaEntity getFactura(Long clientesId, Long facturaId) throws BusinessLogicException {
+        LOGGER.log(Level.INFO, "Inicia proceso de consultar una factura del cliente con id = {0}", clientesId);
+        List<FacturaEntity> list = getCliente(clientesId).getFacturas();
+        FacturaEntity facturaEntity = new FacturaEntity();
+        facturaEntity.setId(facturaId);
+        int index = list.indexOf(facturaEntity);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
+    }
+
 }

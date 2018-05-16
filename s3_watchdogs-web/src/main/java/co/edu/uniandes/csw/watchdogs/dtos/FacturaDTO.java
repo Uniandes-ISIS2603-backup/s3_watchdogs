@@ -101,7 +101,7 @@ public class FacturaDTO {
      * @return El estatus de pago de la factura 
      */
     
-    public Boolean getPago(){
+    public Boolean getPagado(){
         return pagado;
     }
     
@@ -109,7 +109,7 @@ public class FacturaDTO {
      * @param pagado El nuevo estado de pago
      */
     
-    public void setPago(Boolean pagado){
+    public void setPagado(Boolean pagado){
         this.pagado = pagado;
     }
     
@@ -120,7 +120,7 @@ public class FacturaDTO {
     public FacturaEntity toEntity(){
         FacturaEntity entity = new FacturaEntity();
         entity.setId(id);
-        entity.setPago(pagado);
+        entity.setPagado(pagado);
         entity.setValor(valor);
         return entity;
     }
