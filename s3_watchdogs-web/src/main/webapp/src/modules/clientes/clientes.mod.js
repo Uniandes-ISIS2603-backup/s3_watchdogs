@@ -94,6 +94,22 @@
                     requireLogin: true,
                     roles: ['admin']
                 }
-            });
+            }).state('clienteServiciosList', {
+                
+                parent: 'clienteDetail',
+                
+                views: {
+                    serviciosClienteList: {
+                        templateUrl: basePath + 'clientesServicios.list.html',
+                        controller: 'clienteServiciosCtrl'
+                    }
+                }
+                ,
+                data: {
+                    requireLogin: true,
+                    roles: ['admin']
+                }
+            })
+            ;
     }]);
 })(window.angular);
