@@ -89,7 +89,7 @@ public class RutaResource {
     public List<RutaDetailDTO> getRutas() {
         
         List<RutaEntity> list = rutaLogic.getRutas();
-        List<RutaDetailDTO> dtoList = new ArrayList<RutaDetailDTO>();
+        List<RutaDetailDTO> dtoList = new ArrayList<>();
         for (RutaEntity entity : list) {
             dtoList.add(new RutaDetailDTO(entity));
         }
@@ -117,7 +117,7 @@ public class RutaResource {
     public RutaDetailDTO getRuta(@PathParam("id") Long id) {
          RutaEntity entity = rutaLogic.getRuta(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /rutas/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso  /rutas/" + id + " no existe.", 404);
         }
         return new RutaDetailDTO(entity);
     }
@@ -146,7 +146,7 @@ public class RutaResource {
         ruta.setId(id);
         RutaEntity entity = rutaLogic.getRuta(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /rutas/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /rutas/" + id + " no  existe.", 404);
         }
         return new RutaDetailDTO(rutaLogic.updateRuta(id, ruta.toEntity()));
     }

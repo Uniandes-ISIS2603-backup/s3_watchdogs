@@ -88,7 +88,7 @@ public class FacturaResource {
     @GET
     public List<FacturaDetailDTO> getFacturas() {
         List<FacturaEntity> list = facturaLogic.getFacturas();
-        List<FacturaDetailDTO> dtoList = new ArrayList<FacturaDetailDTO>();
+        List<FacturaDetailDTO> dtoList = new ArrayList<>();
         for (FacturaEntity entity : list) {
             dtoList.add(new FacturaDetailDTO(entity));
         }
@@ -116,7 +116,7 @@ public class FacturaResource {
     public FacturaDetailDTO getFactura(@PathParam("id") Long id) {
         FacturaEntity entity = facturaLogic.getFactura(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /facturas/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso  /facturas/" + id + " no  existe.", 404);
         }
         return new FacturaDetailDTO(entity);
     }

@@ -5,12 +5,18 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
+import co.edu.uniandes.csw.watchdogs.dtos.CalificacionDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.CalificacionDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.EntrenamientoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.TransporteDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.TransporteDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.EntrenamientoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -59,7 +65,7 @@ public class EntrenamientoResource{
     public EntrenamientoDetailDTO getEntrenamiento(@PathParam("id") Long id) throws BusinessLogicException {
         EntrenamientoEntity entity = entrenamientoLogic.getEntrenamiento(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso  /entrenamientos/" + id + " no  existe.", 404);
         }
         return new EntrenamientoDetailDTO(entity);
     }
@@ -111,4 +117,68 @@ public class EntrenamientoResource{
         return list;
     }
     
+    /**
+     * Obtiene una instancia de Calificacion asociada a una instancia de
+     * Entrenamiento
+     *
+     * @param entrenamientoId Identificador de la instancia de Entrenamiento
+     * @return
+     *
+     */
+    @GET
+    @Path("{entrenamientoId: \\d+}/calificaciones")
+    public CalificacionDetailDTO getCalificacion(@PathParam("entrenamientoId") Long entrenamientoId ) {
+        return new CalificacionDetailDTO(entrenamientoLogic.getCalificacion(entrenamientoId));
+    }
+
+    /**
+     * Asocia un Calificacion existente a un Entrenamiento
+     *
+     * @param entrenamientoId
+     * @param calificacion
+     * @return Instancia de CalificacionDetailDTO que fue asociada a
+     * Entrenamiento
+     *
+     */
+    @POST
+    @Path("{entrenamientoId: \\d+}/calificaciones")
+    public CalificacionDetailDTO addCalificacion(@PathParam("entrenamientoId") Long entrenamientoId, CalificacionDTO calificacion) {
+        try {
+            return new CalificacionDetailDTO(entrenamientoLogic.addCalificacion(entrenamientoId, calificacion.toEntity()));
+        } catch (BusinessLogicException ex) {
+            return null;
+        }
+    }
+    /**
+     * Obtiene una instancia de transporte asociada a una instancia de
+     * Entrenamiento
+     *
+     * @param entrenamientoId Identificador de la instancia de Entrenamiento
+     * @return
+     *
+     */
+    @GET
+    @Path("{entrenamientoId: \\d+}/transportes")
+    public TransporteDetailDTO getTransporte(@PathParam("entrenamientoId") Long entrenamientoId ) {
+        return new TransporteDetailDTO(entrenamientoLogic.getTransporte(entrenamientoId));
+    }
+
+    /**
+     * Asocia un transporte existente a un Entrenamiento
+     *
+     * @param entrenamientoId
+     * @param transporte
+     * @return Instancia de transporteDetailDTO que fue asociada a
+     * Entrenamiento
+     *
+     */
+    @POST
+    @Path("{entrenamientoId: \\d+}/transportes")
+    public TransporteDetailDTO addTransporte(@PathParam("entrenamientoId") Long entrenamientoId, TransporteDTO transporte) {
+        try {
+            return new TransporteDetailDTO(entrenamientoLogic.addTransporte(entrenamientoId, transporte.toEntity()));
+        } catch (BusinessLogicException ex) {
+            return null;
+        }
+    }
 }

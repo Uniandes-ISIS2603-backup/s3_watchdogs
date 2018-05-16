@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.test.logic;
 
 import co.edu.uniandes.csw.watchdogs.ejb.PaseoLogic;
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
@@ -28,6 +29,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,6 +61,8 @@ public class PaseoLogicTest {
     private List<EmpleadoEntity> dataEmpleado = new ArrayList<EmpleadoEntity>();
 
     private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
+    
+    private List<CalificacionEntity> dataCalificacion = new ArrayList<CalificacionEntity>();
 
     @Deployment
     public static JavaArchive createDeployment() {
@@ -95,6 +99,11 @@ public class PaseoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from PaseoEntity").executeUpdate();
+        em.createQuery("delete from ServicioEntity").executeUpdate();
+        em.createQuery("delete from ClienteEntity").executeUpdate();
+        em.createQuery("delete from MascotaEntity").executeUpdate();
+        em.createQuery("delete from EmpleadoEntity").executeUpdate();
+        em.createQuery("delete from CalificacionEntity").executeUpdate();
     }
 
     /**
@@ -118,7 +127,17 @@ public class PaseoLogicTest {
             dataEmpleado.add(empleadoEntity);
         }
         for (int i = 0; i < 3; i++) {
+            CalificacionEntity calificacion = factory.manufacturePojo(CalificacionEntity.class);
+            em.persist(calificacion);
+            dataCalificacion.add(calificacion);
+        }
+        for (int i = 0; i < 3; i++) {
             PaseoEntity entity = factory.manufacturePojo(PaseoEntity.class);
+            if (i == 0) {
+                entity.setEstado(Boolean.FALSE);
+            } else {
+                entity.setCalificacion(dataCalificacion.get(1));
+            }
             em.persist(entity);
             data.add(entity);
         }
@@ -142,7 +161,24 @@ public class PaseoLogicTest {
         Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
         Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
     }
-
+/**
+     * Prueba para crear un paseo
+     *
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
+     */
+    @Test
+    public void createClientePaseoTest() throws BusinessLogicException {
+        PaseoEntity newEntity = factory.manufacturePojo(PaseoEntity.class);
+        newEntity.setCliente(dataCliente.get(0));
+        newEntity.setMascota(dataMascota.get(0));
+        newEntity.setEmpleado(dataEmpleado.get(0));
+        PaseoEntity result = paseoLogic.createClientePaseo(dataCliente.get(0).getId(), newEntity);
+        Assert.assertNotNull(result);
+        PaseoEntity entity = em.find(PaseoEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
+        Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
+    }
     /**
      * Prueba para consultar la lista de Paseos
      */
@@ -205,5 +241,33 @@ public class PaseoLogicTest {
         Assert.assertEquals(pojoEntity.getCliente(), resp.getCliente());
         Assert.assertEquals(pojoEntity.getMascota(), resp.getMascota());
         Assert.assertEquals(pojoEntity.getEmpleado(), resp.getEmpleado());
+    }
+    
+    @Test
+    public void addCalificacionTest() {
+        try {
+            PaseoEntity paseo = data.get(0);
+            CalificacionEntity pojoEntity = factory.manufacturePojo(CalificacionEntity.class);
+
+            paseoLogic.addCalificacion(paseo.getId(), pojoEntity);
+
+            PaseoEntity resultado = em.find(PaseoEntity.class, paseo.getId());
+
+            Assert.assertEquals(resultado.getCalificacion().getPuntaje(), pojoEntity.getPuntaje());
+
+        } catch (BusinessLogicException ex) {
+            fail();
+        }
+
+    }
+
+    @Test
+    public void getCalificacionTest() {
+        PaseoEntity paseo = data.get(1);
+        CalificacionEntity calificacion = dataCalificacion.get(1);
+        paseo.setCalificacion(calificacion);
+        CalificacionEntity resultado = paseoLogic.getCalificacion(paseo.getId());
+
+        Assert.assertEquals(resultado.getPuntaje(), calificacion.getPuntaje());
     }
 }

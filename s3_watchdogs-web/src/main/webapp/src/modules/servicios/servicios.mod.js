@@ -21,20 +21,6 @@
                         templateUrl: basePath + 'servicios.nav.html'
                     }
                 }
-            }).state('aseoDetail',{
-                url:'/servicios/list/aseo/detail',
-                views:{
-                    'completeView':{
-                        templateUrl: basePath + 'aseo.detail.html',
-                        controller:'serviciosCtrl',
-                        controllerAs: 'ctrl' 
-                    },
-                    'navView': {
-                        templateUrl: basePath + 'servicios.nav.html'
-                    }
-                }
-                
-            })
-            ;
+            });
     }]);
 })(window.angular);

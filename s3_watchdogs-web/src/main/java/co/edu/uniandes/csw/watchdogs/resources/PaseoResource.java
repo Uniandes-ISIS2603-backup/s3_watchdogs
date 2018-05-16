@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.PaseoDetailDTO;
-import co.edu.uniandes.csw.watchdogs.dtos.PaseoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.PaseoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -104,7 +103,7 @@ public class PaseoResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public PaseoDetailDTO getPaseo(@PathParam("id") Long id)throws WebApplicationException {
+    public PaseoDetailDTO getPaseo(@PathParam("id") Long id)throws BusinessLogicException {
         PaseoEntity entity = paseoLogic.getPaseo(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
@@ -132,11 +131,11 @@ public class PaseoResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public PaseoDetailDTO updatePaseo(@PathParam("id") Long id, PaseoDetailDTO paseo) throws WebApplicationException, BusinessLogicException {
+    public PaseoDetailDTO updatePaseo(@PathParam("id") Long id, PaseoDetailDTO paseo) throws BusinessLogicException {
         paseo.setId(id);
         PaseoEntity entity = paseoLogic.getPaseo(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso  /paseos/" + id + " no existe.", 404);
         }
         return new PaseoDetailDTO(paseoLogic.updatePaseo(id, paseo.toEntity()));
     }
@@ -161,7 +160,7 @@ public class PaseoResource {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Paseo con id {0}", id);
         PaseoEntity entity = paseoLogic.getPaseo(id);
         if (entity == null) {
-            throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
+            throw new WebApplicationException("El recurso /paseos/" + id + " no  existe.", 404);
         }
         paseoLogic.deletePaseo(id);
     }

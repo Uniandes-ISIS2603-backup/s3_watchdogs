@@ -191,7 +191,8 @@ public class TarjetaCreditoLogicTest {
         TarjetaCreditoEntity pojoEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
 
         pojoEntity.setId(entity.getId());
-
+        pojoEntity.setCliente(entity.getCliente());
+        
         tarjetaLogic.updateTarjeta(pojoEntity.getId(), pojoEntity);
 
         TarjetaCreditoEntity resp = em.find(TarjetaCreditoEntity.class, entity.getId());

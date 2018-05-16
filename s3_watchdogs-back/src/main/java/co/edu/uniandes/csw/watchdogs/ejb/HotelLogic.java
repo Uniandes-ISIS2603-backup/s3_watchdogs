@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.ejb;
 
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
@@ -31,11 +32,8 @@ public class HotelLogic {
 
     @Inject
     private HotelPersistence persistence;
-
-    @Inject
-    private TransporteLogic transporteLogic;
     
-     @Inject
+    @Inject
     private ClienteLogic clienteLogic;
 
     @Inject
@@ -101,10 +99,8 @@ public class HotelLogic {
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
-    public HotelEntity createHotel(Long idC, HotelEntity entity) throws BusinessLogicException {
+    public HotelEntity createClienteHotel(Long idC, HotelEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de hotel. Logica");
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
 
         Date todayDate = Calendar.getInstance().getTime();
         if (todayDate.before(entity.getFecha())) {
@@ -157,26 +153,19 @@ public class HotelLogic {
     /**
      * Agregar un Transporte al Hotel
      *
-     * @param transporteId El id transporte a guardar
-     * @param hotelId El id del Hotel en la cual se va a guardar el transporte.
+     * @param idH
+     * @param transporte
      * @return El transporte que fue agregado al Hotel.
+     * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
-    public TransporteEntity addTransporte(Long transporteId, Long hotelId) throws BusinessLogicException {
-        HotelEntity hotelEntity = getHotel(hotelId);
-        TransporteEntity transporteEntity = transporteLogic.getTransporte(transporteId);
-        validarTransporte(transporteEntity.getId(), transporteEntity.getName(), transporteEntity.getDevuelta(), transporteEntity.getRecogida(), transporteEntity.getDireccion());
-        hotelEntity.setTransporte(transporteEntity);
-        return transporteEntity;
-    }
-
-    /**
-     * Borrar un Transporte de un Hotel
-     *
-     * @param hotelId La Hotel del cual se desea eliminar.
-     */
-    public void removeTransporte(Long hotelId) {
-        HotelEntity hotelEntity = getHotel(hotelId);
-        hotelEntity.setTransporte(null);
+    public TransporteEntity addTransporte(Long idH, TransporteEntity transporte ) throws BusinessLogicException {
+        HotelEntity hotelEntity = getHotel(idH);
+        if (hotelEntity.isEstado()) {
+            hotelEntity.setTransporte(transporte);
+            return getTransporte(idH);
+        } else {
+            throw new BusinessLogicException("El hotel no ha acabado.");
+        }
     }
 
     /**
@@ -216,11 +205,38 @@ public class HotelLogic {
     }
 
     /**
+     * Metodo que devuelve la calificacion del hotel con id dado por
+     * parametro.
+     *
+     * @param id del hotel
+     * @return CalificacionEntity
+     */
+    public CalificacionEntity getCalificacion(Long id) {
+        return getHotel(id).getCalificacion();
+    }
+
+    /**
+     *
+     * @param idE Long id del hotel
+     * @param calificacion CalificacionEntity
+     * @return CalificacionEntity
+     * @throws BusinessLogicException
+     */
+    public CalificacionEntity addCalificacion(Long idE, CalificacionEntity calificacion) throws BusinessLogicException {
+        HotelEntity hotelEntity = getHotel(idE);
+        if (!hotelEntity.isEstado()) {
+            hotelEntity.setCalificacion(calificacion);
+            return getCalificacion(idE);
+        } else {
+            throw new BusinessLogicException("El hotel no ha acabado.");
+        }
+    }
+    /**
      * 
      * @param entity
      * @throws BusinessLogicException 
      */
-    public void validarServicios(HotelEntity entity) throws BusinessLogicException {
+    private void validarServicios(HotelEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
         if (entity.getFecha().before(todayDate)) {
             throw new BusinessLogicException("La fecha ingresada no es valida");

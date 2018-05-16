@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.ejb;
 
 import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
@@ -42,7 +43,7 @@ public class AseoLogic {
     private EmpleadoLogic empleadoLogic;
 
     /**
-     * Guardar un nuevo Entrenamiento
+     * Guardar un nuevo aseo
      *
      * @param entity La entidad de tipo Aseo del nuevo libro a persistir.
      * @return La entidad luego de persistirla
@@ -77,10 +78,8 @@ public class AseoLogic {
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
-    public AseoEntity createAseo(Long idC, AseoEntity entity) throws BusinessLogicException {
+    public AseoEntity createClienteAseo(Long idC, AseoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Aseo. Logica");
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
 
         Date todayDate = Calendar.getInstance().getTime();
         if (todayDate.before(entity.getFecha())) {
@@ -129,9 +128,9 @@ public class AseoLogic {
     /**
      * Actualizar un Aseo por ID
      *
-     * @param id El ID del Entrenamiento a actualizar
-     * @param entity La entidad del Entrenamiento con los cambios deseados
-     * @return La entidad del Entrenamiento luego de actualizarla
+     * @param id El ID del aseo a actualizar
+     * @param entity La entidad del aseo con los cambios deseados
+     * @return La entidad del aseo luego de actualizarla
      * @throws BusinessLogicException
      */
     public AseoEntity updateAseo(Long id, AseoEntity entity) throws BusinessLogicException {
@@ -179,6 +178,34 @@ public class AseoLogic {
         AseoEntity aseoEntity = getAseo(id);
         aseoEntity.setVeterinaria(vet);
         return aseoEntity.getVeterinaria();
+    }
+    
+    /**
+     * Metodo que devuelve la calificacion del aseo con id dado por
+     * parametro.
+     *
+     * @param id del aseo
+     * @return CalificacionEntity
+     */
+    public CalificacionEntity getCalificacion(Long id) {
+        return getAseo(id).getCalificacion();
+    }
+
+    /**
+     *
+     * @param idE Long id del aseo
+     * @param calificacion CalificacionEntity
+     * @return CalificacionEntity
+     * @throws BusinessLogicException
+     */
+    public CalificacionEntity addCalificacion(Long idE, CalificacionEntity calificacion) throws BusinessLogicException {
+        AseoEntity aseoEntity = getAseo(idE);
+        if (!aseoEntity.isEstado()) {
+            aseoEntity.setCalificacion(calificacion);
+            return getCalificacion(idE);
+        } else {
+            throw new BusinessLogicException("El aseo no ha acabado.");
+        }
     }
 
     private Double costo(double duracion) {

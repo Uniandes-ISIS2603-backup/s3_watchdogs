@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.EmpleadoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.ServicioDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.EmpleadoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
@@ -199,6 +201,29 @@ public class EmpleadoResource {
         } catch (BusinessLogicException e) {
             throw new WebApplicationException(e.getMessage(), 404);
         }
+    }
+    
+    private List<ServicioDetailDTO> servicioListEntity2DTO(List<ServicioEntity> entityList) {
+        List<ServicioDetailDTO> list = new ArrayList<>();
+        for(ServicioEntity entity : entityList){
+            list.add(new ServicioDetailDTO(entity){});
+        }
+        return list;
+    }
+
+    /**
+     * Obtiene una colección de instancias de servicioDetailDTO asociadas a una
+     * instancia de cliente
+     *
+     * @param empleadoId
+     * @return Colección de instancias de servicioDetailDTO asociadas a la
+     * instancia de cliente
+     *
+     */
+    @GET
+    @Path("{empleadoId:\\d+}/servicios")
+    public List<ServicioDetailDTO> listServicios(@PathParam("empleadoId") Long empleadoId) {
+        return servicioListEntity2DTO(empleadoLogic.getServicios(empleadoId));
     }
 
 }

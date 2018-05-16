@@ -142,7 +142,7 @@ public class TarjetaCreditoResource {
         tarjeta.setId(id);
         TarjetaCreditoEntity oldEntity = tarjetaLogic.getTarjeta(idCliente, id);
         if (oldEntity == null) {
-            throw new WebApplicationException("La tarjeta no existe", 404);
+            throw new WebApplicationException("La tarjeta  no existe", 404);
         }
         return new TarjetaCreditoDTO(tarjetaLogic.updateTarjeta(idCliente, tarjeta.toEntity()));
     }

@@ -24,7 +24,7 @@
             $scope.user = {};
             $scope.data = {};
             
-            $http.get('src/data/users.json').then(function (response) {
+            $http.get('data/user.json').then(function (response) {
                 $scope.users = response.data;
             });
 
@@ -44,7 +44,7 @@
                     if ($scope.users[item].user === response.data.username && $scope.users[item].password === response.data.password && $scope.users[item].rol === response.data.rol) {
                         flag = true;
                         $scope.user = $scope.users[item];
-                        $state.go('booksList', {}, {reload: true});
+                        $state.go('home', {}, {reload: true});
                         break;
                     }
                 }
