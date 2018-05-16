@@ -1,44 +1,35 @@
 <div class="container-fluid">
-    <div class="panel-group">
-        <div class="row">
-        <div class="col-sm-6">
-            <p>
-            Puedes dejarnos tu mascota en nuestro hotel mientras estas fuera de la ciudad. No podrias dejarla en mejores manos.
-            </p>     
-        </div> 
-        <div class="col-sm-6">    
-          <img src="src/images/hotel.png" >
-        </div>    
-    </div> 
-        <div class="panel panel-primary">
-            <h5>Lista de reservas</h5>
-            <div class="panel-body">
-                <div class="col-md-8">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Mascota</th>    
-                                <th>Fecha de reserva</th>
-                                <th>Duración</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="hotel in currentHotel">
-                                <td>{{hotel.mascota_id}}</td>
-                                <td>{{hotel.fecha}}</td>
-                                <td>{{hotel.duracion}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <a  class="btn btn-info" ui-sref="hotelesCreate"><span class="glyphicon glyphicon-plus-sign"></span> Hacer reserva</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <p> imagen</p>
+        </div>
+        <div class="col-sm-9">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
     </div>
-
-
+    <hr>
+        <div class="row">
+            <div class="col-sm-6">
+                <dl>
+                    <dt>Dias de estadia:</dt>
+                    <dd>{{currentHotel.tiempoEstadia}}</dd>
+                    <dt>Duracion del servicio</dt>
+                    <dd>{{currentHotel.duracion}}</dd>
+                </dl>
+            </div>
+            <div class="col-sm-6">   
+                    <p><strong>Fecha:</strong></p>
+                    <p>{{currentHotel.fecha | date: 'yyyy-MM-dd'}}</p>
+                    <p><strong>Duracion del servicio</strong></p>
+                    <p>{{currentHotel.costo}}</p>
+            </div>
+        </div>    
+        <div class="row">
+            <a ui-sref="hotelUpdate({hotelId:currentHotel.id})" class="btn btn-primary">Actualizar</a>
+            <a ui-sref="hotelDelete({hotelId:currentHotel.id})" class="btn btn-primary">Cancelar</a>
+        </div>
 </div>
