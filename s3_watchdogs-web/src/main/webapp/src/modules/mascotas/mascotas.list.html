@@ -9,7 +9,7 @@
                             <tr>
                                 <th class="parrafoscards" style="font-size: 18px">Nombre</th>
                                 <th class="parrafoscards" style="font-size: 18px">Nombre Cliente</th>
-                                <th class="parrafoscards" style="font-size: 18px">Acciones</th>
+                                <th ng-if="isAdmin()" class="parrafoscards" style="font-size: 18px">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -20,11 +20,11 @@
                                 <td id="{{$index}}-idCliente" class="parrafoscards" style="font-size: 16px">
                                     <a ui-sref="clienteDetail({clienteId: mascota.cliente.id})">{{mascota.cliente.name}}</a>
                                 </td>
-                                <td id="{{$index}}-acciones">
-                                    <a id="editarMascota" ui-sref="mascotaUpdate({mascotaId: mascota.id})">
+                                <td ng-if="isAdmin()" id="{{$index}}-acciones">
+                                    <a ng-if="isAdmin()" id="editarMascota" ui-sref="mascotaUpdate({mascotaId: mascota.id})">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a id="deleteMascota" ui-sref="mascotaDelete({mascotaId: mascota.id})">
+                                    <a ng-if="isAdmin()" id="deleteMascota" ui-sref="mascotaDelete({mascotaId: mascota.id})">
                                         <i class="fa fa-remove"></i>
                                     </a>
                                 </td>

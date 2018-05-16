@@ -4,13 +4,9 @@
         <div ui-view="detailView">
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a class="btn btn-info parrafoscards" ui-sref="serviciosAdminCreate" id="createServicio">
+                    <a ng-if="isAdmin()" class="btn btn-info parrafoscards" ui-sref="serviciosAdminCreate" id="createServicio">
                         <i class="fa fa-plus-circle" style="text-align: center"></i>
                         <p>Crear servicio</p>
-                    </a>
-                    <a class="btn btn-info parrafoscards" ui-sref="servicioAdminDetail" id="searchServicio">
-                        <i class="fa fa-search" style="text-align: center"></i>
-                        <p>Buscar un servicio</p>
                     </a>
                     <a class="btn btn-info parrafoscards" ui-sref="serviciosAdminList" id="allServicio">
                         <i class="fa fa-search" style="text-align: center"></i>

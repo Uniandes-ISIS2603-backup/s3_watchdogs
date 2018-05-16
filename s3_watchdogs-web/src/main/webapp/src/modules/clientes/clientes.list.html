@@ -10,7 +10,7 @@
                             <tr>
                                 <th class="parrafoscards" style="font-size: 18px">Nombre</th>
                                 <th class="parrafoscards" style="font-size: 18px">Documento</th>
-                                <th class="parrafoscards" style="font-size: 18px">Acciones</th>
+                                <th ng-if="isAdmin()" class="parrafoscards" style="font-size: 18px">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -19,11 +19,11 @@
                                     <a ui-sref="clienteDetail({clienteId: cliente.id})">{{cliente.name}}</a>
                                 </td>
                                 <td id="{{$index}}-documento" class="parrafoscards" style="font-size: 16px">{{cliente.cedula}}</td>
-                                <td id="{{$index}}-acciones" class="parrafoscards" style="font-size: 16px">
-                                    <a id="editCliente" ui-sref="clienteUpdate({clienteId: cliente.id})">
+                                <td ng-if="isAdmin()" id="{{$index}}-acciones" class="parrafoscards" style="font-size: 16px">
+                                    <a ng-if="isAdmin()" id="editCliente" ui-sref="clienteUpdate({clienteId: cliente.id})">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a id="deleteCliente" ui-sref="clienteDelete({clienteId: cliente.id})">
+                                    <a ng-if="isAdmin()" id="deleteCliente" ui-sref="clienteDelete({clienteId: cliente.id})">
                                         <i class="fa fa-remove"></i>
                                     </a>
                                 </td>

@@ -40,7 +40,7 @@
                 var flag = false;
                 for (var item in $scope.users) {
 
-                    if ($scope.users[item].user === $scope.data.username && $scope.users[item].password === $scope.data.password && $scope.users[item].rol === $scope.data.rol) {
+                    if ($scope.users[item].user === $scope.data.username && $scope.users[item].password === $scope.data.password) {
                         console.log('Entra');
                         flag = true;
                         $scope.user = $scope.users[item];
@@ -49,7 +49,7 @@
                     }
                 }
                 if (!flag) {
-                    $rootScope.alerts.push({type: "danger", msg: "Incorrect username or password."});
+                    $rootScope.alerts.push({type: "danger", msg: "Ha ingresado datos incorrectos, intentelo nuevamente."});
                 } else {
                     sessionStorage.token = $scope.user.token;
                     sessionStorage.setItem("username", $scope.user.user);

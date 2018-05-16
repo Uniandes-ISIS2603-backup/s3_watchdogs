@@ -9,7 +9,7 @@
                             <tr>
                                 <th class="parrafoscards" style="font-size: 18px">Nombre</th>
                                 <th class="parrafoscards" style="font-size: 18px">Descripcion</th>
-                                <th class="parrafoscards" style="font-size: 18px">Acciones</th>
+                                <th ng-if="isAdmin()" class="parrafoscards" style="font-size: 18px">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -20,11 +20,11 @@
                                 <td id="{{$index}}-idCliente" class="parrafoscards" style="font-size: 16px">
                                     {{servicio.descripcion}}
                                 </td>
-                                <td id="{{$index}}-acciones">
-                                    <a id="editarMascota" ui-sref="servicioAdminUpdate({servicioId: servicio.id})">
+                                <td ng-if="isAdmin()" id="{{$index}}-acciones">
+                                    <a ng-if="isAdmin()" id="editarMascota" ui-sref="servicioAdminUpdate({servicioId: servicio.id})">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <a id="deleteMascota" ui-sref="servicioAdminDelete({servicioId: servicio.id})">
+                                    <a ng-if="isAdmin()" id="deleteMascota" ui-sref="servicioAdminDelete({servicioId: servicio.id})">
                                         <i class="fa fa-remove"></i>
                                     </a>
                                 </td>

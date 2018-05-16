@@ -4,13 +4,9 @@
         <div ui-view="detailView">
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a class="btn btn-info parrafoscards" ui-sref="mascotasCreate" id="createMascota">
+                    <a ng-if="isAdmin()" class="btn btn-info parrafoscards" ui-sref="mascotasCreate" id="createMascota">
                         <i class="fa fa-plus-circle" style="text-align: center"></i>
                         <p>Crear mascota</p>
-                    </a>
-                    <a class="btn btn-info parrafoscards" ui-sref="mascotaDetail" id="searchMascota">
-                        <i class="fa fa-search" style="text-align: center"></i>
-                        <p>Buscar mascota</p>
                     </a>
                     <a class="btn btn-info parrafoscards" ui-sref="mascotasList" id="allMascotas">
                         <i class="fa fa-search" style="text-align: center"></i>

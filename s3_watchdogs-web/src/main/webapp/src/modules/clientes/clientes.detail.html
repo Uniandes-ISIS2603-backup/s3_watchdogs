@@ -15,7 +15,7 @@
                 <label class="tituloscards" style="font-size: 18px;">Telefono: </label>
                 <p class="parrafoscards" id="telefono"> {{currentCliente.telefono}} </p>
 
-                <a ui-sref="#" class="btn btn-primary" id="btn-editar-clientes">Editar</a>
+                <a ng-if="isAdmin()" ui-sref="#" class="btn btn-primary" id="btn-editar-clientes">Editar</a>
             </div>
             <div class="card text-center">
                 <div class="tituloscards" style="font-size: 27px;">

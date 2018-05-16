@@ -4,15 +4,9 @@
         <div ui-view="detailView">
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a class="btn btn-info parrafoscards" ui-sref="clientesCreate" id="createCliente">
+                    <a ng-if="isAdmin()" class="btn btn-info parrafoscards" ui-sref="clientesCreate" id="createCliente">
                         <i class="fa fa-plus-circle" style="text-align: center"></i>
                         <p>Crear cliente</p>
-                    </a>
-                    <a class="btn btn-info parrafoscards" id="searchCliente">
-                    <div class="search-container">
-                            <input type="text" placeholder="Buscar por cedula..." id="search" required ng-model='data.cedula'>
-                            <button type="button" class="btn btn-outline-primary" ui-sref="clienteDetail({clienteId: search})"><i class="fa fa-search"></i></button>
-                    </div>
                     </a>
                     <a class="btn btn-info parrafoscards" ui-sref="clientesList" id="allClientes">
                         <i class="fa fa-search" style="text-align: center"></i>

@@ -30,7 +30,7 @@
                 }
                 ,
                 views: {
-                    'userView': {
+                    'completeView': {
                         templateUrl: basePath + 'home.logout.html',
                         controller: 'logoutCtrl'
                     }

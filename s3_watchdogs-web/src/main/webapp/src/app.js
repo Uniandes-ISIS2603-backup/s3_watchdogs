@@ -96,7 +96,22 @@
              * @returns {Boolean} Verdadero si el usuario tiene permisos.
              */
             $rootScope.hasPermissions = function () {
-                if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "Administrador")) {
+                if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "admin" || sessionStorage.getItem("rol") === "assistant")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+            /**
+             * @ngdoc function
+             * @name hasPermissions
+             * @methodOf mainApp.module:mainApp
+             * @description Esta función define si el usuario tiene permisos
+             * para acceder a la aplicación.
+             * @returns {Boolean} Verdadero si el usuario tiene permisos.
+             */
+            $rootScope.isAdmin = function () {
+                if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "admin")) {
                     return true;
                 } else {
                     return false;
