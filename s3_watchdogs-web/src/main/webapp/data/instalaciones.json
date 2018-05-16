@@ -1,12 +1,12 @@
 [
     {
         "name":"Veterinaria",
-        "descripcion":"Somos una empresa dedicada al cuidado de mascotas y en ofrecer diferentes servicios para los diferentes clientes.Contamos con una experiencia de mas de una decada es por esto que nuestra calidad y servicio es unico y especial, en adicion a esto los empleados especiallistas en las diferentes areas que manejamos son de la mas alta calidad. En adicion cuentan cada uno con experiencias frente adversidades de distintos calibres   a las cuales puedenn brindar solucione inmediatas para resolverlas.Por otro lado nuestras instalaciones estan dotadas de las ultimas tecnologias para que tus mascotas se sientas lo menos estrezadas posibles y tengan la sensacion de permanecer a un hogar",
-        "imagen":"src/images/info.png"   
+        "descripcion":"Contamos con la mejor infraestructura y personal para atender a tu mascota. Ademas de una gran capacidad para atender todas las razas y situaciones que puede afrontar una mascota, nuestras instalaciones estan dotadas de gran tecnologia con las cuales el servicio siempre sera el adecuado.",
+        "imagen":"src/images/instalaciones/veterinaria.png"   
     },
     {
         "name":"Centro de Entrenamiento",
-        "descripcion":"AMOR:Es nuestro valor fundamental y el principio de todo cambio social. Los animales de compañía traen amor y felicidad a los hogares y nosotros ayudamos para fortalecerlo. RESPONSABILIDAD:Usando la medicina preventiva como herramienta para promover la salud, es nuestra responsabilidad mantener sano al animal de compañía y a toda su familia. CLARIDAD:Desarrollamos un lenguaje simple y claro. Nos tomamos el tiempo de explicarle cada proceso, para garantizar su comprensión y mantener su confianza. RESPETO:Cumplimos con nuestra responsabilidad, somos coherentes con nuestros valores y sabemos que usted es quien decide sobre el bienestar de su mascota, nosotros respetamos su decisión. COHERENCIA: Mantenemos la coherencia entre nuestro pensar, nuestro decir y nuestro actuar. Somos fieles a nuestros valores",
-        "imagen":"src/images/info.png"   
+        "descripcion":"Nuestro centro de entrenamiento se caracteriza por unas grandes zonas verdes, no solo para que tu perro aprenda grandes trucos, sino para que se divierta con diferentes juegos y demas. Contamos con un hotel con las mejores habitaciones para tu mascota, en la cual no pasara frio y siempre estara comodo ya que tienen la posibilidad de caminar por instalaciones internas por las noches y asi no esten encerrados.",
+        "imagen":"src/images/instalaciones/centro-entrenamiento.png"   
     }
 ]
