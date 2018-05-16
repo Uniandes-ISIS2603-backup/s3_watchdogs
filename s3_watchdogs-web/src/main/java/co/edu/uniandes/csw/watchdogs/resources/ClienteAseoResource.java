@@ -6,9 +6,7 @@
 package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.AseoDetailDTO;
-import co.edu.uniandes.csw.watchdogs.dtos.EntrenamientoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.AseoLogic;
-import co.edu.uniandes.csw.watchdogs.ejb.EntrenamientoLogic;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
@@ -19,24 +17,21 @@ import javax.ws.rs.PathParam;
  *
  * @author c.martinezc1
  */
-@Path("clientes/{clienteId:\\d+}/entrenamientos")
-public class ClienteEntrenamientoResource {
+@Path("clientes/{clienteId:\\d+}/aseos")
+public class ClienteAseoResource {
     
     @Inject
-    EntrenamientoLogic entrenamientoLogic;
-    
+    AseoLogic aseoLogic;
     
     /**
      * Crea un entrenamieto.
      * @param clienteId
-     * @param entrenamiento
+     * @param aseo
      * @return
      * @throws BusinessLogicException
      */
     @POST
-    public EntrenamientoDetailDTO createEntrenamiento(@PathParam("clienteId")Long clienteId, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
-        return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(clienteId,entrenamiento.toEntity()));
+    public AseoDetailDTO createAseo(@PathParam("clienteId")Long clienteId, AseoDetailDTO aseo) throws BusinessLogicException {        
+        return new AseoDetailDTO(aseoLogic.createAseo(clienteId,aseo.toEntity()));
     }
-    
-    
 }

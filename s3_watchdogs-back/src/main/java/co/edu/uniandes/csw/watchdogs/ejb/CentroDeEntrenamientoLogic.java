@@ -123,7 +123,8 @@ public class CentroDeEntrenamientoLogic {
 
     public EntrenamientoEntity getEntrenamiento(Long idC, Long idE) throws BusinessLogicException {
         List<EntrenamientoEntity> entrenamientos = getCentroDeEntrenamiento(idC).getEntrenamientos();
-        EntrenamientoEntity entrenamiento = entrenamientoLogic.getEntrenamiento(idE);
+        EntrenamientoEntity entrenamiento = new EntrenamientoEntity();
+        entrenamiento.setId(idE);
         int index = entrenamientos.indexOf(entrenamiento);
         if (index >= 0) {
             return entrenamientos.get(index);
@@ -132,11 +133,8 @@ public class CentroDeEntrenamientoLogic {
     }
 
     public EntrenamientoEntity addEntrenamiento(Long idC, Long idE) throws BusinessLogicException {
-        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(idC);
-        EntrenamientoEntity entrenamientoEntity = entrenamientoLogic.getEntrenamiento(idE);
-        validarServicios(entrenamientoEntity.getFecha(), entrenamientoEntity.getCosto(), entrenamientoEntity.getDuracion());
-        entrenamientoEntity.setCentroDeEntrenamiento(centroDeEntrenamientoEntity);
-        return entrenamientoEntity;
+        entrenamientoLogic.addCentroDeEntrenamiento(idC, idE);
+        return entrenamientoLogic.getEntrenamiento(idE);
     }
 
     public List<EntrenamientoEntity> replaceEntrenamientos(Long id, List<EntrenamientoEntity> entrenamientos) {

@@ -69,6 +69,36 @@ public class AseoLogic {
     }
 
     /**
+     * Guardar un nuevo Aseo
+     *
+     * @param idC
+     * @param entity La entidad de tipo Aseo del nuevo libro a
+     * persistir.
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException
+     */
+    public AseoEntity createAseo(Long idC, AseoEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de Aseo. Logica");
+        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
+        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
+
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de Aseo");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
+        }
+    }
+    
+    /**
      * Devuelve todos los Servicios de Aseo que hay en la base de datos.
      *
      * @return Lista de entidades de tipo Aseo.
@@ -101,9 +131,6 @@ public class AseoLogic {
      *
      * @param id El ID del Entrenamiento a actualizar
      * @param entity La entidad del Entrenamiento con los cambios deseados
-     * @param idCliente
-     * @param idMascota
-     * @param idEmpleado
      * @return La entidad del Entrenamiento luego de actualizarla
      * @throws BusinessLogicException
      */

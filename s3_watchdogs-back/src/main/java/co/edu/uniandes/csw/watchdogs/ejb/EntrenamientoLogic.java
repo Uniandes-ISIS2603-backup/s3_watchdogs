@@ -119,7 +119,7 @@ public class EntrenamientoLogic {
             ClienteEntity cliente = clienteLogic.getCliente(idC);
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
             entity.setCosto(costo(entity.getDuracion()));
-            entity.setEstado(false);
+            entity.setEstado(true);
             entity.setCliente(cliente);
             entity.setMascota(mascota);
             persistence.create(entity);
@@ -172,11 +172,13 @@ public class EntrenamientoLogic {
     }
 
     public CentroDeEntrenamientoEntity addCentroDeEntrenamiento(Long idC, Long idE) {
+        LOGGER.log(Level.INFO, "Inicia proceso de agregar centro de entrenamiento con  id={0}", idC);
         EntrenamientoEntity entrenamientoEntity = getEntrenamiento(idE);
         CentroDeEntrenamientoEntity centroEntity = new CentroDeEntrenamientoEntity();
+        
         centroEntity.setId(idC);
         entrenamientoEntity.setCentroDeEntrenamiento(centroEntity);
-        return getCentroDeEntrenamiento(idC);
+        return getCentroDeEntrenamiento(idE);
     }
 
     public CentroDeEntrenamientoEntity replaceCentroDeEntrenamiento(Long id, CentroDeEntrenamientoEntity centro) {
@@ -226,7 +228,7 @@ public class EntrenamientoLogic {
             throw new BusinessLogicException("El entrenamiento no ha acabado.");
         }
     }
-
+    
     private Double costo(double duracion){
         return duracion * 1.5;
     }

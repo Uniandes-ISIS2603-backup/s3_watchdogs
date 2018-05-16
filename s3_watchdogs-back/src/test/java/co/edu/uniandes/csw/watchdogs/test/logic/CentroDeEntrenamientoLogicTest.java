@@ -13,6 +13,8 @@ import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.CentroDeEntrenamientoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +29,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +42,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class CentroDeEntrenamientoLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -52,9 +55,9 @@ public class CentroDeEntrenamientoLogicTest {
     private UserTransaction utx;
 
     private List<CentroDeEntrenamientoEntity> data = new ArrayList<>();
-    
+
     private List<EntrenamientoEntity> entrenamientosData = new ArrayList<>();
-    
+
     private List<HotelEntity> hotelesData = new ArrayList<>();
 
     @Deployment
@@ -91,40 +94,43 @@ public class CentroDeEntrenamientoLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from CentroDeEntrenamientoEntity").executeUpdate();
         em.createQuery("delete from EntrenamientoEntity").executeUpdate();
         em.createQuery("delete from HotelEntity").executeUpdate();
-
+        em.createQuery("delete from ServicioEntity").executeUpdate();
+        em.createQuery("delete from CentroDeEntrenamientoEntity").executeUpdate();
+        em.createQuery("delete from LugarEntity").executeUpdate();
     }
 
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() {  
-        /*for (int i = 0; i < 3; i++) {
+    private void insertData() {
+        for (int i = 0; i < 3; i++) {
+            CentroDeEntrenamientoEntity entity = factory.manufacturePojo(CentroDeEntrenamientoEntity.class);
+            em.persist(entity);
+            data.add(entity);
+        }
+        for (int i = 0; i < 3; i++) {
             EntrenamientoEntity entity = factory.manufacturePojo(EntrenamientoEntity.class);
+            if (i != 1) {
+                entity.setCentroDeEntrenamiento(data.get(0));
+                data.get(0).getEntrenamientos().add(entity);
+            }
             em.persist(entity);
             entrenamientosData.add(entity);
         }
         for (int i = 0; i < 3; i++) {
             HotelEntity entity = factory.manufacturePojo(HotelEntity.class);
+            entity.setCentroDeEntrenamiento(data.get(0));
             em.persist(entity);
             hotelesData.add(entity);
-        }*/
-        for (int i = 0; i < 3; i++) {
-            CentroDeEntrenamientoEntity entity = factory.manufacturePojo(CentroDeEntrenamientoEntity.class);
-            em.persist(entity);
-            data.add(entity);
-            /**if (i == 0) {
-                entrenamientosData.get(i).setCentroDeEntrenamiento(entity);
-                hotelesData.get(i).setCentroDeEntrenamiento(entity);
-            }*/
         }
     }
-    
+
     /**
      * Prueba para crear un CentroDeEntrenamiento
+     *
      * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @Test
@@ -192,68 +198,78 @@ public class CentroDeEntrenamientoLogicTest {
 
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
     }
-    
-   /*
+
+    /*
      * Prueba para obtener una instancia de Entrenamientos asociada a una instancia
      * CentroDeEntrenamiento
      *
      * 
-     *
+     */
     @Test
-    public void getEntrenamientosTest() throws BusinessLogicException {
+    public void getEntrenamientoTest() throws BusinessLogicException {
         CentroDeEntrenamientoEntity entity = data.get(0);
-        EntrenamientoEntity EntrenamientoEntity = entrenamientosData.get(0);
-        EntrenamientoEntity response = centroDeEntrenamientoLogic.getEntrenamiento(entity.getId(), EntrenamientoEntity.getId());
+        EntrenamientoEntity entrenamientoEntity = entrenamientosData.get(0);
+        EntrenamientoEntity response = centroDeEntrenamientoLogic.getEntrenamiento(entity.getId(), entrenamientoEntity.getId());
 
-        Assert.assertEquals(EntrenamientoEntity.getId(), response.getId());
-        Assert.assertEquals(EntrenamientoEntity.getName(), response.getName());
+        Assert.assertEquals(entrenamientoEntity.getId(), response.getId());
+        Assert.assertEquals(entrenamientoEntity.getName(), response.getName());
     }
 
     /**
-     * Prueba para asociar un Entrenamientos existente a un CentroDeEntrenamiento
-     *
-     * 
-     *
+     * Prueba para asociar un Entrenamientos existente a un
+     * CentroDeEntrenamiento
+     */
     @Test
-    public void addEntrenamientosTest() throws BusinessLogicException {
-        CentroDeEntrenamientoEntity entity = data.get(0);
-        EntrenamientoEntity EntrenamientoEntity = entrenamientosData.get(1);
-        EntrenamientoEntity response = centroDeEntrenamientoLogic.addEntrenamiento(EntrenamientoEntity.getId(), entity.getId());
+    public void addEntrenamientosTest() {
+        try {
+            CentroDeEntrenamientoEntity entity = data.get(1);
+            EntrenamientoEntity entrenamiento = entrenamientosData.get(1);
+            EntrenamientoEntity response = centroDeEntrenamientoLogic.addEntrenamiento(entity.getId(),entrenamiento.getId());
 
-        Assert.assertNotNull(response);
-        Assert.assertEquals(EntrenamientoEntity.getId(), response.getId());
+            Assert.assertNotNull(response);
+            Assert.assertEquals(entrenamiento.getId(), response.getId());
+            Assert.assertEquals(entrenamiento.getDuracion(), response.getDuracion());
+        } catch (BusinessLogicException ex) {
+            fail();
+        }
     }
 
     /**
-     * Prueba para remplazar las instancias de Entrenamientos asociadas a una instancia
-     * de CentroDeEntrenamiento
+     * Prueba para remplazar las instancias de Entrenamientos asociadas a una
+     * instancia de CentroDeEntrenamiento
      *
-     * 
      *
+     */
     @Test
     public void replaceEntrenamientosTest() {
         CentroDeEntrenamientoEntity entity = data.get(0);
         List<EntrenamientoEntity> list = entrenamientosData.subList(1, 3);
         centroDeEntrenamientoLogic.replaceEntrenamientos(entity.getId(), list);
 
-        entity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(entity.getId());
+        entity
+                = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(entity.getId());
         Assert.assertFalse(entity.getEntrenamientos().contains(entrenamientosData.get(0)));
         Assert.assertTrue(entity.getEntrenamientos().contains(entrenamientosData.get(1)));
         Assert.assertTrue(entity.getEntrenamientos().contains(entrenamientosData.get(2)));
     }
 
     /**
-     * Prueba para desasociar un Entrenamiento existente de un CentroDeEntrenamiento existente
+     * Prueba para desasociar un Entrenamiento existente de un
+     * CentroDeEntrenamiento existente
      *
-     * 
+     *
      *
     @Test
-    public void removeEntrenamientosTest() throws BusinessLogicException {
+    public void removeEntrenamientosTest() throws
+            BusinessLogicException {
         try {
-            centroDeEntrenamientoLogic.removeEntrenamiento(data.get(0).getId(), entrenamientosData.get(0).getId());
-            EntrenamientoEntity response = centroDeEntrenamientoLogic.getEntrenamiento(data.get(0).getId(), entrenamientosData.get(0).getId());
+            centroDeEntrenamientoLogic.removeEntrenamiento(data.get(0).getId(),
+                    entrenamientosData.get(0).getId());
+            EntrenamientoEntity response
+                    = centroDeEntrenamientoLogic.getEntrenamiento(data.get(0).getId(),
+                            entrenamientosData.get(0).getId());
         } catch (BusinessLogicException e) {
         }
 
-    }**/
+    }*/
 }

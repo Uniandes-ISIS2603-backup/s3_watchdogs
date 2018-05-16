@@ -36,6 +36,8 @@ delete from HotelEntity;
 delete from PaseoEntity;
 delete from ServicioEntity;
 delete from RutaEntity;
+delete from CentroDeEntrenamientoEntity;
+delete from VeterinariaEntity;
 delete from LugarEntity;
 delete from TransporteEntity;
 delete from MascotaEntity;
