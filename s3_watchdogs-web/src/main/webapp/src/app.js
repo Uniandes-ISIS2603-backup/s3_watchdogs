@@ -28,6 +28,7 @@
         'mascotasModule',
         'entrenamientosModule',
         'aseosModule',
+        'loginModule',
         'paseosModule',
         'hotelesModule',
         'rutaModule',
