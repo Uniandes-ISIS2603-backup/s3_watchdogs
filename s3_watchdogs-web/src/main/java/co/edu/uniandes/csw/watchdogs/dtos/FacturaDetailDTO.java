@@ -60,43 +60,8 @@ public class FacturaDetailDTO extends FacturaDTO {
     private PayPalDTO payPal;
     private PseDTO pse;
     private TarjetaCreditoDTO tarjeta;
-
-    public PayPalDTO getPayPal() {
-        return payPal;
-    }
-
-    public void setPayPal(PayPalDTO payPal) {
-        this.payPal = payPal;
-    }
-
-    public PseDTO getPse() {
-        return pse;
-    }
-
-    public void setPse(PseDTO pse) {
-        this.pse = pse;
-    }
-
-    public TarjetaCreditoDTO getTarjeta() {
-        return tarjeta;
-    }
-
-    public void setTarjeta(TarjetaCreditoDTO tarjeta) {
-        this.tarjeta = tarjeta;
-    }
-
-   
-
-    public List<TarjetaCreditoDTO> getTarjetas() {
-        return tarjetas;
-    }
-
-    public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
-        this.tarjetas = tarjetas;
-    }
-    private List<TarjetaCreditoDTO> tarjetas;
-
-    /**
+    
+        /**
      * Constructor por defecto
      */
     public FacturaDetailDTO() {
@@ -135,6 +100,43 @@ public class FacturaDetailDTO extends FacturaDTO {
 //            }else entity.setMetodoDePago(null);
         }
     }
+
+    public PayPalDTO getPayPal() {
+        return payPal;
+    }
+
+    public void setPayPal(PayPalDTO payPal) {
+        this.payPal = payPal;
+    }
+
+    public PseDTO getPse() {
+        return pse;
+    }
+
+    public void setPse(PseDTO pse) {
+        this.pse = pse;
+    }
+
+    public TarjetaCreditoDTO getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(TarjetaCreditoDTO tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+
+   
+
+    public List<TarjetaCreditoDTO> getTarjetas() {
+        return tarjetas;
+    }
+
+    public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
+        this.tarjetas = tarjetas;
+    }
+    private List<TarjetaCreditoDTO> tarjetas;
+
+
 
     /**
      * @return the cliente
