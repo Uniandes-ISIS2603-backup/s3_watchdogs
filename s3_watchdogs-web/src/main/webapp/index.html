@@ -174,47 +174,13 @@
 
     <body>
         <!-- Barra de navegacion -->
-        <div ui-view="navView">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <a class="navbar-brand" href="#">WatchDogs</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"> <a class="nav-link" ui-sref="serviciosList">Servicios</a> </li>
-                        <li class="nav-item"> <a class="nav-link" ui-sref="empleadosList">Personal</a> </li>
-                        <li class="nav-item"> <a class="nav-link" ui-sref="instalacionesList">Instalaciones</a> </li>
-                        <li class="nav-item"> <a class="nav-link" ui-sref="infosList">Acerca de Nosotros</a> </li>
-                        <li class="nav-item"> <a class="nav-link" ui-sref="contactanosList">Contactenos</a> </li>
-                        <li class="nav-item"> <a class="nav-link" ui-sref="faqsList">FAQs</a> </li>
-                        <li class="nav-item dropdown" ng-if="hasPermissions()">
-                            <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
-                                Administrador
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" ui-sref="clientes">Clientes</a>
-                                <a class="dropdown-item" ui-sref="mascotas">Mascotas</a>
-                                <a class="dropdown-item" ui-sref="empleadosAdmin">Empleados</a>
-                                <a class="dropdown-item" ui-sref="serviciosAdminList">Servicios</a>
-                                <a class="dropdown-item" ui-sref="instalacionesAdminList">Instalaciones</a>
-                                <a class="dropdown-item" ui-sref="rutasList">Rutas</a>
-                                <a class="dropdown-item" ui-sref="facturasList">Facturas</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul ng-if="!isAuthenticated()" class="nav navbar-nav navbar-right">
-                        <li><a class="nav-link" ui-sref="login">Login</a> </li>
-                    </ul>
-                    <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
-                        <li><a class="nav-link" ui-sref="logout">Logout</a> </li>
-                    </ul>
-                </div>
-            </nav>
+        <div class="navbar" ui-view="navView">
         </div>
 
         <!--Termina barra de navegacion -->
 
         <!--Primer contenedor-->
-        <div class="container-fluid" ui-view="completeView">
-            <hr>
+        <div class="main container-fluid" ui-view="completeView">
             <div class="row">
                 <div class="col-sm-8 col-12">
                     <div>

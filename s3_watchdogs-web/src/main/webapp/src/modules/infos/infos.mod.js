@@ -12,6 +12,9 @@
                 
                 url: '/infos/list',
                 views: {
+                    'navView': {
+                        templateUrl: basePath + 'infos.nav.html'
+                    },
                     'completeView': {
                         templateUrl: basePath + 'infos.list.html',
                         controller: 'infosCtrl',
