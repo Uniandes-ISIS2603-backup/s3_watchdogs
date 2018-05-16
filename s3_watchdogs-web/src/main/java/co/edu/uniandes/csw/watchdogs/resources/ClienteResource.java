@@ -5,9 +5,17 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
+import co.edu.uniandes.csw.watchdogs.dtos.AseoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.ClienteDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.EntrenamientoDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.HotelDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.PaseoDetailDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.ServicioDetailDTO;
+import co.edu.uniandes.csw.watchdogs.ejb.AseoLogic;
 import co.edu.uniandes.csw.watchdogs.ejb.ClienteLogic;
+import co.edu.uniandes.csw.watchdogs.ejb.EntrenamientoLogic;
+import co.edu.uniandes.csw.watchdogs.ejb.HotelLogic;
+import co.edu.uniandes.csw.watchdogs.ejb.PaseoLogic;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -53,7 +61,18 @@ public class ClienteResource {
 
     @Inject
     private ClienteLogic clienteLogic;
+    
+    @Inject
+    private PaseoLogic paseoLogic;
 
+    @Inject
+    HotelLogic hotelLogic;
+    
+    @Inject
+    EntrenamientoLogic entrenamientoLogic;
+    
+    @Inject
+    AseoLogic aseoLogic;
     /**
      * Convierte una lista de ClienteEntity a una lista de ClienteDetailDTO
      *
@@ -286,5 +305,56 @@ public class ClienteResource {
             throw new WebApplicationException("El servicio no existe.", 404);
         }
     }
+    
+    /**
+     * Crea un entrenamieto.
+     * @param clienteId
+     * @param hotel
+     * @return
+     * @throws BusinessLogicException
+     */
+    @POST
+    @Path("{clienteId:\\d+}/paseos")
+    public PaseoDetailDTO createPaseo(@PathParam("clienteId")Long clienteId, PaseoDetailDTO hotel) throws BusinessLogicException {        
+        return new PaseoDetailDTO(paseoLogic.createClientePaseo(clienteId,hotel.toEntity()));
+    }
+    
+    /**
+     * Crea un entrenamieto.
+     * @param clienteId
+     * @param hotel
+     * @return
+     * @throws BusinessLogicException
+     */
+    @POST
+    @Path("{clienteId:\\d+}/hoteles")
+    public HotelDetailDTO createClienteHotel(@PathParam("clienteId")Long clienteId, HotelDetailDTO hotel) throws BusinessLogicException {        
+        return new HotelDetailDTO(hotelLogic.createClienteHotel(clienteId,hotel.toEntity()));
+    }
 
+    /**
+     * Crea un entrenamieto.
+     * @param clienteId
+     * @param entrenamiento
+     * @return
+     * @throws BusinessLogicException
+     */
+    @POST
+    @Path("{clienteId:\\d+}/entrenamientos")
+    public EntrenamientoDetailDTO createEntrenamiento(@PathParam("clienteId")Long clienteId, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
+        return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(clienteId,entrenamiento.toEntity()));
+    }
+    
+    /**
+     * Crea un entrenamieto.
+     * @param clienteId
+     * @param aseo
+     * @return
+     * @throws BusinessLogicException
+     */
+    @POST
+    @Path("{clienteId:\\d+}/aseos")
+    public AseoDetailDTO createAseo(@PathParam("clienteId")Long clienteId, AseoDetailDTO aseo) throws BusinessLogicException {        
+        return new AseoDetailDTO(aseoLogic.createClienteAseo(clienteId,aseo.toEntity()));
+    }
 }
