@@ -189,9 +189,9 @@ public class PayPalLogicTest {
         PayPalEntity pojoEntity = factory.manufacturePojo(PayPalEntity.class);
 
         pojoEntity.setId(entity.getId());
-        pojoEntity.setCliente(dataCliente.get(0));
+        pojoEntity.setCliente(entity.getCliente());
 
-        payPalLogic.updateEntity(pojoEntity.getId(), pojoEntity);
+        payPalLogic.updateEntity(dataCliente.get(1).getId(), pojoEntity);
 
         PayPalEntity resp = em.find(PayPalEntity.class, entity.getId());
 

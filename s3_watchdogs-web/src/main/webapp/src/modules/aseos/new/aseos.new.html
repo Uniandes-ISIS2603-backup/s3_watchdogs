@@ -25,7 +25,13 @@ and open the template in the editor.
                                <div class="col-10">
                                <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoMascota" required ng-model="data.mascota" ng-options="x.nombre for x in mascotas"></select>
                                </div>
-                        </form>   
+                        </form>
+                        <form class="form-group col-md-6">
+                            <label class="mr-sm-1" for="aseoDuracion" >Duracion</label>
+                            <div class="col-10">
+                            <input class="form-control" type="number" value="0" id="aseoDuracion" required ng-model="data.duracion" >
+                            </div>
+                        </form>
                     </div>
     
                     

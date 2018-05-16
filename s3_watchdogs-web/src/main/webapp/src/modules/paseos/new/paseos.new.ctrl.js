@@ -16,13 +16,13 @@
             
             var idCliente = $state.params.clienteId;
             
-             $http.get(clientesContext + '/' + idCliente).then(function (response) {
+            $http.get(clientesContext + '/' + idCliente).then(function (response) {
                 var cliente = response.data;
                 $scope.data.cliente = cliente;
                 $scope.mascotas = cliente.mascotas;
             });
                     
-            $scope.createpaseo = function () {
+            $scope.createPaseo = function () {
                 $http.post(clientesContext+'/'+idCliente+'/paseos', $scope.data).then(function (response) {
                     $state.go('serviciosList', {paseoId: response.data.id}, {reload: true});
                 });

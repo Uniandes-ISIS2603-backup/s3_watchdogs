@@ -188,7 +188,7 @@ public class PseLogicTest {
 
         pojoEntity.setId(entity.getId());
 
-        pseLogic.updateEntity(pojoEntity.getId(), pojoEntity);
+        pseLogic.updateEntity(dataCliente.get(1).getId(), pojoEntity);
 
         PseEntity resp = em.find(PseEntity.class, entity.getId());
 

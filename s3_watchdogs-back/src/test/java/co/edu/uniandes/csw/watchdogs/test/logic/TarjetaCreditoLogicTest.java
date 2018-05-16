@@ -12,6 +12,8 @@ import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.TarjetaCreditoPersistence;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -22,6 +24,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -186,22 +189,25 @@ public class TarjetaCreditoLogicTest {
      *
      */
     @Test
-    public void updateTarjetaTest() throws BusinessLogicException {
-        TarjetaCreditoEntity entity = data.get(0);
-        TarjetaCreditoEntity pojoEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
-
-        pojoEntity.setId(entity.getId());
-        pojoEntity.setCliente(entity.getCliente());
+    public void updateTarjetaTest() throws BusinessLogicException  {
         
-        tarjetaLogic.updateTarjeta(pojoEntity.getId(), pojoEntity);
-
-        TarjetaCreditoEntity resp = em.find(TarjetaCreditoEntity.class, entity.getId());
-
-        Assert.assertEquals(pojoEntity.getId(), resp.getId());
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getCodigoSeguridad(), resp.getCodigoSeguridad());
-        Assert.assertEquals(pojoEntity.getFechaVencimiento(), resp.getFechaVencimiento());
-        Assert.assertEquals(pojoEntity.getNumeroTarjeta(), resp.getNumeroTarjeta());
+            TarjetaCreditoEntity entity = data.get(0);
+            TarjetaCreditoEntity pojoEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
+            
+            pojoEntity.setId(entity.getId());
+            pojoEntity.setCliente(entity.getCliente());
+            System.out.println(entity.getCliente().getId()+"**************************************************AQUI**************************************************AQUI**************************************************AQUI**************************************************AQUI**************************************************AQUI");
+            
+            tarjetaLogic.updateTarjeta(dataCliente.get(1).getId(), pojoEntity);
+            
+            TarjetaCreditoEntity resp = em.find(TarjetaCreditoEntity.class, entity.getId());
+            
+            Assert.assertEquals(pojoEntity.getId(), resp.getId());
+            Assert.assertEquals(pojoEntity.getName(), resp.getName());
+            Assert.assertEquals(pojoEntity.getCodigoSeguridad(), resp.getCodigoSeguridad());
+            Assert.assertEquals(pojoEntity.getFechaVencimiento(), resp.getFechaVencimiento());
+            Assert.assertEquals(pojoEntity.getNumeroTarjeta(), resp.getNumeroTarjeta());
+        
     }
 
 }
