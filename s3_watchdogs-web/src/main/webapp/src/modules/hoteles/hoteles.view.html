@@ -16,20 +16,25 @@
             <div class="col-sm-6">
                 <dl>
                     <dt>Dias de estadia:</dt>
-                    <dd>{{currentHotel.tiempoEstadia}}</dd>
+                    <dd>{{currentHotel.tiempoHospedaje}}</dd>
                     <dt>Duracion del servicio</dt>
                     <dd>{{currentHotel.duracion}}</dd>
+                    <dt>Estado:</dt>
+                <dd>{{currentHotel.estado}}</dd>
                 </dl>
             </div>
             <div class="col-sm-6">   
                     <p><strong>Fecha:</strong></p>
                     <p>{{currentHotel.fecha | date: 'yyyy-MM-dd'}}</p>
-                    <p><strong>Duracion del servicio</strong></p>
-                    <p>{{currentHotel.costo}}</p>
+                    <p><strong>Precio:</strong></p>
+                    <p>{{currentHotel.costo}}.000</p>
             </div>
         </div>    
-        <div class="row">
-            <a ui-sref="hotelUpdate({hotelId:currentHotel.id})" class="btn btn-primary">Actualizar</a>
-            <a ui-sref="hotelDelete({hotelId:currentHotel.id})" class="btn btn-primary">Cancelar</a>
-        </div>
+        <div ng-if="currentHotel.estado" class="row">
+        <a ui-sref="hoteUpdate({hotelId:currentHotel.id})" class="btn btn-primary">Actualizar</a>
+        <a ui-sref="hotelDelete({hotelId:currentHotel.id})" class="btn btn-primary">Cancelar</a>
+    </div>
+     <div ng-if="!currentHotel.estado" class="row">
+        <a ui-sref="calificacionCreate({hotelId: currentHotel.id})" class="btn btn-primary">Calificar</a>
+    </div>
 </div>
