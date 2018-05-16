@@ -31,7 +31,7 @@ public class ClienteHotelResource {
      * @throws BusinessLogicException
      */
     @POST
-    public HotelDetailDTO createHotel(@PathParam("clienteId")Long clienteId, HotelDetailDTO hotel) throws BusinessLogicException {        
-        return new HotelDetailDTO(hotelLogic.createHotel(clienteId,hotel.toEntity()));
+    public HotelDetailDTO createClienteHotel(@PathParam("clienteId")Long clienteId, HotelDetailDTO hotel) throws BusinessLogicException {        
+        return new HotelDetailDTO(hotelLogic.createClienteHotel(clienteId,hotel.toEntity()));
     }
 }

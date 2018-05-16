@@ -21,7 +21,7 @@ public class DiaDisponibilidadStrategy implements AttributeStrategy<String>{
      * {@inheritDoc}
      */
     
-    
+    @Override
     public String getValue() throws PodamMockeryException{
         
         String rta = "";
