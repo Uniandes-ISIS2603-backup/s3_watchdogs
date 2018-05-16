@@ -101,7 +101,7 @@ public class PaseoLogic {
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
-    public PaseoEntity createPaseo(Long idC, PaseoEntity entity) throws BusinessLogicException {
+    public PaseoEntity createClientePaseo(Long idC, PaseoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Aseo. Logica");
         LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
         LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());

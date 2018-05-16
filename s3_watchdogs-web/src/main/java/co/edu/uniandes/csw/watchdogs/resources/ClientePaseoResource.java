@@ -32,6 +32,6 @@ public class ClientePaseoResource {
      */
     @POST
     public PaseoDetailDTO createPaseo(@PathParam("clienteId")Long clienteId, PaseoDetailDTO hotel) throws BusinessLogicException {        
-        return new PaseoDetailDTO(hotelLogic.createPaseo(clienteId,hotel.toEntity()));
+        return new PaseoDetailDTO(hotelLogic.createClientePaseo(clienteId,hotel.toEntity()));
     }
 }
