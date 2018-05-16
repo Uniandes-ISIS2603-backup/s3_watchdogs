@@ -20,23 +20,23 @@ and open the template in the editor.
     <div class="row">
         <div class="col-sm-4">
             <dl>
-                <dt>Tipo de entrenamiento:</dt>
-                <dd>{{currentEntrenamiento.tipo}}</dd>
-                <dt>Duración del entrenamiento:</dt>
-                <dd>{{currentEntrenamiento.duracion}}</dd>
+                <dt>Banho</dt>
+                <dd>{{currentAseo.banho}}</dd>
+                <dt>Peluqueria</dt>
+                <dd>{{currentAseo.peluqueria}}</dd>
+                <dt>Dientes</dt>
+                <dd>{{currentAseo.dientes}}</dd>
             </dl>
         </div>
         <div class="col-sm-4">
-            <p>Fecha:</p>
-            <p>{{currentEntrenamiento.fecha | date:'yyyy-MM-dd'}}</p>
-        </div>
-        <div class="col-sm-4">
-            <p>Precio:</p>
-            <p>{{currentEntrenamiento.costo}}</p>
+            <p><strong>Fecha:</strong></p>
+            <p>{{currentAseo.fecha | date:'yyyy-MM-dd'}}</p>
+            <p><strong>Precio:<strong></p>
+            <p>{{currentAseo.costo}}</p>
         </div>
     </div>
     <div class="row">
-        <a ui-sref="entrenamientoUpdate({entrenamientoId:currentEntrenamiento.id})" class="btn btn-primary">Actualizar</a>
-        <a ui-sref="entrenamientoDelete({entrenamientoId:currentEntrenamiento.id})" class="btn btn-primary">Cancelar</a>
+        <a ui-sref="aseoUpdate({aseoId:currentAseo.id})" class="btn btn-primary">Actualizar</a>
+        <a ui-sref="aseoDelete({aseoId:currentAseo.id})" class="btn btn-primary">Cancelar</a>
     </div>
 </div>
