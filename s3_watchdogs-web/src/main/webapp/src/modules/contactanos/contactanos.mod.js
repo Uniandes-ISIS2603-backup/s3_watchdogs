@@ -17,7 +17,7 @@
                 
                 url: '/contactanos/list',
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'contactanos.list.html'
                         
                     }

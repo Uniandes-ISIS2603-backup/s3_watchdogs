@@ -183,8 +183,21 @@ public class ClienteLogic {
      */
     public List<ServicioEntity> getServicios(Long clienteId) throws BusinessLogicException {
         ClienteEntity cliente = getCliente(clienteId);
-        LOGGER.log(Level.INFO, "Size = {0}", cliente.getServicios().size());
         return cliente.getServicios();
+    }
+
+    public ServicioEntity getServicio(Long clienteId, Long servicioId) throws BusinessLogicException {
+
+        List<ServicioEntity> list = getCliente(clienteId).getServicios();
+        ServicioEntity serviciosEntity = new ServicioEntity();
+        serviciosEntity.setId(servicioId);
+        for (ServicioEntity servicio : list) {
+            if (servicio.getId().equals(servicioId)) {
+                return servicio;
+            }
+        }
+        return null;
+
     }
 
     public List<PayPalEntity> listPayPal(Long clienteId) {

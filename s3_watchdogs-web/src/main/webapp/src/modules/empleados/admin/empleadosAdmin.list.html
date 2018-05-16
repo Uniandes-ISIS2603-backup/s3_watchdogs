@@ -18,7 +18,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="empleado in empleadosAdminRecords">
-                                <td id="{{$index}}-nombre">
+                                <td id="{{$index}}-nombre" class="parrafoscards" style="font-size: 18px">
                                     <a ui-sref="empleadoAdminDetail({empleadoId: empleado.id})">{{empleado.nombre}}</a>
                                 </td>
                                 <td id="{{$index}}-cedula" class="parrafoscards" style="font-size: 16px">{{empleado.cedula}}</td>

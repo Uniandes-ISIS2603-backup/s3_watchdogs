@@ -5,7 +5,7 @@
     mod.controller('infosCtrl', ['$scope', '$http',
         function ($scope, $http) {
             $http.get('data/infos.json').then(function (response) {
-                $scope.serviciosRecords = response.data;
+                $scope.infosRecords = response.data;
             });
         }
     ]);
