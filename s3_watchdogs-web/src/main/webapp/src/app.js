@@ -27,13 +27,13 @@
         'instalacionesAdminModule',
         'mascotasModule',
         'entrenamientosModule',
-        'loginModule',
         'paseosModule',
         'hotelesModule',
         'rutaModule',
         'metodoDePagoModule',
         'calificacionesModule',
-        'facturaModule'
+        'facturaModule',
+        'loginModule'
 
     ]);
 
@@ -67,73 +67,47 @@
             });
         }]);
 
-    app.run(['$rootScope', '$transitions', function ($rootScope, $transitions) {
+    app.run(['$rootScope', "$state", function ($rootScope, $state) {
 
-            $transitions.onSuccess({to: '*'}, function (trans) {
-
-                var $state = trans.router.stateService;
-                var requireLogin = $state.current.data.requireLogin;
-                var roles = $state.current.data.roles;
-               
-
-                /**
-                 * @ngdoc function
-                 * @name isAuthenticated
-                 * @methodOf mainApp.module:mainApp
-                 * @description Esta función define si el usuario se encuentra
-                 * dentro de su cuenta.
-                 * @returns {Boolean} Verdadero si está dentro de su cuenta.
-                 */
-                $rootScope.isAuthenticated = function () {
-
-                    if (sessionStorage.getItem("username") !== null) {
-                        $rootScope.currentUser = sessionStorage.getItem("name");
-                        return true;
-                    } else {
-                        return false;
-                    }
-                };
-                
-                /**
-                 * @ngdoc function
-                 * @name hasPermissions
-                 * @methodOf mainApp.module:mainApp
-                 * @description Esta función define si el usuario tiene permisos
-                 * para acceder a la aplicación.
-                 * @returns {Boolean} Verdadero si el usuario tiene permisos.
-                 */
-                $rootScope.hasPermissions = function () {
-                    if (($rootScope.isAuthenticated) && (roles.indexOf(sessionStorage.getItem("rol")) > -1)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                };
-                
-                $rootScope.esCliente = function () {
-                    $rootScope.cliente = true;
-                    $rootScope.admin = false;
-                    $rootScope.empleado = false;
-                };
-                $rootScope.esAdmin=function () {
-                    $rootScope.admin = true;
-                    $rootScope.empleado = false;
-                    $rootScope.cliente = false;
-                    
-                };
-                $rootScope.esEmpleado = function () {
-                    $rootScope.empleado = true;
-                    $rootScope.cliente = false;
-                    $rootScope.admin = false;
-                };
-
-                if (requireLogin && (sessionStorage.getItem("username") === null)) {
-                    event.preventDefault();
-                    $state.go('login', $state.params);
+            /**
+             * @ngdoc function
+             * @name isAuthenticated
+             * @methodOf mainApp.module:mainApp
+             * @description Esta función define si el usuario se encuentra
+             * dentro de su cuenta.
+             * @returns {Boolean} Verdadero si está dentro de su cuenta.
+             */
+            $rootScope.isAuthenticated = function () {
+                if (sessionStorage.getItem("username") === "null" || sessionStorage.getItem("id") === null) {
+                    return false;
+                } else {
+                    return true;
                 }
+            };
 
-            });
+            /**
+             * @ngdoc function
+             * @name hasPermissions
+             * @methodOf mainApp.module:mainApp
+             * @description Esta función define si el usuario tiene permisos
+             * para acceder a la aplicación.
+             * @returns {Boolean} Verdadero si el usuario tiene permisos.
+             */
+            $rootScope.hasPermissions = function () {
+                if (($rootScope.isAuthenticated) && (sessionStorage.getItem("rol") === "Administrador")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+            $rootScope.logOut = function ()
+            {
+                sessionStorage.token = null;
+                sessionStorage.setItem("username", null);
+                sessionStorage.setItem("rol", null);
+                sessionStorage.setItem("id", null);
+                sessionStorage.setItem("name", null);
+                alert('Se ha cerrado correctamente la sesión');
+            };
         }]);
-
-
 })(window.angular);

@@ -6,7 +6,7 @@
     // Configuración de los estados del módulo
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
-            var basePath = 'src/modules/home/login/';
+            var basePath = 'src/modules/home/';
 
             $urlRouterProvider.otherwise("/login");
 
@@ -18,7 +18,7 @@
                 },
                 views: {
                     'userView': {
-                        templateUrl: basePath + 'login.html',
+                        templateUrl: basePath + 'home.login.html',
                         controller: 'loginCtrl'
                     }
                 }
@@ -31,7 +31,7 @@
                 ,
                 views: {
                     'userView': {
-                        templateUrl: basePath + 'logout.html',
+                        templateUrl: basePath + 'home.logout.html',
                         controller: 'logoutCtrl'
                     }
                 }
