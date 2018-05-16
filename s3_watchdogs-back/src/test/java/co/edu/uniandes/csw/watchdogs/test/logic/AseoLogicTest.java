@@ -193,7 +193,7 @@ public class AseoLogicTest {
             newEntity.setCliente(dataCliente.get(0));
             newEntity.setMascota(dataMascota.get(0));
             newEntity.setEmpleado(dataEmpleado.get(0));
-            AseoEntity result = aseoLogic.createAseo(dataCliente.get(0).getId() ,newEntity);
+            AseoEntity result = aseoLogic.createClienteAseo(dataCliente.get(0).getId() ,newEntity);
             Assert.assertNotNull(result);
             AseoEntity entity = em.find(AseoEntity.class, result.getId());
             Assert.assertEquals(newEntity.getId(), entity.getId());

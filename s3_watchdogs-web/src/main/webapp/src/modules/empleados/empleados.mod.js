@@ -17,7 +17,7 @@
                 
                 url: '/empleados/list',
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'empleados.list.html',
                         controller: 'empleadosCtrl',
                         controllerAs: 'ctrl'

@@ -78,10 +78,8 @@ public class AseoLogic {
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
-    public AseoEntity createAseo(Long idC, AseoEntity entity) throws BusinessLogicException {
+    public AseoEntity createClienteAseo(Long idC, AseoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Aseo. Logica");
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
 
         Date todayDate = Calendar.getInstance().getTime();
         if (todayDate.before(entity.getFecha())) {

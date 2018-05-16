@@ -65,12 +65,12 @@ public class PaseoLogic {
      */
     public PaseoEntity getPaseo(Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de consultar Paseo con id={0}", id);
-        PaseoEntity Paseo = persistence.find(id);
-        if (Paseo == null) {
+        PaseoEntity paseo = persistence.find(id);
+        if (paseo == null) {
             LOGGER.log(Level.SEVERE, "El Paseo con el id {0} no existe", id);
         }
         LOGGER.log(Level.INFO, "Termina proceso de consultar Transporte con id={0}", id);
-        return Paseo;
+        return paseo;
     }
 
     /**
@@ -101,10 +101,8 @@ public class PaseoLogic {
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
-    public PaseoEntity createPaseo(Long idC, PaseoEntity entity) throws BusinessLogicException {
+    public PaseoEntity createClientePaseo(Long idC, PaseoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Aseo. Logica");
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
 
         Date todayDate = Calendar.getInstance().getTime();
         if (todayDate.before(entity.getFecha())) {

@@ -32,6 +32,6 @@ public class ClienteAseoResource {
      */
     @POST
     public AseoDetailDTO createAseo(@PathParam("clienteId")Long clienteId, AseoDetailDTO aseo) throws BusinessLogicException {        
-        return new AseoDetailDTO(aseoLogic.createAseo(clienteId,aseo.toEntity()));
+        return new AseoDetailDTO(aseoLogic.createClienteAseo(clienteId,aseo.toEntity()));
     }
 }

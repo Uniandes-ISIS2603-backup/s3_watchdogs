@@ -23,13 +23,13 @@ and open the template in the editor.
                         <form class="form-group col-md-6">
                                <label class="mr-sm-2" for="hotelMascota">Seleccione su mascota:</label>
                                <div class="col-10">
-                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoMascota" required ng-model="data.mascota" ng-options="x.nombre for x in mascotas"></select>
+                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="hotelMascota" required ng-model="data.mascota" ng-options="x.nombre for x in mascotas"></select>
                                </div>
                         </form>
                         <form class="form-inline col-md-6" >
                                <label class="mr-sm-2" for="hotelTransporte">Transporte:</label>
                                <div class="col-10">
-                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoTransporte" required ng-model="data.transporte">                                   
+                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="hotelTransporte" required ng-model="data.transporte">                                   
                                      <option value="1">Si</option>
                                      <option value="2">No</option>                                    
                                </select>
@@ -39,13 +39,13 @@ and open the template in the editor.
     
                     <div class="row">
                         <form class="form-group col-md-6">
-                            <label class="mr-sm-1" for="entrenamientoDuracion" >Duracion</label>
+                            <label class="mr-sm-1" for="hotelDuracion" >Duracion</label>
                             <div class="col-10">
                             <input class="form-control" type="number" value="0" id="entrenamientoDuracion" required ng-model="data.duracion" >
                             </div>
                         </form>
                         <form class="form-group col-md-6">
-                            <label class="mr-sm-1" for="entrenamientoDuracion" >Tiempo Hospedaje</label>
+                            <label class="mr-sm-1" for="hotelTiempoHospedaje" >Tiempo Hospedaje</label>
                             <div class="col-10">
                             <input class="form-control" type="number" value="0" id="entrenamientoDuracion" required ng-model="data.duracion" >
                             </div>
@@ -54,7 +54,7 @@ and open the template in the editor.
     
                     <div class="row">
                         <form class="form-group col-md-6">
-                            <label for="entrenamientoFecha" class="mr-sm-2">Fecha:</label>
+                            <label for="hotelFecha" class="mr-sm-2">Fecha:</label>
                             <div class="col-10">
                             <input type="datetime-local" value="2011-08-19T13:45:00" id="entrenamientoFecha" required ng-model="data.fecha" class="form-control">
                             </div>

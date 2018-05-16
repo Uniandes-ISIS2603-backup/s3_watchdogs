@@ -27,6 +27,7 @@
         'instalacionesAdminModule',
         'mascotasModule',
         'entrenamientosModule',
+        'aseosModule',
         'paseosModule',
         'hotelesModule',
         'rutaModule',

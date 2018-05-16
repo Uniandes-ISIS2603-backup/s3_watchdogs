@@ -5,45 +5,78 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <div class="container-fluid">
-    <div class="panel-group">
-        <div class="panel panel-primary">
-            <div class="panel-heading"><label ng-if="!edit" id="createpaseo">Crear nuevo paseo</label>
-                <label ng-if="edit" id="editpaseo">Editar paseo</label></div>
-            <div class="panel-body">
-                <form name="paseo">
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="paseoCosto" class="col-sm-2">Costo</label>
-                            <input id="paseoCosto" required ng-model="data.costo" class="col-sm-6"/>
-                        </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <p> imagen</p>
+        </div>
+        <div class="col-sm-9">
+            <p>El adiestramiento canino es una cuestión básica que no se debe dejar al azar. Los perros deben ser educados y entrenados del
+                mismo modo que cada nuevo miembro humano en un hogar es educado para comportarse correctamente. 
+                Además de enseñarle cuestiones básicas relacionadas con la convivencia (control de esfínteres y otros impulsos) al perro se le 
+                pueden enseñar multitud de tareas y trucos. Algunas pueden resultar divertidas y entretenidas, mientras que otras son esenciales 
+                para asegurarse la obediencia de la mascota y para ser capaces de controlarle en determinadas situaciones. 
+        </div>
+    </div>
+    <hr>
+                    <div class="row">
+                        
+                        <form class="form-group col-md-6">
+                               <label class="mr-sm-2" for="paseoMascota">Seleccione su mascota:</label>
+                               <div class="col-10">
+                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoMascota" required ng-model="data.mascota" ng-options="x.nombre for x in mascotas"></select>
+                               </div>
+                        </form>
                     </div>
-                    <div class="form-group row">
-                        <div class="form-group col-md-6">
-                            <label for="paseofecha" class="col-sm-2">Fecha:</label>
-                            <input type="fecha" id="paseoFecha" placeholder="DD/MM/YYYY" required ng-model="data.fecha" class="col-sm-6"/>
-                        </div>
+    
+                    <div class="row">
+                        
+                         <form class="form-inline col-md-6" >
+                               <label class="mr-sm-2" for="entrenamientoHoras">Horas:</label>
+                               <div class="col-10">
+                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoTipo" required ng-model="data.horas">
+                                     <option selected>Elige</option>
+                                     <option value="1">7am-9am </option>
+                                     <option value="2">10am-12pm</option>
+                                     <option value="3">1pm-3pm</option>
+                                     <option value="4">4pm-6pm</option>
+                               </select>
+                               </div>
+                         </form>
+                       
+                        <form class="form-group col-md-6">
+                            <label class="mr-sm-1" for="paseoDuracion" >Duracion</label>
+                            <div class="col-10">
+                            <input class="form-control" type="number" value="0" id="entrenamientoDuracion" required ng-model="data.duracion" >
+                            </div>
+                        </form>
                     </div>
-                    <move-lists ng-if="edit" selected="selectedItems" available="availableItems"></move-lists>
-
+    
+                    <div class="row">
+                        <form class="form-group col-md-6">
+                            <label for="paseoFecha" class="mr-sm-2">Fecha:</label>
+                            <div class="col-10">
+                            <input type="datetime-local" value="2018-08-19T13:45:00" id="entrenamientoFecha" required ng-model="data.fecha" class="form-control">
+                            </div>
+                        </form>
+                    </div>
+    
+   
+    
                     <div class="form-group row">
                         <div class="form-group col-sm-4" ng-if="!paseo.$valid">
 
                             <div class="alert alert-warning" >
-                                <strong>Advertencia!</strong><p>Todos los campos son requeridos*</p>
+                                <strong>Warning!</strong><p>All inputs are required*</p>
                             </div> 
                         </div> 
                     </div> 
-                    <div class="form-group row">
-                        <div class="form-group col-sm-12">
-                            <input ng-show="paseo.$valid" ng-click="createpaseo()" value="Save" class="btn btn-success"/>
-                            <a class="btn btn-info" ui-sref="serviciosList">Cancelar</a>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <a class="btn btn-success" ui-sref="serviciosList"  ng-click="createPaseo()" value="Save" >Aceptar</a>
+                            <a class="btn btn-info" ui-sref="serviciosList">Cancel</a>
                         </div>
                     </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
+            
 </div>
-
+        
 

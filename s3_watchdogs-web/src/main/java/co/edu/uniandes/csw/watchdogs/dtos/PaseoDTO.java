@@ -6,7 +6,6 @@
 package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

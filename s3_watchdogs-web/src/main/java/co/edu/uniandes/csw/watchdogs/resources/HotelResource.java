@@ -132,7 +132,7 @@ public class HotelResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public HotelDetailDTO updateHotel(@PathParam("id") Long id, HotelDetailDTO hotel) throws WebApplicationException, BusinessLogicException {
+    public HotelDetailDTO updateHotel(@PathParam("id") Long id, HotelDetailDTO hotel) throws  BusinessLogicException {
         hotel.setId(id);
         HotelEntity entity = hotelLogic.getHotel(id);
         if (entity == null) {
