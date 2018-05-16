@@ -14,7 +14,10 @@
                 <label for="inputRaza">Raza</label>
                 <input class="form-control" id="inputRaza" ng-model="raza">
             </div>
-
+            <div class="form-group">
+                <label for="inputImagen">Imagen</label>
+                <input class="form-control" id="inputImagen" ng-model="imagen">
+            </div>
             <div class="form-group">
                 <label for="sexo">Sexo</label>
                 <select class="form-control" id="sexo" ng-model="sexo">
@@ -23,7 +26,7 @@
                 </select>
             </div>
 
-            <button class="btn btn-primary" type="submit" ui-sref="temporalCrearMascota({name: name, color: color, raza: raza, sexo: sexo})">Submit form</button>
+            <button class="btn btn-primary" type="submit" ui-sref="temporalMascotaCreate({name: name, color: color, raza: raza, imagen: imagen, sexo: sexo})">Enviar</button>
         </form>
     </div>
 </div>

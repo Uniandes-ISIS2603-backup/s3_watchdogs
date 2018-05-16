@@ -144,6 +144,7 @@
                     name: null,
                     color: null,
                     raza: null,
+                    imagen: null,
                     sexo: null
                 },
                 url: 'mascota/create',

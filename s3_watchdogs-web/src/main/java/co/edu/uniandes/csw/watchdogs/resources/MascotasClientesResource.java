@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
+import co.edu.uniandes.csw.watchdogs.dtos.MascotaDTO;
 import co.edu.uniandes.csw.watchdogs.dtos.MascotaDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.ClienteLogic;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
@@ -128,10 +129,14 @@ public class MascotasClientesResource {
      * @return JSON {@link AuthorDetailDTO}  - El autor asociado.
      */
     @POST
-    @Path("{mascotasId: \\d+}")
     public MascotaDetailDTO addMascotas(@PathParam("clientesId") Long clientesId, @PathParam("mascotasId") Long mascotasId) throws BusinessLogicException {
         return new MascotaDetailDTO(clienteLogic.addMascota(clientesId, mascotasId));
     }
+    
+//    @POST
+//    public MascotaDetailDTO addMascotas(@PathParam("clientesId") Long clientesId, MascotaDTO mascota) throws BusinessLogicException {
+//        return new MascotaDetailDTO(mascotaLogic.createMascota(clientesId, mascota.toEntity()));
+//    }
     
     /**
      * <h1>DELETE /api/books/{booksId}/authors/{authorsId} : Desasociar autor por id.</h1>
