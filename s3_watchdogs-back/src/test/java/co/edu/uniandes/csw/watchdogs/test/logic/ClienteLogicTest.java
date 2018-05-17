@@ -191,8 +191,9 @@ public class ClienteLogicTest {
             Assert.assertEquals(entity.getCedula(), resultEntity.getCedula());
 
             Assert.assertNull(clienteLogic.getCliente(Long.MIN_VALUE));
-        } catch (Exception e) {
             fail();
+        } catch (BusinessLogicException e) {
+            
         }
     }
 
