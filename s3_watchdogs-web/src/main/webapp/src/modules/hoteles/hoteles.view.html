@@ -23,16 +23,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="hotel in currentHotel">
-                                <td>{{hotel.mascota_id}}</td>
-                                <td>{{hotel.fecha}}</td>
-                                <td>{{hotel.duracion}}</td>
+                            <tr ng-repeat="hotel in hoteles">
+                        <td ng-if="hotel.cliente.id ==data.cliente.id">{{hotel.id}}</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <a  class="btn btn-info" ui-sref="hotelesCreate"><span class="glyphicon glyphicon-plus-sign"></span> Hacer reserva</a>
+                            <a  class="btn btn-info" ui-sref="hotelesCreate({clienteId: 100})"><span class="glyphicon glyphicon-plus-sign"></span> Hacer reserva</a>
                         </div>
                     </div>
                 </div>

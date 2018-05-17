@@ -10,10 +10,10 @@
             var basePath = 'src/modules/hoteles/';
             $urlRouterProvider.otherwise("/hotelDetail");
             
-            $stateProvider.state('hotelDetail', {
-                url: '/hoteles/{hotelId:int}/detail',
+            $stateProvider.state('hotels', {
+                url: '/clientes/{clienteId:int}/hoteles/',
                 param: {
-                    hotelId: null
+                    clienteId: null
                 },
                 views: {
                     'mainView': {
@@ -23,8 +23,11 @@
                     }
                 }
                 }).state('hotelesCreate', {
-                url: '/hoteles/create',
+                url: '/clientes/{clienteId:int}/hoteles/create',
                 //parent: 'hotelDetail',
+                param:{
+                    clienteId: null
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + '/new/hoteles.new.html',

@@ -87,7 +87,7 @@ public class EmpleadoLogic {
      * el nombre.
      * @return el empleado con los cambios actualizados en la base de datos.
      */
-    public EmpleadoEntity updateEmpleado(Long id, EmpleadoEntity entity) {
+    public EmpleadoEntity updateEmpleado(Long id, EmpleadoEntity entity)throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar empleado con id={0}", id);
         EmpleadoEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar empleado con id={0}", entity.getId());

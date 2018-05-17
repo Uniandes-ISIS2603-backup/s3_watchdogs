@@ -96,6 +96,34 @@ public class HotelLogic {
             throw new BusinessLogicException("La fecha del servicio debe ser posterior a la de hoy");
         }
     }
+    
+    /**
+     * 
+     * @param idC
+     * @param entity
+     * @return
+     * @throws BusinessLogicException 
+     */
+    public HotelEntity crear(Long idC, HotelEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de Hotel. Logica");
+        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
+        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
+
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de Hotel");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a la de hoy");
+        }
+    }
 
     /**
      * Actualizar un Hotel por ID

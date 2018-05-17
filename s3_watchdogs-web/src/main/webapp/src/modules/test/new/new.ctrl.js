@@ -4,15 +4,16 @@
  * and open the template in the editor.
  */
 (function (ng) {
-    var mod = ng.module("hotelesModule");
-    mod.constant("hotelesContext", "api/hoteles");
-    mod.controller('hotelNewCtrl', ['$scope', '$http','clientesContext', 'hotelesContext', '$state', '$rootScope',
-        function ($scope, $http, clientesContext, hotelesContext, $state, $rootScope) {
+    var mod = ng.module("entrenamientosModule");
+    mod.constant("clientesContext", "api/clientes");
+    mod.constant("entrenamientosContext", "api/entrenamientos");
+    mod.controller('entrenamientoNewCtrl', ['$scope', '$http', 'clientesContext', 'entrenamientosContext', '$state', '$rootScope',
+        function ($scope, $http, clientesContext, entrenamientosContext, $state, $rootScope) {
             $rootScope.edit = false;
 
             $scope.data = {};
             $scope.mascotas = {};
-            
+
             var idCliente = $state.params.clienteId;
 
             $http.get(clientesContext + '/' + idCliente).then(function (response) {
@@ -21,13 +22,12 @@
                 $scope.mascotas = cliente.mascotas;
             });
 
-            $scope.createhotel = function () {
-                $http.post(hotelesContext, $scope.data).then(function (response) {
-                    $state.go('serviciosList', {hotelId: response.data.id}, {reload: true});
+            $scope.createEntrenamiento = function () {
+                $http.post(clientesContext+'/'+idCliente+'/entrenamientos', $scope.data).then(function (response) {
+                    $state.go('serviciosList', {entrenamientoId: response.data.id}, {reload: true});
                 });
             };
         }
     ]);
 }
 )(window.angular);
-
