@@ -4,16 +4,16 @@
             <h4 class="text-center card-header">Inicia sesion</h4>
             <form class="card-body">
                 <div class="form-group row">
-                    <label for="UserName" class="col-from-label">Username</label>
-                    <input type="text" class="form-control" placeholder="Username" required="" autofocus="" ng-model="data.username">
+                    <label for="UserName" class="col-from-label">Usuario</label>
+                    <input type="text" class="form-control" placeholder="Digite su usuario" ng-model="data.username" required="true">
                 </div>
                 <div class="form-group row">
                     <label for="Password" class="col-from-label">Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Password" required="" ng-model="data.password">
+                    <input type="password" class="form-control" placeholder="Digite su contraseña" ng-model="data.password" required="true">
                 </div>
                 <hr>
                 <div class="form-group row">
-                    <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="autenticar()">
+                    <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="autenticar()">
                         Iniciar Sesion
                     </button>
                 </div>
