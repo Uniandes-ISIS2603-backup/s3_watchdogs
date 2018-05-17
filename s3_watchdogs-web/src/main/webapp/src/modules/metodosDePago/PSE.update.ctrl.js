@@ -18,7 +18,7 @@
          * estado actual de la navegación definida en el módulo.
          */
         function ($scope, $http, PSEContext, $state) {
-            console.log($state.params);
+
             if (($state.params.clienteId !== undefined) && ($state.params.clienteId !== null)) {
 
                 var idPSE = $state.params.PSEId;
@@ -28,7 +28,7 @@
 
                 $http.put(PSEContext + '/' + $state.params.clienteId + '/PSE/' + idPSE, params).then(function (response) {
                     $scope.PSERecords = response.data;
-                    console.log(PSEContext + '/' + $state.params.clienteId + '/PSE/' + idPSE);
+
                     $state.go('PSEList', {idPSE: response.data.id}, {reload: true});
                 });
             }

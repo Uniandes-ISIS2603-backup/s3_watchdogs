@@ -29,7 +29,7 @@
              */
             $scope.deletePayPal = function () {
                 $http.delete(payPalContext + '/' +$state.params.clienteId + '/payPal/' +idPayPal, {}).then(function (response) {
-                    console.log(payPalContext + '/' +$state.params.clienteId + '/tarjetasCredito/' +idPayPal);
+
                     $state.go('payPalList', {idPayPal: response.data.id}, {reload: true});
                 });
             };

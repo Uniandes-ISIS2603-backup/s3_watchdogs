@@ -11,11 +11,10 @@
                 var input = $state.params;
 
                 var params = JSON.stringify(input);
-                console.log(params);
 
                 $http.post(PSEContext + '/' + $state.params.clienteId + '/PSE', params).then(function (response) {
                     $scope.metodosDePagoRecords = response.data;
-                    console.log($scope.data);
+
                 });
             }
         }]);
