@@ -48,7 +48,7 @@
                     },
                     'mainView':{
                         templateUrl: basePath + 'centroEntrenamiento/centroEntrenamiento.detail.html',
-                        controller:'instalacionesCtrl',
+                        controller:'centroEntrenamientoCtrl',
                         controllerAs: 'ctrl' 
                     }
                 }
