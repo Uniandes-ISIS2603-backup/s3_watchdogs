@@ -8,9 +8,28 @@
             
             $urlRouterProvider.otherwise("/serviciosList");
             
-            $stateProvider.state('serviciosList', {
+            $stateProvider.state('serviciosListC', {
+                
+                url: '/servicios/{clienteId: int}/list',
+                param: {
+                    clienteId: null
+                },
+                views: {
+                    'completeView': {
+                        templateUrl: basePath + 'servicios.list.html',
+                        controller: 'serviciosCtrl',
+                        controllerAs: 'ctrl'
+                    },
+                    'navView': {
+                        templateUrl: basePath + 'servicios.nav.html'
+                    }
+                }
+            }).state('serviciosList', {
                 
                 url: '/servicios/list',
+                param: {
+                    clienteId: null
+                },
                 views: {
                     'completeView': {
                         templateUrl: basePath + 'servicios.list.html',

@@ -141,7 +141,7 @@ public class HotelResource {
             throw new WebApplicationException("El hotel no existe", 404);
         }
         entity.setDuracion(hotel.getDuracion());
-        entity.setCosto((hotel.getDuracion()*2083));
+        entity.setCosto((hotel.getDuracion()*10000));
         entity.setCliente(oldEntity.getCliente());
         return new HotelDetailDTO(hotelLogic.updateHotel(id, entity));
         /**hotel.setId(id);

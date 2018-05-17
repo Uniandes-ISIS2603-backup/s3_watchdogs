@@ -145,9 +145,9 @@ public class PaseoResource {
         if (entity == null) {
             throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
         }
-        paseo.setCosto(paseo.getDuracion()*20000.0);
         entity.setDuracion(paseo.getDuracion());
-        entity.setCosto(paseo.getDuracion()*20000.0);
+        entity.setCosto((paseo.getDuracion()*20000.0));
+        entity.setCliente(oldEntity.getCliente());
         RutaEntity ruta = rutaLogic.getRuta(paseo.getRutas().getId());
         entity.setRuta(ruta);
         entity.setCliente(oldEntity.getCliente());

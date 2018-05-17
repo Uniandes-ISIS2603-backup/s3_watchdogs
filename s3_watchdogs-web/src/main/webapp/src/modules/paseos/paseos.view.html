@@ -3,36 +3,64 @@
         <div class="row">
             <div class="col-sm-6">
                 <p>
-                    No permitas que tu amigo se aburra en casa. El ejercicio es vital para la salud de tu mascota, nuestro personal cuenta con diversas rutas con las cuales tu compañero no se aburrira nunca y lograr ejercitarse al igual que hacer varios amigos.
-                </p>     
+                    No hay nada peor que estar aburrido en casa. No permitas que tu mascota se aburra por no hacer nada en todo el dia, permitenos darle esa felicidad y te aseguramos que no solo retornara contenta, sino tambien hara ejercicio y amistades.</p>                </p>     
             </div> 
             <div class="col-sm-6">    
-                <img src="src/images/paseo.png" >
+                <img src="src/images/servicios/paseo.png" >
             </div>    
         </div> 
         <div class="panel panel-primary">
-            <h5>Lista de reservas</h5>
+            <h5> Mis paseos</h5>
             <div class="panel-body">
                 <div class="col-md-8">
-                    <table class="table table-striped">
+                    <table class="table table-striped" ng-if="!edit">
                         <thead>
                             <tr>
                                 <th>Mascota</th>    
-                                <th>Fecha del paseo</th>
-                                <th>Hora del paseo</th>
+                                <th>Fecha de paseo</th>
+                                <th>Duración</th>
+                                <th>Costo</th>
+                                <th>Ruta</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="paseo in currentPaseo">
-                                <td>{{paseo.mascota_id}}</td>
-                                <td>{{paseo.fecha}}</td>
-                                <td>{{paseo.hora}}</td>
+                            <tr ng-repeat="paseo in paseos">
+                                <td ng-if="paseo.cliente.id == data.cliente.id">{{paseo.mascota.nombre}}</td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id">{{paseo.fecha}}</td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id">{{paseo.duracion}} horas</td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id">${{paseo.costo}}</td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id">{{paseo.rutas.nombre}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped" ng-if="edit">
+                        <thead>
+                            <tr>
+                                <th>Mascota</th>    
+                                <th>Fecha de reserva</th>
+                                <th>Duración</th>
+                                <th>Ruta</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="paseo in paseos">
+                                <td ng-if="paseo.cliente.id == data.cliente.id">{{paseo.mascota.nombre}}</td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id"><input type="datetime-local" value="2019-09-19T13:45:00" id="paseoFecha"  ng-model="paseo.fecha" class="form-control"></td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id"><input class="form-control" type="number" value="0" id="paseoDuracion"  ng-model="paseo.duracion" ></td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id"><select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="paseoRuta"  ng-model="paseo.rutas" ng-options="x.nombre for x in rutas"></select></td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id"><a class ="btn btn-info"  ng-click="actualizar(paseo.id) "> Actualizar</a></td>
+                                <td ng-if="paseo.cliente.id == data.cliente.id"><a class ="btn btn-danger" ui-sref="paseoDelete({paseoId: paseo.id})" > Eliminar</a></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <a  class="btn btn-info" ui-sref="paseosCreate"><span class="glyphicon glyphicon-plus-sign"></span> Reservar paseo</a>
+                            <a ng-show="!edit" class="btn btn-info" ui-sref="paseosCreate({clienteId: data.cliente.id})"><span class="glyphicon glyphicon-plus-sign"></span>Reservar paseo</a>
+                            <a ng-show="!edit" class="btn btn-warning" ng-click="cambiarF()"> Editar</a>
+                            <a ng-show="!edit" class="btn btn-dark" ui-sref="serviciosListC({clienteId: data.cliente.id})"><span class="glyphicon glyphicon-plus-sign"></span>Volver</a>
+                            <a ng-show="edit" class ="btn btn-success" ng-click="cambiarV()" ui-sref="paseos({clienteId: data.cliente.id})"> Volver</a>
                         </div>
                     </div>
                 </div>

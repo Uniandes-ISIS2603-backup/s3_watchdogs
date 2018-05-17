@@ -5,14 +5,30 @@
  */
 (function (ng) {
     var mod = ng.module("paseosModule");
+    mod.constant("clientesContext", "api/clientes");
     mod.constant("paseosContext", "api/paseos");
-    mod.controller('paseoNewCtrl', ['$scope', '$http', 'paseosContext', '$state', '$rootScope',
-        function ($scope, $http, paseosContext, $state, $rootScope) {
+    mod.constant("rutasContext", "api/rutas");
+    mod.controller('paseoNewCtrl', ['$scope', '$http','clientesContext', 'paseosContext','rutasContext', '$state', '$rootScope',
+        function ($scope, $http, clientesContext, paseosContext,rutasContext, $state, $rootScope) {
             $rootScope.edit = false;
 
             $scope.data = {};
+            $scope.mascotas = {};
+            $scope.rutas = {};
+            
+            var idCliente = $state.params.clienteId;
 
-            $scope.createpaseo = function () {
+            $http.get(clientesContext + '/' + idCliente).then(function (response) {
+                var cliente = response.data;
+                $scope.data.cliente = cliente;
+                $scope.mascotas = cliente.mascotas;
+            });
+            
+            $http.get(rutasContext).then(function(response){
+                $scope.rutas = response.data;
+            });
+
+            $scope.createPaseo = function () {
                 $http.post(paseosContext, $scope.data).then(function (response) {
                     $state.go('serviciosList', {paseoId: response.data.id}, {reload: true});
                 });

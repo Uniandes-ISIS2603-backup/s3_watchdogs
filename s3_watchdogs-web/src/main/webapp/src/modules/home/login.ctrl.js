@@ -20,6 +20,8 @@
          * para toda la aplicación.
          */
         function ($scope, $http, $state, $rootScope) {
+            $rootScope.logged = false;
+
 
             $scope.user = {};
             $scope.data = {};
@@ -59,6 +61,12 @@
                 }
                 });
             };
+            
+            $scope.ingresar = function(){
+                
+            }
+            
+            
         }
     ]);
 }

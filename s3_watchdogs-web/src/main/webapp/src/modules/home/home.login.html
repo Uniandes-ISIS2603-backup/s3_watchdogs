@@ -18,11 +18,12 @@
                         <option value="">--- Please select rol ---</option> <!-- not selected / blank option -->
                         <option value="admin">Administrator</option>
                         <option value="assistant">Assistant</option>
+                        <option value="cliente">Cliente</option>
                     </select>
                 </div>
                 <hr>
                 <div class="form-group row">
-                    <button type="button" class="btn btn-lg btn-primary btn-block" ng-click="autenticar()">
+                    <button type="button" class="btn btn-lg btn-primary btn-block" ui-sref="serviciosListC({clienteId: data.username})">
                         Iniciar Sesion
                     </button>
                 </div>

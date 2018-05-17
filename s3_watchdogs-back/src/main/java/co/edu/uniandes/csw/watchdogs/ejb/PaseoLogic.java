@@ -110,7 +110,6 @@ public class PaseoLogic {
         PaseoEntity paseoEntity = getPaseo(id);
         if(paseoEntity == null) throw new BusinessLogicException("El paseo no existe");
         
-        entity.setCosto(entity.getDuracion()*20000);
         PaseoEntity newEntity = persistence.update(entity);
         LOGGER.info("Termina proceso de actualizar Paseo");
         return newEntity;

@@ -6,6 +6,6 @@ and open the template in the editor.
 -->
 <div class="center-block well text-center">
     <h1>Seguro(a)?</h1>
-    <button id="confirm-delete" ng-click="deletepaseo()" class="btn btn-danger">Eliminar</button>
-    <a id="cancel-delete" ui-sref="serviciosList" class="btn btn-info">Cancelar</a>
+    <button id="confirm-delete" ng-click="deletepaseo()" ui-sref="paseos({clienteId: cliente})" class="btn btn-danger">Eliminar</button>
+    <a id="cancel-delete" ui-sref="paseos({clienteId: cliente})" class="btn btn-info">Cancelar</a>
 </div>

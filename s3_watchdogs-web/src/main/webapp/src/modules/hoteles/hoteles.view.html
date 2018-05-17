@@ -2,12 +2,12 @@
     <div class="panel-group">
         <div class="row">
             <div class="col-sm-6">
-                <p>
+                <strong>
                     Puedes dejarnos tu mascota en nuestro hotel mientras estas fuera de la ciudad. No podrias dejarla en mejores manos.
-                </p>     
+                </strong>     
             </div> 
             <div class="col-sm-6">    
-                <img src="src/images/hotel.png" >
+                <img src="src/images/servicios/hotel.png" >
             </div>    
         </div> 
         <div class="panel panel-primary">
@@ -59,7 +59,8 @@
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group mr-2" role="group" aria-label="First group">
                             <a ng-show="!edit" class="btn btn-info" ui-sref="hotelesCreate({clienteId: data.cliente.id})"><span class="glyphicon glyphicon-plus-sign"></span> Hacer reserva</a>
-                            <a ng-show="!edit" class="btn btn-warning" ng-click="cambiarF()"> Editar</a>
+                            <a ng-show="!edit" class="btn btn-warning" ng-click="cambiarF()"> Editar</a>                            
+                            <a ng-show="!edit" class="btn btn-dark" ui-sref="serviciosListC({clienteId: data.cliente.id})"><span class="glyphicon glyphicon-plus-sign"></span>Volver</a>
                             <a ng-show="edit" class ="btn btn-success" ng-click="cambiarV()" ui-sref="hotels({clienteId: data.cliente.id})"> Volver</a>
                         </div>
                     </div>

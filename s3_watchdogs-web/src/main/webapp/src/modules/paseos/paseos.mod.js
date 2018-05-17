@@ -10,10 +10,10 @@
             var basePath = 'src/modules/paseos/';
             $urlRouterProvider.otherwise("/paseoDetail");
             
-            $stateProvider.state('paseoDetail', {
-                url: '/paseos/{paseoId:int}/detail',
+            $stateProvider.state('paseos', {
+                url: '/paseos/{clienteId:int}/detail',
                 param: {
-                    paseoId: null
+                    clienteId: null
                 },
                 views: {
                     'mainView': {
@@ -23,8 +23,11 @@
                     }
                 }
                 }).state('paseosCreate', {
-                url: '/paseos/create',
+                url: '/clientes/{clienteId:int}/paseos/create',
                 //parent: 'paseoDetail',
+                param: {
+                    clienteId: null
+                },
                 views: {
                     'mainView': {
                         templateUrl: basePath + '/new/paseos.new.html',

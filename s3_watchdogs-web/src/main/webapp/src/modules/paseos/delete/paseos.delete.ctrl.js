@@ -6,8 +6,10 @@
 (function (ng) {
     var mod = ng.module("paseosModule");
     mod.constant("paseosContext", "api/paseos");
-    mod.controller('paseoDeleteCtrl', ['$scope', '$http', 'paseosContext', '$state',
-        function ($scope, $http, paseosContext, $state) {
+    mod.controller('paseoDeleteCtrl', ['$scope', '$http', 'paseosContext', '$state','$rootScope',
+        function ($scope, $http, paseosContext, $state,$rootScope) {
+            $rootScope.cliente = $state.params.clienteId;
+
             var idpaseo = $state.params.paseoId;
             $scope.deletepaseo = function () {
                 $http.delete(paseosContext + '/' + idpaseo, {}).then(function (response) {

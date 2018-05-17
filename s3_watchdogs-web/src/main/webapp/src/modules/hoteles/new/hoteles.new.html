@@ -1,6 +1,6 @@
-<div class="container-fluid">
-    <div class="panel panel-primary">
-        <div class="panel-heading"><label ng-if="!edit" id="createHotel">Reservar hotel</label>
+<div class="container-fluid" >
+    <div class="panel panel-primary" >
+        <div class="panel-heading"><h2 ng-if="!edit" id="createHotel">Reservar hotel</h2>
             <div class="panel-body">
                 <form name="hotel">
                     <div class="form-group row">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="form-group col-md-6">
-                            <label class="mr-sm-1" for="hotelDuracion" >Duracion (en horas)</label>
+                            <label class="mr-sm-1" for="hotelDuracion" >Duracion (en horas): EL COSTO POR HORA ES DE $10000</label>
                             <div class="col-10">
                                 <input class="form-control" type="number" value="0" id="hotelDuracion" required ng-model="data.duracion" >
                             </div>
@@ -45,8 +45,8 @@
                     </div> 
                     <div class="row">
                         <div class="col-sm-10">
-                            <a class="btn btn-success" ui-sref="serviciosList" ng-click="createHotel()" value="Save" >Guardar</a>
-                            <a class="btn btn-info" ui-sref="serviciosList">Cancel</a>
+                            <a ng-show="hotel.$valid" class="btn btn-success" ui-sref="serviciosListC({clienteId: data.cliente.id})" ng-click="createHotel()" value="Save" >Guardar</a>
+                            <a class="btn btn-info" ui-sref="hotels({clienteId: data.cliente.id})">Cancel</a>
                         </div>
                     </div>
                 </form>
