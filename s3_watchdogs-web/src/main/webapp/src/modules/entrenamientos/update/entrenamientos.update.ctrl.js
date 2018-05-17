@@ -30,10 +30,6 @@
                         $scope.mascotas = cliente.mascotas;
                     });
 
-                    $http.get(clientesContext + '/' + idCliente + '/servicios/' + idEntrenamiento).then(function (response) {
-                        var entrenamiento = response.data;
-
-                    });
 
                     $scope.createEntrenamiento = function () {
                         $http.put(entrenamientosContext + "/" + idEntrenamiento, $scope.data).then(function (response) {

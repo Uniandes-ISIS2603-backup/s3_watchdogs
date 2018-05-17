@@ -30,11 +30,6 @@
                         $scope.mascotas = cliente.mascotas;
                     });
 
-                    $http.get(clientesContext + '/' + idCliente + '/servicios/' + idHotel).then(function (response) {
-                        var hotel = response.data;
-
-                    });
-
                     $scope.createHotel = function () {
                         $http.put(hotelsContext + "/" + idHotel, $scope.data).then(function (response) {
                             $state.go('serviciosList', {hotelId: response.data.id}, {reload: true});
