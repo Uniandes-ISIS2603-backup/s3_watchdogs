@@ -36,7 +36,8 @@
         'calificacionesModule',
         'facturaModule',
         'disponibilidadModule',
-        'loginModule'
+        'loginModule',
+        'perfilModule'
 
     ]);
 
