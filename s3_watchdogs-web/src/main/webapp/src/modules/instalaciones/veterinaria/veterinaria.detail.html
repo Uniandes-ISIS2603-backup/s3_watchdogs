@@ -19,8 +19,14 @@ and open the template in the editor.
         </div>    
     </div>
     <div class='row'>
-        <div class='col-sm-6'>
-            <p><strong>Direccion</strong><p>{{veterinarias.direccion}}
+        <div class='col-sm-6' ng-repeat="veterinaria in veterinariasRecords">
+            <dl>
+                <dt>Direccion:</dt>
+                <dd>{{veterinaria}}</dd>
+                <dt>Duración del entrenamiento:</dt>
+                <dd>{{veterinaria.duracion}}</dd>
+            </dl>
+            <p><strong>Direccion</strong>{{veterinaria.direccion}}</p>
         </div>
     </div>
     <div class="row">
