@@ -17,20 +17,35 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class CalificacionEntity extends BaseEntity implements Serializable {
 
+    /**
+     * cliente calificado
+     */
     @PodamExclude
     @OneToOne
     private ClienteEntity cliente;
     
+    /**
+     * Empleado calificador
+     */
     @PodamExclude
     @OneToOne
     private EmpleadoEntity empleado;
-        
+     
+    /**
+    * puntaje de la calificacion
+    */
     private Integer puntaje;
 
+    /**
+     * @return the puntaje
+     */
     public Integer getPuntaje() {
         return puntaje;
     }
 
+    /**
+     * @param puntaje the puntaje to set
+     */
     public void setPuntaje(Integer puntaje) {
         this.puntaje = puntaje;
     }
@@ -49,9 +64,16 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
         this.cliente = cliente;
     }
 
+     /**
+     * @return the empleado
+     */
     public EmpleadoEntity getEmpleado() {
         return empleado;
     }
+    
+     /**
+     * @param empleado the empleado to set
+     */
 
     public void setEmpleado(EmpleadoEntity empleado) {
         this.empleado = empleado;

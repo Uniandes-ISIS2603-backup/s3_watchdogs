@@ -5,19 +5,23 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <div class="container-fluid">
+    <h4>Servicio de Entrenamiento</h4>
+    <hr>
     <div class="row">
-        <div class="col-sm-3">
-            <p> imagen</p>
+        <div class="col-sm-4">
+            <img src="src/images/servicios/entrenamiento.png" class="img-thumbnail" alt="Cinque Terre">
         </div>
-        <div class="col-sm-9">
-            <p>El adiestramiento canino es una cuestión básica que no se debe dejar al azar. Los perros deben ser educados y entrenados del
-                mismo modo que cada nuevo miembro humano en un hogar es educado para comportarse correctamente. 
-                Además de enseñarle cuestiones básicas relacionadas con la convivencia (control de esfínteres y otros impulsos) al perro se le 
-                pueden enseñar multitud de tareas y trucos. Algunas pueden resultar divertidas y entretenidas, mientras que otras son esenciales 
-                para asegurarse la obediencia de la mascota y para ser capaces de controlarle en determinadas situaciones. 
+        <div class="col-sm-8">
+            <p >El adiestramiento canino es una cuestión básica que no se debe dejar al azar. Los perros deben ser educados y entrenados del
+                mismo modo que cada nuevo miembro humano en un hogar es educado para comportarse correctamente. Además de enseñarle cuestiones  
+                básicas relacionadas con la convivencia (control de esfínteres y otros impulsos) al perro se le pueden enseñar multitud de 
+                tareas y trucos. Algunas pueden resultar divertidas y entretenidas, mientras que otras son esenciales para asegurarse la 
+                obediencia de la mascota y para ser capaces de controlarle en determinadas situaciones. 
+            </p>
         </div>
     </div>
     <hr>
+   
                     <div class="row">
                         
                         <form class="form-group col-md-6">
@@ -48,8 +52,7 @@ and open the template in the editor.
                          <form class="form-inline col-md-6" >
                                <label class="mr-sm-2" for="entrenamientoTipo">Tipo de entrenamiento:</label>
                                <div class="col-10">
-                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoTipo" required ng-model="data.tipo">
-                                     <option selected>Elige</option>
+                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenamientoTipo" required ng-model="data.tipo">                                   
                                      <option value="Truco">Trucos </option>
                                      <option value="Cardio Basico">Cardio Basico</option>
                                      <option value="Cardio Medio">Cardio Medio</option>
@@ -73,7 +76,16 @@ and open the template in the editor.
                             <input type="datetime-local" value="2011-08-19T13:45:00" id="entrenamientoFecha" required ng-model="data.fecha" class="form-control">
                             </div>
                         </form>
+                        <form class="form-inline col-md-6" >
+                               <label class="mr-sm-2" for="entrenamientoTipo">Entrenador:</label>
+                               <div class="col-10">
+                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="entrenadorMascota" required ng-model="data.entrenamiento" ng-options="x.nombre for x in entrenaamientos">                                   
+                                    
+                               </select>
+                               </div>
+                         </form>
                     </div>
+    
     
    
     

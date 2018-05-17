@@ -18,7 +18,10 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class DisponibilidadEntity extends BaseEntity implements Serializable{
     
-  
+  /**
+   * String que representa el horario
+   */
+
     @PodamStrategyValue(DiaDisponibilidadStrategy.class)
     private String matrizHorarios ; 
     

@@ -156,9 +156,9 @@ public class ClienteEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * Establece el valor de la coleccion de metodos de pago.
+     * Establece el valor de la coleccion de payPals.
      *
-     * @param metodosDePago nuevo valor de la coleccion.
+     * @param payPals nuevo valor de la coleccion.
      */
     public void setPayPals(List<PayPalEntity> payPals) {
         this.payPals = payPals;
@@ -254,18 +254,40 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.imagen = imagen;
     }
 
+    
+    /**
+     * Obtiene la coleccion de PSEs.
+     *
+     * @return coleecion de PSEs.
+     */
     public List<PseEntity> getPses() {
         return pses;
     }
 
+     /**
+     * Establece el valor de la coleccion de PSEs.
+     *
+     * @param pses nuevo valor de la coleccion.
+     */
     public void setPses(List<PseEntity> pses) {
         this.pses = pses;
     }
 
+    
+    /**
+     * Obtiene la coleccion de Tarjetas de Credito.
+     *
+     * @return coleecion de Tarjetas de Credito.
+     */
     public List<TarjetaCreditoEntity> getTarjetas() {
         return tarjetas;
     }
 
+      /**
+     * Establece el valor de la coleccion de Tarjetas de credito.
+     *
+     * @param tarjetas nuevo valor de la coleccion.
+     */
     public void setTarjetas(List<TarjetaCreditoEntity> tarjetas) {
         this.tarjetas = tarjetas;
     }

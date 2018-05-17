@@ -177,6 +177,12 @@ insert into TransporteEntity (id, devuelta, direccion, name, recogida) values (5
 insert into TransporteEntity (id, devuelta, direccion, name, recogida) values (5024, 17, '3490 Lillian Plaza', 'Fieldstone', 12);
 insert into TransporteEntity (id, devuelta, direccion, name, recogida) values (5025, 13, '561 Hoepker Terrace', 'Larry', 9);
 
+insert into LugarEntity(id, dtype, capacidadmaxima, direccion,  name, usuariosenservicio) values (5001, 'VeterinariaEntity', 50, 'cra33#47-06', 'Veterinaria',0);
+insert into LugarEntity(id, dtype, capacidadmaxima, direccion,  name, usuariosenservicio) values (5002, 'CentroDeEntrenamientoEntity', 50, 'cra100#47-06', 'Centro de Entrenamiento',0);
+
+insert into VeterinariaEntity(id) values (5001);
+
+insert into CentroDeEntrenamientoEntity(id) values(5002);
 --Calificacion Cliente
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5001, 'CalificacionCliente', 5, 5001);
 insert into CalificacionEntity (id, name, puntaje, cliente_id) values (5002, 'CalificacionCliente', 1, 5002);

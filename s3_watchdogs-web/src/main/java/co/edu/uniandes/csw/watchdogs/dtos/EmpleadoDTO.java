@@ -46,13 +46,45 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 public class EmpleadoDTO {
 
     //----- Atributos -----
+    
+    /**
+     * id del Empleado
+     */
     private Long id;
+    
+    /**
+     * nombre del empleado
+     */
     private String nombre;
+    
+    /**
+     * cedula del empleado
+     */
     private String cedula;
+    
+    /**
+     * imagen del empleado
+     */
     private String imagen;
+    
+    /**
+     * edad del empleado
+     */
     private Integer edad;
+    
+    /**
+     * Correo del empleado
+     */
     private String correo;
+    
+    /**
+     * telefono del empleado;
+     */
     private String telefono;
+    
+    /**
+    * cargo del empleado 
+    */
     private String cargo;
 
     //----- Constructor -----

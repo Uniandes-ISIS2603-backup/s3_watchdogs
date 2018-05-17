@@ -1,10 +1,29 @@
 function convertDisp(disponibilidad){
     
-    var disp = disponibilidad.matrizHorarios;
+   var disp = disponibilidad.matrizHorarios;
+   
+   var rta = "";
     
-    disp.split(" ");
+   var dias = disp.split(" ");
+   var i;
+   var j;
     
-    var d = disp[0];
+   for(i = 0; i < 7; i++){
+       rta += "<td>";
+       var asd = dias[i].split("");
+        for(j=0; j < 12; j++){
+            if(asd[j]=== "L"){
+                rta += "<img src= \"src/images/libre.jpg\" style =\"width:200px;height:50px\" alt=\"error\">";
+            } else if(asd[j]=== "D"){
+                rta += "<img src= \"src/images/disponible.jpg\" style =\"width:200px;height:50px\" alt=\"error\">";
+            } else if(asd[j]=== "A"){
+                rta += "<img src= \"src/images/agendado.png\" style =\"width:200px;height:50px\" alt=\"error\">";
+            }
+        }
+       rta += "</td>";
+   }
+    
+   /* var d = disp[0];
     d.split("");
     var l = disp[1];
     l.split("");
@@ -27,6 +46,7 @@ function convertDisp(disponibilidad){
                vie:{h8:v[0], h9:v[1], h10:v[2], h11:v[3], h12:v[4], h13:v[5], h14:v[6], h16:v[7], h17:v[8], h18:v[9], h19:v[10],h20:v[11]},
                sab:{h8:s[0], h9:s[1], h10:s[2], h11:s[3], h12:s[4], h13:s[5], h14:s[6], h16:s[7], h17:s[8], h18:s[9], h19:s[10],h20:s[11]}};
            
-    disponibilidad.matrizHorarios = rta;
+    disponibilidad.matrizHorarios = rta;*/
+    return rta;
 }
 

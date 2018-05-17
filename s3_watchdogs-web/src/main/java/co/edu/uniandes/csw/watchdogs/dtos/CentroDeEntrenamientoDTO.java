@@ -48,12 +48,19 @@ public class CentroDeEntrenamientoDTO extends LugarDTO{
         
     }
     
+    /**
+     * Constructor que recibe un entity
+     * @param entity 
+     */
     public CentroDeEntrenamientoDTO(CentroDeEntrenamientoEntity entity){
         
         super(entity);
     }
 
-    
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */  
     public CentroDeEntrenamientoEntity toEntity(){
         CentroDeEntrenamientoEntity entity = new CentroDeEntrenamientoEntity();
         entity.setId(this.id);

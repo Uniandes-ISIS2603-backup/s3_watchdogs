@@ -19,7 +19,14 @@ import java.util.List;
  */
 public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
     
+    /**
+     * Lista de Entrenamientos en el centro
+     */
     private transient List<EntrenamientoDTO> entrenamientos;
+    
+    /**
+     * Lista de servicios de Hotel en el centro
+     */
     private transient List<HotelDTO> hoteles;
     
     /**
@@ -30,6 +37,12 @@ public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
         super();
     }
     
+    /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de la mascota a partir de la cual se construye
+     * el objeto
+     */
     public CentroDeEntrenamientoDetailDTO(CentroDeEntrenamientoEntity entity){
         super(entity);
         if(entity.getEntrenamientos() != null){
