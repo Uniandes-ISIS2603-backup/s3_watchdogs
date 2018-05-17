@@ -53,12 +53,30 @@ import java.util.List;
  */
 public class FacturaDetailDTO extends FacturaDTO {
 
+    /**
+     *Cliente asociado a la factura 
+     */
+     
     private ClienteDTO cliente;
 
+    /**
+     * Servicio asociado a la factura
+     */
     private ServicioDTO servicio;
 
+    /**
+     * Posible Paypal asociado a la factura
+     */
     private PayPalDTO payPal;
+    
+    /**
+     * Posible PSE asociado a la factura
+     */
     private PseDTO pse;
+    
+    /**
+     * Posible Tyarjeta asociada a la factura
+     */
     private TarjetaCreditoDTO tarjeta;
 
     /**
@@ -67,7 +85,13 @@ public class FacturaDetailDTO extends FacturaDTO {
     public FacturaDetailDTO() {
         super();
     }
-
+    
+     /**
+     * Constructor para transformar un Entity a un DTO
+     *
+     * @param entity La entidad de la mascota a partir de la cual se construye
+     * el objeto
+     */
     public FacturaDetailDTO(FacturaEntity entity) {
         super(entity);
         if (entity != null) {
@@ -98,38 +122,50 @@ public class FacturaDetailDTO extends FacturaDTO {
         }
     }
 
+    /**
+     * @return the Paypal
+     */
     public PayPalDTO getPayPal() {
         return payPal;
     }
 
+    /**
+     * @param payPal the paypal to set
+     */
     public void setPayPal(PayPalDTO payPal) {
         this.payPal = payPal;
     }
 
+    
+    /**
+     * @return the pse
+     */
     public PseDTO getPse() {
         return pse;
     }
 
+    /**
+     * @param pse the pse to set
+     */
     public void setPse(PseDTO pse) {
         this.pse = pse;
     }
 
+    /**
+     * @return the tarjeta de credito
+     */
     public TarjetaCreditoDTO getTarjeta() {
         return tarjeta;
     }
-
+    
+    /**
+     * @param tarjeta the tarjeta to set
+     */
     public void setTarjeta(TarjetaCreditoDTO tarjeta) {
         this.tarjeta = tarjeta;
     }
 
-    public List<TarjetaCreditoDTO> getTarjetas() {
-        return tarjetas;
-    }
-
-    public void setTarjetas(List<TarjetaCreditoDTO> tarjetas) {
-        this.tarjetas = tarjetas;
-    }
-    private List<TarjetaCreditoDTO> tarjetas;
+   
 
     /**
      * @return the cliente
@@ -158,6 +194,11 @@ public class FacturaDetailDTO extends FacturaDTO {
     public void setServicio(ServicioDTO servicio) {
         this.servicio = servicio;
     }
+    
+     /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
 
     @Override
     public FacturaEntity toEntity() {

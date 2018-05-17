@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
-import co.edu.uniandes.csw.watchdogs.dtos.DisponibilidadDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.DisponibilidadDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.DisponibilidadLogic;
 import co.edu.uniandes.csw.watchdogs.entities.DisponibilidadEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -52,7 +52,7 @@ public class DisponibilidadResource {
     /**
      * <h1>POST /api/disponibilidades : Crear una disponibilidad.</h1>
      * 
-     * <pre>Cuerpo de petición: JSON {@link DisponibilidadDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link DisponibilidadDTO}.
      * 
      * Crea una nueva Disponibilidad con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
@@ -66,13 +66,13 @@ public class DisponibilidadResource {
      * 412 Precodition Failed: Ya existe la Disponibilidad.
      * </code>
      * </pre>
-     * @param disponibilidad {@link DisponibilidadDetailDTO} - La disponibilidad que se desea guardar.
-     * @return JSON {@link DisponibilidadDetailDTO}  - La disponibilidad guardada con el atributo id autogenerado.
+     * @param disponibilidad {@link DisponibilidadDTO} - La disponibilidad que se desea guardar.
+     * @return JSON {@link DisponibilidadDTO}  - La disponibilidad guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la Disponibilidad.
      */
     @POST
-    public DisponibilidadDetailDTO createDisponibilidad(DisponibilidadDetailDTO disponibilidad) throws BusinessLogicException {
-         return new DisponibilidadDetailDTO(disponibilidadLogic.createDisponibilidad(disponibilidad.toEntity()));
+    public DisponibilidadDTO createDisponibilidad(DisponibilidadDTO disponibilidad) throws BusinessLogicException {
+         return new DisponibilidadDTO(disponibilidadLogic.createDisponibilidad(disponibilidad.toEntity()));
     }
 
     /**
@@ -84,14 +84,14 @@ public class DisponibilidadResource {
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve todas las disponibilidades de la aplicacion.</code> 
      * </pre>
-     * @return JSONArray {@link DisponibilidadDetailDTO} - Las disponibilidades encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link DisponibilidadDTO} - Las disponibilidades encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<DisponibilidadDetailDTO> getDisponibilidades() {
+    public List<DisponibilidadDTO> getDisponibilidades() {
          List<DisponibilidadEntity> list = disponibilidadLogic.getDisponibilidades();
-        List<DisponibilidadDetailDTO> dtoList = new ArrayList<DisponibilidadDetailDTO>();
+        List<DisponibilidadDTO> dtoList = new ArrayList<DisponibilidadDTO>();
         for (DisponibilidadEntity entity : list) {
-            dtoList.add(new DisponibilidadDetailDTO(entity));
+            dtoList.add(new DisponibilidadDTO(entity));
         }
         return dtoList;
     }
@@ -110,21 +110,21 @@ public class DisponibilidadResource {
      * </code> 
      * </pre>
      * @param id Identificador de la disponibilidad que se esta buscando. Este debe ser una cadena de dígitos.
-     * @return JSON {@link DisponibilidadDetailDTO} - La disponibilidad buscada
+     * @return JSON {@link DisponibilidadDTO} - La disponibilidad buscada
      */
     @GET
     @Path("{id: \\d+}")
-    public DisponibilidadDetailDTO getDisponibilidad(@PathParam("id") Long id) {
+    public DisponibilidadDTO getDisponibilidad(@PathParam("id") Long id) {
         DisponibilidadEntity entity = disponibilidadLogic.getDisponibilidad(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /disponibilidades/" + id + " no existe.", 404);
         }
-        return new DisponibilidadDetailDTO(entity);
+        return new DisponibilidadDTO(entity);
     }
     
     /**
      * <h1>PUT /api/disponibilidades/{id} : Actualizar disponibilidad con el id dado.</h1>
-     * <pre>Cuerpo de petición: JSON {@link DisponibilidadDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link DisponibilidadDTO}.
      * 
      * Actualiza la disponibilidad con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
      * 
@@ -136,19 +136,19 @@ public class DisponibilidadResource {
      * </code> 
      * </pre>
      * @param id Identificador de la dos´pmonoñodad que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param disponibilidad {@link DisponibilidadDetailDTO} La disponibilidad que se desea guardar.
-     * @return JSON {@link DisponibilidadDetailDTO} - La disponibilidad guardada.
+     * @param disponibilidad {@link DisponibilidadDTO} La disponibilidad que se desea guardar.
+     * @return JSON {@link DisponibilidadDTO} - La disponibilidad guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando la disponibilidad no cumple las especificaciones.
      */
     @PUT
     @Path("{id: \\d+}")
-    public DisponibilidadDetailDTO updateDisponibilidad(@PathParam("id") Long id, DisponibilidadDetailDTO disponibilidad) throws BusinessLogicException{
+    public DisponibilidadDTO updateDisponibilidad(@PathParam("id") Long id, DisponibilidadDTO disponibilidad) throws BusinessLogicException{
         disponibilidad.setId(id);
         DisponibilidadEntity entity = disponibilidadLogic.getDisponibilidad(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /disponibilidades/" + id + " no existe.", 404);
         }
-        return new DisponibilidadDetailDTO(disponibilidadLogic.updateDisponibilidad(id, disponibilidad.toEntity()));
+        return new DisponibilidadDTO(disponibilidadLogic.updateDisponibilidad(id, disponibilidad.toEntity()));
     }
     
     /**

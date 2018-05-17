@@ -1,44 +1,45 @@
-<div class="container-fluid">
-    <div class="panel-group">
-        <div class="row">
-            <div class="col-sm-6">
-                <p>
-                    No permitas que tu amigo se aburra en casa. El ejercicio es vital para la salud de tu mascota, nuestro personal cuenta con diversas rutas con las cuales tu compañero no se aburrira nunca y lograr ejercitarse al igual que hacer varios amigos.
-                </p>     
-            </div> 
-            <div class="col-sm-6">    
-                <img src="src/images/paseo.png" >
-            </div>    
-        </div> 
-        <div class="panel panel-primary">
-            <h5>Lista de reservas</h5>
-            <div class="panel-body">
-                <div class="col-md-8">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Mascota</th>    
-                                <th>Fecha del paseo</th>
-                                <th>Hora del paseo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="paseo in currentPaseo">
-                                <td>{{paseo.mascota_id}}</td>
-                                <td>{{paseo.fecha}}</td>
-                                <td>{{paseo.hora}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <a  class="btn btn-info" ui-sref="paseosCreate"><span class="glyphicon glyphicon-plus-sign"></span> Reservar paseo</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="container">
+    <div class="row">
+        <h4>Servicio de Paseo</h4>
+        <hr>
+        <div class="col-sm-4">
+            <img src="src/images/servicios/entrenamiento.png" class="img-thumbnail" alt="Cinque Terre">
+        </div>
+        <div class="col-sm-8">
+            <p >Los que tenemos perro en casa sabemos que sacar de paseo a nuestra mascota, implica algo más que el
+                que él haga sus necesidades. Ya sabemos que supone una gran responsabilidad, pues hay que atender 
+                sus necesidades básicas como son la comida, la salud, el juego y también su paseo diario. Tienes 
+                que tener en cuenta que hay razas que necesitarán más tiempo de paseo o que lo saques más veces al día.</p>
         </div>
     </div>
-
-
+    <hr>
+    <div class="row">
+        <div class="col-sm-6">
+            <dl>
+                <dt>Ruta:</dt>
+                <dd>{{currentPaseo.ruta}}</dd>
+                <dt>Hora del paseo:</dt>
+                <dd>{{currentPaseo.horas}}</dd>
+            </dl>
+        </div>
+        <div class="col-sm-6">
+            <p><strong>Fecha:</strong></p>
+            <p>{{currentPaseo.fecha | date:'yyyy-MM-dd'}}</p>
+            <p><strong>Precio:</strong></p>
+            <p>{{currentPaseo.costo}}.000</p>
+        </div>   
+    </div>
+    <div ng-if="currentPaseo.estado" class="row">
+        <a ui-sref="paseoUpdate({paseoId:currentPaseo.id})" class="btn btn-primary">Actualizar</a>
+        <a ui-sref="paseoDelete({paseoId:currentPaseo.id})" class="btn btn-primary">Cancelar</a>
+    </div>
+    <div ng-if="!currentPaseo.estado" class="row">
+        <a ui-sref="calificacionCreate({paseoId: currentPaseo.id})" class="btn btn-primary">Calificar</a>
+    </div>
 </div>

@@ -34,8 +34,19 @@ import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
  */
 public class PseDTO {
     
+    /**
+     * Id del PSE
+     */
     private Long id;
+    
+    /**
+     * Correo del PSE
+     */
     private String correo;
+    
+    /**
+     * Nombre del método de pago
+     */
     private String nombre;
     
     /**
@@ -53,6 +64,10 @@ public class PseDTO {
         }
     }
     
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
     public PseEntity toEntity()
     {
         PseEntity entity = new PseEntity();
@@ -62,10 +77,19 @@ public class PseDTO {
         return entity;
     }
 
+    /**
+     * @return el nombre del metodo de pago 
+     */
+     
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * 
+     * @param nombre el nuevo nombre del metodo de pago
+     */
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

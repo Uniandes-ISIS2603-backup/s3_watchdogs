@@ -25,16 +25,27 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class FacturaEntity extends BaseEntity implements Serializable{
     
-    
+    /**
+     * valor de la factura
+     */
     @PodamDoubleValue(minValue = 0)
     private Double valor;
+    
+    /**
+     * Estado de pagado de la factura
+     */
     private Boolean pagado;
     
-    
+    /**
+     * Cliente asociado a la factura
+     */
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
     
+    /**
+     * Servicio Asociado a la factura
+     */
     @PodamExclude
     @OneToOne
     private ServicioEntity servicio;
@@ -60,7 +71,9 @@ public class FacturaEntity extends BaseEntity implements Serializable{
     @OneToOne
     private TarjetaCreditoEntity tarjeta;
 
-    
+    /**
+     * Constructor por defecto
+     */
     
     public FacturaEntity(){
         
@@ -119,9 +132,7 @@ public class FacturaEntity extends BaseEntity implements Serializable{
         this.cliente = cliente;
     }
 
-    
-  
-
+   
    
     /**
      * @return the servicio
@@ -140,26 +151,45 @@ public class FacturaEntity extends BaseEntity implements Serializable{
         this.servicio = servicio;
     } 
 
+     /**
+     * @return the paypal
+     */
     public PayPalEntity getPayPal() {
         return payPal;
     }
 
+    /**
+     * @param payPal the paypal to set
+     */
     public void setPayPal(PayPalEntity payPal) {
         this.payPal = payPal;
     }
+    
+     /**
+     * @return the pse
+     */
 
     public PseEntity getPse() {
         return pse;
     }
 
+    /**
+     * @param pse the pse to set
+     */
     public void setPse(PseEntity pse) {
         this.pse = pse;
     }
 
+     /**
+     * @return the tarjeta
+     */
     public TarjetaCreditoEntity getTarjeta() {
         return tarjeta;
     }
 
+    /**
+     * @param tarjeta the tarjeta to set
+     */
     public void setTarjeta(TarjetaCreditoEntity tarjeta) {
         this.tarjeta = tarjeta;
     }

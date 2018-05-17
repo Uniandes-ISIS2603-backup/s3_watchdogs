@@ -48,9 +48,19 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  */
 public class AseoDTO extends ServicioDTO{
     
-//    private Long id;
+    /**
+     * Representa si el Aseo incluye servicio de dientes
+     */
     private Boolean dientes;
+    
+    /**
+     * Representa si el Aseo incluye servicio de baño
+     */
     private Boolean banho;
+    
+    /**
+     * Representa si el Aseo incluye servicio de peluquería
+     */
     private Boolean peluqueria;
     
     /**

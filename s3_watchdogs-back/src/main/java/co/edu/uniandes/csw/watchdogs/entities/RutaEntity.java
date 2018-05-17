@@ -22,13 +22,22 @@ import uk.co.jemos.podam.common.PodamIntValue;
 @Entity
 public class RutaEntity extends BaseEntity implements Serializable{
     
+    /**
+     * La duracion de la ruta
+     */
     @PodamIntValue(minValue = 1, maxValue = 120)
     private Integer duracion;
     
+    /**
+     * Lista de paseos que poseen la ruta
+     */
     @PodamExclude
     @OneToMany(mappedBy="ruta",cascade = CascadeType.ALL,fetch =FetchType.LAZY)
     private List<PaseoEntity> paseos;
     
+    /**
+     * Constructor por defecto
+     */
     public RutaEntity(){
         
     }
@@ -51,10 +60,16 @@ public class RutaEntity extends BaseEntity implements Serializable{
         return duracion;
     }
 
+    /**
+     * @return Lista de paseos con esta ruta 
+     */
     public List<PaseoEntity> getPaseos() {
         return paseos;
     }
 
+    /**
+     * @param paseos nueva lista de paseos con esta ruta 
+     */
     public void setPaseos(List<PaseoEntity> paseos) {
         this.paseos = paseos;
     }

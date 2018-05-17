@@ -3,16 +3,16 @@
    
 
     <div class="row">
-        <div class="col-sm-4 col-12" ng-repeat="ruta in rutasRecords">
-            <div class="card"> <img class="card-img-top" src="src/images/map-default.png" alt="map-default" style="width: 11vw;  height: 11vw;  object-fit: cover;">   <!--src="{{ruta.image}}" --> <!--{{ruta.nombre}}-->
-                <h4 class="card-title">{{ruta.nombre}}</h4> <!-- {{ruta.nombre}} ambos atributos se añadirán en el ciclo 3-->
+        <div class="col-sm-3 col-12" ng-repeat="ruta in rutasRecords">
+            <div class="card"> <img class="card-img-top" src="src/images/map-default.png" alt="map-default" style="width: 13vw;  height: 13vw;  object-fit: cover;">   <!--src="{{ruta.image}}" --> <!--{{ruta.nombre}}-->
+                <h4 class="card-title">{{ruta.nombre}}</h4> 
                 <p class="card-text">Duracion: {{ruta.duracion}} minutos </p>
             </div>
         </div>
 
-        <div class="col-sm-4 col-12">
+        <div class="col-sm-3 col-12">
             <div class="card">
-                <a class="nav-link" ui-sref="rutasNew"> <img class="card-img-top" src="src/images/agregar.png" alt="agregar" style="width: 11vw;  height: 11vw;  object-fit: cover;"></a>
+                <a class="nav-link" ui-sref="rutasNew"> <img class="card-img-top" src="src/images/agregar.png" alt="agregar" style="width: 13vw;  height: 13vw;  object-fit: cover;"></a>
                 <div class="card-body">     
                     <h5 class="card-title">Agregar nueva ruta </h5>
                 </div>

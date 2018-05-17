@@ -35,7 +35,7 @@
                     },
                     'mainView':{
                         templateUrl: basePath + 'veterinaria/veterinaria.detail.html',
-                        controller:'instalacionesCtrl',
+                        controller:'veterinariaCtrl',
                         controllerAs: 'ctrl' 
                     }
                 }

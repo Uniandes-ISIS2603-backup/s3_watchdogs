@@ -43,7 +43,11 @@ import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
  */
 public class HotelDTO extends ServicioDTO {
 
-    private Integer tiempoHospedaje; //En horas
+    /**
+     * Tiempo en horas del hospedaje 
+     */
+     
+    private Integer tiempoHospedaje; 
 
     /**
      * Constructor por defecto
@@ -51,7 +55,11 @@ public class HotelDTO extends ServicioDTO {
     public HotelDTO() {
 
     }
-
+    
+    /**
+     * Constructor que recibe un entity
+     * @param entity 
+     */
     public HotelDTO(HotelEntity entity) {
         super(entity);
         this.setTiempoHospedaje(entity.getTiempoHospedaje());
@@ -71,6 +79,10 @@ public class HotelDTO extends ServicioDTO {
         this.tiempoHospedaje = pTiempoHospedaje;
     }
 
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
     public HotelEntity toEntity() {
         HotelEntity entity = new HotelEntity();
         entity.setId(this.getId());

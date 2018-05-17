@@ -21,26 +21,44 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class CentroDeEntrenamientoEntity extends LugarEntity implements Serializable {
      
+    /**
+     * Lista de Entrenamientos en el centro
+     */
      @PodamExclude
      @OneToMany(mappedBy = "centroDeEntrenamiento",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
      private List<EntrenamientoEntity> entrenamientos;
      
+     /**
+     * Lista de servicios de Hotel en el centro
+     */
      @PodamExclude
      @OneToMany(mappedBy = "centroDeEntrenamiento",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
      private List<HotelEntity> hoteles;
 
+     /**
+      * @return La lista de entrenamientos en el hotel
+      */
     public List<EntrenamientoEntity> getEntrenamientos() {
         return entrenamientos;
     }
 
+    /**
+     * @param entrenamientos la nueva lista de entrenamientos
+     */
     public void setEntrenamientos(List<EntrenamientoEntity> entrenamientos) {
         this.entrenamientos = entrenamientos;
     }
 
+    /**
+      * @return La lista de servidios de hotel en el hotel
+      */
     public List<HotelEntity> getHoteles() {
         return hoteles;
     }
 
+    /**
+     * @param hoteles la nueva lista de servicios de hotel
+     */
     public void setHoteles(List<HotelEntity> hoteles) {
         this.hoteles = hoteles;
     }
