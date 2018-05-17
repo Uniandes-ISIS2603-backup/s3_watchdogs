@@ -129,7 +129,6 @@
                 sessionStorage.setItem("rol", null);
                 sessionStorage.setItem("id", null);
                 sessionStorage.setItem("name", null);
-                alert('Se ha cerrado correctamente la sesión');
             };
         }]);
 })(window.angular);
