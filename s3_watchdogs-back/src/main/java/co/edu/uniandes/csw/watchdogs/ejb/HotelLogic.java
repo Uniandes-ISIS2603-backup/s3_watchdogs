@@ -8,8 +8,12 @@ package co.edu.uniandes.csw.watchdogs.ejb;
 import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
+import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.HotelPersistence;
@@ -41,6 +45,9 @@ public class HotelLogic {
 
     @Inject
     private EmpleadoLogic empleadoLogic;
+    
+    @Inject
+    private FacturaLogic facturaLogic;
 
     /**
      * Devuelve todos los Hotel que hay en la base de datos.
@@ -106,6 +113,38 @@ public class HotelLogic {
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(idC);
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de hotel");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
+        }
+    }
+    
+    /**
+     * Guardar un nuevo hotel
+     *
+     * @param idC
+     * @param entity La entidad de tipo hotel del nuevo libro a
+     * persistir.
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException
+     */
+    public HotelEntity createFullHotel(Long idC, HotelEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de hotel. Logica");
+
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+                FacturaEntity factura = new FacturaEntity();
+                factura.setCliente(cliente);
+                factura.setValor(costo(entity.getDuracion()));
+                facturaLogic.createFactura(factura);
             entity.setCosto(costo(entity.getDuracion()));
             entity.setEstado(true);
             entity.setCliente(cliente);

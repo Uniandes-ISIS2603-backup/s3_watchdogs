@@ -9,7 +9,11 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
+import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.AseoPersistence;
@@ -42,6 +46,18 @@ public class AseoLogic {
     @Inject
     private EmpleadoLogic empleadoLogic;
 
+    @Inject
+    private PayPalLogic payPalLogic;
+
+    @Inject
+    private PseLogic pseLogic;
+
+    @Inject
+    private TarjetaCreditoLogic tarjetaLogic;
+
+    @Inject
+    private FacturaLogic facturaLogic;
+
     /**
      * Guardar un nuevo aseo
      *
@@ -51,7 +67,7 @@ public class AseoLogic {
      */
     public AseoEntity createAseo(AseoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Aseo. Logica");
-        LOGGER.log(Level.INFO,"Fecha = {0}",entity.getCliente().getId());
+        LOGGER.log(Level.INFO, "Fecha = {0}", entity.getCliente().getId());
 
         Date todayDate = Calendar.getInstance().getTime();
         if (todayDate.before(entity.getFecha())) {
@@ -73,8 +89,7 @@ public class AseoLogic {
      * Guardar un nuevo Aseo
      *
      * @param idC
-     * @param entity La entidad de tipo Aseo del nuevo libro a
-     * persistir.
+     * @param entity La entidad de tipo Aseo del nuevo libro a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
@@ -96,7 +111,42 @@ public class AseoLogic {
             throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
         }
     }
-    
+
+    /**
+     * Guardar un nuevo Aseo
+     *
+     * @param idC
+     * @param entity La entidad de tipo Aseo del nuevo libro a persistir.
+     * @param paypal
+     * @param pse
+     * @param tarjeta
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException
+     */
+    public AseoEntity createFullAseo(Long idC, AseoEntity entity, PayPalEntity paypal, PseEntity pse, TarjetaCreditoEntity tarjeta) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de Aseo. Logica");
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            FacturaEntity factura = new FacturaEntity();
+            factura.setCliente(cliente);
+            factura.setValor(costo(entity.getDuracion()));
+            facturaLogic.createFactura(factura);
+
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de Aseo");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
+        }
+
+    }
+
     /**
      * Devuelve todos los Servicios de Aseo que hay en la base de datos.
      *
@@ -179,10 +229,9 @@ public class AseoLogic {
         aseoEntity.setVeterinaria(vet);
         return aseoEntity.getVeterinaria();
     }
-    
+
     /**
-     * Metodo que devuelve la calificacion del aseo con id dado por
-     * parametro.
+     * Metodo que devuelve la calificacion del aseo con id dado por parametro.
      *
      * @param id del aseo
      * @return CalificacionEntity

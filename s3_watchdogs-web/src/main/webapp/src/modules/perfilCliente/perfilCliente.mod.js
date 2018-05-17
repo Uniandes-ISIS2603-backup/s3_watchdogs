@@ -24,7 +24,61 @@
                         controller: 'perfilCtrl'
                     }
                 }
-            });
+            }).state('clientePerfilMascotasList', {
+
+                parent: 'miPerfil',
+
+                views: {
+                    mascotasClienteList: {
+                        templateUrl: basePath + 'clientesMascotas.list.html',
+                        controller: 'clienteMascotasCtrl'
+                    }
+                }
+                ,
+                data: {
+                    requireLogin: true,
+                    roles: ['admin']
+                }
+            }).state('mascotaPerfilCreate', {
+
+                url: 'mascota/create',
+                parent: 'miPerfil',
+
+                views: {
+                    create: {
+                        templateUrl: basePath + 'clientesMascotas.create.html'
+                    }
+                }
+                ,
+                data: {
+                    requireLogin: true,
+                    roles: ['admin']
+                }
+            }).state('temporalMascotaPerfilCreate', {
+                params: {
+                    name: null,
+                    color: null,
+                    raza: null,
+                    imagen: null,
+                    sexo: null
+                },
+                url: 'mascota/create',
+                parent: 'miPerfil',
+
+                views: {
+                    create: {
+                        controller: 'clienteMascotasCreateCtrl',
+                        templateUrl: basePath + 'clientesMascotas.create.html',
+
+                    }
+                }
+                ,
+                data: {
+                    requireLogin: true,
+                    roles: ['admin']
+                }
+            })
+            ;
     }]);
 })(window.angular);
 

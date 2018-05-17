@@ -30,11 +30,6 @@
                         $scope.mascotas = cliente.mascotas;
                     });
 
-                    $http.get(clientesContext + '/' + idCliente + '/servicios/' + idPaseo).then(function (response) {
-                        var paseo = response.data;
-
-                    });
-
                     $scope.createPaseo = function () {
                         $http.put(paseosContext + "/" + idPaseo, $scope.data).then(function (response) {
                             $state.go('serviciosList', {paseoId: response.data.id}, {reload: true});

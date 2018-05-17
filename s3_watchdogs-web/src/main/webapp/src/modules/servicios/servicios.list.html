@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -21,7 +21,7 @@
     </div>
 
     <hr>
-    <h2 class="tituloscards" style="font-size: 40px;">Nuestros Servicios</h2>
+    <h2 class="tituloscards" style="font-size: 40px;">Nuestros Servicios{{currentUser}}</h2>
     <div class="row">
         <div class="col-sm-3 d-flex align-items-stretch" ng-repeat="servicio in serviciosRecords">
             <div class="card" id="card-aseo"> <img class="card-img-top" src='{{servicio.imagen}}' alt="{{servicio.nombre}}">
@@ -31,8 +31,22 @@
                         <p class="parrafoscards">{{servicio.descripcion}} {{currentUser}}</p>
                     </div>
                     <div ng-if="isAuthenticated()">
-                        <a ui-sref="aseosCreate({clienteId: currentUser})" class="btn btn-primary" id="btn-contratar-aseo" >Contratar</a>
+                        <div ng-if="servicio.nombre==='Aseo'" >
+                            <a ui-sref="aseosCreate({clienteId: currentUser})" class="btn btn-primary" id="btn-contratar-aseo" >Contratar</a>
+
+                        </div>
+                        <div ng-if="servicio.nombre==='Paseo'" >
+                            <a ui-sref="paseosCreate({clienteId: currentUser})" class="btn btn-primary" id="btn-contratar-aseo" >Contratar</a>
+                        </div>
+                        <div ng-if="servicio.nombre==='Entrenamiento'" >
+                            <a ui-sref="entrenamientosCreate({clienteId: currentUser})" class="btn btn-primary" id="btn-contratar-aseo" >Contratar</a>
+                        </div>
+                        <div ng-if="servicio.nombre==='Hotel'" >
+                            <a ui-sref="hotelesCreate({clienteId: currentUser})" class="btn btn-primary" id="btn-contratar-aseo" >Contratar</a>
+                        </div>
+
                     </div>
+                    
                 </div>
             </div>
         </div>

@@ -30,11 +30,6 @@
                         $scope.mascotas = cliente.mascotas;
                     });
 
-                    $http.get(clientesContext + '/' + idCliente + '/servicios/' + idAseo).then(function (response) {
-                        var aseo = response.data;
-
-                    });
-
                     $scope.createAseo = function () {
                         $http.put(aseosContext + "/" + idAseo, $scope.data).then(function (response) {
                             $state.go('serviciosList', {aseoId: response.data.id}, {reload: true});

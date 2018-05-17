@@ -1,0 +1,16 @@
+(function (ng) {
+    
+    var mod = ng.module("perfilModule");
+    
+    mod.constant("clientesMascotasContext", "api/clientes");
+    mod.controller('clienteMascotasCtrl', ['$scope', '$http', 'clientesMascotasContext', '$state',
+        function ($scope, $http, clientesMascotasContext, $state) {
+            if(($state.params.clienteId !== undefined) && ($state.params.clienteId !== null)){
+
+            $http.get(clientesMascotasContext + '/' + $state.params.clienteId + '/mascotas').then(function (response) {
+                $scope.clientesMascotasRecords = response.data;
+            
+            });
+        }
+        }]);
+})(window.angular);
