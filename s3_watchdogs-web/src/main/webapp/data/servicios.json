@@ -3,7 +3,7 @@
         "imagen": "src/images/servicios/aseo.png",
         "nombre": "Aseo",
         "descripcion": "Nos destacamos por nuestra calidad en el servicio. No permitas que tu mascota ensucie todo a su alrededor, ni que malos olores afecten la tranquilidad de tu hogar. Traela y notaras un gran cambio y permite que salga contento de nuestras instalaciones.",
-        "identificador": "aseoCreate"
+        "identificador": "aseosCreate"
     },
     {
         "imagen": "src/images/servicios/paseo.png",
