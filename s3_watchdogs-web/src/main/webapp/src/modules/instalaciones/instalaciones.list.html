@@ -6,6 +6,7 @@ and open the template in the editor.
 -->
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
 <div class="container-fluid">
+    <h1 class="tituloscards">INSTALACIONES </h1>
     <hr>
     <div class="row">
         <div class="row">
@@ -13,8 +14,8 @@ and open the template in the editor.
               <div class="card">
                   <img class="card-img-top" ng-src='{{instalacion.imagen}}' alt='{{instalacion.name}}'>
                      <div class="card-body">
-                        <h5 class="card-title">{{instalacion.name}}</h5>
-                        <p class="card-text" style="font-size:80%;">{{instalacion.descripcion}}</p>
+                        <h5 class="tituloscards">{{instalacion.name}}</h5>
+                        <p class="parrafoscards" style="font-size:80%;">{{instalacion.descripcion}}</p>
                      </div>
               </div>  
             </div>

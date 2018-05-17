@@ -11,7 +11,6 @@
             
             $stateProvider.state('serviciosAdmin', {
                 url: '/servicios/admin',
-                abstract: true,
                 views: {
                     'completeView': {
                         templateUrl: basePath + 'serviciosAdmin.html',

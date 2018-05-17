@@ -5,8 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
-<div class="container-fluid" style="width: 1500px" >
-    <hr>
+<div class="container-fluid">
     <div class="row">
         <div class="row">
             <div class="col-sm-2" ng-repeat="empleado in empleadosRecords">
@@ -14,8 +13,8 @@ and open the template in the editor.
                   <img class="card-img-top rounded-circle" ng-src='{{empleado.imagen}}' alt='{{empleado.name}}'>
                   <hr>
                      <div class="card-body">
-                        <h5 class="card-t">{{empleado.nombre}}</h5>
-                        <p class="card-text" style="text-align: center">{{empleado.cargo}}</p>
+                        <h5 class="tituloscards">{{empleado.nombre}}</h5>
+                        <p class="parrafoscards" style="text-align: center">{{empleado.cargo}}</p>
                        
                      </div>
               </div>  

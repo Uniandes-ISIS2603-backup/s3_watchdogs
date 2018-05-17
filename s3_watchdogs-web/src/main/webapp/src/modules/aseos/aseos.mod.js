@@ -37,11 +37,12 @@
                     }
                 }
                 }).state('aseosCreate', {
-                url: '/clientes/{clienteId:int}/aseos/create',
+               
                 //parent: 'entrenamientoDetail',
                 param:{
                     clienteId: null
                 },
+                url: '/clientes/{clienteId:int}/aseos/create',
                 views: {
                     'mainView': {
                         templateUrl: basePath + '/new/aseos.new.html',

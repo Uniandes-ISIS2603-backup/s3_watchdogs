@@ -1,35 +1,34 @@
-<!--<div class="container-fluid" ng-if="isAuthenticated() && hasPermissions()">-->
 <div class="container-fluid">
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading"><h3>Lista de instalaciones</h3></div>
+            <div class="tituloscards"><h3>Lista de instalaciones</h3></div>
             <div class="panel-body">
-                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                    <div class="btn-group mr-2" role="group" aria-label="First group">
-                        <a class="btn btn-info" ui-sref="instalacionesAdminCreate"><span class="glyphicon glyphicon-plus-sign"></span>Agregar un nuevo instalacion</a>
-                        <a class="btn btn-info" ui-sref="instalacionAdminDetail"><span class="glyphicon glyphicon-plus-sign"></span>Buscar un instalacion</a>
-                        <a class="btn btn-info" ui-sref="instalacionesAdminList"><span class="glyphicon glyphicon-plus-sign"></span>Mostrar todos los instalaciones</a>
-                    </div>
-                </div>
-                <hr>
                 <div class="row">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Nombre</th>
-                                <th>Descripcion</th>
-                                <th>Acciones</th>
+                                <th class="parrafoscards" style="font-size: 18px">Id</th>
+                                <th class="parrafoscards" style="font-size: 18px">Nombre</th>
+                                <th class="parrafoscards" style="font-size: 18px">Capacidad Maxima</th>
+                                <th class="parrafoscards" style="font-size: 18px">Direccion</th>
+                                <th ng-if="isAdmin()" class="parrafoscards" style="font-size: 18px">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr ng-repeat="instalacionAdmin in instalacionesAdminRecords">
+                        <tbody ng-repeat="a in instalacionesAdminRecords">
+                            <tr ng-repeat="instalacionAdmin in a">
                                 <td id="{{$index}}-nombre">
-                                    <a ui-sref="instalacionAdminDetail({instalacionAdminId: instalacionAdmin.id})">{{instalacionAdmin.name}}</a>
+                                    {{instalacionAdmin.id}}
                                 </td>
-                                <td id="{{$index}}-documento">{{instalacionAdmin.descripcion}}</td>
-                                <td id="{{$index}}-acciones">
-                                    <a id="{{$index}}-edit" class="btn btn-default btn-sm" ui-sref="instalacionAdminUpdate({instalacionAdminId: instalacionAdmin.id})"><span class="glyphicon glyphicon-edit"></span>Editar</a>
-                                    <a id="{{$index}}-delete" class="btn btn-default btn-sm" ui-sref="instalacionAdminDelete({instalacionAdminId: instalacionAdmin.id})"><span class="glyphicon glyphicon-edit"></span>Eliminar</a>
+                                <td id="{{$index}}-documento">{{instalacionAdmin.type}}</td>
+                                <td id="{{$index}}-documento">{{instalacionAdmin.capacidadMaxima}}</td>
+                                <td id="{{$index}}-documento">{{instalacionAdmin.direccion}}</td>
+                                <td ng-if="isAdmin()" id="{{$index}}-acciones">
+                                    <a ng-if="isAdmin()" id="{{$index}}-edit" class="btn btn-default btn-sm" ui-sref="instalacionAdminUpdate({instalacionAdminId: instalacionAdmin.id})">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a ng-if="isAdmin()" id="{{$index}}-delete" class="btn btn-default btn-sm" ui-sref="instalacionAdminDelete({instalacionAdminId: instalacionAdmin.id})">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

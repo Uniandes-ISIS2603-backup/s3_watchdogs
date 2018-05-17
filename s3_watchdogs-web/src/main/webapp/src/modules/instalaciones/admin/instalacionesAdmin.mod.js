@@ -11,9 +11,8 @@
             
             $stateProvider.state('instalacionesAdmin', {
                 url: '/instalacionesAdmin',
-                abstract: true,
                 views: {
-                    'mainView': {
+                    'completeView': {
                         templateUrl: basePath + 'instalacionesAdmin.html',
                         controller: 'instalacionesAdminCtrl',
                         controllerAs: 'ctrl'
@@ -21,10 +20,6 @@
                     'navView': {
                         templateUrl: basePath + 'instalacionesAdmin.nav.html'
                     }
-                },
-                data: {
-                    requireLogin: false,
-                    roles: ['admin', 'assistant']
                 }
             }).state('instalacionesAdminList', {
                 url: '/list',

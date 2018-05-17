@@ -186,6 +186,22 @@ public class DisponibilidadLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getMatrizHorarios(), resp.getMatrizHorarios());
+        
+        pojoEntity.setMatrizHorarios("ADDDDDDDDLDD LLLLLLLJLLLL LLLLLLLLLLLL LLLLLLLLLLLL LLLLLLLDLLLL LLLLLALLLLLL LLLLDLLLLLLL ");
+        try{
+           disponibilidadLogic.updateDisponibilidad(pojoEntity.getId(), pojoEntity);
+           Assert.fail();
+        }catch(BusinessLogicException e){
+             
+        }
+        
+        pojoEntity.setMatrizHorarios("hola");
+        try{
+           disponibilidadLogic.updateDisponibilidad(pojoEntity.getId(), pojoEntity);
+           Assert.fail();
+        }catch(BusinessLogicException e){
+             
+        }
 
     }
     

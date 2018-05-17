@@ -6,23 +6,30 @@ and open the template in the editor.
 -->
 <div class="container-fluid">
     <h1>VETERINARIA</h1>
-    <div class="row">
+    <hr>
+    <div class="row" >
         <div class="col-sm-6">
             <p>
-            descripcion veterinaria:Es el centro encargado de realizar los servicios de aseo y prestar servicios medicos a las maacotas.La cual cuenta con unos de los mejores veterinaria que hay en el pais y con unas de las ultims tecnologias en lo que respecta a los equipos de opraciones
+            Es el centro encargado de realizar los servicios de aseo y prestar servicios medicos a las maacotas.La cual cuenta con unos de los mejores veterinaria que hay en el pais y con unas de las ultims tecnologias en lo que respecta a los equipos de opraciones
             </p>     
         </div> 
         <div class="col-sm-6">
             <div class="embed-responsive embed-responsive-16by9">
-  <iframe class="embed-responsive-item" src="//www.youtube.com/embed/jVwYaMt71hU" allowfullscreen></iframe>
-</div>
+                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/jVwYaMt71hU" allowfullscreen></iframe>
+            </div>
         </div>    
     </div>
+    <hr>
     <div class='row'>
         <div class='col-sm-6' ng-repeat="veterinaria in veterinariasRecords">
            
-            <p><strong>Direccion</strong></p>
-            <p>{{veterinaria}}</p>
+            <p><strong>Direccion</strong>: {{veterinaria.direccion}}</p>
+             <p><strong>Capacidad</strong>: {{veterinaria.capacidadMaxima}} caninos</p>
+        </div>
+        <div class='col-sm-6'>
+              <p><strong>Telefono</strong>: 3185157166</p>
+               <p><strong>Horarios de atencion</strong>: 8am-7pm</p>
+        </div>    
         </div>
     </div>
     <div class="row">

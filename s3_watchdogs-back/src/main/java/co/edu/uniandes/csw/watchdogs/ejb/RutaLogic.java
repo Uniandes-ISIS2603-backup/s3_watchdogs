@@ -96,7 +96,7 @@ public class RutaLogic {
      public void check(RutaEntity entity)throws BusinessLogicException{
         checkDuracionValida(entity);
     }
-    
+     
     
     /**
      * verifica que la duracion de la ruta sea superior a 0 y no mayor a 120
