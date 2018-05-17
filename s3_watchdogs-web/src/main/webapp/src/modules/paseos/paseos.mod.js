@@ -61,7 +61,7 @@
                     }
                 }
                 }).state('paseoUpdate', {
-                url: '/paseos/{paseoId:int}/update',
+                url: '/clientes/{clienteId:int}/paseos/{paseoId:int}/update',
                 //parent: 'paseoDetail',
                 param: {
                     paseoId: null

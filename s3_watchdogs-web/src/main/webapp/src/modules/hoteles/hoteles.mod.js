@@ -61,14 +61,14 @@
                     }
                 }
                 }).state('hotelUpdate', {
-                url: '/hoteles/{hotelId:int}/update',
+                url: '/clientes/{clienteId:int}/hoteles/{hotelId:int}/update',
                 //parent: 'entrenamientoDetail',
                 param: {
                     hotelId: null
                 },
                 views: {
                     'mainView': {
-                        templateUrl: basePath + '/hoteles.new.html',
+                        templateUrl: basePath + '/new/hoteles.new.html',
                         controller: 'hotelUpdateCtrl'
                     }
                 }

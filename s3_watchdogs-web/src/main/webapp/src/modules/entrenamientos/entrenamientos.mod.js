@@ -61,7 +61,7 @@
                     }
                 }
                 }).state('entrenamientoUpdate', {
-                url: '/entrenamientos/{entrenamientoId:int}/update',
+                url: '/clientes/{clienteId:int}/entrenamientos/{entrenamientoId:int}/update',
                 //parent: 'entrenamientoDetail',
                 param: {
                     entrenamientoId: null
