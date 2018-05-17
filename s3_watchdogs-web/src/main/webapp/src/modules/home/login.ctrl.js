@@ -41,7 +41,7 @@
                 for (var item in $scope.users) {
 
                     if ($scope.users[item].user === $scope.data.username && $scope.users[item].password === $scope.data.password) {
-                        console.log('Entra');
+                        //console.log('Entra');
                         flag = true;
                         $scope.user = $scope.users[item];
                         $state.go('home', {}, {reload: true});
@@ -56,8 +56,10 @@
                     sessionStorage.setItem("rol", $scope.user.rol);
                     sessionStorage.setItem("id", $scope.user.id);
                     sessionStorage.setItem("name", $scope.user.name);
+                    console.log($scope.user)
 
-                    $rootScope.currentUser = $scope.user;
+                    $rootScope.currentUser = $scope.user.id;
+                    $rootScope.currentRol = $scope.user.rol;
                 }
             };
         }

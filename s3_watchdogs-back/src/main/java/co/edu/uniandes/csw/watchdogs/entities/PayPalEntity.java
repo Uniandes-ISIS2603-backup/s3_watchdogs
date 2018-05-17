@@ -22,21 +22,38 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class PayPalEntity extends BaseEntity implements Serializable{
     
+    /**
+     * Correo del paypal
+     */
     @PodamStrategyValue(CorreoStrategy.class)
     private String correo;
     
+    /**
+     * Cliente dueño del payPal
+     */
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
     
+    /**
+     * Atributo temporal de factura
+     */
     @PodamExclude
     @OneToOne(mappedBy = "payPal", fetch = FetchType.LAZY)
     private FacturaEntity factura;
 
+    /**
+     * Método que retorna la factura
+     * @return El factura asociadoa
+     */
     public FacturaEntity getFactura() {
         return factura;
     }
 
+    /**
+     * Método que asinga un nuevo valor a factura
+     * @param factura Factura nueva a asignar 
+     */
     public void setFactura(FacturaEntity factura) {
         this.factura = factura;
     }

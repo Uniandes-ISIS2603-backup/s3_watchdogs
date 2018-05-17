@@ -35,8 +35,20 @@ import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
  */
 public class PayPalDTO {
 
+    /**
+     * Id del Paypal
+     */
+     
     private Long id;
+    
+    /**
+     * Correo del paypal
+     */
     private String correo;
+    
+    /**
+     * nombre del metodo de pago 
+     */
     private String nombre;
 
     /**
@@ -45,6 +57,10 @@ public class PayPalDTO {
     public PayPalDTO() {
     }
 
+    /**
+     * Constructor que recibe un entity
+     * @param entity 
+     */
     public PayPalDTO(PayPalEntity entity) {
         if (entity != null) 
         {
@@ -54,6 +70,10 @@ public class PayPalDTO {
         }
     }
 
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
     public PayPalEntity toEntity() {
         PayPalEntity entity = new PayPalEntity();
         entity.setCorreo(this.correo);

@@ -6,27 +6,43 @@
 (
         function (ng) {
             var mod = ng.module("aseosModule");
+            mod.constant("clientesContext", "api/clientes");
             mod.constant("aseosContext", "api/aseos");
-            mod.controller('aseoUpdateCtrl', ['$scope', '$http', 'aseosContext', '$state', '$rootScope',
-                function ($scope, $http, aseosContext, $state, $rootScope) {
+            mod.constant("empleadosContext", "api/empleados");
+            mod.controller('aseoUpdateCtrl', ['$scope', '$http', 'clientesContext', 'aseosContext', 'empleadosContext', '$state', '$rootScope',
+                function ($scope, $http, clientesContext, aseosContext, empleadosContext, $state, $rootScope) {
                     $rootScope.edit = true;
 
                     $scope.data = {};
+                    $scope.mascotas = {};
+                    $scope.empleados = {};
 
-                    var idaseo = $state.params.aseoId;
+                    var idAseo = $state.params.aseoId;
+                    var idCliente = $state.params.clienteId;
 
-                    $http.get(aseosContext + '/' + idaseo).then(function (response) {
-                        var aseo = response.data;
-                        $scope.data.name = aseo.name;
+                    $http.get(empleadosContext+'/3/cargo').then(function (response) {
+                          $scope.empleados = response.data;
                     });
 
+                    $http.get(clientesContext + '/' + idCliente).then(function (response) {
+                        var cliente = response.data;
+                        $scope.data.cliente = cliente;
+                        $scope.mascotas = cliente.mascotas;
+                    });
 
-                    $scope.createaseo = function () {
-                        $http.put(aseosContext + "/" + idaseo, $scope.data).then(function (response) {
+                    $http.get(clientesContext + '/' + idCliente + '/servicios/' + idAseo).then(function (response) {
+                        var aseo = response.data;
+
+                    });
+
+                    $scope.createAseo = function () {
+                        $http.put(aseosContext + "/" + idAseo, $scope.data).then(function (response) {
                             $state.go('serviciosList', {aseoId: response.data.id}, {reload: true});
                         });
                     }
                 }]);
         }
 )(window.angular);
+
+
 

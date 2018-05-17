@@ -61,7 +61,7 @@
                     }
                 }
                 }).state('aseoUpdate', {
-                url: '/aseos/{aseoId:int}/update',
+                url: '/clientes/{clienteId:int}/aseos/{aseoId:int}/update',
                 //parent: 'entrenamientoDetail',
                 param: {
                     aseoId: null

@@ -8,9 +8,9 @@
 
                 var input = $state.params;
                 var params = JSON.stringify(input);
-                console.log(params);
+
                 $http.post(clienteMascotaCreateContext + '/' + $state.params.clienteId + '/mascotas', params).then(function (response) {
-                    console.log(clienteMascotaCreateContext + '/' + $state.params.clienteId + '/mascotas');
+
                     $scope.clienteMascotasRecords = response.data;
                 });
             }

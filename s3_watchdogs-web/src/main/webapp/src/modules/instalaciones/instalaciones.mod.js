@@ -35,7 +35,7 @@
                     },
                     'mainView':{
                         templateUrl: basePath + 'veterinaria/veterinaria.detail.html',
-                        controller:'instalacionesCtrl',
+                        controller:'veterinariaCtrl',
                         controllerAs: 'ctrl' 
                     }
                 }
@@ -48,7 +48,7 @@
                     },
                     'mainView':{
                         templateUrl: basePath + 'centroEntrenamiento/centroEntrenamiento.detail.html',
-                        controller:'instalacionesCtrl',
+                        controller:'centroEntrenamientoCtrl',
                         controllerAs: 'ctrl' 
                     }
                 }

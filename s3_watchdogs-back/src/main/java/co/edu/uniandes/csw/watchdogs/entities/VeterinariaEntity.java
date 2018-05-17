@@ -20,15 +20,26 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class VeterinariaEntity extends LugarEntity implements Serializable {
     
+    /**
+     * Lista de aseos 
+     */
+    
     @PodamExclude
     @OneToMany(mappedBy = "veterinaria")
     private List<AseoEntity> aseos;
+    
+     /**
+     * Lista de paseos 
+     */
     
     @PodamExclude
     @OneToMany(mappedBy = "veterinaria")
     private List<PaseoEntity> paseos;
     
 
+    /**
+     * Constructor por defecto
+     */
      public VeterinariaEntity(){
         
     }

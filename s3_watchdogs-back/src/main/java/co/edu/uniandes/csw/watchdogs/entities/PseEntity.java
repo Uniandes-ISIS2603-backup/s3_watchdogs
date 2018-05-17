@@ -22,21 +22,38 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class PseEntity extends BaseEntity implements Serializable {
     
+    /**
+     * Correo del PSE
+     */
     @PodamStrategyValue(CorreoStrategy.class)
     private String correo;
     
+    /**
+     * Cliente dueño del PSE
+     */
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
     
+    /**
+     * Atributo temporal de factura
+     */
     @PodamExclude
     @OneToOne(mappedBy = "pse", fetch = FetchType.LAZY)
     private FacturaEntity factura;
 
+    /**
+     * Método que retorna la factura asociado
+     * @return El factura 
+     */
     public FacturaEntity getFactura() {
         return factura;
     }
 
+    /**
+     * Método que asigna un nuevo valor a factura
+     * @param factura factura a asignar 
+     */
     public void setFactura(FacturaEntity factura) {
         this.factura = factura;
     }

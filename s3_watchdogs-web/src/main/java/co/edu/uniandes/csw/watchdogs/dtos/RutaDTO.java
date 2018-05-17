@@ -36,8 +36,19 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
  */
 public class RutaDTO {
     
+    /**
+     * id de la ruta
+     */
     private Long id;
+    
+    /**
+     * nombre de la ruta
+     */
     private String nombre;
+    
+    /**
+     * duracion de la ruta
+     */
     private Integer duracion;
     
      /** 

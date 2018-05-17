@@ -162,7 +162,6 @@ public class EmpleadoResource {
      * @return JSON {@link EmpleadoDetailDTO} - El empleado guardado.
      */
     @PUT
-
     @Path("{id: \\d+}")
     public EmpleadoDetailDTO updateEmpleado(@PathParam("id") Long id, EmpleadoDetailDTO empleado) throws BusinessLogicException {
         EmpleadoEntity entity = empleado.toEntity();
@@ -225,5 +224,26 @@ public class EmpleadoResource {
     public List<ServicioDetailDTO> listServicios(@PathParam("empleadoId") Long empleadoId) {
         return servicioListEntity2DTO(empleadoLogic.getServicios(empleadoId));
     }
+    
+    @GET
+    @Path("{cargoId:\\d+}/cargo")
+    public List<EmpleadoDetailDTO> empleadosCargo(@PathParam("cargoId") Long  cargo){
+        String string;
+        if(cargo == 1){
+            string = "Entrenador";
+        }
+        else if(cargo == 2){
+            string = "Cuidador";
+        }
+        else if(cargo == 3){
+            string = "Aseador";
+        }
+        else if(cargo == 4){
+            string = "Paseador";
+        }
+        else string = "";
+        return listEntity2DTO(empleadoLogic.findbyCargo(string));
+    }
+    
 
 }

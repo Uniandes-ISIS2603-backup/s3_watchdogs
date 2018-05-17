@@ -30,7 +30,9 @@
                     <div class="row-fluid summary">
                         <p class="parrafoscards">{{servicio.descripcion}}</p>
                     </div>
-                    <a ui-sref="{{servicio.identificador}}" class="btn btn-primary" id="btn-contratar-aseo">Contratar</a>
+                    <div ng-if="isAuthenticated()">
+                        <a ui-sref="{{servicio.identificador}}" class="btn btn-primary" id="btn-contratar-aseo" >Contratar</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -36,10 +36,29 @@ import java.util.Date;
  */
 public class TarjetaCreditoDTO {
 
+    /**
+     * Id de la tarjeta
+     */
     private Long id;
+    
+    /**
+     * Nombre del tipo de método de pago
+     */
     private String nombre;
+    
+    /**
+     * Numero de la tarjeta
+     */
     private String numeroTarjeta;
+    
+    /**
+     * Fecha de vencimiento de la tarjeta
+     */
     private Date fechaVencimiento;
+    
+    /**
+     * Código de seguridad de la tarjeta
+     */
     private String codigoSeguridad;
 
     /**
@@ -48,6 +67,10 @@ public class TarjetaCreditoDTO {
     public TarjetaCreditoDTO() {
     }
 
+    /**
+     * Constructor que recibe un entity
+     * @param entity 
+     */
     public TarjetaCreditoDTO(TarjetaCreditoEntity entity) {
         if (entity != null) {
             id = entity.getId();
@@ -58,6 +81,10 @@ public class TarjetaCreditoDTO {
         }
     }
 
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
     public TarjetaCreditoEntity toEntity() {
         TarjetaCreditoEntity entity = new TarjetaCreditoEntity();
         entity.setCodigoSeguridad(this.codigoSeguridad);
@@ -68,11 +95,19 @@ public class TarjetaCreditoDTO {
         return entity;
     }
 
-    public void setNmobre(String nombre)
+    /**
+     * 
+     * @param nombre el nuevo nombre de este metodo de pago
+     */
+    public void setNombre(String nombre)
     {
         this.nombre = nombre;
     }
     
+    /**
+     * 
+     * @return el nombre del metodo de pago
+     */
     public String getNombre()
     {
         return nombre;

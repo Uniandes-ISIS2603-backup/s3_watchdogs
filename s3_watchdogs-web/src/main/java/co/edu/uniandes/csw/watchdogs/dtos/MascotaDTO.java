@@ -40,11 +40,34 @@ import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 public class MascotaDTO {
 
     //----- Atributos -----
+    /**
+     * id de la mascota
+     */
     private Long id;
+    
+    /**
+     * nombre de la mascota
+     */
     private String nombre;
+    
+    /**
+     * raza de la mascota
+     */
     private String raza;
+    
+    /**
+     * color de la mascota
+     */
     private String color;
+    
+    /**
+     * Sexo de la mascota
+     */
     private String sexo;
+    
+    /**
+     * imagen de la mascota
+     */
     private String imagen;
 
     //----- Constructores -----

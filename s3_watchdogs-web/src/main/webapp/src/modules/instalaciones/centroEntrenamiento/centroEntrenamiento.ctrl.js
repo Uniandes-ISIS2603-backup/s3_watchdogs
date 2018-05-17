@@ -8,12 +8,12 @@
 
     var mod = ng.module("instalacionesModule");
 
-    mod.constant("centroEntrenamientoContext", "api/instalaciones");
+    mod.constant("centroEntrenamientoContext", "api/centrosDeEntrenamiento");
 
     mod.controller('centroEntrenamientoCtrl', ['$scope', '$http', 'centroEntrenamientoContext', '$state',
         function ($scope, $http, centroEntrenamientoContext, $state) {
             $http.get(centroEntrenamientoContext).then(function (response) {
-                $scope.centroEntrenamientoRecords = response.data;
+                $scope.centrosDeEntrenamientosRecords = response.data;
             });
         }]);
 })(window.angular);

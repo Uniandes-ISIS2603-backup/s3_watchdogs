@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.csw.watchdogs.resources;
 
-import co.edu.uniandes.csw.watchdogs.dtos.RutaDetailDTO;
+import co.edu.uniandes.csw.watchdogs.dtos.RutaDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.RutaLogic;
 import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
@@ -51,7 +51,7 @@ public class RutaResource {
     /**
      * <h1>POST /api/rutas : Crear una ruta.</h1>
      * 
-     * <pre>Cuerpo de petición: JSON {@link RutaDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link RutaDTO}.
      * 
      * Crea una nueva Ruta con la informacion que se recibe en el cuerpo 
      * de la petición y se regresa un objeto identico con un id auto-generado 
@@ -65,13 +65,13 @@ public class RutaResource {
      * 412 Precodition Failed: Ya existe la ruta.
      * </code>
      * </pre>
-     * @param ruta {@link RutaDetailDTO} - La ruta que se desea guardar.
-     * @return JSON {@link RutaDetailDTO}  - La ruta guardada con el atributo id autogenerado.
+     * @param ruta {@link RutaDTO} - La ruta que se desea guardar.
+     * @return JSON {@link RutaDTO}  - La ruta guardada con el atributo id autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando ya existe la ruta.
      */
     @POST
-    public RutaDetailDTO createRuta(RutaDetailDTO ruta) throws BusinessLogicException {
-       return new RutaDetailDTO(rutaLogic.createRuta(ruta.toEntity()));
+    public RutaDTO createRuta(RutaDTO ruta) throws BusinessLogicException {
+       return new RutaDTO(rutaLogic.createRuta(ruta.toEntity()));
     }
 
     /**
@@ -83,15 +83,15 @@ public class RutaResource {
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve todas las rutas de la aplicacion.</code> 
      * </pre>
-     * @return JSONArray {@link RutaDetailDTO} - Las rutas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
+     * @return JSONArray {@link RutaDTO} - Las rutas encontradas en la aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
-    public List<RutaDetailDTO> getRutas() {
+    public List<RutaDTO> getRutas() {
         
         List<RutaEntity> list = rutaLogic.getRutas();
-        List<RutaDetailDTO> dtoList = new ArrayList<>();
+        List<RutaDTO> dtoList = new ArrayList<>();
         for (RutaEntity entity : list) {
-            dtoList.add(new RutaDetailDTO(entity));
+            dtoList.add(new RutaDTO(entity));
         }
         return dtoList;
     }
@@ -110,21 +110,21 @@ public class RutaResource {
      * </code> 
      * </pre>
      * @param id Identificador de la ruta que se esta buscando. Este debe ser una cadena de dígitos.
-     * @return JSON {@link RutaDetailDTO} - La ruta buscada
+     * @return JSON {@link RutaDTO} - La ruta buscada
      */
     @GET
     @Path("{id: \\d+}")
-    public RutaDetailDTO getRuta(@PathParam("id") Long id) {
+    public RutaDTO getRuta(@PathParam("id") Long id) {
          RutaEntity entity = rutaLogic.getRuta(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso  /rutas/" + id + " no existe.", 404);
         }
-        return new RutaDetailDTO(entity);
+        return new RutaDTO(entity);
     }
     
     /**
      * <h1>PUT /api/rutas/{id} : Actualizar ruta con el id dado.</h1>
-     * <pre>Cuerpo de petición: JSON {@link RutaDetailDTO}.
+     * <pre>Cuerpo de petición: JSON {@link RutaDTO}.
      * 
      * Actualiza la ruta con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
      * 
@@ -136,19 +136,19 @@ public class RutaResource {
      * </code> 
      * </pre>
      * @param id Identificador de la ruta que se desea actualizar.Este debe ser una cadena de dígitos.
-     * @param ruta {@link RutaDetailDTO} La ruta que se desea guardar.
-     * @return JSON {@link RutaDetailDTO} - La ruta guardada.
+     * @param ruta {@link RutaDTO} La ruta que se desea guardar.
+     * @return JSON {@link RutaDTO} - La ruta guardada.
      * @throws BusinessLogicException {@link BusinessLogicExceptionMapper} - Error de lógica que se genera cuando la ruta no cumple las especificaciones.
      */
     @PUT
     @Path("{id: \\d+}")
-    public RutaDetailDTO updateRuta(@PathParam("id") Long id, RutaDetailDTO ruta) throws BusinessLogicException{
+    public RutaDTO updateRuta(@PathParam("id") Long id, RutaDTO ruta) throws BusinessLogicException{
         ruta.setId(id);
         RutaEntity entity = rutaLogic.getRuta(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /rutas/" + id + " no  existe.", 404);
         }
-        return new RutaDetailDTO(rutaLogic.updateRuta(id, ruta.toEntity()));
+        return new RutaDTO(rutaLogic.updateRuta(id, ruta.toEntity()));
     }
     
     /**

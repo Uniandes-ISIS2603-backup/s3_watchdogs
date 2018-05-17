@@ -43,6 +43,10 @@ public  class ServicioDTO {
      */
     protected List<String> rango;
     
+    /**
+     * Hora del servicio
+     */
+    
     protected Integer hora;
     
     /**
@@ -164,16 +168,26 @@ public  class ServicioDTO {
         this.rango = rango;
     }
 
+    /**
+     * Getter hora
+     * @return hora
+     */
     public Integer getHora() {
         return hora;
     }
 
+    /**
+     * Setter hora
+     * @param hora 
+     */
     public void setHora(Integer hora) {
         this.hora = hora;
     }
     
-    
-    
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
     public ServicioEntity toEntity(){
         ServicioEntity servicio = new ServicioEntity();
         servicio.setCosto(costo);
