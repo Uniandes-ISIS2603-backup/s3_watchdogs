@@ -152,8 +152,8 @@
 
                 views: {
                     create: {
-                        controller: 'clienteMascotasCreateCtrl',
                         templateUrl: basePath + 'clientesMascotas.create.html',
+                        controller: 'clienteMascotasCreateCtrl'
 
                     }
                 }
