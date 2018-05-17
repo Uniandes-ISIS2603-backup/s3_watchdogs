@@ -28,10 +28,10 @@
                 <div class="card-body">
                     <h4 class="tituloscards">{{servicio.nombre}}</h4>
                     <div class="row-fluid summary">
-                        <p class="parrafoscards">{{servicio.descripcion}}</p>
+                        <p class="parrafoscards">{{servicio.descripcion}} {{currentUser}}</p>
                     </div>
                     <div ng-if="isAuthenticated()">
-                        <a ui-sref="{{servicio.identificador}}" class="btn btn-primary" id="btn-contratar-aseo" >Contratar</a>
+                        <a ui-sref="aseosCreate({clienteId: currentUser})" class="btn btn-primary" id="btn-contratar-aseo" >Contratar</a>
                     </div>
                 </div>
             </div>
