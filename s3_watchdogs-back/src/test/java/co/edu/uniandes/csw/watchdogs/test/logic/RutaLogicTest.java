@@ -136,6 +136,7 @@ public class RutaLogicTest {
             }
             Assert.assertTrue(found);
         }
+        Assert.assertNull(rutaLogic.getRuta(Long.MIN_VALUE));
     }
 
     /**

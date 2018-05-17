@@ -121,6 +121,8 @@ public class CalificacionPersistenceTest {
         CalificacionEntity newEntity = calificacionPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getPuntaje(), newEntity.getPuntaje());
+        Assert.assertEquals(entity.getCliente(), newEntity.getCliente());
+        Assert.assertEquals(entity.getEmpleado(), newEntity.getEmpleado());
     }
     
     @Test

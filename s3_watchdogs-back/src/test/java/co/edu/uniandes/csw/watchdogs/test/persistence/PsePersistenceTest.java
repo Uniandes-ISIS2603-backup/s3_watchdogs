@@ -143,6 +143,7 @@ public class PsePersistenceTest {
         Assert.assertEquals(entity.getCorreo(), newEntity.getCorreo());
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getFactura(), newEntity.getFactura());
     }
 
     @Test

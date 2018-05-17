@@ -11,8 +11,6 @@ import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.EmpleadoPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -116,14 +114,12 @@ public class EmpleadoLogicTest {
             Assert.assertEquals(newEntity.getId(), entity.getId());
             Assert.assertEquals(newEntity.getName(), entity.getName());
             Assert.assertEquals(newEntity.getCedula(), entity.getCedula());
-            Assert.assertEquals(newEntity.getCorreo(),(entity.getCorreo()));
-            Assert.assertEquals(newEntity.getCargo(),(entity.getCargo()));
-            Assert.assertEquals(newEntity.getTelefono(),(entity.getTelefono()));   
-
+            Assert.assertEquals(newEntity.getCorreo(), (entity.getCorreo()));
+            Assert.assertEquals(newEntity.getCargo(), (entity.getCargo()));
+            Assert.assertEquals(newEntity.getTelefono(), (entity.getTelefono()));
         } catch (BusinessLogicException e) {
             fail();
         }
-
     }
 
     /**
@@ -155,9 +151,11 @@ public class EmpleadoLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getCedula(), resultEntity.getCedula());
-        Assert.assertEquals(entity.getCorreo(),(resultEntity.getCorreo()));
-        Assert.assertEquals(entity.getCargo(),(resultEntity.getCargo()));
-        Assert.assertEquals(entity.getTelefono(),(resultEntity.getTelefono()));
+        Assert.assertEquals(entity.getCorreo(), (resultEntity.getCorreo()));
+        Assert.assertEquals(entity.getCargo(), (resultEntity.getCargo()));
+        Assert.assertEquals(entity.getTelefono(), (resultEntity.getTelefono()));
+        
+        Assert.assertNull(empleadoLogic.getEmpleado(Long.MIN_VALUE));
     }
 
     /**
@@ -184,22 +182,38 @@ public class EmpleadoLogicTest {
         try {
             EmpleadoEntity entity = data.get(0);
             EmpleadoEntity pojoEntity = factory.manufacturePojo(EmpleadoEntity.class);
-            
+
             pojoEntity.setId(entity.getId());
-            
+
             empleadoLogic.updateEmpleado(entity.getId(), pojoEntity);
-            
+
             EmpleadoEntity resp = em.find(EmpleadoEntity.class, entity.getId());
-            
+
             Assert.assertEquals(pojoEntity.getId(), resp.getId());
             Assert.assertEquals(pojoEntity.getName(), resp.getName());
             Assert.assertEquals(pojoEntity.getCedula(), resp.getCedula());
-            Assert.assertEquals(pojoEntity.getCorreo(),(resp.getCorreo()));
-            Assert.assertEquals(pojoEntity.getCargo(),(resp.getCargo()));
-            Assert.assertEquals(pojoEntity.getTelefono(),(resp.getTelefono()));
-        } catch (BusinessLogicException ex) {
+            Assert.assertEquals(pojoEntity.getCorreo(), (resp.getCorreo()));
+            Assert.assertEquals(pojoEntity.getCargo(), (resp.getCargo()));
+            Assert.assertEquals(pojoEntity.getTelefono(), (resp.getTelefono()));
+        } catch (BusinessLogicException e) {
             fail();
         }
     }
 
+    /**
+     * Prueba para buscar por cargo.
+     */
+    @Test
+    public void findByCargoTest() {
+        try {
+            EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
+            EmpleadoEntity result = empleadoLogic.createEmpleado(newEntity);
+
+            Assert.assertNotNull(result);
+
+            Assert.assertNotNull(empleadoLogic.findbyCargo(result.getCargo()));
+        } catch (BusinessLogicException e) {
+            fail();
+        }
+    }
 }

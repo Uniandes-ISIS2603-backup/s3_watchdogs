@@ -39,7 +39,7 @@ public class RutaEntity extends BaseEntity implements Serializable{
      * Constructor por defecto
      */
     public RutaEntity(){
-        
+        super();
     }
     
      

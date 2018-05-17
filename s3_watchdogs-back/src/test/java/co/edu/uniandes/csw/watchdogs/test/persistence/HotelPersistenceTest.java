@@ -124,6 +124,7 @@ public class HotelPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getTiempoHospedaje(), entity.getTiempoHospedaje());
+        Assert.assertEquals(newEntity.getCentroDeEntrenamiento(), entity.getCentroDeEntrenamiento());
 
     }
     

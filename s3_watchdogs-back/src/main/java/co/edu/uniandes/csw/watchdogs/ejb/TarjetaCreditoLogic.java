@@ -15,10 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  *
@@ -35,7 +32,7 @@ public class TarjetaCreditoLogic {
     @Inject
     private ClienteLogic clienteLogic;
 
-    public TarjetaCreditoEntity createTarjeta(Long idCliente ,TarjetaCreditoEntity entity) throws BusinessLogicException {
+    public TarjetaCreditoEntity createTarjeta(Long idCliente, TarjetaCreditoEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de una tarjeta " + entity.getNumeroTarjeta());
         validateDate(entity.getFechaVencimiento());
         validateNum(entity.getNumeroTarjeta());
@@ -54,15 +51,15 @@ public class TarjetaCreditoLogic {
         return persistence.update(entity);
     }
 
-    public void deleteTarjeta(Long clienteId,Long id) {
+    public void deleteTarjeta(Long clienteId, Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar tarjeta con id={0}", id);
         TarjetaCreditoEntity old = getTarjeta(clienteId, id);
         persistence.delete(old.getId());
     }
 
-    public TarjetaCreditoEntity getTarjeta(Long idCliente,Long id) {
+    public TarjetaCreditoEntity getTarjeta(Long idCliente, Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso para obtener una tarjeta", id);
-        TarjetaCreditoEntity tarjeta = persistence.find(idCliente,id);
+        TarjetaCreditoEntity tarjeta = persistence.find(idCliente, id);
         if (tarjeta == null) {
             LOGGER.log(Level.SEVERE, "La tarjeta con el id {0} no existe", id);
         }
@@ -72,17 +69,16 @@ public class TarjetaCreditoLogic {
 
     public List<TarjetaCreditoEntity> getTarjetas(Long idCliente) throws BusinessLogicException {
         ClienteEntity cliente = clienteLogic.getCliente(idCliente);
-        if(cliente.getTarjetas()==null){
+        if (cliente.getTarjetas() == null) {
             throw new BusinessLogicException("El cliente que consulta aun no tiene tarjetas de credito asociadas");
         }
-        if(cliente.getTarjetas().isEmpty()){
+        if (cliente.getTarjetas().isEmpty()) {
             throw new BusinessLogicException("El cliente que consulta aun no tiene tarjetas de credito asociadas");
         }
         return cliente.getTarjetas();
     }
 
     private void validateNum(String pNum) throws BusinessLogicException {
-        //LOGGER.info(pNum + "mirar aquiiiiiiii-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         if (pNum.length() != 16) {
             throw new BusinessLogicException("El número de la tarjeta debe tener 16 dígitos fue" + pNum.length());
         }
@@ -97,7 +93,7 @@ public class TarjetaCreditoLogic {
             Integer.parseInt(se);
             Integer.parseInt(te);
             Integer.parseInt(cu);
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new BusinessLogicException("El número de la tarjeta debe contener solo dígitos");
         }
 

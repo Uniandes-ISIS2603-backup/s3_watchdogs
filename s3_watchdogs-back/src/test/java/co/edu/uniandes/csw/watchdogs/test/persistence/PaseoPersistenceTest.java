@@ -124,7 +124,9 @@ public class PaseoPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getCapMax(), entity.getCapMax());
-
+        Assert.assertEquals(newEntity.getHoras(), entity.getHoras());
+        Assert.assertEquals(newEntity.getRuta(), entity.getRuta());
+        Assert.assertEquals(newEntity.getVeterinaria(), entity.getVeterinaria());
     }
     
     @Test

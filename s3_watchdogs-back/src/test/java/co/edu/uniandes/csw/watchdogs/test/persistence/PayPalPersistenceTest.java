@@ -116,6 +116,7 @@ public class PayPalPersistenceTest {
         Assert.assertEquals(newEntity.getCorreo(), entity.getCorreo());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getFactura(), entity.getFactura());
 
     }
 

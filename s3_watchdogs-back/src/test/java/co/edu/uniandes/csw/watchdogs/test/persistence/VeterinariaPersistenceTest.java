@@ -30,8 +30,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class VeterinariaPersistenceTest {
-    
-     @Deployment
+
+    @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(VeterinariaEntity.class.getPackage())
@@ -40,16 +40,16 @@ public class VeterinariaPersistenceTest {
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
     @Inject
-    private VeterinariaPersistence veterinariaPersistence ;
-    
+    private VeterinariaPersistence veterinariaPersistence;
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
+
     private List<VeterinariaEntity> data = new ArrayList<VeterinariaEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -67,28 +67,29 @@ public class VeterinariaPersistenceTest {
             }
         }
     }
-    
-     /**
+
+    /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from VeterinariaEntity").executeUpdate();
     }
-    
-     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            VeterinariaEntity entity = factory.manufacturePojo(VeterinariaEntity.class);  
+            VeterinariaEntity entity = factory.manufacturePojo(VeterinariaEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
 
     @Test
-    public void creatVeterinariaTest(){
+    public void creatVeterinariaTest() {
         PodamFactory factory = new PodamFactoryImpl();
         VeterinariaEntity newEntity = factory.manufacturePojo(VeterinariaEntity.class);
         VeterinariaEntity result = veterinariaPersistence.create(newEntity);
@@ -101,9 +102,9 @@ public class VeterinariaPersistenceTest {
         Assert.assertEquals(newEntity.getCapacidadMaxima(), entity.getCapacidadMaxima());
         Assert.assertEquals(newEntity.getUsuariosEnServicio(), entity.getUsuariosEnServicio());
         Assert.assertEquals(newEntity.getFotos(), entity.getFotos());
-        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());   
+        Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
     }
-    
+
     @Test
     public void getVeterinariasTest() {
         List<VeterinariaEntity> list = veterinariaPersistence.findAll();
@@ -118,19 +119,20 @@ public class VeterinariaPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
-     @Test
+
+    @Test
     public void getVeterinariaTest() {
         VeterinariaEntity entity = data.get(0);
         VeterinariaEntity newEntity = veterinariaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getUsuariosEnServicio(), newEntity.getUsuariosEnServicio());
-         Assert.assertEquals(entity.getCapacidadMaxima(), newEntity.getCapacidadMaxima());
+        Assert.assertEquals(entity.getCapacidadMaxima(), newEntity.getCapacidadMaxima());
         Assert.assertEquals(entity.getFotos(), newEntity.getFotos());
         Assert.assertEquals(entity.getDireccion(), newEntity.getDireccion());
+        Assert.assertEquals(entity.getPaseos(), newEntity.getPaseos());
     }
-    
+
     @Test
     public void deleteVeterinariaTest() {
         VeterinariaEntity entity = data.get(0);
@@ -153,9 +155,23 @@ public class VeterinariaPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.getUsuariosEnServicio(), resp.getUsuariosEnServicio());
-         Assert.assertEquals(newEntity.getCapacidadMaxima(), resp.getCapacidadMaxima());
+        Assert.assertEquals(newEntity.getCapacidadMaxima(), resp.getCapacidadMaxima());
         Assert.assertEquals(newEntity.getFotos(), resp.getFotos());
         Assert.assertEquals(newEntity.getDireccion(), resp.getDireccion());
     }
-}
 
+    /**
+     * Prueba para buscar por nombre.
+     */
+    @Test
+    public void findByNameTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        VeterinariaEntity newEntity = factory.manufacturePojo(VeterinariaEntity.class);
+        VeterinariaEntity result = veterinariaPersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        Assert.assertNotNull(veterinariaPersistence.findByName(result.getName()));
+        Assert.assertNull(veterinariaPersistence.findByName(""));
+    }
+}

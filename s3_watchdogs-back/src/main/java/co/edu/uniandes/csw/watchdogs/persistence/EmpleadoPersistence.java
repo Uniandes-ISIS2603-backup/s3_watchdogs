@@ -70,8 +70,7 @@ public class EmpleadoPersistence {
     public List<EmpleadoEntity> findByCargo(String cargo){
         TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.cargo = :cargo",EmpleadoEntity.class );
         query = query.setParameter("cargo", cargo);
-        List<EmpleadoEntity> sameCargo = query.getResultList();
-        return sameCargo;
+        return query.getResultList();
     }
 
     /**

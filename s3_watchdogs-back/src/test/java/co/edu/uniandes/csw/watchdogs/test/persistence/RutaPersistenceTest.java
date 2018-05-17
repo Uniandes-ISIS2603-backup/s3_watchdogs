@@ -123,6 +123,7 @@ public class RutaPersistenceTest {
         RutaEntity newEntity = rutaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getPaseos(), newEntity.getPaseos());
     }
     
     @Test

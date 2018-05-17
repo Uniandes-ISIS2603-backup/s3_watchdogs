@@ -136,6 +136,7 @@ public class TarjetaCreditoPersistenceTest {
         TarjetaCreditoEntity newEntity = tarjetaCreditoPersistence.find(clienteData.get(0).getId(),entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNumeroTarjeta(), newEntity.getNumeroTarjeta());
+        Assert.assertEquals(entity.getFactura(), newEntity.getFactura());
     }
 
     @Test

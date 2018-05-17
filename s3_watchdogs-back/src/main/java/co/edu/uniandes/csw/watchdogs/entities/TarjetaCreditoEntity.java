@@ -9,7 +9,6 @@ import co.edu.uniandes.csw.watchdogs.podam.DateStrategy;
 import co.edu.uniandes.csw.watchdogs.podam.NumTarjetaStrategy;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;

@@ -183,5 +183,19 @@ public class EmpleadoPersistenceTest {
 
         Assert.assertNotNull(empleadoPersistence.findByCedula(result.getCedula()));
     }
+    
+    /**
+     * Prueba para buscar por cargo.
+     */
+    @Test
+    public void findByCargoTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        EmpleadoEntity newEntity = factory.manufacturePojo(EmpleadoEntity.class);
+        EmpleadoEntity result = empleadoPersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        Assert.assertNotNull(empleadoPersistence.findByCargo(result.getCedula()));
+    }
 
 }

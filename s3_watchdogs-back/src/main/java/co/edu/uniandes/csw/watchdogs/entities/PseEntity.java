@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.watchdogs.entities;
 
 import co.edu.uniandes.csw.watchdogs.podam.CorreoStrategy;
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;

@@ -122,6 +122,7 @@ public class CentroDeEntrenamientoTest {
         CentroDeEntrenamientoEntity newEntity = centroDeEntrenamientoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertEquals(newEntity.getHoteles(), entity.getHoteles());
 
     }
     

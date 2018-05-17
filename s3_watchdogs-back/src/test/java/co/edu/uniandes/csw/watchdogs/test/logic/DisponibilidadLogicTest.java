@@ -152,6 +152,7 @@ public class DisponibilidadLogicTest {
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getMatrizHorarios(), resultEntity.getMatrizHorarios());
 
+        Assert.assertNull(disponibilidadLogic.getDisponibilidad(Long.MIN_VALUE));
     }
 
     /**

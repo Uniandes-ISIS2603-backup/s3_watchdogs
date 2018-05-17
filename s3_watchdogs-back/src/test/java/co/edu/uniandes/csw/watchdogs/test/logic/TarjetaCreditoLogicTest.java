@@ -12,9 +12,6 @@ import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.TarjetaCreditoPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,7 +21,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Assert;
-import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -168,6 +164,7 @@ public class TarjetaCreditoLogicTest {
         Assert.assertEquals(entity.getCodigoSeguridad(), resultEntity.getCodigoSeguridad());
         Assert.assertEquals(entity.getFechaVencimiento(), resultEntity.getFechaVencimiento());
         Assert.assertEquals(entity.getNumeroTarjeta(), resultEntity.getNumeroTarjeta());
+        Assert.assertNull(tarjetaLogic.getTarjeta(Long.MIN_VALUE, Long.MIN_VALUE));
     }
 
     /**
@@ -196,7 +193,6 @@ public class TarjetaCreditoLogicTest {
             
             pojoEntity.setId(entity.getId());
             pojoEntity.setCliente(entity.getCliente());
-            System.out.println(entity.getCliente().getId()+"**************************************************AQUI**************************************************AQUI**************************************************AQUI**************************************************AQUI**************************************************AQUI");
             
             tarjetaLogic.updateTarjeta(dataCliente.get(1).getId(), pojoEntity);
             

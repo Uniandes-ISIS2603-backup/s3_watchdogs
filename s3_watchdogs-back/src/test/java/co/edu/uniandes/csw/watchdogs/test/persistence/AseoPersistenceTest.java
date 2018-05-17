@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class AseoPersistenceTest {
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -41,15 +41,15 @@ public class AseoPersistenceTest {
     }
     @Inject
     private AseoPersistence aseoPersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
+
     private List<AseoEntity> data = new ArrayList<AseoEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -67,28 +67,29 @@ public class AseoPersistenceTest {
             }
         }
     }
-    
-     /**
+
+    /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from AseoEntity").executeUpdate();
     }
-    
-     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+
+    /**
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            AseoEntity entity = factory.manufacturePojo(AseoEntity.class);  
+            AseoEntity entity = factory.manufacturePojo(AseoEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
 
     @Test
-    public void createAseoTest(){
+    public void createAseoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         AseoEntity newEntity = factory.manufacturePojo(AseoEntity.class);
         AseoEntity result = aseoPersistence.create(newEntity);
@@ -99,17 +100,17 @@ public class AseoPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
-        Assert.assertEquals(newEntity.getCosto(),entity.getCosto(),0);
+        Assert.assertEquals(newEntity.getCosto(), entity.getCosto(), 0);
         Assert.assertEquals(newEntity.isEstado(), entity.isEstado());
         Assert.assertEquals(newEntity.getRango(), entity.getRango());
-        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion(),0);
+        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion(), 0);
         Assert.assertEquals(newEntity.getHora(), entity.getHora());
         Assert.assertEquals(newEntity.getBanho(), entity.getBanho());
         Assert.assertEquals(newEntity.getDientes(), entity.getDientes());
         Assert.assertEquals(newEntity.getPeluqueria(), entity.getPeluqueria());
-        
+
     }
-    
+
     @Test
     public void getAseosTest() {
         List<AseoEntity> list = aseoPersistence.findAll();
@@ -124,24 +125,39 @@ public class AseoPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
-     @Test
+
+    @Test
     public void getAseoTest() {
         AseoEntity entity = data.get(0);
         AseoEntity newEntity = aseoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
-        Assert.assertEquals(entity.getCosto(), newEntity.getCosto(),0);
+        Assert.assertEquals(entity.getCosto(), newEntity.getCosto(), 0);
         Assert.assertEquals(entity.isEstado(), newEntity.isEstado());
         Assert.assertEquals(entity.getRango(), newEntity.getRango());
-        Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion(),0);
+        Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion(), 0);
         Assert.assertEquals(entity.getHora(), newEntity.getHora());
         Assert.assertEquals(entity.getBanho(), newEntity.getBanho());
         Assert.assertEquals(entity.getDientes(), newEntity.getDientes());
         Assert.assertEquals(entity.getPeluqueria(), newEntity.getPeluqueria());
     }
-    
+
+    /**
+     * Prueba para buscar por nombre.
+     */
+    @Test
+    public void findByNameTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        AseoEntity newEntity = factory.manufacturePojo(AseoEntity.class);
+        AseoEntity result = aseoPersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        Assert.assertNotNull(aseoPersistence.findByName(result.getName()));
+        Assert.assertNull(aseoPersistence.findByName(""));
+    }
+
     @Test
     public void deleteAseoTest() {
         AseoEntity entity = data.get(0);
@@ -164,10 +180,10 @@ public class AseoPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
         Assert.assertEquals(newEntity.getFecha(), resp.getFecha());
-        Assert.assertEquals(newEntity.getCosto(), resp.getCosto(),0);
+        Assert.assertEquals(newEntity.getCosto(), resp.getCosto(), 0);
         Assert.assertEquals(newEntity.isEstado(), resp.isEstado());
         Assert.assertEquals(newEntity.getRango(), resp.getRango());
-        Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion(),0);
+        Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion(), 0);
         Assert.assertEquals(newEntity.getHora(), resp.getHora());
         Assert.assertEquals(newEntity.getBanho(), resp.getBanho());
         Assert.assertEquals(newEntity.getDientes(), resp.getDientes());

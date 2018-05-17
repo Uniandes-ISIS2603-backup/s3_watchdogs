@@ -150,6 +150,8 @@ public class CalificacionLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getPuntaje(), resultEntity.getPuntaje());
+        
+        Assert.assertNull(calificacionLogic.getCalificacion(Long.MIN_VALUE));
     }
 
     /**

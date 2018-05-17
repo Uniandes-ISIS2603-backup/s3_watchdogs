@@ -153,7 +153,7 @@ public class TransporteLogicTest {
         Assert.assertEquals(entity.getDevuelta(), resultEntity.getDevuelta());
         Assert.assertEquals(entity.getDireccion(), resultEntity.getDireccion());
         Assert.assertEquals(entity.getRecogida(), resultEntity.getRecogida());
-
+        Assert.assertNull(transporteLogic.getTransporte(Long.MIN_VALUE));
 
     }
 
