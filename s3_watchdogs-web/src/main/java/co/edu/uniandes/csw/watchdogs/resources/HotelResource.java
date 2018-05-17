@@ -7,7 +7,9 @@ package co.edu.uniandes.csw.watchdogs.resources;
 
 import co.edu.uniandes.csw.watchdogs.dtos.HotelDetailDTO;
 import co.edu.uniandes.csw.watchdogs.ejb.HotelLogic;
+import co.edu.uniandes.csw.watchdogs.ejb.TransporteLogic;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
+import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.HotelPersistence;
 import java.util.ArrayList;
@@ -39,6 +41,9 @@ public class HotelResource {
     
      @Inject
     private HotelLogic hotelLogic;
+     
+     @Inject
+     private TransporteLogic transporteLogic;
     
     private static final Logger LOGGER = Logger.getLogger(HotelPersistence.class.getName());
     
@@ -67,6 +72,8 @@ public class HotelResource {
     public HotelDetailDTO createHotel(HotelDetailDTO hotel) throws BusinessLogicException {
         HotelEntity hotelEntity = hotel.toEntity();
         hotelEntity.setCosto(hotelEntity.getDuracion()*10000.0);
+        TransporteEntity transporte = transporteLogic.getTransporte(hotel.getTransporte().getId());
+        hotelEntity.setTransporte(transporte);
         HotelEntity nuevoHotel = hotelLogic.createHotel(hotelEntity);
         return new HotelDetailDTO(nuevoHotel);
     }

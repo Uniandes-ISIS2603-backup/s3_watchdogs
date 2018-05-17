@@ -72,6 +72,8 @@ public class PaseoResource {
     @POST
     public PaseoDetailDTO createPaseo(PaseoDetailDTO paseo) throws BusinessLogicException {
         PaseoEntity paseoEntity = paseo.toEntity();
+        RutaEntity ruta = rutaLogic.getRuta(paseo.getRutas().getId());
+        paseoEntity.setRuta(ruta);
         PaseoEntity nuevoPaseo = paseoLogic.createPaseo(paseoEntity);
         return new PaseoDetailDTO(nuevoPaseo);
     }

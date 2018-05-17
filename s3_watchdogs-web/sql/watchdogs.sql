@@ -167,8 +167,6 @@ insert into ServicioEntity (id, DTYPE,costo, duracion, estado, fecha, hora, clie
 insert into HotelEntity (id, Transporte_id, tiempohospedaje, CentrodeEntrenamiento_id) values (302, 300, 46, 300);
 insert into ServicioEntity (id, DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (402,'HotelEntity',19, 58.1, 1, '12/16/2019', 6, 400, 400, 400, 400);
 insert into HotelEntity (id, Transporte_id, tiempohospedaje, CentrodeEntrenamiento_id) values (402, 400, 28, 400);
-insert into ServicioEntity (id, DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (502,'HotelEntity',86, 50.0, 0, '7/14/2019', 1, 500, 500, 500, 500);
-insert into HotelEntity (id, Transporte_id, tiempohospedaje, CentrodeEntrenamiento_id) values (502, 500, 43, 500);
 insert into ServicioEntity (id, DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (602,'HotelEntity',25, 23.5, 1, '4/21/2019', 12, 600, 600, 600, 600);
 insert into HotelEntity (id, Transporte_id, tiempohospedaje, CentrodeEntrenamiento_id) values (602, 600, 58, 600);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (702,'HotelEntity',23, 34.2, 0, '12/14/2019', 5, 700, 700, 700, 700);
@@ -189,8 +187,6 @@ insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, clien
 insert into PaseoEntity (id, capmax, Ruta_id) values (303, 11, 300);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (403,'PaseoEntity',19, 58.1, 1, '12/16/2019', 6, 400, 400, 400, 400);
 insert into PaseoEntity (id, capmax, Ruta_id) values (403, 19, 400);
-insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (503,'PaseoEntity',86, 50.0, 0, '7/14/2019', 1, 500, 500, 500, 500);
-insert into PaseoEntity (id, capmax, Ruta_id) values (503, 8, 500);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (603,'PaseoEntity',25, 23.5, 1, '4/21/2019', 12, 600, 600, 600, 600);
 insert into PaseoEntity (id, capmax, Ruta_id) values (603, 20, 600);
 insert into ServicioEntity (id,DTYPE,costo, duracion, estado, fecha, hora, cliente_id, mascota_id, empleado_id, calificacion_id) values (703,'PaseoEntity',23, 34.2, 0, '12/14/2019', 5, 700, 700, 700, 700);

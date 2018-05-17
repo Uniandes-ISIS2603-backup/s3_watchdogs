@@ -85,10 +85,12 @@ public class PaseoLogic {
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            RutaEntity ruta = rutaLogic.getRuta(entity.getRuta().getId());
             entity.setCosto(entity.getDuracion()*20000);
             entity.setEstado(true);
             entity.setCliente(cliente);
             entity.setMascota(mascota);
+            entity.setRuta(ruta);
             persistence.create(entity);
             LOGGER.info("Termina proceso de creación de Paseo");
             return entity;

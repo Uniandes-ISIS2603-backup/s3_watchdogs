@@ -85,10 +85,12 @@ public class HotelLogic {
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            TransporteEntity transporte = transporteLogic.getTransporte(entity.getTransporte().getId());
             entity.setCosto(entity.getDuracion()*10000.0);
             entity.setEstado(true);
             entity.setCliente(cliente);
             entity.setMascota(mascota);
+            entity.setTransporte(transporte);
             persistence.create(entity);
             LOGGER.info("Termina proceso de creación de Hotel");
             return entity;
