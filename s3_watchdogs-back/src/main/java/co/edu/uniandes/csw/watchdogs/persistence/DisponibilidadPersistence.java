@@ -11,24 +11,22 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-import java.util.logging.Level;
 import javax.persistence.TypedQuery;
-
 
 /**
  *
  * @author id.salazar
  */
-
 @Stateless
 public class DisponibilidadPersistence {
-     private static final Logger LOGGER = Logger.getLogger(DisponibilidadPersistence.class.getName());
-    
+
+    private static final Logger LOGGER = Logger.getLogger(DisponibilidadPersistence.class.getName());
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
-     * 
+     *
      * @param entity objeto disponibilidad que se creara en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
@@ -38,9 +36,8 @@ public class DisponibilidadPersistence {
         LOGGER.info("Creando una disponibilidad nueva");
         return entity;
     }
-    
-    
-     public List<DisponibilidadEntity> findAll() {
+
+    public List<DisponibilidadEntity> findAll() {
         LOGGER.info("Consultando todas las disponibilidades");
         TypedQuery query = em.createQuery("select u from DisponibilidadEntity u", DisponibilidadEntity.class);
         return query.getResultList();
@@ -51,9 +48,9 @@ public class DisponibilidadPersistence {
     }
 
     public DisponibilidadEntity update(DisponibilidadEntity entity) {
-         return em.merge(entity);
+        return em.merge(entity);
     }
-    
+
     public void delete(Long id) {
         DisponibilidadEntity entity = find(id);
         em.remove(entity);

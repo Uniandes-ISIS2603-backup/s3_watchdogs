@@ -267,6 +267,8 @@ public class EntrenamientoLogicTest {
         Assert.assertEquals(entity.getMascota(), resultEntity.getMascota());
         Assert.assertEquals(entity.getDuracion(), resultEntity.getDuracion());
         Assert.assertEquals(entity.getHora(), resultEntity.getHora());
+
+        Assert.assertNull(entrenamientoLogic.getEntrenamiento(Long.MIN_VALUE));
     }
 
     /**
@@ -364,7 +366,7 @@ public class EntrenamientoLogicTest {
             fail();
         }
     }
-    
+
     @Test
     public void getTransporteTest() {
         EntrenamientoEntity entrenamiento = data.get(0);

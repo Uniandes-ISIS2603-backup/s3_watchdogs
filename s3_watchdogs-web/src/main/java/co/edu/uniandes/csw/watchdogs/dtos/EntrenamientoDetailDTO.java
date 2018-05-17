@@ -19,11 +19,10 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  *      "centroDeEntrenamiento" : {@link CentroDeEntrenamientoDTO}
  *      "transporte" : {@link TransporteDTO}
  *   }
- * </pre>
- * Por ejemplo un entrenamiento se representa asi:<br>
- * 
+ * </pre> Por ejemplo un entrenamiento se representa asi:<br>
+ *
  * <pre>
- * 
+ *
  *   {
  *      "id": 815373,
  *      "fecha: "10-10-2010",
@@ -48,6 +47,7 @@ package co.edu.uniandes.csw.watchdogs.dtos;
  *   }
  *
  * </pre>
+ *
  * @author c.martinezc1
  */
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
@@ -101,7 +101,7 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO {
     }
 
     /**
-     * 
+     *
      * @return el tipo del entrenamiento
      */
     public String getTipo() {
@@ -109,9 +109,8 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO {
     }
 
     /**
-     *@param tipo el nuevo tipo 
+     * @param tipo el nuevo tipo
      */
-    
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
@@ -124,28 +123,25 @@ public class EntrenamientoDetailDTO extends ServicioDetailDTO {
     }
 
     /**
-     * 
+     *
      * @param centroDeEntrenamiento el nuevo centro de entrenamiento
      */
-    
     public void setCentroDeEntrenamiento(CentroDeEntrenamientoDTO centroDeEntrenamiento) {
         this.centroDeEntrenamiento = centroDeEntrenamiento;
     }
 
     /**
-     * 
+     *
      * @return el transporte
      */
-    
     public TransporteDTO getTransporte() {
         return transporte;
     }
 
     /**
-     * 
+     *
      * @param transporte El nuevo transporte
      */
-    
     public void setTransporte(TransporteDTO transporte) {
         this.transporte = transporte;
     }

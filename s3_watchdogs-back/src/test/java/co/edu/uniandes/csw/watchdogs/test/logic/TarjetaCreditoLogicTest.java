@@ -186,24 +186,24 @@ public class TarjetaCreditoLogicTest {
      *
      */
     @Test
-    public void updateTarjetaTest() throws BusinessLogicException  {
-        
-            TarjetaCreditoEntity entity = data.get(0);
-            TarjetaCreditoEntity pojoEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
-            
-            pojoEntity.setId(entity.getId());
-            pojoEntity.setCliente(entity.getCliente());
-            
-            tarjetaLogic.updateTarjeta(dataCliente.get(1).getId(), pojoEntity);
-            
-            TarjetaCreditoEntity resp = em.find(TarjetaCreditoEntity.class, entity.getId());
-            
-            Assert.assertEquals(pojoEntity.getId(), resp.getId());
-            Assert.assertEquals(pojoEntity.getName(), resp.getName());
-            Assert.assertEquals(pojoEntity.getCodigoSeguridad(), resp.getCodigoSeguridad());
-            Assert.assertEquals(pojoEntity.getFechaVencimiento(), resp.getFechaVencimiento());
-            Assert.assertEquals(pojoEntity.getNumeroTarjeta(), resp.getNumeroTarjeta());
-        
+    public void updateTarjetaTest() throws BusinessLogicException {
+
+        TarjetaCreditoEntity entity = data.get(0);
+        TarjetaCreditoEntity pojoEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
+
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setCliente(entity.getCliente());
+
+        tarjetaLogic.updateTarjeta(dataCliente.get(1).getId(), pojoEntity);
+
+        TarjetaCreditoEntity resp = em.find(TarjetaCreditoEntity.class, entity.getId());
+
+        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(pojoEntity.getName(), resp.getName());
+        Assert.assertEquals(pojoEntity.getCodigoSeguridad(), resp.getCodigoSeguridad());
+        Assert.assertEquals(pojoEntity.getFechaVencimiento(), resp.getFechaVencimiento());
+        Assert.assertEquals(pojoEntity.getNumeroTarjeta(), resp.getNumeroTarjeta());
+
     }
 
 }

@@ -18,7 +18,7 @@ public class CorreoStrategy implements AttributeStrategy<String> {
     public String getValue() {
         return getSaltString() + "@" + "myMail.com";
     }
-    
+
     private String getSaltString() {
         String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         StringBuilder salt = new StringBuilder();
@@ -31,5 +31,5 @@ public class CorreoStrategy implements AttributeStrategy<String> {
         return saltStr;
 
     }
-    
+
 }

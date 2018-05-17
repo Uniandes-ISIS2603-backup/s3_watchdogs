@@ -10,5 +10,5 @@ package co.edu.uniandes.csw.watchdogs.resources;
  * @author m.diazt
  */
 public class CentroDeEntrenamientoHotelesResource {
-    
+
 }

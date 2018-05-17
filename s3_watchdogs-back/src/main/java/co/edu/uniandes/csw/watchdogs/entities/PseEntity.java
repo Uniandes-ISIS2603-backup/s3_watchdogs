@@ -20,20 +20,20 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  */
 @Entity
 public class PseEntity extends BaseEntity implements Serializable {
-    
+
     /**
      * Correo del PSE
      */
     @PodamStrategyValue(CorreoStrategy.class)
     private String correo;
-    
+
     /**
      * Cliente dueño del PSE
      */
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
-    
+
     /**
      * Atributo temporal de factura
      */
@@ -43,7 +43,8 @@ public class PseEntity extends BaseEntity implements Serializable {
 
     /**
      * Método que retorna la factura asociado
-     * @return El factura 
+     *
+     * @return El factura
      */
     public FacturaEntity getFactura() {
         return factura;
@@ -51,45 +52,47 @@ public class PseEntity extends BaseEntity implements Serializable {
 
     /**
      * Método que asigna un nuevo valor a factura
-     * @param factura factura a asignar 
+     *
+     * @param factura factura a asignar
      */
     public void setFactura(FacturaEntity factura) {
         this.factura = factura;
     }
-    
+
     /**
      * Método que retorna el correo asociado
-     * @return El correo 
+     *
+     * @return El correo
      */
-    public String getCorreo()
-    {
+    public String getCorreo() {
         return correo;
     }
-    
+
     /**
      * Método que asigna un nuevo valor al correo
-     * @param correo Correo a asignar 
+     *
+     * @param correo Correo a asignar
      */
-    public void setCorreo(String correo)
-    {
+    public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
-      /**
+
+    /**
      * M'etodo que retorna el cliente asignaod a la cuenta de paypal
+     *
      * @return El cliente asociado a la cuenta de paypal
      */
-    public ClienteEntity getCliente(){
+    public ClienteEntity getCliente() {
         return cliente;
     }
-    
+
     /**
      * Metodo que asigan un nuevo cliente a la cuenta de paypal
+     *
      * @param cliente cliente a asignar
      */
-    public void setCliente(ClienteEntity cliente)
-    {
+    public void setCliente(ClienteEntity cliente) {
         this.cliente = cliente;
     }
-    
+
 }

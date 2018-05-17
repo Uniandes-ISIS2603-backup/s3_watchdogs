@@ -20,12 +20,12 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class TransportePersistence {
-    
+
     private static final Logger LOGGER = Logger.getLogger(TransportePersistence.class.getName());
-    
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
      *
      * @param entity objeto transporte que se creará en la base de datos
@@ -37,13 +37,13 @@ public class TransportePersistence {
         LOGGER.info("Creando un transporte nueva");
         return entity;
     }
-    
+
     public List<TransporteEntity> findAll() {
         LOGGER.info("Consultando todas los transportes");
         TypedQuery query = em.createQuery("select u from TransporteEntity u", TransporteEntity.class);
         return query.getResultList();
     }
-    
+
     public TransporteEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando transporte con id={0}", id);
         return em.find(TransporteEntity.class, id);
@@ -53,7 +53,7 @@ public class TransportePersistence {
         LOGGER.log(Level.INFO, "Actualizando transporte con id={0}", entity.getId());
         return em.merge(entity);
     }
-    
+
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando el transporte con id={0}", id);
         TransporteEntity entity = em.find(TransporteEntity.class, id);

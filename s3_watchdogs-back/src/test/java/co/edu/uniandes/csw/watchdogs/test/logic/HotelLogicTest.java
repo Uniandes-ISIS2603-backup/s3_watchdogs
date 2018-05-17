@@ -66,7 +66,7 @@ public class HotelLogicTest {
     private List<CalificacionEntity> dataCalificacion = new ArrayList<CalificacionEntity>();
 
     private List<TransporteEntity> dataTransporte = new ArrayList<TransporteEntity>();
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -173,7 +173,7 @@ public class HotelLogicTest {
         Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
         Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
     }
-    
+
     /**
      * Prueba para crear un Hotel
      *
@@ -222,6 +222,8 @@ public class HotelLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getTiempoHospedaje(), resultEntity.getTiempoHospedaje());
+
+        Assert.assertNull(hotelLogic.getHotel(Long.MIN_VALUE));
     }
 
     /**
@@ -259,7 +261,7 @@ public class HotelLogicTest {
         Assert.assertEquals(pojoEntity.getEmpleado(), resp.getEmpleado());
 
     }
-    
+
     @Test
     public void addCalificacionTest() {
         try {
@@ -306,7 +308,7 @@ public class HotelLogicTest {
             fail();
         }
     }
-    
+
     @Test
     public void getTransporteTest() {
         HotelEntity hotel = data.get(0);

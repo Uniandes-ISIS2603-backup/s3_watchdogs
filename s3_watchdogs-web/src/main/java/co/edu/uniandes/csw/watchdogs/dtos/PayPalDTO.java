@@ -38,16 +38,15 @@ public class PayPalDTO {
     /**
      * Id del Paypal
      */
-     
     private Long id;
-    
+
     /**
      * Correo del paypal
      */
     private String correo;
-    
+
     /**
-     * nombre del metodo de pago 
+     * nombre del metodo de pago
      */
     private String nombre;
 
@@ -55,15 +54,16 @@ public class PayPalDTO {
      * Constructor por defecto
      */
     public PayPalDTO() {
+        super();
     }
 
     /**
      * Constructor que recibe un entity
-     * @param entity 
+     *
+     * @param entity
      */
     public PayPalDTO(PayPalEntity entity) {
-        if (entity != null) 
-        {
+        if (entity != null) {
             id = entity.getId();
             correo = entity.getCorreo();
             nombre = "PayPal";
@@ -72,6 +72,7 @@ public class PayPalDTO {
 
     /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
     public PayPalEntity toEntity() {
@@ -113,13 +114,12 @@ public class PayPalDTO {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
+
     /**
-     * 
+     *
      * @return El nombre del m'etodo de pago
      */
-    public String getNombre()
-    {
+    public String getNombre() {
         return nombre;
     }
 }

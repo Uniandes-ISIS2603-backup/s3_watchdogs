@@ -11,9 +11,6 @@ import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
-import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
-import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
-import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.HotelPersistence;
@@ -36,7 +33,7 @@ public class HotelLogic {
 
     @Inject
     private HotelPersistence persistence;
-    
+
     @Inject
     private ClienteLogic clienteLogic;
 
@@ -45,7 +42,7 @@ public class HotelLogic {
 
     @Inject
     private EmpleadoLogic empleadoLogic;
-    
+
     @Inject
     private FacturaLogic facturaLogic;
 
@@ -80,8 +77,7 @@ public class HotelLogic {
     /**
      * Guardar un nuevo Hotel
      *
-     * @param entity La entidad de tipo Hotel del nuevo transporte a
-     * persistir.
+     * @param entity La entidad de tipo Hotel del nuevo transporte a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
@@ -101,8 +97,7 @@ public class HotelLogic {
      * Guardar un nuevo hotel
      *
      * @param idC
-     * @param entity La entidad de tipo hotel del nuevo libro a
-     * persistir.
+     * @param entity La entidad de tipo hotel del nuevo libro a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
@@ -124,13 +119,12 @@ public class HotelLogic {
             throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
         }
     }
-    
+
     /**
      * Guardar un nuevo hotel
      *
      * @param idC
-     * @param entity La entidad de tipo hotel del nuevo libro a
-     * persistir.
+     * @param entity La entidad de tipo hotel del nuevo libro a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
@@ -141,10 +135,10 @@ public class HotelLogic {
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(idC);
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-                FacturaEntity factura = new FacturaEntity();
-                factura.setCliente(cliente);
-                factura.setValor(costo(entity.getDuracion()));
-                facturaLogic.createFactura(factura);
+            FacturaEntity factura = new FacturaEntity();
+            factura.setCliente(cliente);
+            factura.setValor(costo(entity.getDuracion()));
+            facturaLogic.createFactura(factura);
             entity.setCosto(costo(entity.getDuracion()));
             entity.setEstado(true);
             entity.setCliente(cliente);
@@ -156,6 +150,7 @@ public class HotelLogic {
             throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
         }
     }
+
     /**
      * Actualizar un Hotel por ID
      *
@@ -197,7 +192,7 @@ public class HotelLogic {
      * @return El transporte que fue agregado al Hotel.
      * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
-    public TransporteEntity addTransporte(Long idH, TransporteEntity transporte ) throws BusinessLogicException {
+    public TransporteEntity addTransporte(Long idH, TransporteEntity transporte) throws BusinessLogicException {
         HotelEntity hotelEntity = getHotel(idH);
         if (hotelEntity.isEstado()) {
             hotelEntity.setTransporte(transporte);
@@ -244,8 +239,7 @@ public class HotelLogic {
     }
 
     /**
-     * Metodo que devuelve la calificacion del hotel con id dado por
-     * parametro.
+     * Metodo que devuelve la calificacion del hotel con id dado por parametro.
      *
      * @param id del hotel
      * @return CalificacionEntity
@@ -270,10 +264,11 @@ public class HotelLogic {
             throw new BusinessLogicException("El hotel no ha acabado.");
         }
     }
+
     /**
-     * 
+     *
      * @param entity
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     private void validarServicios(HotelEntity entity) throws BusinessLogicException {
         Date todayDate = Calendar.getInstance().getTime();
@@ -292,7 +287,7 @@ public class HotelLogic {
 
     }
 
-    private Double costo(double duracion){
+    private Double costo(double duracion) {
         return duracion * 1.5;
     }
 }

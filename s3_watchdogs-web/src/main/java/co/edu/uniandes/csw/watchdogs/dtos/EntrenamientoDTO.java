@@ -19,11 +19,10 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
  *      "rango": List'String'
  *      "tipo": string
  *   }
- * </pre>
- * Por ejemplo un entrenamiento se representa asi:<br>
- * 
+ * </pre> Por ejemplo un entrenamiento se representa asi:<br>
+ *
  * <pre>
- * 
+ *
  *   {
  *      "id": 815373,
  *      "fecha: "10-10-2010",
@@ -35,38 +34,39 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
  *   }
  *
  * </pre>
+ *
  * @author c.martinezc1
  */
 public class EntrenamientoDTO extends ServicioDTO {
-    
-    
+
     /**
      * Atributo que representa el tipo de entrenamiento
      */
     private String tipo;
-    
+
     /**
      * Constructor por defecto
      */
-    public EntrenamientoDTO(){
-        
-    }
-    
-    /**
-     * Constructor donde recibe un entity
-     * @param entity :objeto tipo entity
-     */
-    public EntrenamientoDTO(EntrenamientoEntity entity){
-        super(entity);
-        if(entity!=null){
-            this.tipo = entity.getTipo();
-        }
-        
+    public EntrenamientoDTO() {
+        super();
     }
 
+    /**
+     * Constructor donde recibe un entity
+     *
+     * @param entity :objeto tipo entity
+     */
+    public EntrenamientoDTO(EntrenamientoEntity entity) {
+        super(entity);
+        if (entity != null) {
+            this.tipo = entity.getTipo();
+        }
+
+    }
 
     /**
      * Getter del tipo
+     *
      * @return tipo de entrenamiento
      */
     public String getTipo() {
@@ -75,6 +75,7 @@ public class EntrenamientoDTO extends ServicioDTO {
 
     /**
      * Setter de tipo
+     *
      * @param tipo :tipo de entrenamiento
      */
     public void setTipo(String tipo) {
@@ -83,14 +84,13 @@ public class EntrenamientoDTO extends ServicioDTO {
 
     /**
      * Metodo que cambia de DTO a Entity
+     *
      * @return entity Objeto tipo entity
      */
     @Override
-    public EntrenamientoEntity toEntity(){
+    public EntrenamientoEntity toEntity() {
         EntrenamientoEntity entity = new EntrenamientoEntity();
-        
-        
-        
+
         entity.setCosto(this.getCosto());
         entity.setDuracion(this.getDuracion());
         entity.setEstado(this.isEstado());

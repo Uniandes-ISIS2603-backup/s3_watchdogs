@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * LugarDTO Objeto de transferencia de datos de Lugar. Los DTO contienen las
  * representaciones de los JSON que se tranfieren entre el lugar y el servidor.
- * 
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
@@ -21,70 +21,70 @@ import java.util.List;
  *      "usuariosEnServicio":Integer,
  *      "capacidadMaxima":Integer
  *  }
- * </pre>
- * Por ejemplo un Lugar se representa asi: <br>
- * 
+ * </pre> Por ejemplo un Lugar se representa asi: <br>
+ *
  * <pre>
- * 
+ *
  *  {
  *      "direccion": "cra33#47-06",
  *      "fotos": " ",
  *      "usuariosEnServicio":20,
  *      "capacidadMaxima":30
  *  }
- * 
+ *
  * </pre>
- * 
+ *
  * @author js.vacat
  */
 public abstract class LugarDTO implements Serializable {
-    
+
     /**
      * Id del lugar
      */
     protected Long id;
-    
+
     /**
      * direccion del lugar
      */
     protected String direccion;
-    
+
     /**
      * lista de fotos del lugar
      */
     protected transient List<String> fotos;
-    
+
     /**
-     * Ususarios en servicio 
+     * Ususarios en servicio
      */
     protected Integer usuariosEnServicio;
-    
+
     /**
      * capacidad maxima del lugar
      */
     protected Integer capacidadMaxima;
-    
-     /**
+
+    /**
      * Constructor por defecto
      */
     public LugarDTO() {
+        super();
     }
-    
+
     /**
      * Constructor que recibe un entity
-     * @param lugar 
+     *
+     * @param lugar
      */
     public LugarDTO(LugarEntity lugar) {
-        if(lugar!=null)
-        {
-        this.id = lugar.getId();
-        this.direccion = lugar.getDireccion();
-        this.fotos = lugar.getFotos();
-        this.usuariosEnServicio=lugar.getUsuariosEnServicio();
-        this.capacidadMaxima=lugar.getCapacidadMaxima();
+        if (lugar != null) {
+            this.id = lugar.getId();
+            this.direccion = lugar.getDireccion();
+            this.fotos = lugar.getFotos();
+            this.usuariosEnServicio = lugar.getUsuariosEnServicio();
+            this.capacidadMaxima = lugar.getCapacidadMaxima();
         }
     }
-    
+
     /**
      * @return La direccion del lugar
      */
@@ -126,10 +126,10 @@ public abstract class LugarDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
-    public LugarEntity toEntity(){
-        
-        LugarEntity lugar=null;
+
+    public LugarEntity toEntity() {
+
+        LugarEntity lugar = null;
         return lugar;
     }
 
@@ -141,10 +141,11 @@ public abstract class LugarDTO implements Serializable {
     }
 
     /**
-     * @param usuariosEnServicio los ususarios en servicio que entra por parametro
+     * @param usuariosEnServicio los ususarios en servicio que entra por
+     * parametro
      */
     public void setUsuariosEnServicio(Integer usuariosEnServicio) {
-        this.usuariosEnServicio= usuariosEnServicio;
+        this.usuariosEnServicio = usuariosEnServicio;
     }
 
     /**
@@ -160,5 +161,5 @@ public abstract class LugarDTO implements Serializable {
     public void setCapacidadMaxima(Integer capacidadMaxima) {
         this.capacidadMaxima = capacidadMaxima;
     }
-    
+
 }

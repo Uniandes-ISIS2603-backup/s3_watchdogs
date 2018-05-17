@@ -40,22 +40,22 @@ public class TarjetaCreditoDTO {
      * Id de la tarjeta
      */
     private Long id;
-    
+
     /**
      * Nombre del tipo de método de pago
      */
     private String nombre;
-    
+
     /**
      * Numero de la tarjeta
      */
     private String numeroTarjeta;
-    
+
     /**
      * Fecha de vencimiento de la tarjeta
      */
     private Date fechaVencimiento;
-    
+
     /**
      * Código de seguridad de la tarjeta
      */
@@ -65,11 +65,13 @@ public class TarjetaCreditoDTO {
      * Constructor por defecto
      */
     public TarjetaCreditoDTO() {
+        super();
     }
 
     /**
      * Constructor que recibe un entity
-     * @param entity 
+     *
+     * @param entity
      */
     public TarjetaCreditoDTO(TarjetaCreditoEntity entity) {
         if (entity != null) {
@@ -83,6 +85,7 @@ public class TarjetaCreditoDTO {
 
     /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
     public TarjetaCreditoEntity toEntity() {
@@ -96,23 +99,21 @@ public class TarjetaCreditoDTO {
     }
 
     /**
-     * 
+     *
      * @param nombre el nuevo nombre de este metodo de pago
      */
-    public void setNombre(String nombre)
-    {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     /**
-     * 
+     *
      * @return el nombre del metodo de pago
      */
-    public String getNombre()
-    {
+    public String getNombre() {
         return nombre;
     }
-    
+
     /**
      * Método que retorna el id asociado al DTO
      *

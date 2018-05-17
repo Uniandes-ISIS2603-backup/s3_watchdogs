@@ -8,9 +8,10 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
 
 /**
- *  VeterinariaDTO Objeto de transferencia de datos de Lugar. Los DTO contienen las
- * representaciones de los JSON que se tranfieren entre la veterinaria y el servidor.
- * 
+ * VeterinariaDTO Objeto de transferencia de datos de Lugar. Los DTO contienen
+ * las representaciones de los JSON que se tranfieren entre la veterinaria y el
+ * servidor.
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
@@ -19,13 +20,12 @@ import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
  *      "fotos": List'String',
  *      "usuariosEnServicio": Integer,
  *      "capacidadMaxima":Integer
- *      
+ *
  *  }
- * </pre>
- * Por ejemplo veterinaria se representa asi: <br>
- * 
+ * </pre> Por ejemplo veterinaria se representa asi: <br>
+ *
  * <pre>
- * 
+ *
  *  {
  *      "id": 1234,
  *      "direccion": Carrera 50#120,
@@ -33,34 +33,34 @@ import co.edu.uniandes.csw.watchdogs.entities.VeterinariaEntity;
  *      "usuariosEnServicio": Integer,
  *      "capacidadMaxima":Integer
  *  }
- * 
+ *
  * </pre>
  *
  * @author js.vacat
  */
-public class VeterinariaDTO extends LugarDTO{
-    
+public class VeterinariaDTO extends LugarDTO {
+
     /**
      * Constructor por defecto
      */
-    public VeterinariaDTO()
-    {
-        
+    public VeterinariaDTO() {
+        super();
     }
 
-     /**
+    /**
      * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento
-     * 
+     *
      * @param entity: Es la entidad que se va a convertir a DTO
      */
     public VeterinariaDTO(VeterinariaEntity entity) {
         super(entity);
-       
+
     }
-    
+
     /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
     @Override

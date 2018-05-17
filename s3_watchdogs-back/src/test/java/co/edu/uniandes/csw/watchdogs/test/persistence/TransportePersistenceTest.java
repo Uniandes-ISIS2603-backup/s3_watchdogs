@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class TransportePersistenceTest {
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -41,15 +41,15 @@ public class TransportePersistenceTest {
     }
     @Inject
     private TransportePersistence transportePersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
+
     private List<TransporteEntity> data = new ArrayList<TransporteEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -67,28 +67,29 @@ public class TransportePersistenceTest {
             }
         }
     }
-    
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from TransporteEntity").executeUpdate();
     }
-    
+
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            TransporteEntity entity = factory.manufacturePojo(TransporteEntity.class);  
+            TransporteEntity entity = factory.manufacturePojo(TransporteEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     @Test
-    public void createTransporteTest(){
+    public void createTransporteTest() {
         PodamFactory factory = new PodamFactoryImpl();
         TransporteEntity newEntity = factory.manufacturePojo(TransporteEntity.class);
         TransporteEntity result = transportePersistence.create(newEntity);
@@ -101,7 +102,7 @@ public class TransportePersistenceTest {
         Assert.assertEquals(newEntity.getDevuelta(), entity.getDevuelta());
         Assert.assertEquals(newEntity.getDireccion(), entity.getDireccion());
     }
-    
+
     @Test
     public void getTransportesTest() {
         List<TransporteEntity> list = transportePersistence.findAll();
@@ -116,7 +117,7 @@ public class TransportePersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getTransporteTest() {
         TransporteEntity entity = data.get(0);
@@ -126,7 +127,7 @@ public class TransportePersistenceTest {
         Assert.assertEquals(entity.getDireccion(), newEntity.getDireccion());
         Assert.assertEquals(entity.getRecogida(), newEntity.getRecogida());
     }
-    
+
     @Test
     public void deleteTransporteTest() {
         TransporteEntity entity = data.get(0);
@@ -134,7 +135,7 @@ public class TransportePersistenceTest {
         TransporteEntity deleted = em.find(TransporteEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+
     @Test
     public void updateTransporteTest() {
         TransporteEntity entity = data.get(0);

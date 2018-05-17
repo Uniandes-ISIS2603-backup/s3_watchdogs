@@ -20,12 +20,12 @@ public class HotelDetailDTO extends ServicioDetailDTO {
      * Transporte asociado al Hotel
      */
     private TransporteDTO transporte;
-    
+
     /**
      * CentroDeEntrenamiento Asociado al Hotel
      */
     private CentroDeEntrenamientoDTO centroDeEntrenamiento;
-    
+
     /**
      * Tiempo de hospedaje en el hotel
      */

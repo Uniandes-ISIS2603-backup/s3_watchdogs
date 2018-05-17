@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class HotelPersistenceTest {
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -41,15 +41,15 @@ public class HotelPersistenceTest {
     }
     @Inject
     private HotelPersistence hotelPersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
+
     private List<HotelEntity> data = new ArrayList<HotelEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -67,29 +67,30 @@ public class HotelPersistenceTest {
             }
         }
     }
-    
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from HotelEntity").executeUpdate();
     }
-    
+
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             HotelEntity entity = factory.manufacturePojo(HotelEntity.class);
-            
+
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     @Test
-    public void createHotelTest(){
+    public void createHotelTest() {
         PodamFactory factory = new PodamFactoryImpl();
         HotelEntity newEntity = factory.manufacturePojo(HotelEntity.class);
         HotelEntity result = hotelPersistence.create(newEntity);
@@ -101,7 +102,7 @@ public class HotelPersistenceTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getTiempoHospedaje(), entity.getTiempoHospedaje());
     }
-    
+
     @Test
     public void getHotelesTest() {
         List<HotelEntity> list = hotelPersistence.findAll();
@@ -116,7 +117,7 @@ public class HotelPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getHotelTest() {
         HotelEntity entity = data.get(0);
@@ -127,7 +128,7 @@ public class HotelPersistenceTest {
         Assert.assertEquals(newEntity.getCentroDeEntrenamiento(), entity.getCentroDeEntrenamiento());
 
     }
-    
+
     @Test
     public void deleteHotelTest() {
         HotelEntity entity = data.get(0);
@@ -135,7 +136,7 @@ public class HotelPersistenceTest {
         HotelEntity deleted = em.find(HotelEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+
     @Test
     public void updateHotelTest() {
         HotelEntity entity = data.get(0);

@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.watchdogs.test.logic;
 import co.edu.uniandes.csw.watchdogs.ejb.FacturaLogic;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
-import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.FacturaPersistence;
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class FacturaLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -128,7 +127,7 @@ public class FacturaLogicTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
         Assert.assertEquals(newEntity.getPagado(), entity.getPagado());
-        Assert.assertEquals(newEntity.getValor(), entity.getValor(),0);
+        Assert.assertEquals(newEntity.getValor(), entity.getValor(), 0);
     }
 
     /**
@@ -163,8 +162,10 @@ public class FacturaLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-        Assert.assertTrue(resultEntity.getPagado() == entity.getPagado());
-        Assert.assertEquals(resultEntity.getValor(), entity.getValor(),0);
+        Assert.assertTrue(entity.getPagado() == resultEntity.getPagado());
+        Assert.assertEquals(resultEntity.getValor(), entity.getValor(), 0);
+
+        Assert.assertNull(facturaLogic.getFactura(Long.MIN_VALUE));
 
     }
 
@@ -200,16 +201,16 @@ public class FacturaLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertTrue(pojoEntity.getPagado() == resp.getPagado());
-        Assert.assertEquals(pojoEntity.getValor(), resp.getValor(),0);
-        
+        Assert.assertEquals(pojoEntity.getValor(), resp.getValor(), 0);
+
         pojoEntity.setValor(-1.0);
-        try{
-        facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
-        Assert.fail();
-        }catch(BusinessLogicException e){
-            
+        try {
+            facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
+            Assert.fail();
+        } catch (BusinessLogicException e) {
+
         }
 
     }
-    
+
 }

@@ -66,9 +66,9 @@ public class EmpleadoPersistence {
             return sameCedula.get(0);
         }
     }
-    
-    public List<EmpleadoEntity> findByCargo(String cargo){
-        TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.cargo = :cargo",EmpleadoEntity.class );
+
+    public List<EmpleadoEntity> findByCargo(String cargo) {
+        TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.cargo = :cargo", EmpleadoEntity.class);
         query = query.setParameter("cargo", cargo);
         return query.getResultList();
     }

@@ -33,11 +33,11 @@ import co.edu.uniandes.csw.watchdogs.entities.DisponibilidadEntity;
  */
 public class DisponibilidadDTO {
 
-   /**
-    * id de la Disponibilidad
-    */
+    /**
+     * id de la Disponibilidad
+     */
     private Long id;
-    
+
     /**
      * String que representa el horario
      */
@@ -47,7 +47,7 @@ public class DisponibilidadDTO {
      * Constructor por defecto
      */
     public DisponibilidadDTO() {
-
+        super();
     }
 
     /**
@@ -58,7 +58,7 @@ public class DisponibilidadDTO {
     public DisponibilidadDTO(DisponibilidadEntity entity) {
         if (entity != null) {
             this.id = entity.getId();
-                this.matrizHorarios = entity.getMatrizHorarios();
+            this.matrizHorarios = entity.getMatrizHorarios();
         }
     }
 
@@ -100,7 +100,7 @@ public class DisponibilidadDTO {
     public DisponibilidadEntity toEntity() {
         DisponibilidadEntity entity = new DisponibilidadEntity();
         entity.setId(id);
-            entity.setMatrizHorarios(matrizHorarios);
+        entity.setMatrizHorarios(matrizHorarios);
         return entity;
     }
 }

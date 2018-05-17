@@ -139,6 +139,10 @@ public class EmpleadoPersistenceTest {
         Assert.assertEquals(entity.getCorreo(), (newEntity.getCorreo()));
         Assert.assertEquals(entity.getCargo(), (newEntity.getCargo()));
         Assert.assertEquals(entity.getTelefono(), (newEntity.getTelefono()));
+        Assert.assertEquals(entity.getDisponibilidad(), (newEntity.getDisponibilidad()));
+        Assert.assertEquals(entity.getCalificacion(), (newEntity.getCalificacion()));
+        Assert.assertEquals(entity.getImagen(), (newEntity.getImagen()));
+        Assert.assertEquals(entity.getEdad(), (newEntity.getEdad()));
     }
 
     /**
@@ -183,7 +187,7 @@ public class EmpleadoPersistenceTest {
 
         Assert.assertNotNull(empleadoPersistence.findByCedula(result.getCedula()));
     }
-    
+
     /**
      * Prueba para buscar por cargo.
      */

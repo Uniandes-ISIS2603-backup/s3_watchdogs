@@ -11,7 +11,7 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
  * RutaDTO Objeto de transferencia de datos de Watchdogs. Los DTO contienen las
  * represnetaciones de los JSON que se transfieren entre el cliente y el
  * servidor.
- * 
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
@@ -19,11 +19,10 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
  *      "nombre": String,
  *      "duracion": number
  *   }
- * </pre>
- * Por ejemplo una ruta se representa asi:<br>
- * 
+ * </pre> Por ejemplo una ruta se representa asi:<br>
+ *
  * <pre>
- * 
+ *
  *   {
  *      "id": 1321321,
  *      "nombre": "Molinos",
@@ -35,99 +34,93 @@ import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
  * @author id.salazar
  */
 public class RutaDTO {
-    
+
     /**
      * id de la ruta
      */
     private Long id;
-    
+
     /**
      * nombre de la ruta
      */
     private String nombre;
-    
+
     /**
      * duracion de la ruta
      */
     private Integer duracion;
-    
-     /** 
+
+    /**
      * Constructor por defecto
      */
-    public RutaDTO(){
-        /*
-        Comentario para evadir sonarqube
-        */
+    public RutaDTO() {
+        super();
     }
-    
-     /**
+
+    /**
      * Constructor que recibe un entity
-     * @param entity 
+     *
+     * @param entity
      */
-    public RutaDTO(RutaEntity entity){
-        if(entity != null){
-        this.id = entity.getId();
-        this.nombre = entity.getName();
-        this.duracion = entity.getDuracion();
+    public RutaDTO(RutaEntity entity) {
+        if (entity != null) {
+            this.id = entity.getId();
+            this.nombre = entity.getName();
+            this.duracion = entity.getDuracion();
         }
     }
-    
+
     /**
-     * 
+     *
      * @return El id de la ruta
      */
-    
-    public Long getId(){
+    public Long getId() {
         return id;
     }
-    
+
     /**
      * @param id El nuevo id de la ruta
      */
-    
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
-    
+
     /**
-     * 
+     *
      * @return El nombre de la ruta
      */
-    
-    public String getNombre(){
+    public String getNombre() {
         return nombre;
     }
-    
+
     /**
      * @param nombre El nuevo nombre de la ruta
      */
-    
-    public void setNombre(String nombre){
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     /**
-     * 
+     *
      * @return La duración de la ruta
      */
-    
-    public Integer getDuracion(){
+    public Integer getDuracion() {
         return duracion;
     }
-    
+
     /**
      * @param duracion La nueva duración de la ruta
      */
-    
-    public void setDuracion(Integer duracion){
+    public void setDuracion(Integer duracion) {
         this.duracion = duracion;
     }
-    
+
     /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
-    public RutaEntity toEntity(){
+    public RutaEntity toEntity() {
         RutaEntity entity = new RutaEntity();
         entity.setId(id);
         entity.setName(nombre);

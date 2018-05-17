@@ -32,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class TransporteLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -93,14 +93,14 @@ public class TransporteLogicTest {
      *
      *
      */
-    private void insertData() {  
+    private void insertData() {
         for (int i = 0; i < 3; i++) {
             TransporteEntity entity = factory.manufacturePojo(TransporteEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     /**
      * Prueba para crear un Book
      *

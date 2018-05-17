@@ -32,12 +32,10 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class TransporteResource {
-    
-    
+
     @Inject
     TransporteLogic transporteLogic;
-    
-    
+
     /**
      *
      * @return lista entities
@@ -71,8 +69,8 @@ public class TransporteResource {
      * @throws BusinessLogicException
      */
     @POST
-    public TransporteDetailDTO createTransporte(TransporteDetailDTO transporte) throws BusinessLogicException {        
-         return new TransporteDetailDTO( transporteLogic.createTransporte(transporte.toEntity()));
+    public TransporteDetailDTO createTransporte(TransporteDetailDTO transporte) throws BusinessLogicException {
+        return new TransporteDetailDTO(transporteLogic.createTransporte(transporte.toEntity()));
     }
 
     /**
@@ -102,10 +100,9 @@ public class TransporteResource {
         transporteLogic.deleteTransporte(id);
     }
 
-
     private List<TransporteDetailDTO> listTransporteEntity2DetailDTO(List<TransporteEntity> entityList) {
         List<TransporteDetailDTO> list = new ArrayList<>();
-        for(TransporteEntity entity : entityList) {
+        for (TransporteEntity entity : entityList) {
             list.add(new TransporteDetailDTO(entity));
         }
         return list;

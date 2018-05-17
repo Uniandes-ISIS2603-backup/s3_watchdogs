@@ -12,51 +12,52 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Clase que extiende de {@link CentroDeEntrenamientoDTO} para manejar la transformacion entre
- * los objetos JSON y las Entidades de la base de datos. Para conocer el
- * contenido del centro de entrenamiento vaya a la documentacion de {@link CentroDeEntrenamientoDTO}
+ * Clase que extiende de {@link CentroDeEntrenamientoDTO} para manejar la
+ * transformacion entre los objetos JSON y las Entidades de la base de datos.
+ * Para conocer el contenido del centro de entrenamiento vaya a la documentacion
+ * de {@link CentroDeEntrenamientoDTO}
+ *
  * @author m.diazt
  */
 public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
-    
+
     /**
      * Lista de Entrenamientos en el centro
      */
     private transient List<EntrenamientoDTO> entrenamientos;
-    
+
     /**
      * Lista de servicios de Hotel en el centro
      */
     private transient List<HotelDTO> hoteles;
-    
+
     /**
      * Constructor por defecto
      */
-    public CentroDeEntrenamientoDetailDTO()
-    {
+    public CentroDeEntrenamientoDetailDTO() {
         super();
     }
-    
+
     /**
      * Constructor para transformar un Entity a un DTO
      *
      * @param entity La entidad de la mascota a partir de la cual se construye
      * el objeto
      */
-    public CentroDeEntrenamientoDetailDTO(CentroDeEntrenamientoEntity entity){
+    public CentroDeEntrenamientoDetailDTO(CentroDeEntrenamientoEntity entity) {
         super(entity);
-        if(entity.getEntrenamientos() != null){
+        if (entity.getEntrenamientos() != null) {
             entrenamientos = new ArrayList();
-            for(EntrenamientoEntity eEnt : entity.getEntrenamientos()){
+            for (EntrenamientoEntity eEnt : entity.getEntrenamientos()) {
                 entrenamientos.add(new EntrenamientoDTO(eEnt));
             }
         }
-        if(entity.getHoteles() !=null){
+        if (entity.getHoteles() != null) {
             hoteles = new ArrayList();
-            for(HotelEntity hEnt : entity.getHoteles()){
+            for (HotelEntity hEnt : entity.getHoteles()) {
                 hoteles.add(new HotelDTO(hEnt));
             }
-        } 
+        }
     }
 
     /**
@@ -86,31 +87,30 @@ public class CentroDeEntrenamientoDetailDTO extends CentroDeEntrenamientoDTO {
     public void setHoteles(List<HotelDTO> hoteles) {
         this.hoteles = hoteles;
     }
-    
+
     /**
      * Metodo que convierte un DTO a ENtity
+     *
      * @return CentroDeEntrenamientoEntity
      */
     @Override
-    public CentroDeEntrenamientoEntity toEntity(){
+    public CentroDeEntrenamientoEntity toEntity() {
         CentroDeEntrenamientoEntity entity = super.toEntity();
-        if(this.getEntrenamientos() != null){
+        if (this.getEntrenamientos() != null) {
             List<EntrenamientoEntity> entrenEnt = new ArrayList<>();
-            for(EntrenamientoDTO e:entrenamientos){
+            for (EntrenamientoDTO e : entrenamientos) {
                 entrenEnt.add(e.toEntity());
             }
             entity.setEntrenamientos(entrenEnt);
         }
-        if(this.getHoteles() != null){
+        if (this.getHoteles() != null) {
             List<HotelEntity> hotelEnt = new ArrayList<>();
-            for(HotelDTO h : hoteles){
+            for (HotelDTO h : hoteles) {
                 hotelEnt.add(h.toEntity());
             }
             entity.setHoteles(hotelEnt);
         }
         return entity;
     }
-    
-    
-    
+
 }

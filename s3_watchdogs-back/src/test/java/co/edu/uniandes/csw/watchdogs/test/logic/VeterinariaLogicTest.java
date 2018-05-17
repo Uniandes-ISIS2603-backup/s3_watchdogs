@@ -39,7 +39,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class VeterinariaLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -52,9 +52,9 @@ public class VeterinariaLogicTest {
     private UserTransaction utx;
 
     private List<VeterinariaEntity> data = new ArrayList<>();
-    
+
     private List<PaseoEntity> paseosData = new ArrayList<>();
-    
+
     private List<AseoEntity> aseosData = new ArrayList<>();
 
     @Deployment
@@ -66,8 +66,8 @@ public class VeterinariaLogicTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
-     /**
+
+    /**
      * Configuración inicial de la prueba.
      */
     @Before
@@ -95,13 +95,13 @@ public class VeterinariaLogicTest {
         em.createQuery("delete from AseoEntity").executeUpdate();
         em.createQuery("delete from VeterinariaEntity").executeUpdate();
 
-
     }
+
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() {  
+    private void insertData() {
         for (int i = 0; i < 3; i++) {
             PaseoEntity entity = factory.manufacturePojo(PaseoEntity.class);
             em.persist(entity);
@@ -118,9 +118,10 @@ public class VeterinariaLogicTest {
             data.add(entity);
         }
     }
-    
-     /**
+
+    /**
      * Prueba para crear una Veterinaria
+     *
      * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @Test
@@ -163,17 +164,16 @@ public class VeterinariaLogicTest {
         Assert.assertEquals(entity.getCapacidadMaxima(), resultEntity.getCapacidadMaxima());
         Assert.assertEquals(entity.getFotos(), resultEntity.getFotos());
         Assert.assertEquals(entity.getDireccion(), resultEntity.getDireccion());
+
+        Assert.assertNull(veterinariaLogic.getVeterinaria(Long.MIN_VALUE));
     }
-    
-  
-    
 
     /**
      * Prueba para eliminar una Veterinaria
      */
     @Test
     public void deleteVeterinariaTest() {
-        VeterinariaEntity entity= data.get(0);
+        VeterinariaEntity entity = data.get(0);
         veterinariaLogic.deleteVeterinaria(entity.getId());
         VeterinariaEntity deleted = em.find(VeterinariaEntity.class, entity.getId());
         Assert.assertNull(deleted);
@@ -181,6 +181,7 @@ public class VeterinariaLogicTest {
 
     /**
      * Prueba para actualizar una Veterinaria
+     *
      * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @Test
@@ -200,33 +201,32 @@ public class VeterinariaLogicTest {
         Assert.assertEquals(pojoEntity.getFotos(), resp.getFotos());
         Assert.assertEquals(pojoEntity.getDireccion(), resp.getDireccion());
     }
-    
+
     /**
      * Prueba para el añadido correcto de aseos
      */
     @Test
-    public void addAseoTest() throws BusinessLogicException{
+    public void addAseoTest() throws BusinessLogicException {
         VeterinariaEntity entity = data.get(0);
-        AseoEntity aseo = aseosData.get(0);                
+        AseoEntity aseo = aseosData.get(0);
         veterinariaLogic.addAseo(entity.getId(), aseo.getId());
         VeterinariaEntity resultEntity = veterinariaLogic.getVeterinaria(entity.getId());
         Assert.assertTrue(!resultEntity.getAseos().isEmpty());
         Assert.assertTrue(aseo.getId().equals(resultEntity.getAseos().get(0).getId()));
 
     }
-   
-    
+
     /**
      * Prueba para el añadido correcto de paseos
      */
     //@Test
-    public void addPaseoTest() throws BusinessLogicException{
+    public void addPaseoTest() throws BusinessLogicException {
         VeterinariaEntity entity = data.get(0);
-        PaseoEntity paseo = paseosData.get(0);                
+        PaseoEntity paseo = paseosData.get(0);
         veterinariaLogic.addPaseo(entity.getId(), paseo.getId());
         VeterinariaEntity resultEntity = veterinariaLogic.getVeterinaria(entity.getId());
         Assert.assertTrue(!resultEntity.getPaseos().isEmpty());
         Assert.assertTrue(paseo.getId().equals(resultEntity.getPaseos().get(0).getId()));
-       
+
     }
 }

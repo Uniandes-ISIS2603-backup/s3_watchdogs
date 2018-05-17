@@ -10,10 +10,6 @@ import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
-import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
-import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
-import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
-import java.util.List;
 
 /**
  * Clase que extiende de {@link FacturaDTO} para manejar la transformacion entre
@@ -54,9 +50,8 @@ import java.util.List;
 public class FacturaDetailDTO extends FacturaDTO {
 
     /**
-     *Cliente asociado a la factura 
+     * Cliente asociado a la factura
      */
-     
     private ClienteDTO cliente;
 
     /**
@@ -68,12 +63,12 @@ public class FacturaDetailDTO extends FacturaDTO {
      * Posible Paypal asociado a la factura
      */
     private PayPalDTO payPal;
-    
+
     /**
      * Posible PSE asociado a la factura
      */
     private PseDTO pse;
-    
+
     /**
      * Posible Tyarjeta asociada a la factura
      */
@@ -85,8 +80,8 @@ public class FacturaDetailDTO extends FacturaDTO {
     public FacturaDetailDTO() {
         super();
     }
-    
-     /**
+
+    /**
      * Constructor para transformar un Entity a un DTO
      *
      * @param entity La entidad de la mascota a partir de la cual se construye
@@ -136,7 +131,6 @@ public class FacturaDetailDTO extends FacturaDTO {
         this.payPal = payPal;
     }
 
-    
     /**
      * @return the pse
      */
@@ -157,15 +151,13 @@ public class FacturaDetailDTO extends FacturaDTO {
     public TarjetaCreditoDTO getTarjeta() {
         return tarjeta;
     }
-    
+
     /**
      * @param tarjeta the tarjeta to set
      */
     public void setTarjeta(TarjetaCreditoDTO tarjeta) {
         this.tarjeta = tarjeta;
     }
-
-   
 
     /**
      * @return the cliente
@@ -194,12 +186,12 @@ public class FacturaDetailDTO extends FacturaDTO {
     public void setServicio(ServicioDTO servicio) {
         this.servicio = servicio;
     }
-    
-     /**
+
+    /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
-
     @Override
     public FacturaEntity toEntity() {
         FacturaEntity rta = super.toEntity();

@@ -19,11 +19,12 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class EntrenamientoPersistence {
+
     private static final Logger LOGGER = Logger.getLogger(EntrenamientoPersistence.class.getName());
-    
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
      *
      * @param entity objeto entrenamiento que se creará en la base de datos
@@ -35,21 +36,21 @@ public class EntrenamientoPersistence {
         LOGGER.info("Creando un entrenamiento nuevo");
         return entity;
     }
-    
+
     public List<EntrenamientoEntity> findAll() {
         LOGGER.info("Consultando todas los entrenamiento");
         TypedQuery query = em.createQuery("select u from EntrenamientoEntity u", EntrenamientoEntity.class);
         return query.getResultList();
     }
-    
+
     public EntrenamientoEntity find(Long id) {
         return em.find(EntrenamientoEntity.class, id);
     }
 
     public EntrenamientoEntity update(EntrenamientoEntity entity) {
-         return em.merge(entity);
+        return em.merge(entity);
     }
-    
+
     public void delete(Long id) {
         EntrenamientoEntity entity = find(id);
         em.remove(entity);

@@ -20,11 +20,12 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class CalificacionPersistence {
+
     private static final Logger LOGGER = Logger.getLogger(CalificacionPersistence.class.getName());
-    
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
      *
      * @param entity objeto transporte que se creará en la base de datos
@@ -36,13 +37,13 @@ public class CalificacionPersistence {
         LOGGER.info("Calificacion persistida");
         return entity;
     }
-    
+
     public List<CalificacionEntity> findAll() {
         LOGGER.info("Consultando todas las calificaciones");
         TypedQuery query = em.createQuery("select u from CalificacionEntity u", CalificacionEntity.class);
         return query.getResultList();
     }
-    
+
     public CalificacionEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando calificacion con id={0}", id);
         return em.find(CalificacionEntity.class, id);
@@ -52,7 +53,7 @@ public class CalificacionPersistence {
         LOGGER.log(Level.INFO, "Actualizando Calificacion con id={0}", entity.getId());
         return em.merge(entity);
     }
-    
+
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando el Calificacion con id={0}", id);
         CalificacionEntity entity = em.find(CalificacionEntity.class, id);

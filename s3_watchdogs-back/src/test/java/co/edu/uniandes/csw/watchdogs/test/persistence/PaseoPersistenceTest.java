@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PaseoPersistenceTest {
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -41,15 +41,15 @@ public class PaseoPersistenceTest {
     }
     @Inject
     private PaseoPersistence PaseoPersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
+
     private List<PaseoEntity> data = new ArrayList<PaseoEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -67,29 +67,30 @@ public class PaseoPersistenceTest {
             }
         }
     }
-    
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from PaseoEntity").executeUpdate();
     }
-    
+
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             PaseoEntity entity = factory.manufacturePojo(PaseoEntity.class);
-            
+
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     @Test
-    public void createEntrenamientoTest(){
+    public void createEntrenamientoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         PaseoEntity newEntity = factory.manufacturePojo(PaseoEntity.class);
         PaseoEntity result = PaseoPersistence.create(newEntity);
@@ -101,7 +102,7 @@ public class PaseoPersistenceTest {
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getCapMax(), entity.getCapMax());
     }
-    
+
     @Test
     public void getEntrenamientosTest() {
         List<PaseoEntity> list = PaseoPersistence.findAll();
@@ -116,7 +117,7 @@ public class PaseoPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getEntrenamientoTest() {
         PaseoEntity entity = data.get(0);
@@ -128,7 +129,7 @@ public class PaseoPersistenceTest {
         Assert.assertEquals(newEntity.getRuta(), entity.getRuta());
         Assert.assertEquals(newEntity.getVeterinaria(), entity.getVeterinaria());
     }
-    
+
     @Test
     public void deleteEntrenamientoTest() {
         PaseoEntity entity = data.get(0);
@@ -136,7 +137,7 @@ public class PaseoPersistenceTest {
         PaseoEntity deleted = em.find(PaseoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+
     @Test
     public void updateEntrenamientoTest() {
         PaseoEntity entity = data.get(0);

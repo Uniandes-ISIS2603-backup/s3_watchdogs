@@ -30,14 +30,14 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
      */
     @PodamStrategyValue(NumTarjetaStrategy.class)
     private String numeroTarjeta;
-    
+
     /**
      * Fecha de vencimiento de la tarjeta
      */
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaVencimiento;
-    
+
     /**
      * Codigo de seguridad de la tarjeta
      */
@@ -49,7 +49,7 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
-    
+
     /**
      * Atributo factura que evita que todo colapse
      */
@@ -58,15 +58,14 @@ public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
     private FacturaEntity factura;
 
     /**
-     *@return la factura asociada 
+     * @return la factura asociada
      */
-     
     public FacturaEntity getFactura() {
         return factura;
     }
 
     /**
-     * 
+     *
      * @param factura nueva factura asociada
      */
     public void setFactura(FacturaEntity factura) {

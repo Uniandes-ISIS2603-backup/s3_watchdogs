@@ -189,6 +189,8 @@ public class ClienteLogicTest {
             Assert.assertEquals(entity.getId(), resultEntity.getId());
             Assert.assertEquals(entity.getName(), resultEntity.getName());
             Assert.assertEquals(entity.getCedula(), resultEntity.getCedula());
+
+            Assert.assertNull(clienteLogic.getCliente(Long.MIN_VALUE));
         } catch (Exception e) {
             fail();
         }
@@ -206,6 +208,11 @@ public class ClienteLogicTest {
             Assert.assertNull(deleted);
         } catch (BusinessLogicException e) {
             fail();
+        }
+        try {
+            clienteLogic.deleteCliente(Long.MIN_VALUE);
+            fail();
+        } catch (BusinessLogicException e) {
         }
     }
 
@@ -284,7 +291,7 @@ public class ClienteLogicTest {
             utx.commit();
             clienteLogic.addPayPal(cliente.getId(), pojoEntity.getId());
             ClienteEntity resultado = em.find(ClienteEntity.class, cliente.getId());
-            
+
             boolean found = false;
             for (PayPalEntity storedEntity : resultado.getPayPals()) {
                 if (pojoEntity.getId().equals(storedEntity.getId())) {
@@ -292,19 +299,7 @@ public class ClienteLogicTest {
                 }
             }
             Assert.assertTrue(found);
-        } catch (RollbackException ex ) {
-            fail();
-        } catch (HeuristicMixedException ex) {
-            fail();
-        } catch (HeuristicRollbackException ex) {
-            fail();
-        } catch (SecurityException ex) {
-            fail();
-        } catch (IllegalStateException ex) {
-            fail();
-        } catch (SystemException ex) {
-            fail();
-        } catch (NotSupportedException ex) {
+        } catch (RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException | SystemException | NotSupportedException ex) {
             fail();
         }
 

@@ -133,7 +133,7 @@ public class TarjetaCreditoPersistenceTest {
     @Test
     public void getTarjetaTest() {
         TarjetaCreditoEntity entity = data.get(0);
-        TarjetaCreditoEntity newEntity = tarjetaCreditoPersistence.find(clienteData.get(0).getId(),entity.getId());
+        TarjetaCreditoEntity newEntity = tarjetaCreditoPersistence.find(clienteData.get(0).getId(), entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getNumeroTarjeta(), newEntity.getNumeroTarjeta());
         Assert.assertEquals(entity.getFactura(), newEntity.getFactura());
@@ -160,5 +160,21 @@ public class TarjetaCreditoPersistenceTest {
         TarjetaCreditoEntity resp = em.find(TarjetaCreditoEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getNumeroTarjeta(), resp.getNumeroTarjeta());
+    }
+
+    /**
+     * Prueba para buscar por nombre.
+     */
+    @Test
+    public void findByNameTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        TarjetaCreditoEntity newEntity = factory.manufacturePojo(TarjetaCreditoEntity.class);
+        TarjetaCreditoEntity result = tarjetaCreditoPersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        Assert.assertNotNull(tarjetaCreditoPersistence.findByName(result.getName()));
+
+        Assert.assertNull(tarjetaCreditoPersistence.findByName(""));
     }
 }

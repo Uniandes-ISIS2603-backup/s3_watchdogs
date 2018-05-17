@@ -42,7 +42,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class PaseoLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -55,13 +55,13 @@ public class PaseoLogicTest {
     private UserTransaction utx;
 
     private List<PaseoEntity> data = new ArrayList<>();
-    
+
     private List<MascotaEntity> dataMascota = new ArrayList<MascotaEntity>();
 
     private List<EmpleadoEntity> dataEmpleado = new ArrayList<EmpleadoEntity>();
 
     private List<ClienteEntity> dataCliente = new ArrayList<ClienteEntity>();
-    
+
     private List<CalificacionEntity> dataCalificacion = new ArrayList<CalificacionEntity>();
 
     @Deployment
@@ -110,7 +110,7 @@ public class PaseoLogicTest {
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      */
-    private void insertData() {  
+    private void insertData() {
         for (int i = 0; i < 3; i++) {
             ClienteEntity clienteEntity = factory.manufacturePojo(ClienteEntity.class);
             em.persist(clienteEntity);
@@ -142,9 +142,10 @@ public class PaseoLogicTest {
             data.add(entity);
         }
     }
-    
+
     /**
      * Prueba para crear un Paseo
+     *
      * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
      */
     @Test
@@ -161,7 +162,8 @@ public class PaseoLogicTest {
         Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
         Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
     }
-/**
+
+    /**
      * Prueba para crear un paseo
      *
      * @throws co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException
@@ -179,6 +181,7 @@ public class PaseoLogicTest {
         Assert.assertEquals(newEntity.getCliente(), entity.getCliente());
         Assert.assertEquals(newEntity.getMascota(), entity.getMascota());
     }
+
     /**
      * Prueba para consultar la lista de Paseos
      */
@@ -207,6 +210,8 @@ public class PaseoLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getCapMax(), resultEntity.getCapMax());
+
+        Assert.assertNull(paseoLogic.getPaseo(Long.MIN_VALUE));
     }
 
     /**
@@ -242,7 +247,7 @@ public class PaseoLogicTest {
         Assert.assertEquals(pojoEntity.getMascota(), resp.getMascota());
         Assert.assertEquals(pojoEntity.getEmpleado(), resp.getEmpleado());
     }
-    
+
     @Test
     public void addCalificacionTest() {
         try {

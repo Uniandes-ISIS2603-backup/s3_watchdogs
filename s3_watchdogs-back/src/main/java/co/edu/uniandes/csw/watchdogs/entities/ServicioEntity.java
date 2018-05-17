@@ -74,14 +74,14 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @ManyToOne
     protected ClienteEntity cliente;
-    
+
     /**
-    * Factura asociada al servicio  
-    */
+     * Factura asociada al servicio
+     */
     @PodamExclude
     @OneToOne(mappedBy = "servicio", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     protected FacturaEntity factura;
-    
+
     /**
      * Calificación del servicio
      */
@@ -97,7 +97,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     protected EmpleadoEntity empleado;
 
     /**
-     * 
+     *
      * @return the mascota
      */
     public MascotaEntity getMascota() {
@@ -105,7 +105,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param mascota the mascota to set
      */
     public void setMascota(MascotaEntity mascota) {
@@ -113,15 +113,15 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the cliente
      */
     public ClienteEntity getCliente() {
         return cliente;
     }
-    
+
     /**
-     * 
+     *
      * @param cliente the cliente to set
      */
     public void setCliente(ClienteEntity cliente) {
@@ -129,7 +129,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the factura
      */
     public FacturaEntity getFactura() {
@@ -137,7 +137,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param factura the factura to set
      */
     public void setFactura(FacturaEntity factura) {
@@ -145,7 +145,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the calificacion
      */
     public CalificacionEntity getCalificacion() {
@@ -153,7 +153,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param calificacion the calificacion to set
      */
     public void setCalificacion(CalificacionEntity calificacion) {
@@ -161,40 +161,40 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the empleado
      */
     public EmpleadoEntity getEmpleado() {
         return empleado;
     }
-    
+
     /**
-     * 
+     *
      * @param empleado the empleado to set
      */
     public void setEmpleado(EmpleadoEntity empleado) {
         this.empleado = empleado;
     }
-    
+
     /**
-     * 
+     *
      * @param fecha the fecha to set
      */
-    
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
     /**
-     * 
+     *
      * @param costo the costo to set
      */
 
     public void setCosto(Double costo) {
         this.costo = costo;
     }
-    
+
     /**
-     * 
+     *
      * @param estado the estado to set
      */
     public void setEstado(Boolean estado) {
@@ -202,7 +202,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param rango the rango to set
      */
     public void setRango(List<String> rango) {
@@ -210,7 +210,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param duracion the duracion to set
      */
     public void setDuracion(Double duracion) {
@@ -218,7 +218,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the fecha
      */
     public Date getFecha() {
@@ -226,7 +226,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the costo
      */
     public Double getCosto() {
@@ -234,7 +234,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the Estado
      */
     public Boolean isEstado() {
@@ -242,7 +242,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the rango
      */
     public List<String> getRango() {
@@ -250,7 +250,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the duracion
      */
     public Double getDuracion() {
@@ -258,7 +258,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @return the hora
      */
     public Integer getHora() {
@@ -266,7 +266,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
     }
 
     /**
-     * 
+     *
      * @param hora the hora to set
      */
     public void setHora(Integer hora) {
@@ -275,6 +275,7 @@ public class ServicioEntity extends BaseEntity implements Serializable {
 
     /**
      * Metodo para saber si el objeto es del mismo tipo de esta clase
+     *
      * @param obj el objeto a comprar
      * @return true si es de la misma clase, false de lo contrario
      */

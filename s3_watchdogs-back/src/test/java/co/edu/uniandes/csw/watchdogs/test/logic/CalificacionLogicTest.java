@@ -32,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class CalificacionLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -93,14 +93,14 @@ public class CalificacionLogicTest {
      *
      *
      */
-    private void insertData() {  
+    private void insertData() {
         for (int i = 0; i < 3; i++) {
             CalificacionEntity entity = factory.manufacturePojo(CalificacionEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     /**
      * Prueba para crear un Book
      *
@@ -150,7 +150,7 @@ public class CalificacionLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getPuntaje(), resultEntity.getPuntaje());
-        
+
         Assert.assertNull(calificacionLogic.getCalificacion(Long.MIN_VALUE));
     }
 

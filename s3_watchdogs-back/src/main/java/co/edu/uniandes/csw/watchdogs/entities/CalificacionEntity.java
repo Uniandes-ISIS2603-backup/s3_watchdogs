@@ -23,17 +23,17 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
     @PodamExclude
     @OneToOne
     private ClienteEntity cliente;
-    
+
     /**
      * Empleado calificador
      */
     @PodamExclude
     @OneToOne
     private EmpleadoEntity empleado;
-     
+
     /**
-    * puntaje de la calificacion
-    */
+     * puntaje de la calificacion
+     */
     private Integer puntaje;
 
     /**
@@ -64,17 +64,16 @@ public class CalificacionEntity extends BaseEntity implements Serializable {
         this.cliente = cliente;
     }
 
-     /**
+    /**
      * @return the empleado
      */
     public EmpleadoEntity getEmpleado() {
         return empleado;
     }
-    
-     /**
+
+    /**
      * @param empleado the empleado to set
      */
-
     public void setEmpleado(EmpleadoEntity empleado) {
         this.empleado = empleado;
     }

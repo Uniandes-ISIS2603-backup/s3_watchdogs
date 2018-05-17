@@ -15,41 +15,41 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author js.vacat
  */
 @Entity
-public class AseoEntity extends ServicioEntity implements Serializable{
-    
+public class AseoEntity extends ServicioEntity implements Serializable {
+
     /**
      * Representa si el Aseo incluye servicio de dientes
      */
     private Boolean dientes;
-    
+
     /**
      * Representa si el Aseo incluye servicio de baño
      */
     private Boolean banho;
-    
-     /**
+
+    /**
      * Representa si el Aseo incluye servicio de peluquería
      */
     private Boolean peluqueria;
-    
-     /**
+
+    /**
      * Representa la relación del servicio de Aseo con la veterinaria
      */
     @PodamExclude
     @ManyToOne
     private VeterinariaEntity veterinaria;
-    
+
     /**
      * Constructor vacío por defecto.
      */
-    public AseoEntity(){
-        
+    public AseoEntity() {
+        super();
     }
-    
-     /**
+
+    /**
      * @return la veterinaria relacionada con el servicio
      */
-    public VeterinariaEntity getVeterinaria(){
+    public VeterinariaEntity getVeterinaria() {
         return veterinaria;
     }
 
@@ -59,7 +59,7 @@ public class AseoEntity extends ServicioEntity implements Serializable{
     public void setVeterinaria(VeterinariaEntity veterinaria) {
         this.veterinaria = veterinaria;
     }
-    
+
     /**
      * @return El servicio de dientes
      */
@@ -101,5 +101,5 @@ public class AseoEntity extends ServicioEntity implements Serializable{
     public void setPeluqueria(Boolean peluqueria) {
         this.peluqueria = peluqueria;
     }
-    
+
 }

@@ -166,11 +166,11 @@ public class CentroDeEntrenamientoLogic {
      * @return El hotel que fue agregado al CentroDeEntrenamiento.
      */
     public HotelEntity addHotel(Long hotelId, Long centroDeEntrenamientoId) throws BusinessLogicException {
-        CentroDeEntrenamientoEntity CentroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
+        CentroDeEntrenamientoEntity centroDeEntrenamientoEntity = getCentroDeEntrenamiento(centroDeEntrenamientoId);
         HotelEntity hotelEntity = hotelLogic.getHotel(hotelId);
         validarServicios(hotelEntity.getFecha(), hotelEntity.getCosto(), hotelEntity.getDuracion());
         validarHotel(hotelEntity.getTiempoHospedaje());
-        hotelEntity.setCentroDeEntrenamiento(CentroDeEntrenamientoEntity);
+        hotelEntity.setCentroDeEntrenamiento(centroDeEntrenamientoEntity);
         return hotelEntity;
     }
 

@@ -154,7 +154,7 @@ public class EmpleadoLogicTest {
         Assert.assertEquals(entity.getCorreo(), (resultEntity.getCorreo()));
         Assert.assertEquals(entity.getCargo(), (resultEntity.getCargo()));
         Assert.assertEquals(entity.getTelefono(), (resultEntity.getTelefono()));
-        
+
         Assert.assertNull(empleadoLogic.getEmpleado(Long.MIN_VALUE));
     }
 

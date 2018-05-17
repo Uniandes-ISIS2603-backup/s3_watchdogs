@@ -8,7 +8,6 @@ package co.edu.uniandes.csw.watchdogs.test.persistence;
 import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
-import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.persistence.CalificacionPersistence;
 import co.edu.uniandes.csw.watchdogs.persistence.PayPalPersistence;
 import java.util.ArrayList;
@@ -138,12 +137,12 @@ public class PayPalPersistenceTest {
     @Test
     public void getPayPalTest() {
         PayPalEntity entity = data.get(0);
-        PayPalEntity newEntity = payPalPersistence.find(clienteData.get(0).getId(),entity.getId());
+        PayPalEntity newEntity = payPalPersistence.find(clienteData.get(0).getId(), entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getCorreo(), newEntity.getCorreo());
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getId(), newEntity.getId());
-        
+
     }
 
     @Test
@@ -167,5 +166,21 @@ public class PayPalPersistenceTest {
         PayPalEntity resp = em.find(PayPalEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getCorreo(), resp.getCorreo());
+    }
+
+    /**
+     * Prueba para buscar por nombre.
+     */
+    @Test
+    public void findByNameTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        PayPalEntity newEntity = factory.manufacturePojo(PayPalEntity.class);
+        PayPalEntity result = payPalPersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        Assert.assertNotNull(payPalPersistence.findByName(result.getName()));
+
+        Assert.assertNull(payPalPersistence.findByName(""));
     }
 }

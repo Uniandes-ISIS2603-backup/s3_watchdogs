@@ -13,27 +13,27 @@ import uk.co.jemos.podam.common.AttributeStrategy;
  *
  * @author id.salazar
  */
-public class CargoStrategy implements AttributeStrategy<String>{
-    
+public class CargoStrategy implements AttributeStrategy<String> {
+
     @Override
     public String getValue() {
         return cargoValido();
     }
-    
+
     private String cargoValido() {
-        
+
         Random rnd = new Random();
         int choice = rnd.nextInt(4);
-        if(choice == 0){
+        if (choice == 0) {
             return EmpleadoEntity.PASEADOR;
-        }else if(choice == 1){
+        } else if (choice == 1) {
             return EmpleadoEntity.ASEADOR;
-        }else if(choice ==2){
+        } else if (choice == 2) {
             return EmpleadoEntity.ENTRENADOR;
-        }else{
+        } else {
             return EmpleadoEntity.CUIDADOR;
         }
-        
+
     }
-    
+
 }

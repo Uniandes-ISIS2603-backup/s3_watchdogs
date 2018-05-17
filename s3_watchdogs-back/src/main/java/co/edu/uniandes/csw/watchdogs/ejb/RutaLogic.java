@@ -18,17 +18,17 @@ import javax.inject.Inject;
  *
  * @author id.salazar
  */
-
 @Stateless
 public class RutaLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(RutaLogic.class.getName());
-    
+
     @Inject
     private RutaPersistence persistence;
 
     /**
      * Devuelve todas las rutas que hay en la base de datos.
+     *
      * @return Lista de entidades de tipo ruta.
      */
     public List<RutaEntity> getRutas() {
@@ -37,9 +37,10 @@ public class RutaLogic {
         LOGGER.info("Termina proceso de consultar todas las Rutas");
         return rutas;
     }
-    
+
     /**
      * Busca una ruta por ID
+     *
      * @param id El id de la ruta a buscar
      * @return La ruta encontrada, null si no la encuentra.
      */
@@ -52,12 +53,13 @@ public class RutaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar ruta con id={0}", id);
         return ruta;
     }
-    
+
     /**
      * Guardar una nueva Ruta
+     *
      * @param entity La nueva entidad de tipo Ruta a persistir.
      * @return La entidad luego de persistirla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public RutaEntity createRuta(RutaEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Ruta");
@@ -66,13 +68,14 @@ public class RutaLogic {
         LOGGER.info("Termina proceso de creación de Ruta");
         return entity;
     }
-    
+
     /**
      * Actualizar una Ruta por ID
+     *
      * @param id El ID de la Ruta a actualizar
      * @param entity La entidad de la Ruta con los cambios deseados
      * @return La entidad de la Ruta luego de actualizarla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public RutaEntity updateRuta(Long id, RutaEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Ruta con id={0}", id);
@@ -81,9 +84,10 @@ public class RutaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Ruta con id={0}", entity.getId());
         return newEntity;
     }
-    
+
     /**
      * Eliminar una Ruta por ID
+     *
      * @param id El ID de la Ruta a eliminar
      */
     public void deleteRuta(Long id) {
@@ -91,20 +95,20 @@ public class RutaLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Ruta con id={0}", id);
     }
-    
-    
-     public void check(RutaEntity entity)throws BusinessLogicException{
+
+    public void check(RutaEntity entity) throws BusinessLogicException {
         checkDuracionValida(entity);
     }
-     
-    
+
     /**
      * verifica que la duracion de la ruta sea superior a 0 y no mayor a 120
+     *
      * @param entity La ruta a revisar
-     * @throws BusinessLogicException si la duración es demasiado larga o inferior a 0
+     * @throws BusinessLogicException si la duración es demasiado larga o
+     * inferior a 0
      */
-    public void checkDuracionValida(RutaEntity entity) throws BusinessLogicException{
-        if( entity.getDuracion()< 0  || entity.getDuracion() > 120){
+    public void checkDuracionValida(RutaEntity entity) throws BusinessLogicException {
+        if (entity.getDuracion() < 0 || entity.getDuracion() > 120) {
             throw new BusinessLogicException("La duracion de la ruta no es válida");
         }
     }

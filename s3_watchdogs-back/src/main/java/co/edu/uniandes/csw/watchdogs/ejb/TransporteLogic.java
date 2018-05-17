@@ -20,14 +20,15 @@ import javax.inject.Inject;
  */
 @Stateless
 public class TransporteLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(TransporteLogic.class.getName());
-    
+
     @Inject
-    private TransportePersistence persistence;     
+    private TransportePersistence persistence;
 
     /**
      * Devuelve todos los transportes que hay en la base de datos.
+     *
      * @return Lista de entidades de tipo transporte.
      */
     public List<TransporteEntity> getTransportes() {
@@ -36,9 +37,10 @@ public class TransporteLogic {
         LOGGER.info("Termina proceso de consultar todos los Transporte");
         return transportes;
     }
-    
+
     /**
      * Busca un transporte por ID
+     *
      * @param id El id del transporte a buscar
      * @return El Transporte encontrado, null si no lo encuentra.
      */
@@ -51,12 +53,13 @@ public class TransporteLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar Transporte con id={0}", id);
         return transporte;
     }
-    
+
     /**
      * Guardar un nuevo Transporte
+     *
      * @param entity La entidad de tipo Transporte del nuevo libro a persistir.
      * @return La entidad luego de persistirla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public TransporteEntity createTransporte(TransporteEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Transporte");
@@ -64,24 +67,26 @@ public class TransporteLogic {
         LOGGER.info("Termina proceso de creación de Transporte");
         return entity;
     }
-    
+
     /**
      * Actualizar un Transporte por ID
+     *
      * @param id El ID del Transporte a actualizar
      * @param entity La entidad del Transporte con los cambios deseados
      * @return La entidad del Transporte luego de actualizarla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public TransporteEntity updateTransporte(Long id, TransporteEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Transporte con id={0}", id);
-        
+
         TransporteEntity newEntity = persistence.update(entity);
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Transporte con id={0}", entity.getId());
         return newEntity;
     }
-    
+
     /**
      * Eliminar un Transporte por ID
+     *
      * @param id El ID del Transporte a eliminar
      */
     public void deleteTransporte(Long id) {

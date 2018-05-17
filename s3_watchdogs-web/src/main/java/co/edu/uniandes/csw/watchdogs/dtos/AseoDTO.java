@@ -7,11 +7,11 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
 
-
 /**
  * AseoDTO Objeto de transferencia de datos de Aseo. Los DTO contienen las
- * representaciones de los JSON que se tranfieren entre el servicio de aseo y el servidor.
- * 
+ * representaciones de los JSON que se tranfieren entre el servicio de aseo y el
+ * servidor.
+ *
  * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *  {
@@ -25,11 +25,10 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  *      "banho": Boolean,
  *      "peluqueria": Boolean
  *  }
- * </pre>
- * Por ejemplo un servicio de aseo se representa asi: <br>
- * 
+ * </pre> Por ejemplo un servicio de aseo se representa asi: <br>
+ *
  * <pre>
- * 
+ *
  *  {
  *      "id": 1889
  *      "fecha: "10-10-2010",
@@ -41,47 +40,47 @@ import co.edu.uniandes.csw.watchdogs.entities.AseoEntity;
  *      "banho": true,
  *      "peluqueria": true
  *  }
- * 
+ *
  * </pre>
- * 
+ *
  * @author js.vacat
  */
-public class AseoDTO extends ServicioDTO{
-    
+public class AseoDTO extends ServicioDTO {
+
     /**
      * Representa si el Aseo incluye servicio de dientes
      */
     private Boolean dientes;
-    
+
     /**
      * Representa si el Aseo incluye servicio de baño
      */
     private Boolean banho;
-    
+
     /**
      * Representa si el Aseo incluye servicio de peluquería
      */
     private Boolean peluqueria;
-    
+
     /**
      * Constructor por defecto
      */
-    public AseoDTO(){
+    public AseoDTO() {
+        super();
     }
-    
+
     /**
      * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento
-     * 
+     *
      * @param entity: Es la entidad que se va a convertir a DTO
      */
     public AseoDTO(AseoEntity entity) {
         super(entity);
-        if(entity!=null)
-        {
-        this.dientes = entity.getDientes();
-        this.banho = entity.getBanho();
-        this.peluqueria = entity.getPeluqueria();
+        if (entity != null) {
+            this.dientes = entity.getDientes();
+            this.banho = entity.getBanho();
+            this.peluqueria = entity.getPeluqueria();
         }
     }
 
@@ -126,10 +125,10 @@ public class AseoDTO extends ServicioDTO{
     public void setPeluqueria(Boolean peluqueria) {
         this.peluqueria = peluqueria;
     }
-    
-     /**
+
+    /**
      * Convertir un DTO a un Entity
-     * 
+     *
      * @return Un entity con los valores del DTO
      */
     @Override

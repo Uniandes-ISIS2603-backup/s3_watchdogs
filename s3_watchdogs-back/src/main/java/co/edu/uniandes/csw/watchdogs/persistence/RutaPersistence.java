@@ -17,17 +17,16 @@ import javax.persistence.TypedQuery;
  *
  * @author id.salazar
  */
-
 @Stateless
 public class RutaPersistence {
-    
+
     private static final Logger LOGGER = Logger.getLogger(RutaPersistence.class.getName());
-    
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
-     * 
+     *
      * @param entity objeto ruta que se creara en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
@@ -37,9 +36,8 @@ public class RutaPersistence {
         LOGGER.info("Creando una ruta nueva");
         return entity;
     }
-    
-    
-     public List<RutaEntity> findAll() {
+
+    public List<RutaEntity> findAll() {
         LOGGER.info("Consultando todas las rutas");
         TypedQuery query = em.createQuery("select u from RutaEntity u", RutaEntity.class);
         return query.getResultList();
@@ -50,9 +48,9 @@ public class RutaPersistence {
     }
 
     public RutaEntity update(RutaEntity entity) {
-         return em.merge(entity);
+        return em.merge(entity);
     }
-    
+
     public void delete(Long id) {
         RutaEntity entity = em.find(RutaEntity.class, id);
         em.remove(entity);

@@ -63,8 +63,8 @@ public class EmpleadoLogic {
         LOGGER.info("Termina proceso de consultar todos los empleados");
         return empleados;
     }
-    
-    public List<EmpleadoEntity> findbyCargo(String cargo){
+
+    public List<EmpleadoEntity> findbyCargo(String cargo) {
         LOGGER.info("Inicia proceso de consultar los empleados por cargo");
         List<EmpleadoEntity> empleados = persistence.findByCargo(cargo);
         LOGGER.info("Termina proceso de consultar los empleados por cargo");
@@ -130,16 +130,16 @@ public class EmpleadoLogic {
     public List<ServicioEntity> getServicios(Long empleadoId) {
         return getEmpleado(empleadoId).getServicios();
     }
-    
-    public void check(EmpleadoEntity empleado) throws BusinessLogicException{
+
+    public void check(EmpleadoEntity empleado) throws BusinessLogicException {
         checkCargoValido(empleado);
     }
-    
-    public void checkCargoValido(EmpleadoEntity empleado) throws BusinessLogicException{
+
+    public void checkCargoValido(EmpleadoEntity empleado) throws BusinessLogicException {
         if (!(empleado.getCargo().equals(EmpleadoEntity.ASEADOR)
-                ||empleado.getCargo().equals(EmpleadoEntity.CUIDADOR)
-                ||empleado.getCargo().equals(EmpleadoEntity.PASEADOR)
-                ||empleado.getCargo().equals(EmpleadoEntity.ENTRENADOR))){
+                || empleado.getCargo().equals(EmpleadoEntity.CUIDADOR)
+                || empleado.getCargo().equals(EmpleadoEntity.PASEADOR)
+                || empleado.getCargo().equals(EmpleadoEntity.ENTRENADOR))) {
             throw new BusinessLogicException("Este cargo no es válido");
         }
     }

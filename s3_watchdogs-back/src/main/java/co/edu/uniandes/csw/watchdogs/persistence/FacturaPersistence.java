@@ -17,17 +17,16 @@ import javax.persistence.TypedQuery;
  *
  * @author id.salazar
  */
-
 @Stateless
 public class FacturaPersistence {
-    
+
     private static final Logger LOGGER = Logger.getLogger(FacturaPersistence.class.getName());
-    
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
-     * 
+     *
      * @param entity objeto factura que se creara en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
@@ -37,9 +36,8 @@ public class FacturaPersistence {
         LOGGER.info("Creando una factura nueva");
         return entity;
     }
-    
-    
-     public List<FacturaEntity> findAll() {
+
+    public List<FacturaEntity> findAll() {
         LOGGER.info("Consultando todas las facturas");
         TypedQuery query = em.createQuery("select u from FacturaEntity u", FacturaEntity.class);
         return query.getResultList();
@@ -50,12 +48,12 @@ public class FacturaPersistence {
     }
 
     public FacturaEntity update(FacturaEntity entity) {
-         return em.merge(entity);
+        return em.merge(entity);
     }
-    
+
     public void delete(Long id) {
         FacturaEntity entity = find(id);
         em.remove(entity);
     }
-    
+
 }

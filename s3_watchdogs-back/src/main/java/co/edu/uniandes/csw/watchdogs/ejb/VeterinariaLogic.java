@@ -168,7 +168,7 @@ public class VeterinariaLogic {
     public PaseoEntity addPaseo(Long paseoId, Long veterinariaId) throws BusinessLogicException {
         VeterinariaEntity veterinariaEntity = getVeterinaria(veterinariaId);
         PaseoEntity paseoEntity = paseoLogic.getPaseo(paseoId);
-        validarServicios( paseoEntity.getFecha(), paseoEntity.getCosto(), paseoEntity.getDuracion());
+        validarServicios(paseoEntity.getFecha(), paseoEntity.getCosto(), paseoEntity.getDuracion());
         paseoEntity.setVeterinaria(veterinariaEntity);
         return paseoEntity;
     }

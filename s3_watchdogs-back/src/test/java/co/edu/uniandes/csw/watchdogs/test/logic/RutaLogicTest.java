@@ -30,23 +30,22 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author id.salazar
  */
-
 @RunWith(Arquillian.class)
 public class RutaLogicTest {
     
     private PodamFactory factory = new PodamFactoryImpl();
-
+    
     @Inject
     private RutaLogic rutaLogic;
-
+    
     @PersistenceContext
     private EntityManager em;
-
+    
     @Inject
     private UserTransaction utx;
-
+    
     private List<RutaEntity> data = new ArrayList<RutaEntity>();
-
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -115,7 +114,7 @@ public class RutaLogicTest {
         RutaEntity entity = em.find(RutaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
-        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion(),0);
+        Assert.assertEquals(newEntity.getDuracion(), entity.getDuracion(), 0);
     }
 
     /**
@@ -151,8 +150,8 @@ public class RutaLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
-        Assert.assertEquals(resultEntity.getDuracion(), entity.getDuracion(),0);
-
+        Assert.assertEquals(resultEntity.getDuracion(), entity.getDuracion(), 0);
+        
     }
 
     /**
@@ -177,25 +176,25 @@ public class RutaLogicTest {
     public void updateRutaTest() throws BusinessLogicException {
         RutaEntity entity = data.get(0);
         RutaEntity pojoEntity = factory.manufacturePojo(RutaEntity.class);
-
+        
         pojoEntity.setId(entity.getId());
-
+        
         rutaLogic.updateRuta(pojoEntity.getId(), pojoEntity);
-
+        
         RutaEntity resp = em.find(RutaEntity.class, entity.getId());
-
+        
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getDuracion(), resp.getDuracion(),0);
+        Assert.assertEquals(pojoEntity.getDuracion(), resp.getDuracion(), 0);
         
         pojoEntity.setDuracion(121);
-        try{
+        try {
             rutaLogic.updateRuta(pojoEntity.getId(), pojoEntity);
             Assert.fail();
-        }catch(BusinessLogicException e){
+        } catch (BusinessLogicException e) {
             
-        }   
-
+        }        
+        
     }
     
 }

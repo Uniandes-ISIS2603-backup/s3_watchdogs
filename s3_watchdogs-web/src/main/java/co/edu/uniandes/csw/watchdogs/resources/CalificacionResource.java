@@ -32,11 +32,10 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class CalificacionResource {
-    
+
     @Inject
     CalificacionLogic calificacionLogic;
-    
-    
+
     /**
      *
      * @return lista entities
@@ -70,8 +69,8 @@ public class CalificacionResource {
      * @throws BusinessLogicException
      */
     @POST
-    public CalificacionDetailDTO createCalificacion(CalificacionDetailDTO calificacion) throws BusinessLogicException {        
-         return new CalificacionDetailDTO( calificacionLogic.createCalificacion(calificacion.toEntity()));
+    public CalificacionDetailDTO createCalificacion(CalificacionDetailDTO calificacion) throws BusinessLogicException {
+        return new CalificacionDetailDTO(calificacionLogic.createCalificacion(calificacion.toEntity()));
     }
 
     /**
@@ -101,10 +100,9 @@ public class CalificacionResource {
         calificacionLogic.deleteCalificacion(id);
     }
 
-
     private List<CalificacionDetailDTO> listCalificacionEntity2DetailDTO(List<CalificacionEntity> entityList) {
         List<CalificacionDetailDTO> list = new ArrayList<>();
-        for(CalificacionEntity entity : entityList) {
+        for (CalificacionEntity entity : entityList) {
             list.add(new CalificacionDetailDTO(entity));
         }
         return list;

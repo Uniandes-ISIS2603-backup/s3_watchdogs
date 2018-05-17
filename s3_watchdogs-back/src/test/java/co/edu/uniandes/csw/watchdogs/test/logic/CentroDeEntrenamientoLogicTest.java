@@ -13,8 +13,6 @@ import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.CentroDeEntrenamientoPersistence;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -42,24 +40,24 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class CentroDeEntrenamientoLogicTest {
-
+    
     private PodamFactory factory = new PodamFactoryImpl();
-
+    
     @Inject
     private CentroDeEntrenamientoLogic centroDeEntrenamientoLogic;
-
+    
     @PersistenceContext
     private EntityManager em;
-
+    
     @Inject
     private UserTransaction utx;
-
+    
     private List<CentroDeEntrenamientoEntity> data = new ArrayList<>();
-
+    
     private List<EntrenamientoEntity> entrenamientosData = new ArrayList<>();
-
+    
     private List<HotelEntity> hotelesData = new ArrayList<>();
-
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -169,6 +167,8 @@ public class CentroDeEntrenamientoLogicTest {
         CentroDeEntrenamientoEntity resultEntity = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(entity.getId());
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
+        
+        Assert.assertNull(centroDeEntrenamientoLogic.getCentroDeEntrenamiento(Long.MIN_VALUE));
     }
 
     /**
@@ -189,13 +189,13 @@ public class CentroDeEntrenamientoLogicTest {
     public void updateCentroDeEntrenamientoTest() throws BusinessLogicException {
         CentroDeEntrenamientoEntity entity = data.get(0);
         CentroDeEntrenamientoEntity pojoEntity = factory.manufacturePojo(CentroDeEntrenamientoEntity.class);
-
+        
         pojoEntity.setId(entity.getId());
-
+        
         centroDeEntrenamientoLogic.updateCentroDeEntrenamiento(pojoEntity.getId(), pojoEntity);
-
+        
         CentroDeEntrenamientoEntity resp = em.find(CentroDeEntrenamientoEntity.class, entity.getId());
-
+        
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
     }
 
@@ -210,7 +210,7 @@ public class CentroDeEntrenamientoLogicTest {
         CentroDeEntrenamientoEntity entity = data.get(0);
         EntrenamientoEntity entrenamientoEntity = entrenamientosData.get(0);
         EntrenamientoEntity response = centroDeEntrenamientoLogic.getEntrenamiento(entity.getId(), entrenamientoEntity.getId());
-
+        
         Assert.assertEquals(entrenamientoEntity.getId(), response.getId());
         Assert.assertEquals(entrenamientoEntity.getName(), response.getName());
     }
@@ -224,8 +224,8 @@ public class CentroDeEntrenamientoLogicTest {
         try {
             CentroDeEntrenamientoEntity entity = data.get(1);
             EntrenamientoEntity entrenamiento = entrenamientosData.get(1);
-            EntrenamientoEntity response = centroDeEntrenamientoLogic.addEntrenamiento(entity.getId(),entrenamiento.getId());
-
+            EntrenamientoEntity response = centroDeEntrenamientoLogic.addEntrenamiento(entity.getId(), entrenamiento.getId());
+            
             Assert.assertNotNull(response);
             Assert.assertEquals(entrenamiento.getId(), response.getId());
             Assert.assertEquals(entrenamiento.getDuracion(), response.getDuracion());
@@ -245,7 +245,7 @@ public class CentroDeEntrenamientoLogicTest {
         CentroDeEntrenamientoEntity entity = data.get(0);
         List<EntrenamientoEntity> list = entrenamientosData.subList(1, 3);
         centroDeEntrenamientoLogic.replaceEntrenamientos(entity.getId(), list);
-
+        
         entity
                 = centroDeEntrenamientoLogic.getCentroDeEntrenamiento(entity.getId());
         Assert.assertFalse(entity.getEntrenamientos().contains(entrenamientosData.get(0)));
@@ -259,17 +259,14 @@ public class CentroDeEntrenamientoLogicTest {
      *
      *
      *
-    @Test
-    public void removeEntrenamientosTest() throws
-            BusinessLogicException {
-        try {
-            centroDeEntrenamientoLogic.removeEntrenamiento(data.get(0).getId(),
-                    entrenamientosData.get(0).getId());
-            EntrenamientoEntity response
-                    = centroDeEntrenamientoLogic.getEntrenamiento(data.get(0).getId(),
-                            entrenamientosData.get(0).getId());
-        } catch (BusinessLogicException e) {
-        }
-
-    }*/
+     * @Test public void removeEntrenamientosTest() throws
+     * BusinessLogicException { try {
+     * centroDeEntrenamientoLogic.removeEntrenamiento(data.get(0).getId(),
+     * entrenamientosData.get(0).getId()); EntrenamientoEntity response =
+     * centroDeEntrenamientoLogic.getEntrenamiento(data.get(0).getId(),
+     * entrenamientosData.get(0).getId()); } catch (BusinessLogicException e) {
+     * }
+     *
+     * }
+     */
 }

@@ -56,14 +56,14 @@ public class TarjetaCreditoResource {
      *
      * @param tarjeta {@link TarjetaCreditoDTO} - La tarjeta que se desea
      * guardar.
-     * @return JSON {@link PseDTO} - La tarjeta guardada con el atributo
-     * id autogenerado.
+     * @return JSON {@link PseDTO} - La tarjeta guardada con el atributo id
+     * autogenerado.
      * @throws BusinessLogicException {@link BusinessLogicException} - Error de
      * lógica que se genera cuando ya existe la tarjeta.
      */
     @POST
     public TarjetaCreditoDTO createTarjeta(@PathParam("idCliente") Long idCliente, TarjetaCreditoDTO tarjeta) throws BusinessLogicException {
-      
+
         return new TarjetaCreditoDTO(tarjetaLogic.createTarjeta(idCliente, tarjeta.toEntity()));
     }
 

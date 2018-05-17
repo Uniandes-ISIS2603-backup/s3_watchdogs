@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class EntrenamientoPersistenceTest {
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -41,15 +41,15 @@ public class EntrenamientoPersistenceTest {
     }
     @Inject
     private EntrenamientoPersistence entrenamientoPersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
+
     private List<EntrenamientoEntity> data = new ArrayList<EntrenamientoEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -67,29 +67,30 @@ public class EntrenamientoPersistenceTest {
             }
         }
     }
-    
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from EntrenamientoEntity").executeUpdate();
     }
-    
+
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             EntrenamientoEntity entity = factory.manufacturePojo(EntrenamientoEntity.class);
-            
+
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     @Test
-    public void createEntrenamientoTest(){
+    public void createEntrenamientoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         EntrenamientoEntity newEntity = factory.manufacturePojo(EntrenamientoEntity.class);
         EntrenamientoEntity result = entrenamientoPersistence.create(newEntity);
@@ -110,7 +111,7 @@ public class EntrenamientoPersistenceTest {
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
         Assert.assertEquals(entity.getHora(), newEntity.getHora());
     }
-    
+
     @Test
     public void getEntrenamientosTest() {
         List<EntrenamientoEntity> list = entrenamientoPersistence.findAll();
@@ -125,7 +126,7 @@ public class EntrenamientoPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getEntrenamientoTest() {
         EntrenamientoEntity entity = data.get(0);
@@ -144,7 +145,7 @@ public class EntrenamientoPersistenceTest {
         Assert.assertEquals(entity.getHora(), newEntity.getHora());
 
     }
-    
+
     @Test
     public void deleteEntrenamientoTest() {
         EntrenamientoEntity entity = data.get(0);
@@ -152,7 +153,7 @@ public class EntrenamientoPersistenceTest {
         EntrenamientoEntity deleted = em.find(EntrenamientoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+
     @Test
     public void updateEntrenamientoTest() {
         EntrenamientoEntity entity = data.get(0);

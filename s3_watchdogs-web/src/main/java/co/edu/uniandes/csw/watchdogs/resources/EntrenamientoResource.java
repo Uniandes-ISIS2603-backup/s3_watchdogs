@@ -37,23 +37,20 @@ import javax.ws.rs.WebApplicationException;
 @Produces("application/json")
 @Consumes("application/json")
 @RequestScoped
-public class EntrenamientoResource{
-    
-    
+public class EntrenamientoResource {
+
     @Inject
     EntrenamientoLogic entrenamientoLogic;
-    
-    
+
     /**
      *
-     * @return
-     * @throws BusinessLogicException
+     * @return @throws BusinessLogicException
      */
     @GET
     public List<EntrenamientoDetailDTO> getEntrenamientos() throws BusinessLogicException {
         return listEntrenamientoEntity2DetailDTO(entrenamientoLogic.getEntrenamientos());
     }
-    
+
     /**
      *
      * @param id
@@ -72,12 +69,13 @@ public class EntrenamientoResource{
 
     /**
      * Crea un entrenamieto.
+     *
      * @param entrenamiento
      * @return
      * @throws BusinessLogicException
      */
     @POST
-    public EntrenamientoDetailDTO createEntrenamiento(EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
+    public EntrenamientoDetailDTO createEntrenamiento(EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {
         return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(entrenamiento.toEntity()));
     }
 
@@ -95,7 +93,7 @@ public class EntrenamientoResource{
         if (entity == null) {
             throw new WebApplicationException("El recurso /entrenamientos/" + id + " no existe.", 404);
         }
-        return new EntrenamientoDetailDTO(entrenamientoLogic.updateEntrenamiento(id,entrenamiento.toEntity() ));
+        return new EntrenamientoDetailDTO(entrenamientoLogic.updateEntrenamiento(id, entrenamiento.toEntity()));
     }
 
     @DELETE
@@ -108,15 +106,14 @@ public class EntrenamientoResource{
         entrenamientoLogic.deleteEntrenamiento(id);
     }
 
-
     private List<EntrenamientoDetailDTO> listEntrenamientoEntity2DetailDTO(List<EntrenamientoEntity> entityList) {
         List<EntrenamientoDetailDTO> list = new ArrayList<>();
-        for(EntrenamientoEntity entity : entityList) {
+        for (EntrenamientoEntity entity : entityList) {
             list.add(new EntrenamientoDetailDTO(entity));
         }
         return list;
     }
-    
+
     /**
      * Obtiene una instancia de Calificacion asociada a una instancia de
      * Entrenamiento
@@ -127,7 +124,7 @@ public class EntrenamientoResource{
      */
     @GET
     @Path("{entrenamientoId: \\d+}/calificaciones")
-    public CalificacionDetailDTO getCalificacion(@PathParam("entrenamientoId") Long entrenamientoId ) {
+    public CalificacionDetailDTO getCalificacion(@PathParam("entrenamientoId") Long entrenamientoId) {
         return new CalificacionDetailDTO(entrenamientoLogic.getCalificacion(entrenamientoId));
     }
 
@@ -149,6 +146,7 @@ public class EntrenamientoResource{
             return null;
         }
     }
+
     /**
      * Obtiene una instancia de transporte asociada a una instancia de
      * Entrenamiento
@@ -159,7 +157,7 @@ public class EntrenamientoResource{
      */
     @GET
     @Path("{entrenamientoId: \\d+}/transportes")
-    public TransporteDetailDTO getTransporte(@PathParam("entrenamientoId") Long entrenamientoId ) {
+    public TransporteDetailDTO getTransporte(@PathParam("entrenamientoId") Long entrenamientoId) {
         return new TransporteDetailDTO(entrenamientoLogic.getTransporte(entrenamientoId));
     }
 
@@ -168,8 +166,7 @@ public class EntrenamientoResource{
      *
      * @param entrenamientoId
      * @param transporte
-     * @return Instancia de transporteDetailDTO que fue asociada a
-     * Entrenamiento
+     * @return Instancia de transporteDetailDTO que fue asociada a Entrenamiento
      *
      */
     @POST

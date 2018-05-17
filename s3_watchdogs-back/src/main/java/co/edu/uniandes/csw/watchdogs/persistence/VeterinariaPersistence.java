@@ -20,12 +20,12 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class VeterinariaPersistence {
-    
+
     private static final Logger LOGGER = Logger.getLogger(VeterinariaPersistence.class.getName());
-    
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
      *
      * @param entity objeto veterinaria que se creará en la base de datos
@@ -37,13 +37,13 @@ public class VeterinariaPersistence {
         LOGGER.info("Creando una veterinaria nueva");
         return entity;
     }
-    
-       /**
+
+    /**
      * Busca si hay alguna Veterianria con el nombre que se envía de argumento
      *
      * @param name: Nombre de la veterinaria que se está buscando
-     * @return null si no existe ninguna veterinaria con el nombre del argumento. Si
-     * existe alguna devuelve el primero.
+     * @return null si no existe ninguna veterinaria con el nombre del
+     * argumento. Si existe alguna devuelve el primero.
      */
     public VeterinariaEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando la veterinaria por nombre ", name);
@@ -60,15 +60,13 @@ public class VeterinariaPersistence {
             return sameName.get(0);
         }
     }
-  
 
-    
     public List<VeterinariaEntity> findAll() {
         LOGGER.info("Consultando todas las veterinarias");
         TypedQuery query = em.createQuery("select u from VeterinariaEntity u", VeterinariaEntity.class);
         return query.getResultList();
     }
-    
+
     public VeterinariaEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando veterianria con id={0}", id);
         return em.find(VeterinariaEntity.class, id);
@@ -78,7 +76,7 @@ public class VeterinariaPersistence {
         LOGGER.log(Level.INFO, "Actualizando veterinaria con id={0}", entity.getId());
         return em.merge(entity);
     }
-    
+
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando la veterinaria con id={0}", id);
         VeterinariaEntity entity = em.find(VeterinariaEntity.class, id);

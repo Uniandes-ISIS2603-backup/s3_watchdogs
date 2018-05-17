@@ -201,11 +201,12 @@ public class EmpleadoResource {
             throw new WebApplicationException(e.getMessage(), 404);
         }
     }
-    
+
     private List<ServicioDetailDTO> servicioListEntity2DTO(List<ServicioEntity> entityList) {
         List<ServicioDetailDTO> list = new ArrayList<>();
-        for(ServicioEntity entity : entityList){
-            list.add(new ServicioDetailDTO(entity){});
+        for (ServicioEntity entity : entityList) {
+            list.add(new ServicioDetailDTO(entity) {
+            });
         }
         return list;
     }
@@ -224,26 +225,23 @@ public class EmpleadoResource {
     public List<ServicioDetailDTO> listServicios(@PathParam("empleadoId") Long empleadoId) {
         return servicioListEntity2DTO(empleadoLogic.getServicios(empleadoId));
     }
-    
+
     @GET
     @Path("{cargoId:\\d+}/cargo")
-    public List<EmpleadoDetailDTO> empleadosCargo(@PathParam("cargoId") Long  cargo){
+    public List<EmpleadoDetailDTO> empleadosCargo(@PathParam("cargoId") Long cargo) {
         String string;
-        if(cargo == 1){
+        if (cargo == 1) {
             string = "Entrenador";
-        }
-        else if(cargo == 2){
+        } else if (cargo == 2) {
             string = "Cuidador";
-        }
-        else if(cargo == 3){
+        } else if (cargo == 3) {
             string = "Aseador";
-        }
-        else if(cargo == 4){
+        } else if (cargo == 4) {
             string = "Paseador";
+        } else {
+            string = "";
         }
-        else string = "";
         return listEntity2DTO(empleadoLogic.findbyCargo(string));
     }
-    
 
 }

@@ -38,32 +38,31 @@ public class ClienteDTO {
     //==========================================================================================
     // Atributos
     //==========================================================================================
-    
     /**
      * id del cliente
      */
     private Long id;
-    
+
     /**
      * nombre del cliente
      */
     private String name;
-    
+
     /**
      * cedula del cliente
      */
     private String cedula;
-    
+
     /**
      * correo del cliente
      */
     private String correo;
-    
+
     /**
      * telefono del cliente
      */
     private String telefono;
-    
+
     /**
      * ruta de la imagen del cliente
      */
@@ -76,8 +75,9 @@ public class ClienteDTO {
      * Constructor por defecto.
      */
     public ClienteDTO() {
-        
+        super();
     }
+
     /**
      * Convertir Entity a DTO (Crea un nuevo DTO con los valores que recibe en
      * la entidad que viene de argumento

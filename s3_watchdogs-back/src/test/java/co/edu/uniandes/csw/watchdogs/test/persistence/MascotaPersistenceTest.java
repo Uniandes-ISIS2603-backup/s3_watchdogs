@@ -136,6 +136,10 @@ public class MascotaPersistenceTest {
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getRaza(), newEntity.getRaza());
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getCliente(), newEntity.getCliente());
+        Assert.assertEquals(entity.getColor(), newEntity.getColor());
+        Assert.assertEquals(entity.getSexo(), newEntity.getSexo());
+        Assert.assertEquals(entity.getImagen(), newEntity.getImagen());
     }
 
     /**
@@ -179,7 +183,7 @@ public class MascotaPersistenceTest {
         Assert.assertNotNull(result);
 
         Assert.assertNotNull(mascotaPersistence.findByName(result.getName()));
-        
+
         Assert.assertNull(mascotaPersistence.findByName(""));
     }
 

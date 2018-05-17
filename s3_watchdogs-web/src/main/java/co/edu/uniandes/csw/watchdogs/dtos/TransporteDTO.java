@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 
 /**
- *Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
+ * Al serializarse como JSON esta clase implementa el siguiente modelo: <br>
  * <pre>
  *   {
  *      "id": long,
@@ -16,11 +16,10 @@ import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
  *      "recogida": int
  *      "devuelta": int
  *   }
- * </pre>
- * Por ejemplo un entrenamiento se representa asi:<br>
- * 
+ * </pre> Por ejemplo un entrenamiento se representa asi:<br>
+ *
  * <pre>
- * 
+ *
  *   {
  *      "id": 815373,
  *      "direccion: "Cra 11 # 11",
@@ -29,9 +28,11 @@ import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
  *   }
  *
  * </pre>
+ *
  * @author c.martinezc1
  */
 public class TransporteDTO {
+
     /**
      * identificador
      */
@@ -48,30 +49,32 @@ public class TransporteDTO {
      * Hora de devuelta
      */
     private Integer devuelta;
-    
+
     /**
      * Constructor por defecto
      */
-    public TransporteDTO(){
-        
+    public TransporteDTO() {
+        super();
     }
-    
+
     /**
      * Constructor que recibe un entity
-     * @param entity 
+     *
+     * @param entity
      */
-    public TransporteDTO(TransporteEntity entity){
-        if(entity!=null){
+    public TransporteDTO(TransporteEntity entity) {
+        if (entity != null) {
             this.id = entity.getId();
             this.devuelta = entity.getDevuelta();
             this.direccion = entity.getDireccion();
             this.recogida = entity.getRecogida();
         }
-        
+
     }
 
     /**
      * Setter id
+     *
      * @param id
      */
     public void setId(Long id) {
@@ -80,6 +83,7 @@ public class TransporteDTO {
 
     /**
      * Setter direccion
+     *
      * @param direccion
      */
     public void setDireccion(String direccion) {
@@ -88,7 +92,8 @@ public class TransporteDTO {
 
     /**
      * Setter recogida
-     * @param recogida 
+     *
+     * @param recogida
      */
     public void setRecogida(Integer recogida) {
         this.recogida = recogida;
@@ -96,7 +101,8 @@ public class TransporteDTO {
 
     /**
      * Setter devuelta
-     * @param devuelta 
+     *
+     * @param devuelta
      */
     public void setDevuelta(Integer devuelta) {
         this.devuelta = devuelta;
@@ -104,7 +110,8 @@ public class TransporteDTO {
 
     /**
      * Getter id
-     * @return 
+     *
+     * @return
      */
     public Long getId() {
         return id;
@@ -112,7 +119,8 @@ public class TransporteDTO {
 
     /**
      * Getter direccion
-     * @return 
+     *
+     * @return
      */
     public String getDireccion() {
         return direccion;
@@ -120,7 +128,8 @@ public class TransporteDTO {
 
     /**
      * Getter recogida
-     * @return 
+     *
+     * @return
      */
     public Integer getRecogida() {
         return recogida;
@@ -128,17 +137,19 @@ public class TransporteDTO {
 
     /**
      * Getter devuelta
-     * @return 
+     *
+     * @return
      */
     public Integer getDevuelta() {
         return devuelta;
     }
-    
+
     /**
      * Metodo que pasa de un DTO a un Entity
-     * @return 
+     *
+     * @return
      */
-    public TransporteEntity toEntity(){
+    public TransporteEntity toEntity() {
         TransporteEntity entity = new TransporteEntity();
         entity.setId(id);
         entity.setDevuelta(devuelta);

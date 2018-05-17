@@ -18,17 +18,17 @@ import javax.inject.Inject;
  *
  * @author id.salazar
  */
-
 @Stateless
 public class DisponibilidadLogic {
-    
+
     private static final Logger LOGGER = Logger.getLogger(DisponibilidadLogic.class.getName());
-    
+
     @Inject
     private DisponibilidadPersistence persistence;
 
     /**
      * Devuelve todas las disponibilidades que hay en la base de datos.
+     *
      * @return Lista de entidades de tipo disponibilidad.
      */
     public List<DisponibilidadEntity> getDisponibilidades() {
@@ -37,9 +37,10 @@ public class DisponibilidadLogic {
         LOGGER.info("Termina proceso de consultar todas las Disponibilidades");
         return disponibilidades;
     }
-    
+
     /**
      * Busca una disponibilidad por ID
+     *
      * @param id El id de la disponibilidad a buscar
      * @return La disponibilidad encontrada, null si no la encuentra.
      */
@@ -52,12 +53,13 @@ public class DisponibilidadLogic {
         LOGGER.log(Level.INFO, "Termina proceso de consultar disponibilidad con id={0}", id);
         return disponibilidad;
     }
-    
+
     /**
      * Guardar una nueva Disponibilidad
+     *
      * @param entity La nueva entidad de tipo Disponibilidad a persistir.
      * @return La entidad luego de persistirla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public DisponibilidadEntity createDisponibilidad(DisponibilidadEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Disponibilidad");
@@ -66,13 +68,14 @@ public class DisponibilidadLogic {
         LOGGER.info("Termina proceso de creación de Disponibilidad");
         return entity;
     }
-    
+
     /**
      * Actualizar una Disponibilidad por ID
+     *
      * @param id El ID de la Disponibilidad a actualizar
      * @param entity La entidad de la Disponibilidad con los cambios deseados
      * @return La entidad de la Disponibilidad luego de actualizarla
-     * @throws BusinessLogicException 
+     * @throws BusinessLogicException
      */
     public DisponibilidadEntity updateDisponibilidad(Long id, DisponibilidadEntity entity) throws BusinessLogicException {
         LOGGER.log(Level.INFO, "Inicia proceso de actualizar Disponibilidad con id={0}", id);
@@ -81,9 +84,10 @@ public class DisponibilidadLogic {
         LOGGER.log(Level.INFO, "Termina proceso de actualizar Disponibilidad con id={0}", entity.getId());
         return newEntity;
     }
-    
+
     /**
      * Eliminar una Disponibilidad por ID
+     *
      * @param id El ID de la Disponibilidad a eliminar
      */
     public void deleteDisponibilidad(Long id) {
@@ -91,36 +95,37 @@ public class DisponibilidadLogic {
         persistence.delete(id);
         LOGGER.log(Level.INFO, "Termina proceso de borrar Disponibilidad con id={0}", id);
     }
-    
-    public void check(DisponibilidadEntity entity)throws BusinessLogicException{
+
+    public void check(DisponibilidadEntity entity) throws BusinessLogicException {
         checkMatrizValida(entity);
     }
-    
-    
+
     /**
      * verifica que el horario cumpla con los parámetros (7 días y 12 horas)
+     *
      * @param entity La disponibilidad a revisar
-     * @throws BusinessLogicException Si el horario no tiene el formato adecuado.
+     * @throws BusinessLogicException Si el horario no tiene el formato
+     * adecuado.
      */
-    public void checkMatrizValida(DisponibilidadEntity entity) throws BusinessLogicException{
+    public void checkMatrizValida(DisponibilidadEntity entity) throws BusinessLogicException {
         String checker = entity.getMatrizHorarios();
-        if(!(checker.length() == 90 || checker.length() == 91)){
+        if (!(checker.length() == 90 || checker.length() == 91)) {
             throw new BusinessLogicException("Formato inválido, el String no tiene la duración adecuada");
         }
         String[] checker1 = checker.split(" ");
-        for(int i = 0; i < 7; i++){
-            if(checker1[i].length() != 12){
-                throw new BusinessLogicException("Hora del día inválidas",new Throwable("Problemas con el formato"));
+        for (int i = 0; i < 7; i++) {
+            if (checker1[i].length() != 12) {
+                throw new BusinessLogicException("Hora del día inválidas", new Throwable("Problemas con el formato"));
             }
             String temp = checker1[i];
-            temp = temp.replaceAll("L","");
-            temp = temp.replaceAll("D","");
-            temp = temp.replaceAll("A","");
-            if(!"".equals(temp)){
+            temp = temp.replaceAll("L", "");
+            temp = temp.replaceAll("D", "");
+            temp = temp.replaceAll("A", "");
+            if (!"".equals(temp)) {
                 throw new BusinessLogicException(new Throwable("Caracteres no válidos"));
             }
-            
+
         }
     }
-    
+
 }

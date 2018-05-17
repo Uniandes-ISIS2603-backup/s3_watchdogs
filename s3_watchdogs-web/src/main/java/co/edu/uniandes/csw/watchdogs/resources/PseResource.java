@@ -169,12 +169,12 @@ public class PseResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deletePse(@PathParam("idCliente") Long idCliente ,@PathParam("id") Long id) {
-        PseEntity entity = pseLogic.getPse(idCliente,id);
+    public void deletePse(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id) {
+        PseEntity entity = pseLogic.getPse(idCliente, id);
         if (entity == null) {
             throw new WebApplicationException("El Pse no existe", 404);
         }
-        pseLogic.deletePse(idCliente,id);
+        pseLogic.deletePse(idCliente, id);
     }
 
     /**

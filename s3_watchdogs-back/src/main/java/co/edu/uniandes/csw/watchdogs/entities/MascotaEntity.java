@@ -52,12 +52,12 @@ public class MascotaEntity extends BaseEntity implements Serializable {
      * Sexo de la mascota.
      */
     private String sexo;
-    
+
     /**
      * Imagen de la mascota.
      */
     private String imagen;
-    
+
     /**
      * Obtiene el atributo servicio.
      *

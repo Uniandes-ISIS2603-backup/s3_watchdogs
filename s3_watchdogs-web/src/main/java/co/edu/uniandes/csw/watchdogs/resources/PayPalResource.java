@@ -63,7 +63,7 @@ public class PayPalResource {
      */
     @POST
     public PayPalDTO createPayPal(@PathParam("idCliente") Long idCliente, PayPalDTO payPal) throws BusinessLogicException {
-        return new PayPalDTO(paypalLogic.createPayPal(idCliente,payPal.toEntity()));
+        return new PayPalDTO(paypalLogic.createPayPal(idCliente, payPal.toEntity()));
     }
 
     /**
@@ -81,8 +81,7 @@ public class PayPalResource {
      * aplicación. Si no hay ninguno retorna una lista vacía.
      */
     @GET
-    public List<PayPalDTO> getPayPals(@PathParam("idCliente") Long idCliente) throws BusinessLogicException
-    {
+    public List<PayPalDTO> getPayPals(@PathParam("idCliente") Long idCliente) throws BusinessLogicException {
         return listEntity2DTO(paypalLogic.getPayPals(idCliente));
     }
 
@@ -106,9 +105,8 @@ public class PayPalResource {
      */
     @GET
     @Path("{id: \\d+}")
-    public PayPalDTO getPayPal(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id)
-    {
-        PayPalEntity entity = paypalLogic.getPayPal(idCliente ,id);
+    public PayPalDTO getPayPal(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id) {
+        PayPalEntity entity = paypalLogic.getPayPal(idCliente, id);
         if (entity == null) {
             throw new WebApplicationException("El paypal no existe", 404);
         }
@@ -139,7 +137,7 @@ public class PayPalResource {
      */
     @PUT
     @Path("{id: \\d+}")
-    public PayPalDTO updatePayPal(@PathParam("idCliente") Long idCliente ,@PathParam("id") Long id, PayPalDTO payPal) throws BusinessLogicException {
+    public PayPalDTO updatePayPal(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id, PayPalDTO payPal) throws BusinessLogicException {
         payPal.setId(id);
         PayPalEntity oldEntity = paypalLogic.getPayPal(idCliente, id);
         if (oldEntity == null) {
@@ -166,7 +164,7 @@ public class PayPalResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deletePayPal(@PathParam("idCliente") Long idCliente ,@PathParam("id") Long id) {
+    public void deletePayPal(@PathParam("idCliente") Long idCliente, @PathParam("id") Long id) {
         PayPalEntity entity = paypalLogic.getPayPal(idCliente, id);
         if (entity == null) {
             throw new WebApplicationException("El PayPal no existe", 404);

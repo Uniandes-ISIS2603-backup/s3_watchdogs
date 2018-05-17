@@ -13,17 +13,16 @@ import javax.persistence.Entity;
  * @author c.martinezc1
  */
 @Entity
-public class TransporteEntity extends BaseEntity implements Serializable{
-    
-    
+public class TransporteEntity extends BaseEntity implements Serializable {
+
     private String direccion;
-    
+
     private Integer recogida;
-    
+
     private Integer devuelta;
 
-    public TransporteEntity(){
-        
+    public TransporteEntity() {
+
     }
 
     public void setDireccion(String direccion) {
@@ -49,6 +48,5 @@ public class TransporteEntity extends BaseEntity implements Serializable{
     public Integer getDevuelta() {
         return devuelta;
     }
-    
-    
+
 }

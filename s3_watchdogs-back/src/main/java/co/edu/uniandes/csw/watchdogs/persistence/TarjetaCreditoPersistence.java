@@ -21,25 +21,24 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class TarjetaCreditoPersistence {
-    
+
     private static final Logger LOGGER = Logger.getLogger(TarjetaCreditoPersistence.class.getName());
 
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
 
     /**
-     * 
+     *
      * @param entity objeto que se creará en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos
      */
-    public TarjetaCreditoEntity create(TarjetaCreditoEntity entity)
-     {
-         LOGGER.info("Creando una tarjeta nueva");
-         em.persist(entity);
-         LOGGER.info("Creando una tarjeta nueva");
-      return entity;           
-     }
-    
+    public TarjetaCreditoEntity create(TarjetaCreditoEntity entity) {
+        LOGGER.info("Creando una tarjeta nueva");
+        em.persist(entity);
+        LOGGER.info("Creando una tarjeta nueva");
+        return entity;
+    }
+
     /**
      * Busca si hay alguna tarjeta con el nombre que se envía de argumento
      *
@@ -58,50 +57,34 @@ public class TarjetaCreditoPersistence {
         } else {
             return sameName.get(0);
         }
-    } 
-    
-    public List<TarjetaCreditoEntity> findAll()
-    {
+    }
+
+    public List<TarjetaCreditoEntity> findAll() {
         LOGGER.info("Consultando todas las tarjetas de crédito");
         TypedQuery query = em.createQuery("Select u from TarjetaCreditoEntity u", TarjetaCreditoEntity.class);
         return query.getResultList();
     }
-    
-    
-    public TarjetaCreditoEntity find(Long idCliente,Long id)
-    {
+
+    public TarjetaCreditoEntity find(Long idCliente, Long id) {
         TypedQuery<TarjetaCreditoEntity> q = em.createQuery("select p from TarjetaCreditoEntity p where (p.cliente.id = :clienteid) and (p.id = :tarjetacreditoid)", TarjetaCreditoEntity.class);
         q.setParameter("clienteid", idCliente);
         q.setParameter("tarjetacreditoid", id);
         List<TarjetaCreditoEntity> results = q.getResultList();
         TarjetaCreditoEntity tarjeta = null;
-        if(results == null){
-            tarjeta = null;
-        }
-        else if(results.isEmpty())
-        {
-            tarjeta = null;
-        }
-        else if(results.size()>= 1)
-        {
+        if (results != null && !results.isEmpty()) {
             tarjeta = results.get(0);
         }
-        
+
         return tarjeta;
     }
-    
-    public TarjetaCreditoEntity update(TarjetaCreditoEntity entity)
-    {
+
+    public TarjetaCreditoEntity update(TarjetaCreditoEntity entity) {
         return em.merge(entity);
     }
-    
-    public void delete(Long id)
-    {
+
+    public void delete(Long id) {
         TarjetaCreditoEntity entity = em.find(TarjetaCreditoEntity.class, id);
         em.remove(entity);
     }
-     
-     
 
-    
 }

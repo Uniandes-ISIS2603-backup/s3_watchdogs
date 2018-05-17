@@ -20,12 +20,12 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class AseoPersistence {
-    
+
     private static final Logger LOGGER = Logger.getLogger(AseoPersistence.class.getName());
-    
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
      *
      * @param entity objeto aseo que se creará en la base de datos
@@ -37,13 +37,13 @@ public class AseoPersistence {
         LOGGER.info("Creando un servicio de aseo nuevo");
         return entity;
     }
-    
+
     /**
      * Busca si hay algun Aseo con el nombre que se envía de argumento
      *
      * @param name: Nombre del servicio de aseo que se está buscando
-     * @return null si no existe ningun servicio de aseo con el nombre del argumento. Si
-     * existe alguna devuelve el primero.
+     * @return null si no existe ningun servicio de aseo con el nombre del
+     * argumento. Si existe alguna devuelve el primero.
      */
     public AseoEntity findByName(String name) {
         LOGGER.log(Level.INFO, "Consultando servicio de aseo por nombre ", name);
@@ -61,13 +61,12 @@ public class AseoPersistence {
         }
     }
 
-    
-      public List<AseoEntity> findAll() {
+    public List<AseoEntity> findAll() {
         LOGGER.info("Consultando todos los servicios de aseo");
         TypedQuery query = em.createQuery("select u from AseoEntity u", AseoEntity.class);
         return query.getResultList();
     }
-    
+
     public AseoEntity find(Long id) {
         LOGGER.log(Level.INFO, "Consultando servicio de aseo con id={0}", id);
         return em.find(AseoEntity.class, id);
@@ -77,7 +76,7 @@ public class AseoPersistence {
         LOGGER.log(Level.INFO, "Actualizando servicio de id con id={0}", entity.getId());
         return em.merge(entity);
     }
-    
+
     public void delete(Long id) {
         LOGGER.log(Level.INFO, "Borrando el servicio de aseo con id={0}", id);
         AseoEntity entity = em.find(AseoEntity.class, id);

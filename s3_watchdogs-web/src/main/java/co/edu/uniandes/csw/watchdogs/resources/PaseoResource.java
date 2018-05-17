@@ -35,21 +35,21 @@ import javax.ws.rs.WebApplicationException;
 @Consumes("application/json")
 @RequestScoped
 public class PaseoResource {
-    
-     @Inject
+
+    @Inject
     private PaseoLogic paseoLogic;
-    
+
     private static final Logger LOGGER = Logger.getLogger(PaseoPersistence.class.getName());
-    
+
     /**
      * <h1>POST /api/paseos : Crear un Paseo.</h1>
-     * 
+     *
      * <pre>Cuerpo de petición: JSON {@link PaseoDetailDTO}.
-     * 
-     * Crea un nuevO Paseo con la informacion que se recibe en el cuerpo 
-     * de la petición y se regresa un objeto identico con un id auto-generado 
+     *
+     * Crea un nuevO Paseo con la informacion que se recibe en el cuerpo
+     * de la petición y se regresa un objeto identico con un id auto-generado
      * por la base de datos.
-     * 
+     *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Creó el nuevo Paseo .
@@ -58,9 +58,12 @@ public class PaseoResource {
      * 412 Precodition Failed: Ya existe el Paseo.
      * </code>
      * </pre>
+     *
      * @param paseo {@link PaseoDetailDTO} - El Paseo que se desea guardar.
-     * @return JSON {@link PaseoDetailDTO}  - El Paseo guardado con el atributo id autogenerado.
-     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera cuando ya existe el Paseo.
+     * @return JSON {@link PaseoDetailDTO} - El Paseo guardado con el atributo
+     * id autogenerado.
+     * @throws BusinessLogicException {@link BusinessLogicException} - Error de
+     * lógica que se genera cuando ya existe el Paseo.
      */
     @POST
     public PaseoDetailDTO createPaseo(PaseoDetailDTO paseo) throws BusinessLogicException {
@@ -71,14 +74,16 @@ public class PaseoResource {
 
     /**
      * <h1>GET /api/paseos : Obtener todos los paseos.</h1>
-     * 
+     *
      * <pre>Busca y devuelve todos los paseos que existen en la aplicacion.
-     * 
+     *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Devuelve todos los paseos de la aplicacion.</code> 
+     * 200 OK Devuelve todos los paseos de la aplicacion.</code>
      * </pre>
-     * @return JSONArray {@link PaseoDetailDTO} - Los paseos encontrados en la aplicación. Si no hay ninguna retorna una lista vacía.
+     *
+     * @return JSONArray {@link PaseoDetailDTO} - Los paseos encontrados en la
+     * aplicación. Si no hay ninguna retorna una lista vacía.
      */
     @GET
     public List<PaseoDetailDTO> getPaseos() {
@@ -87,47 +92,53 @@ public class PaseoResource {
 
     /**
      * <h1>GET /api/paseos/{id} : Obtener Paseo por id.</h1>
-     * 
+     *
      * <pre>Busca el Paseo con el id asociado recibido en la URL y la devuelve.
-     * 
+     *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Devuelve el Paseo correspondiente al id.
-     * </code> 
+     * </code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found No existe un Paseo con el id dado.
-     * </code> 
+     * </code>
      * </pre>
-     * @param id Identificador del Paseo que se esta buscando. Este debe ser una cadena de dígitos.
+     *
+     * @param id Identificador del Paseo que se esta buscando. Este debe ser una
+     * cadena de dígitos.
      * @return JSON {@link PaseoDetailDTO} - El Paseo buscada
      */
     @GET
     @Path("{id: \\d+}")
-    public PaseoDetailDTO getPaseo(@PathParam("id") Long id)throws BusinessLogicException {
+    public PaseoDetailDTO getPaseo(@PathParam("id") Long id) throws BusinessLogicException {
         PaseoEntity entity = paseoLogic.getPaseo(id);
         if (entity == null) {
             throw new WebApplicationException("El recurso /paseos/" + id + " no existe.", 404);
         }
         return new PaseoDetailDTO(paseoLogic.getPaseo(id));
     }
-    
+
     /**
      * <h1>PUT /api/paseos/{id} : Actualizar Paseo con el id dado.</h1>
      * <pre>Cuerpo de petición: JSON {@link PaseoDetailDTO}.
-     * 
+     *
      * Actualiza el Paseo con el id recibido en la URL con la informacion que se recibe en el cuerpo de la petición.
-     * 
+     *
      * Codigos de respuesta:
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
-     * 200 OK Actualiza el Paseo con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code> 
+     * 200 OK Actualiza el Paseo con el id dado con la información enviada como parámetro. Retorna un objeto identico.</code>
      * <code style="color: #c7254e; background-color: #f9f2f4;">
      * 404 Not Found. No existe un Paseo con el id dado.
-     * </code> 
+     * </code>
      * </pre>
-     * @param id Identificador de el Paseo que se desea actualizar.Este debe ser una cadena de dígitos.
+     *
+     * @param id Identificador de el Paseo que se desea actualizar.Este debe ser
+     * una cadena de dígitos.
      * @param paseo {@link PaseoDetailDTO} el Paseo que se desea guardar.
      * @return JSON {@link PaseoDetailDTO} - el Paseo guardado.
-     * @throws BusinessLogicException {@link BusinessLogicException} - Error de lógica que se genera al no poder actualizar el Paseo porque ya existe uno con ese nombre.
+     * @throws BusinessLogicException {@link BusinessLogicException} - Error de
+     * lógica que se genera al no poder actualizar el Paseo porque ya existe uno
+     * con ese nombre.
      */
     @PUT
     @Path("{id: \\d+}")
@@ -139,12 +150,12 @@ public class PaseoResource {
         }
         return new PaseoDetailDTO(paseoLogic.updatePaseo(id, paseo.toEntity()));
     }
-    
+
     /**
      * <h1>DELETE /api/paseos/{id} : Borrar Paseo por id.</h1>
-     * 
+     *
      * <pre>Borra el Paseo con el id asociado recibido en la URL.
-     * 
+     *
      * Códigos de respuesta:<br>
      * <code style="color: mediumseagreen; background-color: #eaffe0;">
      * 200 OK Elimina el Paseo correspondiente al id dado.</code>
@@ -152,11 +163,13 @@ public class PaseoResource {
      * 404 Not Found. No existe un Paseo con el id dado.
      * </code>
      * </pre>
-     * @param id Identificador de el Paseo que se desea borrar. Este debe ser una cadena de dígitos.
+     *
+     * @param id Identificador de el Paseo que se desea borrar. Este debe ser
+     * una cadena de dígitos.
      */
     @DELETE
     @Path("{id: \\d+}")
-     public void deletePaseo(@PathParam("id") Long id) {
+    public void deletePaseo(@PathParam("id") Long id) {
         LOGGER.log(Level.INFO, "Inicia proceso de borrar un Paseo con id {0}", id);
         PaseoEntity entity = paseoLogic.getPaseo(id);
         if (entity == null) {
@@ -164,17 +177,16 @@ public class PaseoResource {
         }
         paseoLogic.deletePaseo(id);
     }
-     
-     
-     /**
+
+    /**
      *
      * lista de entidades a DTO.
      *
      * Este método convierte una lista de objetos PaseoEntity a una lista de
      * objetos PaseoDetailDTO (json)
      *
-     * @param entityList corresponde a la lista de Paseoes de tipo Entity
-     * que vamos a convertir a DTO.
+     * @param entityList corresponde a la lista de Paseoes de tipo Entity que
+     * vamos a convertir a DTO.
      * @return la lista de Paseoes en forma DTO (json)
      */
     private List<PaseoDetailDTO> listEntity2DetailDTO(List<PaseoEntity> entityList) {

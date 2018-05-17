@@ -11,13 +11,14 @@ import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
  *
  * @author c.martinezc1
  */
-public class TransporteDetailDTO extends TransporteDTO{
-    
+public class TransporteDetailDTO extends TransporteDTO {
+
     /**
      * Constructor que le entra un entity
+     *
      * @param entity
      */
-    public TransporteDetailDTO(TransporteEntity entity){
+    public TransporteDetailDTO(TransporteEntity entity) {
         super(entity);
     }
 
@@ -27,13 +28,14 @@ public class TransporteDetailDTO extends TransporteDTO{
     public TransporteDetailDTO() {
         super();
     }
-    
+
     /**
      * Metodo que convierte de DTO a entity
+     *
      * @return TransporteEntity
      */
     @Override
-    public TransporteEntity toEntity(){
+    public TransporteEntity toEntity() {
         TransporteEntity entity = super.toEntity();
         return entity;
     }

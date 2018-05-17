@@ -68,7 +68,7 @@ public class MascotaDetailDTO extends MascotaDTO {
      * Lista de servicios de la mascota
      */
     private List<ServicioDTO> servicios;
-    
+
     /**
      * cliente de la mascota
      */
@@ -145,9 +145,9 @@ public class MascotaDetailDTO extends MascotaDTO {
     }
 
     //----- Metodos -----
-    
     /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
     @Override

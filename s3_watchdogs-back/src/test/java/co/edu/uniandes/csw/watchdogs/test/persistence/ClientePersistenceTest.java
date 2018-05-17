@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class ClientePersistenceTest {
-    
+
     @Deployment
     public static JavaArchive createDeployement() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -39,13 +39,13 @@ public class ClientePersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Inject
     private ClientePersistence clientePersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
 
@@ -76,7 +76,7 @@ public class ClientePersistenceTest {
     private void clearData() {
         em.createQuery("delete from ClienteEntity").executeUpdate();
     }
-    
+
     private List<ClienteEntity> data = new ArrayList<>();
 
     /**
@@ -100,11 +100,11 @@ public class ClientePersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         ClienteEntity result = clientePersistence.create(newEntity);
-        
+
         Assert.assertNotNull(result);
-        
+
         ClienteEntity entity = em.find(ClienteEntity.class, result.getId());
-        
+
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
 
@@ -136,6 +136,10 @@ public class ClientePersistenceTest {
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getCedula(), newEntity.getCedula());
         Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getMascotas(), newEntity.getMascotas());
+        Assert.assertEquals(entity.getCorreo(), newEntity.getCorreo());
+        Assert.assertEquals(entity.getTelefono(), newEntity.getTelefono());
+        Assert.assertEquals(entity.getImagen(), newEntity.getImagen());
     }
 
     /**
@@ -157,13 +161,13 @@ public class ClientePersistenceTest {
         ClienteEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
-        
+
         newEntity.setId(entity.getId());
-        
+
         clientePersistence.update(newEntity);
-        
+
         ClienteEntity resp = em.find(ClienteEntity.class, entity.getId());
-        
+
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
 
@@ -175,11 +179,11 @@ public class ClientePersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         ClienteEntity result = clientePersistence.create(newEntity);
-        
+
         Assert.assertNotNull(result);
-        
+
         Assert.assertNotNull(clientePersistence.findByName(result.getName()));
-        
+
         Assert.assertNull(clientePersistence.findByName(""));
     }
 
@@ -191,10 +195,10 @@ public class ClientePersistenceTest {
         PodamFactory factory = new PodamFactoryImpl();
         ClienteEntity newEntity = factory.manufacturePojo(ClienteEntity.class);
         ClienteEntity result = clientePersistence.create(newEntity);
-        
+
         Assert.assertNotNull(result);
-        
+
         Assert.assertNotNull(clientePersistence.findByCedula(result.getCedula()));
     }
-    
+
 }

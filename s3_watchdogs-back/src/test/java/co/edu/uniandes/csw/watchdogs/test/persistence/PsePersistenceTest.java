@@ -138,7 +138,7 @@ public class PsePersistenceTest {
     @Test
     public void getPseTest() {
         PseEntity entity = data.get(0);
-        PseEntity newEntity = psePersistence.find(clienteData.get(0).getId(),entity.getId());
+        PseEntity newEntity = psePersistence.find(clienteData.get(0).getId(), entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getCorreo(), newEntity.getCorreo());
         Assert.assertEquals(entity.getName(), newEntity.getName());
@@ -167,5 +167,21 @@ public class PsePersistenceTest {
         PseEntity resp = em.find(PseEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getCorreo(), resp.getCorreo());
+    }
+
+    /**
+     * Prueba para buscar por nombre.
+     */
+    @Test
+    public void findByNameTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        PseEntity newEntity = factory.manufacturePojo(PseEntity.class);
+        PseEntity result = psePersistence.create(newEntity);
+
+        Assert.assertNotNull(result);
+
+        Assert.assertNotNull(psePersistence.findByName(result.getName()));
+
+        Assert.assertNull(psePersistence.findByName(""));
     }
 }

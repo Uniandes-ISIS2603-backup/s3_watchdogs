@@ -18,18 +18,18 @@ import uk.co.jemos.podam.common.PodamIntValue;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class LugarEntity extends BaseEntity  implements Serializable{
-    
-    
+public class LugarEntity extends BaseEntity implements Serializable {
+
     private String direccion;
     private List<String> fotos;
     @PodamIntValue(minValue = 120, maxValue = 120)
     private Integer capacidadMaxima;
     @PodamIntValue(maxValue = 120)
     private Integer usuariosEnServicio;
-    
-    public LugarEntity(){}
-    
+
+    public LugarEntity() {
+    }
+
     /**
      * @return La direccion del lugar
      */

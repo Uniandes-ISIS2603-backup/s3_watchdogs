@@ -33,7 +33,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class MascotaLogicTest {
-    
+
     private PodamFactory factory = new PodamFactoryImpl();
 
     @Inject
@@ -146,6 +146,8 @@ public class MascotaLogicTest {
         Assert.assertNotNull(resultEntity);
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
+
+        Assert.assertNull(mascotaLogic.getMascota(Long.MIN_VALUE));
     }
 
     /**

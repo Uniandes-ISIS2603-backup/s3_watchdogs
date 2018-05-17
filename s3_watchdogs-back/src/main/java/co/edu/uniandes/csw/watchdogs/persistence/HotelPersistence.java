@@ -19,39 +19,39 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class HotelPersistence {
-    
+
     private static final Logger LOGGER = Logger.getLogger(HotelPersistence.class.getName());
-    
+
     @PersistenceContext(unitName = "WatchdogsPU")
     protected EntityManager em;
-    
+
     /**
      *
      * @param entity objeto hotel que se creará en la base de datos
      * @return devuelve la entidad creada con un id dado por la base de datos.
      */
-    public HotelEntity create(HotelEntity entity){
+    public HotelEntity create(HotelEntity entity) {
         LOGGER.info("Creando un hotel nuevo");
         em.persist(entity);
         LOGGER.info("Hotel creado");
         return entity;
     }
-    
-    public List<HotelEntity> findAll(){
+
+    public List<HotelEntity> findAll() {
         LOGGER.info("Consultando todos los hoteles");
         TypedQuery query = em.createQuery("select u from HotelEntity u", HotelEntity.class);
         return query.getResultList();
     }
-    
-    public HotelEntity find(Long id){
+
+    public HotelEntity find(Long id) {
         return em.find(HotelEntity.class, id);
     }
-    
-    public HotelEntity update(HotelEntity entity){
+
+    public HotelEntity update(HotelEntity entity) {
         return em.merge(entity);
     }
-    
-    public void delete(Long id){
+
+    public void delete(Long id) {
         HotelEntity entity = find(id);
         em.remove(entity);
     }

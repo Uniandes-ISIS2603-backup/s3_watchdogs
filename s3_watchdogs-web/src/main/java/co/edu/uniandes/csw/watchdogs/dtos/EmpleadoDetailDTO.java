@@ -74,12 +74,12 @@ public class EmpleadoDetailDTO extends EmpleadoDTO {
      * Calificacion del empleado
      */
     private CalificacionDTO calificacion;
-    
+
     /**
      * Lista de servicios
      */
     private List<ServicioDTO> servicios;
-    
+
     /**
      * Horario del empleado
      */
@@ -90,6 +90,7 @@ public class EmpleadoDetailDTO extends EmpleadoDTO {
      * Constructor por defecto
      */
     public EmpleadoDetailDTO() {
+        super();
     }
 
     /**

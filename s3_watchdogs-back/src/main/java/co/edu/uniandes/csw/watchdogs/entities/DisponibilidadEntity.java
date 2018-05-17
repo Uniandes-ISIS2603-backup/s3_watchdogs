@@ -14,34 +14,30 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
  *
  * @author id.salazar
  */
-
 @Entity
-public class DisponibilidadEntity extends BaseEntity implements Serializable{
-    
-  /**
-   * String que representa el horario
-   */
+public class DisponibilidadEntity extends BaseEntity implements Serializable {
 
+    /**
+     * String que representa el horario
+     */
     @PodamStrategyValue(DiaDisponibilidadStrategy.class)
-    private String matrizHorarios ; 
-    
-    public DisponibilidadEntity(){
-    
+    private String matrizHorarios;
+
+    public DisponibilidadEntity() {
+        super();
     }
-    
-     /**
+
+    /**
      * @param matrizHorarios la nueva matriz de Horario
      */
-
-    public void setMatrizHorarios(String matrizHorarios){
+    public void setMatrizHorarios(String matrizHorarios) {
         this.matrizHorarios = matrizHorarios;
     }
-    
-     /**
+
+    /**
      * @return la matriz de horario
      */
-    
-    public String getMatrizHorarios(){
-    return matrizHorarios;
+    public String getMatrizHorarios() {
+        return matrizHorarios;
     }
 }

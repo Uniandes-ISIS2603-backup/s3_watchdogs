@@ -30,23 +30,22 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  *
  * @author id.salazar
  */
-
 @RunWith(Arquillian.class)
 public class DisponibilidadLogicTest {
     
     private PodamFactory factory = new PodamFactoryImpl();
-
+    
     @Inject
     private DisponibilidadLogic disponibilidadLogic;
-
+    
     @PersistenceContext
     private EntityManager em;
-
+    
     @Inject
     private UserTransaction utx;
-
+    
     private List<DisponibilidadEntity> data = new ArrayList<DisponibilidadEntity>();
-
+    
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -151,7 +150,7 @@ public class DisponibilidadLogicTest {
         Assert.assertEquals(entity.getId(), resultEntity.getId());
         Assert.assertEquals(entity.getName(), resultEntity.getName());
         Assert.assertEquals(entity.getMatrizHorarios(), resultEntity.getMatrizHorarios());
-
+        
         Assert.assertNull(disponibilidadLogic.getDisponibilidad(Long.MIN_VALUE));
     }
 
@@ -177,33 +176,33 @@ public class DisponibilidadLogicTest {
     public void updateDisponibilidadTest() throws BusinessLogicException {
         DisponibilidadEntity entity = data.get(0);
         DisponibilidadEntity pojoEntity = factory.manufacturePojo(DisponibilidadEntity.class);
-
+        
         pojoEntity.setId(entity.getId());
         
         disponibilidadLogic.updateDisponibilidad(pojoEntity.getId(), pojoEntity);
-
+        
         DisponibilidadEntity resp = em.find(DisponibilidadEntity.class, entity.getId());
-
+        
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getMatrizHorarios(), resp.getMatrizHorarios());
         
         pojoEntity.setMatrizHorarios("ADDDDDDDDLDD LLLLLLLJLLLL LLLLLLLLLLLL LLLLLLLLLLLL LLLLLLLDLLLL LLLLLALLLLLL LLLLDLLLLLLL ");
-        try{
-           disponibilidadLogic.updateDisponibilidad(pojoEntity.getId(), pojoEntity);
-           Assert.fail();
-        }catch(BusinessLogicException e){
-             
+        try {
+            disponibilidadLogic.updateDisponibilidad(pojoEntity.getId(), pojoEntity);
+            Assert.fail();
+        } catch (BusinessLogicException e) {
+            
         }
         
         pojoEntity.setMatrizHorarios("hola");
-        try{
-           disponibilidadLogic.updateDisponibilidad(pojoEntity.getId(), pojoEntity);
-           Assert.fail();
-        }catch(BusinessLogicException e){
-             
+        try {
+            disponibilidadLogic.updateDisponibilidad(pojoEntity.getId(), pojoEntity);
+            Assert.fail();
+        } catch (BusinessLogicException e) {
+            
         }
-
+        
     }
     
 }

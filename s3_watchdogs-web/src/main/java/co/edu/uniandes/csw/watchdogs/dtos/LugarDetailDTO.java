@@ -11,33 +11,31 @@ import co.edu.uniandes.csw.watchdogs.entities.LugarEntity;
  *
  * @author js.vacat
  */
-public abstract class LugarDetailDTO extends LugarDTO{
-    
-   /**
+public abstract class LugarDetailDTO extends LugarDTO {
+
+    /**
      * Constructor por defecto
      */
-    public LugarDetailDTO( ) 
-    {
+    public LugarDetailDTO() {
         super();
-    } 
-    
+    }
+
     /**
      * Constructor para transformar un Entity a un DTO
-     * 
+     *
      * @param entity La entidad del Lugar de la cual se construye el objeto
      */
-    public LugarDetailDTO(LugarEntity entity)
-    {
+    public LugarDetailDTO(LugarEntity entity) {
         super(entity);
     }
-    
+
     /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
     @Override
-    public LugarEntity toEntity()
-    {
-      return super.toEntity();
+    public LugarEntity toEntity() {
+        return super.toEntity();
     }
 }

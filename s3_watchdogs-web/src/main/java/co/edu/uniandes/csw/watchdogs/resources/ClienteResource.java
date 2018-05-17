@@ -64,18 +64,19 @@ public class ClienteResource {
 
     @Inject
     private ClienteLogic clienteLogic;
-    
+
     @Inject
     private PaseoLogic paseoLogic;
 
     @Inject
     HotelLogic hotelLogic;
-    
+
     @Inject
     EntrenamientoLogic entrenamientoLogic;
-    
+
     @Inject
     AseoLogic aseoLogic;
+
     /**
      * Convierte una lista de ClienteEntity a una lista de ClienteDetailDTO
      *
@@ -244,8 +245,8 @@ public class ClienteResource {
         }
         return PayPalResource.class;
     }
-    
-     /**
+
+    /**
      * Conexión con el servicio de metodos de pago para un cliente.
      * {@link ClienteMetodosDePAgoResource}
      *
@@ -253,8 +254,7 @@ public class ClienteResource {
      * que dependen del cliente, es una redirección al servicio que maneja el
      * segmento de la URL que se encarga de los metodos de pago.
      *
-     * @param clienteId
-     * servicio.
+     * @param clienteId servicio.
      * @return El servicio de Autores para ese libro en paricular.
      */
     @Path("{clienteId: \\d+}/PSES")
@@ -271,7 +271,7 @@ public class ClienteResource {
         }
         return PseResource.class;
     }
-    
+
     /**
      * Obtiene una colección de instancias de servicioDetailDTO asociadas a una
      * instancia de cliente
@@ -290,27 +290,29 @@ public class ClienteResource {
             throw new WebApplicationException("El recurso incumple una regla de negocio.", 412);
         }
     }
-    
+
     private List<ServicioDetailDTO> servicioListEntity2DTO(List<ServicioEntity> entityList) {
         List<ServicioDetailDTO> list = new ArrayList<>();
-        for(ServicioEntity entity : entityList){
-            list.add(new ServicioDetailDTO(entity){});
+        for (ServicioEntity entity : entityList) {
+            list.add(new ServicioDetailDTO(entity) {
+            });
         }
         return list;
     }
-    
+
     @GET
     @Path("{clienteId:\\d+}/servicios/{servicioId:\\d+}")
-    public ServicioDetailDTO getServicio(@PathParam("clienteId") Long clienteId, @PathParam("servicioId") Long servicioId){
+    public ServicioDetailDTO getServicio(@PathParam("clienteId") Long clienteId, @PathParam("servicioId") Long servicioId) {
         try {
             return new ServicioDetailDTO(clienteLogic.getServicio(clienteId, servicioId));
         } catch (BusinessLogicException ex) {
             throw new WebApplicationException("El servicio no existe.", 404);
         }
     }
-    
+
     /**
      * Crea un entrenamieto.
+     *
      * @param clienteId
      * @param hotel
      * @return
@@ -318,12 +320,13 @@ public class ClienteResource {
      */
     @POST
     @Path("{clienteId:\\d+}/paseos")
-    public PaseoDetailDTO createPaseo(@PathParam("clienteId")Long clienteId, PaseoDetailDTO hotel) throws BusinessLogicException {        
-        return new PaseoDetailDTO(paseoLogic.createClientePaseo(clienteId,hotel.toEntity()));
+    public PaseoDetailDTO createPaseo(@PathParam("clienteId") Long clienteId, PaseoDetailDTO hotel) throws BusinessLogicException {
+        return new PaseoDetailDTO(paseoLogic.createClientePaseo(clienteId, hotel.toEntity()));
     }
-    
+
     /**
      * Crea un entrenamieto.
+     *
      * @param clienteId
      * @param hotel
      * @return
@@ -331,12 +334,13 @@ public class ClienteResource {
      */
     @POST
     @Path("{clienteId:\\d+}/hoteles")
-    public HotelDetailDTO createClienteHotel(@PathParam("clienteId")Long clienteId, HotelDetailDTO hotel) throws BusinessLogicException {        
-        return new HotelDetailDTO(hotelLogic.createClienteHotel(clienteId,hotel.toEntity()));
+    public HotelDetailDTO createClienteHotel(@PathParam("clienteId") Long clienteId, HotelDetailDTO hotel) throws BusinessLogicException {
+        return new HotelDetailDTO(hotelLogic.createClienteHotel(clienteId, hotel.toEntity()));
     }
 
     /**
      * Crea un entrenamieto.
+     *
      * @param clienteId
      * @param entrenamiento
      * @return
@@ -344,12 +348,13 @@ public class ClienteResource {
      */
     @POST
     @Path("{clienteId:\\d+}/entrenamientos")
-    public EntrenamientoDetailDTO createEntrenamiento(@PathParam("clienteId")Long clienteId, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {        
-        return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(clienteId,entrenamiento.toEntity()));
+    public EntrenamientoDetailDTO createEntrenamiento(@PathParam("clienteId") Long clienteId, EntrenamientoDetailDTO entrenamiento) throws BusinessLogicException {
+        return new EntrenamientoDetailDTO(entrenamientoLogic.createEntrenamiento(clienteId, entrenamiento.toEntity()));
     }
-    
+
     /**
      * Crea un entrenamieto.
+     *
      * @param clienteId
      * @param aseo
      * @return
@@ -357,7 +362,7 @@ public class ClienteResource {
      */
     @POST
     @Path("{clienteId:\\d+}/aseos")
-    public AseoDetailDTO createAseo(@PathParam("clienteId")Long clienteId, AseoDetailDTO aseo) throws BusinessLogicException {        
-        return new AseoDetailDTO(aseoLogic.createClienteAseo(clienteId,aseo.toEntity()));
+    public AseoDetailDTO createAseo(@PathParam("clienteId") Long clienteId, AseoDetailDTO aseo) throws BusinessLogicException {
+        return new AseoDetailDTO(aseoLogic.createClienteAseo(clienteId, aseo.toEntity()));
     }
 }

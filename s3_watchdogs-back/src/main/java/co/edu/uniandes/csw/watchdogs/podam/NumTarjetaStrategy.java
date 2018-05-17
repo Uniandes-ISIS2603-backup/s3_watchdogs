@@ -12,9 +12,8 @@ import uk.co.jemos.podam.common.AttributeStrategy;
  *
  * @author jc.pulido
  */
-public class NumTarjetaStrategy implements AttributeStrategy<String>{
+public class NumTarjetaStrategy implements AttributeStrategy<String> {
 
-    
     @Override
     public String getValue() {
         Random r = new Random();
@@ -35,11 +34,10 @@ public class NumTarjetaStrategy implements AttributeStrategy<String>{
         int num15 = r.nextInt(10);
         int num16 = r.nextInt(10);
 
-        return  ""+ num1 + num2 + num3 + num4 + num5
+        return "" + num1 + num2 + num3 + num4 + num5
                 + num6 + num7 + num8 + num9 + num10
                 + num11 + num12 + num13 + num14 + num15
                 + num16;
     }
-    
-    
+
 }

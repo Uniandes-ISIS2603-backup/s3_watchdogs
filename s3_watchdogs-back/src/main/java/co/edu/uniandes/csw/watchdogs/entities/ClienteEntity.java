@@ -254,7 +254,6 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.imagen = imagen;
     }
 
-    
     /**
      * Obtiene la coleccion de PSEs.
      *
@@ -264,7 +263,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         return pses;
     }
 
-     /**
+    /**
      * Establece el valor de la coleccion de PSEs.
      *
      * @param pses nuevo valor de la coleccion.
@@ -273,7 +272,6 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         this.pses = pses;
     }
 
-    
     /**
      * Obtiene la coleccion de Tarjetas de Credito.
      *
@@ -283,7 +281,7 @@ public class ClienteEntity extends BaseEntity implements Serializable {
         return tarjetas;
     }
 
-      /**
+    /**
      * Establece el valor de la coleccion de Tarjetas de credito.
      *
      * @param tarjetas nuevo valor de la coleccion.

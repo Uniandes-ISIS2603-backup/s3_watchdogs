@@ -7,63 +7,67 @@ package co.edu.uniandes.csw.watchdogs.dtos;
 
 import co.edu.uniandes.csw.watchdogs.entities.ServicioEntity;
 
-
 /**
  *
  * @author c.martinezc1
  */
-public  class ServicioDetailDTO extends ServicioDTO{
-    
+public class ServicioDetailDTO extends ServicioDTO {
+
     protected MascotaDTO mascota;
-    
+
     protected ClienteDTO cliente;
-    
+
     protected FacturaDTO factura;
-    
+
     protected CalificacionDTO calificacion;
-    
+
     protected EmpleadoDTO empleado;
-    
+
     /**
      * Constructor por defecto
      */
-    public ServicioDetailDTO(){
+    public ServicioDetailDTO() {
         super();
     }
-    
+
     /**
-     * 
-     * @param entity 
+     *
+     * @param entity
      */
-    public ServicioDetailDTO(ServicioEntity entity){
-    super(entity);
-    if(entity.getCalificacion() != null){
-        this.calificacion = new CalificacionDTO(entity.getCalificacion());    
+    public ServicioDetailDTO(ServicioEntity entity) {
+        super(entity);
+        if (entity.getCalificacion() != null) {
+            this.calificacion = new CalificacionDTO(entity.getCalificacion());
+        } else {
+            calificacion = null;
+        }
+
+        if (entity.getMascota() != null) {
+            this.mascota = new MascotaDTO(entity.getMascota());
+        } else {
+            mascota = null;
+        }
+
+        if (entity.getCliente() != null) {
+            this.cliente = new ClienteDTO(entity.getCliente());
+        } else {
+            cliente = null;
+        }
+
+        if (entity.getFactura() != null) {
+            this.factura = new FacturaDTO(entity.getFactura());
+        } else {
+            factura = null;
+        }
+
+        if (entity.getEmpleado() != null) {
+            this.empleado = new EmpleadoDTO(entity.getEmpleado());
+        } else {
+            empleado = null;
+        }
+
     }
-    else calificacion = null;
-    
-    if(entity.getMascota() != null){
-        this.mascota = new MascotaDTO(entity.getMascota());
-    }
-    else mascota = null;
-    
-    if(entity.getCliente() != null){
-        this.cliente = new ClienteDTO(entity.getCliente());
-    }
-    else cliente = null;
-    
-    if(entity.getFactura() != null){
-        this.factura = new FacturaDTO(entity.getFactura());
-    }
-    else factura = null;
-    
-    if(entity.getEmpleado() != null){
-    this.empleado = new EmpleadoDTO(entity.getEmpleado());
-    }
-    else empleado = null;
-    
-    }
-    
+
     public MascotaDTO getMascota() {
         return mascota;
     }
@@ -103,23 +107,23 @@ public  class ServicioDetailDTO extends ServicioDTO{
     public void setEmpleado(EmpleadoDTO empleado) {
         this.empleado = empleado;
     }
-    
+
     @Override
-    public ServicioEntity toEntity(){
+    public ServicioEntity toEntity() {
         ServicioEntity servicio = super.toEntity();
-        if(this.calificacion != null){
-        servicio.setCalificacion(calificacion.toEntity());    
+        if (this.calificacion != null) {
+            servicio.setCalificacion(calificacion.toEntity());
         }
-        if(this.cliente != null){
-        servicio.setCliente(cliente.toEntity());    
+        if (this.cliente != null) {
+            servicio.setCliente(cliente.toEntity());
         }
-        if(this.empleado != null){
-        servicio.setEmpleado(empleado.toEntity());
+        if (this.empleado != null) {
+            servicio.setEmpleado(empleado.toEntity());
         }
-        if(this.factura != null){
+        if (this.factura != null) {
             servicio.setFactura(factura.toEntity());
         }
-        if(this.mascota != null){
+        if (this.mascota != null) {
             servicio.setMascota(mascota.toEntity());
         }
         return servicio;

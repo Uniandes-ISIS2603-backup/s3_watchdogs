@@ -30,8 +30,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class DisponibilidadPersistenceTest {
-    
-   @Deployment
+
+    @Deployment
     public static JavaArchive createDeployement() {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(DisponibilidadEntity.class.getPackage())
@@ -39,18 +39,18 @@ public class DisponibilidadPersistenceTest {
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
-    
+
     @Inject
     private DisponibilidadPersistence disponibilidadPersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
-    
+
     @Inject
     UserTransaction utx;
-    
+
     private List<DisponibilidadEntity> data = new ArrayList<DisponibilidadEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -68,39 +68,40 @@ public class DisponibilidadPersistenceTest {
             }
         }
     }
-    
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("Delete from DisponibilidadEntity").executeUpdate();
     }
-    
+
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
-            DisponibilidadEntity entity = factory.manufacturePojo(DisponibilidadEntity.class);  
+            DisponibilidadEntity entity = factory.manufacturePojo(DisponibilidadEntity.class);
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     @Test
     public void createEmpleadoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         DisponibilidadEntity newEntity = factory.manufacturePojo(DisponibilidadEntity.class);
         DisponibilidadEntity result = disponibilidadPersistence.create(newEntity);
-        
+
         Assert.assertNotNull(result);
-        
+
         DisponibilidadEntity entity = em.find(DisponibilidadEntity.class, result.getId());
-        
+
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
-    
+
     @Test
     public void findAllTest() {
         List<DisponibilidadEntity> list = disponibilidadPersistence.findAll();
@@ -114,7 +115,7 @@ public class DisponibilidadPersistenceTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void findTest() {
         DisponibilidadEntity entity = data.get(0);
@@ -122,7 +123,7 @@ public class DisponibilidadPersistenceTest {
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getId(), newEntity.getId());
     }
-    
+
     @Test
     public void updateTest() {
         DisponibilidadEntity entity = data.get(0);
@@ -137,7 +138,7 @@ public class DisponibilidadPersistenceTest {
 
         Assert.assertEquals(newEntity.getId(), resp.getId());
     }
-    
+
     @Test
     public void deleteTest() {
         DisponibilidadEntity entity = data.get(0);
@@ -145,6 +146,5 @@ public class DisponibilidadPersistenceTest {
         DisponibilidadEntity deleted = em.find(DisponibilidadEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
-    
+
 }

@@ -30,7 +30,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class CentroDeEntrenamientoTest {
-    
+
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
@@ -41,15 +41,15 @@ public class CentroDeEntrenamientoTest {
     }
     @Inject
     private CentroDeEntrenamientoPersistence centroDeEntrenamientoPersistence;
-    
+
     @PersistenceContext
     private EntityManager em;
 
     @Inject
     UserTransaction utx;
-    
+
     private List<CentroDeEntrenamientoEntity> data = new ArrayList<CentroDeEntrenamientoEntity>();
-    
+
     @Before
     public void configTest() {
         try {
@@ -67,29 +67,30 @@ public class CentroDeEntrenamientoTest {
             }
         }
     }
-    
+
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
         em.createQuery("delete from CentroDeEntrenamientoEntity").executeUpdate();
     }
-    
+
     /**
-     * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
+     * Inserta los datos iniciales para el correcto funcionamiento de las
+     * pruebas.
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             CentroDeEntrenamientoEntity entity = factory.manufacturePojo(CentroDeEntrenamientoEntity.class);
-            
+
             em.persist(entity);
             data.add(entity);
         }
     }
-    
+
     @Test
-    public void createEntrenamientoTest(){
+    public void createEntrenamientoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         CentroDeEntrenamientoEntity newEntity = factory.manufacturePojo(CentroDeEntrenamientoEntity.class);
         CentroDeEntrenamientoEntity result = centroDeEntrenamientoPersistence.create(newEntity);
@@ -100,7 +101,7 @@ public class CentroDeEntrenamientoTest {
 
         Assert.assertEquals(newEntity.getId(), entity.getId());
     }
-    
+
     @Test
     public void getEntrenamientosTest() {
         List<CentroDeEntrenamientoEntity> list = centroDeEntrenamientoPersistence.findAll();
@@ -115,7 +116,7 @@ public class CentroDeEntrenamientoTest {
             Assert.assertTrue(found);
         }
     }
-    
+
     @Test
     public void getEntrenamientoTest() {
         CentroDeEntrenamientoEntity entity = data.get(0);
@@ -125,7 +126,7 @@ public class CentroDeEntrenamientoTest {
         Assert.assertEquals(newEntity.getHoteles(), entity.getHoteles());
 
     }
-    
+
     @Test
     public void deleteEntrenamientoTest() {
         CentroDeEntrenamientoEntity entity = data.get(0);
@@ -133,7 +134,7 @@ public class CentroDeEntrenamientoTest {
         CentroDeEntrenamientoEntity deleted = em.find(CentroDeEntrenamientoEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-    
+
     @Test
     public void updateEntrenamientoTest() {
         CentroDeEntrenamientoEntity entity = data.get(0);

@@ -47,27 +47,27 @@ import java.util.List;
 public class PaseoDTO extends ServicioDTO {
 
     /**
-    * Capacidad maxima de perros en el paseo
-    */
+     * Capacidad maxima de perros en el paseo
+     */
     private Integer capMax;
 
     /**
-     * 
+     *
      */
     private List<String> horas;
 
     /**
-     * Constructor por defecto 
+     * Constructor por defecto
      */
-      
     public PaseoDTO() {
-
+        super();
     }
-    
+
     /**
      * Constructor que recibe un entity
-     * @param entity 
-     */ 
+     *
+     * @param entity
+     */
     public PaseoDTO(PaseoEntity entity) {
         super(entity);
         if (entity != null) {
@@ -107,6 +107,7 @@ public class PaseoDTO extends ServicioDTO {
 
     /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
     @Override

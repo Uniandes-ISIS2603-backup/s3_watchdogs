@@ -12,55 +12,57 @@ import java.util.List;
 /**
  * @author c.martinezc1
  */
-public  class ServicioDTO {
+public class ServicioDTO {
+
     /**
      * identificador
      */
     protected Long id;
-    
+
     /**
      * Fecha en que se presto un servicio
      */
     protected Date fecha;
-    
+
     /**
      * Costo por hora del servicio
      */
     protected Double costo;
-    
+
     /**
      * Estado actual del servicio
      */
     protected Boolean estado;
-    
+
     /**
      * Duración del servicio
      */
     protected Double duracion;
-    
+
     /**
      * Rango de horas libres
      */
     protected List<String> rango;
-    
+
     /**
      * Hora del servicio
      */
-    
     protected Integer hora;
-    
+
     /**
      * Constructor por defecto
      */
-    public ServicioDTO(){
+    public ServicioDTO() {
+        super();
     }
-    
+
     /**
      * Constructor basico de un servicio
-     * @param entity 
+     *
+     * @param entity
      */
-    public ServicioDTO(ServicioEntity entity){
-        if(entity!=null){
+    public ServicioDTO(ServicioEntity entity) {
+        if (entity != null) {
             this.id = entity.getId();
             this.costo = entity.getCosto();
             this.duracion = entity.getDuracion();
@@ -69,11 +71,12 @@ public  class ServicioDTO {
             this.rango = entity.getRango();
             this.hora = entity.getHora();
         }
-        
+
     }
 
     /**
      * Getter id
+     *
      * @return id
      */
     public Long getId() {
@@ -82,14 +85,16 @@ public  class ServicioDTO {
 
     /**
      * Setter id
-     * @param id 
+     *
+     * @param id
      */
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     /**
      * Getter fecha
+     *
      * @return fecha
      */
     public Date getFecha() {
@@ -98,6 +103,7 @@ public  class ServicioDTO {
 
     /**
      * GEtter costo
+     *
      * @return costo
      */
     public Double getCosto() {
@@ -106,6 +112,7 @@ public  class ServicioDTO {
 
     /**
      * Getter estado
+     *
      * @return estado
      */
     public Boolean isEstado() {
@@ -114,6 +121,7 @@ public  class ServicioDTO {
 
     /**
      * Getter duracion
+     *
      * @return duracion
      */
     public Double getDuracion() {
@@ -122,6 +130,7 @@ public  class ServicioDTO {
 
     /**
      * Getter rango
+     *
      * @return rango
      */
     public List<String> getRango() {
@@ -130,7 +139,8 @@ public  class ServicioDTO {
 
     /**
      * Setter fecha
-     * @param fecha 
+     *
+     * @param fecha
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
@@ -138,7 +148,8 @@ public  class ServicioDTO {
 
     /**
      * Setter costo
-     * @param costo 
+     *
+     * @param costo
      */
     public void setCosto(Double costo) {
         this.costo = costo;
@@ -146,7 +157,8 @@ public  class ServicioDTO {
 
     /**
      * Setter estado
-     * @param estado 
+     *
+     * @param estado
      */
     public void setEstado(Boolean estado) {
         this.estado = estado;
@@ -154,7 +166,8 @@ public  class ServicioDTO {
 
     /**
      * Setter duracion
-     * @param duracion 
+     *
+     * @param duracion
      */
     public void setDuracion(Double duracion) {
         this.duracion = duracion;
@@ -162,7 +175,8 @@ public  class ServicioDTO {
 
     /**
      * Setter rango
-     * @param rango 
+     *
+     * @param rango
      */
     public void setRango(List<String> rango) {
         this.rango = rango;
@@ -170,6 +184,7 @@ public  class ServicioDTO {
 
     /**
      * Getter hora
+     *
      * @return hora
      */
     public Integer getHora() {
@@ -178,17 +193,19 @@ public  class ServicioDTO {
 
     /**
      * Setter hora
-     * @param hora 
+     *
+     * @param hora
      */
     public void setHora(Integer hora) {
         this.hora = hora;
     }
-    
+
     /**
      * Metodo que pasa de un DTO a un Entity
+     *
      * @return la entidad creada
      */
-    public ServicioEntity toEntity(){
+    public ServicioEntity toEntity() {
         ServicioEntity servicio = new ServicioEntity();
         servicio.setCosto(costo);
         servicio.setDuracion(duracion);
@@ -198,5 +215,5 @@ public  class ServicioDTO {
         servicio.setRango(rango);
         return servicio;
     }
-     
+
 }

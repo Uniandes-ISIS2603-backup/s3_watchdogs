@@ -29,29 +29,32 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
 
     /**
      * Constantes posibles para el Cargo del empleado 
-     **/
-    
+     *
+     */
     /**
      * Constante para el paseador
-     **/
+     *
+     */
     public static final String PASEADOR = "Paseador";
-    
+
     /**
      * Constante para el aseador     
-     **/
+     *
+     */
     public static final String ASEADOR = "Aseador";
-    
+
     /**
      * Constante para el entrenador 
-     **/
+     *
+     */
     public static final String ENTRENADOR = "Entrenador";
-    
+
     /**
      * Constante para el cuidador 
-     **/
+     *
+     */
     public static final String CUIDADOR = "Cuidador";
-    
-    
+
     /**
      * Relacion con la disponibilidad del empleado.
      */
@@ -91,22 +94,20 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     /**
      * Cargo del empleado.
      */
-     @PodamStrategyValue(CargoStrategy.class)
+    @PodamStrategyValue(CargoStrategy.class)
     private String cargo;
-    
+
     /**
      * Correo del empleado.
      */
-    
     @PodamStrategyValue(CorreoStrategy.class)
     private String correo;
-    
+
     /**
      * Telefono del empleado.
      */
     private String telefono;
-    
-    
+
     /**
      * Obtiene el atributo disponibilidad.
      *
@@ -214,7 +215,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     public void setCedula(String cedula) {
         this.cedula = cedula;
     }
-    
+
     /**
      * Obtiene el atributo cargo.
      *
@@ -232,7 +233,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-    
+
     /**
      * Obtiene el atributo correo.
      *
@@ -250,7 +251,7 @@ public class EmpleadoEntity extends BaseEntity implements Serializable {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
+
     /**
      * Obtiene el atributo telefono.
      *
