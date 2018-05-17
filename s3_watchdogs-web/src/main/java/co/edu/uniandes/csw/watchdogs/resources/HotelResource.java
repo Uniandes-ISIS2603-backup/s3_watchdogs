@@ -66,6 +66,7 @@ public class HotelResource {
     @POST
     public HotelDetailDTO createHotel(HotelDetailDTO hotel) throws BusinessLogicException {
         HotelEntity hotelEntity = hotel.toEntity();
+        hotelEntity.setCosto(hotelEntity.getDuracion()*10000.0);
         HotelEntity nuevoHotel = hotelLogic.createHotel(hotelEntity);
         return new HotelDetailDTO(nuevoHotel);
     }

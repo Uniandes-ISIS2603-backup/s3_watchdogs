@@ -1,36 +1,66 @@
 <div class="container-fluid">
     <div class="panel-group">
         <div class="row">
-        <div class="col-sm-6">
-            <p>
-            Puedes dejarnos tu mascota en nuestro hotel mientras estas fuera de la ciudad. No podrias dejarla en mejores manos.
-            </p>     
+            <div class="col-sm-6">
+                <p>
+                    Puedes dejarnos tu mascota en nuestro hotel mientras estas fuera de la ciudad. No podrias dejarla en mejores manos.
+                </p>     
+            </div> 
+            <div class="col-sm-6">    
+                <img src="src/images/hotel.png" >
+            </div>    
         </div> 
-        <div class="col-sm-6">    
-          <img src="src/images/hotel.png" >
-        </div>    
-    </div> 
         <div class="panel panel-primary">
-            <h5>Lista de reservas</h5>
+            <h5> Mis reservas</h5>
             <div class="panel-body">
                 <div class="col-md-8">
-                    <table class="table table-striped">
+                    <table class="table table-striped" ng-if="!edit">
                         <thead>
                             <tr>
                                 <th>Mascota</th>    
                                 <th>Fecha de reserva</th>
                                 <th>Duración</th>
+                                <th>Costo</th>
+                                <th>Transporte</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="hotel in hoteles">
-                        <td ng-if="hotel.cliente.id ==data.cliente.id">{{hotel.id}}</td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id">{{hotel.mascota.nombre}}</td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id">{{hotel.fecha}}</td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id">{{hotel.duracion}} horas</td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id">${{hotel.costo}}</td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id">{{hotel.transporte.direccion}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped" ng-if="edit">
+                        <thead>
+                            <tr>
+                                <th>Mascota</th>    
+                                <th>Fecha de reserva</th>
+                                <th>Duración</th>
+                                <th>Transporte</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="hotel in hoteles">
+                                <td ng-if="hotel.cliente.id == data.cliente.id">{{hotel.mascota.nombre}}</td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id"><input type="datetime-local" value="2019-09-19T13:45:00" id="hotelFecha"  ng-model="hotel.fecha" class="form-control"></td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id"><input class="form-control" type="number" value="0" id="hotelDuracion"  ng-model="hotel.duracion" ></td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id"><select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="hotelTransporte"  ng-model="hotel.transporte" ng-options="x.direccion for x in transportes"></select></td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id"><a class ="btn btn-info"  ng-click="actualizar(hotel.id) "> Actualizar</a></td>
+                                <td ng-if="hotel.cliente.id == data.cliente.id"><a class ="btn btn-danger" ui-sref="hotelDelete({hotelId: hotel.id})" > Eliminar</a></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group mr-2" role="group" aria-label="First group">
-                            <a  class="btn btn-info" ui-sref="hotelesCreate({clienteId: 100})"><span class="glyphicon glyphicon-plus-sign"></span> Hacer reserva</a>
+                            <a ng-show="!edit" class="btn btn-info" ui-sref="hotelesCreate({clienteId: data.cliente.id})"><span class="glyphicon glyphicon-plus-sign"></span> Hacer reserva</a>
+                            <a ng-show="!edit" class="btn btn-warning" ng-click="cambiarF()"> Editar</a>
+                            <a ng-show="edit" class ="btn btn-success" ng-click="cambiarV()" ui-sref="hotels({clienteId: data.cliente.id})"> Volver</a>
                         </div>
                     </div>
                 </div>

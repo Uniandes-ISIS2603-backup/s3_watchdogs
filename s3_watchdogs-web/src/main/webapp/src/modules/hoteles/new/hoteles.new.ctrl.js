@@ -7,12 +7,14 @@
     var mod = ng.module("hotelesModule");
     mod.constant("clientesContext", "api/clientes");
     mod.constant("hotelesContext", "api/hoteles");
-    mod.controller('hotelNewCtrl', ['$scope', '$http','clientesContext', 'hotelesContext', '$state', '$rootScope',
-        function ($scope, $http, clientesContext, hotelesContext, $state, $rootScope) {
+    mod.constant("transportesContext", "api/transportes");
+    mod.controller('hotelNewCtrl', ['$scope', '$http','clientesContext', 'hotelesContext','transportesContext', '$state', '$rootScope',
+        function ($scope, $http, clientesContext, hotelesContext,transportesContext, $state, $rootScope) {
             $rootScope.edit = false;
 
             $scope.data = {};
             $scope.mascotas = {};
+            $scope.transportes = {};
             
             var idCliente = $state.params.clienteId;
 
@@ -20,6 +22,10 @@
                 var cliente = response.data;
                 $scope.data.cliente = cliente;
                 $scope.mascotas = cliente.mascotas;
+            });
+            
+            $http.get(transportesContext).then(function(response){
+                $scope.transportes = response.data;
             });
 
             $scope.createHotel = function () {

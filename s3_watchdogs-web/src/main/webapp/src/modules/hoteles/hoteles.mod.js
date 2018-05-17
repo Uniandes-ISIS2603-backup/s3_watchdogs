@@ -9,7 +9,7 @@
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/hoteles/';
             $urlRouterProvider.otherwise("/hotelDetail");
-            
+
             $stateProvider.state('hotels', {
                 url: '/clientes/{clienteId:int}/hoteles/',
                 param: {
@@ -22,10 +22,10 @@
                         controllerAs: 'ctrl'
                     }
                 }
-                }).state('hotelesCreate', {
+            }).state('hotelesCreate', {
                 url: '/clientes/{clienteId:int}/hoteles/create',
                 //parent: 'hotelDetail',
-                param:{
+                param: {
                     clienteId: null
                 },
                 views: {
@@ -34,7 +34,19 @@
                         controller: 'hotelNewCtrl'
                     }
                 }
-                }).state('hotelDelete', {
+            }).state('hotelUpdate', {
+                url: '/hoteles/{hotelId:int}/update',
+                //parent: 'entrenamientoDetail',
+                param: {
+                    entrenamientoId: null
+                },
+                views: {
+                    'mainView': {
+                        templateUrl: basePath + '/update/hoteles.update.html',
+                        controller: 'hotelUpdateCtrl'
+                    }
+                }
+            }).state('hotelDelete', {
                 url: '/hoteles/{hotelId:int}/delete',
                 //parent: 'hotelDetail',
                 param: {
@@ -46,6 +58,6 @@
                         controller: 'hotelDeleteCtrl'
                     }
                 }
-                });
+            });
         }]);
 })(window.angular);

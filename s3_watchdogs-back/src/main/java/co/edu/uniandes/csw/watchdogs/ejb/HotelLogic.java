@@ -85,7 +85,7 @@ public class HotelLogic {
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-            entity.setCosto(costo(entity.getDuracion()));
+            entity.setCosto(entity.getDuracion()*10000.0);
             entity.setEstado(true);
             entity.setCliente(cliente);
             entity.setMascota(mascota);
@@ -104,16 +104,14 @@ public class HotelLogic {
      * @return
      * @throws BusinessLogicException 
      */
-    public HotelEntity crear(Long idC, HotelEntity entity) throws BusinessLogicException {
+    public HotelEntity crear( HotelEntity entity) throws BusinessLogicException {
         LOGGER.info("Inicia proceso de creación de Hotel. Logica");
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", idC);
-        LOGGER.log(Level.INFO, "El id del cliente es: {0}", entity.getFecha());
 
         Date todayDate = Calendar.getInstance().getTime();
         if (todayDate.before(entity.getFecha())) {
-            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-            entity.setCosto(costo(entity.getDuracion()));
+            entity.setCosto(entity.getDuracion()*10000.0);
             entity.setEstado(true);
             entity.setCliente(cliente);
             entity.setMascota(mascota);
@@ -139,8 +137,8 @@ public class HotelLogic {
         if(hotelEntity == null){
             throw new BusinessLogicException("El hotel no existe");
         }
-        entity.setDuracion(entity.getTiempoHospedaje().doubleValue());
-        entity.setCosto(costo(entity.getTiempoHospedaje().doubleValue()));
+        //entity.setDuracion(entity.getTiempoHospedaje().doubleValue());
+        //entity.setCosto(costo(entity.getTiempoHospedaje().doubleValue()));
         HotelEntity newEntity = persistence.update(entity);
         LOGGER.info("Termina proceso de actualizar Hotel");
         return newEntity;
@@ -236,7 +234,7 @@ public class HotelLogic {
     }
 
     private Double costo(double duracion) {
-        return duracion * 50000;
+        return duracion * 10000;
     }
 
 }
