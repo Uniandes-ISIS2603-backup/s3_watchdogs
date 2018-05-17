@@ -41,7 +41,7 @@
                 for (var item in $scope.users) {
 
                     if ($scope.users[item].user === $scope.data.username && $scope.users[item].password === $scope.data.password) {
-                        console.log('Entra');
+                        //console.log('Entra');
                         flag = true;
                         $scope.user = $scope.users[item];
                         $state.go('home', {}, {reload: true});

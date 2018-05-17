@@ -18,7 +18,7 @@
          * estado actual de la navegación definida en el módulo.
          */
         function ($scope, $http, tarjetaContext, $state) {
-            console.log($state.params);
+
             if (($state.params.clienteId !== undefined) && ($state.params.clienteId !== null)) {
 
                 var idTarjeta = $state.params.tarjetaId;
@@ -28,7 +28,7 @@
 
                 $http.put(tarjetaContext + '/' + $state.params.clienteId + '/tarjetasCredito/' + idTarjeta, params).then(function (response) {
                     $scope.tarjetasRecords = response.data;
-                    console.log(tarjetaContext + '/' + $state.params.clienteId + '/tarjetasCredito/' + idTarjeta);
+
                     $state.go('tarjetasList', {tarjetaId: response.data.id}, {reload: true});
                 });
             }

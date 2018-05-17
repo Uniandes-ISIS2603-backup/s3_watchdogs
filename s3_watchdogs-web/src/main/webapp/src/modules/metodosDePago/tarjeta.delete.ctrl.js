@@ -29,7 +29,7 @@
              */
             $scope.deleteTarjeta = function () {
                 $http.delete(tarjetaContext + '/' +$state.params.clienteId + '/tarjetasCredito/' +idTarjeta, {}).then(function (response) {
-                    console.log(tarjetaContext + '/' +$state.params.clienteId + '/tarjetasCredito/' +idTarjeta);
+
                     $state.go('tarjetasList', {tarjetaId: response.data.id}, {reload: true});
                 });
             };

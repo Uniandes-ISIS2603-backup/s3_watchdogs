@@ -18,7 +18,7 @@
          * estado actual de la navegación definida en el módulo.
          */
         function ($scope, $http, payPalContext, $state) {
-            console.log($state.params);
+
             if (($state.params.clienteId !== undefined) && ($state.params.clienteId !== null)) {
 
                 var idPaypal = $state.params.payPalId;
@@ -28,7 +28,7 @@
 
                 $http.put(payPalContext + '/' + $state.params.clienteId + '/payPal/' + idPaypal, params).then(function (response) {
                     $scope.payPalRecordsRecords = response.data;
-                    console.log(payPalContext + '/' + $state.params.clienteId + '/payPal/' + idPaypal);
+
                     $state.go('payPalList', {payPalId: response.data.id}, {reload: true});
                 });
             }

@@ -8,10 +8,10 @@
 
                 var input = $state.params;
                 var params = JSON.stringify(input);
-                console.log(params);
+
                 $http.post(tarjetaCreditoContext + '/' + $state.params.clienteId + '/tarjetasCredito', params).then(function (response) {
                     $scope.tarjetasRecords = response.data;
-                    console.log($scope.data);
+
                 });
             }
         }]);
