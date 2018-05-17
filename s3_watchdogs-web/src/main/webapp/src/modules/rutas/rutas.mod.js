@@ -8,23 +8,25 @@
             
             $urlRouterProvider.otherwise("/rutasList");
             
-            $stateProvider.state('rutasList', {
+            $stateProvider.state('rutas', {
                 
                 url: '/rutas/list',
                  views: {
-                    'mainView': {
-                        templateUrl: basePath + 'rutas.list.html',
-                        controller: 'rutaCtrl',
+                     'completeView': {
+                        templateUrl: basePath + 'rutas.html',
+                        controller: 'rutasCtrl',
                         controllerAs: 'ctrl'
+                    },
+                    'navView': {
+                        templateUrl: basePath + 'rutas.nav.html'
                     }
                 }
-            }).state('rutasNew', {
-                url: 'rutas/new',
-                //parent: 'rutas',
+            }).state('rutasList', {
+                url: '/list',
+                parent: 'rutas',
                 views: {
-                    'detailView': {
-                        templateUrl: basePath + '/new/rutas.new.html',
-                        controller: 'rutaNewCtrl'
+                    'listView': {
+                        templateUrl: basePath + 'rutas.list.html'
                     }
                 }
             });

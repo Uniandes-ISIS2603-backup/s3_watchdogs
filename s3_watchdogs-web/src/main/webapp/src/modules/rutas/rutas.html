@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-sm-6">
+        <hr>
+        <div ui-view="detailView">
+            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="First group">
+                    <a class="btn btn-info parrafoscards" ui-sref="rutasCreate">
+                        <i class="fa fa-plus-circle" style="text-align: center"></i>
+                        <p>Crear ruta</p>
+                    </a>
+                    <a class="btn btn-info parrafoscards" ui-sref="rutasList">
+                        <i class="fa fa-search" style="text-align: center"></i>
+                        <p>Buscar todas las rutas</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div ui-view="listView"></div>
+    </div>
+    <div class="col">
+        <hr>
+        <div class="col" ui-view="rutaDetailView"></div>
+        <div class="col" ui-view="rutaUpdateView"></div>
+    </div>
+</div>
