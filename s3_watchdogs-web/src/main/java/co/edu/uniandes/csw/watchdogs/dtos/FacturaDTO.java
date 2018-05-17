@@ -120,7 +120,7 @@ public class FacturaDTO {
     public FacturaEntity toEntity(){
         FacturaEntity entity = new FacturaEntity();
         entity.setId(id);
-        entity.setPago(pagado);
+//        entity.setPago(pagado);
         entity.setValor(valor);
         return entity;
     }

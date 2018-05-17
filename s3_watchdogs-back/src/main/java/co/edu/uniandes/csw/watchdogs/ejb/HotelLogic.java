@@ -235,28 +235,6 @@ public class HotelLogic {
         }
     }
 
-    /**
-     *
-     * @param entity
-     * @throws BusinessLogicException
-     */
-    public void validarServicios(HotelEntity entity) throws BusinessLogicException {
-        Date todayDate = Calendar.getInstance().getTime();
-        if (entity.getFecha().before(todayDate)) {
-            throw new BusinessLogicException("La fecha ingresada no es valida");
-        }
-        if (entity.getCosto() < 0) {
-            throw new BusinessLogicException("El costo es invalido");
-        }
-        if (entity.getDuracion() < 0) {
-            throw new BusinessLogicException("La duracion es invalida");
-        }
-        if (entity.getTiempoHospedaje() < 24) {
-            throw new BusinessLogicException("El tiempo de hospedaje no puede ser menor a 24 horas");
-        }
-
-    }
-
     private Double costo(double duracion) {
         return duracion * 50000;
     }

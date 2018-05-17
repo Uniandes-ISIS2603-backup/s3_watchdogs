@@ -178,7 +178,7 @@ public class EmpleadoLogicTest {
      * Prueba para actualizar un Empleado
      */
     @Test
-    public void updateEmpleadoTest() {
+    public void updateEmpleadoTest() throws BusinessLogicException {
         EmpleadoEntity entity = data.get(0);
         EmpleadoEntity pojoEntity = factory.manufacturePojo(EmpleadoEntity.class);
 

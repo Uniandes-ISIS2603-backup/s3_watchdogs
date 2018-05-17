@@ -133,7 +133,7 @@ public class EmpleadoDetailDTO extends EmpleadoDTO {
             disponibilidad = new DisponibilidadDTO();
             if (entity.getDisponibilidad() != null) {
                 disponibilidad.setId(entity.getDisponibilidad().getId());
-                disponibilidad.setMatrizHorarios(entity.getDisponibilidad().getMatrizHorarios());
+                //disponibilidad.setMatrizHorarios(entity.getDisponibilidad().getMatrizHorarios());
             }
         }
     }

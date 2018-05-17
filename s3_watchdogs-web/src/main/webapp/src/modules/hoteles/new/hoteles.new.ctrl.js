@@ -5,6 +5,7 @@
  */
 (function (ng) {
     var mod = ng.module("hotelesModule");
+    mod.constant("clientesContext", "api/clientes");
     mod.constant("hotelesContext", "api/hoteles");
     mod.controller('hotelNewCtrl', ['$scope', '$http','clientesContext', 'hotelesContext', '$state', '$rootScope',
         function ($scope, $http, clientesContext, hotelesContext, $state, $rootScope) {
@@ -21,7 +22,7 @@
                 $scope.mascotas = cliente.mascotas;
             });
 
-            $scope.createhotel = function () {
+            $scope.createHotel = function () {
                 $http.post(hotelesContext, $scope.data).then(function (response) {
                     $state.go('serviciosList', {hotelId: response.data.id}, {reload: true});
                 });
