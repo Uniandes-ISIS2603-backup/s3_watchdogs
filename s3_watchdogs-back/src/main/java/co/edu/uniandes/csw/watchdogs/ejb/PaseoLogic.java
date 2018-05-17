@@ -8,9 +8,13 @@ package co.edu.uniandes.csw.watchdogs.ejb;
 import co.edu.uniandes.csw.watchdogs.entities.CalificacionEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.PaseoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
 import co.edu.uniandes.csw.watchdogs.entities.RutaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.PaseoPersistence;
 import java.util.Calendar;
@@ -44,6 +48,9 @@ public class PaseoLogic {
 
     @Inject
     private EmpleadoLogic empleadoLogic;
+
+    @Inject
+    private FacturaLogic facturaLogic;
 
     /**
      * Devuelve todos los Paseo que hay en la base de datos.
@@ -96,8 +103,7 @@ public class PaseoLogic {
      * Guardar un nuevo Aseo
      *
      * @param idC
-     * @param entity La entidad de tipo Aseo del nuevo libro a
-     * persistir.
+     * @param entity La entidad de tipo Aseo del nuevo libro a persistir.
      * @return La entidad luego de persistirla
      * @throws BusinessLogicException
      */
@@ -119,6 +125,38 @@ public class PaseoLogic {
             throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
         }
     }
+
+    /**
+     * Guardar un nuevo Aseo
+     *
+     * @param idC
+     * @param entity La entidad de tipo Aseo del nuevo libro a persistir.
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException
+     */
+    public PaseoEntity createFullPaseo(Long idC, PaseoEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de Aseo. Logica");
+
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            FacturaEntity factura = new FacturaEntity();
+            factura.setCliente(cliente);
+            factura.setValor(costo(entity.getDuracion()));
+            facturaLogic.createFactura(factura);
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de Aseo");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
+        }
+    }
+
     /**
      * Actualizar un Paseo por ID
      *
@@ -170,7 +208,6 @@ public class PaseoLogic {
         return rutaEntity;
     }
 
-  
     /**
      * Remplazar Rutas de un Paseo
      *
@@ -195,8 +232,7 @@ public class PaseoLogic {
     }
 
     /**
-     * Metodo que devuelve la calificacion del paseo con id dado por
-     * parametro.
+     * Metodo que devuelve la calificacion del paseo con id dado por parametro.
      *
      * @param id del paseo
      * @return CalificacionEntity

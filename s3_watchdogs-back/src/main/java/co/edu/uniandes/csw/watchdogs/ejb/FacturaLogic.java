@@ -92,6 +92,8 @@ public class FacturaLogic {
         LOGGER.log(Level.INFO, "Termina proceso de borrar Factura con id={0}", id);
     }
     
+    
+    
     public void check(FacturaEntity entity)throws BusinessLogicException{
         checkValorValido(entity);
         checkValoresNulos(entity);

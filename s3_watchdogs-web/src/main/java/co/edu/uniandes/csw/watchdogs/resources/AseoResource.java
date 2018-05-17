@@ -184,8 +184,5 @@ public class AseoResource {
         }
         return list;
     }
-      
-      private Double costo(double duracion){
-        return duracion * 1.5;
-    }
+     
 }

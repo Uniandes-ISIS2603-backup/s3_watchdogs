@@ -10,7 +10,11 @@ import co.edu.uniandes.csw.watchdogs.entities.CentroDeEntrenamientoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.ClienteEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EmpleadoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.EntrenamientoEntity;
+import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 import co.edu.uniandes.csw.watchdogs.entities.MascotaEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PayPalEntity;
+import co.edu.uniandes.csw.watchdogs.entities.PseEntity;
+import co.edu.uniandes.csw.watchdogs.entities.TarjetaCreditoEntity;
 import co.edu.uniandes.csw.watchdogs.entities.TransporteEntity;
 import co.edu.uniandes.csw.watchdogs.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.watchdogs.persistence.EntrenamientoPersistence;
@@ -43,6 +47,8 @@ public class EntrenamientoLogic {
     @Inject
     private EmpleadoLogic empleadoLogic;
 
+    @Inject
+    private FacturaLogic facturaLogic;
 
     /**
      * Devuelve todos los Entrenamiento que hay en la base de datos.
@@ -97,8 +103,6 @@ public class EntrenamientoLogic {
             throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
         }
     }
-    
-    
 
     /**
      * Guardar un nuevo Entrenamiento
@@ -118,6 +122,42 @@ public class EntrenamientoLogic {
         if (todayDate.before(entity.getFecha())) {
             ClienteEntity cliente = clienteLogic.getCliente(idC);
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+            entity.setCosto(costo(entity.getDuracion()));
+            entity.setEstado(true);
+            entity.setCliente(cliente);
+            entity.setMascota(mascota);
+            persistence.create(entity);
+            LOGGER.info("Termina proceso de creación de Entrenamiento");
+            return entity;
+        } else {
+            throw new BusinessLogicException("La fecha del servicio debe ser posterior a hoy");
+        }
+    }
+
+    /**
+     * Guardar un nuevo Entrenamiento
+     *
+     * @param idC
+     * @param entity La entidad de tipo Entrenamiento del nuevo libro a
+     * persistir.
+     * @param paypal
+     * @param pse
+     * @param tarjeta
+     * @return La entidad luego de persistirla
+     * @throws BusinessLogicException
+     */
+    public EntrenamientoEntity createFullEntrenamiento(Long idC, EntrenamientoEntity entity) throws BusinessLogicException {
+        LOGGER.info("Inicia proceso de creación de Entrenamiento. Logica");
+
+        Date todayDate = Calendar.getInstance().getTime();
+        if (todayDate.before(entity.getFecha())) {
+            ClienteEntity cliente = clienteLogic.getCliente(idC);
+            MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
+
+            FacturaEntity factura = new FacturaEntity();
+            factura.setCliente(cliente);
+            factura.setValor(costo(entity.getDuracion()));
+            facturaLogic.createFactura(factura);
             entity.setCosto(costo(entity.getDuracion()));
             entity.setEstado(true);
             entity.setCliente(cliente);
@@ -175,7 +215,7 @@ public class EntrenamientoLogic {
         LOGGER.log(Level.INFO, "Inicia proceso de agregar centro de entrenamiento con  id={0}", idC);
         EntrenamientoEntity entrenamientoEntity = getEntrenamiento(idE);
         CentroDeEntrenamientoEntity centroEntity = new CentroDeEntrenamientoEntity();
-        
+
         centroEntity.setId(idC);
         entrenamientoEntity.setCentroDeEntrenamiento(centroEntity);
         return getCentroDeEntrenamiento(idE);
@@ -228,8 +268,8 @@ public class EntrenamientoLogic {
             throw new BusinessLogicException("El entrenamiento no ha acabado.");
         }
     }
-    
-    private Double costo(double duracion){
+
+    private Double costo(double duracion) {
         return duracion * 1.5;
     }
 }
