@@ -66,6 +66,13 @@ public class EmpleadoPersistence {
             return sameCedula.get(0);
         }
     }
+    
+    public List<EmpleadoEntity> findByCargo(String cargo){
+        TypedQuery query = em.createQuery("Select e From EmpleadoEntity e where e.cargo = :cargo",EmpleadoEntity.class );
+        query = query.setParameter("cargo", cargo);
+        List<EmpleadoEntity> sameCargo = query.getResultList();
+        return sameCargo;
+    }
 
     /**
      * Devuelve todos los empleados de la base de datos.

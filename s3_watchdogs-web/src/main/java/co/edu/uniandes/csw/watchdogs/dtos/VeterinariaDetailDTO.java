@@ -83,6 +83,7 @@ public class VeterinariaDetailDTO extends VeterinariaDTO{
             } 
         }
     }
+     
     /**
      * Transformar un DTO a un entity
      * 

@@ -20,81 +20,89 @@ and open the template in the editor.
         </div>
     </div>
     <hr>
-                    <div class="row">
-                        
-                        <form class="form-group col-md-6">
-                               <label class="mr-sm-2" for="aseoMascota">Seleccione su mascota:</label>
-                               <div class="col-10">
-                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoMascota" required ng-model="data.mascota" ng-options="x.nombre for x in mascotas"></select>
-                               </div>
-                        </form>
-                        <form class="form-group col-md-6">
-                            <label class="mr-sm-1" for="aseoDuracion" >Duracion</label>
-                            <div class="col-10">
-                            <input class="form-control" type="number" value="0" id="aseoDuracion" required ng-model="data.duracion" >
-                            </div>
-                        </form>
-                    </div>
-    
-                    
-       
-                    <div class="row">
-                        <form class="form-inline col-md-4" >
-                               <label class="mr-sm-2" for="aseoBanho">Bano</label>
-                               <div class="col-10">
-                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoBanho" required ng-model="data.banho">                                   
-                                     <option value="1">Si</option>
-                                     <option value="0">No</option>                                    
-                               </select>
-                               </div>
-                         </form>
-                        <form class="form-inline col-md-4" >
-                               <label class="mr-sm-2" for="aseoPeluqueria">Peluqueria</label>
-                               <div class="col-10">
-                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoPeluqueria" required ng-model="data.peluqueria">                                   
-                                     <option value="1">Si</option>
-                                     <option value="0">No</option>                                    
-                               </select>
-                               </div>
-                         </form>
-                        <form class="form-inline col-md-4" >
-                               <label class="mr-sm-2" for="aseoDientes">Dientes</label>
-                               <div class="col-10">
-                               <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoDientes" required ng-model="data.dientes">                                   
-                                     <option value="1">Si</option>
-                                     <option value="0">No</option>                                    
-                               </select>
-                               </div>
-                         </form>
-                        
-                    </div>
-    
-                    <div class="row">
-                        <form class="form-group col-md-6">
-                            <label for="aseoFecha" class="mr-sm-2">Fecha:</label>
-                            <div class="col-10">
-                            <input type="datetime-local" value="2011-08-19T13:45:00" id="entrenamientoFecha" required ng-model="data.fecha" class="form-control">
-                            </div>
-                        </form>
-                    </div>
-    
-   
-    
-                    <div class="form-group row">
-                        <div class="form-group col-sm-4" ng-if="!aseo.$valid">
+    <div class="row">
 
-                            <div class="alert alert-warning" >
-                                <strong>Warning!</strong><p>All inputs are required*</p>
-                            </div> 
-                        </div> 
-                    </div> 
-                    <div class="row">
-                        <div class="col-sm-10">
-                            <a  ng-click="createAseo()" value="Save" class="btn btn-success" ui-sref="serviciosList">Aceptar</a>
-                            <a class="btn btn-info" ui-sref="serviciosList">Cancel</a>
-                        </div>
-                    </div>
-            
+        <form class="form-group col-md-6">
+            <label class="mr-sm-2" for="aseoMascota">Seleccione su mascota:</label>
+            <div class="col-10">
+                <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoMascota" required ng-model="data.mascota" ng-options="x.nombre for x in mascotas"></select>
+            </div>
+        </form>
+        <form class="form-group col-md-6">
+            <label class="mr-sm-1" for="aseoDuracion" >Duracion</label>
+            <div class="col-10">
+                <input class="form-control" type="number" value="0" id="aseoDuracion" required ng-model="data.duracion" >
+            </div>
+        </form>
+    </div>
+
+
+
+    <div class="row">
+        <form class="form-inline col-md-4" >
+            <label class="mr-sm-2" for="aseoBanho">Bano</label>
+            <div class="col-10">
+                <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoBanho" required ng-model="data.banho">                                   
+                    <option value="1">Si</option>
+                    <option value="0">No</option>                                    
+                </select>
+            </div>
+        </form>
+        <form class="form-inline col-md-4" >
+            <label class="mr-sm-2" for="aseoPeluqueria">Peluqueria</label>
+            <div class="col-10">
+                <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoPeluqueria" required ng-model="data.peluqueria">                                   
+                    <option value="1">Si</option>
+                    <option value="0">No</option>                                    
+                </select>
+            </div>
+        </form>
+        <form class="form-inline col-md-4" >
+            <label class="mr-sm-2" for="aseoDientes">Dientes</label>
+            <div class="col-10">
+                <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoDientes" required ng-model="data.dientes">                                   
+                    <option value="1">Si</option>
+                    <option value="0">No</option>                                    
+                </select>
+            </div>
+        </form>
+
+    </div>
+
+    <div class="row">
+        <form class="form-group col-md-6">
+            <label for="aseoFecha" class="mr-sm-2">Fecha:</label>
+            <div class="col-10">
+                <input type="datetime-local" value="2011-08-19T13:45:00" id="aseoFecha" required ng-model="data.fecha" class="form-control">
+            </div>
+        </form>
+        <form class="form-inline col-md-6" >
+        <label class="mr-sm-2" for="aseoEmpleado">Entrenador:</label>
+        <div class="col-10">
+            <select class="custom-select mb-4 mr-sm-4 mb-sm-0" id="aseoEmpleado" required ng-model="data.empleado" ng-options="x.nombre for x in empleados">                                   
+
+            </select>
+        </div>
+    </form>
+    </div>
+    
+
+
+    <div class="form-group row">
+        <div class="form-group col-sm-4" ng-if="!aseo.$valid">
+
+            <div class="alert alert-warning" >
+                <strong>Warning!</strong><p>All inputs are required*</p>
+            </div> 
+        </div> 
+    </div> 
+    <div class="row">
+        <div class="col-sm-10">
+            <a  ng-click="createAseo()" value="Save" class="btn btn-success" ui-sref="serviciosList">Aceptar</a>
+            <a class="btn btn-info" ui-sref="serviciosList">Cancel</a>
+        </div>
+    </div>
+
 </div>
-        
+
 

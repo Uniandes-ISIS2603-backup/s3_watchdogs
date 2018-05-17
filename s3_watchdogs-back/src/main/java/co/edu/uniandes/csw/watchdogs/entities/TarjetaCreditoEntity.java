@@ -26,25 +26,50 @@ import uk.co.jemos.podam.common.PodamStrategyValue;
 @Entity
 public class TarjetaCreditoEntity extends BaseEntity implements Serializable {
 
+    /**
+     * Numero de la tarjeta de crédito
+     */
     @PodamStrategyValue(NumTarjetaStrategy.class)
     private String numeroTarjeta;
+    
+    /**
+     * Fecha de vencimiento de la tarjeta
+     */
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
     private Date fechaVencimiento;
+    
+    /**
+     * Codigo de seguridad de la tarjeta
+     */
     private String codigoSeguridad;
 
+    /**
+     * Cliente dueño de la tarjeta
+     */
     @PodamExclude
     @ManyToOne
     private ClienteEntity cliente;
     
+    /**
+     * Atributo factura que evita que todo colapse
+     */
     @PodamExclude
     @OneToOne(mappedBy = "tarjeta", fetch = FetchType.LAZY)
     private FacturaEntity factura;
 
+    /**
+     *@return la factura asociada 
+     */
+     
     public FacturaEntity getFactura() {
         return factura;
     }
 
+    /**
+     * 
+     * @param factura nueva factura asociada
+     */
     public void setFactura(FacturaEntity factura) {
         this.factura = factura;
     }

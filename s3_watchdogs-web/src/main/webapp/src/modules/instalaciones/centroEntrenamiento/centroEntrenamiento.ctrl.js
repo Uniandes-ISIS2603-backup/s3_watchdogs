@@ -4,4 +4,16 @@
  * and open the template in the editor.
  */
 
+(function (ng) {
 
+    var mod = ng.module("instalacionesModule");
+
+    mod.constant("centroEntrenamientoContext", "api/instalaciones");
+
+    mod.controller('centroEntrenamientoCtrl', ['$scope', '$http', 'centroEntrenamientoContext', '$state',
+        function ($scope, $http, centroEntrenamientoContext, $state) {
+            $http.get(centroEntrenamientoContext).then(function (response) {
+                $scope.centroEntrenamientoRecords = response.data;
+            });
+        }]);
+})(window.angular);

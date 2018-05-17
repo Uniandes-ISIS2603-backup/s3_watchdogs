@@ -2,7 +2,7 @@
 
     var mod = ng.module("instalacionesModule");
 
-    mod.constant("veterinariaContext", "api/instalaciones");
+    mod.constant("veterinariaContext", "api/veterinarias");
 
     mod.controller('veterinariaCtrl', ['$scope', '$http', 'veterinariaContext', '$state',
         function ($scope, $http, veterinariaContext, $state) {

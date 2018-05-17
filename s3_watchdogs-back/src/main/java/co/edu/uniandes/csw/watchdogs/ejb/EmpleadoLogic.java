@@ -63,6 +63,13 @@ public class EmpleadoLogic {
         LOGGER.info("Termina proceso de consultar todos los empleados");
         return empleados;
     }
+    
+    public List<EmpleadoEntity> findbyCargo(String cargo){
+        LOGGER.info("Inicia proceso de consultar los empleados por cargo");
+        List<EmpleadoEntity> empleados = persistence.findByCargo(cargo);
+        LOGGER.info("Termina proceso de consultar los empleados por cargo");
+        return empleados;
+    }
 
     /**
      * Obtener un empleado por medio de su id.
