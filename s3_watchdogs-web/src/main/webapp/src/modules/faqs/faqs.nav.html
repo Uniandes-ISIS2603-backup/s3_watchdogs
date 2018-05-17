@@ -1,5 +1,6 @@
-<div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> <a class="navbar-brand" href="#">WatchDogs</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"> <a class="navbar-brand" href="#">WatchDogs</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"> <a class="nav-link" ui-sref="serviciosList">Servicios</a> </li>
             <li class="nav-item"> <a class="nav-link" ui-sref="empleadosList">Personal</a> </li>
@@ -7,7 +8,9 @@
             <li class="nav-item"> <a class="nav-link" ui-sref="infosList">Acerca de Nosotros</a> </li>
             <li class="nav-item"> <a class="nav-link" ui-sref="contactanosList">Contactenos</a> </li>
             <li class="nav-item active"> <a class="nav-link" ui-sref="faqsList">FAQs <span class="sr-only">(current)</span> </a> </li>
-            <li class="nav-item dropdown">
+            <li class="nav-item" ng-if="isAuthenticated()"> <a class="nav-link" ui-sref="miPerfil({clienteId: currentUser, rol: currentRol})">Mi perfil</a> </li>
+
+            <li class="nav-item dropdown" ng-if="hasPermissions()">
                 <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
                     Administrador
                 </a>
@@ -15,10 +18,10 @@
                     <a class="dropdown-item" ui-sref="clientes">Clientes</a>
                     <a class="dropdown-item" ui-sref="mascotas">Mascotas</a>
                     <a class="dropdown-item" ui-sref="empleadosAdmin">Empleados</a>
-                    <a class="dropdown-item" ui-sref="serviciosAdminList">Servicios</a>
-                    <a class="dropdown-item" ui-sref="instalacionesAdminList">Instalaciones</a>
-                    <a class="dropdown-item" ui-sref="rutasList">Rutas</a>
-                    <a class="dropdown-item" ui-sref="facturasList">Facturas</a>
+                    <a class="dropdown-item" ui-sref="serviciosAdmin">Servicios</a>
+                    <a class="dropdown-item" ui-sref="instalacionesAdmin">Instalaciones</a>
+                    <a class="dropdown-item" ui-sref="rutas">Rutas</a>
+                    <a class="dropdown-item" ui-sref="facturas">Facturas</a>
                 </div>
             </li>
         </ul>
@@ -28,5 +31,5 @@
         <ul ng-if="isAuthenticated()" class="nav navbar-nav navbar-right">
             <li><a class="nav-link" ui-sref="logout">Logout</a> </li>
         </ul>
-    </nav>
-</div>
+    </div>
+</nav>
