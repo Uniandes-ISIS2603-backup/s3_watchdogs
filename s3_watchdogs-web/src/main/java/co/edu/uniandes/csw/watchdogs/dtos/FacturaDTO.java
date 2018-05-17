@@ -38,8 +38,19 @@ import co.edu.uniandes.csw.watchdogs.entities.FacturaEntity;
 
 public class FacturaDTO {
     
+    /**
+     * id de la factura
+     */
     private Long id;
+    
+    /**
+     * valor de la factura
+     */
     private Double valor;
+    
+    /**
+     * estado de pagado de la factura
+     */
     private Boolean pagado;
     
     /** 

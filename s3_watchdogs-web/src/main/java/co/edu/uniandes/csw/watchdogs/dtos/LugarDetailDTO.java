@@ -31,6 +31,10 @@ public abstract class LugarDetailDTO extends LugarDTO{
         super(entity);
     }
     
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
     @Override
     public LugarEntity toEntity()
     {

@@ -59,6 +59,10 @@ public class VeterinariaDTO extends LugarDTO{
        
     }
     
+    /**
+     * Metodo que pasa de un DTO a un Entity
+     * @return la entidad creada
+     */
     @Override
     public VeterinariaEntity toEntity() {
         VeterinariaEntity entity = new VeterinariaEntity();

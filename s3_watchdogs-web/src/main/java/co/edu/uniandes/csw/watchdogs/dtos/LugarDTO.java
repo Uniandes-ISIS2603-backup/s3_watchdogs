@@ -39,10 +39,29 @@ import java.util.List;
  */
 public abstract class LugarDTO implements Serializable {
     
+    /**
+     * Id del lugar
+     */
     protected Long id;
+    
+    /**
+     * direccion del lugar
+     */
     protected String direccion;
+    
+    /**
+     * lista de fotos del lugar
+     */
     protected transient List<String> fotos;
+    
+    /**
+     * Ususarios en servicio 
+     */
     protected Integer usuariosEnServicio;
+    
+    /**
+     * capacidad maxima del lugar
+     */
     protected Integer capacidadMaxima;
     
      /**
@@ -50,7 +69,11 @@ public abstract class LugarDTO implements Serializable {
      */
     public LugarDTO() {
     }
-
+    
+    /**
+     * Constructor que recibe un entity
+     * @param lugar 
+     */
     public LugarDTO(LugarEntity lugar) {
         if(lugar!=null)
         {

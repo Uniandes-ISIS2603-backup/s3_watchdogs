@@ -16,9 +16,19 @@ import co.edu.uniandes.csw.watchdogs.entities.HotelEntity;
  */
 public class HotelDetailDTO extends ServicioDetailDTO {
 
+    /**
+     * Transporte asociado al Hotel
+     */
     private TransporteDTO transporte;
+    
+    /**
+     * CentroDeEntrenamiento Asociado al Hotel
+     */
     private CentroDeEntrenamientoDTO centroDeEntrenamiento;
-
+    
+    /**
+     * Tiempo de hospedaje en el hotel
+     */
     private Integer tiempoHospedaje;
 
     /**
@@ -43,10 +53,16 @@ public class HotelDetailDTO extends ServicioDetailDTO {
         }
     }
 
+    /**
+     * @return tiempoHospedaje
+     */
     public Integer getTiempoHospedaje() {
         return tiempoHospedaje;
     }
 
+    /**
+     * @param tiempoHospedaje El nuevo tiempo de hospedaje
+     */
     public void setTiempoHospedaje(Integer tiempoHospedaje) {
         this.tiempoHospedaje = tiempoHospedaje;
     }
