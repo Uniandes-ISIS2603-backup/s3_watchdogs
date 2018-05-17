@@ -2,12 +2,20 @@
 
     var mod = ng.module("serviciosAdminModule");
 
-    mod.constant("serviciosAdminContext", "api/servicios");
-
-    mod.controller('serviciosAdminCtrl', ['$scope', '$http', 'serviciosAdminContext', '$state',
-        function ($scope, $http, serviciosAdminContext, $state) {
-            $http.get("data/servicios.json").then(function (response) {
-                $scope.serviciosAdminRecords = response.data;
+    mod.controller('serviciosAdminCtrl', ['$scope', '$http',
+        function ($scope, $http) {
+            $scope.serviciosAseosRecords = [];
+            $http.get("api/hoteles").then(function (response) {
+                $scope.serviciosAseosRecords.push(response.data);
+                $http.get("api/paseos").then(function (response) {
+                    $scope.serviciosAseosRecords.push(response.data);
+                    $http.get("api/aseos").then(function (response) {
+                        $scope.serviciosAseosRecords.push(response.data);
+                        $http.get("api/entrenamientos").then(function (response) {
+                            $scope.serviciosAseosRecords.push(response.data);
+                        });
+                    });
+                });
             });
         }]);
 })(window.angular);

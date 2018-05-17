@@ -7,18 +7,38 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
+                                <th class="parrafoscards" style="font-size: 18px">Id</th>
                                 <th class="parrafoscards" style="font-size: 18px">Nombre</th>
-                                <th class="parrafoscards" style="font-size: 18px">Descripcion</th>
+                                <th class="parrafoscards" style="font-size: 18px">Costo</th>
+                                <th class="parrafoscards" style="font-size: 18px">Duracion</th>
+                                <th class="parrafoscards" style="font-size: 18px">Estado</th>
+                                <th class="parrafoscards" style="font-size: 18px">Fecha</th>
+                                <th class="parrafoscards" style="font-size: 18px">Hora</th>
                                 <th ng-if="isAdmin()" class="parrafoscards" style="font-size: 18px">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr ng-repeat="servicio in serviciosAdminRecords">
-                                <td id="{{$index}}-nombre" class="parrafoscards" style="font-size: 16px">
-                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.nombre}}</a>
+                        <tbody ng-repeat="a in serviciosAseosRecords">
+                            <tr ng-repeat="servicio in a">
+                                <td id="{{$index}}-id" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.id}}</a>
                                 </td>
-                                <td id="{{$index}}-idCliente" class="parrafoscards" style="font-size: 16px">
-                                    {{servicio.descripcion}}
+                                <td id="{{$index}}-nombre" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.type}}</a>
+                                </td>
+                                <td id="{{$index}}-costo" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.costo}}</a>
+                                </td>
+                                <td id="{{$index}}-duracion" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.duracion}}</a>
+                                </td>
+                                <td id="{{$index}}-estado" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.estado}}</a>
+                                </td>
+                                <td id="{{$index}}-fecha" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.fecha}}</a>
+                                </td>
+                                <td id="{{$index}}-hora" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="servicioAdminDetail({servicioId: servicio.id})">{{servicio.hora}}</a>
                                 </td>
                                 <td ng-if="isAdmin()" id="{{$index}}-acciones">
                                     <a ng-if="isAdmin()" id="editarMascota" ui-sref="servicioAdminUpdate({servicioId: servicio.id})">
