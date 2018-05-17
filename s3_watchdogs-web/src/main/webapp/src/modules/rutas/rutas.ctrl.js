@@ -7,7 +7,7 @@
     mod.controller('rutasCtrl', ['$scope', '$http', 'rutasContext',
         function ($scope, $http, rutasContext) {
             $http.get(rutasContext).then(function (response) {
-                $scope.empleadosAdminRecords = response.data;
+                $scope.rutasRecords = response.data;
             });
         }]);
 })(window.angular);

@@ -1,29 +1,58 @@
-<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert()">{{alert.msg}} </alert>
-<div id="alertPanel" style="text-align: center"></div>
 <div class="container-fluid">
-    <div class="col-md-8">
-        <h1>
-            Historial de Facturas
-        </h1>
-          
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Número de factura</th>    
-                    <th>Cliente</th>
-                    <th>Método de Pago</th>
-                    <th>Costo</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="factura in facturasRecords">
-                    <td id="{{$index}}-name">{{factura.id}}</td>
-                    <td id="{{$index}}-cliente">{{factura.cliente.nombres}} {{factura.cliente.apellidos}}</td>
-                    <td id="{{$index}}-pago">{{factura.metodoDePago}} </td>  <!-- Para el objeto real debe llamarse al atributo de método de pago y luego al tipo-->
-                    <td id="{{$index}}-costo">{{factura.costo}} </td>  
-                </tr>
-            </tbody>
-        </table>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="tituloscards"><h3>Lista de mascotas</h3></div>
+            <div class="panel-body">
+                <div class="row">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="parrafoscards" style="font-size: 18px">Id</th>
+                                <th class="parrafoscards" style="font-size: 18px">Valor</th>
+                                <th class="parrafoscards" style="font-size: 18px">Pagado</th>
+                                <th class="parrafoscards" style="font-size: 18px">Cliente</th>
+                                <th class="parrafoscards" style="font-size: 18px">Tarjeta</th>
+                                <th class="parrafoscards" style="font-size: 18px">PSE</th>
+                                <th class="parrafoscards" style="font-size: 18px">PayPal</th>
+                                <th ng-if="isAdmin()" class="parrafoscards" style="font-size: 18px">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="facturas in facturasRecords">
+                                <td id="{{$index}}-id" class="parrafoscards" style="font-size: 16px">
+                                    {{facturas.id}}
+                                </td>
+                                <td id="{{$index}}-valor" class="parrafoscards" style="font-size: 16px">
+                                    {{facturas.valor}}
+                                </td>
+                                <td id="{{$index}}-pagado" class="parrafoscards" style="font-size: 16px">
+                                    {{facturas.pagado}}
+                                </td>
+                                <td id="{{$index}}-cliente" class="parrafoscards" style="font-size: 16px">
+                                    <a ui-sref="clienteDetail({clienteId: cliente.id})">{{facturas.cliente.name}}</a>
+                                </td>
+                                <td id="{{$index}}-tarjeta" class="parrafoscards" style="font-size: 16px">
+                                    {{facturas.tarjeta.id}}
+                                </td>
+                                <td id="{{$index}}-pse" class="parrafoscards" style="font-size: 16px">
+                                    {{facturas.pse.id}}
+                                </td>
+                                <td id="{{$index}}-paypal" class="parrafoscards" style="font-size: 16px">
+                                    {{facturas.payPal.id}}
+                                </td>
+                                <td ng-if="isAdmin()" id="{{$index}}-acciones">
+                                    <a ng-if="isAdmin()" id="editarMascota">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a ng-if="isAdmin()" id="deleteMascota">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

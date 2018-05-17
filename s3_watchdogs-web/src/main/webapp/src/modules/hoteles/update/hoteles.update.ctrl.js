@@ -5,7 +5,7 @@
  */
 (
         function (ng) {
-            var mod = ng.module("hotelsModule");
+            var mod = ng.module("hotelesModule");
             mod.constant("clientesContext", "api/clientes");
             mod.constant("hotelsContext", "api/hotels");
             mod.constant("empleadosContext", "api/empleados");
