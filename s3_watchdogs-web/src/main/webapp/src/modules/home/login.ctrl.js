@@ -59,6 +59,7 @@
                     console.log($scope.user)
 
                     $rootScope.currentUser = $scope.user.id;
+                    $rootScope.currentRol = $scope.user.rol;
                 }
             };
         }

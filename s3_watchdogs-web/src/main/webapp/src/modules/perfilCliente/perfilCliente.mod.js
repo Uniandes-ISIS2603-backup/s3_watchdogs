@@ -10,7 +10,8 @@
             
             $stateProvider.state('miPerfil', {
                 params: {
-                    clienteId: null
+                    clienteId: null,
+                    rol: null
                 },
                 url: '/miPerfil',
                

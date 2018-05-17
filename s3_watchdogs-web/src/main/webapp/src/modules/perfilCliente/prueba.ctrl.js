@@ -6,11 +6,20 @@
     mod.controller('perfilCtrl', ['$scope', '$http', 'ClienteContext', '$state',
         function ($scope, $http, ClienteContext, $state) {
             if (($state.params.clienteId !== undefined) && ($state.params.clienteId !== null)) {
+                if($state.params.rol.equals("cliente")){
                  var idCliente = $state.params.clienteId;
                  console.log(idCliente);
                 $http.get(ClienteContext + '/' + $state.params.clienteId).then(function (response) {
                     $scope.clienteRecords = response.data;
                 });
             }
+            else if($state.params.rol.equals("assistant") || $state.params.rol.equals("admin")){
+                 var idCliente = $state.params.clienteId;
+                 console.log(idCliente);
+                $http.get("api/empleados" + '/' + $state.params.clienteId).then(function (response) {
+                    $scope.clienteRecords = response.data;
+                });
+            }
+        }
         }]);
 })(window.angular);
