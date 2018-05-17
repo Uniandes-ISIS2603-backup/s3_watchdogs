@@ -91,9 +91,10 @@ public class VeterinariaLogicTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        em.createQuery("delete from VeterinariaEntity").executeUpdate();
         em.createQuery("delete from PaseoEntity").executeUpdate();
         em.createQuery("delete from AseoEntity").executeUpdate();
+        em.createQuery("delete from VeterinariaEntity").executeUpdate();
+
 
     }
     /**
@@ -163,6 +164,9 @@ public class VeterinariaLogicTest {
         Assert.assertEquals(entity.getFotos(), resultEntity.getFotos());
         Assert.assertEquals(entity.getDireccion(), resultEntity.getDireccion());
     }
+    
+  
+    
 
     /**
      * Prueba para eliminar una Veterinaria
@@ -195,5 +199,34 @@ public class VeterinariaLogicTest {
         Assert.assertEquals(pojoEntity.getCapacidadMaxima(), resp.getCapacidadMaxima());
         Assert.assertEquals(pojoEntity.getFotos(), resp.getFotos());
         Assert.assertEquals(pojoEntity.getDireccion(), resp.getDireccion());
+    }
+    
+    /**
+     * Prueba para el añadido correcto de aseos
+     */
+    @Test
+    public void addAseoTest() throws BusinessLogicException{
+        VeterinariaEntity entity = data.get(0);
+        AseoEntity aseo = aseosData.get(0);                
+        veterinariaLogic.addAseo(entity.getId(), aseo.getId());
+        VeterinariaEntity resultEntity = veterinariaLogic.getVeterinaria(entity.getId());
+        Assert.assertTrue(!resultEntity.getAseos().isEmpty());
+        Assert.assertTrue(aseo.getId().equals(resultEntity.getAseos().get(0).getId()));
+
+    }
+   
+    
+    /**
+     * Prueba para el añadido correcto de paseos
+     */
+    //@Test
+    public void addPaseoTest() throws BusinessLogicException{
+        VeterinariaEntity entity = data.get(0);
+        PaseoEntity paseo = paseosData.get(0);                
+        veterinariaLogic.addPaseo(entity.getId(), paseo.getId());
+        VeterinariaEntity resultEntity = veterinariaLogic.getVeterinaria(entity.getId());
+        Assert.assertTrue(!resultEntity.getPaseos().isEmpty());
+        Assert.assertTrue(paseo.getId().equals(resultEntity.getPaseos().get(0).getId()));
+       
     }
 }

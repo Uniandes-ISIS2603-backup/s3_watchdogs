@@ -201,6 +201,14 @@ public class FacturaLogicTest {
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertTrue(pojoEntity.getPagado() == resp.getPagado());
         Assert.assertEquals(pojoEntity.getValor(), resp.getValor(),0);
+        
+        pojoEntity.setValor(-1.0);
+        try{
+        facturaLogic.updateFactura(pojoEntity.getId(), pojoEntity);
+        Assert.fail();
+        }catch(BusinessLogicException e){
+            
+        }
 
     }
     

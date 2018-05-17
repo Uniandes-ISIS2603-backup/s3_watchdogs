@@ -186,6 +186,14 @@ public class RutaLogicTest {
         Assert.assertEquals(pojoEntity.getId(), resp.getId());
         Assert.assertEquals(pojoEntity.getName(), resp.getName());
         Assert.assertEquals(pojoEntity.getDuracion(), resp.getDuracion(),0);
+        
+        pojoEntity.setDuracion(121);
+        try{
+            rutaLogic.updateRuta(pojoEntity.getId(), pojoEntity);
+            Assert.fail();
+        }catch(BusinessLogicException e){
+            
+        }   
 
     }
     
