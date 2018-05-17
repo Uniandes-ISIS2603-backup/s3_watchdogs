@@ -179,7 +179,7 @@ public class VeterinariaLogic {
      * @param paseoId El paseo que se desea borrar de la veterinaria.
      * @param veterinariaId la vetererinaria de la cual se desea eliminar.
      */
-    public void removeHotel(Long paseoId, Long veterinariaId) {
+    public void removePaseo(Long paseoId, Long veterinariaId) {
         VeterinariaEntity veterinariaEntity = getVeterinaria(veterinariaId);
         PaseoEntity paseo = paseoLogic.getPaseo(paseoId);
         paseo.setVeterinaria(null);

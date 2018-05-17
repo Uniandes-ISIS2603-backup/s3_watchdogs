@@ -110,14 +110,14 @@ public class DisponibilidadLogic {
         String[] checker1 = checker.split(" ");
         for(int i = 0; i < 7; i++){
             if(checker1[i].length() != 12){
-                throw new BusinessLogicException("Hora del día inválidas");
+                throw new BusinessLogicException("Hora del día inválidas",new Throwable("Problemas con el formato"));
             }
             String temp = checker1[i];
             temp = temp.replaceAll("L","");
             temp = temp.replaceAll("D","");
             temp = temp.replaceAll("A","");
             if(!"".equals(temp)){
-                throw new BusinessLogicException("Caracteres no válidos");
+                throw new BusinessLogicException(new Throwable("Caracteres no válidos"));
             }
             
         }

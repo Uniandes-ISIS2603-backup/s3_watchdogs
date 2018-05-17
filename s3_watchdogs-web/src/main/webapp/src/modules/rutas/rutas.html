@@ -4,13 +4,13 @@
         <div ui-view="detailView">
             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                    <a ng-if="isAdmin()" class="btn btn-info parrafoscards" ui-sref="instalacionesAdminCreate" id="createServicio">
+                    <a class="btn btn-info parrafoscards" ui-sref="rutasCreate">
                         <i class="fa fa-plus-circle" style="text-align: center"></i>
-                        <p>Crear instalacion</p>
+                        <p>Crear ruta</p>
                     </a>
-                    <a class="btn btn-info parrafoscards" ui-sref="instalacionesAdminList" id="allServicio">
+                    <a class="btn btn-info parrafoscards" ui-sref="rutasList">
                         <i class="fa fa-search" style="text-align: center"></i>
-                        <p>Buscar todas las instalaciones</p>
+                        <p>Buscar todas las rutas</p>
                     </a>
                 </div>
             </div>
@@ -20,7 +20,7 @@
     </div>
     <div class="col">
         <hr>
-        <div class="col" ui-view="instalacionDetailView"></div>
-        <div class="col" ui-view="instalacionUpdateView"></div>
+        <div class="col" ui-view="rutaDetailView"></div>
+        <div class="col" ui-view="rutaUpdateView"></div>
     </div>
 </div>

@@ -34,7 +34,7 @@
         'rutaModule',
         'metodoDePagoModule',
         'calificacionesModule',
-        'facturaModule',
+        'facturasModule',
         'disponibilidadModule',
         'loginModule',
         'perfilModule'
