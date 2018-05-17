@@ -2,7 +2,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item"> <a class="nav-link" ui-sref="serviciosList">Servicios</a> </li>
+            <li class="nav-item"ng-if="isAuthenticated() || true"> <a class="nav-link" ui-sref="serviciosList({clienteId: currentUser})">Servicios</a> </li>
             <li class="nav-item"> <a class="nav-link" ui-sref="empleadosList">Personal</a> </li>
             <li class="nav-item"> <a class="nav-link" ui-sref="instalacionesList">Instalaciones</a> </li>
             <li class="nav-item active"> <a class="nav-link" ui-sref="infosList">Acerca de Nosotros <span class="sr-only">(current)</span> </a> </li>
