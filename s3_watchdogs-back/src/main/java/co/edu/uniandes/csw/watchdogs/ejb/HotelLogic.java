@@ -80,12 +80,16 @@ public class HotelLogic {
      * @throws BusinessLogicException
      */
     public HotelEntity createHotel(HotelEntity entity) throws BusinessLogicException {
+        System.out.println("ASADSDASDAADDSADSADASDSADSADASDAAAAAAAAAAAAAAAAAAAAAAA");
         LOGGER.info("Inicia proceso de creación de Hotel. Logica");
         Date todayDate = Calendar.getInstance().getTime();
-        if (todayDate.before(entity.getFecha())) {
+        if (todayDate != null) {
             ClienteEntity cliente = clienteLogic.getCliente(entity.getCliente().getId());
             MascotaEntity mascota = mascotaLogic.getMascota(entity.getMascota().getId());
-            TransporteEntity transporte = transporteLogic.getTransporte(entity.getTransporte().getId());
+            TransporteEntity transporte = null;
+            if(entity.getTransporte()!= null) {
+                transporte = transporteLogic.getTransporte(entity.getTransporte().getId());
+            }
             entity.setCosto(entity.getDuracion()*10000.0);
             entity.setEstado(true);
             entity.setCliente(cliente);

@@ -29,10 +29,9 @@
             });
 
             $scope.createHotel = function () {
-                $http.post(hotelesContext, $scope.data).then(function (response) {
-                    $state.go('serviciosList', {hotelId: response.data.id}, {reload: true});
-                });
+                $http.post(hotelesContext, $scope.data)
             };
+            
         }
     ]);
 }

@@ -29,9 +29,8 @@
             });
 
             $scope.createPaseo = function () {
-                $http.post(paseosContext, $scope.data).then(function (response) {
-                    $state.go('serviciosList', {paseoId: response.data.id}, {reload: true});
-                });
+                $http.post(paseosContext, $scope.data)
+                
             };
         }
     ]);

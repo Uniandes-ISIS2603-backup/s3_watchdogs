@@ -72,7 +72,10 @@ public class HotelResource {
     public HotelDetailDTO createHotel(HotelDetailDTO hotel) throws BusinessLogicException {
         HotelEntity hotelEntity = hotel.toEntity();
         hotelEntity.setCosto(hotelEntity.getDuracion()*10000.0);
-        TransporteEntity transporte = transporteLogic.getTransporte(hotel.getTransporte().getId());
+        TransporteEntity transporte = null;
+        if(hotel.getTransporte()!= null) {
+             transporte = transporteLogic.getTransporte(hotel.getTransporte().getId());
+        }
         hotelEntity.setTransporte(transporte);
         HotelEntity nuevoHotel = hotelLogic.createHotel(hotelEntity);
         return new HotelDetailDTO(nuevoHotel);
